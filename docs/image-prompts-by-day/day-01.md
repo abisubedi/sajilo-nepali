@@ -52,24 +52,24 @@
 - [x] w-wake-up.png
 - [x] w-brush-teeth.png
 - [x] w-wash-hands.png
-- [ ] w-put-on-shoes.png
-- [ ] w-come-here.png
-- [ ] w-let-s-play-outside.png
-- [ ] w-read-a-book.png
-- [ ] w-go-to-sleep.png
-- [ ] w-door.png
-- [ ] w-window.png
-- [ ] w-bed.png
-- [ ] w-chair.png
-- [ ] w-toy.png
-- [ ] w-book.png
-- [ ] w-bag.png
-- [ ] w-light.png
-- [ ] w-kitchen.png
-- [ ] w-bedroom.png
-- [ ] w-yard-courtyard.png
-- [ ] w-bathroom.png
-- [ ] w-living-room.png
+- [x] w-put-on-shoes.png
+- [x] w-come-here.png
+- [x] w-let-s-play-outside.png
+- [x] w-read-a-book.png
+- [x] w-go-to-sleep.png
+- [x] w-door.png
+- [x] w-window.png
+- [x] w-bed.png
+- [x] w-chair.png
+- [x] w-toy.png
+- [x] w-book.png
+- [x] w-bag.png
+- [x] w-light.png
+- [x] w-kitchen.png
+- [x] w-bedroom.png
+- [x] w-yard-courtyard.png
+- [x] w-bathroom.png
+- [x] w-living-room.png
 - [x] li-greet.png
 - [x] li-respect-family.png
 - [x] li-kitchen-tummy.png

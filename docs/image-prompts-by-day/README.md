@@ -2,7 +2,7 @@
 
 | Day | What | Pictures | Done |
 |---|---|---|---|
-| 1 | [Chapter 1: मेरो घर (Around the home)](day-01.md) | 67 | 49/67 |
+| 1 | [Chapter 1: मेरो घर (Around the home)](day-01.md) | 67 | 67/67 |
 | 2 | [Chapter 2: म र मेरो शरीर (All about me)](day-02.md) | 31 | 0/31 |
 | 3 | [Chapter 3: खेल र बाहिर (Play & outside)](day-03.md) | 55 | 0/55 |
 | 4 | [Chapter 4: हाम्रो संस्कृति (Nepali culture & time)](day-04.md) | 35 | 0/35 |
