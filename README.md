@@ -37,10 +37,10 @@ Created, coded and voiced by **Abi Subedi (अबी सुवेदी)** in Pi
 Character art lives in `art/` (the original files) and `public/img/` (small transparent WebP files the game uses). To add one:
 
 ```
-python3 scripts/cutout.py art/st-home.jpg public/img/st-home.webp
+python3 scripts/build_images.py
 ```
 
-It removes the white background, trims the edges and shrinks the picture. For a round sticker with a light sky near the edge, protect the circle with `disk=CX,CY,R` (see the top of the script). Prompts for every picture are in `docs/image-prompts.md`; rebuild them with `node scripts/make_prompts.js`. The same prompts split into one chapter per day are in `docs/image-prompts-by-day/` (rebuild with `node scripts/make_daily_prompts.js`; the checklists tick off pictures already in `public/img/`).
+Name each file in `art/` by its prompt (`w-mom.jpg`, `li-greet.png` …). The script cuts out the white background of every new picture, shrinks it into `public/img/` and updates `public/img-manifest.js`; the game then shows it instead of the emoji (word cards, answers, flashcards, print cards and lesson icons). `cast-*` files are drawing references only. To redo one picture by hand: `python3 scripts/cutout.py art/st-home.jpg public/img/st-home.webp`. For a round sticker with a light sky near the edge, protect the circle with `disk=CX,CY,R` (see the top of the script). Prompts for every picture are in `docs/image-prompts.md`; rebuild them with `node scripts/make_prompts.js`. The same prompts split into one chapter per day are in `docs/image-prompts-by-day/` (rebuild with `node scripts/make_daily_prompts.js`; the checklists tick off pictures already in `public/img/`).
 
 ## Run it
 Open `public/index.html` in a browser. It's a single file with no build step.

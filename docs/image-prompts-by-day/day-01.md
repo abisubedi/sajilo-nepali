@@ -10,48 +10,48 @@
 
 ## Checklist
 
-- [ ] cast-maya.png
-- [ ] cast-arjun.png
-- [ ] cast-aama.png
-- [ ] cast-baba.png
-- [ ] cast-didi.png
-- [ ] cast-dai.png
-- [ ] cast-bahini.png
-- [ ] cast-bhai.png
-- [ ] cast-hajuraama.png
-- [ ] cast-hajurbaa.png
-- [ ] cast-teacher.png
-- [ ] w-hello.png
-- [ ] w-thank-you.png
-- [ ] w-yes.png
-- [ ] w-no.png
-- [ ] w-good-night.png
-- [ ] w-see-you-again.png
-- [ ] w-mom.png
-- [ ] w-dad.png
-- [ ] w-yes-polite.png
-- [ ] w-older-sister.png
-- [ ] w-older-brother.png
-- [ ] w-younger-sister.png
-- [ ] w-younger-brother.png
-- [ ] w-grandma.png
-- [ ] w-grandpa.png
-- [ ] w-water.png
-- [ ] w-rice.png
-- [ ] w-milk.png
-- [ ] w-lentil-soup.png
-- [ ] w-flatbread.png
-- [ ] w-apple.png
-- [ ] w-banana.png
-- [ ] w-momo.png
-- [ ] w-i-am-hungry.png
-- [ ] w-it-is-yummy.png
-- [ ] w-i-am-full.png
-- [ ] w-hot.png
-- [ ] w-spoon.png
-- [ ] w-wake-up.png
-- [ ] w-brush-teeth.png
-- [ ] w-wash-hands.png
+- [x] cast-maya.png
+- [x] cast-arjun.png
+- [x] cast-aama.png
+- [x] cast-baba.png
+- [x] cast-didi.png
+- [x] cast-dai.png
+- [x] cast-bahini.png
+- [x] cast-bhai.png
+- [x] cast-hajuraama.png
+- [x] cast-hajurbaa.png
+- [x] cast-teacher.png
+- [x] w-hello.png
+- [x] w-thank-you.png
+- [x] w-yes.png
+- [x] w-no.png
+- [x] w-good-night.png
+- [x] w-see-you-again.png
+- [x] w-mom.png
+- [x] w-dad.png
+- [x] w-yes-polite.png
+- [x] w-older-sister.png
+- [x] w-older-brother.png
+- [x] w-younger-sister.png
+- [x] w-younger-brother.png
+- [x] w-grandma.png
+- [x] w-grandpa.png
+- [x] w-water.png
+- [x] w-rice.png
+- [x] w-milk.png
+- [x] w-lentil-soup.png
+- [x] w-flatbread.png
+- [x] w-apple.png
+- [x] w-banana.png
+- [x] w-momo.png
+- [x] w-i-am-hungry.png
+- [x] w-it-is-yummy.png
+- [x] w-i-am-full.png
+- [x] w-hot.png
+- [x] w-spoon.png
+- [x] w-wake-up.png
+- [x] w-brush-teeth.png
+- [x] w-wash-hands.png
 - [ ] w-put-on-shoes.png
 - [ ] w-come-here.png
 - [ ] w-let-s-play-outside.png
@@ -70,13 +70,13 @@
 - [ ] w-yard-courtyard.png
 - [ ] w-bathroom.png
 - [ ] w-living-room.png
-- [ ] li-greet.png
-- [ ] li-respect-family.png
-- [ ] li-kitchen-tummy.png
-- [ ] li-daily-routines.png
-- [ ] li-house-objects.png
-- [ ] li-rooms-house.png
-- [ ] li-home-sentences.png
+- [x] li-greet.png
+- [x] li-respect-family.png
+- [x] li-kitchen-tummy.png
+- [x] li-daily-routines.png
+- [x] li-house-objects.png
+- [x] li-rooms-house.png
+- [x] li-home-sentences.png
 
 ## Prompts
 

@@ -3,7 +3,7 @@
    - Audio clips and pictures: cached the first time they are used (their URLs change when the file changes).
    - Safari asks for audio in byte ranges, so cached clips are answered with the requested slice. */
 const SHELL = "sn-shell-v1", MEDIA = "sn-media-v1";
-const CORE = ["/", "/lessons.js", "/audio-manifest.js", "/manifest.webmanifest", "/icon-192.png", "/apple-touch-icon.png"];
+const CORE = ["/", "/lessons.js", "/audio-manifest.js", "/img-manifest.js", "/manifest.webmanifest", "/icon-192.png", "/apple-touch-icon.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(SHELL).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));

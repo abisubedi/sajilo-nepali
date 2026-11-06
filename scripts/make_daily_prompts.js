@@ -39,7 +39,8 @@ window.CHAPTERS.forEach((c, ci) => {
     take(items, item(`s-${l.id}-${i + 1}`, `a warm everyday scene that shows the meaning of the sentence "${s.en}", with ${/grand/i.test(s.en) ? D.C.hajuraama + ' or ' + D.C.hajurbaa : D.C.maya + ' or ' + D.C.arjun}, at home or outdoors in Nepal`, `${l.title}: ${s.ne.join(' ')}`, "1024x768"));
   days.push({ title: "Sentence scenes (optional)", items }); }
 
-const have = f => fs.existsSync(path.join(IMG, f.replace(/\.png$/, '.webp')));
+const ART = path.join(__dirname, '..', 'art'), artFiles = fs.existsSync(ART) ? fs.readdirSync(ART).map(f => f.replace(/\.[a-z]+$/i, '')) : [];
+const have = f => fs.existsSync(path.join(IMG, f.replace(/\.png$/, '.webp'))) || artFiles.includes(f.replace(/\.png$/, ''));
 let index = `# Picture prompts, one day at a time\n\n| Day | What | Pictures | Done |\n|---|---|---|---|\n`;
 days.forEach((d, i) => {
   const n = i + 1, file = `day-${String(n).padStart(2, '0')}.md`, got = d.items.filter(x => have(x.file)).length;

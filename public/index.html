@@ -266,6 +266,13 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .player-pill .av-img { width: 24px; height: 24px; margin: -4px 0; }
 .player-av .av-img { width: 40px; height: 40px; }
 .avatar .av-img { width: 48px; height: 48px; }
+/* Word pictures and lesson icons */
+.big.has-art { line-height: 0; }
+.wpic { width: 1.5em; height: 1.5em; object-fit: contain; display: block; }
+.wotd-pic .wpic { width: 52px; height: 52px; }
+.pc-pic .wpic { width: 1.4em; height: 1.4em; margin: 0 auto; }
+.disc .li-art { width: 86%; height: 86%; object-fit: contain; }
+.disc:has(.li-art) { background: var(--snow); border: 3px solid var(--c, var(--flag-blue)); box-sizing: border-box; }
 /* Pandu artwork + gentle motion */
 .pandu-art { object-fit: contain; }
 .brand .brand-pandu { width: 48px; height: 48px; }
@@ -397,6 +404,7 @@ span[data-say]:hover { background: rgba(47,111,214,.10); }
 
 <script src="lessons.js"></script>
 <script src="audio-manifest.js"></script>
+<script src="img-manifest.js"></script>
 <script>if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));</script>
 <script>
 /* ---------- Saved progress (this browser only) ---------- */
@@ -501,7 +509,17 @@ const K = t => window.audioKey(t);
 const neSpan = (text, cls = "ne", key = K(text)) => `<span class="${cls}" lang="ne" data-say="${esc(key)}" title="Tap to hear">${esc(text)}</span>`;
 const neHTML = (ne, rom, key) => `${neSpan(ne, "ne", key)}<span class="rom">${esc(rom)}</span>`;
 const isLabel = pic => /^(SUN|MON|TUE|WED|THU|FRI|SAT|\d+)$/.test(pic);
-const picHTML = (pic, size) => isLabel(pic) ? `<span class="pic-label">${esc(pic)}</span>` : `<span class="big"${size ? ` style="font-size:${size}px"` : ""}>${esc(pic)}</span>`;
+/* Word pictures: the artwork in img/ when there is one (named w-<english>), otherwise the emoji.
+   Pass the word itself (it needs .pic and .en); a plain emoji string also works. */
+const slugOf = s => String(s).toLowerCase().replace(/\(polite\)/g, "polite").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const artFor = x => x && typeof x === "object" && x.en && (window.IMG || {})["w-" + slugOf(x.en)];
+const picHTML = (x, size) => {
+  const pic = typeof x === "object" ? x.pic : x, art = artFor(x);
+  const st = size ? ` style="font-size:${size}px"` : "";
+  if (art) return `<span class="big has-art"${st}><img class="wpic" src="${art}" alt="" draggable="false"></span>`;
+  return isLabel(pic) ? `<span class="pic-label">${esc(pic)}</span>` : `<span class="big"${st}>${esc(pic)}</span>`;
+};
+const iconHTML = l => (window.IMG || {})["li-" + l.id] ? `<img class="li-art" src="${window.IMG["li-" + l.id]}" alt="" draggable="false">` : `<span lang="ne" style="font-family:var(--display)">${esc(l.icon)}</span>`;
 const visibleLessons = () => window.LESSONS.filter(l => !l.bigOnly || P.level === "big");
 const SPEAKER = `<svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>`;
 const MUTED = `<svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><line x1="16" y1="9" x2="22" y2="15"/><line x1="22" y1="9" x2="16" y2="15"/></svg>`;
@@ -584,7 +602,7 @@ function wordOfDay() {
 function wordOfDayHTML() {
   const w = wordOfDay(); if (!w) return "";
   const heard = P.wotdDay === today();
-  return `<div class="wotd${heard ? " heard" : ""}"><button class="wotd-main" type="button" id="wotdPlay" data-say="${esc(K(w.it.ne))}"><span class="wotd-pic" aria-hidden="true">${esc(w.it.pic || "💡")}</span>
+  return `<div class="wotd${heard ? " heard" : ""}"><button class="wotd-main" type="button" id="wotdPlay" data-say="${esc(K(w.it.ne))}"><span class="wotd-pic" aria-hidden="true">${artFor(w.it) ? `<img class="wpic" src="${artFor(w.it)}" alt="">` : esc(w.it.pic || "💡")}</span>
     <span><small>💡 Word of the day · ${esc(w.c.en)}</small><b lang="ne">${esc(w.it.ne)}</b> <span class="rom">${esc(w.it.rom)}</span><em>${esc(w.it.en)}</em></span>
     <span class="wotd-say">${heard ? "✓ Heard today! +5 ⭐" : `${SPEAKER}<small>Tap for +5 ⭐</small>`}</span></button>
     <button class="wotd-go" type="button" data-wotd-lesson="${esc(w.l.id)}">Practice “${esc(w.l.title)}” →</button></div>`;
@@ -709,7 +727,7 @@ function renderMap() {
     const st = P.stars[starKey(l.id)] || 0, isNext = l.id === nextId;
     const starHTML = [1, 2, 3].map(n => `<span class="${n <= st ? "" : "off"}">★</span>`).join("");
     return `<button class="stone${isNext ? " next" : ""}${st ? " earned" : ""}" type="button" data-lesson="${l.id}" aria-label="${esc(l.title)}${isNext ? " (start here)" : ""}">
-      <span class="disc" style="--c:${l.color}"><span lang="ne" style="font-family:var(--display)">${esc(l.icon)}</span></span>
+      <span class="disc" style="--c:${l.color}">${iconHTML(l)}</span>
       <span class="label">${isNext ? `<em class="next-tag">${anyStars ? "Next up!" : "Start here"}</em>` : ""}<strong>${esc(l.title)}</strong>${neSpan(l.ne)}${l.rom ? ` <span class="rom">${esc(l.rom)}</span>` : ""}<div class="stars">${starHTML}</div></span>
     </button>`;
   };
@@ -789,7 +807,7 @@ function renderMap() {
     ${sheetL ? `<div class="sheet-back" id="sheetBack"></div>
       <div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(sheetL.title)}">
         <button class="x sheet-x" type="button" id="sheetClose" aria-label="Close">✕</button>
-        <div class="sheet-head"><span class="disc" style="--c:${sheetL.color}"><span lang="ne">${esc(sheetL.icon)}</span></span>
+        <div class="sheet-head"><span class="disc" style="--c:${sheetL.color}">${iconHTML(sheetL)}</span>
           <div><strong>${esc(sheetL.title)}</strong>${neSpan(sheetL.ne)}${sheetL.rom ? ` <span class="rom">${esc(sheetL.rom)}</span>` : ""}</div></div>
         <button class="sheet-btn learn" type="button" id="goCards">📖 <span><b>Flashcards</b><small>Learn and listen at your own pace</small></span></button>
         <button class="sheet-btn play" type="button" id="goPlay">🎮 <span><b>Play game</b><small>Answer questions and earn ★★★</small></span></button>
@@ -814,7 +832,7 @@ function renderCards() {
     <button class="flashcard" type="button" id="flash" data-flashsay="${esc(c.key)}">
       ${c.ctx ? `<span class="ctx">${esc(c.ctx)}</span>` : ""}
       ${c.letter ? `<span class="letter-big" lang="ne">${esc(c.letter)}</span><span class="rom">${esc(c.rom)}</span>` : ""}
-      ${picHTML(c.pic, c.letter ? 54 : 84)}
+      ${picHTML(c, c.letter ? 54 : 84)}
       <span class="ne" lang="ne">${esc(c.ne || "")}</span>${c.letter ? (c.wordRom ? `<span class="rom">${esc(c.wordRom)}</span>` : "") : `<span class="rom">${esc(c.rom)}</span>`}
       <span class="en">${esc(c.en)}</span>
     </button>
@@ -834,7 +852,7 @@ function renderPrint() {
   $("#app").innerHTML = `<div class="print-bar no-print"><button class="chip" type="button" id="quit">← Back</button><button class="go" type="button" id="printNow" style="width:auto;padding:10px 22px">🖨️ Print</button></div>
     <h2 class="print-title">${esc(l.title)} <span lang="ne">${esc(l.ne)}</span></h2>
     <p class="note no-print">Print, cut along the dashed lines, and tape the cards around the house.</p>
-    <div class="print-grid">${cs.map(c => `<div class="pcard">${c.letter ? `<span class="pc-letter" lang="ne">${esc(c.letter)}</span>` : ""}<span class="pc-pic">${esc(c.pic === "💬" ? "" : c.pic)}</span>
+    <div class="print-grid">${cs.map(c => `<div class="pcard">${c.letter ? `<span class="pc-letter" lang="ne">${esc(c.letter)}</span>` : ""}<span class="pc-pic">${artFor(c) ? `<img class="wpic" src="${artFor(c)}" alt="">` : esc(c.pic === "💬" ? "" : c.pic)}</span>
       <span class="pc-ne" lang="ne">${esc(c.ne || "")}</span><span class="pc-rom">${esc(c.letter ? (c.wordRom || c.rom) : c.rom)}</span><span class="pc-en">${esc(c.en)}</span></div>`).join("")}</div>
     <p class="print-foot">sajilonepali.app · Sajilo Nepali सजिलो नेपाली</p>`;
 }
@@ -863,18 +881,18 @@ function renderQuestion() {
     const cards = l.items.map(it => {
       const k = itemKey(l, it);
       return l.letters
-        ? `<button class="card" type="button" data-learn="${esc(k)}"><span class="letter-big" lang="ne">${esc(it.ne)}</span><span class="rom">${esc(it.rom)}</span>${it.word ? `${picHTML(it.pic, 30)}<span class="ne word" lang="ne">${esc(it.word)}</span>` : ""}<span class="en">${esc(it.en)}</span><span class="tick"></span></button>`
-        : `<button class="card" type="button" data-learn="${esc(k)}">${picHTML(it.pic)}<span class="ne" lang="ne">${esc(it.ne)}</span><span class="rom">${esc(it.rom)}</span><span class="en">${esc(it.en)}</span><span class="tick"></span></button>`;
+        ? `<button class="card" type="button" data-learn="${esc(k)}"><span class="letter-big" lang="ne">${esc(it.ne)}</span><span class="rom">${esc(it.rom)}</span>${it.word ? `${picHTML(it, 30)}<span class="ne word" lang="ne">${esc(it.word)}</span>` : ""}<span class="en">${esc(it.en)}</span><span class="tick"></span></button>`
+        : `<button class="card" type="button" data-learn="${esc(k)}">${picHTML(it)}<span class="ne" lang="ne">${esc(it.ne)}</span><span class="rom">${esc(it.rom)}</span><span class="en">${esc(it.en)}</span><span class="tick"></span></button>`;
     }).join("");
     body = `<p class="ask">Meet the ${l.letters ? "letters" : "words"}! Tap each card to hear it.</p><div class="cards">${cards}</div>`;
   } else if (q.type === "pickMeaning") {
     body = `<p class="ask">What does this mean?</p>
       <div class="prompt">${q.item.ctx ? `<span class="ctx">${esc(q.item.ctx)}</span>` : ""}${neHTML(q.item.ne, q.item.rom)}${sayBtn(K(q.item.ne))}</div>
-      <div class="opts">${q.opts.map((o, i) => optBtn(i, `${picHTML(o.pic)}<span class="en">${esc(o.en)}</span>`)).join("")}</div>`;
+      <div class="opts">${q.opts.map((o, i) => optBtn(i, `${picHTML(o)}<span class="en">${esc(o.en)}</span>`)).join("")}</div>`;
     autoKey = K(q.item.ne);
   } else if (q.type === "pickNepali" || q.type === "pickNepaliText") {
     body = `<p class="ask">Which one is “${esc(q.item.en)}”?</p>
-      <div class="prompt">${q.item.ctx ? `<span class="ctx">${esc(q.item.ctx)}</span>` : ""}${q.type === "pickNepali" ? picHTML(q.item.pic) : ""}<span class="en">${esc(q.item.en)}</span></div>
+      <div class="prompt">${q.item.ctx ? `<span class="ctx">${esc(q.item.ctx)}</span>` : ""}${q.type === "pickNepali" ? picHTML(q.item) : ""}<span class="en">${esc(q.item.en)}</span></div>
       <div class="opts">${q.opts.map((o, i) => optBtn(i, `<span class="ne" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span>`, K(o.ne))).join("")}</div>`;
   } else if (q.type === "typeMeaning") {
     body = `<p class="ask">Type this in English</p>
@@ -885,7 +903,7 @@ function renderQuestion() {
   } else if (q.type === "listen") {
     body = `<p class="ask">Listen. Which picture is it?</p>
       <div class="prompt">${q.item.ctx ? `<span class="ctx">${esc(q.item.ctx)}</span>` : ""}${sayBtn(K(q.item.ne), "huge")}${pandu("listen", "side-pandu bob")}</div>
-      <div class="opts">${q.opts.map((o, i) => optBtn(i, `${picHTML(o.pic)}${P.level === "big" ? "" : `<span class="en">${esc(o.en)}</span>`}`)).join("")}</div>`;
+      <div class="opts">${q.opts.map((o, i) => optBtn(i, `${picHTML(o)}${P.level === "big" ? "" : `<span class="en">${esc(o.en)}</span>`}`)).join("")}</div>`;
     autoKey = K(q.item.ne);
   } else if (q.type === "count") {
     body = `<p class="ask">How many stars?</p>
@@ -894,11 +912,11 @@ function renderQuestion() {
   } else if (q.type === "letterPic") {
     body = `<p class="ask">${q.item.hint ? "Which picture has this letter in it?" : "Which picture starts with this letter?"}</p>
       <div class="prompt"><span class="letter-big" lang="ne" data-say="${esc(itemKey(l, q.item))}">${esc(q.item.ne)}</span><span class="rom">${esc(q.item.rom)}</span>${sayBtn(itemKey(l, q.item))}</div>
-      <div class="opts">${q.opts.map((o, i) => optBtn(i, `${picHTML(o.pic)}<span class="ne" lang="ne" style="font-size:22px">${esc(o.word)}</span><span class="en">${esc(o.en)}</span>`)).join("")}</div>`;
+      <div class="opts">${q.opts.map((o, i) => optBtn(i, `${picHTML(o)}<span class="ne" lang="ne" style="font-size:22px">${esc(o.word)}</span><span class="en">${esc(o.en)}</span>`)).join("")}</div>`;
     autoKey = K(q.item.word);
   } else if (q.type === "letterFind") {
     body = `<p class="ask">Which letter does ${neSpan(q.item.word, "ne")} start with?</p>
-      <div class="prompt">${picHTML(q.item.pic)}${neHTML(q.item.word, q.item.wordRom)}<span class="en">${esc(q.item.en)}</span></div>
+      <div class="prompt">${picHTML(q.item)}${neHTML(q.item.word, q.item.wordRom)}<span class="en">${esc(q.item.en)}</span></div>
       <div class="opts">${q.opts.map((o, i) => optBtn(i, `<span class="letter-big" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span>`, itemKey(l, o))).join("")}</div>`;
     autoKey = K(q.item.word);
   } else if (q.type === "listenLetter") {
@@ -919,7 +937,7 @@ function renderQuestion() {
     S.matchLeft = shuffle(q.items); S.matchRight = shuffle(q.items); S.pairs = 0; S.pickL = null; S.pickR = null;
     body = `<p class="ask">Tap the pairs that match</p>
       <div class="match"><div class="col">${S.matchLeft.map((o, i) => `<button class="opt" type="button" data-l="${i}"><span class="ne" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span></button>`).join("")}</div>
-      <div class="col">${S.matchRight.map((o, i) => `<button class="opt" type="button" data-r="${i}">${picHTML(o.pic, 34)}<span class="en">${esc(o.en)}</span></button>`).join("")}</div></div>`;
+      <div class="col">${S.matchRight.map((o, i) => `<button class="opt" type="button" data-r="${i}">${picHTML(o, 34)}<span class="en">${esc(o.en)}</span></button>`).join("")}</div></div>`;
   } else if (q.type === "build") {
     const s = q.s;
     const extras = pickN(window.EXTRA_TILES.filter(t => !s.ne.includes(t[0])), P.level === "big" ? 2 : 0);
