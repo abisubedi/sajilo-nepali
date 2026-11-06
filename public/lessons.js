@@ -448,7 +448,7 @@ window.CHAPTERS = [
   { id: "nature", ne: "प्रकृति र यात्रा", rom: "prakriti ra yaatra", en: "Nature & travel", color: "var(--flag-green)", sticker: { pic: "🐘", img: "img/st-explorer.webp", name: "Explorer", say: { ne: "वाह! तिमी साहसी यात्री हौ!", rom: "waah! timi saahasi yaatri hau!", en: "Wow, you're a brave explorer!" } }, lessons: ["animals", "birds-bugs", "vehicles-travel", "travel-sentences"] },
   { id: "school", ne: "स्कूल र गन्ती", rom: "skul ra ganti", en: "School & counting", color: "var(--flag-blue)", sticker: { pic: "🎒", img: "img/st-school.webp", name: "School Star", say: { ne: "तिमी स्कूलको तारा हौ!", rom: "timi skulko taara hau!", en: "You're a school star!" } }, lessons: ["num", "school-supplies", "fruits-snacks", "numbers-11-20"] },
   { id: "talk", ne: "कुराकानी र कथा", rom: "kuraakaani ra katha", en: "Real conversations", color: "var(--panda)", sticker: { pic: "💬", name: "Chatterbox", say: { ne: "तिमी कति राम्रो कुरा गर्छौ!", rom: "timi kati raamro kura garchhau!", en: "You talk so well!" } }, lessons: ["likes-dislikes", "phone-grandparents", "polite-commands", "grandparent-sentences"] },
-  { id: "letters", ne: "अक्षर र वाक्य", rom: "akshar ra waakya", en: "Letters & sentences", color: "var(--flag-blue)", sticker: { pic: "अ", name: "Letter Master", say: { ne: "तिमी अक्षरमा उस्ताद हौ!", rom: "timi aksharma ustaad hau!", en: "You're a letter master!" } }, lessons: ["vowels", "cons1", "cons2", "cons3", "cons4", "sentences"] },
+  { id: "letters", ne: "अक्षर र वाक्य", rom: "akshar ra waakya", en: "Letters & sentences", color: "var(--flag-blue)", sticker: { pic: "अ", img: "img/st-letters.webp", letter: "अ", name: "Letter Master", say: { ne: "तिमी अक्षरमा उस्ताद हौ!", rom: "timi aksharma ustaad hau!", en: "You're a letter master!" } }, lessons: ["vowels", "cons1", "cons2", "cons3", "cons4", "sentences"] },
 ];
 
 // More typed answers the Big learners game accepts (key = the lesson's English answer, lowercase).
@@ -476,7 +476,9 @@ window.CHEERS = [["स्याबास!", "syabaas!", "Well done!"], ["रा�
 // What each sticker says when tapped (Pandu's sticker, and any sticker not won yet).
 window.STICKER_PANDU_IMG = "img/st-pandu.webp";
 // Player animals with artwork (others use the emoji).
-window.AVATAR_IMG = { "🐘": "img/av-elephant.webp" };
+window.AVATAR_IMG = { "🐘": "img/av-elephant.webp", "🦏": "img/av-rhino.webp", "🦚": "img/av-danphe.webp", "🐃": "img/av-yak.webp", "🐒": "img/av-monkey.webp" };
+// Pandu's poses (any pose without a picture yet falls back to the drawn Pandu).
+window.PANDU_IMG = { wave: "img/pandu-wave.webp", listen: "img/pandu-listen.webp", think: "img/pandu-think.webp", oops: "img/pandu-oops.webp", sleep: "img/pandu-sleep.webp" };
 window.STICKER_PANDU = { ne: "नमस्ते साथी! म पाण्डु हुँ।", rom: "namaste saathi! ma Pandu hun.", en: "Hello friend! I'm Pandu." };
 window.STICKER_LOCKED = { ne: "अझै बाँकी छ!", rom: "ajhai baanki chha!", en: "Not yet! Keep playing to win me." };
 // Tapping the creator's name in the footer plays this greeting.

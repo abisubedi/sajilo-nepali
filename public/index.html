@@ -266,6 +266,22 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .player-pill .av-img { width: 24px; height: 24px; margin: -4px 0; }
 .player-av .av-img { width: 40px; height: 40px; }
 .avatar .av-img { width: 40px; height: 40px; }
+/* Pandu artwork + gentle motion */
+.pandu-art { object-fit: contain; }
+.brand .brand-pandu { width: 48px; height: 48px; }
+.greet .mascot { width: 84px; height: 84px; }
+.done .pandu-art { width: 150px; height: 150px; }
+.fb-row { display: flex; align-items: center; gap: 10px; }
+.fb-pandu { width: 56px; height: 56px; }
+.side-pandu { width: 64px; height: 64px; }
+.st-letter { position: absolute; left: 48%; top: 64%; transform: translate(-50%, -50%); font-family: var(--display); font-weight: 800; font-size: 21px; line-height: 1; color: #ffd84a; text-shadow: 0 0 6px rgba(255,216,74,.7), 0 1px 0 #7a5a00; background: #3b4656; border-radius: 6px; padding: 1px 6px 0; }
+.sticker.new .st-letter { font-size: 25px; }
+.stick-say-pic .st-letter { font-size: 15px; padding: 0 3px; }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes pop { 0% { transform: scale(.6); opacity: 0; } 70% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); } }
+.bob { animation: bob 3.2s ease-in-out infinite; }
+.pop { animation: pop .45s ease-out both; }
+@media (prefers-reduced-motion: reduce) { .bob, .pop { animation: none; } }
 .credit-card { margin-top: 10px; background: var(--snow); border: 2px solid var(--line); border-radius: 20px; padding: 14px 18px; text-align: center; font-size: 14px; color: var(--muted); line-height: 1.5; align-self: center; width: 100%; max-width: 520px; box-sizing: border-box; box-shadow: 0 4px 0 var(--line); }
 .credit-card .voice-badge { display: inline-flex; align-items: center; gap: 5px; background: #eaf2ff; color: var(--flag-blue); font-weight: 800; font-size: 12px; padding: 3px 12px; border-radius: 999px; margin-bottom: 6px; }
 .credit-card .creator-btn { display: inline-flex; align-items: center; gap: 5px; background: #fff5d6; border: 1.5px solid var(--flag-yellow); color: var(--ink); font-weight: 800; font-size: 14px; padding: 2px 10px; border-radius: 999px; margin: 2px 0; box-shadow: none; transition: transform .12s, background .15s; }
@@ -387,7 +403,7 @@ span[data-say]:hover { background: rgba(47,111,214,.10); }
 /* Players: each child on this device has their own stars, streak and stickers.
    Player 1 keeps the original storage key, so progress saved before players existed is kept. */
 const PKEY = "sajilo-nepali-players";
-const AVATARS = ["🐼", "🐯", "🐘", "🦋", "🐰", "🦁", "🐸", "🐒"];
+const AVATARS = ["🐼", "🐯", "🐘", "🦏", "🦚", "🐆", "🐃", "🐒"];   // red panda, tiger, elephant, rhino, danphe, snow leopard, yak, monkey
 const keyFor = id => id === "p1" ? "sajilo-nepali-v1" : "sajilo-nepali-" + id;
 function loadPlayers() {
   try { const x = JSON.parse(localStorage.getItem(PKEY) || "null"); if (x && x.list && x.list.length) return x; } catch (e) {}
@@ -586,13 +602,16 @@ function stickerState() {
   window.CHAPTERS.forEach(c => {
     const ls = c.lessons.filter(id => vis.has(id)), st = ls.map(id => P.stars[starKey(id)] || 0);
     const done = st.filter(x => x > 0).length;
-    list.push({ id: c.id, pic: c.sticker.pic, name: c.sticker.name, ne: c.ne, img: c.sticker.img, line: c.sticker.say, got: ls.length && done === ls.length, gold: ls.length && st.every(x => x === 3), need: `${done}/${ls.length} lessons in ${c.en}` });
+    list.push({ id: c.id, pic: c.sticker.pic, name: c.sticker.name, ne: c.ne, img: c.sticker.img, letter: c.sticker.letter, line: c.sticker.say, got: ls.length && done === ls.length, gold: ls.length && st.every(x => x === 3), need: `${done}/${ls.length} lessons in ${c.en}` });
   });
   return list;
 }
+/* Pandu pictures by pose, with the drawn Pandu as a fallback */
+const pandu = (pose, cls = "") => (window.PANDU_IMG || {})[pose] ? `<img class="mascot pandu-art ${cls}" src="${window.PANDU_IMG[pose]}" alt="" draggable="false">` : MASCOT.replace('class="mascot"', `class="mascot ${cls}"`);
+const isNight = () => { const h = new Date().getHours(); return h >= 20 || h < 5; };
 /* Sticker and avatar pictures: artwork when we have it, otherwise the emoji. Not-yet-won stickers show greyed out with a lock. */
 function stickerPic(x, showLock) {
-  const art = x.img ? `<img class="art" src="${x.img}" alt="" draggable="false">` : x.pic === "PANDU" ? MASCOT : `<span lang="ne">${esc(x.pic)}</span>`;
+  const art = x.img ? `<img class="art" src="${x.img}" alt="" draggable="false">${x.letter ? `<span class="st-letter" lang="ne">${esc(x.letter)}</span>` : ""}` : x.pic === "PANDU" ? MASCOT : `<span lang="ne">${esc(x.pic)}</span>`;
   return art + (showLock && !x.got ? `<span class="lock-badge" aria-hidden="true">🔒</span>` : "");
 }
 const avatarHTML = a => (window.AVATAR_IMG || {})[a] ? `<img class="av-img" src="${window.AVATAR_IMG[a]}" alt="" draggable="false">` : a;
@@ -719,7 +738,7 @@ function renderMap() {
   const sheetL = S.sheet && window.LESSONS.find(l => l.id === S.sheet);
   $("#app").innerHTML = `
     <div class="top">
-      <div class="brand">${MASCOT.replace('class="mascot"', 'class="mascot" style="width:44px;height:44px"')}<h1>Sajilo Nepali<small>${neSpan(window.PHRASES.brand, "", K(window.PHRASES.brand))} · easy Nepali</small></h1></div>
+      <div class="brand">${pandu("wave", "brand-pandu")}<h1>Sajilo Nepali<small>${neSpan(window.PHRASES.brand, "", K(window.PHRASES.brand))} · easy Nepali</small></h1></div>
       <button class="stat stat-btn player-pill" type="button" id="openPlayers" title="Change player"><span aria-hidden="true">${avatarHTML(me().avatar)}</span> ${esc(me().name)} ▾</button>
       <div class="stats">
       <span class="stat" title="Days in a row">🔥 ${liveStreak()}</span>
@@ -739,7 +758,7 @@ function renderMap() {
         <button class="icon-btn" type="button" id="tBeeps" aria-pressed="${P.beeps !== false}" title="Game beeps (voice clips stay on)" aria-label="Game beeps ${P.beeps !== false ? "on" : "off"}"><span aria-hidden="true">${P.beeps !== false ? "🎵" : "🔕"}</span><small>beeps ${P.beeps !== false ? "on" : "off"}</small></button>
       </div>
     </div>
-    <div class="greet">${MASCOT}<div><p>${greeting()} I'm Pandu. ${streakLine()}</p>
+    <div class="greet">${pandu(isNight() ? "sleep" : "wave", "bob")}<div><p>${greeting()} I'm Pandu. ${streakLine()}</p>
       <div class="pills">${pills.map(x => `<span class="pill">${x}</span>`).join("")}</div></div></div>
     ${wordOfDayHTML()}
     <nav class="jump" aria-label="Jump to a chapter">${jump}</nav>
@@ -865,7 +884,7 @@ function renderQuestion() {
     autoKey = K(q.item.ne);
   } else if (q.type === "listen") {
     body = `<p class="ask">Listen. Which picture is it?</p>
-      <div class="prompt">${q.item.ctx ? `<span class="ctx">${esc(q.item.ctx)}</span>` : ""}${sayBtn(K(q.item.ne), "huge")}</div>
+      <div class="prompt">${q.item.ctx ? `<span class="ctx">${esc(q.item.ctx)}</span>` : ""}${sayBtn(K(q.item.ne), "huge")}${pandu("listen", "side-pandu bob")}</div>
       <div class="opts">${q.opts.map((o, i) => optBtn(i, `${picHTML(o.pic)}${P.level === "big" ? "" : `<span class="en">${esc(o.en)}</span>`}`)).join("")}</div>`;
     autoKey = K(q.item.ne);
   } else if (q.type === "count") {
@@ -884,7 +903,7 @@ function renderQuestion() {
     autoKey = K(q.item.word);
   } else if (q.type === "listenLetter") {
     body = `<p class="ask">Listen. Which letter is it?</p>
-      <div class="prompt">${sayBtn(itemKey(l, q.item), "huge")}</div>
+      <div class="prompt">${sayBtn(itemKey(l, q.item), "huge")}${pandu("listen", "side-pandu bob")}</div>
       <div class="opts">${q.opts.map((o, i) => optBtn(i, `<span class="letter-big" lang="ne">${esc(o.ne)}</span>${P.level === "big" ? "" : `<span class="rom">${esc(o.rom)}</span>`}`)).join("")}</div>`;
     autoKey = itemKey(l, q.item);
   } else if (q.type === "trace") {
@@ -907,7 +926,7 @@ function renderQuestion() {
     S.bank = shuffle([...s.ne.map((w, i) => [w, s.rom[i]]), ...extras]);
     S.built = [];
     body = `<p class="ask">Make this sentence in Nepali</p>
-      <div class="prompt"><span class="en">“${esc(s.en)}”</span>${sayBtn(K(s.ne.join(" ")))}</div>
+      <div class="prompt">${pandu("think", "side-pandu bob")}<span class="en">“${esc(s.en)}”</span>${sayBtn(K(s.ne.join(" ")))}</div>
       <div class="answer" id="answer" aria-label="Your sentence"></div>
       <div class="bank" id="bank">${S.bank.map((t, i) => `<button class="tile" type="button" data-t="${i}"><span class="ne" lang="ne">${esc(t[0])}</span><span class="rom">${esc(t[1])}</span></button>`).join("")}</div>`;
   }
@@ -970,8 +989,8 @@ function setFeedback(good, solutionHTML) {
   const ch = window.CHEERS[Math.floor(Math.random() * window.CHEERS.length)];
   fb.className = "feedback " + (good ? "good" : "bad");
   fb.innerHTML = good
-    ? `<p>🎉 ${neSpan(ch[0])} <span class="rom">${ch[1]}</span> ${ch[2]}</p><button class="go" type="button" id="next">Continue</button>`
-    : `<p>Not quite. The answer is:</p><div class="sol">${solutionHTML}</div><button class="go" type="button" id="next">Got it</button>`;
+    ? `<div class="fb-row">${pandu(window.PANDU_IMG && window.PANDU_IMG.cheer ? "cheer" : "wave", "fb-pandu pop")}<p>🎉 ${neSpan(ch[0])} <span class="rom">${ch[1]}</span> ${ch[2]}</p></div><button class="go" type="button" id="next">Continue</button>`
+    : `<div class="fb-row">${pandu("oops", "fb-pandu pop")}<div><p>Not quite. The answer is:</p><div class="sol">${solutionHTML}</div></div></div><button class="go" type="button" id="next">Got it</button>`;
   $("#next").focus();
 }
 function grade(good) {
@@ -1078,13 +1097,13 @@ function nextStep() {
 }
 function renderDone() {
   if (S.outOfHearts) {
-    $("#app").innerHTML = `<section class="done">${MASCOT}<h2>Out of hearts!</h2><p>That's okay. Practice makes perfect.<br>${neSpan(window.PHRASES.tryAgain)} <span class="rom">pheri prayas garaun!</span> Let's try again!</p>
+    $("#app").innerHTML = `<section class="done">${pandu("oops", "pop")}<h2>Out of hearts!</h2><p>That's okay. Practice makes perfect.<br>${neSpan(window.PHRASES.tryAgain)} <span class="rom">pheri prayas garaun!</span> Let's try again!</p>
       <button class="go" type="button" id="again">Try again</button><button class="chip" type="button" id="home">Back to lessons</button></section>`;
     say(K(window.PHRASES.tryAgain));
     return;
   }
   const st = [1, 2, 3].map(n => `<span class="${n <= S.earned ? "" : "off"}">★</span>`).join("");
-  $("#app").innerHTML = `<section class="done">${MASCOT}<h2>${neSpan(window.PHRASES.wellDone)}<br>Lesson complete!</h2>
+  $("#app").innerHTML = `<section class="done">${pandu(window.PANDU_IMG && window.PANDU_IMG.cheer ? "cheer" : "wave", "pop")}<h2>${neSpan(window.PHRASES.wellDone)}<br>Lesson complete!</h2>
     <div class="stars" aria-label="${S.earned} of 3 stars">${st}</div>
     <p><strong>+${S.xpGain} points</strong> · 🔥 ${liveStreak()} day streak<br>${S.mistakes === 0 ? "Perfect, no mistakes!" : S.mistakes + " mistake" + (S.mistakes > 1 ? "s" : "") + ". Play again for 3 stars."}</p>
     ${S.streakNews ? `<p class="ctx">${esc(S.streakNews)}</p>` : ""}
