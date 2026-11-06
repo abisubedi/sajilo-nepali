@@ -451,6 +451,26 @@ window.CHAPTERS = [
   { id: "letters", ne: "अक्षर र वाक्य", rom: "akshar ra waakya", en: "Letters & sentences", color: "var(--flag-blue)", sticker: { pic: "अ", name: "Letter Master", say: { ne: "तिमी अक्षरमा उस्ताद हौ!", rom: "timi aksharma ustaad hau!", en: "You're a letter master!" } }, lessons: ["vowels", "cons1", "cons2", "cons3", "cons4", "sentences"] },
 ];
 
+// More typed answers the Big learners game accepts (key = the lesson's English answer, lowercase).
+// Plurals, UK/US spellings (mum/mom), contractions (im/i'm) and one small typo are already accepted automatically.
+window.MORE_ANSWERS = {
+  "hello": ["hey", "hi there", "namaskar"], "thank you": ["thank u", "ty", "dhanyabad"], "yes": ["yeah", "yep", "ho"], "no": ["nope", "nah", "hoina"],
+  "good night": ["night", "nighty night", "sweet dreams"], "see you again": ["see ya", "bye bye", "later"],
+  "mom": ["ma", "amma", "aama", "mommy"], "dad": ["pa", "pop", "baba", "papa"], "grandma": ["grandmom", "nani", "hajuraama", "hajurama", "grandmother"],
+  "grandpa": ["grandad", "grandpapa", "hajurbaa", "hajurba", "grandfather"], "older sister": ["didi"], "older brother": ["dai", "daai"],
+  "younger sister": ["bahini"], "younger brother": ["bhai"], "red panda": ["lesser panda"], "rhino": ["rhinoceros"], "rabbit": ["bunny rabbit"],
+  "tummy": ["stomach", "belly", "tum"], "mouth": ["lips"], "hand": ["palm"], "leg": ["foot", "feet"],
+  "water": ["drink", "paani"], "rice": ["bhat", "bhaat", "cooked rice"], "flatbread": ["chapati", "roti", "bread"], "lentil soup": ["dal", "daal", "lentils"],
+  "spoon": ["chamcha"], "hot": ["warm"], "i am hungry": ["hungry", "starving"], "it is yummy": ["yum", "yummy", "tasty", "delicious"], "i am full": ["full", "stuffed"],
+  "wake up": ["wakeup", "get up"], "brush teeth": ["brush my teeth", "brushing teeth"], "go to sleep": ["sleep time", "time for bed", "go to bed"], "come here": ["come over", "come here please"],
+  "clothes": ["dress", "outfit", "clothing"], "shoes": ["sneakers", "trainers", "shoe"], "jacket": ["sweater", "coat", "hoodie"], "hat": ["cap", "topi"], "slippers": ["chappal", "flip flops", "sandals"],
+  "happy": ["joyful", "glad", "cheerful"], "sad": ["upset", "unhappy", "crying"], "sleepy": ["tired", "i am tired"], "i am scared": ["scared", "afraid", "frightened"],
+  "ball": ["football", "soccer ball"], "bicycle": ["bike", "cycle"], "friend": ["pal", "mate", "buddy", "saathi"], "park": ["playground"],
+  "sunshine": ["sunlight", "sun", "sunny"], "snowy mountain": ["snow mountain", "himal", "mountain"], "wind": ["windy", "breeze"],
+  "bag": ["backpack", "school bag", "jhola"], "light": ["lamp", "bulb"], "notebook": ["copy", "exercise book", "copybook"], "teacher": ["sir", "miss", "guru"],
+  "picture": ["drawing", "photo", "painting"], "airplane": ["plane", "jet"], "sea": ["ocean"], "car": ["taxi"],
+  "okay": ["alright", "sure", "fine"], "i love you": ["love you", "i love u", "love u"], "i am fine": ["fine", "good", "i am good", "i am okay"],
+};
 window.EXTRA_TILES = [["र", "ra"], ["पनि", "pani"], ["होइन", "hoina"], ["रातो", "raato"], ["तिमी", "timi"], ["मलाई", "malai"], ["दिनुहोस्", "dinuhos"], ["ढोका", "dhoka"], ["गर", "gara"]];
 window.CHEERS = [["स्याबास!", "syabaas!", "Well done!"], ["राम्रो!", "ramro!", "Great!"], ["एकदम ठीक!", "ekdam thik!", "Exactly right!"]];
 // What each sticker says when tapped (Pandu's sticker, and any sticker not won yet).

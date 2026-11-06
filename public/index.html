@@ -246,6 +246,13 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .avatar { font-size: 28px; width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--line); background: var(--snow); }
 .avatar.on { border: 3px solid var(--flag-blue); background: #e8f0fd; }
 .ico { flex: none; vertical-align: middle; }
+.grownups { border-top: 2px dashed var(--line); padding-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.grownups h3 { margin: 0; font-size: 15px; color: var(--muted); text-align: center; }
+.grownups .settings { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+#codeBox { width: 100%; box-sizing: border-box; font: 13px/1.4 ui-monospace, Menlo, monospace; padding: 10px; border: 2px solid var(--line); border-radius: 12px; word-break: break-all; resize: vertical; }
+.miss-list { display: flex; flex-direction: column; gap: 8px; }
+.miss { display: flex; align-items: center; gap: 8px; background: var(--snow); border: 2px solid var(--line); border-radius: 14px; padding: 8px 10px; }
+.miss > span { flex: 1; } .miss small { display: block; color: var(--muted); font-weight: 700; }
 .chip.primary { background: var(--flag-blue); color: var(--snow); border-color: #1d4f9e; }
 .sheet.stickers, .sheet.players { max-height: 86vh; overflow-y: auto; }
 .sticker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
@@ -347,6 +354,7 @@ span[data-say]:hover { background: rgba(47,111,214,.10); }
 
 <script src="lessons.js"></script>
 <script src="audio-manifest.js"></script>
+<script>if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));</script>
 <script>
 /* ---------- Saved progress (this browser only) ---------- */
 /* Players: each child on this device has their own stars, streak and stickers.
@@ -587,6 +595,50 @@ function playersHTML() {
     ${PL.list.length < 6 && !ed ? `<button class="chip" type="button" id="playerAdd">＋ Add a player</button>` : ""}
     ${form}</div>`;
 }
+/* ---------- Save codes: move every player's progress to another device, no account needed ---------- */
+const b64 = s => btoa(String.fromCharCode(...new TextEncoder().encode(s)));
+const unb64 = s => new TextDecoder().decode(Uint8Array.from(atob(s), c => c.charCodeAt(0)));
+function makeSaveCode() {
+  save(); savePlayers();
+  const data = {}; PL.list.forEach(x => { data[x.id] = localStorage.getItem(keyFor(x.id)) || "{}"; });
+  return "SAJILO1-" + b64(JSON.stringify({ players: PL, data }));
+}
+function loadSaveCode(code) {
+  const raw = String(code).trim().replace(/\s+/g, "");
+  if (!raw.startsWith("SAJILO1-")) throw new Error("That doesn't look like a Sajilo Nepali save code.");
+  const o = JSON.parse(unb64(raw.slice(8)));
+  if (!o.players || !Array.isArray(o.players.list) || !o.players.list.length || !o.data) throw new Error("This save code is incomplete.");
+  o.players.list.forEach(x => { if (!/^p\d+$/.test(x.id)) throw new Error("This save code is damaged."); JSON.parse(o.data[x.id] || "{}"); });
+  PL.list.forEach(x => { try { localStorage.removeItem(keyFor(x.id)); } catch (e) {} });
+  o.players.list.forEach(x => localStorage.setItem(keyFor(x.id), o.data[x.id] || "{}"));
+  localStorage.setItem(PKEY, JSON.stringify(o.players));
+  return o.players.list.length;
+}
+function grownHTML() {
+  const g = S.grown;
+  let body = "";
+  if (g === "save") body = `<p class="note" style="text-align:left;margin:0">This code holds every player's stars, streak and stickers. Copy it, then on the other phone or tablet open sajilonepali.app and tap <b>📥 Load save code</b>.</p>
+    <textarea id="codeBox" readonly rows="5">${esc(makeSaveCode())}</textarea>
+    <div class="share-btns"><button class="chip primary" type="button" id="copyCode">📋 Copy code</button></div><p class="note" id="codeMsg" role="status"></p>`;
+  if (g === "load") body = `<p class="note" style="text-align:left;margin:0">Paste a save code from another device. This replaces the players and progress on <b>this</b> device.</p>
+    <textarea id="codeBox" rows="5" placeholder="SAJILO1-…" autocomplete="off" spellcheck="false"></textarea>
+    <div class="share-btns"><button class="chip primary" type="button" id="applyCode">📥 Load progress</button></div><p class="note" id="codeMsg" role="status"></p>`;
+  if (g === "misses") body = `<p class="note" style="text-align:left;margin:0">These typed answers were marked wrong. If one should count, tap <b>Accept</b> and it will be right from now on for ${esc(me().name)}.</p>
+    <div class="miss-list">${(P.misses || []).map((m, i) => `<div class="miss"><span>${neSpan(m.ne)}<small>expected “${esc(m.en)}”, typed “<b>${esc(m.got)}</b>”</small></span>
+      <button class="chip primary" type="button" data-accept="${i}">Accept</button><button class="chip" type="button" data-dismiss="${i}" aria-label="Remove">✕</button></div>`).join("") || `<p class="note">Nothing to check.</p>`}</div>`;
+  const title = { save: "📤 Save code", load: "📥 Load save code", misses: "📝 Answers to check" }[g];
+  return `<div class="sheet-back" id="grownBack"></div><div class="sheet players" role="dialog" aria-modal="true" aria-label="${title}">
+    <button class="x sheet-x" type="button" id="grownClose" aria-label="Close">✕</button>
+    <div class="sheet-head"><div><strong>${title}</strong></div></div>${body}</div>`;
+}
+async function saveSoundsOffline(btn) {
+  const urls = [...new Set(Object.values(AUDIO))];
+  if (!navigator.serviceWorker.controller) { btn.textContent = "Reload the page once, then try again"; return; }
+  let n = 0; btn.disabled = true;
+  const next = async () => { while (urls.length) { const u = urls.pop(); try { await fetch(u); } catch (e) {} n++; btn.textContent = `Saving sounds… ${n}/${n + urls.length}`; } };
+  await Promise.all(Array.from({ length: 6 }, next));
+  btn.textContent = "✓ All sounds saved for offline"; P.offlineSaved = today(); save();
+}
 function switchPlayer(id) {
   save(); PL.current = id; savePlayers(); KEY = keyFor(id); P = load();
   if (!P.romBy) P.romBy = { little: true, big: false };
@@ -657,10 +709,21 @@ function renderMap() {
     ${wordOfDayHTML()}
     <nav class="jump" aria-label="Jump to a chapter">${jump}</nav>
     ${chapters}
-    <div class="settings"><button class="chip" type="button" id="tReset">Start over</button></div>
-    <p class="note">Progress is saved on this device only. No account needed.</p>
+    <section class="grownups" aria-label="For grown-ups">
+      <h3>👨‍👩‍👧 For grown-ups</h3>
+      <div class="settings">
+        <button class="chip" type="button" id="shareApp">💌 Share with another family</button>
+        <button class="chip" type="button" id="saveCode">📤 Copy save code</button>
+        <button class="chip" type="button" id="loadCode">📥 Load save code</button>
+        ${"serviceWorker" in navigator ? `<button class="chip" type="button" id="offlineAudio">📶 Save sounds for offline</button>` : ""}
+        ${(P.misses || []).length ? `<button class="chip" type="button" id="openMisses">📝 Answers to check (${P.misses.length})</button>` : ""}
+        <button class="chip" type="button" id="tReset">Start over</button>
+      </div>
+    </section>
+    <p class="note">Progress is saved on this device only (no account needed). Use a save code to move it to another device.</p>
     ${S.stickers ? stickersHTML() : ""}
     ${S.players ? playersHTML() : ""}
+    ${S.grown ? grownHTML() : ""}
     ${sheetL ? `<div class="sheet-back" id="sheetBack"></div>
       <div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(sheetL.title)}">
         <button class="x sheet-x" type="button" id="sheetClose" aria-label="Close">✕</button>
@@ -886,12 +949,32 @@ function checkChoice() {
     setFeedback(good, `${neHTML(q.item.ne, q.item.rom)} = ${esc(q.item.en)}`);
   }
 }
-const norm = t => String(t).toLowerCase().replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim().replace(/^(a|an|the|my) /, "");
+/* Typed answers: ignore case, punctuation, "(polite)" notes, a/the/my/to, contractions (im = i'm = i am),
+   UK/US spellings, plurals and one small typo. Grown-ups can also accept an answer from the "Answers to check" list. */
+const SPELL = { mum: "mom", mummy: "mom", mommy: "mom", mumma: "mom", colour: "color", colours: "colors", grey: "gray", yoghurt: "yogurt",
+  aeroplane: "airplane", favourite: "favorite", u: "you", ur: "your", pls: "please", plz: "please", ok: "okay", okey: "okay", thanx: "thanks", thx: "thanks", tv: "television" };
+const CONTRACT = [[/\bi m\b|\bim\b/g, "i am"], [/\b(do|did|does|is|are|was|were|have|has)n t\b/g, "$1 not"], [/\b(do|did|does|is|are|was|were|have|has)nt\b/g, "$1 not"],
+  [/\bcan t\b|\bcant\b|\bcannot\b/g, "can not"], [/\bwon t\b|\bwont\b/g, "will not"], [/\bit s\b|\bits\b/g, "it is"], [/\blet s\b|\blets\b/g, "let us"],
+  [/\bwhat s\b|\bwhats\b/g, "what is"], [/\bthat s\b|\bthats\b/g, "that is"], [/\bwhere s\b|\bwheres\b/g, "where is"], [/\bi ve\b|\bive\b/g, "i have"]];
+const norm = t => {
+  let s = String(t).toLowerCase().replace(/\([^)]*\)/g, " ").replace(/[’']/g, " ").replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+  for (const [re, to] of CONTRACT) s = s.replace(re, to);
+  return s.split(" ").map(w => SPELL[w] || w).join(" ").replace(/^(a|an|the|my|to) /, "").trim();
+};
+const stem = s => s.split(" ").map(w => w.length <= 3 ? w : w.replace(/ies$/, "y").replace(/(ss|sh|ch|x|z)es$/, "$1").replace(/([^s])s$/, "$1")).join(" ").replace(/ph/g, "f").replace(/([a-z])\1/g, "$1");
+function typedOK(got, answers) {
+  const g = norm(got), gs = stem(g);
+  return answers.map(norm).some(a => a === g || stem(a) === gs || (a.length > 4 && gs.length > 3 && lev(stem(a), gs) <= 1));
+}
 function checkTyped() {
   const q = S.queue[0]; if (S.answered) return;
-  const got = norm($("#typed").value);
-  const ok = [q.item.en, ...(q.item.alt || []), ...(q.item.n ? [String(q.item.n)] : [])].map(norm);
-  const good = ok.includes(got) || ok.some(a => a.length > 4 && got.length > 3 && lev(a, got) <= 1);
+  const typed = $("#typed").value;
+  const answers = [q.item.en, ...(q.item.alt || []), ...((window.MORE_ANSWERS || {})[q.item.en.toLowerCase()] || []), ...((P.accepted || {})[q.item.en] || []), ...(q.item.n ? [String(q.item.n)] : [])];
+  const good = typedOK(typed, answers);
+  if (!good && norm(typed)) {   // remember it so a grown-up can check it
+    P.misses = (P.misses || []).filter(m => !(m.en === q.item.en && m.got === norm(typed)));
+    P.misses.unshift({ en: q.item.en, ne: q.item.ne, got: norm(typed), day: today() }); P.misses = P.misses.slice(0, 30); save();
+  }
   $("#typed").disabled = true; grade(good); say(K(q.item.ne));
   setFeedback(good, `${neHTML(q.item.ne, q.item.rom)} = ${esc(q.item.en)}`);
 }
@@ -992,6 +1075,7 @@ function selectShare() { const el = $("#shareText"); if (!el) return; const r = 
 document.addEventListener("click", e => {
   if (e.target.id === "sheetBack") { S.sheet = null; render(); return; }
   if (e.target.id === "stickBack") { S.stickers = false; render(); return; }
+  if (e.target.id === "grownBack") { S.grown = null; render(); return; }
   if (e.target.id === "playersBack") { S.players = false; S.playerEdit = null; render(); return; }
   let t = e.target.closest("button, [data-say]"); if (!t) return;
   // Nepali text inside a button belongs to that button (lesson stones, answer options, tiles, cards).
@@ -1037,6 +1121,38 @@ document.addEventListener("click", e => {
   if (t.id === "cardNext") { moveCard(1); return; }
   if (t.id === "cardsPlay") { startLesson(S.lesson.id); return; }
   if (t.dataset.flashsay) { if (t.dataset.swiped) { delete t.dataset.swiped; return; } say(t.dataset.flashsay, t); return; }
+  if (t.id === "shareApp") {
+    const url = "https://sajilonepali.app/", text = "Check out this free Nepali game for kids with Pandu the red panda!";
+    if (navigator.share) navigator.share({ title: "Sajilo Nepali · Easy Nepali for Kids", text, url }).catch(() => {});
+    else { try { navigator.clipboard.writeText(text + " " + url).then(() => { t.textContent = "✓ Link copied! Paste it in a message"; }); } catch (err) { t.textContent = url; } }
+    return;
+  }
+  if (t.id === "saveCode") { S.grown = "save"; render(); return; }
+  if (t.id === "loadCode") { S.grown = "load"; render(); setTimeout(() => $("#codeBox") && $("#codeBox").focus(), 50); return; }
+  if (t.id === "openMisses") { S.grown = "misses"; render(); return; }
+  if (t.id === "grownClose") { S.grown = null; render(); return; }
+  if (t.id === "offlineAudio") { saveSoundsOffline(t); return; }
+  if (t.id === "copyCode") {
+    const box = $("#codeBox"), msg = $("#codeMsg");
+    const fallback = () => { box.focus(); box.select(); msg.textContent = "Select the code above and copy it."; };
+    try { navigator.clipboard.writeText(box.value).then(() => { msg.textContent = "✓ Copied! Paste it on the other device."; }, fallback); } catch (err) { fallback(); }
+    return;
+  }
+  if (t.id === "applyCode") {
+    const msg = $("#codeMsg");
+    try {
+      if (!$("#codeBox").value.trim()) { msg.textContent = "Paste a save code first."; return; }
+      if (!confirm("Replace the players and progress on this device?")) return;
+      const n = loadSaveCode($("#codeBox").value); msg.textContent = `✓ Loaded ${n} player${n > 1 ? "s" : ""}!`; setTimeout(() => location.reload(), 700);
+    } catch (err) { msg.textContent = "⚠️ " + (err.message.includes("JSON") || err.name === "InvalidCharacterError" ? "This save code is damaged. Copy it again." : err.message); }
+    return;
+  }
+  if (t.dataset.accept) {
+    const m = P.misses[+t.dataset.accept]; P.accepted = P.accepted || {};
+    (P.accepted[m.en] = P.accepted[m.en] || []).push(m.got);
+    P.misses = P.misses.filter(x => !(x.en === m.en && x.got === m.got)); save(); beep("good"); render(); if (!P.misses.length) { S.grown = null; render(); } return;
+  }
+  if (t.dataset.dismiss) { P.misses.splice(+t.dataset.dismiss, 1); save(); if (!P.misses.length) S.grown = null; render(); return; }
   if (t.id === "openPlayers") { S.players = true; S.playerEdit = null; beep("tap"); render(); return; }
   if (t.id === "playersClose") { S.players = false; S.playerEdit = null; render(); return; }
   if (t.dataset.player) { if (t.dataset.player === PL.current) { S.players = false; render(); } else { beep("good"); switchPlayer(t.dataset.player); } return; }

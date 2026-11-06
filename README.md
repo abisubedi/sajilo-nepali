@@ -20,6 +20,12 @@ A free, Duolingo-style web game that teaches kids aged 4–15 basic Nepali.
 - **Celebration and sharing:** a 3-star lesson ends with confetti and a ready-made message to share or copy for family.
 - **Print flashcards:** in a lesson's sheet, "🖨️ Print flashcards for home" makes a cut-out sheet of picture cards.
 - **Sound settings:** 🔊 turns all sound on or off. 🎵 turns off only the game beeps and keeps the recorded voice.
+- **Typing answers (Big learners):** typed English answers accept common other words (mum/mom, tummy/stomach), contractions (im / i'm), plurals and one small typo. Answers that were marked wrong show up under **For grown-ups → 📝 Answers to check**, where a grown-up can tap Accept so they count from then on.
+- **For grown-ups (bottom of the map):**
+  - 💌 **Share with another family:** opens the phone's share sheet (or copies the link on a computer).
+  - 📤 **Copy save code** / 📥 **Load save code:** moves every player's stars, streak and stickers to another phone or tablet, with no account or server.
+  - 📶 **Save sounds for offline:** downloads all the recordings so the whole game works on a plane or a road trip.
+- **Works offline and installs like an app:** after the first visit the game keeps working without internet. On iPhone/iPad use Safari → Share → Add to Home Screen; on Android, Chrome offers "Install app".
 - **Privacy:** no accounts and no tracking. Progress (for each player) is saved in the browser on the device being used.
 
 ## Run it
