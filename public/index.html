@@ -151,133 +151,97 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
   .stone { width: 92%; }
   .prompt .ne { font-size: 38px; }
 }
+
+/* tap-to-hear Nepali text */
+[data-say] { cursor: pointer; }
+span[data-say] { border-radius: 8px; transition: background .15s; }
+span[data-say]:hover { background: rgba(47,111,214,.10); }
+.playing { background: rgba(246,183,28,.35) !important; }
+.ne-hint { font-size: .55em; vertical-align: super; opacity: .6; margin-left: 2px; }
+.pic-label { font-family: var(--display); font-weight: 800; font-size: 26px; background: var(--flag-yellow); color: var(--ink); border-radius: 12px; padding: 4px 12px; letter-spacing: 1px; }
+.prompt .pic-label { font-size: 40px; }
+
+/* learn screen */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+.card { background: var(--snow); border: 2px solid var(--line); border-radius: 18px; padding: 12px 8px; display: flex; flex-direction: column; align-items: center; gap: 2px; box-shadow: 0 4px 0 var(--line); text-align: center; }
+.card .big { font-size: 44px; line-height: 1.15; }
+.card .ne { font-size: 28px; font-weight: 700; line-height: 1.2; }
+.card .en { font-weight: 800; font-size: 15px; }
+.card .word { font-size: 18px; }
+.card.heard { border-color: var(--flag-green); box-shadow: 0 4px 0 var(--flag-green); }
+.card .tick { font-size: 13px; color: var(--flag-green); font-weight: 800; min-height: 1.2em; }
+.letter-big { font-family: var(--display); font-size: 96px; line-height: 1; font-weight: 700; }
+.opt .letter-big { font-size: 56px; }
+
+/* tracing */
+.trace-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.trace-box { position: relative; width: min(300px, 82vw); aspect-ratio: 1; background: var(--snow); border: 3px dashed var(--line); border-radius: 24px; touch-action: none; }
+.trace-box canvas { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 22px; }
+.trace-tools { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.meter { width: min(300px, 82vw); height: 12px; background: #d5e1f2; border-radius: 999px; overflow: hidden; }
+.meter i { display: block; height: 100%; width: 0; background: var(--flag-yellow); transition: width .2s; }
 </style>
 </head>
 <body>
 <div class="flags" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 <main class="app" id="app"></main>
 
+<script src="lessons.js"></script>
+<script src="audio-manifest.js"></script>
 <script>
-/* ---------- Content: edit words here (ne = Nepali, rom = how to say it, en = English, pic = picture) ---------- */
-const LESSONS = [
-  { id: "greet", title: "Greetings", ne: "अभिवादन", icon: "🙏", color: "var(--flag-blue)", items: [
-    { ne: "नमस्ते", rom: "namaste", en: "Hello", pic: "🙏" },
-    { ne: "धन्यवाद", rom: "dhanyabad", en: "Thank you", pic: "😊" },
-    { ne: "हो", rom: "ho", en: "Yes", pic: "✅" },
-    { ne: "होइन", rom: "hoina", en: "No", pic: "❌" },
-    { ne: "शुभ रात्रि", rom: "shubha ratri", en: "Good night", pic: "🌙" },
-    { ne: "फेरि भेटौँला", rom: "pheri bhetaunla", en: "See you again", pic: "👋" },
-  ]},
-  { id: "num", title: "Numbers 1–10", ne: "अङ्क", icon: "🔢", color: "var(--flag-yellow)", count: true, items: [
-    { ne: "एक", rom: "ek", en: "one", pic: "1", digit: "१", n: 1 },
-    { ne: "दुई", rom: "dui", en: "two", pic: "2", digit: "२", n: 2 },
-    { ne: "तीन", rom: "tin", en: "three", pic: "3", digit: "३", n: 3 },
-    { ne: "चार", rom: "char", en: "four", pic: "4", digit: "४", n: 4 },
-    { ne: "पाँच", rom: "panch", en: "five", pic: "5", digit: "५", n: 5 },
-    { ne: "छ", rom: "chha", en: "six", pic: "6", digit: "६", n: 6 },
-    { ne: "सात", rom: "saat", en: "seven", pic: "7", digit: "७", n: 7 },
-    { ne: "आठ", rom: "aath", en: "eight", pic: "8", digit: "८", n: 8 },
-    { ne: "नौ", rom: "nau", en: "nine", pic: "9", digit: "९", n: 9 },
-    { ne: "दस", rom: "das", en: "ten", pic: "10", digit: "१०", n: 10 },
-  ]},
-  { id: "animals", title: "Animals", ne: "जनावर", icon: "🐘", color: "var(--flag-green)", items: [
-    { ne: "कुकुर", rom: "kukur", en: "Dog", pic: "🐕" },
-    { ne: "बिरालो", rom: "biralo", en: "Cat", pic: "🐈" },
-    { ne: "गाई", rom: "gaai", en: "Cow", pic: "🐄" },
-    { ne: "हात्ती", rom: "hatti", en: "Elephant", pic: "🐘" },
-    { ne: "बाँदर", rom: "baandar", en: "Monkey", pic: "🐒" },
-    { ne: "चरा", rom: "chara", en: "Bird", pic: "🐦" },
-    { ne: "माछा", rom: "machha", en: "Fish", pic: "🐟" },
-    { ne: "बाघ", rom: "bagh", en: "Tiger", pic: "🐅" },
-    { ne: "भालु", rom: "bhalu", en: "Bear", pic: "🐻" },
-    { ne: "गैँडा", rom: "gainda", en: "Rhino", pic: "🦏" },
-  ]},
-  { id: "colours", title: "Colours", ne: "रङ", icon: "🎨", color: "var(--flag-red)", items: [
-    { ne: "रातो", rom: "raato", en: "Red", pic: "🔴" },
-    { ne: "निलो", rom: "nilo", en: "Blue", pic: "🔵" },
-    { ne: "हरियो", rom: "hariyo", en: "Green", pic: "🟢" },
-    { ne: "पहेँलो", rom: "pahenlo", en: "Yellow", pic: "🟡" },
-    { ne: "सेतो", rom: "seto", en: "White", pic: "⚪" },
-    { ne: "कालो", rom: "kaalo", en: "Black", pic: "⚫" },
-    { ne: "सुन्तले", rom: "suntale", en: "Orange", pic: "🟠" },
-    { ne: "गुलाबी", rom: "gulabi", en: "Pink", pic: "🌸" },
-  ]},
-  { id: "family", title: "Family", ne: "परिवार", icon: "👨‍👩‍👧", color: "var(--panda)", items: [
-    { ne: "आमा", rom: "aama", en: "Mother", pic: "👩" },
-    { ne: "बुबा", rom: "buba", en: "Father", pic: "👨" },
-    { ne: "दाइ", rom: "daai", en: "Big brother", pic: "👦" },
-    { ne: "दिदी", rom: "didi", en: "Big sister", pic: "👧" },
-    { ne: "हजुरआमा", rom: "hajur-aama", en: "Grandmother", pic: "👵" },
-    { ne: "हजुरबुबा", rom: "hajur-buba", en: "Grandfather", pic: "👴" },
-  ]},
-  { id: "food", title: "Food", ne: "खाना", icon: "🥟", color: "var(--flag-blue)", items: [
-    { ne: "भात", rom: "bhaat", en: "Rice", pic: "🍚" },
-    { ne: "दाल", rom: "daal", en: "Lentil soup", pic: "🥣" },
-    { ne: "रोटी", rom: "roti", en: "Flatbread", pic: "🫓" },
-    { ne: "दूध", rom: "doodh", en: "Milk", pic: "🥛" },
-    { ne: "पानी", rom: "paani", en: "Water", pic: "💧" },
-    { ne: "स्याउ", rom: "syaau", en: "Apple", pic: "🍎" },
-    { ne: "केरा", rom: "kera", en: "Banana", pic: "🍌" },
-    { ne: "मोमो", rom: "momo", en: "Momo", pic: "🥟" },
-  ]},
-  { id: "sentences", title: "Make sentences", ne: "वाक्य", icon: "🧩", color: "var(--flag-green)", bigOnly: true, sentences: [
-    { ne: ["म", "ठीक", "छु"], rom: ["ma", "thik", "chhu"], en: "I am fine." },
-    { ne: ["मेरो", "नाम", "सीता", "हो"], rom: ["mero", "naam", "Sita", "ho"], en: "My name is Sita." },
-    { ne: ["यो", "मेरो", "कुकुर", "हो"], rom: ["yo", "mero", "kukur", "ho"], en: "This is my dog." },
-    { ne: ["मलाई", "मोमो", "मन", "पर्छ"], rom: ["malai", "momo", "man", "parchha"], en: "I like momo." },
-    { ne: ["आकाश", "निलो", "छ"], rom: ["aakash", "nilo", "chha"], en: "The sky is blue." },
-    { ne: ["म", "पानी", "पिउँछु"], rom: ["ma", "paani", "piunchhu"], en: "I drink water." },
-    { ne: ["बिरालो", "सानो", "छ"], rom: ["biralo", "saano", "chha"], en: "The cat is small." },
-    { ne: ["हात्ती", "ठूलो", "छ"], rom: ["hatti", "thulo", "chha"], en: "The elephant is big." },
-  ]},
-];
-const EXTRA_TILES = [["र", "ra"], ["पनि", "pani"], ["होइन", "hoina"], ["रातो", "raato"], ["तिमी", "timi"]];
-const CHEERS = [["स्याबास!", "syabaas!", "Well done!"], ["राम्रो!", "ramro!", "Great!"], ["एकदम ठीक!", "ekdam thik!", "Exactly right!"]];
-
 /* ---------- Saved progress (this browser only) ---------- */
 const KEY = "sajilo-nepali-v1";
 const defaults = { level: "little", rom: true, sound: true, stars: {}, xp: 0, streak: 0, lastDay: "" };
 let P = load();
 function load() { try { return Object.assign({}, defaults, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) { return { ...defaults }; } }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} }
-function starKey(id) { return P.level + ":" + id; }
-function today() { const d = new Date(); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
-function bumpStreak() {
-  const t = today(); if (P.lastDay === t) return;
-  const y = new Date(); y.setDate(y.getDate() - 1);
-  const yk = y.getFullYear() + "-" + (y.getMonth() + 1) + "-" + y.getDate();
-  P.streak = P.lastDay === yk ? P.streak + 1 : 1; P.lastDay = t;
-}
-function liveStreak() {
-  const y = new Date(); y.setDate(y.getDate() - 1);
-  const yk = y.getFullYear() + "-" + (y.getMonth() + 1) + "-" + y.getDate();
-  return (P.lastDay === today() || P.lastDay === yk) ? P.streak : 0;
-}
+const starKey = id => P.level + ":" + id;
+const dayKey = d => d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+const today = () => dayKey(new Date());
+const yesterday = () => { const y = new Date(); y.setDate(y.getDate() - 1); return dayKey(y); };
+function bumpStreak() { const t = today(); if (P.lastDay === t) return; P.streak = P.lastDay === yesterday() ? P.streak + 1 : 1; P.lastDay = t; }
+const liveStreak = () => (P.lastDay === today() || P.lastDay === yesterday()) ? P.streak : 0;
 
-/* ---------- Speech + sounds ---------- */
+/* ---------- Audio: recorded clips first, device voice as backup ---------- */
+const AUDIO = window.AUDIO || {};
+const SPEECH = {};   // key -> text for the device voice
 let voice = null;
 function pickVoice() {
   if (!("speechSynthesis" in window)) return;
   const vs = speechSynthesis.getVoices();
   voice = vs.find(v => /^ne/i.test(v.lang)) || vs.find(v => /^hi/i.test(v.lang)) || null;
 }
-try { pickVoice(); speechSynthesis.onvoiceschanged = () => { pickVoice(); if (S.screen === "map") render(); }; } catch (e) {}
-function speak(text) {
-  if (!voice) return;
-  try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.voice = voice; u.lang = voice.lang; u.rate = .8; speechSynthesis.speak(u); } catch (e) {}
+try { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; } catch (e) {}
+const canSay = key => !!AUDIO[key] || !!voice;
+let current = null, lastEl = null;
+function say(key, el) {
+  if (!P.sound || !key) return;
+  if (lastEl) lastEl.classList.remove("playing");
+  if (el) { el.classList.add("playing"); lastEl = el; }
+  const done = () => { if (el) el.classList.remove("playing"); };
+  try { if (current) { current.pause(); current = null; } speechSynthesis && speechSynthesis.cancel(); } catch (e) {}
+  if (AUDIO[key]) {
+    const a = new Audio(AUDIO[key]); current = a; a.onended = done; a.onerror = done;
+    a.play().catch(done); return;
+  }
+  if (!voice) { setTimeout(done, 300); return; }
+  try {
+    const u = new SpeechSynthesisUtterance(SPEECH[key] || key.replace(/^L:/, ""));
+    u.voice = voice; u.lang = voice.lang; u.rate = .8; u.onend = done; speechSynthesis.speak(u);
+  } catch (e) { done(); }
 }
 let actx = null;
-function beep(good) {
+function beep(kind) {
   if (!P.sound) return;
   try {
     actx = actx || new (window.AudioContext || window.webkitAudioContext)();
-    const notes = good ? [660, 880] : [220, 180];
+    const notes = kind === "good" ? [660, 880] : kind === "bad" ? [220, 180] : [520];
     notes.forEach((f, i) => {
       const o = actx.createOscillator(), g = actx.createGain();
-      o.type = good ? "triangle" : "sawtooth"; o.frequency.value = f;
-      const t = actx.currentTime + i * .11;
-      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(good ? .25 : .12, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + .18);
-      o.connect(g).connect(actx.destination); o.start(t); o.stop(t + .2);
+      o.type = kind === "bad" ? "sawtooth" : "triangle"; o.frequency.value = f;
+      const t = actx.currentTime + i * .11, peak = kind === "bad" ? .1 : kind === "tap" ? .08 : .22;
+      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + .16);
+      o.connect(g).connect(actx.destination); o.start(t); o.stop(t + .18);
     });
   } catch (e) {}
 }
@@ -287,9 +251,16 @@ const $ = s => document.querySelector(s);
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const pickN = (a, n) => shuffle(a).slice(0, n);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const neHTML = (ne, rom) => `<span class="ne" lang="ne">${esc(ne)}</span><span class="rom">${esc(rom)}</span>`;
-const visibleLessons = () => LESSONS.filter(l => !l.bigOnly || P.level === "big");
-const sayBtn = (text, cls = "") => voice && P.sound ? `<button class="say ${cls}" data-say="${esc(text)}" type="button" aria-label="Listen">🔊 <span>Listen</span></button>` : "";
+const K = t => window.audioKey(t);
+// Clickable Nepali text: tap it to hear it.
+const neSpan = (text, cls = "ne", key = K(text)) => `<span class="${cls}" lang="ne" data-say="${esc(key)}" title="Tap to hear">${esc(text)}</span>`;
+const neHTML = (ne, rom, key) => `${neSpan(ne, "ne", key)}<span class="rom">${esc(rom)}</span>`;
+const isLabel = pic => /^(SUN|MON|TUE|WED|THU|FRI|SAT)$/.test(pic);
+const picHTML = (pic, size) => isLabel(pic) ? `<span class="pic-label">${esc(pic)}</span>` : `<span class="big"${size ? ` style="font-size:${size}px"` : ""}>${esc(pic)}</span>`;
+const visibleLessons = () => window.LESSONS.filter(l => !l.bigOnly || P.level === "big");
+const sayBtn = (key, cls = "") => canSay(key) && P.sound ? `<button class="say ${cls}" data-say="${esc(key)}" type="button" aria-label="Listen">🔊 <span>Listen</span></button>` : "";
+const itemKey = (l, it) => l.letters ? window.letterKey(it) : K(it.ne);
+window.LESSONS.forEach(l => (l.items || []).forEach(it => { if (l.letters) SPEECH[window.letterKey(it)] = window.letterSpeech(it); }));
 
 const MASCOT = `<svg class="mascot" viewBox="0 0 100 100" aria-hidden="true">
   <circle cx="22" cy="26" r="15" fill="#b9541a"/><circle cx="78" cy="26" r="15" fill="#b9541a"/>
@@ -308,23 +279,20 @@ const MASCOT = `<svg class="mascot" viewBox="0 0 100 100" aria-hidden="true">
 function buildQuestions(lesson) {
   const big = P.level === "big";
   const total = big ? 10 : 6;
-  const qs = [];
-  if (lesson.sentences) {
-    pickN(lesson.sentences, total).forEach(s => qs.push({ type: "build", s }));
-    return qs;
-  }
-  const items = lesson.items;
-  const types = big
-    ? ["pickMeaning", "pickNepali", "pickNepaliText", "listen", "pickNepali", "pickNepaliText"]
-    : ["pickMeaning", "pickNepali", "listen", "pickMeaning"];
+  if (lesson.sentences) return pickN(lesson.sentences, total).map(s => ({ type: "build", s }));
+  const items = lesson.items, qs = [{ type: "learn" }];
+  let types;
+  if (lesson.letters) types = big ? ["letterPic", "listenLetter", "letterFind", "trace", "listenLetter", "letterFind"] : ["letterPic", "trace", "listenLetter", "letterPic"];
+  else types = big ? ["pickMeaning", "pickNepali", "pickNepaliText", "listen", "pickNepali", "pickNepaliText"] : ["pickMeaning", "pickNepali", "listen", "pickMeaning"];
   if (lesson.count) types.push("count", "count");
   const pool = shuffle(items);
-  for (let i = 0; qs.length < total - 1; i++) {
+  for (let i = 0; qs.length < total; i++) {
+    const item = pool[i % pool.length];
     let t = types[i % types.length];
-    if (t === "listen" && !voice) t = "pickMeaning";
-    qs.push({ type: t, item: pool[i % pool.length] });
+    if ((t === "listen" || t === "listenLetter") && !canSay(itemKey(lesson, item))) t = lesson.letters ? "letterFind" : "pickMeaning";
+    qs.push({ type: t, item });
   }
-  qs.splice(Math.min(3, qs.length), 0, { type: "match", items: pickN(items, 4) });
+  if (!lesson.letters) qs.splice(Math.min(3, qs.length), 0, { type: "match", items: pickN(items, 4) });
   qs.forEach(q => { if (q.item) q.opts = shuffle([q.item, ...pickN(items.filter(x => x !== q.item), 3)]); });
   return qs;
 }
@@ -342,38 +310,38 @@ function render() {
 function renderMap() {
   const ls = visibleLessons();
   let unlocked = true;
-  const stones = ls.map((l, i) => {
+  const stones = ls.map(l => {
     const st = P.stars[starKey(l.id)] || 0;
     const open = unlocked; if (!st) unlocked = false;
     const starHTML = [1, 2, 3].map(n => `<span class="${n <= st ? "" : "off"}">★</span>`).join("");
     return `<button class="stone" type="button" data-lesson="${l.id}" ${open ? "" : "disabled"} aria-label="${esc(l.title)}${open ? "" : " (locked)"}">
-      <span class="disc" style="--c:${l.color}">${open ? l.icon : "🔒"}</span>
-      <span class="label"><strong>${esc(l.title)}</strong><span lang="ne" class="ne">${esc(l.ne)}</span><div class="stars">${starHTML}</div></span>
+      <span class="disc" style="--c:${l.color}">${open ? `<span lang="ne" style="font-family:var(--display)">${esc(l.icon)}</span>` : "🔒"}</span>
+      <span class="label"><strong>${esc(l.title)}</strong>${neSpan(l.ne)}<div class="stars">${starHTML}</div></span>
     </button>`;
   }).join("");
-  const streak = liveStreak();
+  const recorded = Object.keys(AUDIO).length;
   $("#app").innerHTML = `
     <div class="top">
-      <div class="brand">${MASCOT.replace('class="mascot"', 'class="mascot" style="width:44px;height:44px"')}<h1>Sajilo Nepali<small lang="ne">सजिलो नेपाली · easy Nepali</small></h1></div>
-      <span class="stat" title="Days in a row">🔥 ${streak}</span>
+      <div class="brand">${MASCOT.replace('class="mascot"', 'class="mascot" style="width:44px;height:44px"')}<h1>Sajilo Nepali<small>${neSpan(window.PHRASES.brand, "", K(window.PHRASES.brand))} · easy Nepali</small></h1></div>
+      <span class="stat" title="Days in a row">🔥 ${liveStreak()}</span>
       <span class="stat" title="Points">⭐ ${P.xp}</span>
     </div>
     <div class="levels" role="group" aria-label="Choose a level">
       <button type="button" data-level="little" aria-pressed="${P.level === "little"}">Little learners<small>ages 4–7</small></button>
       <button type="button" data-level="big" aria-pressed="${P.level === "big"}">Big learners<small>ages 8–15</small></button>
     </div>
-    <div class="greet">${MASCOT}<p><span class="ne" lang="ne">नमस्ते!</span><span class="rom"> namaste!</span><br>I'm Pandu the red panda. Tap a stone to start a lesson.</p></div>
+    <div class="greet">${MASCOT}<p>${neSpan(window.PHRASES.hello)}<span class="rom"> namaste!</span><br>I'm Pandu the red panda. Tap any Nepali word to hear it, then tap a stone to start a lesson.</p></div>
     <nav class="trail" aria-label="Lessons">${stones}</nav>
     <div class="settings">
       <button class="chip" type="button" id="tRom">${P.rom ? "✓" : "✕"} Show how to say it</button>
       <button class="chip" type="button" id="tSound">${P.sound ? "🔊 Sound on" : "🔇 Sound off"}</button>
       <button class="chip" type="button" id="tReset">Start over</button>
     </div>
-    <p class="note">${voice ? "Listening uses your device's " + (/^ne/i.test(voice.lang) ? "Nepali" : "Hindi") + " voice, so some words may sound slightly off." : "Your device has no Nepali voice, so listening questions are switched off."} Progress is saved on this device only. No account needed.</p>`;
+    <p class="note">${recorded} words have recorded Nepali audio.${voice ? " Others use your device's " + (/^ne/i.test(voice.lang) ? "Nepali" : "Hindi") + " voice." : " Words without a recording stay silent on this device."} Progress is saved on this device only. No account needed.</p>`;
 }
 
 function startLesson(id) {
-  const l = LESSONS.find(x => x.id === id);
+  const l = window.LESSONS.find(x => x.id === id);
   S.lesson = l; S.queue = buildQuestions(l); S.total = S.queue.length; S.done = 0; S.hearts = 3; S.mistakes = 0; S.answered = false;
   S.screen = "lesson"; render(); window.scrollTo(0, 0);
 }
@@ -384,127 +352,213 @@ function lessonTop() {
     <span class="hearts" aria-label="${S.hearts} hearts left">❤️ ${S.hearts}</span></div>`;
 }
 
+function optBtn(i, inner, key) { return `<button class="opt" type="button" data-i="${i}"${key ? ` data-optsay="${esc(key)}"` : ""}>${inner}</button>`; }
+
 function renderQuestion() {
-  const q = S.queue[0]; S.answered = false; S.sel = null;
-  let body = "";
-  if (q.type === "pickMeaning") {
+  const q = S.queue[0], l = S.lesson; S.answered = false; S.sel = null;
+  let body = "", autoKey = null, needsCheck = true;
+  if (q.type === "learn") {
+    needsCheck = false;
+    const cards = l.items.map(it => {
+      const k = itemKey(l, it);
+      return l.letters
+        ? `<button class="card" type="button" data-learn="${esc(k)}"><span class="letter-big" lang="ne">${esc(it.ne)}</span><span class="rom">${esc(it.rom)}</span>${picHTML(it.pic, 30)}<span class="ne word" lang="ne">${esc(it.word)}</span><span class="en">${esc(it.en)}</span><span class="tick"></span></button>`
+        : `<button class="card" type="button" data-learn="${esc(k)}">${picHTML(it.pic)}<span class="ne" lang="ne">${esc(it.ne)}</span><span class="rom">${esc(it.rom)}</span><span class="en">${esc(it.en)}</span><span class="tick"></span></button>`;
+    }).join("");
+    body = `<p class="ask">Meet the ${l.letters ? "letters" : "words"}! Tap each card to hear it.</p><div class="cards">${cards}</div>`;
+  } else if (q.type === "pickMeaning") {
     body = `<p class="ask">What does this mean?</p>
-      <div class="prompt">${neHTML(q.item.ne, q.item.rom)}${sayBtn(q.item.ne)}</div>
-      <div class="opts">${q.opts.map((o, i) => `<button class="opt" type="button" data-i="${i}"><span class="big">${esc(o.pic)}</span><span class="en">${esc(o.en)}</span></button>`).join("")}</div>`;
+      <div class="prompt">${neHTML(q.item.ne, q.item.rom)}${sayBtn(K(q.item.ne))}</div>
+      <div class="opts">${q.opts.map((o, i) => optBtn(i, `${picHTML(o.pic)}<span class="en">${esc(o.en)}</span>`)).join("")}</div>`;
+    autoKey = K(q.item.ne);
   } else if (q.type === "pickNepali" || q.type === "pickNepaliText") {
-    const pic = q.type === "pickNepali";
     body = `<p class="ask">Which one is “${esc(q.item.en)}”?</p>
-      <div class="prompt"><span class="big">${esc(q.item.pic)}</span><span class="en">${esc(q.item.en)}</span></div>
-      <div class="opts">${q.opts.map((o, i) => `<button class="opt" type="button" data-i="${i}">${neHTML(o.ne, o.rom)}</button>`).join("")}</div>`;
+      <div class="prompt">${q.type === "pickNepali" ? picHTML(q.item.pic) : ""}<span class="en">${esc(q.item.en)}</span></div>
+      <div class="opts">${q.opts.map((o, i) => optBtn(i, `<span class="ne" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span>`, K(o.ne))).join("")}</div>`;
   } else if (q.type === "listen") {
     body = `<p class="ask">Listen. Which picture is it?</p>
-      <div class="prompt">${sayBtn(q.item.ne, "huge")}</div>
-      <div class="opts">${q.opts.map((o, i) => `<button class="opt" type="button" data-i="${i}"><span class="big">${esc(o.pic)}</span>${P.level === "big" ? "" : `<span class="en">${esc(o.en)}</span>`}</button>`).join("")}</div>`;
-    setTimeout(() => speak(q.item.ne), 300);
+      <div class="prompt">${sayBtn(K(q.item.ne), "huge")}</div>
+      <div class="opts">${q.opts.map((o, i) => optBtn(i, `${picHTML(o.pic)}${P.level === "big" ? "" : `<span class="en">${esc(o.en)}</span>`}`)).join("")}</div>`;
+    autoKey = K(q.item.ne);
   } else if (q.type === "count") {
     body = `<p class="ask">How many stars?</p>
       <div class="prompt"><span class="big" style="font-size:40px;max-width:320px;line-height:1.3">${"⭐".repeat(q.item.n)}</span></div>
-      <div class="opts">${q.opts.map((o, i) => `<button class="opt" type="button" data-i="${i}"><span class="ne">${esc(o.digit)} ${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span></button>`).join("")}</div>`;
+      <div class="opts">${q.opts.map((o, i) => optBtn(i, `<span class="ne" lang="ne">${esc(o.digit)} ${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span>`, K(o.ne))).join("")}</div>`;
+  } else if (q.type === "letterPic") {
+    body = `<p class="ask">Which picture starts with this letter?</p>
+      <div class="prompt"><span class="letter-big" lang="ne" data-say="${esc(itemKey(l, q.item))}">${esc(q.item.ne)}</span><span class="rom">${esc(q.item.rom)}</span>${sayBtn(itemKey(l, q.item))}</div>
+      <div class="opts">${q.opts.map((o, i) => optBtn(i, `${picHTML(o.pic)}<span class="ne" lang="ne" style="font-size:22px">${esc(o.word)}</span><span class="en">${esc(o.en)}</span>`)).join("")}</div>`;
+    autoKey = K(q.item.word);
+  } else if (q.type === "letterFind") {
+    body = `<p class="ask">Which letter does ${neSpan(q.item.word, "ne")} start with?</p>
+      <div class="prompt">${picHTML(q.item.pic)}${neHTML(q.item.word, q.item.wordRom)}<span class="en">${esc(q.item.en)}</span></div>
+      <div class="opts">${q.opts.map((o, i) => optBtn(i, `<span class="letter-big" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span>`, itemKey(l, o))).join("")}</div>`;
+    autoKey = K(q.item.word);
+  } else if (q.type === "listenLetter") {
+    body = `<p class="ask">Listen. Which letter is it?</p>
+      <div class="prompt">${sayBtn(itemKey(l, q.item), "huge")}</div>
+      <div class="opts">${q.opts.map((o, i) => optBtn(i, `<span class="letter-big" lang="ne">${esc(o.ne)}</span>${P.level === "big" ? "" : `<span class="rom">${esc(o.rom)}</span>`}`)).join("")}</div>`;
+    autoKey = itemKey(l, q.item);
+  } else if (q.type === "trace") {
+    body = `<p class="ask">Trace the letter ${neSpan(q.item.ne, "ne", itemKey(l, q.item))} with your finger</p>
+      <div class="trace-wrap">
+        <div class="trace-box" id="traceBox"><canvas id="guide"></canvas><canvas id="ink"></canvas></div>
+        <div class="meter" aria-hidden="true"><i id="meter"></i></div>
+        <div class="trace-tools"><button class="chip" type="button" id="traceClear">↺ Start again</button>${sayBtn(itemKey(l, q.item))}</div>
+      </div>`;
+    autoKey = itemKey(l, q.item);
   } else if (q.type === "match") {
+    needsCheck = false;
     S.matchLeft = shuffle(q.items); S.matchRight = shuffle(q.items); S.pairs = 0; S.pickL = null; S.pickR = null;
     body = `<p class="ask">Tap the pairs that match</p>
-      <div class="match"><div class="col">${S.matchLeft.map((o, i) => `<button class="opt" type="button" data-l="${i}">${neHTML(o.ne, o.rom)}</button>`).join("")}</div>
-      <div class="col">${S.matchRight.map((o, i) => `<button class="opt" type="button" data-r="${i}"><span class="big" style="font-size:34px">${esc(o.pic)}</span><span class="en">${esc(o.en)}</span></button>`).join("")}</div></div>`;
+      <div class="match"><div class="col">${S.matchLeft.map((o, i) => `<button class="opt" type="button" data-l="${i}"><span class="ne" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span></button>`).join("")}</div>
+      <div class="col">${S.matchRight.map((o, i) => `<button class="opt" type="button" data-r="${i}">${picHTML(o.pic, 34)}<span class="en">${esc(o.en)}</span></button>`).join("")}</div></div>`;
   } else if (q.type === "build") {
     const s = q.s;
-    const extras = pickN(EXTRA_TILES.filter(t => !s.ne.includes(t[0])), 2);
+    const extras = pickN(window.EXTRA_TILES.filter(t => !s.ne.includes(t[0])), 2);
     S.bank = shuffle([...s.ne.map((w, i) => [w, s.rom[i]]), ...extras]);
     S.built = [];
     body = `<p class="ask">Make this sentence in Nepali</p>
-      <div class="prompt"><span class="en">“${esc(s.en)}”</span>${sayBtn(s.ne.join(" "))}</div>
+      <div class="prompt"><span class="en">“${esc(s.en)}”</span>${sayBtn(K(s.ne.join(" ")))}</div>
       <div class="answer" id="answer" aria-label="Your sentence"></div>
-      <div class="bank" id="bank">${S.bank.map((t, i) => `<button class="tile" type="button" data-t="${i}">${neHTML(t[0], t[1])}</button>`).join("")}</div>`;
+      <div class="bank" id="bank">${S.bank.map((t, i) => `<button class="tile" type="button" data-t="${i}"><span class="ne" lang="ne">${esc(t[0])}</span><span class="rom">${esc(t[1])}</span></button>`).join("")}</div>`;
   }
-  const needsCheck = q.type === "build" || ["pickMeaning", "pickNepali", "pickNepaliText", "listen", "count"].includes(q.type);
-  $("#app").innerHTML = `${lessonTop()}<section class="q">${body}</section>
-    ${q.type === "match" ? "" : `<div class="feedback" id="fb"><button class="go" type="button" id="check" ${needsCheck ? "disabled" : ""}>Check</button></div>`}`;
+  const footer = q.type === "match" ? "" : q.type === "learn"
+    ? `<div class="feedback" id="fb"><button class="go" type="button" id="next">Start the quiz</button></div>`
+    : `<div class="feedback" id="fb"><button class="go" type="button" id="check" ${needsCheck ? "disabled" : ""}>Check</button></div>`;
+  $("#app").innerHTML = `${lessonTop()}<section class="q">${body}</section>${footer}`;
+  if (q.type === "trace") setupTrace(q.item);
+  if (autoKey && P.sound) setTimeout(() => say(autoKey), 350);
 }
 
+/* ---------- Tracing ---------- */
+const TR = { mask: null, ink: null, total: 0, drawn: false };
+async function setupTrace(item) {
+  const box = $("#traceBox"), guide = $("#guide"), ink = $("#ink");
+  const size = Math.round(box.clientWidth), dpr = window.devicePixelRatio || 1;
+  [guide, ink].forEach(c => { c.width = size * dpr; c.height = size * dpr; c.getContext("2d").scale(dpr, dpr); });
+  try { await document.fonts.load(`700 ${size * .7}px "Baloo 2"`, item.ne); } catch (e) {}
+  const font = `700 ${Math.round(size * .7)}px "Baloo 2", "Noto Sans Devanagari", sans-serif`;
+  const drawLetter = (ctx, fill) => { ctx.font = font; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillStyle = fill; ctx.fillText(item.ne, size / 2, size * .56); };
+  const g = guide.getContext("2d"); g.clearRect(0, 0, size, size); drawLetter(g, "#d9e4f4");
+  g.setLineDash([6, 8]); g.lineWidth = 2; g.strokeStyle = "#9fb3d1"; g.font = font; g.textAlign = "center"; g.textBaseline = "middle"; g.strokeText(item.ne, size / 2, size * .56);
+  // low-res masks for scoring
+  const N = 120, sc = N / size;
+  const mk = () => { const c = document.createElement("canvas"); c.width = c.height = N; const x = c.getContext("2d"); x.scale(sc, sc); return [c, x]; };
+  const [mc, mx] = mk(); drawLetter(mx, "#000");
+  const [nc, nx] = mk(); drawLetter(nx, "#000"); nx.lineWidth = size * .09; nx.strokeStyle = "#000"; nx.font = font; nx.strokeText(item.ne, size / 2, size * .56);
+  const md = mx.getImageData(0, 0, N, N).data, nd = nx.getImageData(0, 0, N, N).data;
+  TR.mask = []; TR.near = []; for (let i = 0; i < N * N; i++) { TR.mask[i] = md[i * 4 + 3] > 100; TR.near[i] = nd[i * 4 + 3] > 40; }
+  TR.total = TR.mask.filter(Boolean).length;
+  const [ic, ix] = mk(); TR.inkCanvas = ic; TR.inkCtx = ix; TR.N = N; TR.drawn = false;
+  const c = ink.getContext("2d");
+  [c, ix].forEach(x => { x.lineCap = "round"; x.lineJoin = "round"; x.strokeStyle = "#e8742a"; x.lineWidth = size * .085; });
+  let drawing = false, last = null;
+  const pos = e => { const r = ink.getBoundingClientRect(); return [(e.clientX - r.left) * size / r.width, (e.clientY - r.top) * size / r.height]; };
+  ink.onpointerdown = e => { drawing = true; last = pos(e); ink.setPointerCapture(e.pointerId); dot(last); };
+  ink.onpointermove = e => { if (!drawing) return; const p = pos(e); [c, ix].forEach(x => { x.beginPath(); x.moveTo(...last); x.lineTo(...p); x.stroke(); }); last = p; TR.drawn = true; updateMeter(); };
+  ink.onpointerup = ink.onpointercancel = () => { drawing = false; updateMeter(); };
+  const dot = p => { [c, ix].forEach(x => { x.beginPath(); x.moveTo(...p); x.lineTo(p[0] + .1, p[1]); x.stroke(); }); TR.drawn = true; };
+  $("#traceClear").onclick = () => { c.clearRect(0, 0, size, size); ix.clearRect(0, 0, size, size); TR.drawn = false; updateMeter(); };
+}
+function traceScore() {
+  const d = TR.inkCtx.getImageData(0, 0, TR.N, TR.N).data; let hit = 0, inked = 0, outside = 0;
+  for (let i = 0; i < TR.N * TR.N; i++) { const on = d[i * 4 + 3] > 60; if (on) { inked++; if (!TR.near[i]) outside++; } if (on && TR.mask[i]) hit++; }
+  return { cover: TR.total ? hit / TR.total : 0, stray: inked ? outside / inked : 0 };
+}
+function updateMeter() {
+  const s = traceScore(); $("#meter").style.width = Math.min(100, Math.round(s.cover / .6 * 100)) + "%";
+  const ch = $("#check"); if (ch) ch.disabled = !TR.drawn;
+}
+
+/* ---------- Answers ---------- */
 function setFeedback(good, solutionHTML) {
   const fb = $("#fb");
-  const ch = CHEERS[Math.floor(Math.random() * CHEERS.length)];
+  const ch = window.CHEERS[Math.floor(Math.random() * window.CHEERS.length)];
   fb.className = "feedback " + (good ? "good" : "bad");
   fb.innerHTML = good
-    ? `<p>🎉 <span class="ne" lang="ne">${ch[0]}</span> <span class="rom">${ch[1]}</span> ${ch[2]}</p><button class="go" type="button" id="next">Continue</button>`
+    ? `<p>🎉 ${neSpan(ch[0])} <span class="rom">${ch[1]}</span> ${ch[2]}</p><button class="go" type="button" id="next">Continue</button>`
     : `<p>Not quite. The answer is:</p><div class="sol">${solutionHTML}</div><button class="go" type="button" id="next">Got it</button>`;
   $("#next").focus();
 }
-
 function grade(good) {
-  S.answered = true; beep(good);
+  S.answered = true; beep(good ? "good" : "bad");
   const q = S.queue.shift();
-  if (good) S.done++;
-  else { S.mistakes++; S.hearts--; S.queue.push(q); }
+  if (good) S.done++; else { S.mistakes++; S.hearts--; S.queue.push(q); }
 }
-
 function checkChoice() {
-  const q = S.queue[0]; if (S.sel == null || S.answered) return;
-  const chosen = q.opts[S.sel], good = chosen === q.item;
+  const q = S.queue[0], l = S.lesson; if (S.sel == null || S.answered) return;
+  const good = q.opts[S.sel] === q.item;
   document.querySelectorAll(".opt").forEach((b, i) => { b.disabled = true; if (q.opts[i] === q.item) b.classList.add("right"); else if (i === S.sel) b.classList.add("wrong"); });
-  if (good || P.sound) speak(q.item.ne);
   grade(good);
-  setFeedback(good, `${neHTML(q.item.ne, q.item.rom)} = ${esc(q.item.en)}`);
+  if (l.letters) {
+    say(itemKey(l, q.item));
+    setFeedback(good, `${neHTML(q.item.ne, q.item.rom, itemKey(l, q.item))} as in ${neHTML(q.item.word, q.item.wordRom)} = ${esc(q.item.en)}`);
+  } else {
+    say(K(q.item.ne));
+    setFeedback(good, `${neHTML(q.item.ne, q.item.rom)} = ${esc(q.item.en)}`);
+  }
 }
-
+function checkTrace() {
+  const q = S.queue[0]; if (S.answered) return;
+  const s = traceScore(), good = s.cover >= .55 && s.stray <= .45;
+  if (!good) {   // tracing is practice: no heart lost, just try again
+    beep("bad");
+    $("#fb").innerHTML = `<p>${s.cover < .55 ? "Keep going! Cover more of the letter." : "Try to stay on the letter."}</p><button class="go" type="button" id="check">Check</button>`;
+    return;
+  }
+  grade(true); say(window.letterKey(q.item));
+  setFeedback(true, "");
+}
 function checkBuild() {
   const q = S.queue[0]; if (S.answered) return;
   const good = S.built.map(i => S.bank[i][0]).join(" ") === q.s.ne.join(" ");
-  if (good) speak(q.s.ne.join(" "));
-  grade(good);
+  grade(good); if (good) say(K(q.s.ne.join(" ")));
   setFeedback(good, q.s.ne.map((w, i) => neHTML(w, q.s.rom[i])).join(" "));
 }
-
 function drawBuilt() {
-  $("#answer").innerHTML = S.built.map((ti, pos) => `<button class="tile" type="button" data-b="${pos}">${neHTML(S.bank[ti][0], S.bank[ti][1])}</button>`).join("");
+  $("#answer").innerHTML = S.built.map((ti, pos) => `<button class="tile" type="button" data-b="${pos}"><span class="ne" lang="ne">${esc(S.bank[ti][0])}</span><span class="rom">${esc(S.bank[ti][1])}</span></button>`).join("");
   document.querySelectorAll("#bank .tile").forEach(b => b.classList.toggle("used", S.built.includes(+b.dataset.t)));
   $("#check").disabled = S.built.length === 0;
 }
-
 function matchTap(side, i) {
   const q = S.queue[0];
   const btn = document.querySelector(`[data-${side}="${i}"]`);
   document.querySelectorAll(`[data-${side}]`).forEach(b => b.classList.remove("sel"));
   btn.classList.add("sel");
-  if (side === "l") { S.pickL = i; speak(S.matchLeft[i].ne); } else S.pickR = i;
+  if (side === "l") { S.pickL = i; say(K(S.matchLeft[i].ne), btn); } else { S.pickR = i; beep("tap"); }
   if (S.pickL == null || S.pickR == null) return;
   const L = document.querySelector(`[data-l="${S.pickL}"]`), R = document.querySelector(`[data-r="${S.pickR}"]`);
   if (S.matchLeft[S.pickL] === S.matchRight[S.pickR]) {
-    beep(true); L.classList.add("right"); R.classList.add("right"); L.disabled = R.disabled = true;
+    beep("good"); L.classList.add("right"); R.classList.add("right"); L.disabled = R.disabled = true;
     setTimeout(() => { L.classList.add("gone"); R.classList.add("gone"); }, 350);
     S.pairs++;
     if (S.pairs === q.items.length) { S.queue.shift(); S.done++; setTimeout(nextStep, 600); }
   } else {
-    beep(false); L.classList.add("wrong"); R.classList.add("wrong");
+    beep("bad"); L.classList.add("wrong"); R.classList.add("wrong");
     setTimeout(() => { L.classList.remove("wrong", "sel"); R.classList.remove("wrong", "sel"); }, 450);
   }
   S.pickL = S.pickR = null;
 }
-
 function nextStep() {
   if (S.hearts <= 0) { S.screen = "done"; S.outOfHearts = true; render(); return; }
   if (!S.queue.length) {
-    const stars = S.mistakes === 0 ? 3 : S.mistakes <= 2 ? 2 : 1;
-    const k = starKey(S.lesson.id);
+    const stars = S.mistakes === 0 ? 3 : S.mistakes <= 2 ? 2 : 1, k = starKey(S.lesson.id);
     S.earned = stars; S.xpGain = 10 + stars * 5;
     P.stars[k] = Math.max(P.stars[k] || 0, stars); P.xp += S.xpGain; bumpStreak(); save();
-    S.screen = "done"; S.outOfHearts = false; render(); return;
+    S.screen = "done"; S.outOfHearts = false; render(); say(K(window.PHRASES.wellDone)); return;
   }
   render(); window.scrollTo(0, 0);
 }
-
 function renderDone() {
   if (S.outOfHearts) {
-    $("#app").innerHTML = `<section class="done">${MASCOT}<h2>Out of hearts!</h2><p>That's okay. Practice makes perfect.<br><span class="ne" lang="ne">फेरि प्रयास गरौँ!</span> <span class="rom">pheri prayas garaun!</span> Let's try again!</p>
+    $("#app").innerHTML = `<section class="done">${MASCOT}<h2>Out of hearts!</h2><p>That's okay. Practice makes perfect.<br>${neSpan(window.PHRASES.tryAgain)} <span class="rom">pheri prayas garaun!</span> Let's try again!</p>
       <button class="go" type="button" id="again">Try again</button><button class="chip" type="button" id="home">Back to lessons</button></section>`;
+    say(K(window.PHRASES.tryAgain));
     return;
   }
   const st = [1, 2, 3].map(n => `<span class="${n <= S.earned ? "" : "off"}">★</span>`).join("");
-  $("#app").innerHTML = `<section class="done">${MASCOT}<h2><span class="ne" lang="ne">स्याबास!</span><br>Lesson complete!</h2>
+  $("#app").innerHTML = `<section class="done">${MASCOT}<h2>${neSpan(window.PHRASES.wellDone)}<br>Lesson complete!</h2>
     <div class="stars" aria-label="${S.earned} of 3 stars">${st}</div>
     <p><strong>+${S.xpGain} points</strong> · 🔥 ${liveStreak()} day streak<br>${S.mistakes === 0 ? "Perfect, no mistakes!" : S.mistakes + " mistake" + (S.mistakes > 1 ? "s" : "") + ". Play again for 3 stars."}</p>
     <button class="go" type="button" id="home">Continue</button><button class="chip" type="button" id="again">Play again</button></section>`;
@@ -512,10 +566,12 @@ function renderDone() {
 
 /* ---------- Events ---------- */
 document.addEventListener("click", e => {
-  const t = e.target.closest("button"); if (!t) return;
-  if (t.dataset.say != null) { speak(t.dataset.say); return; }
-  if (t.dataset.lesson) { startLesson(t.dataset.lesson); return; }
-  if (t.dataset.level) { P.level = t.dataset.level; save(); render(); return; }
+  const t = e.target.closest("button, [data-say]"); if (!t) return;
+  // Any tappable Nepali text (outside answer buttons) just plays its sound.
+  if (t.matches("span[data-say]") && !t.closest(".opt, .tile, .card, .stone")) { say(t.dataset.say, t); return; }
+  if (t.matches("button.say")) { say(t.dataset.say, t); return; }
+  if (t.dataset.lesson) { const l = window.LESSONS.find(x => x.id === t.dataset.lesson); say(K(l.ne)); startLesson(t.dataset.lesson); return; }
+  if (t.dataset.level) { P.level = t.dataset.level; save(); beep("tap"); render(); return; }
   if (t.id === "tRom") { P.rom = !P.rom; save(); render(); return; }
   if (t.id === "tSound") { P.sound = !P.sound; save(); render(); return; }
   if (t.id === "tReset") {
@@ -525,19 +581,21 @@ document.addEventListener("click", e => {
   }
   if (t.id === "quit" || t.id === "home") { S.screen = "map"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "again") { startLesson(S.lesson.id); return; }
-  if (t.id === "next") { nextStep(); return; }
-  if (t.id === "check") { S.queue[0].type === "build" ? checkBuild() : checkChoice(); return; }
-  if (S.screen !== "lesson" || S.answered) return;
+  if (t.id === "next") { if (S.queue[0] && S.queue[0].type === "learn" && !S.answered) { S.queue.shift(); S.done++; } nextStep(); return; }
+  if (t.id === "check") { const ty = S.queue[0].type; ty === "build" ? checkBuild() : ty === "trace" ? checkTrace() : checkChoice(); return; }
+  if (S.screen !== "lesson") return;
+  if (t.dataset.learn) { say(t.dataset.learn, t); t.classList.add("heard"); t.querySelector(".tick").textContent = "✓ heard"; return; }
+  if (S.answered) return;
   if (t.dataset.i != null) {
     S.sel = +t.dataset.i;
     document.querySelectorAll(".opt").forEach(b => b.classList.toggle("sel", b === t));
     $("#check").disabled = false;
-    const o = S.queue[0].opts[S.sel]; if (S.queue[0].type === "pickNepali" || S.queue[0].type === "pickNepaliText") speak(o.ne);
+    if (t.dataset.optsay) say(t.dataset.optsay, t); else beep("tap");
     return;
   }
   if (t.dataset.l != null) { matchTap("l", +t.dataset.l); return; }
   if (t.dataset.r != null) { matchTap("r", +t.dataset.r); return; }
-  if (t.dataset.t != null && !t.classList.contains("used")) { S.built.push(+t.dataset.t); speak(S.bank[+t.dataset.t][0]); drawBuilt(); return; }
+  if (t.dataset.t != null && !t.classList.contains("used")) { S.built.push(+t.dataset.t); say(K(S.bank[+t.dataset.t][0]), t); drawBuilt(); return; }
   if (t.dataset.b != null) { S.built.splice(+t.dataset.b, 1); drawBuilt(); return; }
 });
 
