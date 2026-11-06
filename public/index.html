@@ -76,11 +76,21 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .chapter-banner small { display: block; font-weight: 800; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .chapter-banner .ne { font-family: var(--display); font-size: 22px; font-weight: 800; }
 .chapter-banner em { display: block; font-style: normal; font-weight: 700; color: var(--muted); font-size: 14px; }
+.chapter-banner { position: relative; padding-bottom: 18px; }
+.chapter-bar { position: absolute; left: 14px; right: 14px; bottom: 8px; height: 6px; border-radius: 999px; background: #e3ebf6; overflow: hidden; }
+.chapter-bar b { display: block; height: 100%; background: var(--flag-yellow); border-radius: 999px; transition: width .3s; }
 .chapter-stars { font-weight: 800; color: var(--flag-yellow); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .trail { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 8px 0 16px; }
 .trail::before { content: ""; position: absolute; top: 30px; bottom: 30px; left: 50%; width: 4px; transform: translateX(-50%); background: repeating-linear-gradient(to bottom, #b9cbe6 0 10px, transparent 10px 20px); }
-.stone { position: relative; display: flex; align-items: center; gap: 14px; width: 86%; background: var(--snow); border: 2px solid var(--line); border-radius: 999px; padding: 8px 20px 8px 8px; box-shadow: 0 4px 0 var(--line); text-align: left; }
-.stone.done { border-color: #f3d37a; }
+.stone { position: relative; display: flex; align-items: center; gap: 14px; width: auto; min-width: min(320px, 92%); max-width: 78%; background: var(--snow); border: 2px solid var(--line); border-radius: 999px; padding: 8px 20px 8px 8px; box-shadow: 0 4px 0 var(--line); text-align: left; }
+.stone.earned { border-color: #f3d37a; }
+.stone .label .stars span { color: var(--flag-yellow); font-size: 18px; }
+.stone .label .stars span.off { color: var(--muted); }
+.stone .label { flex: 1; }
+.stone::after { content: "▶"; font-size: 16px; color: #b9cbe6; padding: 0 6px; }
+.stone:nth-child(even)::after { content: "◀"; }
+.stone.next::after { color: var(--flag-blue); }
+.stone.earned::after { color: var(--flag-yellow); }
 .stone:nth-child(odd) { align-self: flex-start; }
 .stone:nth-child(even) { align-self: flex-end; flex-direction: row-reverse; text-align: right; padding: 8px 8px 8px 20px; }
 .disc { width: 72px; height: 72px; flex: none; border-radius: 50%; display: grid; place-items: center; font-size: 38px; background: var(--c, var(--flag-blue)); box-shadow: 0 6px 0 rgba(31,42,68,.22); transition: transform .12s; }
@@ -92,7 +102,8 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .stone .label span { color: var(--muted); font-weight: 700; font-size: 15px; }
 .stone .label .rom, .chapter-banner .rom { color: #1d4f9e; font-size: 13px; }
 .stone .label .next-tag { color: var(--snow); }
-.stars { letter-spacing: 2px; font-size: 18px; }
+.stars { letter-spacing: 2px; font-size: 18px; color: var(--flag-yellow); }
+.stars .off { color: var(--muted); }
 .stars .off { opacity: .25; }
 
 .settings { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
@@ -168,7 +179,9 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .toggles { display: flex; gap: 6px; }
 .icon-btn { border: 2px solid var(--line); background: var(--snow); border-radius: 14px; min-width: 52px; font-weight: 800; font-size: 20px; line-height: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 4px 6px; }
 .icon-btn small { font-size: 11px; color: var(--muted); }
-.icon-btn[aria-pressed="true"] { border-color: var(--flag-blue); background: #eaf2ff; }
+.icon-btn[aria-pressed="true"] { border-color: var(--flag-green); background: var(--good-bg); color: #1f7a40; }
+.icon-btn[aria-pressed="true"] small { color: #1f7a40; }
+.icon-btn[aria-pressed="false"] { border-style: dashed; color: var(--muted); background: #f3f6fb; }
 .greet p { font-weight: 700; }
 .greet .ne { font-size: 20px; }
 .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
@@ -396,7 +409,7 @@ function renderMap() {
   const stone = l => {
     const st = P.stars[starKey(l.id)] || 0, isNext = l.id === nextId;
     const starHTML = [1, 2, 3].map(n => `<span class="${n <= st ? "" : "off"}">★</span>`).join("");
-    return `<button class="stone${isNext ? " next" : ""}${st ? " done" : ""}" type="button" data-lesson="${l.id}" aria-label="${esc(l.title)}${isNext ? " (start here)" : ""}">
+    return `<button class="stone${isNext ? " next" : ""}${st ? " earned" : ""}" type="button" data-lesson="${l.id}" aria-label="${esc(l.title)}${isNext ? " (start here)" : ""}">
       <span class="disc" style="--c:${l.color}"><span lang="ne" style="font-family:var(--display)">${esc(l.icon)}</span></span>
       <span class="label">${isNext ? `<em class="next-tag">${anyStars ? "Next up!" : "Start here"}</em>` : ""}<strong>${esc(l.title)}</strong>${neSpan(l.ne)}${l.rom ? ` <span class="rom">${esc(l.rom)}</span>` : ""}<div class="stars">${starHTML}</div></span>
     </button>`;
@@ -410,6 +423,7 @@ function renderMap() {
       <div class="chapter-banner" style="--c:${c.color}">
         <span><small>Chapter ${i + 1}</small>${neSpan(c.ne)} <span class="rom">${esc(c.rom)}</span><em>${esc(c.en)}</em></span>
         <span class="chapter-stars" aria-label="${got} of ${ls.length * 3} stars">★ ${got}/${ls.length * 3}</span>
+        <i class="chapter-bar" aria-hidden="true"><b style="width:${Math.round(got / (ls.length * 3) * 100)}%"></b></i>
       </div>
       <nav class="trail">${ls.map(stone).join("")}</nav>
     </section>`;
@@ -430,8 +444,8 @@ function renderMap() {
         <button type="button" data-level="big" aria-pressed="${P.level === "big"}">Big learners<small>ages 8–15</small></button>
       </div>
       <div class="toggles">
-        <button class="icon-btn" type="button" id="tRom" aria-pressed="${romOn()}" title="Show how to say it">Aa<small>${romOn() ? "on" : "off"}</small></button>
-        <button class="icon-btn" type="button" id="tSound" aria-pressed="${P.sound}" title="Sound">${P.sound ? "🔊" : "🔇"}<small>${P.sound ? "on" : "off"}</small></button>
+        <button class="icon-btn" type="button" id="tRom" aria-pressed="${romOn()}" title="Show how to say it" aria-label="How to say it ${romOn() ? "on" : "off"}">Aa<small>${romOn() ? "on" : "off"}</small></button>
+        <button class="icon-btn" type="button" id="tSound" aria-pressed="${P.sound}" title="Sound" aria-label="Sound ${P.sound ? "on" : "off"}"><span aria-hidden="true">${P.sound ? "🔊" : "🔇"}</span><small>sound ${P.sound ? "on" : "off"}</small></button>
       </div>
     </div>
     <div class="greet">${MASCOT}<div><p>${neSpan(window.PHRASES.hello)} <span class="rom">namaste!</span> I'm Pandu. Tap any Nepali word to hear it.</p>

@@ -47,24 +47,6 @@ window.LESSONS = [
     { ne: "सुन्तले", rom: "suntale", en: "Orange", pic: "🟠" },
     { ne: "गुलाबी", rom: "gulabi", en: "Pink", pic: "🌸" },
   ]},
-  { id: "family", title: "Family", ne: "परिवार", rom: "pariwaar", icon: "👨‍👩‍👧", color: "var(--panda)", items: [
-    { ne: "आमा", rom: "aama", en: "Mother", alt: ["mom", "mum", "mommy", "mummy", "mama", "mum"], pic: "👩" },
-    { ne: "बुबा", rom: "buba", en: "Father", alt: ["dad", "daddy", "papa"], pic: "👨" },
-    { ne: "दाइ", rom: "daai", en: "Big brother", alt: ["older brother", "brother", "elder brother"], pic: "👦" },
-    { ne: "दिदी", rom: "didi", en: "Big sister", alt: ["older sister", "sister", "elder sister"], pic: "👧" },
-    { ne: "हजुरआमा", rom: "hajur-aama", en: "Grandmother", alt: ["grandma", "granny", "nana"], pic: "👵" },
-    { ne: "हजुरबुबा", rom: "hajur-buba", en: "Grandfather", alt: ["grandpa", "granddad"], pic: "👴" },
-  ]},
-  { id: "food", title: "Food", ne: "खाना", rom: "khaana", icon: "🥟", color: "var(--flag-blue)", items: [
-    { ne: "भात", rom: "bhaat", en: "Rice", pic: "🍚" },
-    { ne: "दाल", rom: "daal", en: "Lentil soup", alt: ["lentils", "lentil", "dal", "daal", "soup"], pic: "🥣" },
-    { ne: "रोटी", rom: "roti", en: "Flatbread", alt: ["bread", "roti"], pic: "🫓" },
-    { ne: "दूध", rom: "doodh", en: "Milk", pic: "🥛" },
-    { ne: "पानी", rom: "paani", en: "Water", pic: "💧" },
-    { ne: "स्याउ", rom: "syaau", en: "Apple", alt: ["apples"], pic: "🍎" },
-    { ne: "केरा", rom: "kera", en: "Banana", alt: ["bananas"], pic: "🍌" },
-    { ne: "मोमो", rom: "momo", en: "Momo", alt: ["dumpling", "dumplings", "momos"], pic: "🥟" },
-  ]},
   // --- At home: everyday spoken Nepali ---
   { id: "respect-family", title: "Family & Respect", ne: "परिवार र आदर", rom: "pariwaar ra aadar", icon: "👨‍👩‍👧‍👦", color: "var(--panda)", items: [
     { ne: "आमा", rom: "aama", en: "mom", pic: "👩", alt: ["mother", "mum", "mummy", "mama"] },
@@ -81,6 +63,11 @@ window.LESSONS = [
     { ne: "पानी", rom: "paani", en: "water", pic: "💧", alt: ["drink water"] },
     { ne: "भात", rom: "bhaat", en: "rice", pic: "🍚", alt: ["cooked rice", "food", "meal"] },
     { ne: "दूध", rom: "doodh", en: "milk", pic: "🥛", alt: ["warm milk"] },
+    { ne: "दाल", rom: "daal", en: "lentil soup", pic: "🥣", alt: ["lentils", "lentil", "dal", "daal", "soup"] },
+    { ne: "रोटी", rom: "roti", en: "flatbread", pic: "🫓", alt: ["bread", "roti"] },
+    { ne: "स्याउ", rom: "syaau", en: "apple", pic: "🍎", alt: ["apples"] },
+    { ne: "केरा", rom: "kera", en: "banana", pic: "🍌", alt: ["bananas"] },
+    { ne: "मोमो", rom: "momo", en: "momo", pic: "🥟", alt: ["dumpling", "dumplings", "momos"] },
     { ne: "भोक लाग्यो", rom: "bhok laagyo", en: "I am hungry", ctx: "🧒 You tell Aama:", pic: "😋", alt: ["hungry", "im hungry", "i'm hungry", "feeling hungry"] },
     { ne: "मिठो छ", rom: "mitho chha", en: "it is yummy", ctx: "🍛 You taste the dal and say:", pic: "🤤", alt: ["yummy", "tasty", "delicious", "it is tasty", "its yummy"] },
     { ne: "अघाएँ", rom: "aghaaen", en: "I am full", ctx: "🍽️ After dinner you tell Aama:", pic: "😌", alt: ["full", "im full", "i'm full", "done eating"] },
@@ -201,9 +188,9 @@ window.LESSONS = [
 
 /* The map groups lessons into chapters, in this order. */
 window.CHAPTERS = [
-  { id: "home", ne: "मेरो घर", rom: "mero ghar", en: "Around the home", color: "var(--panda)", lessons: ["greet", "family", "respect-family", "food", "kitchen-tummy", "daily-routines"] },
+  { id: "home", ne: "मेरो घर", rom: "mero ghar", en: "Around the home", color: "var(--panda)", lessons: ["greet", "respect-family", "kitchen-tummy", "daily-routines", "home-sentences"] },
   { id: "world", ne: "बाहिरको संसार", rom: "baahirako sansaar", en: "Everyday world", color: "var(--flag-green)", lessons: ["num", "colours", "animals", "body", "days"] },
-  { id: "letters", ne: "अक्षर र वाक्य", rom: "akshar ra waakya", en: "Reading & sentences", color: "var(--flag-blue)", lessons: ["vowels", "cons1", "cons2", "cons3", "cons4", "home-sentences", "sentences"] },
+  { id: "letters", ne: "अक्षर र वाक्य", rom: "akshar ra waakya", en: "Reading & sentences", color: "var(--flag-blue)", lessons: ["vowels", "cons1", "cons2", "cons3", "cons4", "sentences"] },
 ];
 
 window.EXTRA_TILES = [["र", "ra"], ["पनि", "pani"], ["होइन", "hoina"], ["रातो", "raato"], ["तिमी", "timi"], ["मलाई", "malai"], ["दिनुहोस्", "dinuhos"], ["ढोका", "dhoka"], ["गर", "gara"]];
