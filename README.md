@@ -6,7 +6,9 @@ A free, Duolingo-style web game that teaches kids aged 4–15 basic Nepali.
   - **Little learners (4–7):** 3 big picture choices, listening and tracing, 6 questions, no hearts so nobody fails, "how to say it" shown.
   - **Big learners (8–15):** 4 choices, type the English meaning, sentence building, days of the week and all consonants, 12 questions, 3 hearts, "how to say it" hidden by default.
 - **Lessons:** Greetings, Numbers 1–10, Animals, Colours, Family, Food, **At home** (Family & Respect, Kitchen & Tummy, Daily Routines, Home Talk sentences), My body, Days of the week, the full Nepali alphabet (13 vowels, 36 consonants) and Make sentences (Big learners only).
-- **Free choice:** every lesson is open; the next unfinished one is highlighted as "Next up!". Kids hear at least 3 cards before a quiz starts.
+- **Map:** lessons are grouped into three chapters (मेरो घर Around the home, बाहिरको संसार Everyday world, अक्षर र वाक्य Reading & sentences) along a trail. Every lesson is open, and the next unfinished one is marked "Start here" / "Next up!".
+- **Two ways to play each lesson:** 📖 Flashcards (one card at a time, swipe or use the arrows, tap to hear) or 🎮 Play game (questions, earn ★★★).
+- **Situations:** everyday phrases show who is speaking, e.g. "👩 Aama calls you: यता आऊ".
 - **Letters:** meet each letter with an example word and picture, find letters, listen for letters, and trace them with a finger.
 - **Tap to hear:** every Nepali word, letter and sentence on screen can be tapped to hear it.
 - **Game features:** stars, points, daily streak, hearts, lessons that unlock in order, and a red panda mascot.

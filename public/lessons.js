@@ -6,12 +6,12 @@
 
 window.LESSONS = [
   { id: "greet", title: "Greetings", ne: "अभिवादन", rom: "abhivaadan", icon: "🙏", color: "var(--flag-blue)", items: [
-    { ne: "नमस्ते", rom: "namaste", en: "Hello", alt: ["hi", "namaste"], pic: "🙏" },
-    { ne: "धन्यवाद", rom: "dhanyabad", en: "Thank you", alt: ["thanks", "thankyou"], pic: "😊" },
+    { ne: "नमस्ते", rom: "namaste", en: "Hello", ctx: "👵 You meet Hajuraama and say:", alt: ["hi", "namaste"], pic: "🙏" },
+    { ne: "धन्यवाद", rom: "dhanyabad", en: "Thank you", ctx: "🎁 Didi gives you a gift. You say:", alt: ["thanks", "thankyou"], pic: "😊" },
     { ne: "हो", rom: "ho", en: "Yes", pic: "✅" },
     { ne: "होइन", rom: "hoina", en: "No", pic: "❌" },
-    { ne: "शुभ रात्रि", rom: "shubha ratri", en: "Good night", alt: ["goodnight"], pic: "🌙" },
-    { ne: "फेरि भेटौँला", rom: "pheri bhetaunla", en: "See you again", alt: ["see you", "see you later", "goodbye", "bye"], pic: "👋" },
+    { ne: "शुभ रात्रि", rom: "shubha ratri", en: "Good night", ctx: "🌙 At bedtime you say:", alt: ["goodnight"], pic: "🌙" },
+    { ne: "फेरि भेटौँला", rom: "pheri bhetaunla", en: "See you again", ctx: "👋 When a friend goes home you say:", alt: ["see you", "see you later", "goodbye", "bye"], pic: "👋" },
   ]},
   { id: "num", title: "Numbers 1–10", ne: "अङ्क", rom: "anka", icon: "🔢", color: "var(--flag-yellow)", count: true, items: [
     { ne: "एक", rom: "ek", en: "one", pic: "1", digit: "१", n: 1 },
@@ -69,7 +69,7 @@ window.LESSONS = [
   { id: "respect-family", title: "Family & Respect", ne: "परिवार र आदर", rom: "pariwaar ra aadar", icon: "👨‍👩‍👧‍👦", color: "var(--panda)", items: [
     { ne: "आमा", rom: "aama", en: "mom", pic: "👩", alt: ["mother", "mum", "mummy", "mama"] },
     { ne: "बाबा", rom: "baba", en: "dad", pic: "👨", alt: ["father", "daddy", "papa", "buwa", "buba"] },
-    { ne: "हजुर", rom: "hajur", en: "yes (polite)", pic: "🙋", alt: ["yes", "pardon", "coming", "yes please"] },
+    { ne: "हजुर", rom: "hajur", en: "yes (polite)", ctx: "👵 Hajuraama calls your name. You answer:", pic: "🙋", alt: ["yes", "pardon", "coming", "yes please"] },
     { ne: "दिदी", rom: "didi", en: "older sister", pic: "👧", alt: ["big sister", "elder sister", "sister"] },
     { ne: "दाइ", rom: "daai", en: "older brother", pic: "👦", alt: ["big brother", "elder brother", "brother"] },
     { ne: "बहिनी", rom: "bahini", en: "younger sister", pic: "👶", alt: ["little sister", "sister"] },
@@ -81,21 +81,21 @@ window.LESSONS = [
     { ne: "पानी", rom: "paani", en: "water", pic: "💧", alt: ["drink water"] },
     { ne: "भात", rom: "bhaat", en: "rice", pic: "🍚", alt: ["cooked rice", "food", "meal"] },
     { ne: "दूध", rom: "doodh", en: "milk", pic: "🥛", alt: ["warm milk"] },
-    { ne: "भोक लाग्यो", rom: "bhok laagyo", en: "I am hungry", pic: "😋", alt: ["hungry", "im hungry", "i'm hungry", "feeling hungry"] },
-    { ne: "मिठो छ", rom: "mitho chha", en: "it is yummy", pic: "🤤", alt: ["yummy", "tasty", "delicious", "it is tasty", "its yummy"] },
-    { ne: "अघाएँ", rom: "aghaaen", en: "I am full", pic: "😌", alt: ["full", "im full", "i'm full", "done eating"] },
-    { ne: "तातो", rom: "taato", en: "hot", pic: "🔥", alt: ["warm"] },
+    { ne: "भोक लाग्यो", rom: "bhok laagyo", en: "I am hungry", ctx: "🧒 You tell Aama:", pic: "😋", alt: ["hungry", "im hungry", "i'm hungry", "feeling hungry"] },
+    { ne: "मिठो छ", rom: "mitho chha", en: "it is yummy", ctx: "🍛 You taste the dal and say:", pic: "🤤", alt: ["yummy", "tasty", "delicious", "it is tasty", "its yummy"] },
+    { ne: "अघाएँ", rom: "aghaaen", en: "I am full", ctx: "🍽️ After dinner you tell Aama:", pic: "😌", alt: ["full", "im full", "i'm full", "done eating"] },
+    { ne: "तातो", rom: "taato", en: "hot", ctx: "👩 Aama warns you:", pic: "🔥", alt: ["warm"] },
     { ne: "चम्चा", rom: "chamcha", en: "spoon", pic: "🥄" },
   ]},
   { id: "daily-routines", title: "Daily Routines", ne: "दैनिक काम", rom: "dainik kaam", icon: "🪥", color: "var(--flag-blue)", items: [
-    { ne: "उठ", rom: "utha", en: "wake up", pic: "☀️", alt: ["get up", "stand up"] },
-    { ne: "दाँत माझ", rom: "daant maajha", en: "brush teeth", pic: "🪥", alt: ["brush your teeth", "brush"] },
-    { ne: "हात धोऊ", rom: "haat dhou", en: "wash hands", pic: "🧼", alt: ["wash your hands", "clean hands"] },
-    { ne: "जुत्ता लाऊ", rom: "jutta laau", en: "put on shoes", pic: "👟", alt: ["wear shoes", "shoes on", "put your shoes on"] },
-    { ne: "यता आऊ", rom: "yata aau", en: "come here", pic: "👋", alt: ["come"] },
-    { ne: "बाहिर खेलौँ", rom: "baahira khelaun", en: "let's play outside", pic: "⚽", alt: ["play outside", "lets play", "lets play outside"] },
-    { ne: "किताब पढ", rom: "kitaab padha", en: "read a book", pic: "📖", alt: ["read book", "read", "study"] },
-    { ne: "सुत", rom: "suta", en: "go to sleep", pic: "🛌", alt: ["sleep", "bedtime", "go to bed"] },
+    { ne: "उठ", rom: "utha", en: "wake up", ctx: "👩 Aama, in the morning:", pic: "☀️", alt: ["get up", "stand up"] },
+    { ne: "दाँत माझ", rom: "daant maajha", en: "brush teeth", ctx: "👩 Aama, after breakfast:", pic: "🪥", alt: ["brush your teeth", "brush"] },
+    { ne: "हात धोऊ", rom: "haat dhou", en: "wash hands", ctx: "👩 Aama, before dinner:", pic: "🧼", alt: ["wash your hands", "clean hands"] },
+    { ne: "जुत्ता लाऊ", rom: "jutta laau", en: "put on shoes", ctx: "👨 Baba, before school:", pic: "👟", alt: ["wear shoes", "shoes on", "put your shoes on"] },
+    { ne: "यता आऊ", rom: "yata aau", en: "come here", ctx: "👩 Aama calls you:", pic: "👋", alt: ["come"] },
+    { ne: "बाहिर खेलौँ", rom: "baahira khelaun", en: "let's play outside", ctx: "🧒 You ask Dai:", pic: "⚽", alt: ["play outside", "lets play", "lets play outside"] },
+    { ne: "किताब पढ", rom: "kitaab padha", en: "read a book", ctx: "👨 Baba, after school:", pic: "📖", alt: ["read book", "read", "study"] },
+    { ne: "सुत", rom: "suta", en: "go to sleep", ctx: "👩 Aama, at bedtime:", pic: "🛌", alt: ["sleep", "bedtime", "go to bed"] },
   ]},
   { id: "home-sentences", title: "Home Talk", ne: "घरको कुराकानी", rom: "gharko kuraakaani", icon: "🏠", color: "var(--flag-red)", sentences: [
     { ne: ["आमा", "मलाई", "भोक", "लाग्यो"], rom: ["aama", "malai", "bhok", "laagyo"], en: "Mom, I am hungry." },
@@ -197,6 +197,13 @@ window.LESSONS = [
     { ne: ["बिरालो", "सानो", "छ"], rom: ["biralo", "saano", "chha"], en: "The cat is small." },
     { ne: ["हात्ती", "ठूलो", "छ"], rom: ["hatti", "thulo", "chha"], en: "The elephant is big." },
   ]},
+];
+
+/* The map groups lessons into chapters, in this order. */
+window.CHAPTERS = [
+  { id: "home", ne: "मेरो घर", rom: "mero ghar", en: "Around the home", color: "var(--panda)", lessons: ["greet", "family", "respect-family", "food", "kitchen-tummy", "daily-routines"] },
+  { id: "world", ne: "बाहिरको संसार", rom: "baahirako sansaar", en: "Everyday world", color: "var(--flag-green)", lessons: ["num", "colours", "animals", "body", "days"] },
+  { id: "letters", ne: "अक्षर र वाक्य", rom: "akshar ra waakya", en: "Reading & sentences", color: "var(--flag-blue)", lessons: ["vowels", "cons1", "cons2", "cons3", "cons4", "home-sentences", "sentences"] },
 ];
 
 window.EXTRA_TILES = [["र", "ra"], ["पनि", "pani"], ["होइन", "hoina"], ["रातो", "raato"], ["तिमी", "timi"], ["मलाई", "malai"], ["दिनुहोस्", "dinuhos"], ["ढोका", "dhoka"], ["गर", "gara"]];

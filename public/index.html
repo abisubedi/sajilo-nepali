@@ -39,7 +39,7 @@ body {
 button { font: inherit; color: inherit; cursor: pointer; }
 button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px; }
 .ne { font-family: var(--display); }
-.rom { color: var(--muted); font-size: .8em; font-weight: 700; }
+.rom { display: inline-block; color: #1d4f9e; background: #eaf2ff; padding: 1px 9px; border-radius: 999px; font-size: .78em; font-weight: 800; line-height: 1.5; }
 .hide-rom .rom { display: none; }
 
 .flags { display: flex; height: 14px; }
@@ -71,17 +71,27 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .mascot { width: 64px; height: 64px; flex: none; }
 
 /* trail */
-.trail { display: flex; flex-direction: column; gap: 6px; padding: 8px 0; }
-.stone { display: flex; align-items: center; gap: 14px; width: 82%; border: 0; background: none; padding: 0; text-align: left; }
+.chapter { display: flex; flex-direction: column; gap: 10px; }
+.chapter-banner { background: var(--snow); border: 2px solid var(--line); border-left: 8px solid var(--c, var(--flag-blue)); border-radius: 16px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.chapter-banner small { display: block; font-weight: 800; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.chapter-banner .ne { font-family: var(--display); font-size: 22px; font-weight: 800; }
+.chapter-banner em { display: block; font-style: normal; font-weight: 700; color: var(--muted); font-size: 14px; }
+.chapter-stars { font-weight: 800; color: var(--flag-yellow); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.trail { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 8px 0 16px; }
+.trail::before { content: ""; position: absolute; top: 30px; bottom: 30px; left: 50%; width: 4px; transform: translateX(-50%); background: repeating-linear-gradient(to bottom, #b9cbe6 0 10px, transparent 10px 20px); }
+.stone { position: relative; display: flex; align-items: center; gap: 14px; width: 86%; background: var(--snow); border: 2px solid var(--line); border-radius: 999px; padding: 8px 20px 8px 8px; box-shadow: 0 4px 0 var(--line); text-align: left; }
+.stone.done { border-color: #f3d37a; }
 .stone:nth-child(odd) { align-self: flex-start; }
-.stone:nth-child(even) { align-self: flex-end; flex-direction: row-reverse; text-align: right; }
-.disc { width: 84px; height: 84px; flex: none; border-radius: 50%; display: grid; place-items: center; font-size: 38px; background: var(--c, var(--flag-blue)); box-shadow: 0 6px 0 rgba(31,42,68,.22); transition: transform .12s; }
+.stone:nth-child(even) { align-self: flex-end; flex-direction: row-reverse; text-align: right; padding: 8px 8px 8px 20px; }
+.disc { width: 72px; height: 72px; flex: none; border-radius: 50%; display: grid; place-items: center; font-size: 38px; background: var(--c, var(--flag-blue)); box-shadow: 0 6px 0 rgba(31,42,68,.22); transition: transform .12s; }
 .stone:hover .disc { transform: translateY(-2px); }
 .stone:active .disc { transform: translateY(3px); box-shadow: 0 3px 0 rgba(31,42,68,.22); }
 .stone[disabled] { cursor: not-allowed; }
 .stone[disabled] .disc { background: #c9d3e3; filter: grayscale(1); opacity: .7; }
 .stone .label strong { display: block; font-family: var(--display); font-size: 22px; line-height: 1.1; }
 .stone .label span { color: var(--muted); font-weight: 700; font-size: 15px; }
+.stone .label .rom, .chapter-banner .rom { color: #1d4f9e; font-size: 13px; }
+.stone .label .next-tag { color: var(--snow); }
 .stars { letter-spacing: 2px; font-size: 18px; }
 .stars .off { opacity: .25; }
 
@@ -152,8 +162,40 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
   .prompt .ne { font-size: 38px; }
 }
 
+/* top bar toggles, Pandu pills, sheet, flashcards */
+.levels-row { display: flex; gap: 8px; align-items: stretch; }
+.levels-row .levels { flex: 1; }
+.toggles { display: flex; gap: 6px; }
+.icon-btn { border: 2px solid var(--line); background: var(--snow); border-radius: 14px; min-width: 52px; font-weight: 800; font-size: 20px; line-height: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 4px 6px; }
+.icon-btn small { font-size: 11px; color: var(--muted); }
+.icon-btn[aria-pressed="true"] { border-color: var(--flag-blue); background: #eaf2ff; }
+.greet p { font-weight: 700; }
+.greet .ne { font-size: 20px; }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.pill { background: var(--sky); border: 2px solid var(--line); border-radius: 999px; padding: 2px 10px; font-weight: 800; font-size: 13px; }
+.sheet-back { position: fixed; inset: 0; background: rgba(31,42,68,.45); z-index: 20; }
+.sheet { position: fixed; left: 50%; bottom: 0; transform: translateX(-50%); width: min(640px, 100%); background: var(--snow); border-radius: 26px 26px 0 0; padding: 20px 16px calc(24px + env(safe-area-inset-bottom)); z-index: 21; display: flex; flex-direction: column; gap: 12px; animation: up .2s ease-out; }
+@keyframes up { from { transform: translate(-50%, 40px); opacity: .4; } }
+.sheet-x { position: absolute; right: 10px; top: 8px; }
+.sheet-head { display: flex; align-items: center; gap: 14px; padding-right: 40px; }
+.sheet-head strong { display: block; font-family: var(--display); font-size: 24px; line-height: 1.1; }
+.sheet-head .disc { width: 60px; height: 60px; font-size: 30px; }
+.sheet-btn { display: flex; align-items: center; gap: 14px; border: 0; border-radius: 18px; padding: 14px 16px; font-size: 30px; text-align: left; color: var(--snow); }
+.sheet-btn b { display: block; font-size: 20px; }
+.sheet-btn small { display: block; font-size: 14px; font-weight: 700; opacity: .9; }
+.sheet-btn.learn { background: var(--flag-blue); box-shadow: 0 5px 0 #1d4f9e; }
+.sheet-btn.play { background: var(--flag-green); box-shadow: 0 5px 0 #1f7a40; }
+.flashcard { background: var(--snow); border: 3px solid var(--line); border-radius: 28px; box-shadow: 0 6px 0 var(--line); padding: 22px 16px; display: flex; flex-direction: column; align-items: center; gap: 8px; min-height: 52vh; justify-content: center; touch-action: pan-y; }
+.flashcard .ne { font-size: 46px; font-weight: 700; line-height: 1.2; }
+.flashcard .en { font-size: 22px; font-weight: 800; }
+.flashcard .rom { font-size: 20px; }
+.card-nav { display: flex; justify-content: center; align-items: center; gap: 14px; }
+.chip.big { font-size: 22px; padding: 10px 20px; }
+.chip[disabled] { opacity: .35; }
+.ctx { display: inline-block; background: #fff5d6; border: 2px solid #f3d37a; border-radius: 12px; padding: 4px 12px; font-weight: 800; font-size: 15px; color: var(--ink); }
 /* "Next up!" stone */
-.stone.next .disc { box-shadow: 0 0 0 6px rgba(47,111,214,.28), 0 6px 0 rgba(31,42,68,.22); animation: pulse 1.8s infinite; }
+.stone.next { border-color: var(--flag-blue); box-shadow: 0 4px 0 var(--flag-blue); }
+.stone.next .disc { box-shadow: 0 0 0 5px #fff, 0 0 0 9px rgba(47,111,214,.45); animation: pulse 1.8s infinite; }
 @keyframes pulse { 50% { transform: scale(1.06); } }
 .next-tag { display: inline-block; font-style: normal; font-weight: 800; font-size: 13px; color: var(--snow); background: var(--flag-blue); border-radius: 999px; padding: 1px 10px; margin-bottom: 2px; }
 /* level looks */
@@ -305,7 +347,7 @@ function buildQuestions(lesson) {
   const big = P.level === "big";
   const total = LV().questions;
   if (lesson.sentences) return pickN(lesson.sentences, Math.min(total, lesson.sentences.length)).map(s => ({ type: "build", s }));
-  const items = lesson.items, qs = [{ type: "learn" }];
+  const items = lesson.items, qs = [];
   let types;
   if (lesson.letters) types = big ? ["letterPic", "listenLetter", "letterFind", "trace", "listenLetter", "letterFind"] : ["letterPic", "trace", "listenLetter", "letterPic"];
   else types = big ? ["pickNepaliText", "typeMeaning", "listen", "pickMeaning", "typeMeaning", "pickNepaliText"] : ["pickMeaning", "pickNepali", "listen", "pickMeaning"];
@@ -338,45 +380,109 @@ function render() {
   document.body.classList.toggle("hide-rom", !romOn()); document.body.classList.toggle("lv-big", P.level === "big");
   if (S.screen === "map") renderMap();
   else if (S.screen === "lesson") renderQuestion();
+  else if (S.screen === "cards") renderCards();
   else renderDone();
 }
 
+function orderedLessons() {
+  const vis = new Set(visibleLessons().map(l => l.id));
+  return window.CHAPTERS.flatMap(c => c.lessons).filter(id => vis.has(id)).map(id => window.LESSONS.find(l => l.id === id));
+}
 function renderMap() {
-  const ls = visibleLessons();
-  // Every lesson is open; the first one without stars is highlighted as "Next up!".
-  const nextId = (ls.find(l => !P.stars[starKey(l.id)]) || {}).id;
-  const stones = ls.map(l => {
-    const st = P.stars[starKey(l.id)] || 0;
-    const open = true, isNext = l.id === nextId;
+  const ordered = orderedLessons();
+  // Every lesson is open; the first one without stars gets a "Start here" / "Next up!" cue.
+  const anyStars = ordered.some(l => P.stars[starKey(l.id)]);
+  const nextId = (ordered.find(l => !P.stars[starKey(l.id)]) || {}).id;
+  const stone = l => {
+    const st = P.stars[starKey(l.id)] || 0, isNext = l.id === nextId;
     const starHTML = [1, 2, 3].map(n => `<span class="${n <= st ? "" : "off"}">★</span>`).join("");
-    return `<button class="stone${isNext ? " next" : ""}" type="button" data-lesson="${l.id}" aria-label="${esc(l.title)}${isNext ? " (next up)" : ""}">
-      <span class="disc" style="--c:${l.color}">${open ? `<span lang="ne" style="font-family:var(--display)">${esc(l.icon)}</span>` : "🔒"}</span>
-      <span class="label">${isNext ? `<em class="next-tag">Next up!</em>` : ""}<strong>${esc(l.title)}</strong>${neSpan(l.ne)}${l.rom ? `<span class="rom"> · ${esc(l.rom)}</span>` : ""}<div class="stars">${starHTML}</div></span>
+    return `<button class="stone${isNext ? " next" : ""}${st ? " done" : ""}" type="button" data-lesson="${l.id}" aria-label="${esc(l.title)}${isNext ? " (start here)" : ""}">
+      <span class="disc" style="--c:${l.color}"><span lang="ne" style="font-family:var(--display)">${esc(l.icon)}</span></span>
+      <span class="label">${isNext ? `<em class="next-tag">${anyStars ? "Next up!" : "Start here"}</em>` : ""}<strong>${esc(l.title)}</strong>${neSpan(l.ne)}${l.rom ? ` <span class="rom">${esc(l.rom)}</span>` : ""}<div class="stars">${starHTML}</div></span>
     </button>`;
+  };
+  const vis = new Set(ordered.map(l => l.id));
+  const chapters = window.CHAPTERS.map((c, i) => {
+    const ls = c.lessons.filter(id => vis.has(id)).map(id => window.LESSONS.find(l => l.id === id));
+    if (!ls.length) return "";
+    const got = ls.reduce((a, l) => a + (P.stars[starKey(l.id)] || 0), 0);
+    return `<section class="chapter" aria-label="Chapter ${i + 1}: ${esc(c.en)}">
+      <div class="chapter-banner" style="--c:${c.color}">
+        <span><small>Chapter ${i + 1}</small>${neSpan(c.ne)} <span class="rom">${esc(c.rom)}</span><em>${esc(c.en)}</em></span>
+        <span class="chapter-stars" aria-label="${got} of ${ls.length * 3} stars">★ ${got}/${ls.length * 3}</span>
+      </div>
+      <nav class="trail">${ls.map(stone).join("")}</nav>
+    </section>`;
   }).join("");
-  const recorded = Object.keys(AUDIO).length;
+  const pills = P.level === "big"
+    ? ["❤️ 3 hearts", "4️⃣ 4 choices", "⌨️ Typing", "🧩 Sentences"]
+    : ["🖼️ Big pictures", "👂 Listen", "✍️ Trace letters", "💛 No hearts"];
+  const sheetL = S.sheet && window.LESSONS.find(l => l.id === S.sheet);
   $("#app").innerHTML = `
     <div class="top">
       <div class="brand">${MASCOT.replace('class="mascot"', 'class="mascot" style="width:44px;height:44px"')}<h1>Sajilo Nepali<small>${neSpan(window.PHRASES.brand, "", K(window.PHRASES.brand))} · easy Nepali</small></h1></div>
       <span class="stat" title="Days in a row">🔥 ${liveStreak()}</span>
       <span class="stat" title="Points">⭐ ${P.xp}</span>
     </div>
-    <div class="levels" role="group" aria-label="Choose a level">
-      <button type="button" data-level="little" aria-pressed="${P.level === "little"}">Little learners<small>ages 4–7</small></button>
-      <button type="button" data-level="big" aria-pressed="${P.level === "big"}">Big learners<small>ages 8–15</small></button>
+    <div class="levels-row">
+      <div class="levels" role="group" aria-label="Choose a level">
+        <button type="button" data-level="little" aria-pressed="${P.level === "little"}">Little learners<small>ages 4–7</small></button>
+        <button type="button" data-level="big" aria-pressed="${P.level === "big"}">Big learners<small>ages 8–15</small></button>
+      </div>
+      <div class="toggles">
+        <button class="icon-btn" type="button" id="tRom" aria-pressed="${romOn()}" title="Show how to say it">Aa<small>${romOn() ? "on" : "off"}</small></button>
+        <button class="icon-btn" type="button" id="tSound" aria-pressed="${P.sound}" title="Sound">${P.sound ? "🔊" : "🔇"}<small>${P.sound ? "on" : "off"}</small></button>
+      </div>
     </div>
-    <div class="greet">${MASCOT}<p>${neSpan(window.PHRASES.hello)}<span class="rom"> namaste!</span><br>I'm Pandu the red panda. ${LV().mascot}</p></div>
-    <p class="note" style="margin-top:-6px">${P.level === "big"
-      ? "Big learners: 4 choices · type the meaning · build sentences · days of the week and all the letters · 3 hearts per lesson."
-      : "Little learners: 3 big picture choices · listening and tracing · no hearts, so nobody fails. Tap any Nepali word to hear it."}</p>
-    <nav class="trail" aria-label="Lessons">${stones}</nav>
-    <div class="settings">
-      <button class="chip" type="button" id="tRom">${romOn() ? "✓" : "✕"} Show how to say it</button>
-      <button class="chip" type="button" id="tSound">${P.sound ? "🔊 Sound on" : "🔇 Sound off"}</button>
-      <button class="chip" type="button" id="tReset">Start over</button>
-    </div>
-    <p class="note">${recorded} words have recorded Nepali audio.${voice ? " Others use your device's " + (/^ne/i.test(voice.lang) ? "Nepali" : "Hindi") + " voice." : " Words without a recording stay silent on this device."} Progress is saved on this device only. No account needed.</p>`;
+    <div class="greet">${MASCOT}<div><p>${neSpan(window.PHRASES.hello)} <span class="rom">namaste!</span> I'm Pandu. Tap any Nepali word to hear it.</p>
+      <div class="pills">${pills.map(x => `<span class="pill">${x}</span>`).join("")}</div></div></div>
+    ${chapters}
+    <div class="settings"><button class="chip" type="button" id="tReset">Start over</button></div>
+    <p class="note">Progress is saved on this device only. No account needed.</p>
+    ${sheetL ? `<div class="sheet-back" id="sheetBack"></div>
+      <div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(sheetL.title)}">
+        <button class="x sheet-x" type="button" id="sheetClose" aria-label="Close">✕</button>
+        <div class="sheet-head"><span class="disc" style="--c:${sheetL.color}"><span lang="ne">${esc(sheetL.icon)}</span></span>
+          <div><strong>${esc(sheetL.title)}</strong>${neSpan(sheetL.ne)}${sheetL.rom ? ` <span class="rom">${esc(sheetL.rom)}</span>` : ""}</div></div>
+        <button class="sheet-btn learn" type="button" id="goCards">📖 <span><b>Flashcards</b><small>Learn and listen at your own pace</small></span></button>
+        <button class="sheet-btn play" type="button" id="goPlay">🎮 <span><b>Play game</b><small>Answer questions and earn ★★★</small></span></button>
+      </div>` : ""}`;
+  if (sheetL) $("#goCards").focus();
 }
+
+/* ---------- Flashcards: one card at a time ---------- */
+function cardList(l) {
+  if (l.sentences) return l.sentences.map(s => ({ ne: s.ne.join(" "), rom: s.rom.join(" "), en: s.en, pic: "💬", key: K(s.ne.join(" ")) }));
+  return l.items.map(it => l.letters
+    ? { letter: it.ne, rom: it.rom, ne: it.word, wordRom: it.wordRom, en: it.en, pic: it.pic, key: window.letterKey(it) }
+    : { ne: it.ne, rom: it.rom, en: it.en, pic: it.pic, ctx: it.ctx, key: K(it.ne) });
+}
+function openCards(id) { S.lesson = window.LESSONS.find(l => l.id === id); S.cards = cardList(S.lesson); S.cardIdx = 0; S.sheet = null; S.screen = "cards"; render(); window.scrollTo(0, 0); }
+function renderCards() {
+  const c = S.cards[S.cardIdx], n = S.cards.length, last = S.cardIdx === n - 1;
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back to lessons">✕</button>
+      <div class="bar"><i style="width:${((S.cardIdx + 1) / n) * 100}%"></i></div><span class="hearts" style="color:var(--muted)">${S.cardIdx + 1} / ${n}</span></div>
+    <p class="ask">📖 ${esc(S.lesson.title)}: tap the card to hear it again</p>
+    <button class="flashcard" type="button" id="flash" data-flashsay="${esc(c.key)}">
+      ${c.ctx ? `<span class="ctx">${esc(c.ctx)}</span>` : ""}
+      ${c.letter ? `<span class="letter-big" lang="ne">${esc(c.letter)}</span><span class="rom">${esc(c.rom)}</span>` : ""}
+      ${picHTML(c.pic, c.letter ? 54 : 84)}
+      <span class="ne" lang="ne">${esc(c.ne || "")}</span>${c.letter ? (c.wordRom ? `<span class="rom">${esc(c.wordRom)}</span>` : "") : `<span class="rom">${esc(c.rom)}</span>`}
+      <span class="en">${esc(c.en)}</span>
+    </button>
+    <div class="card-nav">
+      <button class="chip big" type="button" id="cardPrev" ${S.cardIdx ? "" : "disabled"} aria-label="Previous card">◀</button>
+      <button class="say" type="button" data-say="${esc(c.key)}">🔊 <span>Hear it</span></button>
+      <button class="chip big" type="button" id="cardNext" ${last ? "disabled" : ""} aria-label="Next card">▶</button>
+    </div>
+    <div class="feedback"><button class="go" type="button" id="cardsPlay">${last ? "🎮 I'm ready: play the game!" : "🎮 Play game"}</button></div>`;
+  setTimeout(() => say(c.key, $("#flash")), 250);
+  const f = $("#flash"); let x0 = null;
+  f.addEventListener("pointerdown", e => { x0 = e.clientX; });
+  f.addEventListener("pointerup", e => { if (x0 == null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 50) { f.dataset.swiped = "1"; moveCard(dx < 0 ? 1 : -1); } });
+}
+function moveCard(d) { const i = S.cardIdx + d; if (i < 0 || i >= S.cards.length) return; S.cardIdx = i; beep("tap"); renderCards(); }
+document.addEventListener("keydown", e => { if (S.screen !== "cards") return; if (e.key === "ArrowRight") moveCard(1); if (e.key === "ArrowLeft") moveCard(-1); });
 
 function startLesson(id) {
   const l = window.LESSONS.find(x => x.id === id);
@@ -406,22 +512,22 @@ function renderQuestion() {
     body = `<p class="ask">Meet the ${l.letters ? "letters" : "words"}! Tap each card to hear it.</p><div class="cards">${cards}</div>`;
   } else if (q.type === "pickMeaning") {
     body = `<p class="ask">What does this mean?</p>
-      <div class="prompt">${neHTML(q.item.ne, q.item.rom)}${sayBtn(K(q.item.ne))}</div>
+      <div class="prompt">${q.item.ctx ? `<span class="ctx">${esc(q.item.ctx)}</span>` : ""}${neHTML(q.item.ne, q.item.rom)}${sayBtn(K(q.item.ne))}</div>
       <div class="opts">${q.opts.map((o, i) => optBtn(i, `${picHTML(o.pic)}<span class="en">${esc(o.en)}</span>`)).join("")}</div>`;
     autoKey = K(q.item.ne);
   } else if (q.type === "pickNepali" || q.type === "pickNepaliText") {
     body = `<p class="ask">Which one is “${esc(q.item.en)}”?</p>
-      <div class="prompt">${q.type === "pickNepali" ? picHTML(q.item.pic) : ""}<span class="en">${esc(q.item.en)}</span></div>
+      <div class="prompt">${q.item.ctx ? `<span class="ctx">${esc(q.item.ctx)}</span>` : ""}${q.type === "pickNepali" ? picHTML(q.item.pic) : ""}<span class="en">${esc(q.item.en)}</span></div>
       <div class="opts">${q.opts.map((o, i) => optBtn(i, `<span class="ne" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span>`, K(o.ne))).join("")}</div>`;
   } else if (q.type === "typeMeaning") {
     body = `<p class="ask">Type this in English</p>
-      <div class="prompt">${neHTML(q.item.ne, q.item.rom)}${sayBtn(K(q.item.ne))}</div>
+      <div class="prompt">${q.item.ctx ? `<span class="ctx">${esc(q.item.ctx)}</span>` : ""}${neHTML(q.item.ne, q.item.rom)}${sayBtn(K(q.item.ne))}</div>
       <label class="type-label" for="typed">Your answer</label>
       <input id="typed" class="typed" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type in English…" enterkeyhint="done">`;
     autoKey = K(q.item.ne);
   } else if (q.type === "listen") {
     body = `<p class="ask">Listen. Which picture is it?</p>
-      <div class="prompt">${sayBtn(K(q.item.ne), "huge")}</div>
+      <div class="prompt">${q.item.ctx ? `<span class="ctx">${esc(q.item.ctx)}</span>` : ""}${sayBtn(K(q.item.ne), "huge")}</div>
       <div class="opts">${q.opts.map((o, i) => optBtn(i, `${picHTML(o.pic)}${P.level === "big" ? "" : `<span class="en">${esc(o.en)}</span>`}`)).join("")}</div>`;
     autoKey = K(q.item.ne);
   } else if (q.type === "count") {
@@ -626,11 +732,21 @@ function renderDone() {
 
 /* ---------- Events ---------- */
 document.addEventListener("click", e => {
-  const t = e.target.closest("button, [data-say]"); if (!t) return;
+  if (e.target.id === "sheetBack") { S.sheet = null; render(); return; }
+  let t = e.target.closest("button, [data-say]"); if (!t) return;
+  // Nepali text inside a button belongs to that button (lesson stones, answer options, tiles, cards).
+  if (t.matches("span[data-say]") && t.closest("button")) t = t.closest("button");
   // Any tappable Nepali text (outside answer buttons) just plays its sound.
-  if (t.matches("span[data-say]") && !t.closest(".opt, .tile, .card, .stone")) { say(t.dataset.say, t); return; }
+  if (t.matches("span[data-say]") && !t.closest(".opt, .tile, .card, .stone, .flashcard")) { say(t.dataset.say, t); return; }
   if (t.matches("button.say")) { say(t.dataset.say, t); return; }
-  if (t.dataset.lesson) { const l = window.LESSONS.find(x => x.id === t.dataset.lesson); say(K(l.ne)); startLesson(t.dataset.lesson); return; }
+  if (t.dataset.lesson) { const l = window.LESSONS.find(x => x.id === t.dataset.lesson); say(K(l.ne)); S.sheet = l.id; render(); return; }
+  if (t.id === "sheetClose") { S.sheet = null; render(); return; }
+  if (t.id === "goCards") { openCards(S.sheet); return; }
+  if (t.id === "goPlay") { const id = S.sheet; S.sheet = null; startLesson(id); return; }
+  if (t.id === "cardPrev") { moveCard(-1); return; }
+  if (t.id === "cardNext") { moveCard(1); return; }
+  if (t.id === "cardsPlay") { startLesson(S.lesson.id); return; }
+  if (t.dataset.flashsay) { if (t.dataset.swiped) { delete t.dataset.swiped; return; } say(t.dataset.flashsay, t); return; }
   if (t.dataset.level) { P.level = t.dataset.level; save(); beep("tap"); render(); return; }
   if (t.id === "tRom") { P.romBy[P.level] = !romOn(); save(); render(); return; }
   if (t.id === "tSound") { P.sound = !P.sound; save(); render(); return; }
