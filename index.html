@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sajilo Nepali</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a single bright "Himalayan morning" world — a winding trail of lesson stones
+   under a strip of prayer flags; lessons take over the screen like a game card. Single theme by choice. */
+:root {
+  --sky: #e8f4ff;
+  --snow: #ffffff;
+  --ink: #1f2a44;
+  --muted: #5d6b86;
+  --flag-blue: #2f6fd6;
+  --flag-red: #e2453c;
+  --flag-green: #2fa75a;
+  --flag-yellow: #f6b71c;
+  --panda: #e8742a;
+  --line: #cfdcef;
+  --good-bg: #e2f7e8;
+  --bad-bg: #fde7e5;
+  --display: "Baloo 2", "Noto Sans Devanagari", system-ui, sans-serif;
+  --body: "Nunito", "Baloo 2", system-ui, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--sky);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  -webkit-tap-highlight-color: transparent;
+}
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px; }
+.ne { font-family: var(--display); }
+.rom { color: var(--muted); font-size: .8em; font-weight: 700; }
+.hide-rom .rom { display: none; }
+
+.flags { display: flex; height: 14px; }
+.flags span { flex: 1; clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%); }
+.flags span:nth-child(5n+1) { background: var(--flag-blue); }
+.flags span:nth-child(5n+2) { background: var(--snow); }
+.flags span:nth-child(5n+3) { background: var(--flag-red); }
+.flags span:nth-child(5n+4) { background: var(--flag-green); }
+.flags span:nth-child(5n+5) { background: var(--flag-yellow); }
+
+.app { max-width: 640px; margin: 0 auto; padding: 12px 16px 40px; display: flex; flex-direction: column; gap: 16px; min-height: calc(100% - 14px); }
+
+/* top bar */
+.top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 8px; margin-right: auto; }
+.brand h1 { font-family: var(--display); font-size: 28px; line-height: 1; margin: 0; }
+.brand h1 small { display: block; font-size: 15px; color: var(--muted); font-weight: 600; }
+.stat { display: flex; align-items: center; gap: 4px; font-weight: 800; background: var(--snow); border: 2px solid var(--line); border-radius: 999px; padding: 4px 12px; font-variant-numeric: tabular-nums; }
+
+.levels { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: var(--snow); border: 2px solid var(--line); border-radius: 18px; padding: 6px; }
+.levels button { border: 0; border-radius: 13px; padding: 8px 6px; background: transparent; font-weight: 800; line-height: 1.15; }
+.levels button small { display: block; font-weight: 700; color: var(--muted); font-size: 13px; }
+.levels button[aria-pressed="true"] { background: var(--flag-blue); color: var(--snow); }
+.levels button[aria-pressed="true"] small { color: #d7e6ff; }
+
+.greet { display: flex; gap: 12px; align-items: center; background: var(--snow); border-radius: 20px; padding: 12px 14px; border: 2px solid var(--line); }
+.greet p { margin: 0; }
+.greet .ne { font-size: 22px; font-weight: 700; }
+.mascot { width: 64px; height: 64px; flex: none; }
+
+/* trail */
+.trail { display: flex; flex-direction: column; gap: 6px; padding: 8px 0; }
+.stone { display: flex; align-items: center; gap: 14px; width: 82%; border: 0; background: none; padding: 0; text-align: left; }
+.stone:nth-child(odd) { align-self: flex-start; }
+.stone:nth-child(even) { align-self: flex-end; flex-direction: row-reverse; text-align: right; }
+.disc { width: 84px; height: 84px; flex: none; border-radius: 50%; display: grid; place-items: center; font-size: 38px; background: var(--c, var(--flag-blue)); box-shadow: 0 6px 0 rgba(31,42,68,.22); transition: transform .12s; }
+.stone:hover .disc { transform: translateY(-2px); }
+.stone:active .disc { transform: translateY(3px); box-shadow: 0 3px 0 rgba(31,42,68,.22); }
+.stone[disabled] { cursor: not-allowed; }
+.stone[disabled] .disc { background: #c9d3e3; filter: grayscale(1); opacity: .7; }
+.stone .label strong { display: block; font-family: var(--display); font-size: 22px; line-height: 1.1; }
+.stone .label span { color: var(--muted); font-weight: 700; font-size: 15px; }
+.stars { letter-spacing: 2px; font-size: 18px; }
+.stars .off { opacity: .25; }
+
+.settings { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.chip { border: 2px solid var(--line); background: var(--snow); border-radius: 999px; padding: 6px 14px; font-weight: 800; font-size: 15px; }
+.note { color: var(--muted); font-size: 14px; text-align: center; margin: 0; max-width: 60ch; align-self: center; }
+
+/* lesson */
+.lesson-top { display: flex; align-items: center; gap: 12px; }
+.x { border: 0; background: none; font-size: 28px; line-height: 1; padding: 4px 8px; color: var(--muted); }
+.bar { flex: 1; height: 18px; background: #d5e1f2; border-radius: 999px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--flag-green); border-radius: 999px; transition: width .3s; }
+.hearts { font-weight: 800; color: var(--flag-red); font-variant-numeric: tabular-nums; }
+
+.q { display: flex; flex-direction: column; gap: 16px; flex: 1; }
+.ask { font-family: var(--display); font-size: 24px; font-weight: 700; margin: 0; text-wrap: balance; }
+.prompt { background: var(--snow); border: 2px solid var(--line); border-radius: 22px; padding: 18px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+.prompt .big { font-size: 72px; line-height: 1.1; }
+.prompt .ne { font-size: 44px; font-weight: 700; line-height: 1.2; }
+.prompt .en { font-size: 22px; font-weight: 800; }
+.say { border: 0; background: var(--flag-blue); color: var(--snow); border-radius: 14px; padding: 8px 16px; font-weight: 800; display: inline-flex; gap: 6px; align-items: center; box-shadow: 0 4px 0 #1d4f9e; }
+.say.huge { font-size: 26px; padding: 18px 28px; }
+
+.opts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.opt { background: var(--snow); border: 2px solid var(--line); border-radius: 18px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 96px; box-shadow: 0 4px 0 var(--line); text-align: center; }
+.opt .big { font-size: 46px; line-height: 1.1; }
+.opt .ne { font-size: 28px; font-weight: 700; line-height: 1.2; }
+.opt .en { font-weight: 800; }
+.opt.sel { border-color: var(--flag-blue); background: #e6efff; box-shadow: 0 4px 0 var(--flag-blue); }
+.opt.right { border-color: var(--flag-green); background: var(--good-bg); box-shadow: 0 4px 0 var(--flag-green); }
+.opt.wrong { border-color: var(--flag-red); background: var(--bad-bg); box-shadow: 0 4px 0 var(--flag-red); }
+.opt.gone { visibility: hidden; }
+.opt[disabled] { cursor: default; }
+
+.match { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.match .col { display: flex; flex-direction: column; gap: 10px; }
+.match .opt { min-height: 74px; }
+
+.answer { min-height: 64px; border-bottom: 3px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; padding: 6px 0; }
+.bank { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.tile { background: var(--snow); border: 2px solid var(--line); border-radius: 12px; padding: 6px 14px; box-shadow: 0 3px 0 var(--line); display: flex; flex-direction: column; align-items: center; }
+.tile .ne { font-size: 24px; font-weight: 700; line-height: 1.2; }
+.tile .rom { font-size: 13px; }
+.tile.used { visibility: hidden; }
+
+.feedback { position: sticky; bottom: 0; margin: 0 -16px -40px; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 10px; background: var(--sky); border-top: 2px solid var(--line); }
+.feedback.good { background: var(--good-bg); border-color: var(--flag-green); }
+.feedback.bad { background: var(--bad-bg); border-color: var(--flag-red); }
+.feedback p { margin: 0; font-weight: 800; font-size: 19px; }
+.feedback .sol { font-weight: 700; font-size: 17px; }
+.go { border: 0; border-radius: 16px; padding: 14px; font-weight: 800; font-size: 19px; background: var(--flag-green); color: var(--snow); box-shadow: 0 5px 0 #1f7a40; width: 100%; }
+.go[disabled] { background: #c9d3e3; box-shadow: 0 5px 0 #aab6c9; cursor: not-allowed; }
+.feedback.bad .go { background: var(--flag-red); box-shadow: 0 5px 0 #a8271f; }
+
+.done { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; padding-top: 20px; }
+.done h2 { font-family: var(--display); font-size: 34px; margin: 0; line-height: 1.1; }
+.done .stars { font-size: 48px; }
+.done .mascot { width: 120px; height: 120px; }
+
+@keyframes pop { 0% { transform: scale(.9); } 60% { transform: scale(1.05); } 100% { transform: scale(1); } }
+@keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.opt.right { animation: pop .3s; }
+.opt.wrong { animation: shake .3s; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+@media (max-width: 400px) {
+  .disc { width: 70px; height: 70px; font-size: 32px; }
+  .stone { width: 92%; }
+  .prompt .ne { font-size: 38px; }
+}
+</style>
+</head>
+<body>
+<div class="flags" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<main class="app" id="app"></main>
+
+<script>
+/* ---------- Content: edit words here (ne = Nepali, rom = how to say it, en = English, pic = picture) ---------- */
+const LESSONS = [
+  { id: "greet", title: "Greetings", ne: "अभिवादन", icon: "🙏", color: "var(--flag-blue)", items: [
+    { ne: "नमस्ते", rom: "namaste", en: "Hello", pic: "🙏" },
+    { ne: "धन्यवाद", rom: "dhanyabad", en: "Thank you", pic: "😊" },
+    { ne: "हो", rom: "ho", en: "Yes", pic: "✅" },
+    { ne: "होइन", rom: "hoina", en: "No", pic: "❌" },
+    { ne: "शुभ रात्रि", rom: "shubha ratri", en: "Good night", pic: "🌙" },
+    { ne: "फेरि भेटौँला", rom: "pheri bhetaunla", en: "See you again", pic: "👋" },
+  ]},
+  { id: "num", title: "Numbers 1–10", ne: "अङ्क", icon: "🔢", color: "var(--flag-yellow)", count: true, items: [
+    { ne: "एक", rom: "ek", en: "one", pic: "1", digit: "१", n: 1 },
+    { ne: "दुई", rom: "dui", en: "two", pic: "2", digit: "२", n: 2 },
+    { ne: "तीन", rom: "tin", en: "three", pic: "3", digit: "३", n: 3 },
+    { ne: "चार", rom: "char", en: "four", pic: "4", digit: "४", n: 4 },
+    { ne: "पाँच", rom: "panch", en: "five", pic: "5", digit: "५", n: 5 },
+    { ne: "छ", rom: "chha", en: "six", pic: "6", digit: "६", n: 6 },
+    { ne: "सात", rom: "saat", en: "seven", pic: "7", digit: "७", n: 7 },
+    { ne: "आठ", rom: "aath", en: "eight", pic: "8", digit: "८", n: 8 },
+    { ne: "नौ", rom: "nau", en: "nine", pic: "9", digit: "९", n: 9 },
+    { ne: "दस", rom: "das", en: "ten", pic: "10", digit: "१०", n: 10 },
+  ]},
+  { id: "animals", title: "Animals", ne: "जनावर", icon: "🐘", color: "var(--flag-green)", items: [
+    { ne: "कुकुर", rom: "kukur", en: "Dog", pic: "🐕" },
+    { ne: "बिरालो", rom: "biralo", en: "Cat", pic: "🐈" },
+    { ne: "गाई", rom: "gaai", en: "Cow", pic: "🐄" },
+    { ne: "हात्ती", rom: "hatti", en: "Elephant", pic: "🐘" },
+    { ne: "बाँदर", rom: "baandar", en: "Monkey", pic: "🐒" },
+    { ne: "चरा", rom: "chara", en: "Bird", pic: "🐦" },
+    { ne: "माछा", rom: "machha", en: "Fish", pic: "🐟" },
+    { ne: "बाघ", rom: "bagh", en: "Tiger", pic: "🐅" },
+    { ne: "भालु", rom: "bhalu", en: "Bear", pic: "🐻" },
+    { ne: "गैँडा", rom: "gainda", en: "Rhino", pic: "🦏" },
+  ]},
+  { id: "colours", title: "Colours", ne: "रङ", icon: "🎨", color: "var(--flag-red)", items: [
+    { ne: "रातो", rom: "raato", en: "Red", pic: "🔴" },
+    { ne: "निलो", rom: "nilo", en: "Blue", pic: "🔵" },
+    { ne: "हरियो", rom: "hariyo", en: "Green", pic: "🟢" },
+    { ne: "पहेँलो", rom: "pahenlo", en: "Yellow", pic: "🟡" },
+    { ne: "सेतो", rom: "seto", en: "White", pic: "⚪" },
+    { ne: "कालो", rom: "kaalo", en: "Black", pic: "⚫" },
+    { ne: "सुन्तले", rom: "suntale", en: "Orange", pic: "🟠" },
+    { ne: "गुलाबी", rom: "gulabi", en: "Pink", pic: "🌸" },
+  ]},
+  { id: "family", title: "Family", ne: "परिवार", icon: "👨‍👩‍👧", color: "var(--panda)", items: [
+    { ne: "आमा", rom: "aama", en: "Mother", pic: "👩" },
+    { ne: "बुबा", rom: "buba", en: "Father", pic: "👨" },
+    { ne: "दाइ", rom: "daai", en: "Big brother", pic: "👦" },
+    { ne: "दिदी", rom: "didi", en: "Big sister", pic: "👧" },
+    { ne: "हजुरआमा", rom: "hajur-aama", en: "Grandmother", pic: "👵" },
+    { ne: "हजुरबुबा", rom: "hajur-buba", en: "Grandfather", pic: "👴" },
+  ]},
+  { id: "food", title: "Food", ne: "खाना", icon: "🥟", color: "var(--flag-blue)", items: [
+    { ne: "भात", rom: "bhaat", en: "Rice", pic: "🍚" },
+    { ne: "दाल", rom: "daal", en: "Lentil soup", pic: "🥣" },
+    { ne: "रोटी", rom: "roti", en: "Flatbread", pic: "🫓" },
+    { ne: "दूध", rom: "doodh", en: "Milk", pic: "🥛" },
+    { ne: "पानी", rom: "paani", en: "Water", pic: "💧" },
+    { ne: "स्याउ", rom: "syaau", en: "Apple", pic: "🍎" },
+    { ne: "केरा", rom: "kera", en: "Banana", pic: "🍌" },
+    { ne: "मोमो", rom: "momo", en: "Momo", pic: "🥟" },
+  ]},
+  { id: "sentences", title: "Make sentences", ne: "वाक्य", icon: "🧩", color: "var(--flag-green)", bigOnly: true, sentences: [
+    { ne: ["म", "ठीक", "छु"], rom: ["ma", "thik", "chhu"], en: "I am fine." },
+    { ne: ["मेरो", "नाम", "सीता", "हो"], rom: ["mero", "naam", "Sita", "ho"], en: "My name is Sita." },
+    { ne: ["यो", "मेरो", "कुकुर", "हो"], rom: ["yo", "mero", "kukur", "ho"], en: "This is my dog." },
+    { ne: ["मलाई", "मोमो", "मन", "पर्छ"], rom: ["malai", "momo", "man", "parchha"], en: "I like momo." },
+    { ne: ["आकाश", "निलो", "छ"], rom: ["aakash", "nilo", "chha"], en: "The sky is blue." },
+    { ne: ["म", "पानी", "पिउँछु"], rom: ["ma", "paani", "piunchhu"], en: "I drink water." },
+    { ne: ["बिरालो", "सानो", "छ"], rom: ["biralo", "saano", "chha"], en: "The cat is small." },
+    { ne: ["हात्ती", "ठूलो", "छ"], rom: ["hatti", "thulo", "chha"], en: "The elephant is big." },
+  ]},
+];
+const EXTRA_TILES = [["र", "ra"], ["पनि", "pani"], ["होइन", "hoina"], ["रातो", "raato"], ["तिमी", "timi"]];
+const CHEERS = [["स्याबास!", "syabaas!", "Well done!"], ["राम्रो!", "ramro!", "Great!"], ["एकदम ठीक!", "ekdam thik!", "Exactly right!"]];
+
+/* ---------- Saved progress (this browser only) ---------- */
+const KEY = "sajilo-nepali-v1";
+const defaults = { level: "little", rom: true, sound: true, stars: {}, xp: 0, streak: 0, lastDay: "" };
+let P = load();
+function load() { try { return Object.assign({}, defaults, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) { return { ...defaults }; } }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} }
+function starKey(id) { return P.level + ":" + id; }
+function today() { const d = new Date(); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
+function bumpStreak() {
+  const t = today(); if (P.lastDay === t) return;
+  const y = new Date(); y.setDate(y.getDate() - 1);
+  const yk = y.getFullYear() + "-" + (y.getMonth() + 1) + "-" + y.getDate();
+  P.streak = P.lastDay === yk ? P.streak + 1 : 1; P.lastDay = t;
+}
+function liveStreak() {
+  const y = new Date(); y.setDate(y.getDate() - 1);
+  const yk = y.getFullYear() + "-" + (y.getMonth() + 1) + "-" + y.getDate();
+  return (P.lastDay === today() || P.lastDay === yk) ? P.streak : 0;
+}
+
+/* ---------- Speech + sounds ---------- */
+let voice = null;
+function pickVoice() {
+  if (!("speechSynthesis" in window)) return;
+  const vs = speechSynthesis.getVoices();
+  voice = vs.find(v => /^ne/i.test(v.lang)) || vs.find(v => /^hi/i.test(v.lang)) || null;
+}
+try { pickVoice(); speechSynthesis.onvoiceschanged = () => { pickVoice(); if (S.screen === "map") render(); }; } catch (e) {}
+function speak(text) {
+  if (!voice) return;
+  try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.voice = voice; u.lang = voice.lang; u.rate = .8; speechSynthesis.speak(u); } catch (e) {}
+}
+let actx = null;
+function beep(good) {
+  if (!P.sound) return;
+  try {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    const notes = good ? [660, 880] : [220, 180];
+    notes.forEach((f, i) => {
+      const o = actx.createOscillator(), g = actx.createGain();
+      o.type = good ? "triangle" : "sawtooth"; o.frequency.value = f;
+      const t = actx.currentTime + i * .11;
+      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(good ? .25 : .12, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + .18);
+      o.connect(g).connect(actx.destination); o.start(t); o.stop(t + .2);
+    });
+  } catch (e) {}
+}
+
+/* ---------- Helpers ---------- */
+const $ = s => document.querySelector(s);
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const pickN = (a, n) => shuffle(a).slice(0, n);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const neHTML = (ne, rom) => `<span class="ne" lang="ne">${esc(ne)}</span><span class="rom">${esc(rom)}</span>`;
+const visibleLessons = () => LESSONS.filter(l => !l.bigOnly || P.level === "big");
+const sayBtn = (text, cls = "") => voice && P.sound ? `<button class="say ${cls}" data-say="${esc(text)}" type="button" aria-label="Listen">🔊 <span>Listen</span></button>` : "";
+
+const MASCOT = `<svg class="mascot" viewBox="0 0 100 100" aria-hidden="true">
+  <circle cx="22" cy="26" r="15" fill="#b9541a"/><circle cx="78" cy="26" r="15" fill="#b9541a"/>
+  <circle cx="22" cy="26" r="8" fill="#fff"/><circle cx="78" cy="26" r="8" fill="#fff"/>
+  <ellipse cx="50" cy="56" rx="38" ry="34" fill="#e8742a"/>
+  <ellipse cx="32" cy="60" rx="13" ry="10" fill="#fff"/><ellipse cx="68" cy="60" rx="13" ry="10" fill="#fff"/>
+  <ellipse cx="50" cy="72" rx="15" ry="11" fill="#fff"/>
+  <circle cx="35" cy="52" r="5" fill="#1f2a44"/><circle cx="65" cy="52" r="5" fill="#1f2a44"/>
+  <circle cx="36.5" cy="50.5" r="1.6" fill="#fff"/><circle cx="66.5" cy="50.5" r="1.6" fill="#fff"/>
+  <ellipse cx="50" cy="66" rx="5" ry="3.5" fill="#1f2a44"/>
+  <path d="M44 73 q6 5 12 0" stroke="#1f2a44" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="50" cy="40" rx="6" ry="4" fill="#fff" opacity=".8"/>
+</svg>`;
+
+/* ---------- Question builder ---------- */
+function buildQuestions(lesson) {
+  const big = P.level === "big";
+  const total = big ? 10 : 6;
+  const qs = [];
+  if (lesson.sentences) {
+    pickN(lesson.sentences, total).forEach(s => qs.push({ type: "build", s }));
+    return qs;
+  }
+  const items = lesson.items;
+  const types = big
+    ? ["pickMeaning", "pickNepali", "pickNepaliText", "listen", "pickNepali", "pickNepaliText"]
+    : ["pickMeaning", "pickNepali", "listen", "pickMeaning"];
+  if (lesson.count) types.push("count", "count");
+  const pool = shuffle(items);
+  for (let i = 0; qs.length < total - 1; i++) {
+    let t = types[i % types.length];
+    if (t === "listen" && !voice) t = "pickMeaning";
+    qs.push({ type: t, item: pool[i % pool.length] });
+  }
+  qs.splice(Math.min(3, qs.length), 0, { type: "match", items: pickN(items, 4) });
+  qs.forEach(q => { if (q.item) q.opts = shuffle([q.item, ...pickN(items.filter(x => x !== q.item), 3)]); });
+  return qs;
+}
+
+/* ---------- State + render ---------- */
+const S = { screen: "map", lesson: null, queue: [], done: 0, total: 0, hearts: 3, mistakes: 0, answered: false };
+
+function render() {
+  document.body.classList.toggle("hide-rom", !P.rom);
+  if (S.screen === "map") renderMap();
+  else if (S.screen === "lesson") renderQuestion();
+  else renderDone();
+}
+
+function renderMap() {
+  const ls = visibleLessons();
+  let unlocked = true;
+  const stones = ls.map((l, i) => {
+    const st = P.stars[starKey(l.id)] || 0;
+    const open = unlocked; if (!st) unlocked = false;
+    const starHTML = [1, 2, 3].map(n => `<span class="${n <= st ? "" : "off"}">★</span>`).join("");
+    return `<button class="stone" type="button" data-lesson="${l.id}" ${open ? "" : "disabled"} aria-label="${esc(l.title)}${open ? "" : " (locked)"}">
+      <span class="disc" style="--c:${l.color}">${open ? l.icon : "🔒"}</span>
+      <span class="label"><strong>${esc(l.title)}</strong><span lang="ne" class="ne">${esc(l.ne)}</span><div class="stars">${starHTML}</div></span>
+    </button>`;
+  }).join("");
+  const streak = liveStreak();
+  $("#app").innerHTML = `
+    <div class="top">
+      <div class="brand">${MASCOT.replace('class="mascot"', 'class="mascot" style="width:44px;height:44px"')}<h1>Sajilo Nepali<small lang="ne">सजिलो नेपाली · easy Nepali</small></h1></div>
+      <span class="stat" title="Days in a row">🔥 ${streak}</span>
+      <span class="stat" title="Points">⭐ ${P.xp}</span>
+    </div>
+    <div class="levels" role="group" aria-label="Choose a level">
+      <button type="button" data-level="little" aria-pressed="${P.level === "little"}">Little learners<small>ages 4–7</small></button>
+      <button type="button" data-level="big" aria-pressed="${P.level === "big"}">Big learners<small>ages 8–15</small></button>
+    </div>
+    <div class="greet">${MASCOT}<p><span class="ne" lang="ne">नमस्ते!</span><span class="rom"> namaste!</span><br>I'm Pandu the red panda. Tap a stone to start a lesson.</p></div>
+    <nav class="trail" aria-label="Lessons">${stones}</nav>
+    <div class="settings">
+      <button class="chip" type="button" id="tRom">${P.rom ? "✓" : "✕"} Show how to say it</button>
+      <button class="chip" type="button" id="tSound">${P.sound ? "🔊 Sound on" : "🔇 Sound off"}</button>
+      <button class="chip" type="button" id="tReset">Start over</button>
+    </div>
+    <p class="note">${voice ? "Listening uses your device's " + (/^ne/i.test(voice.lang) ? "Nepali" : "Hindi") + " voice, so some words may sound slightly off." : "Your device has no Nepali voice, so listening questions are switched off."} Progress is saved on this device only. No account needed.</p>`;
+}
+
+function startLesson(id) {
+  const l = LESSONS.find(x => x.id === id);
+  S.lesson = l; S.queue = buildQuestions(l); S.total = S.queue.length; S.done = 0; S.hearts = 3; S.mistakes = 0; S.answered = false;
+  S.screen = "lesson"; render(); window.scrollTo(0, 0);
+}
+
+function lessonTop() {
+  return `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Leave lesson">✕</button>
+    <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${S.total}" aria-valuenow="${S.done}"><i style="width:${(S.done / S.total) * 100}%"></i></div>
+    <span class="hearts" aria-label="${S.hearts} hearts left">❤️ ${S.hearts}</span></div>`;
+}
+
+function renderQuestion() {
+  const q = S.queue[0]; S.answered = false; S.sel = null;
+  let body = "";
+  if (q.type === "pickMeaning") {
+    body = `<p class="ask">What does this mean?</p>
+      <div class="prompt">${neHTML(q.item.ne, q.item.rom)}${sayBtn(q.item.ne)}</div>
+      <div class="opts">${q.opts.map((o, i) => `<button class="opt" type="button" data-i="${i}"><span class="big">${esc(o.pic)}</span><span class="en">${esc(o.en)}</span></button>`).join("")}</div>`;
+  } else if (q.type === "pickNepali" || q.type === "pickNepaliText") {
+    const pic = q.type === "pickNepali";
+    body = `<p class="ask">Which one is “${esc(q.item.en)}”?</p>
+      <div class="prompt"><span class="big">${esc(q.item.pic)}</span><span class="en">${esc(q.item.en)}</span></div>
+      <div class="opts">${q.opts.map((o, i) => `<button class="opt" type="button" data-i="${i}">${neHTML(o.ne, o.rom)}</button>`).join("")}</div>`;
+  } else if (q.type === "listen") {
+    body = `<p class="ask">Listen. Which picture is it?</p>
+      <div class="prompt">${sayBtn(q.item.ne, "huge")}</div>
+      <div class="opts">${q.opts.map((o, i) => `<button class="opt" type="button" data-i="${i}"><span class="big">${esc(o.pic)}</span>${P.level === "big" ? "" : `<span class="en">${esc(o.en)}</span>`}</button>`).join("")}</div>`;
+    setTimeout(() => speak(q.item.ne), 300);
+  } else if (q.type === "count") {
+    body = `<p class="ask">How many stars?</p>
+      <div class="prompt"><span class="big" style="font-size:40px;max-width:320px;line-height:1.3">${"⭐".repeat(q.item.n)}</span></div>
+      <div class="opts">${q.opts.map((o, i) => `<button class="opt" type="button" data-i="${i}"><span class="ne">${esc(o.digit)} ${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span></button>`).join("")}</div>`;
+  } else if (q.type === "match") {
+    S.matchLeft = shuffle(q.items); S.matchRight = shuffle(q.items); S.pairs = 0; S.pickL = null; S.pickR = null;
+    body = `<p class="ask">Tap the pairs that match</p>
+      <div class="match"><div class="col">${S.matchLeft.map((o, i) => `<button class="opt" type="button" data-l="${i}">${neHTML(o.ne, o.rom)}</button>`).join("")}</div>
+      <div class="col">${S.matchRight.map((o, i) => `<button class="opt" type="button" data-r="${i}"><span class="big" style="font-size:34px">${esc(o.pic)}</span><span class="en">${esc(o.en)}</span></button>`).join("")}</div></div>`;
+  } else if (q.type === "build") {
+    const s = q.s;
+    const extras = pickN(EXTRA_TILES.filter(t => !s.ne.includes(t[0])), 2);
+    S.bank = shuffle([...s.ne.map((w, i) => [w, s.rom[i]]), ...extras]);
+    S.built = [];
+    body = `<p class="ask">Make this sentence in Nepali</p>
+      <div class="prompt"><span class="en">“${esc(s.en)}”</span>${sayBtn(s.ne.join(" "))}</div>
+      <div class="answer" id="answer" aria-label="Your sentence"></div>
+      <div class="bank" id="bank">${S.bank.map((t, i) => `<button class="tile" type="button" data-t="${i}">${neHTML(t[0], t[1])}</button>`).join("")}</div>`;
+  }
+  const needsCheck = q.type === "build" || ["pickMeaning", "pickNepali", "pickNepaliText", "listen", "count"].includes(q.type);
+  $("#app").innerHTML = `${lessonTop()}<section class="q">${body}</section>
+    ${q.type === "match" ? "" : `<div class="feedback" id="fb"><button class="go" type="button" id="check" ${needsCheck ? "disabled" : ""}>Check</button></div>`}`;
+}
+
+function setFeedback(good, solutionHTML) {
+  const fb = $("#fb");
+  const ch = CHEERS[Math.floor(Math.random() * CHEERS.length)];
+  fb.className = "feedback " + (good ? "good" : "bad");
+  fb.innerHTML = good
+    ? `<p>🎉 <span class="ne" lang="ne">${ch[0]}</span> <span class="rom">${ch[1]}</span> ${ch[2]}</p><button class="go" type="button" id="next">Continue</button>`
+    : `<p>Not quite. The answer is:</p><div class="sol">${solutionHTML}</div><button class="go" type="button" id="next">Got it</button>`;
+  $("#next").focus();
+}
+
+function grade(good) {
+  S.answered = true; beep(good);
+  const q = S.queue.shift();
+  if (good) S.done++;
+  else { S.mistakes++; S.hearts--; S.queue.push(q); }
+}
+
+function checkChoice() {
+  const q = S.queue[0]; if (S.sel == null || S.answered) return;
+  const chosen = q.opts[S.sel], good = chosen === q.item;
+  document.querySelectorAll(".opt").forEach((b, i) => { b.disabled = true; if (q.opts[i] === q.item) b.classList.add("right"); else if (i === S.sel) b.classList.add("wrong"); });
+  if (good || P.sound) speak(q.item.ne);
+  grade(good);
+  setFeedback(good, `${neHTML(q.item.ne, q.item.rom)} = ${esc(q.item.en)}`);
+}
+
+function checkBuild() {
+  const q = S.queue[0]; if (S.answered) return;
+  const good = S.built.map(i => S.bank[i][0]).join(" ") === q.s.ne.join(" ");
+  if (good) speak(q.s.ne.join(" "));
+  grade(good);
+  setFeedback(good, q.s.ne.map((w, i) => neHTML(w, q.s.rom[i])).join(" "));
+}
+
+function drawBuilt() {
+  $("#answer").innerHTML = S.built.map((ti, pos) => `<button class="tile" type="button" data-b="${pos}">${neHTML(S.bank[ti][0], S.bank[ti][1])}</button>`).join("");
+  document.querySelectorAll("#bank .tile").forEach(b => b.classList.toggle("used", S.built.includes(+b.dataset.t)));
+  $("#check").disabled = S.built.length === 0;
+}
+
+function matchTap(side, i) {
+  const q = S.queue[0];
+  const btn = document.querySelector(`[data-${side}="${i}"]`);
+  document.querySelectorAll(`[data-${side}]`).forEach(b => b.classList.remove("sel"));
+  btn.classList.add("sel");
+  if (side === "l") { S.pickL = i; speak(S.matchLeft[i].ne); } else S.pickR = i;
+  if (S.pickL == null || S.pickR == null) return;
+  const L = document.querySelector(`[data-l="${S.pickL}"]`), R = document.querySelector(`[data-r="${S.pickR}"]`);
+  if (S.matchLeft[S.pickL] === S.matchRight[S.pickR]) {
+    beep(true); L.classList.add("right"); R.classList.add("right"); L.disabled = R.disabled = true;
+    setTimeout(() => { L.classList.add("gone"); R.classList.add("gone"); }, 350);
+    S.pairs++;
+    if (S.pairs === q.items.length) { S.queue.shift(); S.done++; setTimeout(nextStep, 600); }
+  } else {
+    beep(false); L.classList.add("wrong"); R.classList.add("wrong");
+    setTimeout(() => { L.classList.remove("wrong", "sel"); R.classList.remove("wrong", "sel"); }, 450);
+  }
+  S.pickL = S.pickR = null;
+}
+
+function nextStep() {
+  if (S.hearts <= 0) { S.screen = "done"; S.outOfHearts = true; render(); return; }
+  if (!S.queue.length) {
+    const stars = S.mistakes === 0 ? 3 : S.mistakes <= 2 ? 2 : 1;
+    const k = starKey(S.lesson.id);
+    S.earned = stars; S.xpGain = 10 + stars * 5;
+    P.stars[k] = Math.max(P.stars[k] || 0, stars); P.xp += S.xpGain; bumpStreak(); save();
+    S.screen = "done"; S.outOfHearts = false; render(); return;
+  }
+  render(); window.scrollTo(0, 0);
+}
+
+function renderDone() {
+  if (S.outOfHearts) {
+    $("#app").innerHTML = `<section class="done">${MASCOT}<h2>Out of hearts!</h2><p>That's okay. Practice makes perfect.<br><span class="ne" lang="ne">फेरि प्रयास गरौँ!</span> <span class="rom">pheri prayas garaun!</span> Let's try again!</p>
+      <button class="go" type="button" id="again">Try again</button><button class="chip" type="button" id="home">Back to lessons</button></section>`;
+    return;
+  }
+  const st = [1, 2, 3].map(n => `<span class="${n <= S.earned ? "" : "off"}">★</span>`).join("");
+  $("#app").innerHTML = `<section class="done">${MASCOT}<h2><span class="ne" lang="ne">स्याबास!</span><br>Lesson complete!</h2>
+    <div class="stars" aria-label="${S.earned} of 3 stars">${st}</div>
+    <p><strong>+${S.xpGain} points</strong> · 🔥 ${liveStreak()} day streak<br>${S.mistakes === 0 ? "Perfect, no mistakes!" : S.mistakes + " mistake" + (S.mistakes > 1 ? "s" : "") + ". Play again for 3 stars."}</p>
+    <button class="go" type="button" id="home">Continue</button><button class="chip" type="button" id="again">Play again</button></section>`;
+}
+
+/* ---------- Events ---------- */
+document.addEventListener("click", e => {
+  const t = e.target.closest("button"); if (!t) return;
+  if (t.dataset.say != null) { speak(t.dataset.say); return; }
+  if (t.dataset.lesson) { startLesson(t.dataset.lesson); return; }
+  if (t.dataset.level) { P.level = t.dataset.level; save(); render(); return; }
+  if (t.id === "tRom") { P.rom = !P.rom; save(); render(); return; }
+  if (t.id === "tSound") { P.sound = !P.sound; save(); render(); return; }
+  if (t.id === "tReset") {
+    if (t.dataset.confirm) { P = { ...defaults, level: P.level }; save(); render(); }
+    else { t.dataset.confirm = "1"; t.textContent = "Tap again to erase all stars"; }
+    return;
+  }
+  if (t.id === "quit" || t.id === "home") { S.screen = "map"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "again") { startLesson(S.lesson.id); return; }
+  if (t.id === "next") { nextStep(); return; }
+  if (t.id === "check") { S.queue[0].type === "build" ? checkBuild() : checkChoice(); return; }
+  if (S.screen !== "lesson" || S.answered) return;
+  if (t.dataset.i != null) {
+    S.sel = +t.dataset.i;
+    document.querySelectorAll(".opt").forEach(b => b.classList.toggle("sel", b === t));
+    $("#check").disabled = false;
+    const o = S.queue[0].opts[S.sel]; if (S.queue[0].type === "pickNepali" || S.queue[0].type === "pickNepaliText") speak(o.ne);
+    return;
+  }
+  if (t.dataset.l != null) { matchTap("l", +t.dataset.l); return; }
+  if (t.dataset.r != null) { matchTap("r", +t.dataset.r); return; }
+  if (t.dataset.t != null && !t.classList.contains("used")) { S.built.push(+t.dataset.t); speak(S.bank[+t.dataset.t][0]); drawBuilt(); return; }
+  if (t.dataset.b != null) { S.built.splice(+t.dataset.b, 1); drawBuilt(); return; }
+});
+
+render();
+</script>
+</body>
+</html>
