@@ -40,7 +40,7 @@ window.LESSONS = [
     { ne: "खरायो", rom: "kharaayo", en: "Rabbit", pic: "🐇", alt: ["bunny"] },
     { ne: "हाब्रे", rom: "haabre", en: "Red panda", pic: "🦊", alt: ["panda"] },
   ]},
-  { id: "colours", title: "Colours", ne: "रङ", rom: "rang", icon: "🎨", color: "var(--flag-red)", items: [
+  { id: "colours", title: "Colors", ne: "रङ", rom: "rang", icon: "🎨", color: "var(--flag-red)", items: [
     { ne: "रातो", rom: "raato", en: "Red", pic: "🔴" },
     { ne: "निलो", rom: "nilo", en: "Blue", pic: "🔵" },
     { ne: "हरियो", rom: "hariyo", en: "Green", pic: "🟢" },
