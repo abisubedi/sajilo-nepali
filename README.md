@@ -25,6 +25,9 @@ Live at https://sajilo-nepali.subediabi.workers.dev on Cloudflare Workers, which
 
 If a push doesn't deploy, check the Worker's **Settings → Build**: the Git repository should be `abisubedi/sajilo-nepali`, the branch `main`, the build command empty and the deploy command `npx wrangler deploy`. Also check that the **Cloudflare Workers and Pages** GitHub app has access to this repo (GitHub → Settings → Applications). As a fallback, use **Retry build** on the latest build.
 
+**Direct deploy (no Git build needed):** run `python3 scripts/bundle_worker.py`, then `cd dist && npx wrangler deploy`
+(needs a Cloudflare API token with the "Edit Cloudflare Workers" permission). This bundles everything in `public/` into one Worker script.
+
 ## Edit the words
 All the content is in `public/lessons.js`.
 Each word has `ne` (Nepali), `rom` (how to say it), `en` (English) and `pic` (an emoji picture).
