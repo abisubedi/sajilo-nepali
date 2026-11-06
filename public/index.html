@@ -253,6 +253,19 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 @media (max-width: 360px) { .stat { padding: 3px 7px; font-size: 13px; } .player-pill { max-width: 38vw; } }
 @media (max-width: 400px) { .levels-row { flex-wrap: wrap; } .toggles { flex: 1 1 100%; } .icon-btn { flex: 1; flex-direction: row; gap: 6px; padding: 8px 6px; } }
 /* Creator & voice credit */
+.sticker-pic { position: relative; }
+.sticker-pic .art, .stick-say-pic .art { width: 100%; height: 100%; object-fit: contain; }
+.sticker .sticker-pic { width: 72px; height: 72px; }
+.sticker.new .sticker-pic { width: 84px; height: 84px; }
+.lock-badge { position: absolute; right: -4px; bottom: -4px; font-size: 20px; filter: none; }
+.sticker:not(.got) .sticker-pic { filter: grayscale(1); opacity: .45; }
+.stick-say-pic { width: 44px; height: 44px; display: grid; place-items: center; position: relative; }
+.stick-say-pic.locked .art { filter: grayscale(1); opacity: .5; }
+.stick-say-pic .lock-badge { font-size: 16px; }
+.av-img { width: 1.25em; height: 1.25em; object-fit: contain; vertical-align: middle; }
+.player-pill .av-img { width: 24px; height: 24px; margin: -4px 0; }
+.player-av .av-img { width: 40px; height: 40px; }
+.avatar .av-img { width: 40px; height: 40px; }
 .credit-card { margin-top: 10px; background: var(--snow); border: 2px solid var(--line); border-radius: 20px; padding: 14px 18px; text-align: center; font-size: 14px; color: var(--muted); line-height: 1.5; align-self: center; width: 100%; max-width: 520px; box-sizing: border-box; box-shadow: 0 4px 0 var(--line); }
 .credit-card .voice-badge { display: inline-flex; align-items: center; gap: 5px; background: #eaf2ff; color: var(--flag-blue); font-weight: 800; font-size: 12px; padding: 3px 12px; border-radius: 999px; margin-bottom: 6px; }
 .credit-card .creator-btn { display: inline-flex; align-items: center; gap: 5px; background: #fff5d6; border: 1.5px solid var(--flag-yellow); color: var(--ink); font-weight: 800; font-size: 14px; padding: 2px 10px; border-radius: 999px; margin: 2px 0; box-shadow: none; transition: transform .12s, background .15s; }
@@ -569,14 +582,20 @@ function streakLine() {
 function stickerState() {
   const vis = new Set(visibleLessons().map(l => l.id));
   const first = Object.keys(P.stars).some(k => k.startsWith(P.level + ":"));
-  const list = [{ id: "pandu", pic: "PANDU", name: "Pandu's Friend", ne: "", line: window.STICKER_PANDU, got: first, gold: first, need: "Finish any lesson" }];
+  const list = [{ id: "pandu", pic: "PANDU", name: "Pandu's Friend", ne: "", img: window.STICKER_PANDU_IMG, line: window.STICKER_PANDU, got: first, gold: first, need: "Finish any lesson" }];
   window.CHAPTERS.forEach(c => {
     const ls = c.lessons.filter(id => vis.has(id)), st = ls.map(id => P.stars[starKey(id)] || 0);
     const done = st.filter(x => x > 0).length;
-    list.push({ id: c.id, pic: c.sticker.pic, name: c.sticker.name, ne: c.ne, line: c.sticker.say, got: ls.length && done === ls.length, gold: ls.length && st.every(x => x === 3), need: `${done}/${ls.length} lessons in ${c.en}` });
+    list.push({ id: c.id, pic: c.sticker.pic, name: c.sticker.name, ne: c.ne, img: c.sticker.img, line: c.sticker.say, got: ls.length && done === ls.length, gold: ls.length && st.every(x => x === 3), need: `${done}/${ls.length} lessons in ${c.en}` });
   });
   return list;
 }
+/* Sticker and avatar pictures: artwork when we have it, otherwise the emoji. Not-yet-won stickers show greyed out with a lock. */
+function stickerPic(x, showLock) {
+  const art = x.img ? `<img class="art" src="${x.img}" alt="" draggable="false">` : x.pic === "PANDU" ? MASCOT : `<span lang="ne">${esc(x.pic)}</span>`;
+  return art + (showLock && !x.got ? `<span class="lock-badge" aria-hidden="true">🔒</span>` : "");
+}
+const avatarHTML = a => (window.AVATAR_IMG || {})[a] ? `<img class="av-img" src="${window.AVATAR_IMG[a]}" alt="" draggable="false">` : a;
 function stickersHTML() {
   return `<div class="sheet-back" id="stickBack"></div><div class="sheet stickers" role="dialog" aria-modal="true" aria-label="My stickers">
     <button class="x sheet-x" type="button" id="stickClose" aria-label="Close">✕</button>
@@ -584,7 +603,7 @@ function stickersHTML() {
     <p class="note" style="text-align:left;margin:0">Finish every lesson in a chapter to win its sticker. Get ★★★ on all of them to make it gold! Tap a sticker to hear it talk.</p>
     <div class="stick-say" id="stickSay"><span class="stick-say-pic" aria-hidden="true">💬</span><span>Tap a sticker!</span></div>
     <div class="sticker-grid">${stickerState().map(x => `<button class="sticker${x.got ? " got" : ""}${x.gold ? " gold" : ""}" type="button" data-sticker="${x.id}" aria-label="${esc(x.name)}${x.got ? "" : " (not won yet)"}">
-      <span class="sticker-pic">${x.got ? (x.pic === "PANDU" ? MASCOT : `<span lang="ne">${esc(x.pic)}</span>`) : "🔒"}</span>
+      <span class="sticker-pic">${stickerPic(x, true)}</span>
       <b>${esc(x.name)}</b><small>${x.got ? (x.gold ? "★★★ Gold!" : "Won!") : esc(x.need)}</small></button>`).join("")}</div></div>`;
 }
 function playersHTML() {
@@ -594,7 +613,7 @@ function playersHTML() {
   const form = ed ? `<div class="player-form">
       <label for="playerName"><b>${ed === "new" ? "New player" : "Edit player"}</b></label>
       <input id="playerName" maxlength="14" autocomplete="off" placeholder="Name" value="${esc(cur ? cur.name : "")}">
-      <div class="avatar-row" role="group" aria-label="Choose an animal">${AVATARS.map(a => `<button type="button" class="avatar${a === pick ? " on" : ""}" data-avatar="${a}" aria-pressed="${a === pick}">${a}</button>`).join("")}</div>
+      <div class="avatar-row" role="group" aria-label="Choose an animal">${AVATARS.map(a => `<button type="button" class="avatar${a === pick ? " on" : ""}" data-avatar="${a}" aria-pressed="${a === pick}">${avatarHTML(a)}</button>`).join("")}</div>
       <div class="share-btns"><button class="chip primary" type="button" id="playerSave">Save</button><button class="chip" type="button" id="playerCancel">Cancel</button>
       ${cur && cur.id !== "p1" ? `<button class="chip" type="button" id="playerDelete" data-id="${cur.id}">Remove</button>` : ""}</div></div>` : "";
   return `<div class="sheet-back" id="playersBack"></div><div class="sheet players" role="dialog" aria-modal="true" aria-label="Who is playing?">
@@ -603,7 +622,7 @@ function playersHTML() {
     <p class="note" style="text-align:left;margin:0">Each player has their own stars, streak and stickers on this device.</p>
     <div class="player-list">${PL.list.map(x => {
       let st = {}; try { st = x.id === PL.current ? P : JSON.parse(localStorage.getItem(keyFor(x.id)) || "{}"); } catch (e) {}
-      return `<div class="player-row${x.id === PL.current ? " on" : ""}"><button type="button" class="player-pick" data-player="${x.id}"><span class="player-av">${x.avatar}</span><b>${esc(x.name)}</b><small>⭐ ${st.xp || 0}</small>${x.id === PL.current ? "<em>Playing</em>" : ""}</button>
+      return `<div class="player-row${x.id === PL.current ? " on" : ""}"><button type="button" class="player-pick" data-player="${x.id}"><span class="player-av">${avatarHTML(x.avatar)}</span><b>${esc(x.name)}</b><small>⭐ ${st.xp || 0}</small>${x.id === PL.current ? "<em>Playing</em>" : ""}</button>
         <button type="button" class="chip" data-edit-player="${x.id}" aria-label="Edit ${esc(x.name)}">✏️</button></div>`;
     }).join("")}</div>
     ${PL.list.length < 6 && !ed ? `<button class="chip" type="button" id="playerAdd">＋ Add a player</button>` : ""}
@@ -701,7 +720,7 @@ function renderMap() {
   $("#app").innerHTML = `
     <div class="top">
       <div class="brand">${MASCOT.replace('class="mascot"', 'class="mascot" style="width:44px;height:44px"')}<h1>Sajilo Nepali<small>${neSpan(window.PHRASES.brand, "", K(window.PHRASES.brand))} · easy Nepali</small></h1></div>
-      <button class="stat stat-btn player-pill" type="button" id="openPlayers" title="Change player"><span aria-hidden="true">${me().avatar}</span> ${esc(me().name)} ▾</button>
+      <button class="stat stat-btn player-pill" type="button" id="openPlayers" title="Change player"><span aria-hidden="true">${avatarHTML(me().avatar)}</span> ${esc(me().name)} ▾</button>
       <div class="stats">
       <span class="stat" title="Days in a row">🔥 ${liveStreak()}</span>
       <span class="stat" title="Points">⭐ ${P.xp}</span>
@@ -1069,7 +1088,7 @@ function renderDone() {
     <div class="stars" aria-label="${S.earned} of 3 stars">${st}</div>
     <p><strong>+${S.xpGain} points</strong> · 🔥 ${liveStreak()} day streak<br>${S.mistakes === 0 ? "Perfect, no mistakes!" : S.mistakes + " mistake" + (S.mistakes > 1 ? "s" : "") + ". Play again for 3 stars."}</p>
     ${S.streakNews ? `<p class="ctx">${esc(S.streakNews)}</p>` : ""}
-    ${S.newSticker ? `<button class="sticker got${S.newSticker.gold ? " gold" : ""} new" type="button" data-sticker="${S.newSticker.id}"><span class="sticker-pic">${S.newSticker.pic === "PANDU" ? MASCOT : `<span lang="ne">${esc(S.newSticker.pic)}</span>`}</span><b>🎉 New sticker: ${esc(S.newSticker.name)}${S.newSticker.gold ? " (gold!)" : ""}</b></button>` : ""}
+    ${S.newSticker ? `<button class="sticker got${S.newSticker.gold ? " gold" : ""} new" type="button" data-sticker="${S.newSticker.id}"><span class="sticker-pic">${stickerPic(S.newSticker)}</span><b>🎉 New sticker: ${esc(S.newSticker.name)}${S.newSticker.gold ? " (gold!)" : ""}</b></button>` : ""}
     ${S.earned === 3 ? `<div class="share-card"><p><b>Share your score with Aama or Baba!</b></p><p class="share-text" id="shareText">${esc(shareText())}</p>
       <div class="share-btns">${navigator.share ? `<button class="say" type="button" id="shareNow">📤 Share</button>` : ""}<button class="chip" type="button" id="copyShare">📋 Copy message</button></div></div>` : ""}
     <button class="go" type="button" id="home">Continue</button><button class="chip" type="button" id="again">Play again</button></section>`;
@@ -1130,7 +1149,7 @@ document.addEventListener("click", e => {
     let b = $("#stickSay");
     if (!b) { b = document.createElement("div"); b.id = "stickSay"; t.after(b); }
     b.className = "stick-say" + (x.got ? "" : " locked");
-    b.innerHTML = `<span class="stick-say-pic" aria-hidden="true">${x.got ? (x.pic === "PANDU" ? MASCOT : `<span lang="ne">${esc(x.pic)}</span>`) : "🔒"}</span><span>${neSpan(line.ne)} <span class="rom">${esc(line.rom)}</span><small>${esc(line.en)}</small></span>`;
+    b.innerHTML = `<span class="stick-say-pic${x.got ? "" : " locked"}" aria-hidden="true">${stickerPic(x, true)}</span><span>${neSpan(line.ne)} <span class="rom">${esc(line.rom)}</span><small>${esc(line.en)}</small></span>`;
     return;
   }
   if (t.id === "copyShare") {

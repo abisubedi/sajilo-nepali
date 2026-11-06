@@ -8,7 +8,7 @@ import base64, json, os
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 PUBLIC, DIST = os.path.join(ROOT, "public"), os.path.join(ROOT, "dist")
-TYPES = {".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".mp3": "audio/mpeg", ".png": "image/png", ".webmanifest": "application/manifest+json", ".svg": "image/svg+xml"}
+TYPES = {".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".mp3": "audio/mpeg", ".png": "image/png", ".webmanifest": "application/manifest+json", ".svg": "image/svg+xml", ".webp": "image/webp"}
 
 files = {}
 for d, _, names in os.walk(PUBLIC):
@@ -29,7 +29,7 @@ export default {
     if (path === "/" || path === "") path = "/index.html";
     const f = FILES[path];
     if (!f) return new Response("Not found", { status: 404, headers: { "content-type": "text/plain" } });
-    const long = path.startsWith("/audio/");
+    const long = path.startsWith("/audio/") || path.startsWith("/img/");
     const body = bytes(f[1]);
     const headers = { "content-type": f[0], "accept-ranges": "bytes", "cache-control": long ? "public, max-age=604800" : "public, max-age=60", "x-content-type-options": "nosniff" };
     // Safari needs byte-range responses to play audio.

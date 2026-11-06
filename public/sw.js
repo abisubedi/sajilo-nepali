@@ -27,11 +27,15 @@ async function sliced(res, range) {
 async function media(req) {
   const url = req.url, cache = await caches.open(MEDIA);
   let res = await cache.match(url);
+  const isAudio = url.includes("/audio/");
   if (!res) {
     res = await fetch(url);                       // whole file, no range, so it can be cached
     if (res.ok && res.status === 200) await cache.put(url, res.clone());
+  } else if (!isAudio) {
+    // Pictures keep the same name when replaced, so refresh the saved copy in the background.
+    fetch(url).then(r => { if (r.ok && r.status === 200) cache.put(url, r); }).catch(() => {});
   }
-  return url.includes("/audio/") ? sliced(res, req.headers.get("range")) : res;
+  return isAudio ? sliced(res, req.headers.get("range")) : res;
 }
 
 async function networkFirst(req) {
@@ -56,6 +60,6 @@ self.addEventListener("fetch", e => {
   const u = new URL(req.url);
   if (u.hostname === "fonts.googleapis.com" || u.hostname === "fonts.gstatic.com") { e.respondWith(fonts(req)); return; }
   if (u.origin !== self.location.origin) return;
-  if (u.pathname.startsWith("/audio/") || /\.(png|svg)$/.test(u.pathname)) { e.respondWith(media(req)); return; }
+  if (u.pathname.startsWith("/audio/") || /\.(png|svg|webp)$/.test(u.pathname)) { e.respondWith(media(req)); return; }
   e.respondWith(networkFirst(req));
 });

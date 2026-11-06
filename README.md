@@ -32,6 +32,16 @@ A free, Duolingo-style web game that teaches kids aged 4–15 basic Nepali.
 
 Created, coded and voiced by **Abi Subedi (अबी सुवेदी)** in Pittsburgh, Pennsylvania. Every Nepali word in the game uses Abi's voice. Tap Abi's name at the bottom of the map to hear a hello.
 
+## Pictures
+
+Character art lives in `art/` (the original files) and `public/img/` (small transparent WebP files the game uses). To add one:
+
+```
+python3 scripts/cutout.py art/st-home.jpg public/img/st-home.webp
+```
+
+It removes the white background, trims the edges and shrinks the picture. For a round sticker with a light sky near the edge, protect the circle with `disk=CX,CY,R` (see the top of the script). Prompts for every picture are in `docs/image-prompts.md`; rebuild them with `node scripts/make_prompts.js`.
+
 ## Run it
 Open `public/index.html` in a browser. It's a single file with no build step.
 
