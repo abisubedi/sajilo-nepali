@@ -227,6 +227,52 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .chip.big { font-size: 22px; padding: 10px 20px; }
 .chip[disabled] { opacity: .35; }
 .ctx { display: inline-block; background: #fff5d6; border: 2px solid #f3d37a; border-radius: 12px; padding: 4px 12px; font-weight: 800; font-size: 15px; color: var(--ink); }
+/* stickers */
+.stat-btn { cursor: pointer; font: inherit; font-weight: 800; color: var(--ink); }
+.sheet.stickers { max-height: 86vh; overflow-y: auto; }
+.sticker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.sticker { background: #f3f6fb; border: 2px dashed var(--line); border-radius: 18px; padding: 10px 6px; display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center; color: var(--muted); }
+.sticker b { font-size: 14px; line-height: 1.15; } .sticker small { font-size: 12px; font-weight: 700; }
+.sticker-pic { font-size: 40px; line-height: 1; width: 56px; height: 56px; display: grid; place-items: center; font-family: var(--display); filter: grayscale(1); opacity: .5; }
+.sticker-pic .mascot { width: 56px; height: 56px; }
+.sticker.got { background: var(--snow); border: 3px solid var(--flag-blue); color: var(--ink); box-shadow: 0 4px 0 #b9cbe6; }
+.sticker.got .sticker-pic { filter: none; opacity: 1; }
+.sticker.gold { border-color: var(--flag-yellow); background: #fff8e1; box-shadow: 0 4px 0 #f3d37a, 0 0 0 4px rgba(246,183,28,.25); }
+.stick-say { display: flex; align-items: center; gap: 10px; background: var(--snow); border: 2px solid var(--line); border-radius: 16px; padding: 8px 12px; position: relative; text-align: left; font-weight: 700; }
+.stick-say small { display: block; color: var(--muted); font-size: 13px; }
+.stick-say.locked { border-style: dashed; }
+.stick-say-pic { font-size: 30px; line-height: 1; flex: none; } .stick-say-pic .mascot { width: 34px; height: 34px; }
+.wotd { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; background: #fff8e1; border: 2px solid #f3d37a; border-radius: 18px; padding: 10px 14px; box-shadow: 0 4px 0 #f3d37a; }
+.wotd small { display: block; font-weight: 800; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.wotd b { font-family: var(--display); font-size: 22px; } .wotd em { display: block; font-style: normal; font-weight: 700; color: var(--muted); font-size: 14px; }
+.wotd-pic { font-size: 34px; line-height: 1; flex: none; } .wotd-say { margin-left: auto; font-size: 22px; flex: none; }
+.confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 50; }
+.confetti i { position: absolute; top: -30px; width: 10px; height: 14px; border-radius: 3px; font-style: normal; font-size: 22px; animation: fall linear forwards; }
+@keyframes fall { to { transform: translate(var(--x), 110vh) rotate(720deg); } }
+.sticker.new { flex-direction: row; gap: 12px; padding: 10px 16px; font-size: 16px; }
+.sticker.bounce, .sticker.new { animation: bounce .6s; }
+@keyframes bounce { 0% { transform: scale(1); } 30% { transform: scale(1.18) rotate(-6deg); } 55% { transform: scale(.94) rotate(4deg); } 80% { transform: scale(1.05); } 100% { transform: scale(1); } }
+/* share */
+.share-card { background: var(--snow); border: 2px solid var(--line); border-radius: 18px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.share-card p { margin: 0; }
+.share-text { background: var(--sky); border-radius: 12px; padding: 8px 10px; font-weight: 700; user-select: all; }
+.share-btns { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+/* printable flashcards */
+.print-bar { display: flex; justify-content: space-between; align-items: center; }
+.print-title { font-family: var(--display); margin: 0; }
+.print-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
+.pcard { background: #fff; border: 2px dashed #9fb3d1; border-radius: 14px; padding: 14px 8px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; break-inside: avoid; }
+.pc-pic { font-size: 54px; line-height: 1.1; } .pc-letter { font-family: var(--display); font-size: 60px; font-weight: 700; line-height: 1; }
+.pc-ne { font-family: var(--display); font-size: 30px; font-weight: 700; line-height: 1.2; } .pc-rom { color: #1d4f9e; font-weight: 800; } .pc-en { font-weight: 800; }
+.print-foot { text-align: center; color: var(--muted); font-size: 13px; }
+@media print {
+  @page { margin: 12mm; }
+  body { background: #fff !important; }
+  .flags, .no-print { display: none !important; }
+  .app { max-width: none; padding: 0; }
+  .print-grid { grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .pcard { border-radius: 0; border: 1px dashed #999; min-height: 62mm; justify-content: center; }
+}
 /* "Next up!" stone */
 .stone.next { border-color: var(--flag-blue); box-shadow: 0 4px 0 var(--flag-blue); }
 .stone.next .disc { box-shadow: 0 0 0 5px #fff, 0 0 0 9px rgba(47,111,214,.45); animation: pulse 1.8s infinite; }
@@ -281,7 +327,7 @@ span[data-say]:hover { background: rgba(47,111,214,.10); }
 <script>
 /* ---------- Saved progress (this browser only) ---------- */
 const KEY = "sajilo-nepali-v1";
-const defaults = { level: "little", romBy: { little: true, big: false }, sound: true, stars: {}, xp: 0, streak: 0, lastDay: "" };
+const defaults = { level: "little", romBy: { little: true, big: false }, sound: true, beeps: true, stars: {}, xp: 0, streak: 0, lastDay: "", freezes: 0 };
 let P = load();
 function load() { try { return Object.assign({}, defaults, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) { return { ...defaults }; } }
 if (!P.romBy) P.romBy = { little: true, big: false };
@@ -297,8 +343,18 @@ const starKey = id => P.level + ":" + id;
 const dayKey = d => d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
 const today = () => dayKey(new Date());
 const yesterday = () => { const y = new Date(); y.setDate(y.getDate() - 1); return dayKey(y); };
-function bumpStreak() { const t = today(); if (P.lastDay === t) return; P.streak = P.lastDay === yesterday() ? P.streak + 1 : 1; P.lastDay = t; }
-const liveStreak = () => (P.lastDay === today() || P.lastDay === yesterday()) ? P.streak : 0;
+const daysAgo = n => { const d = new Date(); d.setDate(d.getDate() - n); return dayKey(d); };
+/* Streak: a ❄️ freeze is earned every 7 days in a row (keep up to 2). Missing one day uses a freeze instead of losing the 🔥. */
+function bumpStreak() {
+  const t = today(); S.streakNews = ""; if (P.lastDay === t) return;
+  P.freezes = P.freezes || 0;
+  if (P.lastDay === yesterday()) P.streak += 1;
+  else if (P.lastDay === daysAgo(2) && P.freezes > 0) { P.freezes -= 1; P.streak += 1; S.streakNews = "❄️ A streak freeze saved your 🔥 streak!"; }
+  else P.streak = 1;
+  if (P.streak % 7 === 0 && P.freezes < 2) { P.freezes += 1; S.streakNews = `❄️ ${P.streak} days in a row! You earned a streak freeze.`; }
+  P.lastDay = t;
+}
+const liveStreak = () => (P.lastDay === today() || P.lastDay === yesterday() || (P.lastDay === daysAgo(2) && P.freezes > 0)) ? P.streak : 0;
 
 /* ---------- Audio: recorded clips first, device voice as backup ---------- */
 const AUDIO = window.AUDIO || {};
@@ -333,7 +389,7 @@ function say(key, el) {
 }
 let actx = null;
 function beep(kind) {
-  if (!P.sound) return;
+  if (!P.sound || P.beeps === false) return;
   try {
     actx = actx || new (window.AudioContext || window.webkitAudioContext)();
     const notes = kind === "good" ? [660, 880] : kind === "bad" ? [220, 180] : [520];
@@ -415,9 +471,57 @@ function render() {
   if (S.screen === "map") renderMap();
   else if (S.screen === "lesson") renderQuestion();
   else if (S.screen === "cards") renderCards();
+  else if (S.screen === "print") renderPrint();
   else renderDone();
 }
 
+function greeting() {
+  const h = new Date().getHours();
+  const [ne, rom] = h < 12 ? [window.PHRASES.morning, "shubha prabhaat!"] : h >= 20 ? [window.PHRASES.night, "shubha raatri!"] : [window.PHRASES.hello, "namaste!"];
+  return `${neSpan(ne)} <span class="rom">${rom}</span>`;
+}
+function wordOfDay() {
+  const pool = [];
+  window.CHAPTERS.forEach(c => c.lessons.forEach(id => {
+    const l = visibleLessons().find(x => x.id === id); if (!l) return;
+    (l.items || []).forEach(it => { if (typeof it.ne === "string" && !it.word && it.en && AUDIO[K(it.ne)]) pool.push({ it, c }); });
+  }));
+  if (!pool.length) return null;
+  let h = 0; for (const ch of today() + P.level) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  return pool[h % pool.length];
+}
+function wordOfDayHTML() {
+  const w = wordOfDay(); if (!w) return "";
+  return `<button class="wotd" type="button" data-say="${esc(K(w.it.ne))}"><span class="wotd-pic" aria-hidden="true">${esc(w.it.pic || "💡")}</span>
+    <span><small>💡 Word of the day · ${esc(w.c.en)}</small><b lang="ne">${esc(w.it.ne)}</b> <span class="rom">${esc(w.it.rom)}</span><em>${esc(w.it.en)}</em></span><span class="wotd-say" aria-hidden="true">🔊</span></button>`;
+}
+function streakLine() {
+  const n = liveStreak();
+  if (!n) return "Tap any Nepali word to hear it.";
+  if (P.lastDay === today()) return `🔥 ${n} day${n > 1 ? "s" : ""} in a row! See you tomorrow.`;
+  return `Play one lesson today to keep your 🔥 ${n}-day streak!`;
+}
+function stickerState() {
+  const vis = new Set(visibleLessons().map(l => l.id));
+  const first = Object.keys(P.stars).some(k => k.startsWith(P.level + ":"));
+  const list = [{ id: "pandu", pic: "PANDU", name: "Pandu's Friend", ne: "", line: window.STICKER_PANDU, got: first, gold: first, need: "Finish any lesson" }];
+  window.CHAPTERS.forEach(c => {
+    const ls = c.lessons.filter(id => vis.has(id)), st = ls.map(id => P.stars[starKey(id)] || 0);
+    const done = st.filter(x => x > 0).length;
+    list.push({ id: c.id, pic: c.sticker.pic, name: c.sticker.name, ne: c.ne, line: c.sticker.say, got: ls.length && done === ls.length, gold: ls.length && st.every(x => x === 3), need: `${done}/${ls.length} lessons in ${c.en}` });
+  });
+  return list;
+}
+function stickersHTML() {
+  return `<div class="sheet-back" id="stickBack"></div><div class="sheet stickers" role="dialog" aria-modal="true" aria-label="My stickers">
+    <button class="x sheet-x" type="button" id="stickClose" aria-label="Close">✕</button>
+    <div class="sheet-head"><div><strong>🏅 My stickers</strong>${neSpan(window.PHRASES.stickers)} <span class="rom">mero stikar</span></div></div>
+    <p class="note" style="text-align:left;margin:0">Finish every lesson in a chapter to win its sticker. Get ★★★ on all of them to make it gold! Tap a sticker to hear it talk.</p>
+    <div class="stick-say" id="stickSay"><span class="stick-say-pic" aria-hidden="true">💬</span><span>Tap a sticker!</span></div>
+    <div class="sticker-grid">${stickerState().map(x => `<button class="sticker${x.got ? " got" : ""}${x.gold ? " gold" : ""}" type="button" data-sticker="${x.id}" aria-label="${esc(x.name)}${x.got ? "" : " (not won yet)"}">
+      <span class="sticker-pic">${x.got ? (x.pic === "PANDU" ? MASCOT : `<span lang="ne">${esc(x.pic)}</span>`) : "🔒"}</span>
+      <b>${esc(x.name)}</b><small>${x.got ? (x.gold ? "★★★ Gold!" : "Won!") : esc(x.need)}</small></button>`).join("")}</div></div>`;
+}
 function orderedLessons() {
   const vis = new Set(visibleLessons().map(l => l.id));
   return window.CHAPTERS.flatMap(c => c.lessons).filter(id => vis.has(id)).map(id => window.LESSONS.find(l => l.id === id));
@@ -458,6 +562,8 @@ function renderMap() {
       <div class="brand">${MASCOT.replace('class="mascot"', 'class="mascot" style="width:44px;height:44px"')}<h1>Sajilo Nepali<small>${neSpan(window.PHRASES.brand, "", K(window.PHRASES.brand))} · easy Nepali</small></h1></div>
       <span class="stat" title="Days in a row">🔥 ${liveStreak()}</span>
       <span class="stat" title="Points">⭐ ${P.xp}</span>
+      ${P.freezes ? `<span class="stat" title="Streak freezes: each one saves your streak if you miss a day">❄️ ${P.freezes}</span>` : ""}
+      <button class="stat stat-btn" type="button" id="openStickers" title="My stickers">🏅 ${stickerState().filter(x => x.got).length}</button>
     </div>
     <div class="levels-row">
       <div class="levels" role="group" aria-label="Choose a level">
@@ -467,13 +573,16 @@ function renderMap() {
       <div class="toggles">
         <button class="icon-btn" type="button" id="tRom" aria-pressed="${romOn()}" title="Show how to say it" aria-label="How to say it ${romOn() ? "on" : "off"}">Aa<small>${romOn() ? "on" : "off"}</small></button>
         <button class="icon-btn" type="button" id="tSound" aria-pressed="${P.sound}" title="Sound" aria-label="Sound ${P.sound ? "on" : "off"}"><span aria-hidden="true">${P.sound ? "🔊" : "🔇"}</span><small>sound ${P.sound ? "on" : "off"}</small></button>
+        <button class="icon-btn" type="button" id="tBeeps" aria-pressed="${P.beeps !== false}" title="Game beeps (voice clips stay on)" aria-label="Game beeps ${P.beeps !== false ? "on" : "off"}"><span aria-hidden="true">${P.beeps !== false ? "🎵" : "🔕"}</span><small>beeps ${P.beeps !== false ? "on" : "off"}</small></button>
       </div>
     </div>
-    <div class="greet">${MASCOT}<div><p>${neSpan(window.PHRASES.hello)} <span class="rom">namaste!</span> I'm Pandu. Tap any Nepali word to hear it.</p>
+    <div class="greet">${MASCOT}<div><p>${greeting()} I'm Pandu. ${streakLine()}</p>
       <div class="pills">${pills.map(x => `<span class="pill">${x}</span>`).join("")}</div></div></div>
+    ${wordOfDayHTML()}
     ${chapters}
     <div class="settings"><button class="chip" type="button" id="tReset">Start over</button></div>
     <p class="note">Progress is saved on this device only. No account needed.</p>
+    ${S.stickers ? stickersHTML() : ""}
     ${sheetL ? `<div class="sheet-back" id="sheetBack"></div>
       <div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(sheetL.title)}">
         <button class="x sheet-x" type="button" id="sheetClose" aria-label="Close">✕</button>
@@ -481,6 +590,7 @@ function renderMap() {
           <div><strong>${esc(sheetL.title)}</strong>${neSpan(sheetL.ne)}${sheetL.rom ? ` <span class="rom">${esc(sheetL.rom)}</span>` : ""}</div></div>
         <button class="sheet-btn learn" type="button" id="goCards">📖 <span><b>Flashcards</b><small>Learn and listen at your own pace</small></span></button>
         <button class="sheet-btn play" type="button" id="goPlay">🎮 <span><b>Play game</b><small>Answer questions and earn ★★★</small></span></button>
+        <button class="chip" type="button" id="goPrint">🖨️ Print flashcards for home</button>
       </div>` : ""}`;
   if (sheetL) $("#goCards").focus();
 }
@@ -515,6 +625,15 @@ function renderCards() {
   const f = $("#flash"); let x0 = null;
   f.addEventListener("pointerdown", e => { x0 = e.clientX; });
   f.addEventListener("pointerup", e => { if (x0 == null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 50) { f.dataset.swiped = "1"; moveCard(dx < 0 ? 1 : -1); } });
+}
+function renderPrint() {
+  const l = S.lesson, cs = cardList(l);
+  $("#app").innerHTML = `<div class="print-bar no-print"><button class="chip" type="button" id="quit">← Back</button><button class="go" type="button" id="printNow" style="width:auto;padding:10px 22px">🖨️ Print</button></div>
+    <h2 class="print-title">${esc(l.title)} <span lang="ne">${esc(l.ne)}</span></h2>
+    <p class="note no-print">Print, cut along the dashed lines, and tape the cards around the house.</p>
+    <div class="print-grid">${cs.map(c => `<div class="pcard">${c.letter ? `<span class="pc-letter" lang="ne">${esc(c.letter)}</span>` : ""}<span class="pc-pic">${esc(c.pic === "💬" ? "" : c.pic)}</span>
+      <span class="pc-ne" lang="ne">${esc(c.ne || "")}</span><span class="pc-rom">${esc(c.letter ? (c.wordRom || c.rom) : c.rom)}</span><span class="pc-en">${esc(c.en)}</span></div>`).join("")}</div>
+    <p class="print-foot">sajilonepali.app · Sajilo Nepali सजिलो नेपाली</p>`;
 }
 function moveCard(d) { const i = S.cardIdx + d; if (i < 0 || i >= S.cards.length) return; S.cardIdx = i; beep("tap"); renderCards(); }
 document.addEventListener("keydown", e => { if (S.screen !== "cards") return; if (e.key === "ArrowRight") moveCard(1); if (e.key === "ArrowLeft") moveCard(-1); });
@@ -746,7 +865,9 @@ function nextStep() {
   if (!S.queue.length) {
     const stars = S.mistakes === 0 ? 3 : S.mistakes <= 2 ? 2 : 1, k = starKey(S.lesson.id);
     S.earned = stars; S.xpGain = 10 + stars * 5;
+    const before = new Set(stickerState().filter(x => x.got).map(x => x.id + (x.gold ? "*" : "")));
     P.stars[k] = Math.max(P.stars[k] || 0, stars); P.xp += S.xpGain; bumpStreak(); save();
+    S.newSticker = stickerState().find(x => x.got && !before.has(x.id + (x.gold ? "*" : ""))) || null;
     S.screen = "done"; S.outOfHearts = false; render(); say(K(window.PHRASES.wellDone)); return;
   }
   render(); window.scrollTo(0, 0);
@@ -762,21 +883,70 @@ function renderDone() {
   $("#app").innerHTML = `<section class="done">${MASCOT}<h2>${neSpan(window.PHRASES.wellDone)}<br>Lesson complete!</h2>
     <div class="stars" aria-label="${S.earned} of 3 stars">${st}</div>
     <p><strong>+${S.xpGain} points</strong> · 🔥 ${liveStreak()} day streak<br>${S.mistakes === 0 ? "Perfect, no mistakes!" : S.mistakes + " mistake" + (S.mistakes > 1 ? "s" : "") + ". Play again for 3 stars."}</p>
+    ${S.streakNews ? `<p class="ctx">${esc(S.streakNews)}</p>` : ""}
+    ${S.newSticker ? `<button class="sticker got${S.newSticker.gold ? " gold" : ""} new" type="button" data-sticker="${S.newSticker.id}"><span class="sticker-pic">${S.newSticker.pic === "PANDU" ? MASCOT : `<span lang="ne">${esc(S.newSticker.pic)}</span>`}</span><b>🎉 New sticker: ${esc(S.newSticker.name)}${S.newSticker.gold ? " (gold!)" : ""}</b></button>` : ""}
+    ${S.earned === 3 ? `<div class="share-card"><p><b>Share your score with Aama or Baba!</b></p><p class="share-text" id="shareText">${esc(shareText())}</p>
+      <div class="share-btns">${navigator.share ? `<button class="say" type="button" id="shareNow">📤 Share</button>` : ""}<button class="chip" type="button" id="copyShare">📋 Copy message</button></div></div>` : ""}
     <button class="go" type="button" id="home">Continue</button><button class="chip" type="button" id="again">Play again</button></section>`;
+  if (S.earned === 3) confetti();
 }
+function confetti() {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const box = document.createElement("div"); box.className = "confetti"; box.setAttribute("aria-hidden", "true");
+  const bits = ["🎉", "⭐", "🌟", "🎊", "🪁"], cols = ["#2f6fd6", "#e2453c", "#2fa75a", "#f6b71c", "#e8742a"];
+  for (let i = 0; i < 46; i++) {
+    const s = document.createElement("i");
+    if (i % 4 === 0) s.textContent = bits[i % bits.length]; else s.style.background = cols[i % cols.length];
+    s.style.left = Math.random() * 100 + "vw"; s.style.animationDelay = Math.random() * .6 + "s";
+    s.style.animationDuration = 1.6 + Math.random() * 1.4 + "s"; s.style.setProperty("--x", (Math.random() * 160 - 80) + "px");
+    box.appendChild(s);
+  }
+  document.body.appendChild(box); setTimeout(() => box.remove(), 3800);
+}
+function shareText() {
+  const n = liveStreak();
+  return `I got 3 stars in “${S.lesson.title}” on Sajilo Nepali! 🌟${n > 1 ? ` 🔥 ${n}-day streak!` : ""} Learn with me: https://sajilonepali.app`;
+}
+
+function selectShare() { const el = $("#shareText"); if (!el) return; const r = document.createRange(); r.selectNodeContents(el); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); }
 
 /* ---------- Events ---------- */
 document.addEventListener("click", e => {
   if (e.target.id === "sheetBack") { S.sheet = null; render(); return; }
+  if (e.target.id === "stickBack") { S.stickers = false; render(); return; }
   let t = e.target.closest("button, [data-say]"); if (!t) return;
   // Nepali text inside a button belongs to that button (lesson stones, answer options, tiles, cards).
   if (t.matches("span[data-say]") && t.closest("button")) t = t.closest("button");
   // Any tappable Nepali text (outside answer buttons) just plays its sound.
   if (t.matches("span[data-say]") && !t.closest(".opt, .tile, .card, .stone, .flashcard")) { say(t.dataset.say, t); return; }
-  if (t.matches("button.say")) { say(t.dataset.say, t); return; }
+  if (t.matches("button.say, button.wotd")) { say(t.dataset.say, t); return; }
   if (t.dataset.lesson) { const l = window.LESSONS.find(x => x.id === t.dataset.lesson); say(K(l.ne)); S.sheet = l.id; render(); return; }
   if (t.id === "sheetClose") { S.sheet = null; render(); return; }
   if (t.id === "goCards") { openCards(S.sheet); return; }
+  if (t.id === "goPrint") { S.lesson = window.LESSONS.find(l => l.id === S.sheet); S.sheet = null; S.screen = "print"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "printNow") { try { window.print(); } catch (err) {} return; }
+  if (t.id === "openStickers") { S.stickers = true; beep("tap"); render(); return; }
+  if (t.id === "stickClose") { S.stickers = false; render(); return; }
+  if (t.dataset.sticker) {
+    const x = stickerState().find(s => s.id === t.dataset.sticker);
+    if (!x) return;
+    const line = x.got ? x.line : window.STICKER_LOCKED;
+    t.classList.remove("bounce"); void t.offsetWidth; t.classList.add("bounce");
+    if (x.got) beep("good");
+    say(K(line.ne), t);
+    let b = $("#stickSay");
+    if (!b) { b = document.createElement("div"); b.id = "stickSay"; t.after(b); }
+    b.className = "stick-say" + (x.got ? "" : " locked");
+    b.innerHTML = `<span class="stick-say-pic" aria-hidden="true">${x.got ? (x.pic === "PANDU" ? MASCOT : `<span lang="ne">${esc(x.pic)}</span>`) : "🔒"}</span><span>${neSpan(line.ne)} <span class="rom">${esc(line.rom)}</span><small>${esc(line.en)}</small></span>`;
+    return;
+  }
+  if (t.id === "copyShare") {
+    const txt = shareText();
+    const ok = () => { t.textContent = "✓ Copied! Paste it in your family chat"; };
+    try { navigator.clipboard.writeText(txt).then(ok, () => { selectShare(); t.textContent = "Select the message above and copy it"; }); } catch (err) { selectShare(); }
+    return;
+  }
+  if (t.id === "shareNow") { navigator.share({ title: "Sajilo Nepali", text: shareText() }).catch(() => {}); return; }
   if (t.id === "goPlay") { const id = S.sheet; S.sheet = null; startLesson(id); return; }
   if (t.id === "cardPrev") { moveCard(-1); return; }
   if (t.id === "cardNext") { moveCard(1); return; }
@@ -784,6 +954,7 @@ document.addEventListener("click", e => {
   if (t.dataset.flashsay) { if (t.dataset.swiped) { delete t.dataset.swiped; return; } say(t.dataset.flashsay, t); return; }
   if (t.dataset.level) { P.level = t.dataset.level; save(); beep("tap"); render(); return; }
   if (t.id === "tRom") { P.romBy[P.level] = !romOn(); save(); render(); return; }
+  if (t.id === "tBeeps") { P.beeps = P.beeps === false; save(); render(); beep("tap"); return; }
   if (t.id === "tSound") { P.sound = !P.sound; save(); render(); return; }
   if (t.id === "tReset") {
     if (t.dataset.confirm) { P = { ...defaults, level: P.level }; save(); render(); }
