@@ -470,5 +470,11 @@ window.AUDIO = {
  "तिमी स्कूलको तारा हौ": "audio/7c39ebcebc.mp3?v=eeec3e8a",
  "तिमी कति राम्रो कुरा गर्छौ": "audio/3b38bd818a.mp3?v=386b096d",
  "तिमी अक्षरमा उस्ताद हौ": "audio/99d6de3f9d.mp3?v=8a04cf1a",
- "अझै बाँकी छ": "audio/a2616e3b29.mp3?v=0d7b177c"
+ "अझै बाँकी छ": "audio/a2616e3b29.mp3?v=0d7b177c",
+ "भान्सा": "audio/e3fcff1547.mp3?v=38a2e750",
+ "सुत्ने कोठा": "audio/5913ad13dc.mp3?v=03b561ed",
+ "आँगन": "audio/c8aee38189.mp3?v=1ece3f9f",
+ "बाथरूम": "audio/c92c1879fb.mp3?v=0c460329",
+ "बैठक कोठा": "audio/0ea753ae79.mp3?v=a17c3d74",
+ "घरका कोठाहरू": "audio/ef86db86a2.mp3?v=3271de57"
 };

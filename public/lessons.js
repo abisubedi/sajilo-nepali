@@ -118,6 +118,13 @@ window.LESSONS = [
     { ne: "शनिबार", rom: "shanibaar", en: "Saturday", pic: "SAT" },
   ]},
   // --- Around the home ---
+  { id: "rooms-house", title: "Rooms Around the House", ne: "घरका कोठाहरू", rom: "gharka kothaharu", icon: "🏠", color: "#2f6fd6", items: [
+    { ne: "भान्सा", rom: "bhansa", en: "kitchen", pic: "🍳", alt: ["bhansakotha"] },
+    { ne: "सुत्ने कोठा", rom: "sutne kotha", en: "bedroom", pic: "🛏️", alt: ["bedroom"] },
+    { ne: "आँगन", rom: "aangan", en: "yard / courtyard", pic: "🏡", alt: ["courtyard", "yard", "garden"] },
+    { ne: "बाथरूम", rom: "baathruum", en: "bathroom", pic: "🚿", alt: ["bathroom", "toilet"] },
+    { ne: "बैठक कोठा", rom: "baithak kotha", en: "living room", pic: "🛋️", alt: ["living room", "hall"] },
+  ]},
   { id: "house-objects", title: "Around the Room", ne: "घरका सामान", rom: "gharka saamaan", icon: "🛋️", color: "var(--flag-blue)", items: [
     { ne: "ढोका", rom: "dhoka", en: "door", pic: "🚪" },
     { ne: "झ्याल", rom: "jhyaal", en: "window", pic: "🪟" },
@@ -426,7 +433,7 @@ window.LESSONS = [
 
 /* The map groups lessons into chapters, in this order. */
 window.CHAPTERS = [
-  { id: "home", ne: "मेरो घर", rom: "mero ghar", en: "Around the home", color: "var(--panda)", sticker: { pic: "🏡", name: "Home Hero", say: { ne: "तिमी घरको हिरो हौ!", rom: "timi gharko hiro hau!", en: "You're the home hero!" } }, lessons: ["greet", "respect-family", "kitchen-tummy", "daily-routines", "house-objects", "home-sentences"] },
+  { id: "home", ne: "मेरो घर", rom: "mero ghar", en: "Around the home", color: "var(--panda)", sticker: { pic: "🏡", name: "Home Hero", say: { ne: "तिमी घरको हिरो हौ!", rom: "timi gharko hiro hau!", en: "You're the home hero!" } }, lessons: ["greet", "respect-family", "kitchen-tummy", "daily-routines", "house-objects", "rooms-house", "home-sentences"] },
   { id: "me", ne: "म र मेरो शरीर", rom: "ma ra mero shareer", en: "All about me", color: "var(--flag-yellow)", sticker: { pic: "😊", name: "All About Me", say: { ne: "तिमी धेरै बाठो छौ!", rom: "timi dherai baatho chhau!", en: "You're so clever!" } }, lessons: ["body", "feelings-needs", "clothes"] },
   { id: "play", ne: "खेल र बाहिर", rom: "khel ra baahira", en: "Play & outside", color: "var(--flag-green)", sticker: { pic: "⚽", name: "Play Champ", say: { ne: "खेलमा तिमी च्याम्पियन!", rom: "khelma timi chyaampiyan!", en: "You're a play champion!" } }, lessons: ["playtime-verbs", "helping-verbs", "sports-outdoors", "weather-nature", "colours", "opposites", "play-sentences"] },
   { id: "culture", ne: "हाम्रो संस्कृति", rom: "haamro sanskriti", en: "Nepali culture & time", color: "var(--flag-red)", sticker: { pic: "🪔", name: "Festival Star", say: { ne: "तिमी चाडपर्वको तारा हौ!", rom: "timi chaadparvako taara hau!", en: "You're a festival star!" } }, lessons: ["festivals-culture", "nepali-treats", "time-of-day", "days", "question-words", "culture-sentences"] },
