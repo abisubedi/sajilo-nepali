@@ -5,7 +5,7 @@
    Please have a native speaker review any changes. */
 
 window.LESSONS = [
-  { id: "greet", title: "Greetings", ne: "अभिवादन", icon: "🙏", color: "var(--flag-blue)", items: [
+  { id: "greet", title: "Greetings", ne: "अभिवादन", rom: "abhivaadan", icon: "🙏", color: "var(--flag-blue)", items: [
     { ne: "नमस्ते", rom: "namaste", en: "Hello", alt: ["hi", "namaste"], pic: "🙏" },
     { ne: "धन्यवाद", rom: "dhanyabad", en: "Thank you", alt: ["thanks", "thankyou"], pic: "😊" },
     { ne: "हो", rom: "ho", en: "Yes", pic: "✅" },
@@ -13,7 +13,7 @@ window.LESSONS = [
     { ne: "शुभ रात्रि", rom: "shubha ratri", en: "Good night", alt: ["goodnight"], pic: "🌙" },
     { ne: "फेरि भेटौँला", rom: "pheri bhetaunla", en: "See you again", alt: ["see you", "see you later", "goodbye", "bye"], pic: "👋" },
   ]},
-  { id: "num", title: "Numbers 1–10", ne: "अङ्क", icon: "🔢", color: "var(--flag-yellow)", count: true, items: [
+  { id: "num", title: "Numbers 1–10", ne: "अङ्क", rom: "anka", icon: "🔢", color: "var(--flag-yellow)", count: true, items: [
     { ne: "एक", rom: "ek", en: "one", pic: "1", digit: "१", n: 1 },
     { ne: "दुई", rom: "dui", en: "two", pic: "2", digit: "२", n: 2 },
     { ne: "तीन", rom: "tin", en: "three", pic: "3", digit: "३", n: 3 },
@@ -25,7 +25,7 @@ window.LESSONS = [
     { ne: "नौ", rom: "nau", en: "nine", pic: "9", digit: "९", n: 9 },
     { ne: "दस", rom: "das", en: "ten", pic: "10", digit: "१०", n: 10 },
   ]},
-  { id: "animals", title: "Animals", ne: "जनावर", icon: "🐘", color: "var(--flag-green)", items: [
+  { id: "animals", title: "Animals", ne: "जनावर", rom: "janaawar", icon: "🐘", color: "var(--flag-green)", items: [
     { ne: "कुकुर", rom: "kukur", en: "Dog", alt: ["puppy"], pic: "🐕" },
     { ne: "बिरालो", rom: "biralo", en: "Cat", alt: ["kitten", "kitty"], pic: "🐈" },
     { ne: "गाई", rom: "gaai", en: "Cow", pic: "🐄" },
@@ -37,7 +37,7 @@ window.LESSONS = [
     { ne: "भालु", rom: "bhalu", en: "Bear", pic: "🐻" },
     { ne: "गैँडा", rom: "gainda", en: "Rhino", alt: ["rhinoceros"], pic: "🦏" },
   ]},
-  { id: "colours", title: "Colours", ne: "रङ", icon: "🎨", color: "var(--flag-red)", items: [
+  { id: "colours", title: "Colours", ne: "रङ", rom: "rang", icon: "🎨", color: "var(--flag-red)", items: [
     { ne: "रातो", rom: "raato", en: "Red", pic: "🔴" },
     { ne: "निलो", rom: "nilo", en: "Blue", pic: "🔵" },
     { ne: "हरियो", rom: "hariyo", en: "Green", pic: "🟢" },
@@ -47,7 +47,7 @@ window.LESSONS = [
     { ne: "सुन्तले", rom: "suntale", en: "Orange", pic: "🟠" },
     { ne: "गुलाबी", rom: "gulabi", en: "Pink", pic: "🌸" },
   ]},
-  { id: "family", title: "Family", ne: "परिवार", icon: "👨‍👩‍👧", color: "var(--panda)", items: [
+  { id: "family", title: "Family", ne: "परिवार", rom: "pariwaar", icon: "👨‍👩‍👧", color: "var(--panda)", items: [
     { ne: "आमा", rom: "aama", en: "Mother", alt: ["mom", "mum", "mommy", "mummy", "mama", "mum"], pic: "👩" },
     { ne: "बुबा", rom: "buba", en: "Father", alt: ["dad", "daddy", "papa"], pic: "👨" },
     { ne: "दाइ", rom: "daai", en: "Big brother", alt: ["older brother", "brother", "elder brother"], pic: "👦" },
@@ -55,7 +55,7 @@ window.LESSONS = [
     { ne: "हजुरआमा", rom: "hajur-aama", en: "Grandmother", alt: ["grandma", "granny", "nana"], pic: "👵" },
     { ne: "हजुरबुबा", rom: "hajur-buba", en: "Grandfather", alt: ["grandpa", "granddad"], pic: "👴" },
   ]},
-  { id: "food", title: "Food", ne: "खाना", icon: "🥟", color: "var(--flag-blue)", items: [
+  { id: "food", title: "Food", ne: "खाना", rom: "khaana", icon: "🥟", color: "var(--flag-blue)", items: [
     { ne: "भात", rom: "bhaat", en: "Rice", pic: "🍚" },
     { ne: "दाल", rom: "daal", en: "Lentil soup", alt: ["lentils", "lentil", "dal", "daal", "soup"], pic: "🥣" },
     { ne: "रोटी", rom: "roti", en: "Flatbread", alt: ["bread", "roti"], pic: "🫓" },
@@ -65,7 +65,47 @@ window.LESSONS = [
     { ne: "केरा", rom: "kera", en: "Banana", alt: ["bananas"], pic: "🍌" },
     { ne: "मोमो", rom: "momo", en: "Momo", alt: ["dumpling", "dumplings", "momos"], pic: "🥟" },
   ]},
-  { id: "body", title: "My body", ne: "शरीर", icon: "🙆", color: "var(--flag-red)", items: [
+  // --- At home: everyday spoken Nepali ---
+  { id: "respect-family", title: "Family & Respect", ne: "परिवार र आदर", rom: "pariwaar ra aadar", icon: "👨‍👩‍👧‍👦", color: "var(--panda)", items: [
+    { ne: "आमा", rom: "aama", en: "mom", pic: "👩", alt: ["mother", "mum", "mummy", "mama"] },
+    { ne: "बाबा", rom: "baba", en: "dad", pic: "👨", alt: ["father", "daddy", "papa", "buwa", "buba"] },
+    { ne: "हजुर", rom: "hajur", en: "yes (polite)", pic: "🙋", alt: ["yes", "pardon", "coming", "yes please"] },
+    { ne: "दिदी", rom: "didi", en: "older sister", pic: "👧", alt: ["big sister", "elder sister", "sister"] },
+    { ne: "दाइ", rom: "daai", en: "older brother", pic: "👦", alt: ["big brother", "elder brother", "brother"] },
+    { ne: "बहिनी", rom: "bahini", en: "younger sister", pic: "👶", alt: ["little sister", "sister"] },
+    { ne: "भाइ", rom: "bhaai", en: "younger brother", pic: "🧒", alt: ["little brother", "brother"] },
+    { ne: "हजुरआमा", rom: "hajur-aama", en: "grandma", pic: "👵", alt: ["grandmother", "granny", "nana"] },
+    { ne: "हजुरबा", rom: "hajur-ba", en: "grandpa", pic: "👴", alt: ["grandfather", "granddad"] },
+  ]},
+  { id: "kitchen-tummy", title: "Kitchen & Tummy", ne: "भान्सा र खाना", rom: "bhaansa ra khaana", icon: "🍛", color: "var(--flag-green)", items: [
+    { ne: "पानी", rom: "paani", en: "water", pic: "💧", alt: ["drink water"] },
+    { ne: "भात", rom: "bhaat", en: "rice", pic: "🍚", alt: ["cooked rice", "food", "meal"] },
+    { ne: "दूध", rom: "doodh", en: "milk", pic: "🥛", alt: ["warm milk"] },
+    { ne: "भोक लाग्यो", rom: "bhok laagyo", en: "I am hungry", pic: "😋", alt: ["hungry", "im hungry", "i'm hungry", "feeling hungry"] },
+    { ne: "मिठो छ", rom: "mitho chha", en: "it is yummy", pic: "🤤", alt: ["yummy", "tasty", "delicious", "it is tasty", "its yummy"] },
+    { ne: "अघाएँ", rom: "aghaaen", en: "I am full", pic: "😌", alt: ["full", "im full", "i'm full", "done eating"] },
+    { ne: "तातो", rom: "taato", en: "hot", pic: "🔥", alt: ["warm"] },
+    { ne: "चम्चा", rom: "chamcha", en: "spoon", pic: "🥄" },
+  ]},
+  { id: "daily-routines", title: "Daily Routines", ne: "दैनिक काम", rom: "dainik kaam", icon: "🪥", color: "var(--flag-blue)", items: [
+    { ne: "उठ", rom: "utha", en: "wake up", pic: "☀️", alt: ["get up", "stand up"] },
+    { ne: "दाँत माझ", rom: "daant maajha", en: "brush teeth", pic: "🪥", alt: ["brush your teeth", "brush"] },
+    { ne: "हात धोऊ", rom: "haat dhou", en: "wash hands", pic: "🧼", alt: ["wash your hands", "clean hands"] },
+    { ne: "जुत्ता लाऊ", rom: "jutta laau", en: "put on shoes", pic: "👟", alt: ["wear shoes", "shoes on", "put your shoes on"] },
+    { ne: "यता आऊ", rom: "yata aau", en: "come here", pic: "👋", alt: ["come"] },
+    { ne: "बाहिर खेलौँ", rom: "baahira khelaun", en: "let's play outside", pic: "⚽", alt: ["play outside", "lets play", "lets play outside"] },
+    { ne: "किताब पढ", rom: "kitaab padha", en: "read a book", pic: "📖", alt: ["read book", "read", "study"] },
+    { ne: "सुत", rom: "suta", en: "go to sleep", pic: "🛌", alt: ["sleep", "bedtime", "go to bed"] },
+  ]},
+  { id: "home-sentences", title: "Home Talk", ne: "घरको कुराकानी", rom: "gharko kuraakaani", icon: "🏠", color: "var(--flag-red)", sentences: [
+    { ne: ["आमा", "मलाई", "भोक", "लाग्यो"], rom: ["aama", "malai", "bhok", "laagyo"], en: "Mom, I am hungry." },
+    { ne: ["मलाई", "पानी", "दिनुहोस्"], rom: ["malai", "paani", "dinuhos"], en: "Please give me water." },
+    { ne: ["ढोका", "बन्द", "गर"], rom: ["dhoka", "banda", "gara"], en: "Close the door." },
+    { ne: ["खाना", "धेरै", "मिठो", "छ"], rom: ["khaana", "dherai", "mitho", "chha"], en: "The food is very yummy." },
+    { ne: ["साबुनले", "हात", "धोऊ"], rom: ["saabunle", "haat", "dhou"], en: "Wash your hands with soap." },
+    { ne: ["खेलौना", "मिलाएर", "राख"], rom: ["khelauna", "milaaera", "raakha"], en: "Put your toys away." },
+  ]},
+  { id: "body", title: "My body", ne: "शरीर", rom: "shareer", icon: "🙆", color: "var(--flag-red)", items: [
     { ne: "टाउको", rom: "taauko", en: "Head", pic: "🙆" },
     { ne: "कपाल", rom: "kapaal", en: "Hair", pic: "💇" },
     { ne: "आँखा", rom: "aankha", en: "Eyes", alt: ["eye"], pic: "👀" },
@@ -77,7 +117,7 @@ window.LESSONS = [
     { ne: "खुट्टा", rom: "khutta", en: "Leg", alt: ["legs", "foot", "feet"], pic: "🦵" },
     { ne: "औँला", rom: "aunla", en: "Finger", alt: ["fingers"], pic: "☝️" },
   ]},
-  { id: "days", title: "Days of the week", ne: "बार", icon: "📅", color: "var(--flag-yellow)", bigOnly: true, items: [
+  { id: "days", title: "Days of the week", ne: "बार", rom: "baar", icon: "📅", color: "var(--flag-yellow)", bigOnly: true, items: [
     { ne: "आइतबार", rom: "aaitabaar", en: "Sunday", pic: "SUN" },
     { ne: "सोमबार", rom: "sombaar", en: "Monday", pic: "MON" },
     { ne: "मङ्गलबार", rom: "mangalbaar", en: "Tuesday", pic: "TUE" },
@@ -88,7 +128,7 @@ window.LESSONS = [
   ]},
   // Letters follow the Nepali वर्णमाला chart (स्वर वर्ण and व्यञ्जन वर्ण) and its example words.
   // hint: "has" = the word contains the letter but doesn't start with it; "none" = no example word.
-  { id: "vowels", title: "Letters: vowels", ne: "स्वर वर्ण", icon: "अ", color: "var(--flag-green)", letters: true, items: [
+  { id: "vowels", title: "Letters: vowels", ne: "स्वर वर्ण", rom: "swar barna", icon: "अ", color: "var(--flag-green)", letters: true, items: [
     { ne: "अ", rom: "a", word: "अमला", wordRom: "amala", en: "Gooseberry", pic: "🍏" },
     { ne: "आ", rom: "aa", word: "आमा", wordRom: "aama", en: "Mother", pic: "👩‍👧" },
     { ne: "इ", rom: "i", word: "इनार", wordRom: "inaar", en: "Well", pic: "🪣" },
@@ -103,7 +143,7 @@ window.LESSONS = [
     { ne: "अं", rom: "am", word: "अंगुर", wordRom: "angur", en: "Grapes", pic: "🍇" },
     { ne: "अः", rom: "ah", hint: "none", en: "Say “ah”", pic: "अः" },
   ]},
-  { id: "cons1", title: "Letters: क to ञ", ne: "व्यञ्जन वर्ण", icon: "क", color: "var(--flag-blue)", letters: true, items: [
+  { id: "cons1", title: "Letters: क to ञ", ne: "व्यञ्जन वर्ण", rom: "byanjan barna", icon: "क", color: "var(--flag-blue)", letters: true, items: [
     { ne: "क", rom: "ka", word: "कछुवा", wordRom: "kachhuwa", en: "Tortoise", pic: "🐢" },
     { ne: "ख", rom: "kha", word: "खरायो", wordRom: "kharayo", en: "Rabbit", pic: "🐇" },
     { ne: "ग", rom: "ga", word: "गमला", wordRom: "gamala", en: "Flower pot", pic: "🪴" },
@@ -115,7 +155,7 @@ window.LESSONS = [
     { ne: "झ", rom: "jha", word: "झण्डा", wordRom: "jhanda", en: "Flag", pic: "🇳🇵" },
     { ne: "ञ", rom: "nya", hint: "none", en: "Say “nya”", pic: "ञ" },
   ]},
-  { id: "cons2", title: "Letters: ट to न", ne: "व्यञ्जन वर्ण", icon: "ट", color: "var(--flag-red)", letters: true, items: [
+  { id: "cons2", title: "Letters: ट to न", ne: "व्यञ्जन वर्ण", rom: "byanjan barna", icon: "ट", color: "var(--flag-red)", letters: true, items: [
     { ne: "ट", rom: "ṭa", word: "टपरी", wordRom: "tapari", en: "Leaf plate", pic: "🍃" },
     { ne: "ठ", rom: "ṭha", word: "ठडेउरो", wordRom: "thadeuro", en: "Lamp stand", pic: "🪔" },
     { ne: "ड", rom: "ḍa", word: "डमरु", wordRom: "damaru", en: "Hand drum", pic: "🪘" },
@@ -127,7 +167,7 @@ window.LESSONS = [
     { ne: "ध", rom: "dha", word: "धनुष", wordRom: "dhanush", en: "Bow", pic: "🏹" },
     { ne: "न", rom: "na", word: "नरिवल", wordRom: "nariwal", en: "Coconut", pic: "🥥" },
   ]},
-  { id: "cons3", title: "Letters: प to व", ne: "व्यञ्जन वर्ण", icon: "प", color: "var(--panda)", letters: true, items: [
+  { id: "cons3", title: "Letters: प to व", ne: "व्यञ्जन वर्ण", rom: "byanjan barna", icon: "प", color: "var(--panda)", letters: true, items: [
     { ne: "प", rom: "pa", word: "परेवा", wordRom: "parewa", en: "Pigeon", pic: "🕊️" },
     { ne: "फ", rom: "pha", word: "फलफूल", wordRom: "phalphul", en: "Fruits", pic: "🍉" },
     { ne: "ब", rom: "ba", word: "बस", wordRom: "bas", en: "Bus", pic: "🚌" },
@@ -138,7 +178,7 @@ window.LESSONS = [
     { ne: "ल", rom: "la", word: "लसुन", wordRom: "lasun", en: "Garlic", pic: "🧄" },
     { ne: "व", rom: "wa", word: "वकिल", wordRom: "wakil", en: "Lawyer", pic: "🧑‍⚖️" },
   ]},
-  { id: "cons4", title: "Letters: श to ज्ञ", ne: "व्यञ्जन वर्ण", icon: "श", color: "var(--flag-yellow)", letters: true, items: [
+  { id: "cons4", title: "Letters: श to ज्ञ", ne: "व्यञ्जन वर्ण", rom: "byanjan barna", icon: "श", color: "var(--flag-yellow)", letters: true, items: [
     { ne: "श", rom: "sha", word: "शङ्ख", wordRom: "shankha", en: "Conch shell", pic: "🐚" },
     { ne: "ष", rom: "ṣha", word: "षट्कोण", wordRom: "shatkon", en: "Six-point star", pic: "🔯" },
     { ne: "स", rom: "sa", word: "सर्प", wordRom: "sarpa", en: "Snake", pic: "🐍" },
@@ -147,7 +187,7 @@ window.LESSONS = [
     { ne: "त्र", rom: "tra", word: "त्रिशूल", wordRom: "trishul", en: "Trident", pic: "🔱" },
     { ne: "ज्ञ", rom: "gya", word: "ज्ञानी", wordRom: "gyani", en: "Good child", pic: "🧒" },
   ]},
-  { id: "sentences", title: "Make sentences", ne: "वाक्य", icon: "🧩", color: "var(--flag-green)", bigOnly: true, sentences: [
+  { id: "sentences", title: "Make sentences", ne: "वाक्य", rom: "waakya", icon: "🧩", color: "var(--flag-green)", bigOnly: true, sentences: [
     { ne: ["म", "ठीक", "छु"], rom: ["ma", "thik", "chhu"], en: "I am fine." },
     { ne: ["मेरो", "नाम", "सीता", "हो"], rom: ["mero", "naam", "Sita", "ho"], en: "My name is Sita." },
     { ne: ["यो", "मेरो", "कुकुर", "हो"], rom: ["yo", "mero", "kukur", "ho"], en: "This is my dog." },
@@ -159,7 +199,7 @@ window.LESSONS = [
   ]},
 ];
 
-window.EXTRA_TILES = [["र", "ra"], ["पनि", "pani"], ["होइन", "hoina"], ["रातो", "raato"], ["तिमी", "timi"]];
+window.EXTRA_TILES = [["र", "ra"], ["पनि", "pani"], ["होइन", "hoina"], ["रातो", "raato"], ["तिमी", "timi"], ["मलाई", "malai"], ["दिनुहोस्", "dinuhos"], ["ढोका", "dhoka"], ["गर", "gara"]];
 window.CHEERS = [["स्याबास!", "syabaas!", "Well done!"], ["राम्रो!", "ramro!", "Great!"], ["एकदम ठीक!", "ekdam thik!", "Exactly right!"]];
 window.PHRASES = { hello: "नमस्ते!", brand: "सजिलो नेपाली", tryAgain: "फेरि प्रयास गरौँ!", wellDone: "स्याबास!" };
 

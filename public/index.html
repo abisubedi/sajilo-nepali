@@ -152,6 +152,10 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
   .prompt .ne { font-size: 38px; }
 }
 
+/* "Next up!" stone */
+.stone.next .disc { box-shadow: 0 0 0 6px rgba(47,111,214,.28), 0 6px 0 rgba(31,42,68,.22); animation: pulse 1.8s infinite; }
+@keyframes pulse { 50% { transform: scale(1.06); } }
+.next-tag { display: inline-block; font-style: normal; font-weight: 800; font-size: 13px; color: var(--snow); background: var(--flag-blue); border-radius: 999px; padding: 1px 10px; margin-bottom: 2px; }
 /* level looks */
 body:not(.lv-big) .opts { grid-template-columns: 1fr; }
 body:not(.lv-big) .opt { flex-direction: row; gap: 16px; min-height: 104px; font-size: 20px; }
@@ -339,14 +343,15 @@ function render() {
 
 function renderMap() {
   const ls = visibleLessons();
-  let unlocked = true;
+  // Every lesson is open; the first one without stars is highlighted as "Next up!".
+  const nextId = (ls.find(l => !P.stars[starKey(l.id)]) || {}).id;
   const stones = ls.map(l => {
     const st = P.stars[starKey(l.id)] || 0;
-    const open = unlocked; if (!st) unlocked = false;
+    const open = true, isNext = l.id === nextId;
     const starHTML = [1, 2, 3].map(n => `<span class="${n <= st ? "" : "off"}">★</span>`).join("");
-    return `<button class="stone" type="button" data-lesson="${l.id}" ${open ? "" : "disabled"} aria-label="${esc(l.title)}${open ? "" : " (locked)"}">
+    return `<button class="stone${isNext ? " next" : ""}" type="button" data-lesson="${l.id}" aria-label="${esc(l.title)}${isNext ? " (next up)" : ""}">
       <span class="disc" style="--c:${l.color}">${open ? `<span lang="ne" style="font-family:var(--display)">${esc(l.icon)}</span>` : "🔒"}</span>
-      <span class="label"><strong>${esc(l.title)}</strong>${neSpan(l.ne)}<div class="stars">${starHTML}</div></span>
+      <span class="label">${isNext ? `<em class="next-tag">Next up!</em>` : ""}<strong>${esc(l.title)}</strong>${neSpan(l.ne)}${l.rom ? `<span class="rom"> · ${esc(l.rom)}</span>` : ""}<div class="stars">${starHTML}</div></span>
     </button>`;
   }).join("");
   const recorded = Object.keys(AUDIO).length;
@@ -454,7 +459,7 @@ function renderQuestion() {
       <div class="col">${S.matchRight.map((o, i) => `<button class="opt" type="button" data-r="${i}">${picHTML(o.pic, 34)}<span class="en">${esc(o.en)}</span></button>`).join("")}</div></div>`;
   } else if (q.type === "build") {
     const s = q.s;
-    const extras = pickN(window.EXTRA_TILES.filter(t => !s.ne.includes(t[0])), 2);
+    const extras = pickN(window.EXTRA_TILES.filter(t => !s.ne.includes(t[0])), P.level === "big" ? 2 : 0);
     S.bank = shuffle([...s.ne.map((w, i) => [w, s.rom[i]]), ...extras]);
     S.built = [];
     body = `<p class="ask">Make this sentence in Nepali</p>
@@ -463,13 +468,17 @@ function renderQuestion() {
       <div class="bank" id="bank">${S.bank.map((t, i) => `<button class="tile" type="button" data-t="${i}"><span class="ne" lang="ne">${esc(t[0])}</span><span class="rom">${esc(t[1])}</span></button>`).join("")}</div>`;
   }
   const footer = q.type === "match" ? "" : q.type === "learn"
-    ? `<div class="feedback" id="fb"><button class="go" type="button" id="next">Start the quiz</button></div>`
+    ? `<div class="feedback" id="fb"><button class="go" type="button" id="next" disabled>${learnLabel(0)}</button></div>`
     : `<div class="feedback" id="fb"><button class="go" type="button" id="check" ${needsCheck ? "disabled" : ""}>Check</button></div>`;
   $("#app").innerHTML = `${lessonTop()}<section class="q">${body}</section>${footer}`;
   if (q.type === "trace") setupTrace(q.item);
   if (q.type === "typeMeaning") { const inp = $("#typed"); inp.focus(); inp.oninput = () => { $("#check").disabled = !inp.value.trim(); }; inp.onkeydown = e => { if (e.key === "Enter" && inp.value.trim()) checkTyped(); }; }
   if (autoKey && P.sound) setTimeout(() => say(autoKey), 350);
 }
+
+/* Kids hear a few cards before the quiz unlocks. */
+const learnNeeded = () => Math.min(3, (S.lesson.items || []).length);
+const learnLabel = heard => heard >= learnNeeded() ? "Start the quiz" : `Tap ${learnNeeded()} cards to start (${heard}/${learnNeeded()})`;
 
 /* ---------- Tracing ---------- */
 const TR = { mask: null, ink: null, total: 0, drawn: false };
@@ -635,7 +644,12 @@ document.addEventListener("click", e => {
   if (t.id === "next") { if (S.queue[0] && S.queue[0].type === "learn" && !S.answered) { S.queue.shift(); S.done++; } nextStep(); return; }
   if (t.id === "check") { const ty = S.queue[0].type; ty === "build" ? checkBuild() : ty === "trace" ? checkTrace() : ty === "typeMeaning" ? checkTyped() : checkChoice(); return; }
   if (S.screen !== "lesson") return;
-  if (t.dataset.learn) { say(t.dataset.learn, t); t.classList.add("heard"); t.querySelector(".tick").textContent = "✓ heard"; return; }
+  if (t.dataset.learn) {
+    say(t.dataset.learn, t); t.classList.add("heard"); t.querySelector(".tick").textContent = "✓ heard";
+    const heard = document.querySelectorAll(".card.heard").length, btn = $("#next");
+    if (btn && btn.disabled) { btn.textContent = learnLabel(heard); if (heard >= learnNeeded()) { btn.disabled = false; setTimeout(() => beep("good"), 500); } }
+    return;
+  }
   if (S.answered) return;
   if (t.dataset.i != null) {
     S.sel = +t.dataset.i;
