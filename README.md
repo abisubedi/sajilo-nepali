@@ -34,6 +34,6 @@ Each word has `ne` (Nepali), `rom` (how to say it), `en` (English) and `pic` (an
 Please have a native speaker review any new content.
 
 ## Sound
-Recorded clips are in `public/audio/` (ElevenLabs voices "Sarita – Nepali" and "Subedi – Nepali Voice Male") and listed in `public/audio-manifest.js`
+Recorded clips are in `public/audio/` (ElevenLabs voice "Subedi – Nepali Voice Male") and listed in `public/audio-manifest.js`
 (key = the Nepali text, or `L:<letter>` for a letter, which says the letter and then its example word).
 Anything without a recording uses the device's Nepali voice, or a Hindi one if there's no Nepali voice. If the device has neither, that word stays silent.
