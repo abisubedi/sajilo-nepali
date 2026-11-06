@@ -152,6 +152,16 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
   .prompt .ne { font-size: 38px; }
 }
 
+/* level looks */
+body:not(.lv-big) .opts { grid-template-columns: 1fr; }
+body:not(.lv-big) .opt { flex-direction: row; gap: 16px; min-height: 104px; font-size: 20px; }
+body:not(.lv-big) .opt .big { font-size: 60px; }
+.lv-big .opt { min-height: 82px; }
+.lv-big .opt .big { font-size: 38px; }
+.lv-big .levels button[aria-pressed="true"] { background: var(--ink); }
+.type-label { font-weight: 800; color: var(--muted); font-size: 15px; }
+.typed { font: inherit; font-size: 22px; font-weight: 700; padding: 14px 16px; border: 2px solid var(--line); border-radius: 16px; background: var(--snow); color: var(--ink); width: 100%; }
+.typed:focus { outline: 3px solid var(--flag-blue); outline-offset: 2px; }
 /* tap-to-hear Nepali text */
 [data-say] { cursor: pointer; }
 span[data-say] { border-radius: 8px; transition: background .15s; }
@@ -191,9 +201,17 @@ span[data-say]:hover { background: rgba(47,111,214,.10); }
 <script>
 /* ---------- Saved progress (this browser only) ---------- */
 const KEY = "sajilo-nepali-v1";
-const defaults = { level: "little", rom: true, sound: true, stars: {}, xp: 0, streak: 0, lastDay: "" };
+const defaults = { level: "little", romBy: { little: true, big: false }, sound: true, stars: {}, xp: 0, streak: 0, lastDay: "" };
 let P = load();
 function load() { try { return Object.assign({}, defaults, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) { return { ...defaults }; } }
+if (!P.romBy) P.romBy = { little: true, big: false };
+/* How each age level plays */
+const LEVELS = {
+  little: { name: "Little learners", ages: "4–7", options: 3, questions: 6, hearts: 0, mascot: "Tap the pictures and listen. There's no wrong way to play!" },
+  big: { name: "Big learners", ages: "8–15", options: 4, questions: 12, hearts: 3, mascot: "Challenge mode: 12 questions, 3 hearts, typing and sentences. How far can you go?" },
+};
+const LV = () => LEVELS[P.level];
+const romOn = () => !!P.romBy[P.level];
 function save() { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} }
 const starKey = id => P.level + ":" + id;
 const dayKey = d => d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
@@ -278,12 +296,12 @@ const MASCOT = `<svg class="mascot" viewBox="0 0 100 100" aria-hidden="true">
 /* ---------- Question builder ---------- */
 function buildQuestions(lesson) {
   const big = P.level === "big";
-  const total = big ? 10 : 6;
-  if (lesson.sentences) return pickN(lesson.sentences, total).map(s => ({ type: "build", s }));
+  const total = LV().questions;
+  if (lesson.sentences) return pickN(lesson.sentences, Math.min(total, lesson.sentences.length)).map(s => ({ type: "build", s }));
   const items = lesson.items, qs = [{ type: "learn" }];
   let types;
   if (lesson.letters) types = big ? ["letterPic", "listenLetter", "letterFind", "trace", "listenLetter", "letterFind"] : ["letterPic", "trace", "listenLetter", "letterPic"];
-  else types = big ? ["pickMeaning", "pickNepali", "pickNepaliText", "listen", "pickNepali", "pickNepaliText"] : ["pickMeaning", "pickNepali", "listen", "pickMeaning"];
+  else types = big ? ["pickNepaliText", "typeMeaning", "listen", "pickMeaning", "typeMeaning", "pickNepaliText"] : ["pickMeaning", "pickNepali", "listen", "pickMeaning"];
   if (lesson.count) types.push("count", "count");
   const pool = shuffle(items);
   for (let i = 0; qs.length < total; i++) {
@@ -292,8 +310,8 @@ function buildQuestions(lesson) {
     if ((t === "listen" || t === "listenLetter") && !canSay(itemKey(lesson, item))) t = lesson.letters ? "letterFind" : "pickMeaning";
     qs.push({ type: t, item });
   }
-  if (!lesson.letters) qs.splice(Math.min(3, qs.length), 0, { type: "match", items: pickN(items, 4) });
-  qs.forEach(q => { if (q.item) q.opts = shuffle([q.item, ...pickN(items.filter(x => x !== q.item), 3)]); });
+  if (!lesson.letters) qs.splice(Math.min(3, qs.length), 0, { type: "match", items: pickN(items, big ? 5 : 3) });
+  qs.forEach(q => { if (q.item) q.opts = shuffle([q.item, ...pickN(items.filter(x => x !== q.item), LV().options - 1)]); });
   return qs;
 }
 
@@ -301,7 +319,7 @@ function buildQuestions(lesson) {
 const S = { screen: "map", lesson: null, queue: [], done: 0, total: 0, hearts: 3, mistakes: 0, answered: false };
 
 function render() {
-  document.body.classList.toggle("hide-rom", !P.rom);
+  document.body.classList.toggle("hide-rom", !romOn()); document.body.classList.toggle("lv-big", P.level === "big");
   if (S.screen === "map") renderMap();
   else if (S.screen === "lesson") renderQuestion();
   else renderDone();
@@ -330,10 +348,13 @@ function renderMap() {
       <button type="button" data-level="little" aria-pressed="${P.level === "little"}">Little learners<small>ages 4–7</small></button>
       <button type="button" data-level="big" aria-pressed="${P.level === "big"}">Big learners<small>ages 8–15</small></button>
     </div>
-    <div class="greet">${MASCOT}<p>${neSpan(window.PHRASES.hello)}<span class="rom"> namaste!</span><br>I'm Pandu the red panda. Tap any Nepali word to hear it, then tap a stone to start a lesson.</p></div>
+    <div class="greet">${MASCOT}<p>${neSpan(window.PHRASES.hello)}<span class="rom"> namaste!</span><br>I'm Pandu the red panda. ${LV().mascot}</p></div>
+    <p class="note" style="margin-top:-6px">${P.level === "big"
+      ? "Big learners: 4 choices · type the meaning · build sentences · days of the week and all the letters · 3 hearts per lesson."
+      : "Little learners: 3 big picture choices · listening and tracing · no hearts, so nobody fails. Tap any Nepali word to hear it."}</p>
     <nav class="trail" aria-label="Lessons">${stones}</nav>
     <div class="settings">
-      <button class="chip" type="button" id="tRom">${P.rom ? "✓" : "✕"} Show how to say it</button>
+      <button class="chip" type="button" id="tRom">${romOn() ? "✓" : "✕"} Show how to say it</button>
       <button class="chip" type="button" id="tSound">${P.sound ? "🔊 Sound on" : "🔇 Sound off"}</button>
       <button class="chip" type="button" id="tReset">Start over</button>
     </div>
@@ -342,14 +363,14 @@ function renderMap() {
 
 function startLesson(id) {
   const l = window.LESSONS.find(x => x.id === id);
-  S.lesson = l; S.queue = buildQuestions(l); S.total = S.queue.length; S.done = 0; S.hearts = 3; S.mistakes = 0; S.answered = false;
+  S.lesson = l; S.queue = buildQuestions(l); S.total = S.queue.length; S.done = 0; S.hearts = LV().hearts || Infinity; S.mistakes = 0; S.answered = false;
   S.screen = "lesson"; render(); window.scrollTo(0, 0);
 }
 
 function lessonTop() {
   return `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Leave lesson">✕</button>
     <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${S.total}" aria-valuenow="${S.done}"><i style="width:${(S.done / S.total) * 100}%"></i></div>
-    <span class="hearts" aria-label="${S.hearts} hearts left">❤️ ${S.hearts}</span></div>`;
+    ${S.hearts === Infinity ? `<span class="hearts" style="color:var(--flag-yellow)" aria-label="Practice mode, no hearts">⭐ practice</span>` : `<span class="hearts" aria-label="${S.hearts} hearts left">❤️ ${S.hearts}</span>`}</div>`;
 }
 
 function optBtn(i, inner, key) { return `<button class="opt" type="button" data-i="${i}"${key ? ` data-optsay="${esc(key)}"` : ""}>${inner}</button>`; }
@@ -375,6 +396,12 @@ function renderQuestion() {
     body = `<p class="ask">Which one is “${esc(q.item.en)}”?</p>
       <div class="prompt">${q.type === "pickNepali" ? picHTML(q.item.pic) : ""}<span class="en">${esc(q.item.en)}</span></div>
       <div class="opts">${q.opts.map((o, i) => optBtn(i, `<span class="ne" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span>`, K(o.ne))).join("")}</div>`;
+  } else if (q.type === "typeMeaning") {
+    body = `<p class="ask">Type this in English</p>
+      <div class="prompt">${neHTML(q.item.ne, q.item.rom)}${sayBtn(K(q.item.ne))}</div>
+      <label class="type-label" for="typed">Your answer</label>
+      <input id="typed" class="typed" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type in English…" enterkeyhint="done">`;
+    autoKey = K(q.item.ne);
   } else if (q.type === "listen") {
     body = `<p class="ask">Listen. Which picture is it?</p>
       <div class="prompt">${sayBtn(K(q.item.ne), "huge")}</div>
@@ -428,6 +455,7 @@ function renderQuestion() {
     : `<div class="feedback" id="fb"><button class="go" type="button" id="check" ${needsCheck ? "disabled" : ""}>Check</button></div>`;
   $("#app").innerHTML = `${lessonTop()}<section class="q">${body}</section>${footer}`;
   if (q.type === "trace") setupTrace(q.item);
+  if (q.type === "typeMeaning") { const inp = $("#typed"); inp.focus(); inp.oninput = () => { $("#check").disabled = !inp.value.trim(); }; inp.onkeydown = e => { if (e.key === "Enter" && inp.value.trim()) checkTyped(); }; }
   if (autoKey && P.sound) setTimeout(() => say(autoKey), 350);
 }
 
@@ -499,6 +527,17 @@ function checkChoice() {
     setFeedback(good, `${neHTML(q.item.ne, q.item.rom)} = ${esc(q.item.en)}`);
   }
 }
+const norm = t => String(t).toLowerCase().replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim().replace(/^(a|an|the|my) /, "");
+function checkTyped() {
+  const q = S.queue[0]; if (S.answered) return;
+  const got = norm($("#typed").value);
+  const ok = [q.item.en, ...(q.item.alt || []), ...(q.item.n ? [String(q.item.n)] : [])].map(norm);
+  const good = ok.includes(got) || ok.some(a => a.length > 4 && got.length > 3 && lev(a, got) <= 1);
+  $("#typed").disabled = true; grade(good); say(K(q.item.ne));
+  setFeedback(good, `${neHTML(q.item.ne, q.item.rom)} = ${esc(q.item.en)}`);
+}
+function lev(a, b) { const d = Array.from({ length: a.length + 1 }, (_, i) => [i]); for (let j = 1; j <= b.length; j++) d[0][j] = j;
+  for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); return d[a.length][b.length]; }
 function checkTrace() {
   const q = S.queue[0]; if (S.answered) return;
   const s = traceScore(), good = s.cover >= .55 && s.stray <= .45;
@@ -572,7 +611,7 @@ document.addEventListener("click", e => {
   if (t.matches("button.say")) { say(t.dataset.say, t); return; }
   if (t.dataset.lesson) { const l = window.LESSONS.find(x => x.id === t.dataset.lesson); say(K(l.ne)); startLesson(t.dataset.lesson); return; }
   if (t.dataset.level) { P.level = t.dataset.level; save(); beep("tap"); render(); return; }
-  if (t.id === "tRom") { P.rom = !P.rom; save(); render(); return; }
+  if (t.id === "tRom") { P.romBy[P.level] = !romOn(); save(); render(); return; }
   if (t.id === "tSound") { P.sound = !P.sound; save(); render(); return; }
   if (t.id === "tReset") {
     if (t.dataset.confirm) { P = { ...defaults, level: P.level }; save(); render(); }
@@ -582,7 +621,7 @@ document.addEventListener("click", e => {
   if (t.id === "quit" || t.id === "home") { S.screen = "map"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "again") { startLesson(S.lesson.id); return; }
   if (t.id === "next") { if (S.queue[0] && S.queue[0].type === "learn" && !S.answered) { S.queue.shift(); S.done++; } nextStep(); return; }
-  if (t.id === "check") { const ty = S.queue[0].type; ty === "build" ? checkBuild() : ty === "trace" ? checkTrace() : checkChoice(); return; }
+  if (t.id === "check") { const ty = S.queue[0].type; ty === "build" ? checkBuild() : ty === "trace" ? checkTrace() : ty === "typeMeaning" ? checkTyped() : checkChoice(); return; }
   if (S.screen !== "lesson") return;
   if (t.dataset.learn) { say(t.dataset.learn, t); t.classList.add("heard"); t.querySelector(".tick").textContent = "✓ heard"; return; }
   if (S.answered) return;
