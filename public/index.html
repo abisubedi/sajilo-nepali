@@ -242,8 +242,8 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .player-av { font-size: 30px; line-height: 1; }
 .player-form { display: flex; flex-direction: column; gap: 8px; border-top: 2px dashed var(--line); padding-top: 10px; }
 .player-form input { font: inherit; font-size: 18px; padding: 8px 12px; border: 2px solid var(--line); border-radius: 12px; }
-.avatar-row { display: flex; flex-wrap: wrap; gap: 6px; }
-.avatar { font-size: 28px; width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--line); background: var(--snow); }
+.avatar-row { display: grid; grid-template-columns: repeat(4, 56px); gap: 8px; justify-content: start; }
+.avatar { font-size: 30px; width: 56px; height: 56px; padding: 0; border-radius: 50%; border: 2px solid var(--line); background: var(--snow); }
 .avatar.on { border: 3px solid var(--flag-blue); background: #e8f0fd; }
 .ico { flex: none; vertical-align: middle; }
 /* Top bar: logo + player on the first row, all stats together on one row that never wraps */
@@ -265,7 +265,7 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .av-img { width: 1.25em; height: 1.25em; object-fit: contain; vertical-align: middle; }
 .player-pill .av-img { width: 24px; height: 24px; margin: -4px 0; }
 .player-av .av-img { width: 40px; height: 40px; }
-.avatar .av-img { width: 40px; height: 40px; }
+.avatar .av-img { width: 48px; height: 48px; }
 /* Pandu artwork + gentle motion */
 .pandu-art { object-fit: contain; }
 .brand .brand-pandu { width: 48px; height: 48px; }
