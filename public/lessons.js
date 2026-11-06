@@ -64,7 +64,7 @@ window.LESSONS = [
   ]},
   { id: "kitchen-tummy", title: "Kitchen & Tummy", ne: "भान्सा र खाना", rom: "bhaansa ra khaana", icon: "🍛", color: "var(--flag-green)", items: [
     { ne: "पानी", rom: "paani", en: "water", pic: "💧", alt: ["drink water"] },
-    { ne: "भात", rom: "bhaat", en: "rice", pic: "🍚", alt: ["cooked rice", "food", "meal"] },
+    { ne: "खाना", rom: "khaana", en: "rice", pic: "🍚", alt: ["cooked rice", "food", "meal", "khana", "bhat"] },
     { ne: "दूध", rom: "doodh", en: "milk", pic: "🥛", alt: ["warm milk"] },
     { ne: "दाल", rom: "daal", en: "lentil soup", pic: "🥣", alt: ["lentils", "lentil", "dal", "daal", "soup"] },
     { ne: "रोटी", rom: "roti", en: "flatbread", pic: "🫓", alt: ["bread", "roti"] },
