@@ -8,7 +8,7 @@ import base64, json, os
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 PUBLIC, DIST = os.path.join(ROOT, "public"), os.path.join(ROOT, "dist")
-TYPES = {".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".mp3": "audio/mpeg"}
+TYPES = {".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".mp3": "audio/mpeg", ".png": "image/png", ".webmanifest": "application/manifest+json", ".svg": "image/svg+xml"}
 
 files = {}
 for d, _, names in os.walk(PUBLIC):
