@@ -8,13 +8,15 @@ A free, Duolingo-style web game that teaches kids aged 4–15 basic Nepali.
 - **Privacy:** no accounts and no tracking. Progress is saved in the browser on the device being used.
 
 ## Run it
-Open `index.html` in a browser. It's a single file with no build step.
+Open `public/index.html` in a browser. It's a single file with no build step.
 
-## Host it for free
-Any static host works: GitHub Pages (Settings → Pages → deploy from the `main` branch), Cloudflare Pages or Netlify.
+## Host it for free (Cloudflare)
+The site is in `public/`, and `wrangler.jsonc` tells Cloudflare to serve that folder.
+- **Cloudflare Workers project** (the default when you click Create → connect a Git repo): leave the build command empty. The deploy command is `npx wrangler deploy`.
+- **Cloudflare Pages project:** leave the build command empty and set the build output directory to `public`.
 
 ## Edit the words
-All the content is in the `LESSONS` list near the top of the `<script>` in `index.html`.
+All the content is in the `LESSONS` list near the top of the `<script>` in `public/index.html`.
 Each word has `ne` (Nepali), `rom` (how to say it), `en` (English) and `pic` (an emoji picture).
 Please have a native speaker review any new content.
 
