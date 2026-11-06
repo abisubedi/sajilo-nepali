@@ -92,7 +92,12 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .mascot { width: 64px; height: 64px; flex: none; }
 
 /* trail */
-.chapter { display: flex; flex-direction: column; gap: 10px; }
+.chapter { display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 64px; }
+.jump { position: sticky; top: 0; z-index: 5; display: flex; gap: 8px; overflow-x: auto; padding: 8px 2px; margin: 0 -2px; background: var(--sky, #e8f4ff); scrollbar-width: none; }
+.jump::-webkit-scrollbar { display: none; }
+.jump-pill { flex: none; border: 2px solid var(--line); background: var(--snow); border-radius: 999px; padding: 6px 12px; font: inherit; font-weight: 800; font-size: 14px; color: var(--ink); white-space: nowrap; box-shadow: 0 3px 0 var(--line); }
+.jump-pill span { font-family: var(--display); }
+.jump-pill.done { border-color: #f3d37a; background: #fff8e1; }
 .chapter-banner { background: var(--snow); border: 2px solid var(--line); border-left: 8px solid var(--c, var(--flag-blue)); border-radius: 16px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 .chapter-banner small { display: block; font-weight: 800; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .chapter-banner .ne { font-family: var(--display); font-size: 22px; font-weight: 800; }
@@ -108,10 +113,9 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .stone .label .stars span { color: var(--flag-yellow); font-size: 18px; }
 .stone .label .stars span.off { color: var(--muted); }
 .stone .label { flex: 1; }
-.stone::after { content: "▶"; font-size: 16px; color: #b9cbe6; padding: 0 6px; }
-.stone:nth-child(even)::after { content: "◀"; }
-.stone.next::after { color: var(--flag-blue); }
-.stone.earned::after { color: var(--flag-yellow); }
+.stone::after { content: "▶"; flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; padding-left: 3px; box-sizing: border-box; font-size: 14px; color: #8fa6c8; background: #eef3fb; border: 2px solid var(--line); }
+.stone.next::after { color: var(--snow); background: var(--flag-blue); border-color: #1d4f9e; }
+.stone.earned::after { color: #8a6400; background: #fff3c4; border-color: #f3d37a; }
 .stone:nth-child(odd) { align-self: flex-start; }
 .stone:nth-child(even) { align-self: flex-end; flex-direction: row-reverse; text-align: right; padding: 8px 8px 8px 20px; }
 .disc { width: 72px; height: 72px; flex: none; border-radius: 50%; display: grid; place-items: center; font-size: 38px; background: var(--c, var(--flag-blue)); box-shadow: 0 6px 0 rgba(31,42,68,.22); transition: transform .12s; }
@@ -229,7 +233,21 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .ctx { display: inline-block; background: #fff5d6; border: 2px solid #f3d37a; border-radius: 12px; padding: 4px 12px; font-weight: 800; font-size: 15px; color: var(--ink); }
 /* stickers */
 .stat-btn { cursor: pointer; font: inherit; font-weight: 800; color: var(--ink); }
-.sheet.stickers { max-height: 86vh; overflow-y: auto; }
+.player-pill { max-width: 46vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block; }
+.player-list { display: flex; flex-direction: column; gap: 8px; }
+.player-row { display: flex; gap: 8px; align-items: center; }
+.player-pick { flex: 1; display: flex; align-items: center; gap: 10px; background: var(--snow); border: 2px solid var(--line); border-radius: 16px; padding: 8px 12px; font: inherit; color: var(--ink); text-align: left; }
+.player-row.on .player-pick { border-color: var(--flag-blue); box-shadow: 0 3px 0 #b9cbe6; }
+.player-pick b { flex: 1; } .player-pick small { font-weight: 800; color: var(--muted); } .player-pick em { font-style: normal; font-size: 12px; font-weight: 800; color: var(--snow); background: var(--flag-blue); border-radius: 999px; padding: 2px 8px; }
+.player-av { font-size: 30px; line-height: 1; }
+.player-form { display: flex; flex-direction: column; gap: 8px; border-top: 2px dashed var(--line); padding-top: 10px; }
+.player-form input { font: inherit; font-size: 18px; padding: 8px 12px; border: 2px solid var(--line); border-radius: 12px; }
+.avatar-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.avatar { font-size: 28px; width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--line); background: var(--snow); }
+.avatar.on { border: 3px solid var(--flag-blue); background: #e8f0fd; }
+.ico { flex: none; vertical-align: middle; }
+.chip.primary { background: var(--flag-blue); color: var(--snow); border-color: #1d4f9e; }
+.sheet.stickers, .sheet.players { max-height: 86vh; overflow-y: auto; }
 .sticker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .sticker { background: #f3f6fb; border: 2px dashed var(--line); border-radius: 18px; padding: 10px 6px; display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center; color: var(--muted); }
 .sticker b { font-size: 14px; line-height: 1.15; } .sticker small { font-size: 12px; font-weight: 700; }
@@ -242,10 +260,15 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .stick-say small { display: block; color: var(--muted); font-size: 13px; }
 .stick-say.locked { border-style: dashed; }
 .stick-say-pic { font-size: 30px; line-height: 1; flex: none; } .stick-say-pic .mascot { width: 34px; height: 34px; }
-.wotd { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; background: #fff8e1; border: 2px solid #f3d37a; border-radius: 18px; padding: 10px 14px; box-shadow: 0 4px 0 #f3d37a; }
+.wotd { background: #fff8e1; border: 2px solid #f3d37a; border-radius: 18px; box-shadow: 0 4px 0 #f3d37a; overflow: hidden; }
+.wotd-main { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; background: none; border: 0; padding: 10px 14px; font: inherit; color: inherit; }
+.wotd-say { margin-left: auto; flex: none; display: flex; flex-direction: column; align-items: center; gap: 2px; color: var(--flag-blue); font-weight: 800; }
+.wotd .wotd-say small { font-size: 11px; letter-spacing: 0; text-transform: none; color: #8a6400; white-space: nowrap; }
+.wotd.heard .wotd-say { color: var(--snow); background: var(--flag-green); border-radius: 12px; padding: 6px 10px; font-size: 13px; text-align: center; max-width: 92px; }
+.wotd-go { display: block; width: 100%; border: 0; border-top: 2px dashed #f3d37a; background: #fff3c4; padding: 8px 14px; font: inherit; font-weight: 800; color: #8a6400; text-align: right; }
 .wotd small { display: block; font-weight: 800; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 .wotd b { font-family: var(--display); font-size: 22px; } .wotd em { display: block; font-style: normal; font-weight: 700; color: var(--muted); font-size: 14px; }
-.wotd-pic { font-size: 34px; line-height: 1; flex: none; } .wotd-say { margin-left: auto; font-size: 22px; flex: none; }
+.wotd-pic { font-size: 34px; line-height: 1; flex: none; }
 .confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 50; }
 .confetti i { position: absolute; top: -30px; width: 10px; height: 14px; border-radius: 3px; font-style: normal; font-size: 22px; animation: fall linear forwards; }
 @keyframes fall { to { transform: translate(var(--x), 110vh) rotate(720deg); } }
@@ -326,10 +349,24 @@ span[data-say]:hover { background: rgba(47,111,214,.10); }
 <script src="audio-manifest.js"></script>
 <script>
 /* ---------- Saved progress (this browser only) ---------- */
-const KEY = "sajilo-nepali-v1";
+/* Players: each child on this device has their own stars, streak and stickers.
+   Player 1 keeps the original storage key, so progress saved before players existed is kept. */
+const PKEY = "sajilo-nepali-players";
+const AVATARS = ["🐼", "🐯", "🐘", "🦋", "🐰", "🦁", "🐸", "🐒"];
+const keyFor = id => id === "p1" ? "sajilo-nepali-v1" : "sajilo-nepali-" + id;
+function loadPlayers() {
+  try { const x = JSON.parse(localStorage.getItem(PKEY) || "null"); if (x && x.list && x.list.length) return x; } catch (e) {}
+  return { current: "p1", list: [{ id: "p1", name: "Player 1", avatar: "🐼" }] };
+}
+let PL = loadPlayers();
+if (!PL.list.some(x => x.id === PL.current)) PL.current = PL.list[0].id;
+const savePlayers = () => { try { localStorage.setItem(PKEY, JSON.stringify(PL)); } catch (e) {} };
+const me = () => PL.list.find(x => x.id === PL.current);
+let KEY = keyFor(PL.current);
 const defaults = { level: "little", romBy: { little: true, big: false }, sound: true, beeps: true, stars: {}, xp: 0, streak: 0, lastDay: "", freezes: 0 };
+const fresh = () => JSON.parse(JSON.stringify(defaults));
 let P = load();
-function load() { try { return Object.assign({}, defaults, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) { return { ...defaults }; } }
+function load() { try { return Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) { return fresh(); } }
 if (!P.romBy) P.romBy = { little: true, big: false };
 /* How each age level plays */
 const LEVELS = {
@@ -415,7 +452,9 @@ const neHTML = (ne, rom, key) => `${neSpan(ne, "ne", key)}<span class="rom">${es
 const isLabel = pic => /^(SUN|MON|TUE|WED|THU|FRI|SAT|\d+)$/.test(pic);
 const picHTML = (pic, size) => isLabel(pic) ? `<span class="pic-label">${esc(pic)}</span>` : `<span class="big"${size ? ` style="font-size:${size}px"` : ""}>${esc(pic)}</span>`;
 const visibleLessons = () => window.LESSONS.filter(l => !l.bigOnly || P.level === "big");
-const sayBtn = (key, cls = "") => canSay(key) && P.sound ? `<button class="say ${cls}" data-say="${esc(key)}" type="button" aria-label="Listen">🔊 <span>Listen</span></button>` : "";
+const SPEAKER = `<svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>`;
+const MUTED = `<svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><line x1="16" y1="9" x2="22" y2="15"/><line x1="22" y1="9" x2="16" y2="15"/></svg>`;
+const sayBtn = (key, cls = "") => canSay(key) && P.sound ? `<button class="say ${cls}" data-say="${esc(key)}" type="button" aria-label="Listen">${SPEAKER} <span>Listen</span></button>` : "";
 const itemKey = (l, it) => l.letters ? window.letterKey(it) : K(it.ne);
 window.LESSONS.forEach(l => (l.items || []).forEach(it => { if (l.letters) SPEECH[window.letterKey(it)] = window.letterSpeech(it); }));
 
@@ -485,7 +524,7 @@ function wordOfDay() {
   const pool = [];
   window.CHAPTERS.forEach(c => c.lessons.forEach(id => {
     const l = visibleLessons().find(x => x.id === id); if (!l) return;
-    (l.items || []).forEach(it => { if (typeof it.ne === "string" && !it.word && it.en && AUDIO[K(it.ne)]) pool.push({ it, c }); });
+    (l.items || []).forEach(it => { if (typeof it.ne === "string" && !it.word && it.en && AUDIO[K(it.ne)]) pool.push({ it, c, l }); });
   }));
   if (!pool.length) return null;
   let h = 0; for (const ch of today() + P.level) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
@@ -493,8 +532,11 @@ function wordOfDay() {
 }
 function wordOfDayHTML() {
   const w = wordOfDay(); if (!w) return "";
-  return `<button class="wotd" type="button" data-say="${esc(K(w.it.ne))}"><span class="wotd-pic" aria-hidden="true">${esc(w.it.pic || "💡")}</span>
-    <span><small>💡 Word of the day · ${esc(w.c.en)}</small><b lang="ne">${esc(w.it.ne)}</b> <span class="rom">${esc(w.it.rom)}</span><em>${esc(w.it.en)}</em></span><span class="wotd-say" aria-hidden="true">🔊</span></button>`;
+  const heard = P.wotdDay === today();
+  return `<div class="wotd${heard ? " heard" : ""}"><button class="wotd-main" type="button" id="wotdPlay" data-say="${esc(K(w.it.ne))}"><span class="wotd-pic" aria-hidden="true">${esc(w.it.pic || "💡")}</span>
+    <span><small>💡 Word of the day · ${esc(w.c.en)}</small><b lang="ne">${esc(w.it.ne)}</b> <span class="rom">${esc(w.it.rom)}</span><em>${esc(w.it.en)}</em></span>
+    <span class="wotd-say">${heard ? "✓ Heard today! +5 ⭐" : `${SPEAKER}<small>Tap for +5 ⭐</small>`}</span></button>
+    <button class="wotd-go" type="button" data-wotd-lesson="${esc(w.l.id)}">Practice “${esc(w.l.title)}” →</button></div>`;
 }
 function streakLine() {
   const n = liveStreak();
@@ -523,6 +565,33 @@ function stickersHTML() {
       <span class="sticker-pic">${x.got ? (x.pic === "PANDU" ? MASCOT : `<span lang="ne">${esc(x.pic)}</span>`) : "🔒"}</span>
       <b>${esc(x.name)}</b><small>${x.got ? (x.gold ? "★★★ Gold!" : "Won!") : esc(x.need)}</small></button>`).join("")}</div></div>`;
 }
+function playersHTML() {
+  const ed = S.playerEdit;   // null, "new", or a player id
+  const cur = ed && ed !== "new" ? PL.list.find(x => x.id === ed) : null;
+  const pick = ed ? (S.pickAvatar || (cur ? cur.avatar : AVATARS.find(a => !PL.list.some(x => x.avatar === a)) || AVATARS[0])) : "";
+  const form = ed ? `<div class="player-form">
+      <label for="playerName"><b>${ed === "new" ? "New player" : "Edit player"}</b></label>
+      <input id="playerName" maxlength="14" autocomplete="off" placeholder="Name" value="${esc(cur ? cur.name : "")}">
+      <div class="avatar-row" role="group" aria-label="Choose an animal">${AVATARS.map(a => `<button type="button" class="avatar${a === pick ? " on" : ""}" data-avatar="${a}" aria-pressed="${a === pick}">${a}</button>`).join("")}</div>
+      <div class="share-btns"><button class="chip primary" type="button" id="playerSave">Save</button><button class="chip" type="button" id="playerCancel">Cancel</button>
+      ${cur && cur.id !== "p1" ? `<button class="chip" type="button" id="playerDelete" data-id="${cur.id}">Remove</button>` : ""}</div></div>` : "";
+  return `<div class="sheet-back" id="playersBack"></div><div class="sheet players" role="dialog" aria-modal="true" aria-label="Who is playing?">
+    <button class="x sheet-x" type="button" id="playersClose" aria-label="Close">✕</button>
+    <div class="sheet-head"><div><strong>Who is playing?</strong></div></div>
+    <p class="note" style="text-align:left;margin:0">Each player has their own stars, streak and stickers on this device.</p>
+    <div class="player-list">${PL.list.map(x => {
+      let st = {}; try { st = x.id === PL.current ? P : JSON.parse(localStorage.getItem(keyFor(x.id)) || "{}"); } catch (e) {}
+      return `<div class="player-row${x.id === PL.current ? " on" : ""}"><button type="button" class="player-pick" data-player="${x.id}"><span class="player-av">${x.avatar}</span><b>${esc(x.name)}</b><small>⭐ ${st.xp || 0}</small>${x.id === PL.current ? "<em>Playing</em>" : ""}</button>
+        <button type="button" class="chip" data-edit-player="${x.id}" aria-label="Edit ${esc(x.name)}">✏️</button></div>`;
+    }).join("")}</div>
+    ${PL.list.length < 6 && !ed ? `<button class="chip" type="button" id="playerAdd">＋ Add a player</button>` : ""}
+    ${form}</div>`;
+}
+function switchPlayer(id) {
+  save(); PL.current = id; savePlayers(); KEY = keyFor(id); P = load();
+  if (!P.romBy) P.romBy = { little: true, big: false };
+  S.players = false; S.playerEdit = null; S.sheet = null; S.stickers = false; S.screen = "map"; render(); window.scrollTo(0, 0);
+}
 function orderedLessons() {
   const vis = new Set(visibleLessons().map(l => l.id));
   return window.CHAPTERS.flatMap(c => c.lessons).filter(id => vis.has(id)).map(id => window.LESSONS.find(l => l.id === id));
@@ -545,7 +614,7 @@ function renderMap() {
     const ls = c.lessons.filter(id => vis.has(id)).map(id => window.LESSONS.find(l => l.id === id));
     if (!ls.length) return "";
     const got = ls.reduce((a, l) => a + (P.stars[starKey(l.id)] || 0), 0);
-    return `<section class="chapter" aria-label="Chapter ${i + 1}: ${esc(c.en)}">
+    return `<section class="chapter" id="ch-${c.id}" aria-label="Chapter ${i + 1}: ${esc(c.en)}">
       <div class="chapter-banner" style="--c:${c.color}">
         <span><small>Chapter ${i + 1}</small>${neSpan(c.ne)} <span class="rom">${esc(c.rom)}</span><em>${esc(c.en)}</em></span>
         <span class="chapter-stars" aria-label="${got} of ${ls.length * 3} stars">★ ${got}/${ls.length * 3}</span>
@@ -554,6 +623,11 @@ function renderMap() {
       <nav class="trail">${ls.map(stone).join("")}</nav>
     </section>`;
   }).join("");
+  const jump = window.CHAPTERS.map((c, i) => {
+    const ls = c.lessons.filter(id => vis.has(id)); if (!ls.length) return "";
+    const done = ls.every(id => (P.stars[starKey(id)] || 0) > 0);
+    return `<button class="jump-pill${done ? " done" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}"><span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span> Ch ${i + 1}${done ? " ✓" : ""}</button>`;
+  }).join("");
   const pills = P.level === "big"
     ? ["❤️ 3 hearts", "4️⃣ 4 choices", "⌨️ Typing", "🧩 Sentences"]
     : ["🖼️ Big pictures", "👂 Listen", "✍️ Trace letters", "💛 No hearts"];
@@ -561,6 +635,7 @@ function renderMap() {
   $("#app").innerHTML = `
     <div class="top">
       <div class="brand">${MASCOT.replace('class="mascot"', 'class="mascot" style="width:44px;height:44px"')}<h1>Sajilo Nepali<small>${neSpan(window.PHRASES.brand, "", K(window.PHRASES.brand))} · easy Nepali</small></h1></div>
+      <button class="stat stat-btn player-pill" type="button" id="openPlayers" title="Change player"><span aria-hidden="true">${me().avatar}</span> ${esc(me().name)} ▾</button>
       <span class="stat" title="Days in a row">🔥 ${liveStreak()}</span>
       <span class="stat" title="Points">⭐ ${P.xp}</span>
       ${P.freezes ? `<span class="stat" title="Streak freezes: each one saves your streak if you miss a day">❄️ ${P.freezes}</span>` : ""}
@@ -573,17 +648,19 @@ function renderMap() {
       </div>
       <div class="toggles">
         <button class="icon-btn" type="button" id="tRom" aria-pressed="${romOn()}" title="Show how to say it" aria-label="How to say it ${romOn() ? "on" : "off"}">Aa<small>${romOn() ? "on" : "off"}</small></button>
-        <button class="icon-btn" type="button" id="tSound" aria-pressed="${P.sound}" title="Sound" aria-label="Sound ${P.sound ? "on" : "off"}"><span aria-hidden="true">${P.sound ? "🔊" : "🔇"}</span><small>sound ${P.sound ? "on" : "off"}</small></button>
+        <button class="icon-btn" type="button" id="tSound" aria-pressed="${P.sound}" title="Sound" aria-label="Sound ${P.sound ? "on" : "off"}">${P.sound ? SPEAKER : MUTED}<small>sound ${P.sound ? "on" : "off"}</small></button>
         <button class="icon-btn" type="button" id="tBeeps" aria-pressed="${P.beeps !== false}" title="Game beeps (voice clips stay on)" aria-label="Game beeps ${P.beeps !== false ? "on" : "off"}"><span aria-hidden="true">${P.beeps !== false ? "🎵" : "🔕"}</span><small>beeps ${P.beeps !== false ? "on" : "off"}</small></button>
       </div>
     </div>
     <div class="greet">${MASCOT}<div><p>${greeting()} I'm Pandu. ${streakLine()}</p>
       <div class="pills">${pills.map(x => `<span class="pill">${x}</span>`).join("")}</div></div></div>
     ${wordOfDayHTML()}
+    <nav class="jump" aria-label="Jump to a chapter">${jump}</nav>
     ${chapters}
     <div class="settings"><button class="chip" type="button" id="tReset">Start over</button></div>
     <p class="note">Progress is saved on this device only. No account needed.</p>
     ${S.stickers ? stickersHTML() : ""}
+    ${S.players ? playersHTML() : ""}
     ${sheetL ? `<div class="sheet-back" id="sheetBack"></div>
       <div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(sheetL.title)}">
         <button class="x sheet-x" type="button" id="sheetClose" aria-label="Close">✕</button>
@@ -618,7 +695,7 @@ function renderCards() {
     </button>
     <div class="card-nav">
       <button class="chip big" type="button" id="cardPrev" ${S.cardIdx ? "" : "disabled"} aria-label="Previous card">◀</button>
-      <button class="say" type="button" data-say="${esc(c.key)}">🔊 <span>Hear it</span></button>
+      <button class="say" type="button" data-say="${esc(c.key)}">${SPEAKER} <span>Hear it</span></button>
       <button class="chip big" type="button" id="cardNext" ${last ? "disabled" : ""} aria-label="Next card">▶</button>
     </div>
     <div class="feedback"><button class="go" type="button" id="cardsPlay">${last ? "🎮 I'm ready: play the game!" : "🎮 Play game"}</button></div>`;
@@ -915,12 +992,19 @@ function selectShare() { const el = $("#shareText"); if (!el) return; const r = 
 document.addEventListener("click", e => {
   if (e.target.id === "sheetBack") { S.sheet = null; render(); return; }
   if (e.target.id === "stickBack") { S.stickers = false; render(); return; }
+  if (e.target.id === "playersBack") { S.players = false; S.playerEdit = null; render(); return; }
   let t = e.target.closest("button, [data-say]"); if (!t) return;
   // Nepali text inside a button belongs to that button (lesson stones, answer options, tiles, cards).
   if (t.matches("span[data-say]") && t.closest("button")) t = t.closest("button");
   // Any tappable Nepali text (outside answer buttons) just plays its sound.
   if (t.matches("span[data-say]") && !t.closest(".opt, .tile, .card, .stone, .flashcard")) { say(t.dataset.say, t); return; }
-  if (t.matches("button.say, button.wotd")) { say(t.dataset.say, t); return; }
+  if (t.id === "wotdPlay") {
+    say(t.dataset.say, t);
+    if (P.wotdDay !== today()) { P.wotdDay = today(); P.xp += 5; save(); beep("good"); setTimeout(render, 150); }
+    return;
+  }
+  if (t.dataset.wotdLesson) { const l = window.LESSONS.find(x => x.id === t.dataset.wotdLesson); say(K(l.ne)); S.sheet = l.id; render(); return; }
+  if (t.matches("button.say")) { say(t.dataset.say, t); return; }
   if (t.dataset.lesson) { const l = window.LESSONS.find(x => x.id === t.dataset.lesson); say(K(l.ne)); S.sheet = l.id; render(); return; }
   if (t.id === "sheetClose") { S.sheet = null; render(); return; }
   if (t.id === "goCards") { openCards(S.sheet); return; }
@@ -953,12 +1037,47 @@ document.addEventListener("click", e => {
   if (t.id === "cardNext") { moveCard(1); return; }
   if (t.id === "cardsPlay") { startLesson(S.lesson.id); return; }
   if (t.dataset.flashsay) { if (t.dataset.swiped) { delete t.dataset.swiped; return; } say(t.dataset.flashsay, t); return; }
+  if (t.id === "openPlayers") { S.players = true; S.playerEdit = null; beep("tap"); render(); return; }
+  if (t.id === "playersClose") { S.players = false; S.playerEdit = null; render(); return; }
+  if (t.dataset.player) { if (t.dataset.player === PL.current) { S.players = false; render(); } else { beep("good"); switchPlayer(t.dataset.player); } return; }
+  if (t.id === "playerAdd") { S.playerEdit = "new"; S.pickAvatar = null; render(); setTimeout(() => $("#playerName") && $("#playerName").focus(), 50); return; }
+  if (t.dataset.editPlayer) { S.playerEdit = t.dataset.editPlayer; S.pickAvatar = null; render(); return; }
+  if (t.dataset.avatar) {
+    S.pickAvatar = t.dataset.avatar;
+    document.querySelectorAll(".avatar").forEach(a => { const on = a === t; a.classList.toggle("on", on); a.setAttribute("aria-pressed", on); });
+    beep("tap"); return;
+  }
+  if (t.id === "playerCancel") { S.playerEdit = null; render(); return; }
+  if (t.id === "playerSave") {
+    const av = $(".avatar.on").dataset.avatar;
+    let name = $("#playerName").value.trim().slice(0, 14);
+    if (S.playerEdit === "new") {
+      let n = 2; while (PL.list.some(x => x.id === "p" + n)) n++;
+      const id = "p" + n; PL.list.push({ id, name: name || "Player " + n, avatar: av }); savePlayers(); beep("good"); switchPlayer(id);
+    } else {
+      const x = PL.list.find(x => x.id === S.playerEdit); x.name = name || x.name; x.avatar = av; savePlayers(); S.playerEdit = null; render();
+    }
+    return;
+  }
+  if (t.id === "playerDelete") {
+    const id = t.dataset.id, x = PL.list.find(p => p.id === id);
+    if (!confirm(`Remove ${x.name} and all their stars?`)) return;
+    try { localStorage.removeItem(keyFor(id)); } catch (e) {}
+    PL.list = PL.list.filter(p => p.id !== id); S.playerEdit = null;
+    if (PL.current === id) { switchPlayer(PL.list[0].id); return; }
+    savePlayers(); render(); return;
+  }
+  if (t.dataset.jump) {
+    const el = document.getElementById("ch-" + t.dataset.jump);
+    if (el) el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+    beep("tap"); return;
+  }
   if (t.dataset.level) { P.level = t.dataset.level; save(); beep("tap"); render(); return; }
   if (t.id === "tRom") { P.romBy[P.level] = !romOn(); save(); render(); return; }
   if (t.id === "tBeeps") { P.beeps = P.beeps === false; save(); render(); beep("tap"); return; }
   if (t.id === "tSound") { P.sound = !P.sound; save(); render(); return; }
   if (t.id === "tReset") {
-    if (t.dataset.confirm) { P = { ...defaults, level: P.level }; save(); render(); }
+    if (t.dataset.confirm) { P = { ...fresh(), level: P.level }; save(); render(); }
     else { t.dataset.confirm = "1"; t.textContent = "Tap again to erase all stars"; }
     return;
   }

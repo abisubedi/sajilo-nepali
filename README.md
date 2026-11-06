@@ -13,12 +13,14 @@ A free, Duolingo-style web game that teaches kids aged 4–15 basic Nepali.
 - **Tap to hear:** every Nepali word, letter and sentence on screen can be tapped to hear it.
 - **Game features:** stars, points, hearts and a red panda mascot (Pandu) who greets kids by the time of day (शुभ प्रभात!).
 - **Daily streak + streak freeze:** play one lesson a day to grow your 🔥 streak. Every 7 days in a row earns a ❄️ streak freeze (keep up to 2), which saves the streak if one day is missed.
-- **Word of the day:** a banner under Pandu shows a new word every day. Tap it to hear it.
+- **Word of the day:** a banner under Pandu shows a new word every day. The first listen each day earns +5 ⭐, and "Practice →" opens the lesson the word comes from.
+- **Chapter jump bar:** a row of chapter pills (Ch 1 … Ch 8) stays at the top while scrolling. Tap one to jump to that chapter.
+- **Players:** brothers and sisters on one device can each have their own player (name + animal), with separate stars, streak and stickers. Tap the player pill in the top bar to switch or add players.
 - **Mero Stickers (मेरो स्टिकर):** finish every lesson in a chapter to win its sticker, and get ★★★ on all of them to make it gold. Tap 🏅 in the top bar to see the sticker book. Every sticker talks when tapped (stickers not won yet say "अझै बाँकी छ!").
 - **Celebration and sharing:** a 3-star lesson ends with confetti and a ready-made message to share or copy for family.
 - **Print flashcards:** in a lesson's sheet, "🖨️ Print flashcards for home" makes a cut-out sheet of picture cards.
 - **Sound settings:** 🔊 turns all sound on or off. 🎵 turns off only the game beeps and keeps the recorded voice.
-- **Privacy:** no accounts and no tracking. Progress is saved in the browser on the device being used.
+- **Privacy:** no accounts and no tracking. Progress (for each player) is saved in the browser on the device being used.
 
 ## Run it
 Open `public/index.html` in a browser. It's a single file with no build step.
