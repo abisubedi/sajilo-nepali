@@ -8,14 +8,14 @@ A free, Duolingo-style web game that teaches kids aged 4–15 basic Nepali.
 - **Privacy:** no accounts and no tracking. Progress is saved in the browser on the device being used.
 
 ## Run it
-Open `index.html` in a browser. It's a single file with no build step.
+Open `public/index.html` in a browser. It's a single file with no build step.
 
 ## Hosting
-Live at https://sajilo-nepali.pages.dev on Cloudflare Pages, which redeploys automatically on every push to `main`.
-Pages settings: framework preset **None**, build command **empty**, build output directory **empty** (repo root).
+Live at https://sajilo-nepali.subediabi.workers.dev on Cloudflare Workers, which redeploys automatically on every push to `main`.
+`wrangler.jsonc` publishes only the `public/` folder.
 
 ## Edit the words
-All the content is in the `LESSONS` list near the top of the `<script>` in `index.html`.
+All the content is in the `LESSONS` list near the top of the `<script>` in `public/index.html`.
 Each word has `ne` (Nepali), `rom` (how to say it), `en` (English) and `pic` (an emoji picture).
 Please have a native speaker review any new content.
 
