@@ -487,5 +487,6 @@ window.AUDIO = {
  "मसँग": "audio/95d6d3ee21.mp3?v=57cc1624",
  "नयाँ": "audio/71469f6117.mp3?v=c3b46eca",
  "तिमीसँग": "audio/e1b0b40f98.mp3?v=7719b8b5",
- "के": "audio/480f0e4f07.mp3?v=18b155a6"
+ "के": "audio/480f0e4f07.mp3?v=18b155a6",
+ "नमस्ते मेरो नाम अबी सुवेदी हो सजिलो नेपालीमा स्वागत छ": "audio/9affc49cd4.mp3?v=e4eeafe7"
 };

@@ -28,6 +28,10 @@ A free, Duolingo-style web game that teaches kids aged 4–15 basic Nepali.
 - **Works offline and installs like an app:** after the first visit the game keeps working without internet. On iPhone/iPad use Safari → Share → Add to Home Screen; on Android, Chrome offers "Install app".
 - **Privacy:** no accounts and no tracking. Progress (for each player) is saved in the browser on the device being used.
 
+## Credits
+
+Created, coded and voiced by **Abi Subedi (अबी सुवेदी)** in Pittsburgh, Pennsylvania. Every Nepali word in the game uses Abi's voice. Tap Abi's name at the bottom of the map to hear a hello.
+
 ## Run it
 Open `public/index.html` in a browser. It's a single file with no build step.
 

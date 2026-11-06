@@ -233,7 +233,7 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .ctx { display: inline-block; background: #fff5d6; border: 2px solid #f3d37a; border-radius: 12px; padding: 4px 12px; font-weight: 800; font-size: 15px; color: var(--ink); }
 /* stickers */
 .stat-btn { cursor: pointer; font: inherit; font-weight: 800; color: var(--ink); }
-.player-pill { max-width: 46vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block; }
+.player-pill { margin-left: auto; max-width: 46vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block; }
 .player-list { display: flex; flex-direction: column; gap: 8px; }
 .player-row { display: flex; gap: 8px; align-items: center; }
 .player-pick { flex: 1; display: flex; align-items: center; gap: 10px; background: var(--snow); border: 2px solid var(--line); border-radius: 16px; padding: 8px 12px; font: inherit; color: var(--ink); text-align: left; }
@@ -246,6 +246,20 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .avatar { font-size: 28px; width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--line); background: var(--snow); }
 .avatar.on { border: 3px solid var(--flag-blue); background: #e8f0fd; }
 .ico { flex: none; vertical-align: middle; }
+/* Top bar: logo + player on the first row, all stats together on one row that never wraps */
+.stats { display: flex; gap: 12px; flex-wrap: nowrap; align-items: center; }
+@media (max-width: 640px) { .stats { flex: 1 1 100%; } }
+@media (max-width: 440px) { .top { gap: 6px; } .stats { gap: 6px; } .stat { padding: 4px 9px; font-size: 14px; } }
+@media (max-width: 360px) { .stat { padding: 3px 7px; font-size: 13px; } .player-pill { max-width: 38vw; } }
+@media (max-width: 400px) { .levels-row { flex-wrap: wrap; } .toggles { flex: 1 1 100%; } .icon-btn { flex: 1; flex-direction: row; gap: 6px; padding: 8px 6px; } }
+/* Creator & voice credit */
+.credit-card { margin-top: 10px; background: var(--snow); border: 2px solid var(--line); border-radius: 20px; padding: 14px 18px; text-align: center; font-size: 14px; color: var(--muted); line-height: 1.5; align-self: center; width: 100%; max-width: 520px; box-sizing: border-box; box-shadow: 0 4px 0 var(--line); }
+.credit-card .voice-badge { display: inline-flex; align-items: center; gap: 5px; background: #eaf2ff; color: var(--flag-blue); font-weight: 800; font-size: 12px; padding: 3px 12px; border-radius: 999px; margin-bottom: 6px; }
+.credit-card .creator-btn { display: inline-flex; align-items: center; gap: 5px; background: #fff5d6; border: 1.5px solid var(--flag-yellow); color: var(--ink); font-weight: 800; font-size: 14px; padding: 2px 10px; border-radius: 999px; margin: 2px 0; box-shadow: none; transition: transform .12s, background .15s; }
+.credit-card .creator-btn .ico { width: 15px; height: 15px; }
+.credit-card .creator-btn:active { transform: scale(.96); }
+.credit-card .creator-btn.playing { background: #ffe9a8; }
+.credit-card .creator-sub { display: block; font-size: 13px; margin-top: 4px; }
 .grownups { border-top: 2px dashed var(--line); padding-top: 12px; display: flex; flex-direction: column; gap: 8px; }
 .grownups h3 { margin: 0; font-size: 15px; color: var(--muted); text-align: center; }
 .grownups .settings { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
@@ -688,10 +702,12 @@ function renderMap() {
     <div class="top">
       <div class="brand">${MASCOT.replace('class="mascot"', 'class="mascot" style="width:44px;height:44px"')}<h1>Sajilo Nepali<small>${neSpan(window.PHRASES.brand, "", K(window.PHRASES.brand))} · easy Nepali</small></h1></div>
       <button class="stat stat-btn player-pill" type="button" id="openPlayers" title="Change player"><span aria-hidden="true">${me().avatar}</span> ${esc(me().name)} ▾</button>
+      <div class="stats">
       <span class="stat" title="Days in a row">🔥 ${liveStreak()}</span>
       <span class="stat" title="Points">⭐ ${P.xp}</span>
       ${P.freezes ? `<span class="stat" title="Streak freezes: each one saves your streak if you miss a day">❄️ ${P.freezes}</span>` : ""}
       <button class="stat stat-btn" type="button" id="openStickers" title="My stickers">🏅 ${stickerState().filter(x => x.got).length}</button>
+      </div>
     </div>
     <div class="levels-row">
       <div class="levels" role="group" aria-label="Choose a level">
@@ -721,6 +737,14 @@ function renderMap() {
       </div>
     </section>
     <p class="note">Progress is saved on this device only (no account needed). Use a save code to move it to another device.</p>
+    <footer class="credit-card">
+      <span class="voice-badge">🎙️ 100% Real Human Voice</span><br>
+      Created, coded &amp; voiced with ❤️ by
+      <button type="button" class="say creator-btn" data-say="${esc(K(window.CREDIT_INTRO.ne))}" title="Tap to hear Abi say hello!" aria-label="Abi Subedi. Tap to hear Abi say hello">
+        <strong>Abi Subedi</strong> <span lang="ne">(अबी सुवेदी)</span>${SPEAKER}
+      </button>
+      <span class="creator-sub">📍 Built at home in <strong>Pittsburgh, Pennsylvania</strong> to help kids everywhere speak everyday Nepali with their families.</span>
+    </footer>
     ${S.stickers ? stickersHTML() : ""}
     ${S.players ? playersHTML() : ""}
     ${S.grown ? grownHTML() : ""}

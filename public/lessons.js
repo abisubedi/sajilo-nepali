@@ -476,6 +476,8 @@ window.CHEERS = [["स्याबास!", "syabaas!", "Well done!"], ["रा�
 // What each sticker says when tapped (Pandu's sticker, and any sticker not won yet).
 window.STICKER_PANDU = { ne: "नमस्ते साथी! म पाण्डु हुँ।", rom: "namaste saathi! ma Pandu hun.", en: "Hello friend! I'm Pandu." };
 window.STICKER_LOCKED = { ne: "अझै बाँकी छ!", rom: "ajhai baanki chha!", en: "Not yet! Keep playing to win me." };
+// Tapping the creator's name in the footer plays this greeting.
+window.CREDIT_INTRO = { ne: "नमस्ते! मेरो नाम अबी सुवेदी हो। सजिलो नेपालीमा स्वागत छ!", rom: "namaste! mero naam Abi Subedi ho. sajilo nepaalima swaagat chha!", en: "Hello! My name is Abi Subedi. Welcome to Sajilo Nepali!" };
 window.PHRASES = { hello: "नमस्ते!", morning: "शुभ प्रभात!", night: "शुभ रात्रि!", stickers: "मेरो स्टिकर", brand: "सजिलो नेपाली", tryAgain: "फेरि प्रयास गरौँ!", wellDone: "स्याबास!" };
 
 /* What to say for a piece of Nepali text. Letters say the letter, then their example word. */
