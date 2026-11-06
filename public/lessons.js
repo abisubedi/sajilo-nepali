@@ -441,9 +441,9 @@ window.LESSONS = [
 
 /* The map groups lessons into chapters, in this order. */
 window.CHAPTERS = [
-  { id: "home", ne: "मेरो घर", rom: "mero ghar", en: "Around the home", color: "var(--panda)", sticker: { pic: "🏡", name: "Home Hero", say: { ne: "तिमी घरको हिरो हौ!", rom: "timi gharko hiro hau!", en: "You're the home hero!" } }, lessons: ["greet", "respect-family", "kitchen-tummy", "daily-routines", "house-objects", "rooms-house", "home-sentences"] },
+  { id: "home", ne: "मेरो घर", rom: "mero ghar", en: "Around the home", color: "var(--panda)", sticker: { pic: "🏡", img: "img/st-home.webp", name: "Home Hero", say: { ne: "तिमी घरको हिरो हौ!", rom: "timi gharko hiro hau!", en: "You're the home hero!" } }, lessons: ["greet", "respect-family", "kitchen-tummy", "daily-routines", "house-objects", "rooms-house", "home-sentences"] },
   { id: "me", ne: "म र मेरो शरीर", rom: "ma ra mero shareer", en: "All about me", color: "var(--flag-yellow)", sticker: { pic: "😊", img: "img/st-me.webp", name: "All About Me", say: { ne: "तिमी धेरै बाठो छौ!", rom: "timi dherai baatho chhau!", en: "You're so clever!" } }, lessons: ["body", "feelings-needs", "clothes", "what-i-have"] },
-  { id: "play", ne: "खेल र बाहिर", rom: "khel ra baahira", en: "Play & outside", color: "var(--flag-green)", sticker: { pic: "⚽", name: "Play Champ", say: { ne: "खेलमा तिमी च्याम्पियन!", rom: "khelma timi chyaampiyan!", en: "You're a play champion!" } }, lessons: ["playtime-verbs", "helping-verbs", "sports-outdoors", "weather-nature", "colours", "opposites", "play-sentences"] },
+  { id: "play", ne: "खेल र बाहिर", rom: "khel ra baahira", en: "Play & outside", color: "var(--flag-green)", sticker: { pic: "⚽", img: "img/st-play.webp", name: "Play Champ", say: { ne: "खेलमा तिमी च्याम्पियन!", rom: "khelma timi chyaampiyan!", en: "You're a play champion!" } }, lessons: ["playtime-verbs", "helping-verbs", "sports-outdoors", "weather-nature", "colours", "opposites", "play-sentences"] },
   { id: "culture", ne: "हाम्रो संस्कृति", rom: "haamro sanskriti", en: "Nepali culture & time", color: "var(--flag-red)", sticker: { pic: "🪔", name: "Festival Star", say: { ne: "तिमी चाडपर्वको तारा हौ!", rom: "timi chaadparvako taara hau!", en: "You're a festival star!" } }, lessons: ["festivals-culture", "nepali-treats", "time-of-day", "days", "question-words", "culture-sentences"] },
   { id: "nature", ne: "प्रकृति र यात्रा", rom: "prakriti ra yaatra", en: "Nature & travel", color: "var(--flag-green)", sticker: { pic: "🐘", img: "img/st-explorer.webp", name: "Explorer", say: { ne: "वाह! तिमी साहसी यात्री हौ!", rom: "waah! timi saahasi yaatri hau!", en: "Wow, you're a brave explorer!" } }, lessons: ["animals", "birds-bugs", "vehicles-travel", "travel-sentences"] },
   { id: "school", ne: "स्कूल र गन्ती", rom: "skul ra ganti", en: "School & counting", color: "var(--flag-blue)", sticker: { pic: "🎒", img: "img/st-school.webp", name: "School Star", say: { ne: "तिमी स्कूलको तारा हौ!", rom: "timi skulko taara hau!", en: "You're a school star!" } }, lessons: ["num", "school-supplies", "fruits-snacks", "numbers-11-20"] },
@@ -476,9 +476,9 @@ window.CHEERS = [["स्याबास!", "syabaas!", "Well done!"], ["रा�
 // What each sticker says when tapped (Pandu's sticker, and any sticker not won yet).
 window.STICKER_PANDU_IMG = "img/st-pandu.webp";
 // Player animals with artwork (others use the emoji).
-window.AVATAR_IMG = { "🐘": "img/av-elephant.webp", "🦏": "img/av-rhino.webp", "🦚": "img/av-danphe.webp", "🐃": "img/av-yak.webp", "🐒": "img/av-monkey.webp" };
+window.AVATAR_IMG = { "🐘": "img/av-elephant.webp", "🦏": "img/av-rhino.webp", "🦚": "img/av-danphe.webp", "🐃": "img/av-yak.webp", "🐒": "img/av-monkey.webp", "🐯": "img/av-tiger.webp", "🐆": "img/av-snowleopard.webp" };
 // Pandu's poses (any pose without a picture yet falls back to the drawn Pandu).
-window.PANDU_IMG = { wave: "img/pandu-wave.webp", listen: "img/pandu-listen.webp", think: "img/pandu-think.webp", oops: "img/pandu-oops.webp", sleep: "img/pandu-sleep.webp" };
+window.PANDU_IMG = { wave: "img/pandu-wave.webp", listen: "img/pandu-listen.webp", think: "img/pandu-think.webp", oops: "img/pandu-oops.webp", sleep: "img/pandu-sleep.webp", cheer: "img/pandu-cheer.webp" };
 window.STICKER_PANDU = { ne: "नमस्ते साथी! म पाण्डु हुँ।", rom: "namaste saathi! ma Pandu hun.", en: "Hello friend! I'm Pandu." };
 window.STICKER_LOCKED = { ne: "अझै बाँकी छ!", rom: "ajhai baanki chha!", en: "Not yet! Keep playing to win me." };
 // Tapping the creator's name in the footer plays this greeting.
