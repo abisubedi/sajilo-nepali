@@ -468,6 +468,7 @@ const S = { screen: "map", lesson: null, queue: [], done: 0, total: 0, hearts: 3
 
 function render() {
   document.body.classList.toggle("hide-rom", !romOn()); document.body.classList.toggle("lv-big", P.level === "big");
+  if (S.screen !== "done") document.querySelectorAll(".confetti").forEach(c => c.remove());
   if (S.screen === "map") renderMap();
   else if (S.screen === "lesson") renderQuestion();
   else if (S.screen === "cards") renderCards();

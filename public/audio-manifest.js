@@ -476,5 +476,16 @@ window.AUDIO = {
  "आँगन": "audio/c8aee38189.mp3?v=1ece3f9f",
  "बाथरूम": "audio/c92c1879fb.mp3?v=0c460329",
  "बैठक कोठा": "audio/0ea753ae79.mp3?v=a17c3d74",
- "घरका कोठाहरू": "audio/ef86db86a2.mp3?v=3271de57"
+ "घरका कोठाहरू": "audio/ef86db86a2.mp3?v=3271de57",
+ "मसँग झोला छ": "audio/dd35166fc9.mp3?v=3511b6cf",
+ "मसँग किताब छ": "audio/e03c5e8e86.mp3?v=06977bc9",
+ "मसँग रातो कलम छ": "audio/8c6468ad86.mp3?v=c5381116",
+ "मसँग नयाँ खेलौना छ": "audio/5587abae7f.mp3?v=393a14ce",
+ "मसँग चस्मा छैन": "audio/e4ba918f53.mp3?v=5742393f",
+ "तिमीसँग के छ": "audio/abc1cb0f19.mp3?v=5ff6fa04",
+ "मसँग के छ": "audio/72e1d9cce5.mp3?v=07fe4db7",
+ "मसँग": "audio/95d6d3ee21.mp3?v=57cc1624",
+ "नयाँ": "audio/71469f6117.mp3?v=c3b46eca",
+ "तिमीसँग": "audio/e1b0b40f98.mp3?v=7719b8b5",
+ "के": "audio/480f0e4f07.mp3?v=18b155a6"
 };
