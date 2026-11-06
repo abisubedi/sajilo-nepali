@@ -335,7 +335,7 @@ const K = t => window.audioKey(t);
 // Clickable Nepali text: tap it to hear it.
 const neSpan = (text, cls = "ne", key = K(text)) => `<span class="${cls}" lang="ne" data-say="${esc(key)}" title="Tap to hear">${esc(text)}</span>`;
 const neHTML = (ne, rom, key) => `${neSpan(ne, "ne", key)}<span class="rom">${esc(rom)}</span>`;
-const isLabel = pic => /^(SUN|MON|TUE|WED|THU|FRI|SAT)$/.test(pic);
+const isLabel = pic => /^(SUN|MON|TUE|WED|THU|FRI|SAT|\d+)$/.test(pic);
 const picHTML = (pic, size) => isLabel(pic) ? `<span class="pic-label">${esc(pic)}</span>` : `<span class="big"${size ? ` style="font-size:${size}px"` : ""}>${esc(pic)}</span>`;
 const visibleLessons = () => window.LESSONS.filter(l => !l.bigOnly || P.level === "big");
 const sayBtn = (key, cls = "") => canSay(key) && P.sound ? `<button class="say ${cls}" data-say="${esc(key)}" type="button" aria-label="Listen">🔊 <span>Listen</span></button>` : "";
