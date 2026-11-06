@@ -20,7 +20,7 @@ for d, _, names in os.walk(PUBLIC):
 
 os.makedirs(DIST, exist_ok=True)
 with open(os.path.join(DIST, "worker.js"), "w") as f:
-    f.write("const FILES = " + json.dumps(files) + """;
+    f.write("const FILES = " + json.dumps(files) + r""";
 const cache = {};
 function bytes(b64) { if (!cache[b64]) { const s = atob(b64); const u = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); cache[b64] = u; } return cache[b64]; }
 export default {
@@ -30,7 +30,17 @@ export default {
     const f = FILES[path];
     if (!f) return new Response("Not found", { status: 404, headers: { "content-type": "text/plain" } });
     const long = path.startsWith("/audio/");
-    return new Response(bytes(f[1]), { headers: { "content-type": f[0], "cache-control": long ? "public, max-age=604800" : "public, max-age=60", "x-content-type-options": "nosniff" } });
+    const body = bytes(f[1]);
+    const headers = { "content-type": f[0], "accept-ranges": "bytes", "cache-control": long ? "public, max-age=604800" : "public, max-age=60", "x-content-type-options": "nosniff" };
+    // Safari needs byte-range responses to play audio.
+    const m = /^bytes=(\d*)-(\d*)$/.exec(request.headers.get("range") || "");
+    if (m) {
+      let start = m[1] === "" ? Math.max(0, body.length - Number(m[2])) : Number(m[1]);
+      let end = m[1] !== "" && m[2] !== "" ? Math.min(Number(m[2]), body.length - 1) : body.length - 1;
+      if (start >= body.length || start > end) return new Response(null, { status: 416, headers: { ...headers, "content-range": `bytes */${body.length}` } });
+      return new Response(request.method === "HEAD" ? null : body.slice(start, end + 1), { status: 206, headers: { ...headers, "content-range": `bytes ${start}-${end}/${body.length}`, "content-length": String(end - start + 1) } });
+    }
+    return new Response(request.method === "HEAD" ? null : body, { headers: { ...headers, "content-length": String(body.length) } });
   }
 };
 """)

@@ -231,16 +231,19 @@ function pickVoice() {
 }
 try { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; } catch (e) {}
 const canSay = key => !!AUDIO[key] || !!voice;
-let current = null, lastEl = null;
+let current = null, lastEl = null, player = null;
 function say(key, el) {
   if (!P.sound || !key) return;
   if (lastEl) lastEl.classList.remove("playing");
   if (el) { el.classList.add("playing"); lastEl = el; }
   const done = () => { if (el) el.classList.remove("playing"); };
-  try { if (current) { current.pause(); current = null; } speechSynthesis && speechSynthesis.cancel(); } catch (e) {}
+  try { if (current) current.pause(); if (window.speechSynthesis && speechSynthesis.speaking) speechSynthesis.cancel(); } catch (e) {}
   if (AUDIO[key]) {
-    const a = new Audio(AUDIO[key]); current = a; a.onended = done; a.onerror = done;
-    a.play().catch(done); return;
+    // One shared player: iPhones only allow sound from a player the child has already tapped.
+    const a = player || (player = new Audio());
+    a.onended = done; a.onerror = done; a.src = AUDIO[key]; current = a;
+    try { a.currentTime = 0; } catch (e) {}
+    const pr = a.play(); if (pr) pr.catch(done); return;
   }
   if (!voice) { setTimeout(done, 300); return; }
   try {
