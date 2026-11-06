@@ -18,7 +18,7 @@ A free, Duolingo-style web game that teaches kids aged 4–15 basic Nepali.
 Open `public/index.html` in a browser. It's a single file with no build step.
 
 ## Hosting
-Live at https://sajilo-nepali.subediabi.workers.dev on Cloudflare Workers, which redeploys automatically on every push to `main`.
+Live at https://sajilonepali.app (also https://sajilo-nepali.subediabi.workers.dev) on Cloudflare Workers, which redeploys automatically on every push to `main`.
 `wrangler.jsonc` publishes only the `public/` folder.
 
 ### Making an update

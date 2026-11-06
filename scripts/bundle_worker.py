@@ -45,5 +45,9 @@ export default {
 };
 """)
 with open(os.path.join(DIST, "wrangler.jsonc"), "w") as f:
-    f.write('{ "name": "sajilo-nepali", "main": "worker.js", "compatibility_date": "2026-11-04" }\n')
+    # Custom domains are listed here so a deploy keeps them connected.
+    f.write(json.dumps({"name": "sajilo-nepali", "main": "worker.js", "compatibility_date": "2026-11-04",
+                        "workers_dev": True,
+                        "routes": [{"pattern": "sajilonepali.app", "custom_domain": True},
+                                   {"pattern": "www.sajilonepali.app", "custom_domain": True}]}, indent=2) + "\n")
 print(f"Bundled {len(files)} files into dist/worker.js")
