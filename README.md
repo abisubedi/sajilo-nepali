@@ -14,6 +14,13 @@ Open `public/index.html` in a browser. It's a single file with no build step.
 Live at https://sajilo-nepali.subediabi.workers.dev on Cloudflare Workers, which redeploys automatically on every push to `main`.
 `wrangler.jsonc` publishes only the `public/` folder.
 
+### Making an update
+1. Edit `public/index.html`. Anything outside `public/` is never published.
+2. Commit and push to `main`.
+3. Cloudflare builds and deploys within about a minute (Worker → **Deployments**).
+
+If a push doesn't deploy, check the Worker's **Settings → Build**: the Git repository should be `abisubedi/sajilo-nepali`, the branch `main`, the build command empty and the deploy command `npx wrangler deploy`. Also check that the **Cloudflare Workers and Pages** GitHub app has access to this repo (GitHub → Settings → Applications). As a fallback, use **Retry build** on the latest build.
+
 ## Edit the words
 All the content is in the `LESSONS` list near the top of the `<script>` in `public/index.html`.
 Each word has `ne` (Nepali), `rom` (how to say it), `en` (English) and `pic` (an emoji picture).
