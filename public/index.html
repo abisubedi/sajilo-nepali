@@ -98,6 +98,9 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .jump-pill { flex: none; border: 2px solid var(--line); background: var(--snow); border-radius: 999px; padding: 6px 12px; font: inherit; font-weight: 800; font-size: 14px; color: var(--ink); white-space: nowrap; box-shadow: 0 3px 0 var(--line); }
 .jump-pill span { font-family: var(--display); }
 .jump-pill.done { border-color: #f3d37a; background: #fff8e1; }
+.jump-pill { display: inline-flex; align-items: center; gap: 6px; }
+.jump-pill img { width: 24px; height: 24px; object-fit: contain; margin: -3px 0; }
+.jump-pill.here { border-color: var(--c, var(--flag-blue)); box-shadow: 0 3px 0 var(--c, var(--flag-blue)); }
 .chapter-banner { background: var(--snow); border: 2px solid var(--line); border-left: 8px solid var(--c, var(--flag-blue)); border-radius: 16px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 .chapter-banner small { display: block; font-weight: 800; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .chapter-banner .ne { font-family: var(--display); font-size: 22px; font-weight: 800; }
@@ -192,6 +195,12 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .opt.right { animation: pop .3s; }
 
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+@media (max-width: 480px) {
+  .stone { gap: 10px; padding-right: 12px; max-width: 100%; }
+  .stone:nth-child(even) { padding-left: 12px; }
+  .stone::after { width: 30px; height: 30px; font-size: 12px; }
+  .stone .label strong { font-size: 19px; }
+}
 @media (max-width: 400px) {
   .disc { width: 70px; height: 70px; font-size: 32px; }
   .stone { width: 92%; }
@@ -271,8 +280,8 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .wpic { width: 1.5em; height: 1.5em; object-fit: contain; display: block; }
 .wotd-pic .wpic { width: 52px; height: 52px; }
 .pc-pic .wpic { width: 1.4em; height: 1.4em; margin: 0 auto; }
-.disc .li-art { width: 86%; height: 86%; object-fit: contain; }
-.disc:has(.li-art) { background: var(--snow); border: 3px solid var(--c, var(--flag-blue)); box-sizing: border-box; }
+.disc .li-art { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+.disc:has(.li-art) { background: var(--snow); border: 3px solid var(--c, var(--flag-blue)); box-sizing: border-box; padding: 2px; overflow: hidden; }
 /* Pandu artwork + gentle motion */
 .pandu-art { object-fit: contain; }
 .brand .brand-pandu { width: 48px; height: 48px; }
@@ -767,10 +776,13 @@ function renderMap() {
       <nav class="trail">${ls.map(stone).join("")}</nav>
     </section>`;
   }).join("");
+  let hereSet = false;
   const jump = window.CHAPTERS.map((c, i) => {
     const ls = c.lessons.filter(id => vis.has(id)); if (!ls.length) return "";
     const done = ls.every(id => (P.stars[starKey(id)] || 0) > 0);
-    return `<button class="jump-pill${done ? " done" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}"><span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span> Ch ${i + 1}${done ? " ✓" : ""}</button>`;
+    const here = !done && !hereSet && (hereSet = true);
+    const art = c.sticker.img && (window.IMG || {})[c.sticker.img.replace(/^img\/|\.webp$/g, "")];
+    return `<button class="jump-pill${done ? " done" : ""}${here ? " here" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}" style="--c:${c.color}">${art ? `<img src="${art}" alt="" draggable="false">` : `<span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span>`} Ch ${i + 1}${done ? " ✓" : ""}</button>`;
   }).join("");
   const pills = P.level === "big"
     ? ["💛 No hearts", "4️⃣ 4 choices", "⌨️ Typing", "🧩 Sentences"]
