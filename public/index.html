@@ -43,7 +43,7 @@
   --panda: #e8742a;
   --line: #cfdcef;
   --good-bg: #e2f7e8;
-  --bad-bg: #fde7e5;
+  --bad-bg: #fff4d6;
   --display: "Baloo 2", "Noto Sans Devanagari", system-ui, sans-serif;
   --body: "Nunito", "Baloo 2", system-ui, sans-serif;
   color-scheme: light;
@@ -158,7 +158,7 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .opt .en { font-weight: 800; }
 .opt.sel { border-color: var(--flag-blue); background: #e6efff; box-shadow: 0 4px 0 var(--flag-blue); }
 .opt.right { border-color: var(--flag-green); background: var(--good-bg); box-shadow: 0 4px 0 var(--flag-green); }
-.opt.wrong { border-color: var(--flag-red); background: var(--bad-bg); box-shadow: 0 4px 0 var(--flag-red); }
+.opt.wrong { border-color: var(--flag-yellow); background: var(--bad-bg); box-shadow: 0 4px 0 #d99a0b; }
 .opt.gone { visibility: hidden; }
 .opt[disabled] { cursor: default; }
 
@@ -175,12 +175,12 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 
 .feedback { position: sticky; bottom: 0; margin: 0 -16px -40px; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 10px; background: var(--sky); border-top: 2px solid var(--line); }
 .feedback.good { background: var(--good-bg); border-color: var(--flag-green); }
-.feedback.bad { background: var(--bad-bg); border-color: var(--flag-red); }
+.feedback.bad { background: var(--bad-bg); border-color: var(--flag-yellow); }
 .feedback p { margin: 0; font-weight: 800; font-size: 19px; }
 .feedback .sol { font-weight: 700; font-size: 17px; }
 .go { border: 0; border-radius: 16px; padding: 14px; font-weight: 800; font-size: 19px; background: var(--flag-green); color: var(--snow); box-shadow: 0 5px 0 #1f7a40; width: 100%; }
 .go[disabled] { background: #c9d3e3; box-shadow: 0 5px 0 #aab6c9; cursor: not-allowed; }
-.feedback.bad .go { background: var(--flag-red); box-shadow: 0 5px 0 #a8271f; }
+.feedback.bad .go { background: var(--flag-blue); box-shadow: 0 5px 0 #1f4f9e; }
 
 .done { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; padding-top: 20px; }
 .done h2 { font-family: var(--display); font-size: 34px; margin: 0; line-height: 1.1; }
@@ -190,7 +190,7 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 @keyframes pop { 0% { transform: scale(.9); } 60% { transform: scale(1.05); } 100% { transform: scale(1); } }
 @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
 .opt.right { animation: pop .3s; }
-.opt.wrong { animation: shake .3s; }
+
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 @media (max-width: 400px) {
   .disc { width: 70px; height: 70px; font-size: 32px; }
@@ -430,7 +430,7 @@ if (!P.romBy) P.romBy = { little: true, big: false };
 /* How each age level plays */
 const LEVELS = {
   little: { name: "Little learners", ages: "4–7", options: 3, questions: 6, hearts: 0, mascot: "Tap the pictures and listen. There's no wrong way to play!" },
-  big: { name: "Big learners", ages: "8–15", options: 4, questions: 12, hearts: 3, mascot: "Challenge mode: 12 questions, 3 hearts, typing and sentences. How far can you go?" },
+  big: { name: "Big learners", ages: "8–15", options: 4, questions: 12, hearts: 0, mascot: "Challenge mode: 12 questions, typing and sentences. Missed words come back for another go." },
 };
 const LV = () => LEVELS[P.level];
 const romOn = () => !!P.romBy[P.level];
@@ -488,10 +488,10 @@ function beep(kind) {
   if (!P.sound || P.beeps === false) return;
   try {
     actx = actx || new (window.AudioContext || window.webkitAudioContext)();
-    const notes = kind === "good" ? [660, 880] : kind === "bad" ? [220, 180] : [520];
+    const notes = kind === "good" ? [660, 880] : kind === "bad" ? [392, 330] : [520];
     notes.forEach((f, i) => {
       const o = actx.createOscillator(), g = actx.createGain();
-      o.type = kind === "bad" ? "sawtooth" : "triangle"; o.frequency.value = f;
+      o.type = kind === "bad" ? "sine" : "triangle"; o.frequency.value = f;
       const t = actx.currentTime + i * .11, peak = kind === "bad" ? .1 : kind === "tap" ? .08 : .22;
       g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + .16);
       o.connect(g).connect(actx.destination); o.start(t); o.stop(t + .18);
@@ -633,7 +633,7 @@ function streakLine() {
   const n = liveStreak();
   if (!n) return "Tap any Nepali word to hear it.";
   if (P.lastDay === today()) return `🔥 ${n} day${n > 1 ? "s" : ""} in a row! See you tomorrow.`;
-  return `Play one lesson today to keep your 🔥 ${n}-day streak!`;
+  return `Welcome back! You\'ve played ${n} day${n > 1 ? "s" : ""} in a row. 🔥`;
 }
 function stickerState() {
   const vis = new Set(visibleLessons().map(l => l.id));
@@ -773,7 +773,7 @@ function renderMap() {
     return `<button class="jump-pill${done ? " done" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}"><span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span> Ch ${i + 1}${done ? " ✓" : ""}</button>`;
   }).join("");
   const pills = P.level === "big"
-    ? ["❤️ 3 hearts", "4️⃣ 4 choices", "⌨️ Typing", "🧩 Sentences"]
+    ? ["💛 No hearts", "4️⃣ 4 choices", "⌨️ Typing", "🧩 Sentences"]
     : ["🖼️ Big pictures", "👂 Listen", "✍️ Trace letters", "💛 No hearts"];
   const sheetL = S.sheet && window.LESSONS.find(l => l.id === S.sheet);
   $("#app").innerHTML = `
@@ -890,7 +890,7 @@ function startLesson(id) {
 function lessonTop() {
   return `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Leave lesson">✕</button>
     <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${S.total}" aria-valuenow="${S.done}"><i style="width:${(S.done / S.total) * 100}%"></i></div>
-    ${S.hearts === Infinity ? `<span class="hearts" style="color:var(--flag-yellow)" aria-label="Practice mode, no hearts">⭐ practice</span>` : `<span class="hearts" aria-label="${S.hearts} hearts left">❤️ ${S.hearts}</span>`}</div>`;
+    ${S.hearts === Infinity ? `<span class="hearts" style="color:var(--muted)" aria-label="Question ${Math.min(S.done + 1, S.total)} of ${S.total}">${Math.min(S.done + 1, S.total)} / ${S.total}</span>` : `<span class="hearts" aria-label="${S.hearts} hearts left">❤️ ${S.hearts}</span>`}</div>`;
 }
 
 function optBtn(i, inner, key) { return `<button class="opt" type="button" data-i="${i}"${key ? ` data-optsay="${esc(key)}"` : ""}>${inner}</button>`; }
@@ -1024,14 +1024,18 @@ function updateMeter() {
 }
 
 /* ---------- Answers ---------- */
-function setFeedback(good, solutionHTML) {
+function setFeedback(good, solutionHTML, sayKey) {
   const fb = $("#fb");
   const ch = window.CHEERS[Math.floor(Math.random() * window.CHEERS.length)];
   fb.className = "feedback " + (good ? "good" : "bad");
   fb.innerHTML = good
     ? `<div class="fb-row">${pandu(window.PANDU_IMG && window.PANDU_IMG.cheer ? "cheer" : "wave", "fb-pandu pop")}<p>🎉 ${neSpan(ch[0])} <span class="rom">${ch[1]}</span> ${ch[2]}</p></div><button class="go" type="button" id="next">Continue</button>`
-    : `<div class="fb-row">${pandu("oops", "fb-pandu pop")}<div><p>Not quite. The answer is:</p><div class="sol">${solutionHTML}</div></div></div><button class="go" type="button" id="next">Got it</button>`;
+    : `<div class="fb-row">${pandu("oops", "fb-pandu pop")}<div><p>Almost! Let\'s hear it together:</p><div class="sol">${solutionHTML}</div></div></div><button class="go" type="button" id="next">Got it</button>`;
   $("#next").focus();
+  if (!good) {   // a miss: Pandu says the answer once, calmly
+    const k = sayKey || (fb.querySelector(".sol [data-say]") || {}).dataset?.say;
+    if (k) setTimeout(() => say(k), 450);
+  }
 }
 function grade(good) {
   S.answered = true; beep(good ? "good" : "bad");
@@ -1097,7 +1101,7 @@ function checkBuild() {
   const q = S.queue[0]; if (S.answered) return;
   const good = S.built.map(i => S.bank[i][0]).join(" ") === q.s.ne.join(" ");
   grade(good); if (good) say(K(q.s.ne.join(" ")));
-  setFeedback(good, q.s.ne.map((w, i) => neHTML(w, q.s.rom[i])).join(" "));
+  setFeedback(good, q.s.ne.map((w, i) => neHTML(w, q.s.rom[i])).join(" "), K(q.s.ne.join(" ")));
 }
 function drawBuilt() {
   $("#answer").innerHTML = S.built.map((ti, pos) => `<button class="tile" type="button" data-b="${pos}"><span class="ne" lang="ne">${esc(S.bank[ti][0])}</span><span class="rom">${esc(S.bank[ti][1])}</span></button>`).join("");
@@ -1145,7 +1149,7 @@ function renderDone() {
   const st = [1, 2, 3].map(n => `<span class="${n <= S.earned ? "" : "off"}">★</span>`).join("");
   $("#app").innerHTML = `<section class="done">${pandu(window.PANDU_IMG && window.PANDU_IMG.cheer ? "cheer" : "wave", "pop")}<h2>${neSpan(window.PHRASES.wellDone)}<br>Lesson complete!</h2>
     <div class="stars" aria-label="${S.earned} of 3 stars">${st}</div>
-    <p><strong>+${S.xpGain} points</strong> · 🔥 ${liveStreak()} day streak<br>${S.mistakes === 0 ? "Perfect, no mistakes!" : S.mistakes + " mistake" + (S.mistakes > 1 ? "s" : "") + ". Play again for 3 stars."}</p>
+    <p><strong>+${S.xpGain} points</strong> · 🔥 ${liveStreak()} day streak<br>${S.mistakes === 0 ? "Perfect, no mistakes!" : S.mistakes + " mistake" + (S.mistakes > 1 ? "s" : "") + ". Those words will come back next time."}</p>
     ${S.streakNews ? `<p class="ctx">${esc(S.streakNews)}</p>` : ""}
     ${S.newSticker ? `<button class="sticker got${S.newSticker.gold ? " gold" : ""} new" type="button" data-sticker="${S.newSticker.id}"><span class="sticker-pic">${stickerPic(S.newSticker)}</span><b>🎉 New sticker: ${esc(S.newSticker.name)}${S.newSticker.gold ? " (gold!)" : ""}</b></button>` : ""}
     ${S.earned === 3 ? `<div class="share-card"><p><b>Share your score with Aama or Baba!</b></p><p class="share-text" id="shareText">${esc(shareText())}</p>
