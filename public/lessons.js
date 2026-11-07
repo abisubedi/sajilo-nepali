@@ -101,7 +101,7 @@ window.LESSONS = [
     { ne: ["मसँग", "रातो", "कलम", "छ"], rom: ["masanga", "raato", "kalam", "chha"], en: "I have a red pen." },
     { ne: ["मसँग", "नयाँ", "खेलौना", "छ"], rom: ["masanga", "nayaan", "khelauna", "chha"], en: "I have a new toy." },
     { ne: ["मसँग", "चस्मा", "छैन"], rom: ["masanga", "chasma", "chhaina"], en: "I don't have glasses." },
-    { ne: ["तिमीसँग", "के", "छ"], rom: ["timisanga", "ke", "chha"], en: "What do you have?" },
+    { pic: "🎁", ne: ["तिमीसँग", "के", "छ"], rom: ["timisanga", "ke", "chha"], en: "What do you have?" },
   ]},
   { id: "body", title: "My body", ne: "शरीर", rom: "shareer", icon: "🙆", color: "var(--flag-red)", items: [
     { ne: "टाउको", rom: "taauko", en: "Head", pic: "🙆" },
@@ -428,8 +428,8 @@ window.LESSONS = [
     { ne: "ज्ञ", rom: "gya", word: "ज्ञानी", wordRom: "gyani", en: "Good child", pic: "🧒" },
   ]},
   { id: "sentences", title: "Make sentences", ne: "वाक्य", rom: "waakya", icon: "🧩", color: "var(--flag-green)", bigOnly: true, sentences: [
-    { ne: ["म", "ठीक", "छु"], rom: ["ma", "thik", "chhu"], en: "I am fine." },
-    { ne: ["मेरो", "नाम", "सीता", "हो"], rom: ["mero", "naam", "Sita", "ho"], en: "My name is Sita." },
+    { pic: "😊", ne: ["म", "ठीक", "छु"], rom: ["ma", "thik", "chhu"], en: "I am fine." },
+    { pic: "👧", ne: ["मेरो", "नाम", "सीता", "हो"], rom: ["mero", "naam", "Sita", "ho"], en: "My name is Sita." },
     { ne: ["यो", "मेरो", "कुकुर", "हो"], rom: ["yo", "mero", "kukur", "ho"], en: "This is my dog." },
     { ne: ["मलाई", "मोमो", "मन", "पर्छ"], rom: ["malai", "momo", "man", "parchha"], en: "I like momo." },
     { ne: ["आकाश", "निलो", "छ"], rom: ["aakash", "nilo", "chha"], en: "The sky is blue." },

@@ -512,7 +512,29 @@ const isLabel = pic => /^(SUN|MON|TUE|WED|THU|FRI|SAT|\d+)$/.test(pic);
 /* Word pictures: the artwork in img/ when there is one (named w-<english>), otherwise the emoji.
    Pass the word itself (it needs .pic and .en); a plain emoji string also works. */
 const slugOf = s => String(s).toLowerCase().replace(/\(polite\)/g, "polite").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-const artFor = x => x && typeof x === "object" && x.en && (window.IMG || {})["w-" + slugOf(x.en)];
+const artFor = x => x && typeof x === "object" && (x.art || (x.en && (window.IMG || {})["w-" + slugOf(x.en)]));
+/* A picture for a sentence: its own scene (s-<lesson>-<n>) if drawn, otherwise the picture of a word in it,
+   looking from the end (where Nepali puts the main noun) and allowing endings like -मा, -ले, -को, -लाई. */
+let WORDS = null;
+const SKIP = new Set(["हो", "होइन", "छ", "छैन", "म", "मेरो", "यो", "तिमी", "मलाई", "के", "हजुर", "ठीक", "अब", "यहाँ"]);
+const NOUN_LESSONS = new Set(["animals", "respect-family", "kitchen-tummy", "body", "rooms-house", "house-objects", "clothes", "sports-outdoors",
+  "weather-nature", "festivals-culture", "nepali-treats", "birds-bugs", "vehicles-travel", "school-supplies", "fruits-snacks", "time-of-day"]);
+function sentencePic(l, s, i) {
+  const scene = (window.IMG || {})[`s-${l.id}-${i + 1}`];
+  if (scene) return { art: scene, pic: "💬" };
+  if (s.pic) return { art: null, pic: s.pic };   // a sentence can set its own emoji
+  if (!WORDS) { WORDS = new Map(); window.LESSONS.forEach(x => !x.letters && (x.items || []).forEach(it => { if (!WORDS.has(it.ne)) WORDS.set(it.ne, { it, noun: NOUN_LESSONS.has(x.id) }); })); }
+  let best = null;
+  [...s.ne].reverse().forEach((w, pos) => {
+    if (SKIP.has(w)) return;
+    const hit = WORDS.get(w) || WORDS.get(w.replace(/(मा|ले|को|लाई|हरू)$/, ""));
+    if (!hit || isLabel(hit.it.pic)) return;
+    const art = artFor(hit.it), score = (hit.noun ? 4 : 0) + (art ? 2 : 0) - pos * 0.01;   // nouns first, then artwork, then nearer the end
+    if (!best || score > best.score) best = { score, art, pic: hit.it.pic };
+  });
+  return best ? { art: best.art || null, pic: best.pic } : { art: null, pic: "💬" };
+}
+
 const picHTML = (x, size) => {
   const pic = typeof x === "object" ? x.pic : x, art = artFor(x);
   const st = size ? ` style="font-size:${size}px"` : "";
@@ -818,7 +840,7 @@ function renderMap() {
 
 /* ---------- Flashcards: one card at a time ---------- */
 function cardList(l) {
-  if (l.sentences) return l.sentences.map(s => ({ ne: s.ne.join(" "), rom: s.rom.join(" "), en: s.en, pic: "💬", key: K(s.ne.join(" ")) }));
+  if (l.sentences) return l.sentences.map((s, i) => { const sp = sentencePic(l, s, i); return { ne: s.ne.join(" "), rom: s.rom.join(" "), en: s.en, pic: sp.pic, art: sp.art, key: K(s.ne.join(" ")) }; });
   return l.items.map(it => l.letters
     ? { letter: it.ne, rom: it.rom, ne: it.word, wordRom: it.wordRom, en: it.en, pic: it.pic, key: window.letterKey(it) }
     : { ne: it.ne, rom: it.rom, en: it.en, pic: it.pic, ctx: it.ctx, key: K(it.ne) });
