@@ -1171,6 +1171,25 @@ function shareText() {
   return `I got 3 stars in “${S.lesson.title}” on Sajilo Nepali! 🌟${n > 1 ? ` 🔥 ${n}-day streak!` : ""} Learn with me: https://sajilonepali.app`;
 }
 
+/* Share: the phone's share sheet when it works; otherwise copy the text and say so (some computers have no
+   working share sheet). Cancelling the share sheet yourself does nothing. */
+function shareOrCopy(btn, data, copyText) {
+  const label = btn.dataset.label || (btn.dataset.label = btn.textContent);
+  const say = (msg, ms = 3500) => { btn.textContent = msg; clearTimeout(btn._t); btn._t = setTimeout(() => { btn.textContent = label; }, ms); };
+  const copy = () => {
+    const done = () => say("✓ Link copied! Paste it in a message");
+    const fail = () => say(copyText.match(/https?:\/\/\S+/)[0], 8000);
+    try { navigator.clipboard.writeText(copyText).then(done, () => { legacyCopy(copyText) ? done() : fail(); }); }
+    catch (err) { legacyCopy(copyText) ? done() : fail(); }
+  };
+  if (navigator.share && (!navigator.canShare || navigator.canShare(data))) {
+    navigator.share(data).then(() => say("✓ Shared! Thank you"), err => { if (!err || err.name !== "AbortError") copy(); });
+  } else copy();
+}
+function legacyCopy(text) {
+  const ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select(); let ok = false; try { ok = document.execCommand("copy"); } catch (e) {} ta.remove(); return ok;
+}
 function selectShare() { const el = $("#shareText"); if (!el) return; const r = document.createRange(); r.selectNodeContents(el); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); }
 
 /* ---------- Events ---------- */
@@ -1217,7 +1236,7 @@ document.addEventListener("click", e => {
     try { navigator.clipboard.writeText(txt).then(ok, () => { selectShare(); t.textContent = "Select the message above and copy it"; }); } catch (err) { selectShare(); }
     return;
   }
-  if (t.id === "shareNow") { navigator.share({ title: "Sajilo Nepali", text: shareText() }).catch(() => {}); return; }
+  if (t.id === "shareNow") { shareOrCopy(t, { title: "Sajilo Nepali", text: shareText() }, shareText()); return; }
   if (t.id === "goPlay") { const id = S.sheet; S.sheet = null; startLesson(id); return; }
   if (t.id === "cardPrev") { moveCard(-1); return; }
   if (t.id === "cardNext") { moveCard(1); return; }
@@ -1225,8 +1244,7 @@ document.addEventListener("click", e => {
   if (t.dataset.flashsay) { if (t.dataset.swiped) { delete t.dataset.swiped; return; } say(t.dataset.flashsay, t); return; }
   if (t.id === "shareApp") {
     const url = "https://sajilonepali.app/", text = "Check out this free Nepali game for kids with Pandu the red panda!";
-    if (navigator.share) navigator.share({ title: "Sajilo Nepali · Easy Nepali for Kids", text, url }).catch(() => {});
-    else { try { navigator.clipboard.writeText(text + " " + url).then(() => { t.textContent = "✓ Link copied! Paste it in a message"; }); } catch (err) { t.textContent = url; } }
+    shareOrCopy(t, { title: "Sajilo Nepali · Easy Nepali for Kids", text, url }, text + " " + url);
     return;
   }
   if (t.id === "saveCode") { S.grown = "save"; render(); return; }
