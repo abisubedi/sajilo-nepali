@@ -10,36 +10,36 @@
 
 ## Checklist
 
-- [ ] w-head.png
-- [ ] w-hair.png
-- [ ] w-eyes.png
-- [ ] w-ear.png
-- [ ] w-nose.png
-- [ ] w-mouth.png
-- [ ] w-teeth.png
-- [ ] w-hand.png
-- [ ] w-leg.png
-- [ ] w-tummy.png
-- [ ] w-finger.png
-- [ ] w-happy.png
-- [ ] w-sad.png
-- [ ] w-sleepy.png
-- [ ] w-thirsty.png
-- [ ] w-i-feel-cold.png
-- [ ] w-i-feel-hot.png
-- [ ] w-it-hurts.png
-- [ ] w-i-am-scared.png
-- [ ] w-clothes.png
-- [ ] w-shoes.png
-- [ ] w-socks.png
-- [ ] w-slippers.png
-- [ ] w-hat.png
-- [ ] w-jacket.png
-- [ ] w-glasses.png
-- [ ] w-take-off.png
-- [ ] li-body.png
-- [ ] li-feelings-needs.png
-- [ ] li-clothes.png
+- [x] w-head.png
+- [x] w-hair.png
+- [x] w-eyes.png
+- [x] w-ear.png
+- [x] w-nose.png
+- [x] w-mouth.png
+- [x] w-teeth.png
+- [x] w-hand.png
+- [x] w-leg.png
+- [x] w-tummy.png
+- [x] w-finger.png
+- [x] w-happy.png
+- [x] w-sad.png
+- [x] w-sleepy.png
+- [x] w-thirsty.png
+- [x] w-i-feel-cold.png
+- [x] w-i-feel-hot.png
+- [x] w-it-hurts.png
+- [x] w-i-am-scared.png
+- [x] w-clothes.png
+- [x] w-shoes.png
+- [x] w-socks.png
+- [x] w-slippers.png
+- [x] w-hat.png
+- [x] w-jacket.png
+- [x] w-glasses.png
+- [x] w-take-off.png
+- [x] li-body.png
+- [x] li-feelings-needs.png
+- [x] li-clothes.png
 - [ ] li-what-i-have.png
 
 ## Prompts
