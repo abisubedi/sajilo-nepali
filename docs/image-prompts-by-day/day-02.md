@@ -40,7 +40,7 @@
 - [x] li-body.png
 - [x] li-feelings-needs.png
 - [x] li-clothes.png
-- [ ] li-what-i-have.png
+- [x] li-what-i-have.png
 
 ## Prompts
 

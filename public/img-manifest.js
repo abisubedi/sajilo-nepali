@@ -18,6 +18,7 @@ window.IMG = {
  "li-kitchen-tummy": "img/li-kitchen-tummy.webp?v=750f2880",
  "li-respect-family": "img/li-respect-family.webp?v=422b5c61",
  "li-rooms-house": "img/li-rooms-house.webp?v=f5dba8b9",
+ "li-what-i-have": "img/li-what-i-have.webp?v=a50dc168",
  "pandu-cheer": "img/pandu-cheer.webp?v=0bad2ef9",
  "pandu-listen": "img/pandu-listen.webp?v=786646b7",
  "pandu-oops": "img/pandu-oops.webp?v=a790221c",
