@@ -246,7 +246,7 @@
 > Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a clear glass of water next to a shiny brass water jug (karuwa).
 
 ### w-rice.png
-512x512 · used for: Kitchen & Tummy: भात = rice
+512x512 · used for: Kitchen & Tummy: खाना = rice
 
 > Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a bowl of fluffy white cooked rice.
 
