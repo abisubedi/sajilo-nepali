@@ -28,6 +28,12 @@ W.CHAPTERS.forEach((c, ci) => {
 sec("Family tree and missions");
 if (W.KIN) { [...W.KIN.dad, ...W.KIN.mom, ...W.KIN.me, W.KIN.greetElder].forEach(x => add(K(x.ne), x.ne + "।", x.rom, x.who || x.en)); }
 (W.MISSIONS || []).forEach(m => add(K(m.ne), m.ne, m.rom, m.en));
+sec("Riddles, bedtime story and sound-word sentences");
+(W.RIDDLES || []).forEach(r => { add(K(r.say), r.say, r.rom, r.en); add(K(r.answer.ne), r.answer.ne + "।", r.answer.rom, r.answer.en); });
+if (W.RIDDLE_TITLE) add(K(W.RIDDLE_TITLE.ne), W.RIDDLE_TITLE.ne + "!", W.RIDDLE_TITLE.rom, W.RIDDLE_TITLE.en);
+if (W.STORY) { add(K(W.STORY.ne), W.STORY.ne + "। (softly)", W.STORY.rom, W.STORY.en); W.STORY.pages.forEach(p => add(K(p.ne), p.ne + " (softly)", p.rom, p.en)); }
+W.LESSONS.forEach(l => (l.items || []).forEach(it => it.ex && add(K(it.ex.ne), it.ex.ne, it.ex.rom, it.ex.en)));
+['गिलास', 'आलु', 'सोफा', 'गलैंचा', 'टिभी', 'जून'].forEach(w => add(K(w), w + "।", "", "word"));
 sec("Extra sentence tiles"); W.EXTRA_TILES.forEach(t => add(K(t[0]), t[0], t[1], 'sentence tile'));
 
 let n = 0; sections.forEach(s => s.rows.forEach(r => r.id = String(++n).padStart(3, '0')));

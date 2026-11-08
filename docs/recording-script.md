@@ -1,6 +1,6 @@
 # Sajilo Nepali: recording script
 
-Every clip in the game, 497 in total, numbered in the order they appear.
+Every clip in the game, 529 in total, numbered in the order they appear.
 
 ## How to record
 
@@ -165,7 +165,7 @@ Every clip in the game, 497 in total, numbered in the order they appear.
 | 138 | तिमीसँग | timisanga | sentence tile |
 | 139 | के | ke | sentence tile |
 
-## Section 04: Chapter 3: खेल र बाहिर (Play & outside) (66 lines)
+## Section 04: Chapter 3: खेल र बाहिर (Play & outside) (73 lines)
 
 | # | Say | How to say it | Meaning |
 |---|---|---|---|
@@ -223,343 +223,380 @@ Every clip in the game, 497 in total, numbered in the order they appear.
 | 191 | बिस्तारै | bistaarai | slowly |
 | 192 | माथि | maathi | up |
 | 193 | तल | tala | down |
-| 194 | खेलको वाक्य | khelko waakya | Park Sentences |
-| 195 | मलाई पर्ख। **(polite)** | malai parkha | Wait for me. |
-| 196 | अब मेरो पालो। | aba mero paalo | Now it's my turn. |
-| 197 | अब | aba | sentence tile |
-| 198 | मेरो | mero | sentence tile |
-| 199 | पार्कमा साइकल चलाऔँ। | paarkma saaikal chalaaun | Let's ride bikes in the park. |
-| 200 | पार्कमा | paarkma | sentence tile |
-| 201 | चलाऔँ | chalaaun | sentence tile |
-| 202 | हजुरबा यहाँ बस्नुहोस्। | hajurba yahaan basnuhos | Grandpa, please sit here. |
-| 203 | यहाँ | yahaan | sentence tile |
-| 204 | बस्नुहोस् | basnuhos | sentence tile |
-| 205 | भकुण्डो मलाई फ्याँक। **(polite)** | bhakundo malai phyaanka | Throw the ball to me. |
+| 194 | रमाइलो आवाज | ramaailo aawaaj | Fun Sound Words |
+| 195 | टम्म | tamma | full tummy (stuffed!) |
+| 196 | मुसुक्क | musukka | sweet little smile |
+| 197 | ग्लुक्क | glukka | gulp! (swallowing sound) |
+| 198 | झमझम | jhamjham | pouring rain sound |
+| 199 | खरपखुरुप | kharap-khurup | gobbling up everything fast! |
+| 200 | भुसुक्क | bhusukka | fast asleep (knocked out!) |
+| 201 | खेलको वाक्य | khelko waakya | Park Sentences |
+| 202 | मलाई पर्ख। **(polite)** | malai parkha | Wait for me. |
+| 203 | अब मेरो पालो। | aba mero paalo | Now it's my turn. |
+| 204 | अब | aba | sentence tile |
+| 205 | मेरो | mero | sentence tile |
+| 206 | पार्कमा साइकल चलाऔँ। | paarkma saaikal chalaaun | Let's ride bikes in the park. |
+| 207 | पार्कमा | paarkma | sentence tile |
+| 208 | चलाऔँ | chalaaun | sentence tile |
+| 209 | हजुरबा यहाँ बस्नुहोस्। | hajurba yahaan basnuhos | Grandpa, please sit here. |
+| 210 | यहाँ | yahaan | sentence tile |
+| 211 | बस्नुहोस् | basnuhos | sentence tile |
+| 212 | भकुण्डो मलाई फ्याँक। **(polite)** | bhakundo malai phyaanka | Throw the ball to me. |
 
 ## Section 05: Chapter 4: हाम्रो संस्कृति (Nepali culture & time) (54 lines)
 
 | # | Say | How to say it | Meaning |
 |---|---|---|---|
-| 206 | हाम्रो संस्कृति | haamro sanskriti | Nepali culture & time |
-| 207 | चाडपर्व र संस्कृति | chaadparva ra sanskriti | Festivals & Traditions |
-| 208 | टीका | tika | tika |
-| 209 | जमरा | jamara | barley shoots |
-| 210 | दियो | diyo | oil lamp |
-| 211 | माला | maala | flower garland |
-| 212 | चङ्गा | changa | kite |
-| 213 | मादल | maadal | Nepali drum |
-| 214 | मन्दिर | mandir | temple |
-| 215 | आशीर्वाद | aashirwaad | blessing |
-| 216 | मिठो परिकार | mitho parikaar | Nepali Treats |
-| 217 | दाल भात | daal bhaat | lentils and rice |
-| 218 | चिया | chiya | milk tea |
-| 219 | सेल रोटी | sel roti | sel roti |
-| 220 | अचार | achaar | pickle |
-| 221 | दही | dahi | yogurt |
-| 222 | पापड | paapad | papad |
-| 223 | समय र दिन | samaya ra din | Time & Days |
-| 224 | बिहान | bihaana | morning |
-| 225 | दिउँसो | diunso | afternoon |
-| 226 | साँझ | saanjha | evening |
-| 227 | राति | raati | night |
-| 228 | आज | aaja | today |
-| 229 | भोलि | bholi | tomorrow |
-| 230 | हिजो | hijo | yesterday |
-| 231 | अहिले | ahile | right now |
-| 232 | बार | baar | Days of the week |
-| 233 | आइतबार | aaitabaar | Sunday |
-| 234 | सोमबार | sombaar | Monday |
-| 235 | मङ्गलबार | mangalbaar | Tuesday |
-| 236 | बुधबार | budhabaar | Wednesday |
-| 237 | बिहीबार | bihibaar | Thursday |
-| 238 | शुक्रबार | shukrabaar | Friday |
-| 239 | शनिबार | shanibaar | Saturday |
-| 240 | प्रश्नहरू | prashnaharu | Asking Questions |
-| 241 | के हो? | ke ho? | what is it? |
-| 242 | कहाँ छ? | kahaan chha? | where is it? |
-| 243 | को हो? | ko ho? | who is it? |
-| 244 | किन? | kina? | why? |
-| 245 | कहिले? | kahile? | when? |
-| 246 | कति? | kati? | how many? |
-| 247 | कस्तो छ? | kasto chha? | how is it? |
-| 248 | चाडपर्वको कुरा | chaadparvako kura | Festival Talk |
-| 249 | आज शनिबार हो। | aaja shanibaar ho | Today is Saturday. |
-| 250 | हजुरआमाले टीका लगाइदिनुभयो। | hajuraamaale tika lagaaidinubhayo | Grandma put tika on me. |
-| 251 | हजुरआमाले | hajuraamaale | sentence tile |
-| 252 | लगाइदिनुभयो | lagaaidinubhayo | sentence tile |
-| 253 | मोमो धेरै मिठो छ। | momo dherai mitho chha | Momo is very yummy. |
-| 254 | साँझमा दियो बाल। **(polite)** | saanjhama diyo baala | Light the lamp in the evening. |
-| 255 | साँझमा | saanjhama | sentence tile |
-| 256 | बाल **(polite)** | baala | sentence tile |
-| 257 | बाहिर चङ्गा उडाऔँ। | baahira changa udaaun | Let's fly a kite outside. |
-| 258 | बाहिर | baahira | sentence tile |
-| 259 | उडाऔँ | udaaun | sentence tile |
+| 213 | हाम्रो संस्कृति | haamro sanskriti | Nepali culture & time |
+| 214 | चाडपर्व र संस्कृति | chaadparva ra sanskriti | Festivals & Traditions |
+| 215 | टीका | tika | tika |
+| 216 | जमरा | jamara | barley shoots |
+| 217 | दियो | diyo | oil lamp |
+| 218 | माला | maala | flower garland |
+| 219 | चङ्गा | changa | kite |
+| 220 | मादल | maadal | Nepali drum |
+| 221 | मन्दिर | mandir | temple |
+| 222 | आशीर्वाद | aashirwaad | blessing |
+| 223 | मिठो परिकार | mitho parikaar | Nepali Treats |
+| 224 | दाल भात | daal bhaat | lentils and rice |
+| 225 | चिया | chiya | milk tea |
+| 226 | सेल रोटी | sel roti | sel roti |
+| 227 | अचार | achaar | pickle |
+| 228 | दही | dahi | yogurt |
+| 229 | पापड | paapad | papad |
+| 230 | समय र दिन | samaya ra din | Time & Days |
+| 231 | बिहान | bihaana | morning |
+| 232 | दिउँसो | diunso | afternoon |
+| 233 | साँझ | saanjha | evening |
+| 234 | राति | raati | night |
+| 235 | आज | aaja | today |
+| 236 | भोलि | bholi | tomorrow |
+| 237 | हिजो | hijo | yesterday |
+| 238 | अहिले | ahile | right now |
+| 239 | बार | baar | Days of the week |
+| 240 | आइतबार | aaitabaar | Sunday |
+| 241 | सोमबार | sombaar | Monday |
+| 242 | मङ्गलबार | mangalbaar | Tuesday |
+| 243 | बुधबार | budhabaar | Wednesday |
+| 244 | बिहीबार | bihibaar | Thursday |
+| 245 | शुक्रबार | shukrabaar | Friday |
+| 246 | शनिबार | shanibaar | Saturday |
+| 247 | प्रश्नहरू | prashnaharu | Asking Questions |
+| 248 | के हो? | ke ho? | what is it? |
+| 249 | कहाँ छ? | kahaan chha? | where is it? |
+| 250 | को हो? | ko ho? | who is it? |
+| 251 | किन? | kina? | why? |
+| 252 | कहिले? | kahile? | when? |
+| 253 | कति? | kati? | how many? |
+| 254 | कस्तो छ? | kasto chha? | how is it? |
+| 255 | चाडपर्वको कुरा | chaadparvako kura | Festival Talk |
+| 256 | आज शनिबार हो। | aaja shanibaar ho | Today is Saturday. |
+| 257 | हजुरआमाले टीका लगाइदिनुभयो। | hajuraamaale tika lagaaidinubhayo | Grandma put tika on me. |
+| 258 | हजुरआमाले | hajuraamaale | sentence tile |
+| 259 | लगाइदिनुभयो | lagaaidinubhayo | sentence tile |
+| 260 | मोमो धेरै मिठो छ। | momo dherai mitho chha | Momo is very yummy. |
+| 261 | साँझमा दियो बाल। **(polite)** | saanjhama diyo baala | Light the lamp in the evening. |
+| 262 | साँझमा | saanjhama | sentence tile |
+| 263 | बाल **(polite)** | baala | sentence tile |
+| 264 | बाहिर चङ्गा उडाऔँ। | baahira changa udaaun | Let's fly a kite outside. |
+| 265 | बाहिर | baahira | sentence tile |
+| 266 | उडाऔँ | udaaun | sentence tile |
 
 ## Section 06: Chapter 5: प्रकृति र यात्रा (Nature & travel) (41 lines)
 
 | # | Say | How to say it | Meaning |
 |---|---|---|---|
-| 260 | प्रकृति र यात्रा | prakriti ra yaatra | Nature & travel |
-| 261 | जनावर | janaawar | Jungle & Farm Animals |
-| 262 | कुकुर | kukur | Dog |
-| 263 | बिरालो | biralo | Cat |
-| 264 | गाई | gaai | Cow |
-| 265 | हात्ती | hatti | Elephant |
-| 266 | बाँदर | baandar | Monkey |
-| 267 | चरा | chara | Bird |
-| 268 | माछा | machha | Fish |
-| 269 | बाघ | bagh | Tiger |
-| 270 | भालु | bhalu | Bear |
-| 271 | गैँडा | gainda | Rhino |
-| 272 | हरिण | harin | Deer |
-| 273 | खरायो | kharaayo | Rabbit |
-| 274 | हाब्रे | haabre | Red panda |
-| 275 | चरा र कीरा | chara ra kira | Birds & Bugs |
-| 276 | पुतली | putali | butterfly |
-| 277 | मौरी | mauri | bee |
-| 278 | कमिला | kamila | ant |
-| 279 | माकुरा | maakura | spider |
-| 280 | भ्यागुतो | bhyaaguto | frog |
-| 281 | कछुवा | kachhuwa | turtle |
-| 282 | गाडी र यात्रा | gaadi ra yaatra | On the Go |
-| 283 | गाडी | gaadi | car |
-| 284 | बस | bas | bus |
-| 285 | रेल | rel | train |
-| 286 | हवाईजहाज | hawaaijahaaj | airplane |
-| 287 | डुङ्गा | dunga | boat |
-| 288 | नदी | nadi | river |
-| 289 | समुद्र | samudra | sea |
-| 290 | पुल | pul | bridge |
-| 291 | घुम्न जाऔँ | ghumna jaaun | Out & About |
-| 292 | ठूलो हात्ती हेर। **(polite)** | thulo hatti hera | Look at the big elephant. |
-| 293 | चरा रूखमा छ। | chara rookhma chha | The bird is in the tree. |
-| 294 | रूखमा | rookhma | sentence tile |
-| 295 | समुद्रमा पौडी खेलौँ। | samudrama paudi khelaun | Let's swim in the sea. |
-| 296 | समुद्रमा | samudrama | sentence tile |
-| 297 | पौडी | paudi | sentence tile |
-| 298 | खेलौँ | khelaun | sentence tile |
-| 299 | बाँदर छिटो उफ्रियो। | baandar chhito uphriyo | The monkey jumped fast. |
-| 300 | उफ्रियो | uphriyo | sentence tile |
+| 267 | प्रकृति र यात्रा | prakriti ra yaatra | Nature & travel |
+| 268 | जनावर | janaawar | Jungle & Farm Animals |
+| 269 | कुकुर | kukur | Dog |
+| 270 | बिरालो | biralo | Cat |
+| 271 | गाई | gaai | Cow |
+| 272 | हात्ती | hatti | Elephant |
+| 273 | बाँदर | baandar | Monkey |
+| 274 | चरा | chara | Bird |
+| 275 | माछा | machha | Fish |
+| 276 | बाघ | bagh | Tiger |
+| 277 | भालु | bhalu | Bear |
+| 278 | गैँडा | gainda | Rhino |
+| 279 | हरिण | harin | Deer |
+| 280 | खरायो | kharaayo | Rabbit |
+| 281 | हाब्रे | haabre | Red panda |
+| 282 | चरा र कीरा | chara ra kira | Birds & Bugs |
+| 283 | पुतली | putali | butterfly |
+| 284 | मौरी | mauri | bee |
+| 285 | कमिला | kamila | ant |
+| 286 | माकुरा | maakura | spider |
+| 287 | भ्यागुतो | bhyaaguto | frog |
+| 288 | कछुवा | kachhuwa | turtle |
+| 289 | गाडी र यात्रा | gaadi ra yaatra | On the Go |
+| 290 | गाडी | gaadi | car |
+| 291 | बस | bas | bus |
+| 292 | रेल | rel | train |
+| 293 | हवाईजहाज | hawaaijahaaj | airplane |
+| 294 | डुङ्गा | dunga | boat |
+| 295 | नदी | nadi | river |
+| 296 | समुद्र | samudra | sea |
+| 297 | पुल | pul | bridge |
+| 298 | घुम्न जाऔँ | ghumna jaaun | Out & About |
+| 299 | ठूलो हात्ती हेर। **(polite)** | thulo hatti hera | Look at the big elephant. |
+| 300 | चरा रूखमा छ। | chara rookhma chha | The bird is in the tree. |
+| 301 | रूखमा | rookhma | sentence tile |
+| 302 | समुद्रमा पौडी खेलौँ। | samudrama paudi khelaun | Let's swim in the sea. |
+| 303 | समुद्रमा | samudrama | sentence tile |
+| 304 | पौडी | paudi | sentence tile |
+| 305 | खेलौँ | khelaun | sentence tile |
+| 306 | बाँदर छिटो उफ्रियो। | baandar chhito uphriyo | The monkey jumped fast. |
+| 307 | उफ्रियो | uphriyo | sentence tile |
 
 ## Section 07: Chapter 6: स्कूल र गन्ती (School & counting) (37 lines)
 
 | # | Say | How to say it | Meaning |
 |---|---|---|---|
-| 301 | स्कूल र गन्ती | skul ra ganti | School & counting |
-| 302 | अङ्क | anka | Numbers 1–10 |
-| 303 | एक | ek | one |
-| 304 | दुई | dui | two |
-| 305 | तीन | tin | three |
-| 306 | चार | char | four |
-| 307 | पाँच | panch | five |
-| 308 | सात | saat | seven |
-| 309 | आठ | aath | eight |
-| 310 | नौ | nau | nine |
-| 311 | दस | das | ten |
-| 312 | स्कूल र पढाइ | skul ra padhaai | School & Drawing |
-| 313 | स्कूल | skul | school |
-| 314 | कागज | kaagaj | paper |
-| 315 | कापी | kaapi | notebook |
-| 316 | चित्र | chitra | picture |
-| 317 | कथा | katha | story |
-| 318 | गीत | geet | song |
-| 319 | शिक्षक | shikshak | teacher |
-| 320 | फलफूल र खाजा | phalphul ra khaaja | Fruits & Lunchbox |
-| 321 | आँप | aanp | mango |
-| 322 | सुन्तला | suntala | orange |
-| 323 | अंगुर | angur | grapes |
-| 324 | कागती | kaagati | lemon |
-| 325 | गुलियो | guliyo | sweet |
-| 326 | अमिलो | amilo | sour |
-| 327 | एघारदेखि बीस | eghaardekhi bees | Numbers 11–20 |
-| 328 | एघार | eghaara | eleven |
-| 329 | बाह्र | baahra | twelve |
-| 330 | तेह्र | tehra | thirteen |
-| 331 | चौध | chaudha | fourteen |
-| 332 | पन्ध्र | pandhra | fifteen |
-| 333 | सोह्र | sohra | sixteen |
-| 334 | सत्र | satra | seventeen |
-| 335 | अठार | athaara | eighteen |
-| 336 | उन्नाइस | unnaais | nineteen |
-| 337 | बीस | bees | twenty |
+| 308 | स्कूल र गन्ती | skul ra ganti | School & counting |
+| 309 | अङ्क | anka | Numbers 1–10 |
+| 310 | एक | ek | one |
+| 311 | दुई | dui | two |
+| 312 | तीन | tin | three |
+| 313 | चार | char | four |
+| 314 | पाँच | panch | five |
+| 315 | सात | saat | seven |
+| 316 | आठ | aath | eight |
+| 317 | नौ | nau | nine |
+| 318 | दस | das | ten |
+| 319 | स्कूल र पढाइ | skul ra padhaai | School & Drawing |
+| 320 | स्कूल | skul | school |
+| 321 | कागज | kaagaj | paper |
+| 322 | कापी | kaapi | notebook |
+| 323 | चित्र | chitra | picture |
+| 324 | कथा | katha | story |
+| 325 | गीत | geet | song |
+| 326 | शिक्षक | shikshak | teacher |
+| 327 | फलफूल र खाजा | phalphul ra khaaja | Fruits & Lunchbox |
+| 328 | आँप | aanp | mango |
+| 329 | सुन्तला | suntala | orange |
+| 330 | अंगुर | angur | grapes |
+| 331 | कागती | kaagati | lemon |
+| 332 | गुलियो | guliyo | sweet |
+| 333 | अमिलो | amilo | sour |
+| 334 | एघारदेखि बीस | eghaardekhi bees | Numbers 11–20 |
+| 335 | एघार | eghaara | eleven |
+| 336 | बाह्र | baahra | twelve |
+| 337 | तेह्र | tehra | thirteen |
+| 338 | चौध | chaudha | fourteen |
+| 339 | पन्ध्र | pandhra | fifteen |
+| 340 | सोह्र | sohra | sixteen |
+| 341 | सत्र | satra | seventeen |
+| 342 | अठार | athaara | eighteen |
+| 343 | उन्नाइस | unnaais | nineteen |
+| 344 | बीस | bees | twenty |
 
 ## Section 08: Chapter 7: कुराकानी र कथा (Real conversations) (39 lines)
 
 | # | Say | How to say it | Meaning |
 |---|---|---|---|
-| 338 | कुराकानी र कथा | kuraakaani ra katha | Real conversations |
-| 339 | मन पर्छ | man parchha | I Like It! |
-| 340 | मन पर्दैन | man pardaina | I don't like it |
-| 341 | चाहिन्छ | chaahinchha | I need it |
-| 342 | चाहिँदैन | chaahindaina | I don't need it |
-| 343 | थाहा छ | thaaha chha | I know |
-| 344 | थाहा छैन | thaaha chhaina | I don't know |
-| 345 | हुन्छ | hunchha | okay |
-| 346 | हुँदैन | hundaina | not allowed |
-| 347 | सञ्चो बिसञ्चो | sancho bisancho | Talking to Family |
-| 348 | सञ्चै हुनुहुन्छ? | sanchai hunuhunchha? | how are you? (polite) |
-| 349 | सञ्चै छु | sanchai chhu | I am fine |
-| 350 | खाना खानुभयो? | khaana khaanubhayo? | did you eat? (polite) |
-| 351 | खाएँ | khaaen | I ate |
-| 352 | के गर्दै हुनुहुन्छ? | ke gardai hunuhunchha? | what are you doing? |
-| 353 | माया गर्छु | maaya garchhu | I love you |
-| 354 | तपाईं र तिमी | tapaain ra timi | Talking to Elders |
-| 355 | आउनुहोस् | aaunuhos | please come |
-| 356 | खानुहोस् | khaanuhos | please eat |
-| 357 | हेर्नुहोस् | hernuhos | please look |
-| 358 | सुन्नुहोस् | sunnuhos | please listen |
-| 359 | माफ गर्नुहोस् | maaf garnuhos | sorry |
-| 360 | कुराकानी | kuraakaani | Conversation Master |
-| 361 | मलाई आँप मन पर्छ। | malai aanp man parchha | I really like mangoes. |
-| 362 | मन | man | sentence tile |
-| 363 | पर्छ | parchha | sentence tile |
-| 364 | हजुरआमा सञ्चै हुनुहुन्छ?? | hajuraama sanchai hunuhunchha? | Grandma, how are you? |
-| 365 | सञ्चै | sanchai | sentence tile |
-| 366 | हुनुहुन्छ? | hunuhunchha? | sentence tile |
-| 367 | म आज स्कूल गएँ। | ma aaja skul gaen | I went to school today. |
-| 368 | म | ma | sentence tile |
-| 369 | गएँ | gaen | sentence tile |
-| 370 | आमा म तपाईंलाई माया गर्छु। | aama ma tapaainlaai maaya garchhu | Mom, I love you. |
-| 371 | तपाईंलाई | tapaainlaai | sentence tile |
-| 372 | माया | maaya | sentence tile |
-| 373 | गर्छु | garchhu | sentence tile |
-| 374 | मेरो झोला कहाँ छ थाहा छैन। | mero jhola kahaan chha thaaha chhaina | I don't know where my bag is. |
-| 375 | कहाँ | kahaan | sentence tile |
-| 376 | थाहा | thaaha | sentence tile |
+| 345 | कुराकानी र कथा | kuraakaani ra katha | Real conversations |
+| 346 | मन पर्छ | man parchha | I Like It! |
+| 347 | मन पर्दैन | man pardaina | I don't like it |
+| 348 | चाहिन्छ | chaahinchha | I need it |
+| 349 | चाहिँदैन | chaahindaina | I don't need it |
+| 350 | थाहा छ | thaaha chha | I know |
+| 351 | थाहा छैन | thaaha chhaina | I don't know |
+| 352 | हुन्छ | hunchha | okay |
+| 353 | हुँदैन | hundaina | not allowed |
+| 354 | सञ्चो बिसञ्चो | sancho bisancho | Talking to Family |
+| 355 | सञ्चै हुनुहुन्छ? | sanchai hunuhunchha? | how are you? (polite) |
+| 356 | सञ्चै छु | sanchai chhu | I am fine |
+| 357 | खाना खानुभयो? | khaana khaanubhayo? | did you eat? (polite) |
+| 358 | खाएँ | khaaen | I ate |
+| 359 | के गर्दै हुनुहुन्छ? | ke gardai hunuhunchha? | what are you doing? |
+| 360 | माया गर्छु | maaya garchhu | I love you |
+| 361 | तपाईं र तिमी | tapaain ra timi | Talking to Elders |
+| 362 | आउनुहोस् | aaunuhos | please come |
+| 363 | खानुहोस् | khaanuhos | please eat |
+| 364 | हेर्नुहोस् | hernuhos | please look |
+| 365 | सुन्नुहोस् | sunnuhos | please listen |
+| 366 | माफ गर्नुहोस् | maaf garnuhos | sorry |
+| 367 | कुराकानी | kuraakaani | Conversation Master |
+| 368 | मलाई आँप मन पर्छ। | malai aanp man parchha | I really like mangoes. |
+| 369 | मन | man | sentence tile |
+| 370 | पर्छ | parchha | sentence tile |
+| 371 | हजुरआमा सञ्चै हुनुहुन्छ?? | hajuraama sanchai hunuhunchha? | Grandma, how are you? |
+| 372 | सञ्चै | sanchai | sentence tile |
+| 373 | हुनुहुन्छ? | hunuhunchha? | sentence tile |
+| 374 | म आज स्कूल गएँ। | ma aaja skul gaen | I went to school today. |
+| 375 | म | ma | sentence tile |
+| 376 | गएँ | gaen | sentence tile |
+| 377 | आमा म तपाईंलाई माया गर्छु। | aama ma tapaainlaai maaya garchhu | Mom, I love you. |
+| 378 | तपाईंलाई | tapaainlaai | sentence tile |
+| 379 | माया | maaya | sentence tile |
+| 380 | गर्छु | garchhu | sentence tile |
+| 381 | मेरो झोला कहाँ छ थाहा छैन। | mero jhola kahaan chha thaaha chhaina | I don't know where my bag is. |
+| 382 | कहाँ | kahaan | sentence tile |
+| 383 | थाहा | thaaha | sentence tile |
 
 ## Section 09: Chapter 8: अक्षर र वाक्य (Letters & sentences) (108 lines)
 
 | # | Say | How to say it | Meaning |
 |---|---|---|---|
-| 377 | अक्षर र वाक्य | akshar ra waakya | Letters & sentences |
-| 378 | स्वर वर्ण | swar barna | Letters: vowels |
-| 379 | अ, अमला। | a, amala | letter अ, then the word अमला (Gooseberry) |
-| 380 | अमला | amala | Gooseberry |
-| 381 | आ, आमा। | aa, aama | letter आ, then the word आमा (Mother) |
-| 382 | इ, इनार। | i, inaar | letter इ, then the word इनार (Well) |
-| 383 | इनार | inaar | Well |
-| 384 | ई, ईश्वर। | ii, iishwar | letter ई, then the word ईश्वर (God) |
-| 385 | ईश्वर | iishwar | God |
-| 386 | उ, उखु। | u, ukhu | letter उ, then the word उखु (Sugarcane) |
-| 387 | उखु | ukhu | Sugarcane |
-| 388 | ऊ, ऊन। | uu, uun | letter ऊ, then the word ऊन (Wool) |
-| 389 | ऊन | uun | Wool |
-| 390 | ऋ, ऋषि। | ri, rishi | letter ऋ, then the word ऋषि (Sage) |
-| 391 | ऋषि | rishi | Sage |
-| 392 | ए, एकतारे। | e, ektaare | letter ए, then the word एकतारे (One-string lute) |
-| 393 | एकतारे | ektaare | One-string lute |
-| 394 | ऐ, ऐना। | ai, aina | letter ऐ, then the word ऐना (Mirror) |
-| 395 | ऐना | aina | Mirror |
-| 396 | ओ, ओखर। | o, okhar | letter ओ, then the word ओखर (Walnut) |
-| 397 | ओखर | okhar | Walnut |
-| 398 | औ, औषधी। | au, aushadhi | letter औ, then the word औषधी (Medicine) |
-| 399 | औषधी | aushadhi | Medicine |
-| 400 | अं, अंगुर। | am, angur | letter अं, then the word अंगुर (Grapes) |
-| 401 | अः। | ah | the letter sound अः |
-| 402 | व्यञ्जन वर्ण | byanjan barna | Letters: क to ञ |
-| 403 | क, कछुवा। | ka, kachhuwa | letter क, then the word कछुवा (Tortoise) |
-| 404 | ख, खरायो। | kha, kharayo | letter ख, then the word खरायो (Rabbit) |
-| 405 | ग, गमला। | ga, gamala | letter ग, then the word गमला (Flower pot) |
-| 406 | गमला | gamala | Flower pot |
-| 407 | घ, घडी। | gha, ghadi | letter घ, then the word घडी (Watch) |
-| 408 | घडी | ghadi | Watch |
-| 409 | ङ, नङ। | nga, nang | letter ङ, then the word नङ (Fingernail) |
-| 410 | नङ | nang | Fingernail |
-| 411 | च, चरा। | cha, chara | letter च, then the word चरा (Bird) |
-| 412 | छ, छाता। | chha, chhaata | letter छ, then the word छाता (Umbrella) |
-| 413 | छाता | chhaata | Umbrella |
-| 414 | ज, जग। | ja, jag | letter ज, then the word जग (Jug) |
-| 415 | जग | jag | Jug |
-| 416 | झ, झण्डा। | jha, jhanda | letter झ, then the word झण्डा (Flag) |
-| 417 | झण्डा | jhanda | Flag |
-| 418 | ञ। | nya | the letter sound ञ |
-| 419 | ट, टपरी। | ṭa, tapari | letter ट, then the word टपरी (Leaf plate) |
-| 420 | टपरी | tapari | Leaf plate |
-| 421 | ठ, ठडेउरो। | ṭha, thadeuro | letter ठ, then the word ठडेउरो (Lamp stand) |
-| 422 | ठडेउरो | thadeuro | Lamp stand |
-| 423 | ड, डमरु। | ḍa, damaru | letter ड, then the word डमरु (Hand drum) |
-| 424 | डमरु | damaru | Hand drum |
-| 425 | ढ, ढक्की। | ḍha, dhakki | letter ढ, then the word ढक्की (Basket) |
-| 426 | ढक्की | dhakki | Basket |
-| 427 | ण, णतो। | ṇa, nato | letter ण, then the word णतो (Book stand) |
-| 428 | णतो | nato | Book stand |
-| 429 | त, तराजु। | ta, taraju | letter त, then the word तराजु (Scales) |
-| 430 | तराजु | taraju | Scales |
-| 431 | थ, थरमस। | tha, tharmas | letter थ, then the word थरमस (Flask) |
-| 432 | थरमस | tharmas | Flask |
-| 433 | द, दराज। | da, daraj | letter द, then the word दराज (Cupboard) |
-| 434 | दराज | daraj | Cupboard |
-| 435 | ध, धनुष। | dha, dhanush | letter ध, then the word धनुष (Bow) |
-| 436 | धनुष | dhanush | Bow |
-| 437 | न, नरिवल। | na, nariwal | letter न, then the word नरिवल (Coconut) |
-| 438 | नरिवल | nariwal | Coconut |
-| 439 | प, परेवा। | pa, parewa | letter प, then the word परेवा (Pigeon) |
-| 440 | परेवा | parewa | Pigeon |
-| 441 | फ, फलफूल। | pha, phalphul | letter फ, then the word फलफूल (Fruits) |
-| 442 | फलफूल | phalphul | Fruits |
-| 443 | ब, बस। | ba, bas | letter ब, then the word बस (Bus) |
-| 444 | भ, भकुण्डो। | bha, bhakundo | letter भ, then the word भकुण्डो (Football) |
-| 445 | म, मकै। | ma, makai | letter म, then the word मकै (Corn) |
-| 446 | मकै | makai | Corn |
-| 447 | य, यज्ञ। | ya, yagya | letter य, then the word यज्ञ (Fire ritual) |
-| 448 | यज्ञ | yagya | Fire ritual |
-| 449 | र, रथ। | ra, rath | letter र, then the word रथ (Chariot) |
-| 450 | रथ | rath | Chariot |
-| 451 | ल, लसुन। | la, lasun | letter ल, then the word लसुन (Garlic) |
-| 452 | लसुन | lasun | Garlic |
-| 453 | व, वकिल। | wa, wakil | letter व, then the word वकिल (Lawyer) |
-| 454 | वकिल | wakil | Lawyer |
-| 455 | श, शङ्ख। | sha, shankha | letter श, then the word शङ्ख (Conch shell) |
-| 456 | शङ्ख | shankha | Conch shell |
-| 457 | ष, षट्कोण। | ṣha, shatkon | letter ष, then the word षट्कोण (Six-point star) |
-| 458 | षट्कोण | shatkon | Six-point star |
-| 459 | स, सर्प। | sa, sarpa | letter स, then the word सर्प (Snake) |
-| 460 | सर्प | sarpa | Snake |
-| 461 | ह, हलो। | ha, halo | letter ह, then the word हलो (Plough) |
-| 462 | हलो | halo | Plough |
-| 463 | क्ष, क्षमा। | ksha, kshama | letter क्ष, then the word क्षमा (Sorry) |
-| 464 | क्षमा | kshama | Sorry |
-| 465 | त्र, त्रिशूल। | tra, trishul | letter त्र, then the word त्रिशूल (Trident) |
-| 466 | त्रिशूल | trishul | Trident |
-| 467 | ज्ञ, ज्ञानी। | gya, gyani | letter ज्ञ, then the word ज्ञानी (Good child) |
-| 468 | ज्ञानी | gyani | Good child |
-| 469 | वाक्य | waakya | Make sentences |
-| 470 | म ठीक छु। | ma thik chhu | I am fine. |
-| 471 | ठीक | thik | sentence tile |
-| 472 | छु | chhu | sentence tile |
-| 473 | मेरो नाम सीता हो। | mero naam Sita ho | My name is Sita. |
-| 474 | नाम | naam | sentence tile |
-| 475 | सीता | Sita | sentence tile |
-| 476 | यो मेरो कुकुर हो। | yo mero kukur ho | This is my dog. |
-| 477 | यो | yo | sentence tile |
-| 478 | मलाई मोमो मन पर्छ। | malai momo man parchha | I like momo. |
-| 479 | आकाश निलो छ। | aakash nilo chha | The sky is blue. |
-| 480 | आकाश | aakash | sentence tile |
-| 481 | म पानी पिउँछु। | ma paani piunchhu | I drink water. |
-| 482 | पिउँछु | piunchhu | sentence tile |
-| 483 | बिरालो सानो छ। | biralo saano chha | The cat is small. |
-| 484 | हात्ती ठूलो छ। | hatti thulo chha | The elephant is big. |
+| 384 | अक्षर र वाक्य | akshar ra waakya | Letters & sentences |
+| 385 | स्वर वर्ण | swar barna | Letters: vowels |
+| 386 | अ, अमला। | a, amala | letter अ, then the word अमला (Gooseberry) |
+| 387 | अमला | amala | Gooseberry |
+| 388 | आ, आमा। | aa, aama | letter आ, then the word आमा (Mother) |
+| 389 | इ, इनार। | i, inaar | letter इ, then the word इनार (Well) |
+| 390 | इनार | inaar | Well |
+| 391 | ई, ईश्वर। | ii, iishwar | letter ई, then the word ईश्वर (God) |
+| 392 | ईश्वर | iishwar | God |
+| 393 | उ, उखु। | u, ukhu | letter उ, then the word उखु (Sugarcane) |
+| 394 | उखु | ukhu | Sugarcane |
+| 395 | ऊ, ऊन। | uu, uun | letter ऊ, then the word ऊन (Wool) |
+| 396 | ऊन | uun | Wool |
+| 397 | ऋ, ऋषि। | ri, rishi | letter ऋ, then the word ऋषि (Sage) |
+| 398 | ऋषि | rishi | Sage |
+| 399 | ए, एकतारे। | e, ektaare | letter ए, then the word एकतारे (One-string lute) |
+| 400 | एकतारे | ektaare | One-string lute |
+| 401 | ऐ, ऐना। | ai, aina | letter ऐ, then the word ऐना (Mirror) |
+| 402 | ऐना | aina | Mirror |
+| 403 | ओ, ओखर। | o, okhar | letter ओ, then the word ओखर (Walnut) |
+| 404 | ओखर | okhar | Walnut |
+| 405 | औ, औषधी। | au, aushadhi | letter औ, then the word औषधी (Medicine) |
+| 406 | औषधी | aushadhi | Medicine |
+| 407 | अं, अंगुर। | am, angur | letter अं, then the word अंगुर (Grapes) |
+| 408 | अः। | ah | the letter sound अः |
+| 409 | व्यञ्जन वर्ण | byanjan barna | Letters: क to ञ |
+| 410 | क, कछुवा। | ka, kachhuwa | letter क, then the word कछुवा (Tortoise) |
+| 411 | ख, खरायो। | kha, kharayo | letter ख, then the word खरायो (Rabbit) |
+| 412 | ग, गमला। | ga, gamala | letter ग, then the word गमला (Flower pot) |
+| 413 | गमला | gamala | Flower pot |
+| 414 | घ, घडी। | gha, ghadi | letter घ, then the word घडी (Watch) |
+| 415 | घडी | ghadi | Watch |
+| 416 | ङ, नङ। | nga, nang | letter ङ, then the word नङ (Fingernail) |
+| 417 | नङ | nang | Fingernail |
+| 418 | च, चरा। | cha, chara | letter च, then the word चरा (Bird) |
+| 419 | छ, छाता। | chha, chhaata | letter छ, then the word छाता (Umbrella) |
+| 420 | छाता | chhaata | Umbrella |
+| 421 | ज, जग। | ja, jag | letter ज, then the word जग (Jug) |
+| 422 | जग | jag | Jug |
+| 423 | झ, झण्डा। | jha, jhanda | letter झ, then the word झण्डा (Flag) |
+| 424 | झण्डा | jhanda | Flag |
+| 425 | ञ। | nya | the letter sound ञ |
+| 426 | ट, टपरी। | ṭa, tapari | letter ट, then the word टपरी (Leaf plate) |
+| 427 | टपरी | tapari | Leaf plate |
+| 428 | ठ, ठडेउरो। | ṭha, thadeuro | letter ठ, then the word ठडेउरो (Lamp stand) |
+| 429 | ठडेउरो | thadeuro | Lamp stand |
+| 430 | ड, डमरु। | ḍa, damaru | letter ड, then the word डमरु (Hand drum) |
+| 431 | डमरु | damaru | Hand drum |
+| 432 | ढ, ढक्की। | ḍha, dhakki | letter ढ, then the word ढक्की (Basket) |
+| 433 | ढक्की | dhakki | Basket |
+| 434 | ण, णतो। | ṇa, nato | letter ण, then the word णतो (Book stand) |
+| 435 | णतो | nato | Book stand |
+| 436 | त, तराजु। | ta, taraju | letter त, then the word तराजु (Scales) |
+| 437 | तराजु | taraju | Scales |
+| 438 | थ, थरमस। | tha, tharmas | letter थ, then the word थरमस (Flask) |
+| 439 | थरमस | tharmas | Flask |
+| 440 | द, दराज। | da, daraj | letter द, then the word दराज (Cupboard) |
+| 441 | दराज | daraj | Cupboard |
+| 442 | ध, धनुष। | dha, dhanush | letter ध, then the word धनुष (Bow) |
+| 443 | धनुष | dhanush | Bow |
+| 444 | न, नरिवल। | na, nariwal | letter न, then the word नरिवल (Coconut) |
+| 445 | नरिवल | nariwal | Coconut |
+| 446 | प, परेवा। | pa, parewa | letter प, then the word परेवा (Pigeon) |
+| 447 | परेवा | parewa | Pigeon |
+| 448 | फ, फलफूल। | pha, phalphul | letter फ, then the word फलफूल (Fruits) |
+| 449 | फलफूल | phalphul | Fruits |
+| 450 | ब, बस। | ba, bas | letter ब, then the word बस (Bus) |
+| 451 | भ, भकुण्डो। | bha, bhakundo | letter भ, then the word भकुण्डो (Football) |
+| 452 | म, मकै। | ma, makai | letter म, then the word मकै (Corn) |
+| 453 | मकै | makai | Corn |
+| 454 | य, यज्ञ। | ya, yagya | letter य, then the word यज्ञ (Fire ritual) |
+| 455 | यज्ञ | yagya | Fire ritual |
+| 456 | र, रथ। | ra, rath | letter र, then the word रथ (Chariot) |
+| 457 | रथ | rath | Chariot |
+| 458 | ल, लसुन। | la, lasun | letter ल, then the word लसुन (Garlic) |
+| 459 | लसुन | lasun | Garlic |
+| 460 | व, वकिल। | wa, wakil | letter व, then the word वकिल (Lawyer) |
+| 461 | वकिल | wakil | Lawyer |
+| 462 | श, शङ्ख। | sha, shankha | letter श, then the word शङ्ख (Conch shell) |
+| 463 | शङ्ख | shankha | Conch shell |
+| 464 | ष, षट्कोण। | ṣha, shatkon | letter ष, then the word षट्कोण (Six-point star) |
+| 465 | षट्कोण | shatkon | Six-point star |
+| 466 | स, सर्प। | sa, sarpa | letter स, then the word सर्प (Snake) |
+| 467 | सर्प | sarpa | Snake |
+| 468 | ह, हलो। | ha, halo | letter ह, then the word हलो (Plough) |
+| 469 | हलो | halo | Plough |
+| 470 | क्ष, क्षमा। | ksha, kshama | letter क्ष, then the word क्षमा (Sorry) |
+| 471 | क्षमा | kshama | Sorry |
+| 472 | त्र, त्रिशूल। | tra, trishul | letter त्र, then the word त्रिशूल (Trident) |
+| 473 | त्रिशूल | trishul | Trident |
+| 474 | ज्ञ, ज्ञानी। | gya, gyani | letter ज्ञ, then the word ज्ञानी (Good child) |
+| 475 | ज्ञानी | gyani | Good child |
+| 476 | वाक्य | waakya | Make sentences |
+| 477 | म ठीक छु। | ma thik chhu | I am fine. |
+| 478 | ठीक | thik | sentence tile |
+| 479 | छु | chhu | sentence tile |
+| 480 | मेरो नाम सीता हो। | mero naam Sita ho | My name is Sita. |
+| 481 | नाम | naam | sentence tile |
+| 482 | सीता | Sita | sentence tile |
+| 483 | यो मेरो कुकुर हो। | yo mero kukur ho | This is my dog. |
+| 484 | यो | yo | sentence tile |
+| 485 | मलाई मोमो मन पर्छ। | malai momo man parchha | I like momo. |
+| 486 | आकाश निलो छ। | aakash nilo chha | The sky is blue. |
+| 487 | आकाश | aakash | sentence tile |
+| 488 | म पानी पिउँछु। | ma paani piunchhu | I drink water. |
+| 489 | पिउँछु | piunchhu | sentence tile |
+| 490 | बिरालो सानो छ। | biralo saano chha | The cat is small. |
+| 491 | हात्ती ठूलो छ। | hatti thulo chha | The elephant is big. |
 
 ## Section 10: Family tree and missions (10 lines)
 
 | # | Say | How to say it | Meaning |
 |---|---|---|---|
-| 485 | ठूलोबाबा। | thulobaabaa | Dad's older brother |
-| 486 | ठूलीआमा। | thuliaamaa | Dad's older brother's wife (or Mom's older sister) |
-| 487 | काका। | kaakaa | Dad's younger brother |
-| 488 | काकी। | kaaki | Dad's younger brother's wife |
-| 489 | फुपू। | phupu | Dad's sister |
-| 490 | फुपाजु। | phupaaju | Dad's sister's husband |
-| 491 | मामा। | maamaa | Mom's brother |
-| 492 | माइजू। | maaiju | Mom's brother's wife |
-| 493 | सानीआमा। | saaniaamaa | Mom's younger sister |
-| 494 | ढोग गरेँ। | dhog garen | I bow to you (to elders, touching their feet or bowing) |
+| 492 | ठूलोबाबा। | thulobaabaa | Dad's older brother |
+| 493 | ठूलीआमा। | thuliaamaa | Dad's older brother's wife (or Mom's older sister) |
+| 494 | काका। | kaakaa | Dad's younger brother |
+| 495 | काकी। | kaaki | Dad's younger brother's wife |
+| 496 | फुपू। | phupu | Dad's sister |
+| 497 | फुपाजु। | phupaaju | Dad's sister's husband |
+| 498 | मामा। | maamaa | Mom's brother |
+| 499 | माइजू। | maaiju | Mom's brother's wife |
+| 500 | सानीआमा। | saaniaamaa | Mom's younger sister |
+| 501 | ढोग गरेँ। | dhog garen | I bow to you (to elders, touching their feet or bowing) |
 
-## Section 11: Extra sentence tiles (3 lines)
+## Section 11: Riddles, bedtime story and sound-word sentences (25 lines)
 
 | # | Say | How to say it | Meaning |
 |---|---|---|---|
-| 495 | र | ra | sentence tile |
-| 496 | पनि | pani | sentence tile |
-| 497 | तिमी | timi | sentence tile |
+| 502 | सेतो घर भित्र पहेँलो राजा। के हो? | seto ghar bhitra pahelo raajaa — ke ho? | Inside a white house lives a yellow king — what is it? |
+| 503 | अण्डा। | andaa | egg |
+| 504 | रातो घर भित्र सेता बाख्राहरू। के हो? | raato ghar bhitra setaa baakhraaharu — ke ho? | Inside a red house sit rows of little white goats — what are they? |
+| 505 | पानी पर्दा फुल्छ, घाम लाग्दा सुक्छ। के हो? | paani pardaa phulchha, ghaam laagdaa sukchha — ke ho? | It blooms open when it rains, and folds up when the sun comes out — what is it? |
+| 506 | पहेँलो कोट फुकालेर भित्रको मिठो खाने। के हो? | pahelo kot phukaalera bhitrako mitho khaane — ke ho? | You peel off its yellow coat to eat the sweet inside — what is it? |
+| 507 | दुई भाइ सँगै बस्छन्, तर एक अर्कालाई कहिल्यै देख्दैनन्। के हो? | dui bhaai sangai baschhan, tara ek arkaalaai kahilyai dekhdainan — ke ho? | Two brothers live right next to each other, but can never see each other — what are they? |
+| 508 | गाउँ खाने कथा! | gaaun khaane kathaa | Pandu's riddle |
+| 509 | पाण्डु र जून। (softly) | paandu ra joon | Pandu and the Moon |
+| 510 | एक दिन साँझ, पाण्डु आँगनमा बसेको थियो। (softly) | ek din saanjh, paandu aanganmaa baseko thiyo. | One evening, Pandu was sitting in the courtyard. |
+| 511 | आकाशमा ठूलो, गोलो जून देखियो। (softly) | aakaashmaa thulo, golo joon dekhiyo. | A big, round moon appeared in the sky. |
+| 512 | पाण्डुले भन्यो, नमस्ते जून! तिमी कति राम्रो! (softly) | paandule bhanyo, namaste joon! timi kati raamro! | Pandu said, “Hello, Moon! You are so pretty!” |
+| 513 | जूनले मुसुक्क हाँसेर भन्यो, अब सुत्ने बेला भयो, पाण्डु। (softly) | joonle musukka haansera bhanyo, aba sutne belaa bhayo, paandu. | The moon smiled sweetly and said, “It’s time to sleep now, Pandu.” |
+| 514 | पाण्डु ओछ्यानमा गयो र भुसुक्क निदायो। शुभ रात्रि! (softly) | paandu ochhyaanmaa gayo ra bhusukka nidaayo. shubha raatri! | Pandu went to bed and fell fast asleep. Good night! |
+| 515 | मेरो पेट टम्म भयो। | mero pet tamma bhayo | My tummy is completely full. |
+| 516 | ऊ मुसुक्क हाँस्यो। | u musukka haasyo | He smiled sweetly. |
+| 517 | पानी ग्लुक्क पिएँ। | paani glukka piyen | I gulped down the water. |
+| 518 | झमझम पानी पर्‍यो। | jhamjham paani paryo | The rain poured down. |
+| 519 | खाना खरपखुरुप खाऊ। | khaana kharap-khurup khaau | Eat up all your food quickly. |
+| 520 | भाइ भुसुक्क निदायो। | bhaai bhusukka nidaayo | Little brother fell fast asleep. |
+| 521 | गिलास। |  | word |
+| 522 | आलु। |  | word |
+| 523 | सोफा। |  | word |
+| 524 | गलैंचा। |  | word |
+| 525 | टिभी। |  | word |
+| 526 | जून। |  | word |
+
+## Section 12: Extra sentence tiles (3 lines)
+
+| # | Say | How to say it | Meaning |
+|---|---|---|---|
+| 527 | र | ra | sentence tile |
+| 528 | पनि | pani | sentence tile |
+| 529 | तिमी | timi | sentence tile |
 

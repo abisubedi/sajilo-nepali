@@ -27,6 +27,13 @@ A free, Duolingo-style web game that teaches kids aged 4–15 basic Nepali.
 - **🌳 Who's who in our family:** from the Family & Respect lesson. Dad's side, Mom's side and siblings, with what to call each relative and how to greet them (`window.KIN`).
 - **Festivals:** a marigold garland (and a diyo for Tihar) on Pandu's card during festivals in `window.FESTIVALS` (add next year's lunar dates when the calendar is out). Saturdays get a fun fact.
 - **Mero Nepali Passport:** tap a won chapter sticker → "Make my certificate" for a printable/shareable certificate with the child's name and the words they know.
+- **Fun Sound Words (रमाइलो आवाज):** a Chapter 3 lesson of Nepali sound words (टम्म, मुसुक्क, ग्लुक्क, झमझम, खरपखुरुप, भुसुक्क), each with an example sentence on its flashcard.
+- **Pandu's riddle (गाउँ खाने कथा):** question 3 of Today's challenge is a folk riddle from `window.RIDDLES`.
+- **Bedtime story:** after 7:30 PM a 🌙 card opens "पाण्डु र जून", 5 calm narrated pages with each word lit up as it is read (`window.STORY`; pictures story-1…5).
+- **🚗 Car ride:** an eyes-free family quiz: the phone asks in English, a 5-second madal drumroll, then Abi's voice gives the Nepali. Big buttons, keeps the screen awake.
+- **🤝 Team round:** in any word lesson. Big kid reads and picks the Nepali, little kid listens and taps the picture, same word. Wins the shared Team Star sticker.
+- **🔍 Explore the room:** tap things inside a big room picture to hear them (`window.SCENES`). Turns on when scene-living-room / scene-kitchen exist and their tap spots are set.
+- **🏡 Decorate Pandu's room:** drag picture stickers into a room in the sticker book; tap a placed sticker to hear it, drag it back to remove. Saved per player.
 - **Celebration and sharing:** a 3-star lesson ends with confetti and a ready-made message to share or copy for family.
 - **Print flashcards:** in a lesson's sheet, "🖨️ Print flashcards for home" makes a cut-out sheet of picture cards.
 - **Sound settings:** 🔊 turns all sound on or off. 🎵 turns off only the game beeps and keeps the recorded voice.

@@ -216,6 +216,14 @@ window.LESSONS = [
     { ne: "माथि", rom: "maathi", en: "up", pic: "⬆️", alt: ["above", "upstairs"] },
     { ne: "तल", rom: "tala", en: "down", pic: "⬇️", alt: ["below", "downstairs"] },
   ]},
+  { id: "sound-words", title: "Fun Sound Words", ne: "रमाइलो आवाज", rom: "ramaailo aawaaj", icon: "🎶", color: "#f4b41a", items: [
+    { ne: "टम्म", rom: "tamma", en: "full tummy (stuffed!)", pic: "🥟", ctx: "🥟 After eating 10 momos, your tummy feels:", alt: ["full", "full stomach", "stuffed", "tummy full", "full tummy"], ex: { ne: "मेरो पेट टम्म भयो।", rom: "mero pet tamma bhayo", en: "My tummy is completely full." } },
+    { ne: "मुसुक्क", rom: "musukka", en: "sweet little smile", pic: "😊", ctx: "📸 When Aama takes your photo, you smile:", alt: ["smile", "smiling", "sweet smile"], ex: { ne: "ऊ मुसुक्क हाँस्यो।", rom: "u musukka haasyo", en: "He smiled sweetly." } },
+    { ne: "ग्लुक्क", rom: "glukka", en: "gulp! (swallowing sound)", pic: "🥛", ctx: "🥛 Drinking a big glass of milk in one go:", alt: ["gulp", "swallow", "drinking sound"], ex: { ne: "पानी ग्लुक्क पिएँ।", rom: "paani glukka piyen", en: "I gulped down the water." } },
+    { ne: "झमझम", rom: "jhamjham", en: "pouring rain sound", pic: "🌧️", ctx: "☔ Listen outside! The rain is falling:", alt: ["rain", "raining", "heavy rain", "pouring", "pouring rain"], ex: { ne: "झमझम पानी पर्‍यो।", rom: "jhamjham paani paryo", en: "The rain poured down." } },
+    { ne: "खरपखुरुप", rom: "kharap-khurup", en: "gobbling up everything fast!", pic: "🍽️", ctx: "🍽️ Eating all your dinner super fast:", alt: ["eating fast", "gobble", "gobbling", "finish food", "gobble up"], ex: { ne: "खाना खरपखुरुप खाऊ।", rom: "khaana kharap-khurup khaau", en: "Eat up all your food quickly." } },
+    { ne: "भुसुक्क", rom: "bhusukka", en: "fast asleep (knocked out!)", pic: "😴", ctx: "🌙 At bedtime, Pandu falls:", alt: ["asleep", "deep sleep", "sleeping", "fast asleep"], ex: { ne: "भाइ भुसुक्क निदायो।", rom: "bhaai bhusukka nidaayo", en: "Little brother fell fast asleep." } },
+  ]},
   { id: "play-sentences", title: "Park Sentences", ne: "खेलको वाक्य", rom: "khelko waakya", icon: "⚽", color: "var(--flag-yellow)", sentences: [
     { ne: ["मलाई", "पर्ख"], rom: ["malai", "parkha"], en: "Wait for me." },
     { ne: ["अब", "मेरो", "पालो"], rom: ["aba", "mero", "paalo"], en: "Now it's my turn." },
@@ -443,7 +451,7 @@ window.LESSONS = [
 window.CHAPTERS = [
   { id: "home", ne: "मेरो घर", rom: "mero ghar", en: "Around the home", color: "var(--panda)", sticker: { pic: "🏡", img: "img/st-home.webp", name: "Home Hero", say: { ne: "तिमी घरको हिरो हौ!", rom: "timi gharko hiro hau!", en: "You're the home hero!" } }, lessons: ["greet", "respect-family", "kitchen-tummy", "daily-routines", "house-objects", "rooms-house", "home-sentences"] },
   { id: "me", ne: "म र मेरो शरीर", rom: "ma ra mero shareer", en: "All about me", color: "var(--flag-yellow)", sticker: { pic: "😊", img: "img/st-me.webp", name: "All About Me", say: { ne: "तिमी धेरै बाठो छौ!", rom: "timi dherai baatho chhau!", en: "You're so clever!" } }, lessons: ["body", "feelings-needs", "clothes", "what-i-have"] },
-  { id: "play", ne: "खेल र बाहिर", rom: "khel ra baahira", en: "Play & outside", color: "var(--flag-green)", sticker: { pic: "⚽", img: "img/st-play.webp", name: "Play Champ", say: { ne: "खेलमा तिमी च्याम्पियन!", rom: "khelma timi chyaampiyan!", en: "You're a play champion!" } }, lessons: ["playtime-verbs", "helping-verbs", "sports-outdoors", "weather-nature", "colours", "opposites", "play-sentences"] },
+  { id: "play", ne: "खेल र बाहिर", rom: "khel ra baahira", en: "Play & outside", color: "var(--flag-green)", sticker: { pic: "⚽", img: "img/st-play.webp", name: "Play Champ", say: { ne: "खेलमा तिमी च्याम्पियन!", rom: "khelma timi chyaampiyan!", en: "You're a play champion!" } }, lessons: ["playtime-verbs", "helping-verbs", "sports-outdoors", "weather-nature", "colours", "opposites", "sound-words", "play-sentences"] },
   { id: "culture", ne: "हाम्रो संस्कृति", rom: "haamro sanskriti", en: "Nepali culture & time", color: "var(--flag-red)", sticker: { pic: "🪔", img: "img/st-festival.webp", name: "Festival Star", say: { ne: "तिमी चाडपर्वको तारा हौ!", rom: "timi chaadparvako taara hau!", en: "You're a festival star!" } }, lessons: ["festivals-culture", "nepali-treats", "time-of-day", "days", "question-words", "culture-sentences"] },
   { id: "nature", ne: "प्रकृति र यात्रा", rom: "prakriti ra yaatra", en: "Nature & travel", color: "var(--flag-green)", sticker: { pic: "🐘", img: "img/st-explorer.webp", name: "Explorer", say: { ne: "वाह! तिमी साहसी यात्री हौ!", rom: "waah! timi saahasi yaatri hau!", en: "Wow, you're a brave explorer!" } }, lessons: ["animals", "birds-bugs", "vehicles-travel", "travel-sentences"] },
   { id: "school", ne: "स्कूल र गन्ती", rom: "skul ra ganti", en: "School & counting", color: "var(--flag-blue)", sticker: { pic: "🎒", img: "img/st-school.webp", name: "School Star", say: { ne: "तिमी स्कूलको तारा हौ!", rom: "timi skulko taara hau!", en: "You're a school star!" } }, lessons: ["num", "school-supplies", "fruits-snacks", "numbers-11-20"] },
@@ -541,3 +549,33 @@ window.FESTIVALS = [
   { from: "2027-03-21", to: "2027-03-22", ne: "होली", rom: "holi", en: "Holi", line: "Happy Holi! The festival of colors.", diyo: false },
   { from: "2027-04-14", to: "2027-04-14", ne: "नयाँ वर्ष", rom: "nayaa barsha", en: "Nepali New Year", line: "Happy Nepali New Year! Naya barsha ko shubhakaamanaa!", diyo: false },
 ];
+
+/* Gau Khane Katha (गाउँ खाने कथा): Pandu's riddle, the last question of Today's challenge. say = the recorded line. */
+window.RIDDLES = [
+  { ne: "सेतो घर भित्र पहेँलो राजा — के हो?", say: "सेतो घर भित्र पहेँलो राजा। के हो?", rom: "seto ghar bhitra pahelo raajaa — ke ho?", en: "Inside a white house lives a yellow king — what is it?",
+    answer: { ne: "अण्डा", rom: "andaa", en: "egg", pic: "🥚" }, wrong: [{ ne: "स्याउ", rom: "syaau", en: "apple", pic: "🍎" }, { ne: "टोपी", rom: "topi", en: "hat", pic: "🧢" }, { ne: "चम्चा", rom: "chamchaa", en: "spoon", pic: "🥄" }] },
+  { ne: "रातो घर भित्र सेता बाख्राहरू — के हो?", say: "रातो घर भित्र सेता बाख्राहरू। के हो?", rom: "raato ghar bhitra setaa baakhraaharu — ke ho?", en: "Inside a red house sit rows of little white goats — what are they?",
+    answer: { ne: "दाँत", rom: "daant", en: "teeth", pic: "🦷" }, wrong: [{ ne: "आँखा", rom: "aankhaa", en: "eyes", pic: "👀" }, { ne: "जुत्ता", rom: "juttaa", en: "shoes", pic: "👟" }, { ne: "फूल", rom: "phool", en: "flower", pic: "🌼" }] },
+  { ne: "पानी पर्दा फुल्छ, घाम लाग्दा सुक्छ — के हो?", say: "पानी पर्दा फुल्छ, घाम लाग्दा सुक्छ। के हो?", rom: "paani pardaa phulchha, ghaam laagdaa sukchha — ke ho?", en: "It blooms open when it rains, and folds up when the sun comes out — what is it?",
+    answer: { ne: "छाता", rom: "chhaataa", en: "umbrella", pic: "☂️" }, wrong: [{ ne: "किताब", rom: "kitaab", en: "book", pic: "📖" }, { ne: "झोला", rom: "jholaa", en: "bag", pic: "🎒" }, { ne: "गिलास", rom: "gilaas", en: "glass", pic: "🥛" }] },
+  { ne: "पहेँलो कोट फुकालेर भित्रको मिठो खाने — के हो?", say: "पहेँलो कोट फुकालेर भित्रको मिठो खाने। के हो?", rom: "pahelo kot phukaalera bhitrako mitho khaane — ke ho?", en: "You peel off its yellow coat to eat the sweet inside — what is it?",
+    answer: { ne: "केरा", rom: "keraa", en: "banana", pic: "🍌" }, wrong: [{ ne: "आलु", rom: "aalu", en: "potato", pic: "🥔" }, { ne: "रोटी", rom: "roti", en: "flatbread", pic: "🫓" }, { ne: "दूध", rom: "dudh", en: "milk", pic: "🥛" }] },
+  { ne: "दुई भाइ सँगै बस्छन्, तर एक अर्कालाई कहिल्यै देख्दैनन् — के हो?", say: "दुई भाइ सँगै बस्छन्, तर एक अर्कालाई कहिल्यै देख्दैनन्। के हो?", rom: "dui bhaai sangai baschhan, tara ek arkaalaai kahilyai dekhdainan — ke ho?", en: "Two brothers live right next to each other, but can never see each other — what are they?",
+    answer: { ne: "आँखा", rom: "aankhaa", en: "eyes", pic: "👀" }, wrong: [{ ne: "हात", rom: "haat", en: "hands", pic: "👐" }, { ne: "खुट्टा", rom: "khuttaa", en: "feet", pic: "🦶" }, { ne: "पेट", rom: "pet", en: "tummy", pic: "🫃" }] },
+];
+window.RIDDLE_TITLE = { ne: "गाउँ खाने कथा", rom: "gaaun khaane kathaa", en: "Pandu's riddle" };
+
+/* Bedtime story (रात्री कथा): shown after 7:30 PM. Each page is one recorded line; pic = a Pandu pose or a picture name. */
+window.STORY = { ne: "पाण्डु र जून", rom: "paandu ra joon", en: "Pandu and the Moon", pages: [
+  { ne: "एक दिन साँझ, पाण्डु आँगनमा बसेको थियो।", rom: "ek din saanjh, paandu aanganmaa baseko thiyo.", en: "One evening, Pandu was sitting in the courtyard.", art: "story-1", pic: "pandu-tea" },
+  { ne: "आकाशमा ठूलो, गोलो जून देखियो।", rom: "aakaashmaa thulo, golo joon dekhiyo.", en: "A big, round moon appeared in the sky.", art: "story-2", pic: "pandu-think" },
+  { ne: "पाण्डुले भन्यो, नमस्ते जून! तिमी कति राम्रो!", rom: "paandule bhanyo, namaste joon! timi kati raamro!", en: "Pandu said, “Hello, Moon! You are so pretty!”", art: "story-3", pic: "pandu-namaste" },
+  { ne: "जूनले मुसुक्क हाँसेर भन्यो, अब सुत्ने बेला भयो, पाण्डु।", rom: "joonle musukka haansera bhanyo, aba sutne belaa bhayo, paandu.", en: "The moon smiled sweetly and said, “It’s time to sleep now, Pandu.”", art: "story-4", pic: "pandu-listen" },
+  { ne: "पाण्डु ओछ्यानमा गयो र भुसुक्क निदायो। शुभ रात्रि!", rom: "paandu ochhyaanmaa gayo ra bhusukka nidaayo. shubha raatri!", en: "Pandu went to bed and fell fast asleep. Good night!", art: "story-5", pic: "pandu-sleep" },
+] };
+
+/* Explore the room: tap things in a big picture. Hotspots (x, y, r in % of the picture) are set once the picture exists. */
+window.SCENES = {
+  "living-room": { title: "बैठक कोठा", rom: "baithak kothaa", en: "Living room", img: "scene-living-room", unlock: "w-living-room", spots: [] },
+  "kitchen": { title: "भान्सा", rom: "bhaansaa", en: "Kitchen", img: "scene-kitchen", unlock: "w-kitchen", spots: [] },
+};
