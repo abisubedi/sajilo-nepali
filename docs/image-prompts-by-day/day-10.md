@@ -26,7 +26,7 @@
 - [ ] w-flower-pot.png
 - [ ] w-watch.png
 - [ ] w-fingernail.png
-- [ ] w-umbrella.png
+- [x] w-umbrella.png
 - [ ] w-jug.png
 - [ ] w-flag.png
 - [ ] w-leaf-plate.png
