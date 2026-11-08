@@ -1,6 +1,6 @@
 # Day 5 of 12: Chapter 3: खेल र बाहिर (Play & outside)
 
-48 pictures in the **storybook sketch style** (ink outlines, colored pencil, watercolor, round sticker). Every prompt is complete, so paste it as is.
+54 pictures in the **storybook sketch style** (ink outlines, colored pencil, watercolor, round sticker). Every prompt is complete, so paste it as is.
 
 **Tips**
 - Same tool and settings as pandu-namaste, and attach **pandu-namaste** as a style reference for every picture.
@@ -59,6 +59,12 @@
 - [ ] w-slowly.png
 - [ ] w-up.png
 - [ ] w-down.png
+- [x] w-full-tummy-stuffed.png
+- [x] w-sweet-little-smile.png
+- [x] w-gulp-swallowing-sound.png
+- [x] w-pouring-rain-sound.png
+- [x] w-gobbling-up-everything-fast.png
+- [x] w-fast-asleep-knocked-out.png
 
 ## Prompts
 
@@ -343,4 +349,44 @@
 **Attach:** cast-maya.png
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, pointing down at a ball on the ground.
+
+### w-full-tummy-stuffed.png
+512x512 · used for: Fun Sound Words: टम्म = full tummy (stuffed!)
+
+**Attach:** cast-arjun.png
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, leaning back with a big round full tummy after eating a plate of momos, patting his belly, eyes happily closed.
+
+### w-sweet-little-smile.png
+512x512 · used for: Fun Sound Words: मुसुक्क = sweet little smile
+
+**Attach:** cast-maya.png, cast-aama.png
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, giving a small sweet shy smile with rosy cheeks while Aama takes her photo with a phone.
+
+### w-gulp-swallowing-sound.png
+512x512 · used for: Fun Sound Words: ग्लुक्क = gulp! (swallowing sound)
+
+**Attach:** cast-arjun.png
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, gulping a big steel glass of milk in one go, head tipped back, little gulp lines near his throat.
+
+### w-pouring-rain-sound.png
+512x512 · used for: Fun Sound Words: झमझम = pouring rain sound
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: heavy monsoon rain pouring down in big streaks on a Nepali house roof and courtyard, puddles splashing, a child watching from the window.
+
+### w-gobbling-up-everything-fast.png
+512x512 · used for: Fun Sound Words: खरपखुरुप = gobbling up everything fast!
+
+**Attach:** cast-arjun.png
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, gobbling up a plate of dal-bhat super fast with his hand, rice grains flying, cheeks full, motion lines.
+
+### w-fast-asleep-knocked-out.png
+512x512 · used for: Fun Sound Words: भुसुक्क = fast asleep (knocked out!)
+
+**Attach:** cast-arjun.png
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, fast asleep in bed with his mouth open, one leg out of a colorful quilt, big z-z bubbles, a crescent moon at the window.
 
