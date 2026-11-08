@@ -11,25 +11,25 @@
 
 ## Checklist
 
-- [ ] pandu-wave.png
-- [ ] pandu-cheer.png
-- [ ] pandu-think.png
-- [ ] pandu-oops.png
-- [ ] pandu-listen.png
-- [ ] pandu-sleep.png
+- [x] pandu-wave.png
+- [x] pandu-cheer.png
+- [x] pandu-think.png
+- [x] pandu-oops.png
+- [x] pandu-listen.png
+- [x] pandu-sleep.png
 - [x] pandu-tea.png
 - [x] pandu-bike.png
-- [ ] cast-maya.png
-- [ ] cast-arjun.png
-- [ ] cast-aama.png
-- [ ] cast-baba.png
-- [ ] cast-didi.png
-- [ ] cast-dai.png
-- [ ] cast-bahini.png
-- [ ] cast-bhai.png
-- [ ] cast-hajuraama.png
-- [ ] cast-hajurbaa.png
-- [ ] cast-teacher.png
+- [x] cast-maya.png
+- [x] cast-arjun.png
+- [x] cast-aama.png
+- [x] cast-baba.png
+- [x] cast-didi.png
+- [x] cast-dai.png
+- [x] cast-bahini.png
+- [x] cast-bhai.png
+- [x] cast-hajuraama.png
+- [x] cast-hajurbaa.png
+- [x] cast-teacher.png
 
 ## Prompts
 

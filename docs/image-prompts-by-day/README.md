@@ -4,7 +4,7 @@ New storybook sketch style from 2026-11-08 (see pandu-namaste). Done counts pict
 
 | Day | What | Pictures | Done |
 |---|---|---|---|
-| 1 | [Pandu and the family (cast)](day-01.md) | 19 | 2/19 |
+| 1 | [Pandu and the family (cast)](day-01.md) | 19 | 19/19 |
 | 2 | [Map circles, chapter stickers and player pictures](day-02.md) | 59 | 0/59 |
 | 3 | [Chapter 1: मेरो घर (Around the home)](day-03.md) | 49 | 0/49 |
 | 4 | [Chapter 2: म र मेरो शरीर (All about me)](day-04.md) | 27 | 0/27 |
