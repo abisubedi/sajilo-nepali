@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Sajilo Nepali</title>
 <meta name="description" content="Learn everyday spoken Nepali for kids! Fun interactive games, audio pronunciation, and letter tracing with Pandu the red panda.">
 <link rel="canonical" href="https://sajilonepali.app/">
@@ -517,6 +517,26 @@ body.night .x, body.night .hearts { color: #c7d2fe; }
 .tray { display: flex; gap: 8px; overflow-x: auto; padding: 8px; background: var(--snow); border: 2px dashed var(--line); border-radius: 16px; min-height: 76px; touch-action: pan-x; }
 .tray-st { width: 64px; height: 64px; flex: none; touch-action: none; cursor: grab; user-select: none; -webkit-user-drag: none; }
 .drag-ghost { position: fixed; width: 76px; height: 76px; pointer-events: none; z-index: 50; transform: translate(-50%, -50%) scale(1.1); filter: drop-shadow(0 6px 10px rgba(0,0,0,.25)); }
+/* App-like touch behaviour (also ready for an App Store wrapper): no text highlighting or "Copy / Look Up" pop-ups
+   on long-press, no sideways wiggle, notch / home-bar safe areas. Typing boxes and the share text stay selectable. */
+html { overflow-x: hidden; }   /* on html only: putting it on body too turns body into its own scroller (breaks sticky + scrollTo) */
+html, body { overscroll-behavior-y: contain; -webkit-tap-highlight-color: transparent; }
+body { overflow-x: clip; }
+body { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px); }
+input, textarea, .share-text, [contenteditable] { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
+.share-text { -webkit-user-select: all; user-select: all; }
+.jump { top: env(safe-area-inset-top, 0px); }
+.feedback { padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px)); }
+/* Parental gate */
+.gate { text-align: center; }
+html.modal-open, html.modal-open body { overflow: hidden; }
+.sheet { overscroll-behavior: contain; }
+.gate h3 { margin: 0; font-family: var(--display); }
+.gate .gate-q { font-family: var(--display); font-size: 34px; margin: 6px 0; }
+.gate input { display: block; margin: 0 auto; font: inherit; font-size: 28px; width: 140px; text-align: center; padding: 8px; border-radius: 14px; border: 2px solid var(--line); }
+.gate .gate-msg { min-height: 22px; color: #a8271f; font-weight: 700; margin: 6px 0 0; }
+.gate .gate-btns { display: flex; gap: 10px; justify-content: center; margin-top: 10px; }
 /* Phones: keep the home screen compact so the first lesson is close to the fold. */
 @media (max-width: 480px) {
   .app { gap: 10px; padding-top: 8px; }
@@ -694,6 +714,11 @@ function pickVoice() {
 try { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; } catch (e) {}
 const canSay = key => !!AUDIO[key] || !!voice;
 let current = null, lastEl = null, player = null;
+/* iOS only lets audio start from a tap: unlock the chime engine and the voice player on the very first touch. */
+document.addEventListener("pointerdown", function unlockAudio() {
+  try { const AC = window.AudioContext || window.webkitAudioContext; if (AC) { actx = actx || new AC(); actx.resume && actx.resume(); const b = actx.createBuffer(1, 1, 22050), s = actx.createBufferSource(); s.buffer = b; s.connect(actx.destination); s.start(0); } } catch (e) {}
+  try { if (!player) { player = new Audio(); player.muted = true; const pr = player.play(); if (pr) pr.catch(() => {}); player.pause(); player.muted = false; } } catch (e) {}
+}, { once: true, passive: true });
 function say(key, el) {
   if (!P.sound || !key) return;
   if (lastEl) lastEl.classList.remove("playing");
@@ -835,6 +860,7 @@ function buildQuestions(lesson) {
 const S = { screen: "map", lesson: null, queue: [], done: 0, total: 0, hearts: 3, mistakes: 0, answered: false };
 
 function render() {
+  document.documentElement.classList.toggle("modal-open", !!(S.sheet || S.stickers || S.players || S.grown));
   document.body.classList.toggle("night", S.screen === "story");
   if (S.screen !== "car" && S.car) stopCar();
   if (S.screen !== "room") { window.onpointermove = null; window.onpointerup = null; }
@@ -1611,7 +1637,15 @@ function setFeedback(good, solutionHTML, sayKey) {
   fb.innerHTML = good
     ? `<div class="fb-row">${pandu(panduSrc("cheer") ? "cheer" : "wave", "fb-pandu pop")}<div><p>🎉 ${neSpan(ch[0])} <span class="rom">${ch[1]}</span> ${ch[2]}</p>${solutionHTML ? `<div class="sol">${solutionHTML}</div>` : ""}</div></div><button class="go" type="button" id="next">Continue</button>`
     : `<div class="fb-row">${pandu("oops", "fb-pandu pop")}<div><p>Almost! Let\'s hear it together:</p><div class="sol">${solutionHTML}</div></div></div><button class="go" type="button" id="next">Got it</button>`;
-  $("#next").focus();
+  $("#next").focus({ preventScroll: true });
+  const keepVisible = () => {
+    const drawer = fb.getBoundingClientRect(), pick = document.querySelector(".opt.right") || document.querySelector(".opt.wrong");
+    if (!pick || pick.getBoundingClientRect().bottom <= drawer.top - 8) return;
+    const need = pick.getBoundingClientRect().bottom - drawer.top + 16, room = document.documentElement.scrollHeight - innerHeight - scrollY;
+    if (room < need) { const o = pick.closest(".opts") || pick.parentElement; o.style.marginBottom = (need - room + 8) + "px"; }
+    window.scrollBy({ top: need, behavior: "smooth" });
+  };
+  [60, 450].forEach(t => setTimeout(keepVisible, t));   // again once the drawer's picture has loaded
   if (!good) {   // a miss: Pandu says the answer once, calmly
     const k = sayKey || (fb.querySelector(".sol [data-say]") || {}).dataset?.say;
     if (k) setTimeout(() => say(k), 450);
@@ -1808,7 +1842,32 @@ function legacyCopy(text) {
 function selectShare() { const el = $("#shareText"); if (!el) return; const r = document.createRange(); r.selectNodeContents(el); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); }
 
 /* ---------- Events ---------- */
+const GATED = new Set(["shareApp", "saveCode", "loadCode", "offlineAudio", "openMisses", "tReset", "shareNow", "copyShare", "shareCert"]);
+let gateUntil = 0;
+function openGate(targetId) {
+  closeGate();
+  const a = 4 + Math.floor(Math.random() * 6), b = 3 + Math.floor(Math.random() * 6);
+  const back = document.createElement("div"); back.className = "sheet-back"; back.id = "gateBack";
+  const box = document.createElement("div"); box.className = "sheet gate"; box.id = "gate"; box.setAttribute("role", "dialog"); box.setAttribute("aria-modal", "true");
+  box.innerHTML = `<h3>🧑‍🧒 For grown-ups</h3><p style="margin:4px 0 0">Please answer to continue:</p><p class="gate-q">${a} × ${b} = ?</p>
+    <input id="gateIn" type="number" inputmode="numeric" pattern="[0-9]*" autocomplete="off" aria-label="Answer">
+    <p class="gate-msg" id="gateMsg"></p><div class="gate-btns"><button class="go" type="button" id="gateOk" style="width:auto;padding:10px 26px">OK</button><button class="chip" type="button" id="gateNo">Cancel</button></div>`;
+  box.dataset.answer = String(a * b); box.dataset.target = targetId;
+  document.documentElement.classList.add("modal-open"); document.body.append(back, box); setTimeout(() => { const i = $("#gateIn"); i && i.focus(); }, 60);
+  $("#gateIn").addEventListener("keydown", ev => { if (ev.key === "Enter") checkGate(); });
+}
+function closeGate() { ["gate", "gateBack"].forEach(id => { const e = document.getElementById(id); if (e) e.remove(); }); document.documentElement.classList.toggle("modal-open", !!(S.sheet || S.stickers || S.players || S.grown)); }
+function checkGate() {
+  const box = $("#gate"); if (!box) return;
+  if (($("#gateIn").value || "").trim() === box.dataset.answer) {
+    const id = box.dataset.target; closeGate(); gateUntil = Date.now() + 3 * 60 * 1000;   // no second question for 3 minutes
+    const el = document.getElementById(id); if (el) el.click();
+  } else { const t = box.dataset.target; openGate(t); $("#gateMsg").textContent = "That's not it. Please ask a grown-up!"; }
+}
 document.addEventListener("click", e => {
+  if (e.target.id === "gateBack" || (e.target.closest && e.target.closest("#gateNo"))) { closeGate(); return; }
+  if (e.target.closest && e.target.closest("#gateOk")) { checkGate(); return; }
+  { const g = e.target.closest && e.target.closest("button"); if (g && GATED.has(g.id) && Date.now() > gateUntil) { e.stopImmediatePropagation(); openGate(g.id); return; } }
   if (e.target.id === "sheetBack") { S.sheet = null; render(); return; }
   if (e.target.id === "stickBack") { S.stickers = false; render(); return; }
   if (e.target.id === "grownBack") { S.grown = null; render(); return; }
