@@ -100,6 +100,8 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .jump-pill.finished { border-color: #f3d37a; background: #fff8e1; }
 .jump-pill { display: inline-flex; align-items: center; gap: 6px; }
 .jump-pill img { width: 28px; height: 28px; object-fit: cover; border-radius: 50%; margin: -5px 0 -5px -6px; transform: scale(1.12); }
+.top-pill { display: none; }
+.jump.scrolled .top-pill { display: inline-flex; position: sticky; left: 0; z-index: 2; background: #1f2a44; color: #fff; border-color: #1f2a44; box-shadow: 4px 3px 0 var(--sky, #e8f4ff); }
 .jump-pill.here { border-color: var(--c, var(--flag-blue)); box-shadow: 0 3px 0 var(--c, var(--flag-blue)); }
 .chapter-banner { background: var(--snow); border: 2px solid var(--line); border-left: 8px solid var(--c, var(--flag-blue)); border-radius: 16px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 .chapter-banner small { display: block; font-weight: 800; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
@@ -387,8 +389,13 @@ body { background-image: var(--paper); }
 .mission { width: 100%; box-sizing: border-box; background: #fff3c4; border: 2px dashed #e6b422; border-radius: 18px; padding: 12px 14px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
 .mission p { margin: 0; } .mission-h { font-family: var(--display); font-weight: 800; font-size: 18px; color: #8a4b00; }
 .mission .mission-say { font-size: 20px; } .mission small { color: var(--muted); font-weight: 700; }
-/* Echo: hear Abi, then yourself */
+/* Echo: hear the word, then yourself */
 .echo.rec { background: #fde2df; border-color: var(--flag-red); color: #a8271f; animation: pulse 1s infinite; }
+.wotd-top { display: flex; align-items: center; }
+.wotd-top .wotd-main { flex: 1; min-width: 0; }
+.wotd-echo { flex: none; width: 46px; height: 46px; margin-right: 12px; border-radius: 50%; border: 2px solid #f3d37a; background: var(--snow); font-size: 20px; display: grid; place-items: center; padding: 0; box-shadow: 0 3px 0 #f3d37a; }
+.wotd-echo .echo-l { display: none; }
+.wotd-echo.rec { width: auto; padding: 0 12px; border-radius: 999px; font-size: 14px; }
 .wotd-foot .echo-l { display: none; }
 .wotd-foot .echo { flex: none; border: 0; border-right: 2px dashed #f3d37a; background: #fff8e1; padding: 6px 12px; font-size: 20px; border-radius: 0; }
 /* Who's who in our family */
@@ -833,7 +840,7 @@ function render() {
   if (S.screen !== "room") { window.onpointermove = null; window.onpointerup = null; }
   document.body.classList.toggle("hide-rom", !romOn()); document.body.classList.toggle("lv-big", P.level === "big");
   if (S.screen !== "done") document.querySelectorAll(".confetti").forEach(c => c.remove());
-  if (S.screen === "map") renderMap();
+  if (S.screen === "map") { renderMap(); watchChapters(); }
   else if (S.screen === "lesson") renderQuestion();
   else if (S.screen === "cards") renderCards();
   else if (S.screen === "print") renderPrint();
@@ -900,10 +907,11 @@ function wordOfDay() {
 function wordOfDayHTML() {
   const w = wordOfDay(); if (!w) return "";
   const heard = P.wotdDay === today();
-  return `<div class="wotd${heard ? " heard" : ""}"><button class="wotd-main" type="button" id="wotdPlay" data-say="${esc(K(w.it.ne))}"><span class="wotd-pic" aria-hidden="true">${artFor(w.it) ? `<img class="wpic" src="${artFor(w.it)}" alt="">` : esc(w.it.pic || "💡")}</span>
+  return `<div class="wotd${heard ? " heard" : ""}"><div class="wotd-top"><button class="wotd-main" type="button" id="wotdPlay" data-say="${esc(K(w.it.ne))}"><span class="wotd-pic" aria-hidden="true">${artFor(w.it) ? `<img class="wpic" src="${artFor(w.it)}" alt="">` : esc(w.it.pic || "💡")}</span>
     <span><small>💡 Word of the day<span class="wide-only"> · ${esc(w.c.en)}</span></small><b lang="ne">${esc(w.it.ne)}</b> <span class="rom">${esc(w.it.rom)}</span><em>${esc(w.it.en)}</em></span>
     <span class="wotd-say">${heard ? "✓ Heard today! +5 ⭐" : `${SPEAKER}<small>Tap for +5 ⭐</small>`}</span></button>
-    <div class="wotd-foot">${echoBtn(K(w.it.ne), "wotd-echo")}<button class="wotd-chal" type="button" id="wotdChal" ${P.chalDay === today() ? "disabled" : ""}>${P.chalDay === today() ? "✓ Challenge done!" : `🎯 Today's challenge<br><small>3 quick questions · +10 ⭐</small>`}</button>
+    ${echoBtn(K(w.it.ne), "wotd-echo")}</div>
+    <div class="wotd-foot"><button class="wotd-chal" type="button" id="wotdChal" ${P.chalDay === today() ? "disabled" : ""}>${P.chalDay === today() ? "✓ Challenge done!" : `🎯 Today's challenge<br><small>3 quick questions · +10 ⭐</small>`}</button>
     <button class="wotd-go" type="button" data-wotd-lesson="${esc(w.l.id)}">Practice “${esc(w.l.title)}” →</button></div></div>`;
 }
 function streakLine() {
@@ -1037,6 +1045,25 @@ function orderedLessons() {
   const vis = new Set(visibleLessons().map(l => l.id));
   return window.CHAPTERS.flatMap(c => c.lessons).filter(id => vis.has(id)).map(id => window.LESSONS.find(l => l.id === id));
 }
+let chapterObserver = null;
+function watchChapters() {
+  if (chapterObserver) chapterObserver.disconnect();
+  if (!("IntersectionObserver" in window)) return;
+  chapterObserver = new IntersectionObserver(entries => {
+    for (const e of entries) if (e.isIntersecting) {
+      const id = e.target.id.replace(/^ch-/, "");
+      document.querySelectorAll(".jump-pill[data-jump]").forEach(p => {
+        const on = p.dataset.jump === id; p.classList.toggle("here", on);
+        if (on && p.parentElement.scrollWidth > p.parentElement.clientWidth) p.parentElement.scrollTo({ left: p.offsetLeft - 60, behavior: "smooth" });
+      });
+    }
+  }, { rootMargin: "-20% 0px -65% 0px" });
+  document.querySelectorAll("section.chapter").forEach(s => chapterObserver.observe(s));
+}
+window.addEventListener("scroll", () => {
+  const nav = document.querySelector(".jump"), second = document.querySelectorAll("section.chapter")[1];
+  if (nav && second) nav.classList.toggle("scrolled", second.getBoundingClientRect().top < 0);
+}, { passive: true });
 function renderMap() {
   dailyDrop();
   const ordered = orderedLessons();
@@ -1105,7 +1132,7 @@ function renderMap() {
     ${storyCardHTML()}
     ${dropHTML()}
     ${wordOfDayHTML()}
-    <nav class="jump" aria-label="Jump to a chapter">${jump}</nav>
+    <nav class="jump" aria-label="Jump to a chapter"><button class="jump-pill top-pill" type="button" id="toTop" aria-label="Back to top">🐼 Top ↑</button>${jump}</nav>
     ${chapters}
     <section class="grownups" aria-label="For grown-ups">
       <h3>👨‍👩‍👧 For grown-ups</h3>
@@ -1217,12 +1244,12 @@ async function echo(btn, key) {
     btn.classList.add("rec"); btn.innerHTML = "🔴 Say it now!";
     rec.start(); await new Promise(r => setTimeout(r, 2300)); rec.stop(); await stopped;
     stream.getTracks().forEach(t => t.stop()); btn.classList.remove("rec");
-    btn.innerHTML = "👂 Abi… then you!";
+    btn.innerHTML = "👂 Listen… then you!";
     const url = URL.createObjectURL(new Blob(chunks, { type: rec.mimeType || "audio/webm" }));
     await sayAndWait(key);
     const me = new Audio(url); await new Promise(r => { me.onended = r; me.onerror = r; me.play().catch(r); setTimeout(r, 4000); });
     URL.revokeObjectURL(url);
-    back("✨ Try again?", 1800);
+    beep("good"); back("🎉 Great job!", 1800);
   } catch (e) { stream && stream.getTracks().forEach(t => t.stop()); btn.classList.remove("rec"); back("🎤 Couldn't record"); }
 }
 const echoBtn = (key, cls = "chip") => P.sound && AUDIO[key] ? `<button class="${cls} echo" type="button" data-echo="${esc(key)}" aria-label="Try saying it: record yourself and hear it back">🎤<span class="echo-l"> Try it</span></button>` : "";
@@ -1932,6 +1959,7 @@ document.addEventListener("click", e => {
     if (PL.current === id) { switchPlayer(PL.list[0].id); return; }
     savePlayers(); render(); return;
   }
+  if (t.id === "toTop") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
   if (t.dataset.jump) {
     const el = document.getElementById("ch-" + t.dataset.jump);
     if (el) el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });

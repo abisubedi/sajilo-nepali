@@ -87,3 +87,11 @@ Please have a native speaker review any new content.
 Recorded clips are in `public/audio/` (ElevenLabs voice "Subedi – Nepali Voice Male") and listed in `public/audio-manifest.js`
 (key = the Nepali text, or `L:<letter>` for a letter, which says the letter and then its example word).
 Anything without a recording uses the device's Nepali voice, or a Hindi one if there's no Nepali voice. If the device has neither, that word stays silent.
+
+## Deploying (and where sounds and pictures live)
+
+`python3 scripts/bundle_worker.py && cd dist && npx wrangler deploy`. Cloudflare limits a worker script to 15 MiB gzipped.
+Until a KV namespace is set up, the bundle carries lighter copies of the media (48 kbps speech, smaller WebP).
+To move sounds and pictures to Cloudflare KV (full quality, no size limit): create a KV namespace (Cloudflare dashboard →
+Storage & Databases → KV → Create, e.g. `sajilo-media`), put `{"namespace_id": "<id>"}` in `scripts/kv_config.json`, run
+`python3 scripts/upload_media.py` (uploads only new or changed files), then bundle and deploy as above.

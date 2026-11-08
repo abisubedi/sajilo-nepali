@@ -16,6 +16,7 @@ TYPES = {".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=u
 import hashlib, subprocess
 CACHE = os.path.join(ROOT, ".bundle-cache"); os.makedirs(CACHE, exist_ok=True)
 def light(p):
+    if KV: return open(p, "rb").read()   # KV mode: full-quality originals
     raw = open(p, "rb").read(); ext = os.path.splitext(p)[1]
     if ext not in (".mp3", ".webp"): return raw
     c = os.path.join(CACHE, hashlib.sha1(raw).hexdigest() + ext)
@@ -27,11 +28,14 @@ def light(p):
             im = Image.open(p); im.save(c, "WEBP", quality=74, method=6)
         if os.path.getsize(c) >= len(raw): open(c, "wb").write(raw)
     return open(c, "rb").read()
+KV = json.load(open(os.path.join(ROOT, "scripts", "kv_config.json"))) if os.path.exists(os.path.join(ROOT, "scripts", "kv_config.json")) else None
+in_kv = lambda rel: KV and (rel.startswith("/audio/") or rel.startswith("/img/"))
 files = {}
 for d, _, names in os.walk(PUBLIC):
     for n in names:
-        p = os.path.join(d, n)
-        files["/" + os.path.relpath(p, PUBLIC).replace(os.sep, "/")] = [
+        p = os.path.join(d, n); rel = "/" + os.path.relpath(p, PUBLIC).replace(os.sep, "/")
+        if in_kv(rel): continue
+        files[rel] = [
             TYPES.get(os.path.splitext(n)[1], "application/octet-stream"),
             base64.b64encode(light(p)).decode()]
 
@@ -40,15 +44,30 @@ with open(os.path.join(DIST, "worker.js"), "w") as f:
     f.write("const FILES = " + json.dumps(files) + r""";
 const cache = {};
 function bytes(b64) { if (!cache[b64]) { const s = atob(b64); const u = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); cache[b64] = u; } return cache[b64]; }
+const MEDIA_TYPES = { mp3: "audio/mpeg", webp: "image/webp", png: "image/png", svg: "image/svg+xml" };
 export default {
-  async fetch(request) {
+  async fetch(request, env, ctx) {
     let path = new URL(request.url).pathname;
     if (path === "/" || path === "") path = "/index.html";
-    const f = FILES[path];
-    if (!f) return new Response("Not found", { status: 404, headers: { "content-type": "text/plain" } });
     const long = path.startsWith("/audio/") || path.startsWith("/img/");
-    const body = bytes(f[1]);
-    const headers = { "content-type": f[0], "accept-ranges": "bytes", "cache-control": long ? "public, max-age=604800" : "public, max-age=60", "x-content-type-options": "nosniff" };
+    let body, type;
+    if (long && env && env.MEDIA) {
+      // Sounds and pictures from KV, kept in Cloudflare's edge cache so KV is read rarely.
+      const ck = new Request(new URL(path, request.url).toString()), cache = caches.default;
+      let hit = await cache.match(ck);
+      if (!hit) {
+        const v = await env.MEDIA.get(path, "arrayBuffer");
+        if (!v) return new Response("Not found", { status: 404, headers: { "content-type": "text/plain" } });
+        hit = new Response(v, { headers: { "content-type": MEDIA_TYPES[path.split(".").pop()] || "application/octet-stream", "cache-control": "public, max-age=604800" } });
+        ctx.waitUntil(cache.put(ck, hit.clone()));
+      }
+      body = new Uint8Array(await hit.arrayBuffer()); type = hit.headers.get("content-type");
+    } else {
+      const f = FILES[path];
+      if (!f) return new Response("Not found", { status: 404, headers: { "content-type": "text/plain" } });
+      body = bytes(f[1]); type = f[0];
+    }
+    const headers = { "content-type": type, "accept-ranges": "bytes", "cache-control": long ? "public, max-age=604800" : "public, max-age=60", "x-content-type-options": "nosniff" };
     // Safari needs byte-range responses to play audio.
     const m = /^bytes=(\d*)-(\d*)$/.exec(request.headers.get("range") || "");
     if (m) {
@@ -65,6 +84,7 @@ with open(os.path.join(DIST, "wrangler.jsonc"), "w") as f:
     # Custom domains are listed here so a deploy keeps them connected.
     f.write(json.dumps({"name": "sajilo-nepali", "main": "worker.js", "compatibility_date": "2026-11-04",
                         "workers_dev": True,
+                        **({"kv_namespaces": [{"binding": "MEDIA", "id": KV["namespace_id"]}]} if KV else {}),
                         "routes": [{"pattern": "sajilonepali.app", "custom_domain": True},
                                    {"pattern": "www.sajilonepali.app", "custom_domain": True}]}, indent=2) + "\n")
 import gzip
