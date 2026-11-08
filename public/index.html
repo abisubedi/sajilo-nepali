@@ -422,6 +422,40 @@ body { background-image: var(--paper); }
 .cert-words span { background: #fff3c4; border-radius: 999px; padding: 3px 10px; font-weight: 700; font-size: 15px; } .cert-words small { color: var(--muted); }
 .cert-foot { margin: 8px 0 0; color: var(--muted); font-weight: 700; font-size: 13px; }
 @media print { .cert { break-inside: avoid; margin-top: 10mm; } .cert-row .mascot { width: 140px; height: 140px; } }
+/* Flashcard buttons: one even row on every screen */
+.card-nav > * { height: 52px; white-space: nowrap; flex: none; }
+.card-nav .chip.big { padding: 0 18px; }
+/* Short screens (iPhone SE, any iPhone turned sideways): tighter lessons so the answers and buttons stay in view */
+@media (max-height: 600px) {
+  .ask { font-size: 19px; }
+  .flashcard { min-height: 0; padding: 10px 12px; gap: 2px; }
+  .flashcard .big { font-size: 56px !important; }
+  .flashcard .ne { font-size: 32px; } .flashcard .en, .flashcard .rom { font-size: 17px; }
+  .prompt { padding: 10px 12px; gap: 4px; }
+  .say-row .side-pandu { width: 56px; height: 56px; }
+  .say.huge { font-size: 21px; padding: 10px 20px; }
+  .opts { gap: 8px; }
+  .opt { min-height: 0; }
+  .opt .has-art .wpic, body:not(.lv-big) .opt .has-art .wpic { width: 68px; height: 68px; }
+  body:not(.lv-big) .opt { min-height: 0; padding: 6px 10px; }
+  .feedback { padding: 10px 16px 14px; gap: 6px; }
+  .feedback .go { padding-top: 10px; padding-bottom: 10px; }
+}
+/* Phones sideways: the answer bar scrolls with the page instead of covering it; wide rows of answers */
+@media (max-height: 460px) {
+  .feedback { position: static; margin-bottom: 0; }
+  .opts { grid-template-columns: repeat(4, 1fr); }
+  body:not(.lv-big) .opt { flex-direction: column; gap: 2px; }
+  .flashcard { flex-direction: row; flex-wrap: wrap; justify-content: center; column-gap: 16px; }
+  .flashcard .ctx { flex-basis: 100%; text-align: center; }
+}
+/* iPads: use the extra room for bigger pictures */
+@media (min-width: 700px) and (min-height: 900px) {
+  .app { max-width: 760px; }
+  .opt .has-art .wpic, body:not(.lv-big) .opt .has-art .wpic { width: 150px; height: 150px; }
+  .say-row .side-pandu { width: 96px; height: 96px; }
+  .flashcard .big { font-size: 110px !important; }
+}
 /* Phones: keep the home screen compact so the first lesson is close to the fold. */
 @media (max-width: 480px) {
   .app { gap: 10px; padding-top: 8px; }
