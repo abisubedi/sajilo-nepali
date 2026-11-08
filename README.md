@@ -1,6 +1,6 @@
 # Sajilo Nepali (सजिलो नेपाली)
 
-A free, Duolingo-style web game that teaches kids aged 4–15 basic Nepali.
+A free web game that teaches kids aged 4–15 basic Nepali.
 
 - **Two levels:**
   - **Little learners (4–7):** 3 big picture choices, listening and tracing, 6 questions, no hearts so nobody fails, "how to say it" shown.
