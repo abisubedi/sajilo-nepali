@@ -488,5 +488,15 @@ window.AUDIO = {
  "नयाँ": "audio/71469f6117.mp3?v=5b4ba520",
  "तिमीसँग": "audio/e1b0b40f98.mp3?v=b66d55d5",
  "के": "audio/480f0e4f07.mp3?v=eb991ecb",
- "नमस्ते मेरो नाम अबी सुवेदी हो सजिलो नेपालीमा स्वागत छ": "audio/9affc49cd4.mp3?v=b5fae9fc"
+ "नमस्ते मेरो नाम अबी सुवेदी हो सजिलो नेपालीमा स्वागत छ": "audio/9affc49cd4.mp3?v=b5fae9fc",
+ "ठूलोबाबा": "audio/5447ae9e16.mp3?v=050b7d7c",
+ "ठूलीआमा": "audio/3df5e8a000.mp3?v=4ca803fa",
+ "काका": "audio/8b588de592.mp3?v=8ae1fcf0",
+ "काकी": "audio/b724a3ecff.mp3?v=96ed145f",
+ "फुपू": "audio/92b851e5fb.mp3?v=a5631ac4",
+ "फुपाजु": "audio/36729c2a08.mp3?v=eaaff38c",
+ "मामा": "audio/8e4493907e.mp3?v=df147e3b",
+ "माइजू": "audio/1ea16346df.mp3?v=763d24da",
+ "सानीआमा": "audio/d3a217fd71.mp3?v=cf1b6a1e",
+ "ढोग गरेँ": "audio/00d597b61d.mp3?v=7fa5b195"
 };

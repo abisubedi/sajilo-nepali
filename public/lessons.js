@@ -489,3 +489,55 @@ window.PHRASES = { hello: "नमस्ते!", morning: "शुभ प्र�
 window.audioKey = function (text) { return String(text).replace(/[!।?.,]/g, "").trim(); };
 window.letterKey = function (item) { return "L:" + item.ne; };
 window.letterSpeech = function (item) { return item.word ? item.ne + ", " + item.word + "।" : item.ne + "।"; };
+
+/* Who's who in our family: what to call each relative and how to greet them. */
+window.KIN = {
+  dad: [
+    { ne: "हजुरबा", rom: "hajurba", en: "Grandpa", who: "Dad's father", pic: "👴", art: "w-grandpa", elder: true },
+    { ne: "हजुरआमा", rom: "hajuraama", en: "Grandma", who: "Dad's mother", pic: "👵", art: "w-grandma", elder: true },
+    { ne: "ठूलोबाबा", rom: "thulobaabaa", en: "Big uncle", who: "Dad's older brother", pic: "👨‍🦳", elder: true },
+    { ne: "ठूलीआमा", rom: "thuliaamaa", en: "Big aunt", who: "Dad's older brother's wife (or Mom's older sister)", pic: "👩", elder: true },
+    { ne: "काका", rom: "kaakaa", en: "Uncle", who: "Dad's younger brother", pic: "👨", elder: true },
+    { ne: "काकी", rom: "kaaki", en: "Aunt", who: "Dad's younger brother's wife", pic: "👩", elder: true },
+    { ne: "फुपू", rom: "phupu", en: "Aunt", who: "Dad's sister", pic: "👩‍🦱", elder: true },
+    { ne: "फुपाजु", rom: "phupaaju", en: "Uncle", who: "Dad's sister's husband", pic: "👨‍🦱", elder: true },
+  ],
+  mom: [
+    { ne: "मामा", rom: "maamaa", en: "Uncle", who: "Mom's brother", pic: "🧔", elder: true },
+    { ne: "माइजू", rom: "maaiju", en: "Aunt", who: "Mom's brother's wife", pic: "👩", elder: true },
+    { ne: "ठूलीआमा", rom: "thuliaamaa", en: "Big aunt", who: "Mom's older sister", pic: "👩‍🦳", elder: true },
+    { ne: "सानीआमा", rom: "saaniaamaa", en: "Little aunt", who: "Mom's younger sister", pic: "👧", elder: true },
+  ],
+  me: [
+    { ne: "दाइ", rom: "daai", en: "Older brother", who: "Your older brother (and older boy cousins)", pic: "👦", art: "w-older-brother", elder: true },
+    { ne: "दिदी", rom: "didi", en: "Older sister", who: "Your older sister (and older girl cousins)", pic: "👧", art: "w-older-sister", elder: true },
+    { ne: "भाइ", rom: "bhaai", en: "Younger brother", who: "Your younger brother (and younger boy cousins)", pic: "🧒", art: "w-younger-brother" },
+    { ne: "बहिनी", rom: "bahini", en: "Younger sister", who: "Your younger sister (and younger girl cousins)", pic: "👶", art: "w-younger-sister" },
+  ],
+  greetElder: { ne: "ढोग गरेँ", rom: "dhog garen", en: "I bow to you (to elders, touching their feet or bowing)" },
+  greetYounger: { ne: "नमस्ते", rom: "namaste", en: "Hello" },
+};
+
+/* Real-life missions: one a day, said out loud to someone at home. Every line already has a voice clip. */
+window.MISSIONS = [
+  { ne: "मलाई पानी दिनुहोस्", rom: "malaai paani dinuhos", en: "Please give me water.", go: "Go to Aama or Baba and say:" },
+  { ne: "आमा म तपाईंलाई माया गर्छु", rom: "aamaa ma tapaailaai maayaa garchhu", en: "Mom, I love you.", go: "Go to Aama and say:" },
+  { ne: "खाना धेरै मिठो छ", rom: "khaanaa dherai mitho chha", en: "The food is very yummy.", go: "At dinner, tell whoever cooked:" },
+  { ne: "धन्यवाद", rom: "dhanyabaad", en: "Thank you.", go: "Find someone who helped you today and say:" },
+  { ne: "शुभ रात्रि", rom: "shubha raatri", en: "Good night.", go: "At bedtime, say to everyone:" },
+  { ne: "खाना खानुभयो?", rom: "khaanaa khaanubhayo?", en: "Did you eat? (polite)", go: "Ask Baba or Hajurba:" },
+  { ne: "हजुरआमा सञ्चै हुनुहुन्छ?", rom: "hajuraamaa sanchai hunuhunchha?", en: "Grandma, how are you?", go: "Ask Hajuraama (a phone call works too!):" },
+  { ne: "नमस्ते", rom: "namaste", en: "Hello.", go: "Fold your hands and say to the next grown-up you see:" },
+  { ne: "आमा मलाई भोक लाग्यो", rom: "aamaa malaai bhok laagyo", en: "Mom, I am hungry.", go: "Go to Aama and say:" },
+  { ne: "बस्नुहोस्", rom: "basnuhos", en: "Please sit.", go: "Offer a grown-up a seat and say:" },
+];
+
+/* Festivals: Pandu's card gets a marigold garland (and a diyo for lamp festivals) on these days.
+   Lunar dates move every year: add next year's dates when the Nepali calendar is published. */
+window.FESTIVALS = [
+  { from: "2026-10-11", to: "2026-10-25", ne: "दशैँ", rom: "dashain", en: "Dashain", line: "Happy Dashain! Time for tika, jamara and big family visits.", diyo: false },
+  { from: "2026-11-07", to: "2026-11-11", ne: "तिहार", rom: "tihaar", en: "Tihar", line: "Happy Tihar! Diyo lamps, marigold garlands and Bhai Tika.", diyo: true },
+  { from: "2027-01-15", to: "2027-01-15", ne: "माघे सङ्क्रान्ति", rom: "maaghe sankraanti", en: "Maghe Sankranti", line: "Happy Maghe Sankranti! Til ko laddu, ghee and sweet potatoes today.", diyo: false },
+  { from: "2027-03-21", to: "2027-03-22", ne: "होली", rom: "holi", en: "Holi", line: "Happy Holi! The festival of colors.", diyo: false },
+  { from: "2027-04-14", to: "2027-04-14", ne: "नयाँ वर्ष", rom: "nayaa barsha", en: "Nepali New Year", line: "Happy Nepali New Year! Naya barsha ko shubhakaamanaa!", diyo: false },
+];

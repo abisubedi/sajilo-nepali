@@ -33,7 +33,7 @@
    under a strip of prayer flags; lessons take over the screen like a game card. Single theme by choice. */
 :root {
   --sky: #e8f4ff;
-  --snow: #ffffff;
+  --snow: #fffdf8;
   --ink: #1f2a44;
   --muted: #5d6b86;
   --flag-blue: #2f6fd6;
@@ -378,6 +378,50 @@ body:not(.lv-big) .opt .has-art .wpic { width: 104px; height: 104px; }
 .boing { animation: sticker-pop .45s cubic-bezier(.34, 1.56, .64, 1); }
 .pandu-btn { background: none; border: 0; padding: 0; flex: none; cursor: pointer; }
 .pandu-hi { animation: hello-sway 6s ease-in-out infinite; transform-origin: 50% 90%; }
+/* Handmade lokta paper: a faint fibrous grain over the page and the cards, so the sketches look painted on paper. */
+:root { --paper: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85 .55' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .33 0 0 0 0 .22 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+body { background-image: var(--paper); }
+.greet, .stone, .wotd, .drop, .prompt, .opt, .flashcard, .chapter-banner, .sheet, .sticker, .pic-st, .chal-word, .kin-card, .cert, .mission, .levels, .stat, .jump-pill { background-image: var(--paper); }
+@media print { body, .cert { background-image: none !important; } }
+/* Real-life mission */
+.mission { width: 100%; box-sizing: border-box; background: #fff3c4; border: 2px dashed #e6b422; border-radius: 18px; padding: 12px 14px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+.mission p { margin: 0; } .mission-h { font-family: var(--display); font-weight: 800; font-size: 18px; color: #8a4b00; }
+.mission .mission-say { font-size: 20px; } .mission small { color: var(--muted); font-weight: 700; }
+/* Echo: hear Abi, then yourself */
+.echo.rec { background: #fde2df; border-color: var(--flag-red); color: #a8271f; animation: pulse 1s infinite; }
+.wotd-foot .echo-l { display: none; }
+.wotd-foot .echo { flex: none; border: 0; border-right: 2px dashed #f3d37a; background: #fff8e1; padding: 6px 12px; font-size: 20px; border-radius: 0; }
+/* Who's who in our family */
+.kin-title { margin: 0; font-family: var(--display); font-size: 22px; flex: 1; }
+.kin-h { margin: 6px 0 0; font-family: var(--display); font-size: 18px; }
+.kin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
+.kin-card { background-color: var(--snow); border: 2px solid var(--line); border-radius: 16px; padding: 8px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; font: inherit; color: var(--ink); box-shadow: 0 3px 0 var(--line); }
+.kin-card .kin-pic { font-size: 40px; line-height: 1; width: 60px; height: 60px; display: grid; place-items: center; }
+.kin-card .kin-pic img { width: 60px; height: 60px; object-fit: contain; }
+.kin-card b { font-size: 18px; } .kin-card small { font-size: 11.5px; font-weight: 700; color: var(--muted); line-height: 1.15; }
+.kin-say { position: sticky; top: 6px; z-index: 4; background: #fff8e1; border: 2px solid #f3d37a; border-radius: 16px; padding: 10px 12px; display: flex; gap: 12px; align-items: center; min-height: 64px; box-shadow: 0 4px 0 #f3d37a; }
+.kin-say .kin-pic { font-size: 44px; flex: none; } .kin-say .kin-pic img { width: 64px; height: 64px; }
+.kin-say p { margin: 0; } .kin-say .greet-line { font-size: 14px; font-weight: 700; margin-top: 4px; }
+.kin-tip { background: var(--snow); border: 2px solid var(--line); border-radius: 16px; padding: 10px 14px; font-weight: 700; }
+.sheet-btn.kin { background: #b9541a; box-shadow: 0 5px 0 #7d3810; }
+/* Festivals: marigold garland + diyo on Pandu's card */
+.greet.festive { position: relative; padding-top: 22px; }
+.greet.festive::before { content: ""; position: absolute; left: 10px; right: 10px; top: -6px; height: 22px; border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  background: radial-gradient(circle at 50% 55%, #f6b71c 0 6px, #e8742a 6.5px 8px, transparent 8.5px) 0 0 / 20px 22px repeat-x; filter: drop-shadow(0 2px 0 rgba(31,42,68,.15)); }
+.pandu-btn { position: relative; }
+.diyo { position: absolute; right: -6px; bottom: -2px; font-size: 26px; animation: flicker 1.6s ease-in-out infinite; }
+@keyframes flicker { 0%, 100% { filter: drop-shadow(0 0 3px #f6b71c); } 50% { filter: drop-shadow(0 0 9px #ffcf4d); transform: scale(1.06); } }
+/* Mero Nepali Passport certificate */
+.cert { position: relative; background-color: #fffaf0; border: 3px solid #b9541a; outline: 6px double #f6b71c; outline-offset: -14px; border-radius: 8px; padding: 34px 28px 22px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.cert-kicker { margin: 0; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #b9541a; font-size: 13px; }
+.cert h2 { margin: 0; font-family: var(--display); font-size: 30px; }
+.cert-row { display: flex; align-items: center; gap: 12px; }
+.cert-row .mascot { width: 104px; height: 104px; } .cert-st { width: 120px; height: 120px; object-fit: contain; }
+.cert-name { margin: 4px 0 0; font-family: var(--display); font-size: 34px; border-bottom: 2px dashed #b9541a; padding: 0 18px; }
+.cert-words { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.cert-words span { background: #fff3c4; border-radius: 999px; padding: 3px 10px; font-weight: 700; font-size: 15px; } .cert-words small { color: var(--muted); }
+.cert-foot { margin: 8px 0 0; color: var(--muted); font-weight: 700; font-size: 13px; }
+@media print { .cert { break-inside: avoid; margin-top: 10mm; } .cert-row .mascot { width: 140px; height: 140px; } }
 /* Phones: keep the home screen compact so the first lesson is close to the fold. */
 @media (max-width: 480px) {
   .app { gap: 10px; padding-top: 8px; }
@@ -562,18 +606,26 @@ function say(key, el) {
   } catch (e) { done(); }
 }
 let actx = null;
+/* Game sounds, made in the browser to feel like real instruments (no files to download):
+   tap = a soft wooden block, good = a singing-bowl chime, bad = a low gentle bowl, done = a little madal rhythm + chime. */
+function tone(f, t, dur, peak, type = "sine", f2) {
+  const o = actx.createOscillator(), g = actx.createGain();
+  o.type = type; o.frequency.setValueAtTime(f, t); if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + dur * .6);
+  g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + .008); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+  o.connect(g).connect(actx.destination); o.start(t); o.stop(t + dur + .02);
+}
+function bowl(t, root, peak) { [[1, 1], [2.71, .45], [5.2, .18]].forEach(([m, a]) => tone(root * m, t, 1.6 / Math.sqrt(m), peak * a)); }
+function madal(t, low) { tone(low ? 150 : 260, t, low ? .28 : .14, low ? .5 : .25, "sine", low ? 75 : 190); }
+function wood(t) { tone(1250, t, .05, .12, "triangle", 900); tone(2600, t, .025, .04); }
 function beep(kind) {
   if (!P.sound || P.beeps === false) return;
   try {
     actx = actx || new (window.AudioContext || window.webkitAudioContext)();
-    const notes = kind === "good" ? [660, 880] : kind === "bad" ? [392, 330] : [520];
-    notes.forEach((f, i) => {
-      const o = actx.createOscillator(), g = actx.createGain();
-      o.type = kind === "bad" ? "sine" : "triangle"; o.frequency.value = f;
-      const t = actx.currentTime + i * .11, peak = kind === "bad" ? .1 : kind === "tap" ? .08 : .22;
-      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + .16);
-      o.connect(g).connect(actx.destination); o.start(t); o.stop(t + .18);
-    });
+    const t = actx.currentTime + .01;
+    if (kind === "tap") wood(t);
+    else if (kind === "good") { bowl(t, 784, .09); bowl(t + .12, 1046, .06); }
+    else if (kind === "bad") bowl(t, 294, .06);
+    else if (kind === "done") { [[0, 1], [.18, 0], [.27, 0], [.36, 1], [.54, 0], [.72, 1]].forEach(([d, low]) => madal(t + d, low)); bowl(t + .9, 784, .1); bowl(t + 1.02, 1175, .06); }
   } catch (e) {}
 }
 
@@ -681,6 +733,8 @@ function render() {
   else if (S.screen === "lesson") renderQuestion();
   else if (S.screen === "cards") renderCards();
   else if (S.screen === "print") renderPrint();
+  else if (S.screen === "kin") renderKin();
+  else if (S.screen === "cert") renderCert();
   else renderDone();
 }
 
@@ -741,7 +795,7 @@ function wordOfDayHTML() {
   return `<div class="wotd${heard ? " heard" : ""}"><button class="wotd-main" type="button" id="wotdPlay" data-say="${esc(K(w.it.ne))}"><span class="wotd-pic" aria-hidden="true">${artFor(w.it) ? `<img class="wpic" src="${artFor(w.it)}" alt="">` : esc(w.it.pic || "💡")}</span>
     <span><small>💡 Word of the day<span class="wide-only"> · ${esc(w.c.en)}</span></small><b lang="ne">${esc(w.it.ne)}</b> <span class="rom">${esc(w.it.rom)}</span><em>${esc(w.it.en)}</em></span>
     <span class="wotd-say">${heard ? "✓ Heard today! +5 ⭐" : `${SPEAKER}<small>Tap for +5 ⭐</small>`}</span></button>
-    <div class="wotd-foot"><button class="wotd-chal" type="button" id="wotdChal" ${P.chalDay === today() ? "disabled" : ""}>${P.chalDay === today() ? "✓ Challenge done!" : `🎯 Today's challenge<br><small>3 quick questions · +10 ⭐</small>`}</button>
+    <div class="wotd-foot">${echoBtn(K(w.it.ne), "wotd-echo")}<button class="wotd-chal" type="button" id="wotdChal" ${P.chalDay === today() ? "disabled" : ""}>${P.chalDay === today() ? "✓ Challenge done!" : `🎯 Today's challenge<br><small>3 quick questions · +10 ⭐</small>`}</button>
     <button class="wotd-go" type="button" data-wotd-lesson="${esc(w.l.id)}">Practice “${esc(w.l.title)}” →</button></div></div>`;
 }
 function streakLine() {
@@ -931,10 +985,10 @@ function renderMap() {
       <div class="toggles">
         <button class="icon-btn" type="button" id="tRom" aria-pressed="${romOn()}" title="Show how to say it" aria-label="How to say it ${romOn() ? "on" : "off"}">Aa<small>${romOn() ? "on" : "off"}</small></button>
         <button class="icon-btn" type="button" id="tSound" aria-pressed="${P.sound}" title="Sound" aria-label="Sound ${P.sound ? "on" : "off"}">${P.sound ? SPEAKER : MUTED}<small>sound ${P.sound ? "on" : "off"}</small></button>
-        <button class="icon-btn" type="button" id="tBeeps" aria-pressed="${P.beeps !== false}" title="Game beeps (voice clips stay on)" aria-label="Game beeps ${P.beeps !== false ? "on" : "off"}"><span aria-hidden="true">${P.beeps !== false ? "🎵" : "🔕"}</span><small>beeps ${P.beeps !== false ? "on" : "off"}</small></button>
+        <button class="icon-btn" type="button" id="tBeeps" aria-pressed="${P.beeps !== false}" title="Game chimes (voice clips stay on)" aria-label="Game chimes ${P.beeps !== false ? "on" : "off"}"><span aria-hidden="true">${P.beeps !== false ? "🎵" : "🔕"}</span><small>chimes ${P.beeps !== false ? "on" : "off"}</small></button>
       </div>
     </div>
-    <div class="greet"><button class="pandu-btn" type="button" data-pandusay="${esc(K(greetPhrase()))}" aria-label="Pandu says hello">${pandu(panduNow(), "pandu-hi")}</button><div><p>${greeting()} I'm Pandu. ${streakLine()}</p>
+    <div class="greet${festivalToday() ? " festive" : ""}"><button class="pandu-btn" type="button" data-pandusay="${esc(K(greetPhrase()))}" aria-label="Pandu says hello">${pandu(panduNow(), "pandu-hi")}${festivalToday() && festivalToday().diyo ? `<span class="diyo" aria-hidden="true">🪔</span>` : ""}</button><div><p>${greeting()} I'm Pandu. ${greetExtra() || streakLine()}</p>
       <div class="pills">${pills.map(x => `<span class="pill">${x}</span>`).join("")}</div></div></div>
     ${dropHTML()}
     ${wordOfDayHTML()}
@@ -970,6 +1024,7 @@ function renderMap() {
           <div><strong>${esc(sheetL.title)}</strong>${neSpan(sheetL.ne)}${sheetL.rom ? ` <span class="rom">${esc(sheetL.rom)}</span>` : ""}</div></div>
         <button class="sheet-btn learn" type="button" id="goCards">📖 <span><b>Flashcards</b><small>Learn and listen at your own pace</small></span></button>
         <button class="sheet-btn play" type="button" id="goPlay">🎮 <span><b>Play game</b><small>Answer questions and earn ★★★</small></span></button>
+        ${S.sheet === "respect-family" ? `<button class="sheet-btn kin" type="button" id="goKin">🌳 <span><b>Who's who in our family</b><small>Kaka, Mama, Phupu… tap to hear</small></span></button>` : ""}
         <button class="chip" type="button" id="goPrint">🖨️ Print flashcards for home</button>
       </div>` : ""}`;
   if (sheetL) $("#goCards").focus();
@@ -998,6 +1053,7 @@ function renderCards() {
     <div class="card-nav">
       <button class="chip big" type="button" id="cardPrev" ${S.cardIdx ? "" : "disabled"} aria-label="Previous card">◀</button>
       <button class="say" type="button" data-say="${esc(c.key)}">${SPEAKER} <span>Hear it</span></button>
+      ${echoBtn(c.key, "chip big")}
       <button class="chip big" type="button" id="cardNext" ${last ? "disabled" : ""} aria-label="Next card">▶</button>
     </div>
     <div class="feedback"><button class="go" type="button" id="cardsPlay">${last ? "🎮 I'm ready: play the game!" : "🎮 Play game"}</button></div>`;
@@ -1018,6 +1074,81 @@ function renderPrint() {
 function moveCard(d) { const i = S.cardIdx + d; if (i < 0 || i >= S.cards.length) return; S.cardIdx = i; beep("tap"); renderCards(); }
 document.addEventListener("keydown", e => { if (S.screen !== "cards") return; if (e.key === "ArrowRight") moveCard(1); if (e.key === "ArrowLeft") moveCard(-1); });
 
+/* ---------- Real-life mission: one a day, said out loud at home ---------- */
+function missionToday() { const ms = window.MISSIONS || []; let h = 0; for (const ch of today() + PL.current) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return ms[h % ms.length]; }
+function missionHTML() {
+  const m = missionToday(); if (!m) return "";
+  const done = P.missionDay === today();
+  return `<div class="mission"><p class="mission-h">🗣️ Real-life mission</p><p><b>${esc(m.go)}</b></p>
+    <button class="say mission-say" type="button" data-say="${esc(K(m.ne))}">${SPEAKER} <span lang="ne">${esc(m.ne)}</span></button>
+    <span class="rom">${esc(m.rom)}</span><small>${esc(m.en)}</small>
+    <button class="chip${done ? "" : " primary"}" type="button" id="missionDone" ${done ? "disabled" : ""}>${done ? "✓ You said it today! +5 ⭐" : "✋ High five! I said it (+5 ⭐)"}</button></div>`;
+}
+/* ---------- Echo: hear the word, then hear yourself (recorded on this device only, never saved or sent) ---------- */
+function sayAndWait(key) {
+  return new Promise(r => { say(key); const a = player; if (!AUDIO[key] || !a) return setTimeout(r, 900); const d = a.onended; a.onended = () => { d && d(); r(); }; a.onerror = () => r(); setTimeout(r, 6000); });
+}
+async function echo(btn, key) {
+  if (btn.dataset.busy) return;
+  const label = btn.innerHTML, back = (msg, ms = 2500) => { btn.innerHTML = msg; setTimeout(() => { btn.innerHTML = label; delete btn.dataset.busy; }, ms); };
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) return back("🎤 Not on this device");
+  btn.dataset.busy = "1";
+  let stream;
+  try { stream = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch (e) { return back("🎤 Mic is off"); }
+  try {
+    const rec = new MediaRecorder(stream), chunks = [];
+    rec.ondataavailable = e => { if (e.data.size) chunks.push(e.data); };
+    const stopped = new Promise(r => { rec.onstop = r; });
+    btn.classList.add("rec"); btn.innerHTML = "🔴 Say it now!";
+    rec.start(); await new Promise(r => setTimeout(r, 2300)); rec.stop(); await stopped;
+    stream.getTracks().forEach(t => t.stop()); btn.classList.remove("rec");
+    btn.innerHTML = "👂 Abi… then you!";
+    const url = URL.createObjectURL(new Blob(chunks, { type: rec.mimeType || "audio/webm" }));
+    await sayAndWait(key);
+    const me = new Audio(url); await new Promise(r => { me.onended = r; me.onerror = r; me.play().catch(r); setTimeout(r, 4000); });
+    URL.revokeObjectURL(url);
+    back("✨ Try again?", 1800);
+  } catch (e) { stream && stream.getTracks().forEach(t => t.stop()); btn.classList.remove("rec"); back("🎤 Couldn't record"); }
+}
+const echoBtn = (key, cls = "chip") => P.sound && AUDIO[key] ? `<button class="${cls} echo" type="button" data-echo="${esc(key)}" aria-label="Try saying it: record yourself and hear it back">🎤<span class="echo-l"> Try it</span></button>` : "";
+/* ---------- Festivals and Saturdays on Pandu's card ---------- */
+const isoToday = () => { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
+const festivalToday = () => { const d = isoToday(); return (window.FESTIVALS || []).find(f => d >= f.from && d <= f.to); };
+function greetExtra() {
+  const f = festivalToday();
+  if (f) return `🌼 <span lang="ne">${esc(f.ne)}</span> <span class="rom">${esc(f.rom)}</span> ${esc(f.line)}`;
+  if (new Date().getDay() === 6) return `Did you know? ${neSpan("शनिबार")} <span class="rom">shanibaar</span>, Saturday, is the weekly holiday in Nepal!`;
+  return "";
+}
+/* ---------- Who's who in our family ---------- */
+function kinPic(x) { const a = x.art && (window.IMG || {})[x.art]; return `<span class="kin-pic" aria-hidden="true">${a ? `<img src="${a}" alt="">` : esc(x.pic)}</span>`; }
+function renderKin() {
+  const K2 = window.KIN, card = (side, x, i) => `<button class="kin-card" type="button" data-kin="${side}:${i}">${kinPic(x)}<b lang="ne">${esc(x.ne)}</b><span class="rom">${esc(x.rom)}</span><small>${esc(x.who)}</small></button>`;
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🌳 Who's who in our family</h2></div>
+    <div class="kin-say" id="kinSay"><span class="kin-pic" aria-hidden="true">👨‍👩‍👧‍👦</span><p>Tap someone to hear what to call them, and how to greet them.</p></div>
+    <h3 class="kin-h">👨 Dad's side</h3><div class="kin-grid">${K2.dad.map((x, i) => card("dad", x, i)).join("")}</div>
+    <h3 class="kin-h">👩 Mom's side</h3><div class="kin-grid">${K2.mom.map((x, i) => card("mom", x, i)).join("")}</div>
+    <h3 class="kin-h">🧒 You, your brothers, sisters and cousins</h3><div class="kin-grid">${K2.me.map((x, i) => card("me", x, i)).join("")}</div>
+    <div class="kin-tip">🙏 <b>Respect tip:</b> greet elders with ${neHTML(K2.greetElder.ne, K2.greetElder.rom, K(K2.greetElder.ne))} or ${neHTML("नमस्ते", "namaste", K("नमस्ते"))} and call them <span lang="ne">तपाईं</span> / <span lang="ne">हजुर</span>. With younger ones, say <span lang="ne">तिमी</span>.</div>`;
+}
+/* ---------- Mero Nepali Passport: a certificate for each chapter sticker ---------- */
+function renderCert() {
+  const c = window.CHAPTERS.find(x => x.id === S.certId), st = stickerState().find(x => x.id === S.certId); if (!c || !st) { S.screen = "map"; return render(); }
+  const words = []; for (const id of c.lessons) { const l = window.LESSONS.find(x => x.id === id); for (const it of (l && l.items) || []) if (typeof it.ne === "string" && it.en && !/^Say /.test(it.en) && words.length < 14 && !words.some(w => w.ne === it.ne)) words.push(it); }
+  const date = new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+  $("#app").innerHTML = `<div class="print-bar no-print"><button class="chip" type="button" id="quit">← Back</button><button class="go" type="button" id="printNow" style="width:auto;padding:10px 22px">🖨️ Print</button><button class="chip" type="button" id="shareCert">📤 Share</button></div>
+    <section class="cert">
+      <p class="cert-kicker"><span lang="ne">मेरो नेपाली पासपोर्ट</span> · Mero Nepali Passport</p>
+      <h2>Certificate</h2>
+      <div class="cert-row">${pandu(panduSrc("cheer") ? "cheer" : "wave")}${st.img ? `<img class="cert-st" src="${st.img}" alt="">` : `<span style="font-size:80px">${esc(st.pic)}</span>`}</div>
+      <p class="cert-name">${esc(me().name)}</p>
+      <p>earned the <b>${esc(st.name)}</b> sticker for finishing <b lang="ne">${esc(c.ne)}</b> (${esc(c.en)})${st.gold ? " with ★★★ on every lesson" : ""}!</p>
+      <h3 style="margin:6px 0 0">Words I know</h3>
+      <div class="cert-words">${words.map(w => `<span><span lang="ne">${esc(w.ne)}</span> <small>${esc(w.en)}</small></span>`).join("")}</div>
+      <p class="cert-foot">${esc(date)} · Sajilo Nepali · sajilonepali.app</p>
+    </section>
+    <p class="note no-print">Print it for the fridge, or take a screenshot and send it to Hajuraama and Hajurba!</p>`;
+}
 function startChallenge() {
   const w = wordOfDay(); if (!w) return;
   const it = w.it, pool = (w.l.items || []).filter(x => x !== it && typeof x.ne === "string" && !x.word && x.en && x.en !== it.en);
@@ -1300,11 +1431,12 @@ function renderDone() {
   if (S.lesson.challenge) {
     const it = S.lesson.word.it;
     $("#app").innerHTML = `<section class="done">${pandu(panduSrc("cheer") ? "cheer" : "wave", "pop")}<h2>🎯 Challenge complete!</h2>
-      <div class="chal-word">${artFor(it) ? `<img class="wpic" src="${artFor(it)}" alt="">` : `<span style="font-size:56px">${esc(it.pic || "")}</span>`}<div>${neHTML(it.ne, it.rom, K(it.ne))}<p style="margin:2px 0 0">${esc(it.en)}</p></div></div>
+      <div class="chal-word">${artFor(it) ? `<img class="wpic" src="${artFor(it)}" alt="">` : `<span style="font-size:56px">${esc(it.pic || "")}</span>`}<div>${neHTML(it.ne, it.rom, K(it.ne))}<p style="margin:2px 0 4px">${esc(it.en)}</p>${echoBtn(K(it.ne))}</div></div>
       <p><strong>${S.chalFirst ? "+10 ⭐ bonus!" : "Bonus already earned today. Great practice!"}</strong>${S.mistakes ? "" : "<br>Perfect, no mistakes!"}</p>
       <p class="ctx">A new word and picture tomorrow!</p>
+      ${missionHTML()}
       <button class="go" type="button" id="home">Continue</button></section>`;
-    if (!S.mistakes) confetti();
+    if (!S.mistakes) confetti(); beep("done");
     return;
   }
   const st = [1, 2, 3].map(n => `<span class="${n <= S.earned ? "" : "off"}">★</span>`).join("");
@@ -1316,8 +1448,9 @@ function renderDone() {
     ${S.newSticker ? `<button class="sticker got${S.newSticker.gold ? " gold" : ""} new" type="button" data-sticker="${S.newSticker.id}"><span class="sticker-pic">${stickerPic(S.newSticker)}</span><b>🎉 New sticker: ${esc(S.newSticker.name)}${S.newSticker.gold ? " (gold!)" : ""}</b></button>` : ""}
     ${S.earned === 3 ? `<div class="share-card"><p><b>Share your score with Aama or Baba!</b></p><p class="share-text" id="shareText">${esc(shareText())}</p>
       <div class="share-btns">${navigator.share ? `<button class="say" type="button" id="shareNow">📤 Share</button>` : ""}<button class="chip" type="button" id="copyShare">📋 Copy message</button></div></div>` : ""}
+    ${missionHTML()}
     <button class="go" type="button" id="home">Continue</button><button class="chip" type="button" id="again">Play again</button></section>`;
-  if (S.earned === 3) confetti();
+  if (S.earned === 3) confetti(); beep("done");
 }
 function confetti() {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -1375,6 +1508,17 @@ document.addEventListener("click", e => {
   if (art) { art.classList.remove("boing"); void art.offsetWidth; art.classList.add("boing"); if (host.matches(".flashcard, .pic-st")) beep("tap"); }
   if (t.id === "openDrop") { P.dropSeen = true; save(); say(t.dataset.say); S.stickers = true; S.showPic = P.dropName; render(); S.showPic = null; return; }
   if (t.id === "wotdChal") { startChallenge(); return; }
+  if (t.dataset.echo) { echo(t, t.dataset.echo); return; }
+  if (t.id === "missionDone") { P.missionDay = today(); P.xp += 5; save(); beep("good"); t.disabled = true; t.classList.remove("primary"); t.textContent = "✓ You said it today! +5 ⭐"; if (!matchMedia("(prefers-reduced-motion: reduce)").matches) confetti(); return; }
+  if (t.id === "goKin") { S.sheet = null; S.screen = "kin"; render(); window.scrollTo(0, 0); return; }
+  if (t.dataset.kin) {
+    const [side, i] = t.dataset.kin.split(":"), x = window.KIN[side][+i], g = x.elder ? window.KIN.greetElder : window.KIN.greetYounger;
+    say(K(x.ne), t);
+    $("#kinSay").innerHTML = `${kinPic(x)}<div><p>${neHTML(x.ne, x.rom, K(x.ne))} = <b>${esc(x.who)}</b></p><p class="greet-line">${x.elder ? "Greet:" : "Say hi:"} ${neHTML(g.ne, g.rom, K(g.ne))} <small>${esc(g.en)}</small></p></div>`;
+    return;
+  }
+  if (t.dataset.cert) { S.certId = t.dataset.cert; S.stickers = false; S.screen = "cert"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "shareCert") { const st = stickerState().find(x => x.id === S.certId); shareOrCopy(t, { title: "Sajilo Nepali", text: `${me().name} earned the ${st ? st.name : ""} sticker on Sajilo Nepali! 🌟 https://sajilonepali.app` }, `${me().name} earned the ${st ? st.name : ""} sticker on Sajilo Nepali! 🌟 https://sajilonepali.app`); return; }
   if (t.dataset.pandusay) { say(t.dataset.pandusay); return; }
   if (t.dataset.picst) {
     const x = picByName(t.dataset.picst); if (!x) return;
@@ -1407,7 +1551,7 @@ document.addEventListener("click", e => {
     let b = $("#stickSay");
     if (!b) { b = document.createElement("div"); b.id = "stickSay"; t.after(b); }
     b.className = "stick-say" + (x.got ? "" : " locked");
-    b.innerHTML = `<span class="stick-say-pic${x.got ? "" : " locked"}" aria-hidden="true">${stickerPic(x, true)}</span><span>${neSpan(line.ne)} <span class="rom">${esc(line.rom)}</span><small>${esc(line.en)}</small></span>`;
+    b.innerHTML = `<span class="stick-say-pic${x.got ? "" : " locked"}" aria-hidden="true">${stickerPic(x, true)}</span><span>${neSpan(line.ne)} <span class="rom">${esc(line.rom)}</span><small>${esc(line.en)}</small>${x.got && x.id !== "pandu" ? `<button class="chip primary" type="button" data-cert="${x.id}" style="margin-top:6px">📜 Make my certificate</button>` : ""}</span>`;
     return;
   }
   if (t.id === "copyShare") {

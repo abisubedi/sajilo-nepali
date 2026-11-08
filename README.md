@@ -21,6 +21,12 @@ A free, Duolingo-style web game that teaches kids aged 4–15 basic Nepali.
 - **Word of the day + Today's challenge:** the word of the day comes from the newest pictures; "🎯 Today's challenge" is 3 quick questions on that word for +10 ⭐ once a day.
 - **Pandu through the day:** chiya in the morning (`pandu-tea`), bike in the afternoon (`pandu-bike`), nightcap at bedtime (`pandu-sleep`). Missing poses fall back to waving; prompts in `docs/image-prompts-pandu-day.md`.
 - **Tap a picture and it wiggles** (flashcards, answers, stickers).
+- **Lokta paper feel:** a faint handmade-paper grain over the page and cards; game sounds are made in the browser to feel like instruments (woodblock tap, singing-bowl chime, a little madal rhythm when a lesson ends). Toggle: "chimes".
+- **Real-life mission:** after each lesson and the daily challenge, one phrase a day to say out loud to someone at home (`window.MISSIONS` in lessons.js), +5 ⭐ once a day.
+- **🎤 Try it (echo):** on flashcards, the word of the day and the challenge card. Records 2 seconds, then plays Abi's clip followed by the child's voice. Recorded on the device only; nothing is saved or sent.
+- **🌳 Who's who in our family:** from the Family & Respect lesson. Dad's side, Mom's side and siblings, with what to call each relative and how to greet them (`window.KIN`).
+- **Festivals:** a marigold garland (and a diyo for Tihar) on Pandu's card during festivals in `window.FESTIVALS` (add next year's lunar dates when the calendar is out). Saturdays get a fun fact.
+- **Mero Nepali Passport:** tap a won chapter sticker → "Make my certificate" for a printable/shareable certificate with the child's name and the words they know.
 - **Celebration and sharing:** a 3-star lesson ends with confetti and a ready-made message to share or copy for family.
 - **Print flashcards:** in a lesson's sheet, "🖨️ Print flashcards for home" makes a cut-out sheet of picture cards.
 - **Sound settings:** 🔊 turns all sound on or off. 🎵 turns off only the game beeps and keeps the recorded voice.
