@@ -1,11 +1,14 @@
 {
   // Cloudflare Workers Builds deploys this on every push to GitHub (Workers & Pages → sajilo-nepali → Settings → Builds).
   // Every file in ./public is served as its own static asset: no total-size limit (up to 20,000 files on the free plan,
-  // 25 MiB each), byte ranges for Safari audio, edge caching. Cache rules live in public/_headers.
+  // 25 MiB each), edge caching. worker/index.js only answers byte-range requests for /audio/* (Safari). Cache rules: public/_headers.
   "name": "sajilo-nepali",
   "compatibility_date": "2026-11-04",
+  "main": "worker/index.js",
   "assets": {
     "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/audio/*"],
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "none"
   },
