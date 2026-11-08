@@ -90,8 +90,15 @@ Anything without a recording uses the device's Nepali voice, or a Hindi one if t
 
 ## Deploying (and where sounds and pictures live)
 
-`python3 scripts/bundle_worker.py && cd dist && npx wrangler deploy`. Cloudflare limits a worker script to 15 MiB gzipped.
-Until a KV namespace is set up, the bundle carries lighter copies of the media (48 kbps speech, smaller WebP).
-To move sounds and pictures to Cloudflare KV (full quality, no size limit): create a KV namespace (Cloudflare dashboard →
-Storage & Databases → KV → Create, e.g. `sajilo-media`), put `{"namespace_id": "<id>"}` in `scripts/kv_config.json`, run
-`python3 scripts/upload_media.py` (uploads only new or changed files), then bundle and deploy as above.
+**Automatic (main way):** Cloudflare Workers Builds is connected to this GitHub repo, so every push to `main` deploys the site
+within a minute or two. It uses `wrangler.jsonc` in the repo root: every file in `public/` is served as its own static asset
+(up to 20,000 files on the free plan, 25 MiB each), so thousands of pictures are fine. Cache rules: `public/_headers`.
+
+One-time setup (Cloudflare dashboard): Workers & Pages → **sajilo-nepali** → Settings → **Builds** → Connect →
+GitHub → `abisubedi/sajilo-nepali`, branch `main`. Build command: *(leave empty)*. Deploy command: `npx wrangler deploy`.
+Root directory: `/`.
+
+**Manual fallback** (only if Builds is not connected): `python3 scripts/bundle_worker.py && cd dist && npx wrangler deploy`.
+This packs everything into one worker script, which Cloudflare limits to 15 MiB gzipped, so it carries lighter copies of
+the media (48 kbps speech, smaller WebP) and only fits about 100 more pictures. `scripts/upload_media.py` + a KV namespace
+in `scripts/kv_config.json` is a second way around that limit.

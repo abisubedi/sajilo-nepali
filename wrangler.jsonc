@@ -1,8 +1,17 @@
 {
-  // Cloudflare Workers serves only the ./public folder as a static site.
+  // Cloudflare Workers Builds deploys this on every push to GitHub (Workers & Pages → sajilo-nepali → Settings → Builds).
+  // Every file in ./public is served as its own static asset: no total-size limit (up to 20,000 files on the free plan,
+  // 25 MiB each), byte ranges for Safari audio, edge caching. Cache rules live in public/_headers.
   "name": "sajilo-nepali",
   "compatibility_date": "2026-11-04",
   "assets": {
-    "directory": "./public"
-  }
+    "directory": "./public",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  },
+  "workers_dev": true,
+  "routes": [
+    { "pattern": "sajilonepali.app", "custom_domain": true },
+    { "pattern": "www.sajilonepali.app", "custom_domain": true }
+  ]
 }
