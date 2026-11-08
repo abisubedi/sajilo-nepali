@@ -25,6 +25,9 @@ W.CHAPTERS.forEach((c, ci) => {
     for (const s of l.sentences || []) { add(K(s.ne.join(' ')), s.ne.join(' ') + (/\?$/.test(s.en) ? '?' : '।'), s.rom.join(' '), s.en); s.ne.forEach((w, i) => add(K(w), w, s.rom[i], 'sentence tile')); }
   }
 });
+sec("Family tree and missions");
+if (W.KIN) { [...W.KIN.dad, ...W.KIN.mom, ...W.KIN.me, W.KIN.greetElder].forEach(x => add(K(x.ne), x.ne + "।", x.rom, x.who || x.en)); }
+(W.MISSIONS || []).forEach(m => add(K(m.ne), m.ne, m.rom, m.en));
 sec("Extra sentence tiles"); W.EXTRA_TILES.forEach(t => add(K(t[0]), t[0], t[1], 'sentence tile'));
 
 let n = 0; sections.forEach(s => s.rows.forEach(r => r.id = String(++n).padStart(3, '0')));

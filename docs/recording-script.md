@@ -1,6 +1,6 @@
 # Sajilo Nepali: recording script
 
-Every clip in the game, 487 in total, numbered in the order they appear.
+Every clip in the game, 497 in total, numbered in the order they appear.
 
 ## How to record
 
@@ -540,11 +540,26 @@ Every clip in the game, 487 in total, numbered in the order they appear.
 | 483 | बिरालो सानो छ। | biralo saano chha | The cat is small. |
 | 484 | हात्ती ठूलो छ। | hatti thulo chha | The elephant is big. |
 
-## Section 10: Extra sentence tiles (3 lines)
+## Section 10: Family tree and missions (10 lines)
 
 | # | Say | How to say it | Meaning |
 |---|---|---|---|
-| 485 | र | ra | sentence tile |
-| 486 | पनि | pani | sentence tile |
-| 487 | तिमी | timi | sentence tile |
+| 485 | ठूलोबाबा। | thulobaabaa | Dad's older brother |
+| 486 | ठूलीआमा। | thuliaamaa | Dad's older brother's wife (or Mom's older sister) |
+| 487 | काका। | kaakaa | Dad's younger brother |
+| 488 | काकी। | kaaki | Dad's younger brother's wife |
+| 489 | फुपू। | phupu | Dad's sister |
+| 490 | फुपाजु। | phupaaju | Dad's sister's husband |
+| 491 | मामा। | maamaa | Mom's brother |
+| 492 | माइजू। | maaiju | Mom's brother's wife |
+| 493 | सानीआमा। | saaniaamaa | Mom's younger sister |
+| 494 | ढोग गरेँ। | dhog garen | I bow to you (to elders, touching their feet or bowing) |
+
+## Section 11: Extra sentence tiles (3 lines)
+
+| # | Say | How to say it | Meaning |
+|---|---|---|---|
+| 495 | र | ra | sentence tile |
+| 496 | पनि | pani | sentence tile |
+| 497 | तिमी | timi | sentence tile |
 
