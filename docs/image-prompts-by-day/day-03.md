@@ -11,55 +11,55 @@
 
 ## Checklist
 
-- [ ] w-hello.png
-- [ ] w-thank-you.png
-- [ ] w-yes.png
-- [ ] w-no.png
-- [ ] w-good-night.png
-- [ ] w-see-you-again.png
-- [ ] w-mom.png
-- [ ] w-dad.png
-- [ ] w-yes-polite.png
-- [ ] w-older-sister.png
-- [ ] w-older-brother.png
-- [ ] w-younger-sister.png
-- [ ] w-younger-brother.png
-- [ ] w-grandma.png
-- [ ] w-grandpa.png
-- [ ] w-water.png
-- [ ] w-rice.png
-- [ ] w-milk.png
-- [ ] w-lentil-soup.png
-- [ ] w-flatbread.png
-- [ ] w-apple.png
-- [ ] w-banana.png
-- [ ] w-momo.png
-- [ ] w-i-am-hungry.png
-- [ ] w-it-is-yummy.png
-- [ ] w-i-am-full.png
-- [ ] w-hot.png
-- [ ] w-spoon.png
-- [ ] w-wake-up.png
-- [ ] w-brush-teeth.png
-- [ ] w-wash-hands.png
-- [ ] w-put-on-shoes.png
-- [ ] w-come-here.png
-- [ ] w-let-s-play-outside.png
-- [ ] w-read-a-book.png
-- [ ] w-go-to-sleep.png
-- [ ] w-door.png
-- [ ] w-window.png
-- [ ] w-bed.png
-- [ ] w-chair.png
-- [ ] w-toy.png
-- [ ] w-book.png
-- [ ] w-bag.png
-- [ ] w-light.png
-- [ ] w-kitchen.png
-- [ ] w-bedroom.png
-- [ ] w-yard-courtyard.png
-- [ ] w-bathroom.png
-- [ ] w-living-room.png
+- [x] w-hello.png
+- [x] w-thank-you.png
+- [x] w-yes.png
+- [x] w-no.png
+- [x] w-good-night.png
+- [x] w-see-you-again.png
+- [x] w-mom.png
+- [x] w-dad.png
+- [x] w-yes-polite.png
+- [x] w-older-sister.png
+- [x] w-older-brother.png
+- [x] w-younger-sister.png
+- [x] w-younger-brother.png
+- [x] w-grandma.png
+- [x] w-grandpa.png
+- [x] w-water.png
+- [x] w-rice.png
+- [x] w-milk.png
+- [x] w-lentil-soup.png
+- [x] w-flatbread.png
+- [x] w-apple.png
+- [x] w-banana.png
+- [x] w-momo.png
+- [x] w-i-am-hungry.png
+- [x] w-it-is-yummy.png
+- [x] w-i-am-full.png
+- [x] w-hot.png
+- [x] w-spoon.png
+- [x] w-wake-up.png
+- [x] w-brush-teeth.png
+- [x] w-wash-hands.png
+- [x] w-put-on-shoes.png
+- [x] w-come-here.png
+- [x] w-let-s-play-outside.png
+- [x] w-read-a-book.png
+- [x] w-go-to-sleep.png
+- [x] w-door.png
+- [x] w-window.png
+- [x] w-bed.png
+- [x] w-chair.png
+- [x] w-toy.png
+- [x] w-book.png
+- [x] w-bag.png
+- [x] w-light.png
+- [x] w-kitchen.png
+- [x] w-bedroom.png
+- [x] w-yard-courtyard.png
+- [x] w-bathroom.png
+- [x] w-living-room.png
 
 ## Prompts
 
