@@ -11,54 +11,54 @@
 
 ## Checklist
 
-- [ ] w-run.png
-- [ ] w-jump.png
-- [ ] w-dance.png
-- [ ] w-sing.png
-- [ ] w-laugh.png
-- [ ] w-throw.png
-- [ ] w-catch.png
-- [ ] w-hide.png
-- [ ] w-look.png
-- [ ] w-listen.png
-- [ ] w-give.png
-- [ ] w-take.png
-- [ ] w-open.png
-- [ ] w-close.png
-- [ ] w-clean-up.png
-- [ ] w-wait.png
-- [ ] w-ball.png
-- [ ] w-bicycle.png
-- [ ] w-swing.png
-- [ ] w-park.png
-- [ ] w-road.png
-- [ ] w-friend.png
-- [ ] w-win.png
-- [ ] w-turn.png
-- [ ] w-sunshine.png
-- [ ] w-it-is-raining.png
-- [ ] w-snow.png
-- [ ] w-wind.png
-- [ ] w-snowy-mountain.png
-- [ ] w-tree.png
-- [ ] w-flower.png
-- [ ] w-star.png
-- [ ] w-moon.png
-- [ ] w-red.png
-- [ ] w-blue.png
-- [ ] w-green.png
-- [ ] w-yellow.png
-- [ ] w-white.png
-- [ ] w-black.png
-- [ ] w-orange.png
-- [ ] w-pink.png
-- [ ] w-big.png
-- [ ] w-small.png
-- [ ] w-cold.png
-- [ ] w-fast.png
-- [ ] w-slowly.png
-- [ ] w-up.png
-- [ ] w-down.png
+- [x] w-run.png
+- [x] w-jump.png
+- [x] w-dance.png
+- [x] w-sing.png
+- [x] w-laugh.png
+- [x] w-throw.png
+- [x] w-catch.png
+- [x] w-hide.png
+- [x] w-look.png
+- [x] w-listen.png
+- [x] w-give.png
+- [x] w-take.png
+- [x] w-open.png
+- [x] w-close.png
+- [x] w-clean-up.png
+- [x] w-wait.png
+- [x] w-ball.png
+- [x] w-bicycle.png
+- [x] w-swing.png
+- [x] w-park.png
+- [x] w-road.png
+- [x] w-friend.png
+- [x] w-win.png
+- [x] w-turn.png
+- [x] w-sunshine.png
+- [x] w-it-is-raining.png
+- [x] w-snow.png
+- [x] w-wind.png
+- [x] w-snowy-mountain.png
+- [x] w-tree.png
+- [x] w-flower.png
+- [x] w-star.png
+- [x] w-moon.png
+- [x] w-red.png
+- [x] w-blue.png
+- [x] w-green.png
+- [x] w-yellow.png
+- [x] w-white.png
+- [x] w-black.png
+- [x] w-orange.png
+- [x] w-pink.png
+- [x] w-big.png
+- [x] w-small.png
+- [x] w-cold.png
+- [x] w-fast.png
+- [x] w-slowly.png
+- [x] w-up.png
+- [x] w-down.png
 - [x] w-full-tummy-stuffed.png
 - [x] w-sweet-little-smile.png
 - [x] w-gulp-swallowing-sound.png
