@@ -69,7 +69,7 @@ const W = {
   "i am hungry": `${boy}, holding his tummy and looking at an empty plate`,
   "it is yummy": `${kid}, a close-up of her delighted reaction to a tasty bite, not the act of eating: her eyes squeezed shut with joy, licking her lips with the tip of her tongue, one hand rubbing her tummy in a circle and the other giving a big thumbs-up, with little sparkles, tiny hearts and a \"yum!\" feeling bursting around her face; only a small spoon in her hand, the plate is tiny or out of view`,
   "i am full": `${boy}, leaning back and patting his full round tummy, an empty plate in front of him`,
-  "hot": "a steaming hot bowl of food with wavy steam lines",
+  "hot": `${kid}, quickly pulling her hand back from a very hot steel cup of chiya, with a surprised \"ouch, hot!\" face, eyes wide and lips in an O, blowing on her fingertips; big red-orange wavy heat lines rising from the cup and a small red glow around it, so the picture clearly means HOT, not food`,
   "spoon": "a shiny steel spoon",
   // routines
   "wake up": `${kid}, sitting up in bed and stretching, morning sun through the window`,

@@ -357,9 +357,19 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .pic-empty { grid-column: 1 / -1; text-align: center; color: var(--muted); font-weight: 700; margin: 4px 0; }
 .chal-word { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 6px 0; }
 .chal-word .wpic { width: 72px; height: 72px; }
+/* Challenge complete: the word sits on its own little card */
+.chal-word { display: inline-flex; align-self: center; text-align: left; gap: 14px; background: var(--snow); border: 2px solid var(--line); border-radius: 20px; padding: 10px 20px; box-shadow: 0 4px 0 var(--line); }
+/* The answer drawer: full width, Continue / Check centered and not stretched on wide screens */
+.feedback .go { width: 100%; max-width: 420px; align-self: center; }
 /* Tapped pictures wiggle */
 @keyframes boing { 0% { transform: scale(1); } 35% { transform: scale(1.15) rotate(5deg); } 65% { transform: scale(.96) rotate(-3deg); } 100% { transform: scale(1); } }
 .boing { animation: boing .45s ease; }
+/* Answer pictures fill their cards; Pandu sits beside the Listen button */
+.opt .has-art .wpic { width: 92px; height: 92px; }
+body:not(.lv-big) .opt .has-art .wpic { width: 104px; height: 104px; }
+.opts .opt:has(.has-art) { padding: 8px; }
+.say-row { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.say-row .side-pandu { width: 76px; height: 76px; }
 @keyframes gentle-float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-3px) rotate(2deg); } }
 @keyframes sticker-pop { 0% { transform: scale(1); } 40% { transform: scale(1.18) rotate(-6deg); } 75% { transform: scale(.95) rotate(3deg); } 100% { transform: scale(1) rotate(0); } }
 @keyframes hello-sway { 0%, 78%, 100% { transform: rotate(0); } 82% { transform: rotate(-5deg); } 86% { transform: rotate(4deg); } 90% { transform: rotate(-3deg); } 94% { transform: rotate(2deg); } }
@@ -1060,7 +1070,7 @@ function renderQuestion() {
     autoKey = K(q.item.ne);
   } else if (q.type === "listen") {
     body = `<p class="ask">Listen. Which picture is it?</p>
-      <div class="prompt">${q.item.ctx ? `<span class="ctx">${esc(q.item.ctx)}</span>` : ""}${sayBtn(K(q.item.ne), "huge")}${pandu("listen", "side-pandu bob")}</div>
+      <div class="prompt">${q.item.ctx ? `<span class="ctx">${esc(q.item.ctx)}</span>` : ""}<div class="say-row">${pandu("listen", "side-pandu bob")}${sayBtn(K(q.item.ne), "huge")}</div></div>
       <div class="opts">${q.opts.map((o, i) => optBtn(i, `${picHTML(o)}${P.level === "big" ? "" : `<span class="en">${esc(o.en)}</span>`}`)).join("")}</div>`;
     autoKey = K(q.item.ne);
   } else if (q.type === "count") {
@@ -1079,7 +1089,7 @@ function renderQuestion() {
     autoKey = K(q.item.word);
   } else if (q.type === "listenLetter") {
     body = `<p class="ask">Listen. Which letter is it?</p>
-      <div class="prompt">${sayBtn(itemKey(l, q.item), "huge")}${pandu("listen", "side-pandu bob")}</div>
+      <div class="prompt"><div class="say-row">${pandu("listen", "side-pandu bob")}${sayBtn(itemKey(l, q.item), "huge")}</div></div>
       <div class="opts">${q.opts.map((o, i) => optBtn(i, `<span class="letter-big" lang="ne">${esc(o.ne)}</span>${P.level === "big" ? "" : `<span class="rom">${esc(o.rom)}</span>`}`)).join("")}</div>`;
     autoKey = itemKey(l, q.item);
   } else if (q.type === "trace") {
@@ -1165,7 +1175,7 @@ function setFeedback(good, solutionHTML, sayKey) {
   const ch = window.CHEERS[Math.floor(Math.random() * window.CHEERS.length)];
   fb.className = "feedback " + (good ? "good" : "bad");
   fb.innerHTML = good
-    ? `<div class="fb-row">${pandu(panduSrc("cheer") ? "cheer" : "wave", "fb-pandu pop")}<p>🎉 ${neSpan(ch[0])} <span class="rom">${ch[1]}</span> ${ch[2]}</p></div><button class="go" type="button" id="next">Continue</button>`
+    ? `<div class="fb-row">${pandu(panduSrc("cheer") ? "cheer" : "wave", "fb-pandu pop")}<div><p>🎉 ${neSpan(ch[0])} <span class="rom">${ch[1]}</span> ${ch[2]}</p>${solutionHTML ? `<div class="sol">${solutionHTML}</div>` : ""}</div></div><button class="go" type="button" id="next">Continue</button>`
     : `<div class="fb-row">${pandu("oops", "fb-pandu pop")}<div><p>Almost! Let\'s hear it together:</p><div class="sol">${solutionHTML}</div></div></div><button class="go" type="button" id="next">Got it</button>`;
   $("#next").focus();
   if (!good) {   // a miss: Pandu says the answer once, calmly
