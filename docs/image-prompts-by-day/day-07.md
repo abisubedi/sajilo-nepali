@@ -1,205 +1,180 @@
-# Day 7 of 10: Chapter 7: कुराकानी र कथा (Real conversations)
+# Day 7 of 12: Chapter 5: प्रकृति र यात्रा (Nature & travel)
 
-25 pictures. Every prompt is complete, so paste it as is.
+27 pictures in the **storybook sketch style** (ink outlines, colored pencil, watercolor, round sticker). Every prompt is complete, so paste it as is.
 
 **Tips**
-- Same tool and settings as your Pandu and sticker pictures.
-- Plain white background is fine: I remove it.
-- Where it says **Attach**, add that cast picture as a reference so the person looks the same everywhere.
-- Keep the file names, then send them to me in batches of 5–10, each batch in a new message.
+- Same tool and settings as pandu-namaste, and attach **pandu-namaste** as a style reference for every picture.
+- White outside the circle is fine: I remove it.
+- Where it says **Attach**, also add that cast picture so the person looks the same everywhere.
+- Keep the file names. A new picture with an old name replaces the old one in the game automatically.
+- Send them in batches of 5–10, each batch in a new message, or upload them to art/ on GitHub.
 
 ## Checklist
 
-- [ ] w-i-like-it.png
-- [ ] w-i-don-t-like-it.png
-- [ ] w-i-need-it.png
-- [ ] w-i-don-t-need-it.png
-- [ ] w-i-know.png
-- [ ] w-i-don-t-know.png
-- [ ] w-okay.png
-- [ ] w-not-allowed.png
-- [ ] w-how-are-you-polite.png
-- [ ] w-i-am-fine.png
-- [ ] w-did-you-eat-polite.png
-- [ ] w-i-ate.png
-- [ ] w-what-are-you-doing.png
-- [ ] w-i-love-you.png
-- [ ] w-please-come.png
-- [ ] w-please-sit.png
-- [ ] w-please-eat.png
-- [ ] w-please-give.png
-- [ ] w-please-look.png
-- [ ] w-please-listen.png
-- [ ] w-sorry.png
-- [ ] li-likes-dislikes.png
-- [ ] li-phone-grandparents.png
-- [ ] li-polite-commands.png
-- [ ] li-grandparent-sentences.png
+- [ ] w-dog.png
+- [ ] w-cat.png
+- [ ] w-cow.png
+- [ ] w-elephant.png
+- [ ] w-monkey.png
+- [ ] w-bird.png
+- [ ] w-fish.png
+- [ ] w-tiger.png
+- [ ] w-bear.png
+- [ ] w-rhino.png
+- [ ] w-deer.png
+- [ ] w-rabbit.png
+- [ ] w-red-panda.png
+- [ ] w-butterfly.png
+- [ ] w-bee.png
+- [ ] w-ant.png
+- [ ] w-spider.png
+- [ ] w-frog.png
+- [ ] w-turtle.png
+- [ ] w-car.png
+- [ ] w-bus.png
+- [ ] w-train.png
+- [ ] w-airplane.png
+- [ ] w-boat.png
+- [ ] w-river.png
+- [ ] w-sea.png
+- [ ] w-bridge.png
 
 ## Prompts
 
-### w-i-like-it.png
-512x512 · used for: I Like It!: मन पर्छ = I like it
+### w-dog.png
+512x512 · used for: Jungle & Farm Animals: कुकुर = Dog
 
-**Attach:** cast-maya.png
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a friendly brown Nepali street puppy with floppy ears and a red collar, wagging its tail.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, hugging a teddy bear with hearts around.
+### w-cat.png
+512x512 · used for: Jungle & Farm Animals: बिरालो = Cat
 
-### w-i-don-t-like-it.png
-512x512 · used for: I Like It!: मन पर्दैन = I don't like it
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a fluffy orange-and-white kitten sitting and smiling.
 
-**Attach:** cast-arjun.png
+### w-cow.png
+512x512 · used for: Jungle & Farm Animals: गाई = Cow
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, pushing away a plate of bitter gourd with a frown.
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a gentle white Nepali cow with small curved horns and a marigold garland around its neck.
 
-### w-i-need-it.png
-512x512 · used for: I Like It!: चाहिन्छ = I need it
+### w-elephant.png
+512x512 · used for: Jungle & Farm Animals: हात्ती = Elephant
 
-**Attach:** cast-maya.png
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a happy baby Asian elephant with its trunk raised.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, reaching for an umbrella as rain starts.
+### w-monkey.png
+512x512 · used for: Jungle & Farm Animals: बाँदर = Monkey
 
-### w-i-don-t-need-it.png
-512x512 · used for: I Like It!: चाहिँदैन = I don't need it
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a playful rhesus monkey sitting on a temple step eating a banana.
 
-**Attach:** cast-arjun.png
+### w-bird.png
+512x512 · used for: Jungle & Farm Animals: चरा = Bird; Letters: क to ञ: च = चरा (Bird)
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, politely holding up his palm to say no thanks to an offered sweater.
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small round sparrow-like bird perched on a twig.
 
-### w-i-know.png
-512x512 · used for: I Like It!: थाहा छ = I know
+### w-fish.png
+512x512 · used for: Jungle & Farm Animals: माछा = Fish
 
-**Attach:** cast-maya.png
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a bright orange river fish with big friendly eyes, a few bubbles.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, raising her hand with a light bulb above her head.
+### w-tiger.png
+512x512 · used for: Jungle & Farm Animals: बाघ = Tiger
 
-### w-i-don-t-know.png
-512x512 · used for: I Like It!: थाहा छैन = I don't know
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a Bengal tiger cub from Chitwan sitting in tall grass.
 
-**Attach:** cast-arjun.png
+### w-bear.png
+512x512 · used for: Jungle & Farm Animals: भालु = Bear
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, shrugging with both palms up.
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a cuddly Himalayan black bear cub with a white V on its chest.
 
-### w-okay.png
-512x512 · used for: I Like It!: हुन्छ = okay
+### w-rhino.png
+512x512 · used for: Jungle & Farm Animals: गैँडा = Rhino
 
-**Attach:** cast-maya.png
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a baby one-horned rhinoceros from Chitwan standing in green grass.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, making an OK sign with her fingers and smiling.
+### w-deer.png
+512x512 · used for: Jungle & Farm Animals: हरिण = Deer
 
-### w-not-allowed.png
-512x512 · used for: I Like It!: हुँदैन = not allowed
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a spotted deer fawn with big ears in a forest clearing.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a friendly red 'no' circle sign in front of a muddy puddle, a child's boot stepping back.
+### w-rabbit.png
+512x512 · used for: Jungle & Farm Animals: खरायो = Rabbit; Letters: क to ञ: ख = खरायो (Rabbit)
 
-### w-how-are-you-polite.png
-512x512 · used for: Talking to Family: सञ्चै हुनुहुन्छ? = how are you? (polite)
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a fluffy white rabbit with long ears nibbling a carrot.
 
-**Attach:** cast-maya.png, cast-hajuraama.png
+### w-red-panda.png
+512x512 · used for: Jungle & Farm Animals: हाब्रे = Red panda
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, talking happily on a phone, Hajuraama (grandmother), a sweet elderly Nepali woman with grey hair in a bun, a maroon sari-style dress, a shawl, a red tika and round glasses shown in a small video-call bubble.
+**Attach:** pandu-namaste.png (style + Pandu)
 
-### w-i-am-fine.png
-512x512 · used for: Talking to Family: सञ्चै छु = I am fine
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Pandu, a chubby baby red panda with orange-red fur, white cheek patches and ear tips, a striped fluffy tail and a tiny Nepali dhaka topi hat, without the hat, climbing a mossy branch.
 
-**Attach:** cast-arjun.png
+### w-butterfly.png
+512x512 · used for: Birds & Bugs: पुतली = butterfly
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, giving a thumbs-up and smiling.
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a colorful butterfly.
 
-### w-did-you-eat-polite.png
-512x512 · used for: Talking to Family: खाना खानुभयो? = did you eat? (polite)
+### w-bee.png
+512x512 · used for: Birds & Bugs: मौरी = bee
 
-**Attach:** cast-hajuraama.png
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a smiling honeybee.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Hajuraama (grandmother), a sweet elderly Nepali woman with grey hair in a bun, a maroon sari-style dress, a shawl, a red tika and round glasses, on a video call asking kindly, a small plate of food icon in a speech bubble.
+### w-ant.png
+512x512 · used for: Birds & Bugs: कमिला = ant
 
-### w-i-ate.png
-512x512 · used for: Talking to Family: खाएँ = I ate
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small friendly red ant carrying a crumb.
 
-**Attach:** cast-maya.png
+### w-spider.png
+512x512 · used for: Birds & Bugs: माकुरा = spider
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, showing an empty plate and smiling.
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a friendly cartoon spider on a web.
 
-### w-what-are-you-doing.png
-512x512 · used for: Talking to Family: के गर्दै हुनुहुन्छ? = what are you doing?
+### w-frog.png
+512x512 · used for: Birds & Bugs: भ्यागुतो = frog
 
-**Attach:** cast-arjun.png
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a happy green frog on a lily pad.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, on a phone call, a thought bubble with a question mark.
+### w-turtle.png
+512x512 · used for: Birds & Bugs: कछुवा = turtle
 
-### w-i-love-you.png
-512x512 · used for: Talking to Family: माया गर्छु = I love you
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a smiling turtle.
 
-**Attach:** cast-maya.png
+### w-car.png
+512x512 · used for: On the Go: गाडी = car
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, making a heart shape with her hands.
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small red car.
 
-### w-please-come.png
-512x512 · used for: Talking to Elders: आउनुहोस् = please come
+### w-bus.png
+512x512 · used for: On the Go: बस = bus; Letters: प to व: ब = बस (Bus)
 
-**Attach:** cast-maya.png, cast-hajurbaa.png
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a colorful decorated Nepali bus.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, politely welcoming Hajurbaa (grandfather), a jolly elderly Nepali man with white hair, a white moustache, a dhaka topi hat, a daura-suruwal outfit and a waistcoat inside with an open hand.
+### w-train.png
+512x512 · used for: On the Go: रेल = train
 
-### w-please-sit.png
-512x512 · used for: Talking to Elders: बस्नुहोस् = please sit
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a little red toy-like train.
 
-**Attach:** cast-arjun.png, cast-hajuraama.png
+### w-airplane.png
+512x512 · used for: On the Go: हवाईजहाज = airplane
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, pulling out a chair for Hajuraama (grandmother), a sweet elderly Nepali woman with grey hair in a bun, a maroon sari-style dress, a shawl, a red tika and round glasses.
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a white airplane flying over mountains.
 
-### w-please-eat.png
-512x512 · used for: Talking to Elders: खानुहोस् = please eat
+### w-boat.png
+512x512 · used for: On the Go: डुङ्गा = boat
 
-**Attach:** cast-aama.png
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small wooden boat on a river.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Aama (mother), a kind Nepali woman in her 30s with a long black braid, a red-and-green kurta, a small red tika and a gentle smile, offering a plate of food with both hands.
+### w-river.png
+512x512 · used for: On the Go: नदी = river
 
-### w-please-give.png
-512x512 · used for: Talking to Elders: दिनुहोस् = please give
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a winding blue river between green hills.
 
-**Attach:** cast-maya.png
+### w-sea.png
+512x512 · used for: On the Go: समुद्र = sea
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, holding out both hands politely to receive something.
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: blue sea waves and a sandy beach.
 
-### w-please-look.png
-512x512 · used for: Talking to Elders: हेर्नुहोस् = please look
+### w-bridge.png
+512x512 · used for: On the Go: पुल = bridge
 
-**Attach:** cast-arjun.png, cast-hajurbaa.png
-
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, showing a drawing to Hajurbaa (grandfather), a jolly elderly Nepali man with white hair, a white moustache, a dhaka topi hat, a daura-suruwal outfit and a waistcoat.
-
-### w-please-listen.png
-512x512 · used for: Talking to Elders: सुन्नुहोस् = please listen
-
-**Attach:** cast-maya.png, cast-aama.png
-
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, telling something to Aama (mother), a kind Nepali woman in her 30s with a long black braid, a red-and-green kurta, a small red tika and a gentle smile, who leans in to listen.
-
-### w-sorry.png
-512x512 · used for: Talking to Elders: माफ गर्नुहोस् = sorry; Letters: श to ज्ञ: क्ष = क्षमा (Sorry)
-
-**Attach:** cast-arjun.png
-
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, apologizing with folded hands and a small bow.
-
-### li-likes-dislikes.png
-512x512 · used for: lesson icon on the map: I Like It!
-
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a simple bold icon of a big red heart (no circle; the app adds the colored disc).
-
-### li-phone-grandparents.png
-512x512 · used for: lesson icon on the map: Talking to Family
-
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a simple bold icon of a phone showing a grandmother on a video call (no circle; the app adds the colored disc).
-
-### li-polite-commands.png
-512x512 · used for: lesson icon on the map: Talking to Elders
-
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a simple bold icon of a child bowing respectfully to a grandparent (no circle; the app adds the colored disc).
-
-### li-grandparent-sentences.png
-512x512 · used for: lesson icon on the map: Conversation Master
-
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a simple bold icon of two speech bubbles (no circle; the app adds the colored disc).
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a Nepali suspension bridge with prayer flags over a river.
 

@@ -1,123 +1,206 @@
-# Day 6 of 10: Chapter 6: स्कूल र गन्ती (School & counting)
+# Day 6 of 12: Chapter 4: हाम्रो संस्कृति (Nepali culture & time)
 
-17 pictures. Every prompt is complete, so paste it as is.
+29 pictures in the **storybook sketch style** (ink outlines, colored pencil, watercolor, round sticker). Every prompt is complete, so paste it as is.
 
 **Tips**
-- Same tool and settings as your Pandu and sticker pictures.
-- Plain white background is fine: I remove it.
-- Where it says **Attach**, add that cast picture as a reference so the person looks the same everywhere.
-- Keep the file names, then send them to me in batches of 5–10, each batch in a new message.
+- Same tool and settings as pandu-namaste, and attach **pandu-namaste** as a style reference for every picture.
+- White outside the circle is fine: I remove it.
+- Where it says **Attach**, also add that cast picture so the person looks the same everywhere.
+- Keep the file names. A new picture with an old name replaces the old one in the game automatically.
+- Send them in batches of 5–10, each batch in a new message, or upload them to art/ on GitHub.
 
 ## Checklist
 
-- [ ] w-school.png
-- [ ] w-pen.png
-- [ ] w-paper.png
-- [ ] w-notebook.png
-- [ ] w-picture.png
-- [ ] w-story.png
-- [ ] w-song.png
-- [ ] w-teacher.png
-- [ ] w-mango.png
-- [ ] w-grapes.png
-- [ ] w-lemon.png
-- [ ] w-sweet.png
-- [ ] w-sour.png
-- [ ] li-num.png
-- [ ] li-school-supplies.png
-- [ ] li-fruits-snacks.png
-- [ ] li-numbers-11-20.png
+- [ ] w-tika.png
+- [ ] w-barley-shoots.png
+- [ ] w-oil-lamp.png
+- [ ] w-flower-garland.png
+- [ ] w-kite.png
+- [ ] w-nepali-drum.png
+- [ ] w-temple.png
+- [ ] w-blessing.png
+- [ ] w-lentils-and-rice.png
+- [ ] w-milk-tea.png
+- [ ] w-sel-roti.png
+- [ ] w-pickle.png
+- [ ] w-yogurt.png
+- [ ] w-papad.png
+- [ ] w-morning.png
+- [ ] w-afternoon.png
+- [ ] w-evening.png
+- [ ] w-night.png
+- [ ] w-today.png
+- [ ] w-tomorrow.png
+- [ ] w-yesterday.png
+- [ ] w-right-now.png
+- [ ] w-what-is-it.png
+- [ ] w-where-is-it.png
+- [ ] w-who-is-it.png
+- [ ] w-why.png
+- [ ] w-when.png
+- [ ] w-how-many.png
+- [ ] w-how-is-it.png
 
 ## Prompts
 
-### w-school.png
-512x512 · used for: School & Drawing: स्कूल = school
+### w-tika.png
+512x512 · used for: Festivals & Traditions: टीका = tika
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a small colorful school building with a Nepali flag on a pole.
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a close-up of a smiling child's forehead with a red tika and rice grains.
 
-### w-pen.png
-512x512 · used for: School & Drawing: कलम = pen
+### w-barley-shoots.png
+512x512 · used for: Festivals & Traditions: जमरा = barley shoots
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a yellow pencil and a blue pen.
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a bunch of fresh yellow-green jamara barley shoots.
 
-### w-paper.png
-512x512 · used for: School & Drawing: कागज = paper
+### w-oil-lamp.png
+512x512 · used for: Festivals & Traditions: दियो = oil lamp
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a sheet of white paper.
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a glowing clay diyo oil lamp.
 
-### w-notebook.png
-512x512 · used for: School & Drawing: कापी = notebook
+### w-flower-garland.png
+512x512 · used for: Festivals & Traditions: माला = flower garland
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a school notebook (kapi) with a colorful cover.
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a bright orange marigold flower garland (mala).
 
-### w-picture.png
-512x512 · used for: School & Drawing: चित्र = picture
+### w-kite.png
+512x512 · used for: Festivals & Traditions: चङ्गा = kite
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a child's crayon drawing of a house and mountains.
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a colorful diamond kite flying in a blue sky.
 
-### w-story.png
-512x512 · used for: School & Drawing: कथा = story
+### w-nepali-drum.png
+512x512 · used for: Festivals & Traditions: मादल = Nepali drum
 
-**Attach:** cast-hajuraama.png
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a madal, the traditional Nepali two-sided hand drum, with a colorful strap.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Hajuraama (grandmother), a sweet elderly Nepali woman with grey hair in a bun, a maroon sari-style dress, a shawl, a red tika and round glasses, telling a story to two children sitting at her feet.
+### w-temple.png
+512x512 · used for: Festivals & Traditions: मन्दिर = temple
 
-### w-song.png
-512x512 · used for: School & Drawing: गीत = song
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small Nepali pagoda-style temple with tiered roofs and bells.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: colorful music notes floating out of a madal drum.
+### w-blessing.png
+512x512 · used for: Festivals & Traditions: आशीर्वाद = blessing
 
-### w-teacher.png
-512x512 · used for: School & Drawing: शिक्षक = teacher
+**Attach:** cast-arjun.png, cast-hajurbaa.png
 
-**Attach:** cast-teacher.png
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Hajurbaa (grandfather), a jolly elderly Nepali man with white hair, a white moustache, a dhaka topi hat, a daura-suruwal outfit and a waistcoat, placing his hand on Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat's head in blessing.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: the teacher, a warm young Nepali woman in a sky-blue kurta with a cardigan, holding a book, standing by a small blackboard.
+### w-lentils-and-rice.png
+512x512 · used for: Nepali Treats: दाल भात = lentils and rice
 
-### w-mango.png
-512x512 · used for: Fruits & Lunchbox: आँप = mango
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a Nepali dal-bhat plate: rice, dal, vegetable curry and pickle on a steel plate.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a ripe yellow-orange mango.
+### w-milk-tea.png
+512x512 · used for: Nepali Treats: चिया = milk tea
 
-### w-grapes.png
-512x512 · used for: Fruits & Lunchbox: अंगुर = grapes; Letters: vowels: अं = अंगुर (Grapes)
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a steaming cup of Nepali milk tea (chiya) in a small glass.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a bunch of green grapes.
+### w-sel-roti.png
+512x512 · used for: Nepali Treats: सेल रोटी = sel roti
 
-### w-lemon.png
-512x512 · used for: Fruits & Lunchbox: कागती = lemon
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: golden ring-shaped sel roti sweet bread.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a yellow lemon cut in half.
+### w-pickle.png
+512x512 · used for: Nepali Treats: अचार = pickle
 
-### w-sweet.png
-512x512 · used for: Fruits & Lunchbox: गुलियो = sweet
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small bowl of spicy red Nepali achar pickle.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a small plate of sweets: a laddu and a jalebi.
+### w-yogurt.png
+512x512 · used for: Nepali Treats: दही = yogurt
 
-### w-sour.png
-512x512 · used for: Fruits & Lunchbox: अमिलो = sour
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a clay pot of creamy juju dhau yogurt.
+
+### w-papad.png
+512x512 · used for: Nepali Treats: पापड = papad
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a round crispy papad cracker.
+
+### w-morning.png
+512x512 · used for: Time & Days: बिहान = morning
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a sunrise over green hills with a rooster.
+
+### w-afternoon.png
+512x512 · used for: Time & Days: दिउँसो = afternoon
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a high bright sun over a park.
+
+### w-evening.png
+512x512 · used for: Time & Days: साँझ = evening
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: an orange sunset behind Himalayan peaks.
+
+### w-night.png
+512x512 · used for: Time & Days: राति = night
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a dark-blue sky with a crescent moon and stars over a small house.
+
+### w-today.png
+512x512 · used for: Time & Days: आज = today
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a calendar page with one day circled in red and a smiling sun.
+
+### w-tomorrow.png
+512x512 · used for: Time & Days: भोलि = tomorrow
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a calendar page with an arrow pointing forward to the next day.
+
+### w-yesterday.png
+512x512 · used for: Time & Days: हिजो = yesterday
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a calendar page with an arrow pointing back to the previous day.
+
+### w-right-now.png
+512x512 · used for: Time & Days: अहिले = right now
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: an alarm clock ringing with a big exclamation burst.
+
+### w-what-is-it.png
+512x512 · used for: Asking Questions: के हो? = what is it?
+
+**Attach:** cast-maya.png
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, looking curiously at a wrapped mystery box, a question mark above.
+
+### w-where-is-it.png
+512x512 · used for: Asking Questions: कहाँ छ? = where is it?
 
 **Attach:** cast-arjun.png
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, making a funny puckered face after tasting a lemon.
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, looking around with a magnifying glass.
 
-### li-num.png
-512x512 · used for: lesson icon on the map: Numbers 1–10
+### w-who-is-it.png
+512x512 · used for: Asking Questions: को हो? = who is it?
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a simple bold icon of colorful wooden counting blocks (no circle; the app adds the colored disc).
+**Attach:** cast-maya.png
 
-### li-school-supplies.png
-512x512 · used for: lesson icon on the map: School & Drawing
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, peeking at a door with a shadow behind it and a question mark.
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a simple bold icon of a backpack and pencils (no circle; the app adds the colored disc).
+### w-why.png
+512x512 · used for: Asking Questions: किन? = why?
 
-### li-fruits-snacks.png
-512x512 · used for: lesson icon on the map: Fruits & Lunchbox
+**Attach:** cast-arjun.png
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a simple bold icon of a lunchbox with fruit (no circle; the app adds the colored disc).
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, scratching his head and thinking.
 
-### li-numbers-11-20.png
-512x512 · used for: lesson icon on the map: Numbers 11–20
+### w-when.png
+512x512 · used for: Asking Questions: कहिले? = when?
 
-> Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red, royal blue, leaf green, marigold yellow, warm orange), Nepali cultural setting, one clear subject centered with empty space around it, plain white background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15. Subject: a simple bold icon of a stack of colorful number blocks (no circle; the app adds the colored disc).
+**Attach:** cast-maya.png
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, looking at a big clock with a question mark.
+
+### w-how-many.png
+512x512 · used for: Asking Questions: कति? = how many?
+
+**Attach:** cast-arjun.png
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, counting apples on his fingers.
+
+### w-how-is-it.png
+512x512 · used for: Asking Questions: कस्तो छ? = how is it?
+
+**Attach:** cast-maya.png
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, giving a thumbs-up after tasting food.
 

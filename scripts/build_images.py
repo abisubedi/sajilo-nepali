@@ -21,7 +21,8 @@ for f in sorted(os.listdir(ART)):
     if os.path.exists(out) and os.path.getmtime(out) >= os.path.getmtime(src):
         continue
     size = "384" if name.startswith(("st-", "av-", "pandu-")) else "320"
-    subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "cutout.py"), src, out, size], check=True, capture_output=True)
+    # Pictures in the storybook style (from 2026-11-08) are round stickers: protect the circle.
+    subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "cutout.py"), src, out, size, "disk=auto"], check=True, capture_output=True)
     made.append(name)
 
 DATES = os.path.join(ROOT, "scripts", "img_dates.json")
@@ -34,7 +35,8 @@ for f in sorted(os.listdir(IMG)):
     if f.endswith(".webp"):
         h = hashlib.sha1(open(os.path.join(IMG, f), "rb").read()).hexdigest()[:8]
         manifest[f[:-5]] = f"img/{f}?v={h}"
-        if f[:-5] not in dates: dates[f[:-5]] = first_added(f[:-5])
+        if f[:-5] in made: dates[f[:-5]] = datetime.date.today().isoformat()   # new or redrawn: counts as newest
+        elif f[:-5] not in dates: dates[f[:-5]] = first_added(f[:-5])
 dates = {k: dates[k] for k in sorted(dates) if k in manifest}
 json.dump(dates, open(DATES, "w"), indent=0)
 with open(os.path.join(ROOT, "public", "img-manifest.js"), "w") as fh:

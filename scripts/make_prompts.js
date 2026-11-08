@@ -7,18 +7,18 @@ const OUT = require('path').join(__dirname, '..', 'docs');
 const isLabel = s => /^(SUN|MON|TUE|WED|THU|FRI|SAT|\d+)$/.test(s);
 const slug = s => s.toLowerCase().replace(/\(polite\)/g, 'polite').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
-const STYLE = "Cute children's game illustration, flat vector style with soft shading, thick rounded dark-navy outlines, people and animals have big friendly eyes while objects and food stay simple without faces, simple clear shapes, bright cheerful colors (crimson red #e2453c, royal blue #2f6fd6, leaf green #2fa75a, marigold yellow #f6b71c, warm orange #e8742a), Nepali cultural setting, one clear subject centered with empty space around it, isolated on a transparent background, no text, no letters, no numbers, no watermark, suitable for kids aged 4–15.";
+const { styleFor, STICKER } = require("./art_style.js");   // storybook sketch style (see pandu-namaste)
 const rows = [], missing = [], seen = new Map();
 const add = (group, file, subject, usedFor, size = "1024x1024") => {
   if (seen.has(file)) { seen.get(file).used.push(usedFor); return; }
-  const r = { group, file: file + ".png", size, subject, prompt: `${STYLE} Subject: ${subject}.`, used: [usedFor] };
+  const r = { group, file: file + ".png", size, subject, prompt: `${styleFor(file)} Subject: ${subject}.`, used: [usedFor] };
   seen.set(file, r); rows.push(r);
 };
 
 D.CAST.forEach(([f, d]) => add("1. Cast reference sheets (make these first)", f, `character reference sheet of ${d}, front view, full body, standing in a neutral friendly pose`, "reference only"));
 D.PANDU.forEach(([f, pose]) => add("2. Pandu the mascot", f, `${D.C.pandu}, ${pose}`, "mascot"));
 D.AVATARS.forEach(([f, d, col]) => add("3. Player avatars", f, `head-and-shoulders portrait of ${d}, inside a soft ${col} circle`, "Who is playing? picker", "512x512"));
-D.STICKERS.forEach(([f, name, d]) => add("4. Chapter stickers", f, `a round die-cut sticker with a thick white border and a slight drop shadow showing ${d}`, `sticker: ${name}`, "512x512"));
+D.STICKERS.forEach(([f, name, d]) => add("4. Chapter stickers", f, `${d}`, `sticker: ${name}`, "512x512"));
 
 for (const l of window.LESSONS) {
   for (const it of l.items || []) {
@@ -47,7 +47,7 @@ if (missing.length) { console.error('MISSING:', missing); process.exit(1); }
 // Markdown
 const groups = [...new Set(rows.map(r => r.group))];
 let md = `# Sajilo Nepali: picture prompts\n\nEvery picture in the game, ${rows.length} in total. Each prompt below is complete (it already includes the shared style), so you can paste it as is.\n\n`;
-md += `## How to make them match\n\n1. **Same tool, same settings** for everything. Square images unless the size column says otherwise.\n2. **Make section 1 (the cast) and \`pandu-wave\` first.** Then attach the matching cast picture as a reference whenever a prompt mentions that person (Maya, Arjun, Aama, Hajuraama…), so they look the same in every picture.\n3. **Transparent background** (PNG). If your tool can't do it, use plain white and I'll remove it. Exception: \`app-icon\` and \`og-image\` need a full background.\n4. **Keep the file names.** Put the images in \`public/img/\` in the repo, or send them to me in batches. I'll shrink them for the web and swap them in.\n5. **No words in pictures.** Image tools misspell Nepali, so any Nepali letters (like **अ** on the Letter Master sticker) are added by the app.\n6. **Priority if you want to do it in stages:** Pandu → avatars → stickers → word pictures → lesson icons → game icons → sentence scenes (optional).\n\n## Shared style (already inside every prompt)\n\n> ${STYLE}\n\n`;
+md += `## How to make them match\n\n1. **Same tool, same settings** for everything. Square images unless the size column says otherwise.\n2. **Attach pandu-namaste as the style reference for everything, and make section 1 (the cast) first.** Then attach the matching cast picture as a reference whenever a prompt mentions that person (Maya, Arjun, Aama, Hajuraama…), so they look the same in every picture.\n3. **Round sticker on white:** every game picture sits in a hand-drawn ink circle; I remove the white outside it. Exceptions: cast sheets (plain white), and \`app-icon\`, \`og-image\` and sentence scenes (full background).\n4. **Keep the file names.** Put the images in \`art/\` in the repo, or send them to me in batches. I'll shrink them for the web and swap them in.\n5. **No words in pictures.** Image tools misspell Nepali, so any Nepali letters (like **अ** on the Letter Master sticker) are added by the app.\n6. **Priority if you want to do it in stages:** Pandu → avatars → stickers → word pictures → lesson icons → game icons → sentence scenes (optional).\n\n## Shared style (already inside every prompt)\n\n> ${STICKER}\n\n`;
 for (const g of groups) {
   const rs = rows.filter(r => r.group === g);
   md += `## ${g} (${rs.length})\n\n`;

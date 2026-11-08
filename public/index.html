@@ -360,6 +360,14 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 /* Tapped pictures wiggle */
 @keyframes boing { 0% { transform: scale(1); } 35% { transform: scale(1.15) rotate(5deg); } 65% { transform: scale(.96) rotate(-3deg); } 100% { transform: scale(1); } }
 .boing { animation: boing .45s ease; }
+@keyframes gentle-float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-3px) rotate(2deg); } }
+@keyframes sticker-pop { 0% { transform: scale(1); } 40% { transform: scale(1.18) rotate(-6deg); } 75% { transform: scale(.95) rotate(3deg); } 100% { transform: scale(1) rotate(0); } }
+@keyframes hello-sway { 0%, 78%, 100% { transform: rotate(0); } 82% { transform: rotate(-5deg); } 86% { transform: rotate(4deg); } 90% { transform: rotate(-3deg); } 94% { transform: rotate(2deg); } }
+.stone.next .disc .li-art { animation: gentle-float 3s ease-in-out infinite; }
+.playing .wpic, .playing .li-art, .playing .art, .stone:active .li-art { animation: sticker-pop .45s cubic-bezier(.34, 1.56, .64, 1); }
+.boing { animation: sticker-pop .45s cubic-bezier(.34, 1.56, .64, 1); }
+.pandu-btn { background: none; border: 0; padding: 0; flex: none; cursor: pointer; }
+.pandu-hi { animation: hello-sway 6s ease-in-out infinite; transform-origin: 50% 90%; }
 .confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 50; }
 .confetti i { position: absolute; top: -30px; width: 10px; height: 14px; border-radius: 3px; font-style: normal; font-size: 22px; animation: fall linear forwards; }
 @keyframes fall { to { transform: translate(var(--x), 110vh) rotate(720deg); } }
@@ -640,6 +648,7 @@ function render() {
   else renderDone();
 }
 
+const greetPhrase = () => { const h = new Date().getHours(); return h < 12 ? window.PHRASES.morning : h >= 20 ? window.PHRASES.night : window.PHRASES.hello; };
 function greeting() {
   const h = new Date().getHours();
   const [ne, rom] = h < 12 ? [window.PHRASES.morning, "shubha prabhaat!"] : h >= 20 ? [window.PHRASES.night, "shubha raatri!"] : [window.PHRASES.hello, "namaste!"];
@@ -723,7 +732,7 @@ const pandu = (pose, cls = "") => panduSrc(pose) ? `<img class="mascot pandu-art
    A pose shows as soon as its picture (art/pandu-tea, art/pandu-bike) is added; until then Pandu waves. */
 function panduNow() {
   const h = new Date().getHours(), want = h >= 20 || h < 5 ? "sleep" : h < 12 ? "tea" : "bike";
-  return panduSrc(want) ? want : "wave";
+  return panduSrc(want) ? want : want === "sleep" ? "wave" : panduSrc("namaste") ? "namaste" : "wave";
 }
 const isNight = () => { const h = new Date().getHours(); return h >= 20 || h < 5; };
 /* Sticker and avatar pictures: artwork when we have it, otherwise the emoji. Not-yet-won stickers show greyed out with a lock. */
@@ -889,7 +898,7 @@ function renderMap() {
         <button class="icon-btn" type="button" id="tBeeps" aria-pressed="${P.beeps !== false}" title="Game beeps (voice clips stay on)" aria-label="Game beeps ${P.beeps !== false ? "on" : "off"}"><span aria-hidden="true">${P.beeps !== false ? "🎵" : "🔕"}</span><small>beeps ${P.beeps !== false ? "on" : "off"}</small></button>
       </div>
     </div>
-    <div class="greet">${pandu(panduNow(), "bob")}<div><p>${greeting()} I'm Pandu. ${streakLine()}</p>
+    <div class="greet"><button class="pandu-btn" type="button" data-pandusay="${esc(K(greetPhrase()))}" aria-label="Pandu says hello">${pandu(panduNow(), "pandu-hi")}</button><div><p>${greeting()} I'm Pandu. ${streakLine()}</p>
       <div class="pills">${pills.map(x => `<span class="pill">${x}</span>`).join("")}</div></div></div>
     ${dropHTML()}
     ${wordOfDayHTML()}
@@ -1325,11 +1334,12 @@ document.addEventListener("click", e => {
   // Any tappable Nepali text (outside answer buttons) just plays its sound.
   if (t.matches("span[data-say]") && !t.closest(".opt, .tile, .card, .stone, .flashcard")) { say(t.dataset.say, t); return; }
   // Pictures wiggle when tapped (flashcards also go "boop").
-  const host = t.closest(".flashcard, .opt, .wotd-main, .pic-st, .drop, .tile");
-  const art = host && host.querySelector(".wpic, .big, .art");
+  const host = t.closest(".flashcard, .opt, .wotd-main, .pic-st, .drop, .tile, .pandu-btn");
+  const art = host && host.querySelector(".wpic, .big, .art, .mascot");
   if (art) { art.classList.remove("boing"); void art.offsetWidth; art.classList.add("boing"); if (host.matches(".flashcard, .pic-st")) beep("tap"); }
   if (t.id === "openDrop") { P.dropSeen = true; save(); say(t.dataset.say); S.stickers = true; S.showPic = P.dropName; render(); S.showPic = null; return; }
   if (t.id === "wotdChal") { startChallenge(); return; }
+  if (t.dataset.pandusay) { say(t.dataset.pandusay); return; }
   if (t.dataset.picst) {
     const x = picByName(t.dataset.picst); if (!x) return;
     say(K(x.it.ne), t);
