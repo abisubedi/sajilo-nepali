@@ -96,7 +96,7 @@ const W = {
   "kitchen": "a cozy Nepali kitchen with a gas stove, a pressure cooker, steel plates on a rack and a brass water jug",
   "bedroom": "a cozy child's bedroom with a bed, a colorful quilt and a small window",
   "yard / courtyard": "a traditional Nepali house courtyard (aangan) with a brick floor, a marigold pot and a small tulsi plant",
-  "bathroom": "a clean bathroom with a tap, a bucket and mug, a towel and a toothbrush cup",
+  "bathroom": "a clean bathroom with a shower head spraying water, a tap, a bucket and mug, a towel and a toothbrush cup",
   "living room": "a cozy living room with a sofa, a carpet, a small table with tea cups and a TV",
   // objects
   "door": "a carved wooden Newari-style door painted brown",
