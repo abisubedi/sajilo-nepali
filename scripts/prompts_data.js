@@ -67,7 +67,7 @@ const W = {
   "banana": "a bright yellow banana",
   "momo": "a plate of steamed Nepali momo dumplings with a small bowl of orange tomato achar dip",
   "i am hungry": `${boy}, holding his tummy and looking at an empty plate`,
-  "it is yummy": `${kid}, eating with a happy face, eyes closed, a heart above her`,
+  "it is yummy": `${kid}, a close-up of her delighted reaction to a tasty bite, not the act of eating: her eyes squeezed shut with joy, licking her lips with the tip of her tongue, one hand rubbing her tummy in a circle and the other giving a big thumbs-up, with little sparkles, tiny hearts and a \"yum!\" feeling bursting around her face; only a small spoon in her hand, the plate is tiny or out of view`,
   "i am full": `${boy}, leaning back and patting his full round tummy, an empty plate in front of him`,
   "hot": "a steaming hot bowl of food with wavy steam lines",
   "spoon": "a shiny steel spoon",
