@@ -446,6 +446,19 @@ body { background-image: var(--paper); }
   .jump { padding: 4px 2px; }
   .chapter-banner { padding: 8px 12px 14px; }
   .wide-only { display: none; }
+  /* Flashcards on phones: card, buttons and Play game all fit on one screen */
+  .flashcard { min-height: 0; padding: 14px 12px; gap: 4px; }
+  .flashcard .ne { font-size: 40px; }
+  .card-nav { gap: 8px; flex-wrap: nowrap; }
+  .card-nav > * { height: 50px; white-space: nowrap; }
+  .card-nav .chip.big { padding: 0 16px; font-size: 20px; }
+  .card-nav .echo .echo-l { display: none; }
+  .q > .ask, .ask { font-size: 19px; }
+}
+@media (max-width: 480px) and (max-height: 700px) {
+  .flashcard .big { font-size: 64px !important; }
+  .flashcard .ne { font-size: 34px; }
+  .flashcard .en, .flashcard .rom { font-size: 18px; }
   .stats .stat { padding-top: 2px; padding-bottom: 2px; }
 }
 .confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 50; }
