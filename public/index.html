@@ -97,9 +97,9 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .jump::-webkit-scrollbar { display: none; }
 .jump-pill { flex: none; border: 2px solid var(--line); background: var(--snow); border-radius: 999px; padding: 6px 12px; font: inherit; font-weight: 800; font-size: 14px; color: var(--ink); white-space: nowrap; box-shadow: 0 3px 0 var(--line); }
 .jump-pill span { font-family: var(--display); }
-.jump-pill.done { border-color: #f3d37a; background: #fff8e1; }
+.jump-pill.finished { border-color: #f3d37a; background: #fff8e1; }
 .jump-pill { display: inline-flex; align-items: center; gap: 6px; }
-.jump-pill img { width: 24px; height: 24px; object-fit: contain; margin: -3px 0; }
+.jump-pill img { width: 28px; height: 28px; object-fit: cover; border-radius: 50%; margin: -5px 0 -5px -6px; transform: scale(1.12); }
 .jump-pill.here { border-color: var(--c, var(--flag-blue)); box-shadow: 0 3px 0 var(--c, var(--flag-blue)); }
 .chapter-banner { background: var(--snow); border: 2px solid var(--line); border-left: 8px solid var(--c, var(--flag-blue)); border-radius: 16px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 .chapter-banner small { display: block; font-weight: 800; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
@@ -870,7 +870,7 @@ function renderMap() {
     const done = ls.every(id => (P.stars[starKey(id)] || 0) > 0);
     const here = !done && !hereSet && (hereSet = true);
     const art = c.sticker.img && (window.IMG || {})[c.sticker.img.replace(/^img\/|\.webp$/g, "")];
-    return `<button class="jump-pill${done ? " done" : ""}${here ? " here" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}" style="--c:${c.color}">${art ? `<img src="${art}" alt="" draggable="false">` : `<span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span>`} Ch ${i + 1}${done ? " ✓" : ""}</button>`;
+    return `<button class="jump-pill${done ? " finished" : ""}${here ? " here" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}" style="--c:${c.color}">${art ? `<img src="${art}" alt="" draggable="false">` : `<span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span>`} Ch ${i + 1}${done ? " ✓" : ""}</button>`;
   }).join("");
   const pills = P.level === "big"
     ? ["4️⃣ 4 choices", "⌨️ Typing", "🧩 Sentences"]
