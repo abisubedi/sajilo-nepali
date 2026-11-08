@@ -47,7 +47,7 @@ A free, Duolingo-style web game that teaches kids aged 4–15 basic Nepali.
 
 ## Credits
 
-Created, coded and voiced by **Abi Subedi (अबी सुवेदी)** in Pittsburgh, Pennsylvania. Every Nepali word in the game uses Abi's voice. Tap Abi's name at the bottom of the map to hear a hello.
+Created and voiced by **Abi Subedi (अबी सुवेदी)** in Pittsburgh, Pennsylvania. Every Nepali word in the game uses Abi's voice. Tap Abi's name at the bottom of the map to hear a hello.
 
 ## Pictures
 
