@@ -1295,8 +1295,12 @@ function drumroll(seconds) {
 async function carRound() {
   const C = S.car; if (!C || S.screen !== "car") return;
   const my = ++C.token, alive = () => S.screen === "car" && S.car === C && C.token === my && !C.paused;
+  if (!C.introDone) { C.introDone = true; if (AUDIO["EN:__intro"]) { C.phase = "intro"; await sayAndWait("EN:__intro"); if (!alive()) return; } }
   C.item = C.pool[C.i++ % C.pool.length]; C.phase = "ask"; renderCar();
-  await speakEn(`How do you say: ${C.item.en.replace(/\(.*?\)/g, "")}, in Nepali?`); if (!alive()) return;
+  const en = C.item.en, clean = en.replace(/\(.*?\)/g, "").replace(/\s+/g, " ").trim(), polite = /\(polite\)/i.test(en);
+  const qKey = "EN:" + (clean + (polite ? " polite" : "")).toLowerCase();   // recorded English question (voice: Nepali - Clear Middle Age)
+  if (AUDIO[qKey]) await sayAndWait(qKey); else await speakEn(`How do you ${polite ? "politely " : ""}say: ${clean}, in Nepali?`);
+  if (!alive()) return;
   C.phase = "count"; drumroll(5);
   for (let n = 5; n >= 1; n--) { C.count = n; renderCar(); await new Promise(r => setTimeout(r, 1000)); if (!alive()) return; }
   C.phase = "reveal"; renderCar(); await sayAndWait(K(C.item.ne)); if (!alive()) return;

@@ -30,7 +30,7 @@ A free, Duolingo-style web game that teaches kids aged 4–15 basic Nepali.
 - **Fun Sound Words (रमाइलो आवाज):** a Chapter 3 lesson of Nepali sound words (टम्म, मुसुक्क, ग्लुक्क, झमझम, खरपखुरुप, भुसुक्क), each with an example sentence on its flashcard.
 - **Pandu's riddle (गाउँ खाने कथा):** question 3 of Today's challenge is a folk riddle from `window.RIDDLES`.
 - **Bedtime story:** after 7:30 PM a 🌙 card opens "पाण्डु र जून", 5 calm narrated pages with each word lit up as it is read (`window.STORY`; pictures story-1…5).
-- **🚗 Car ride:** an eyes-free family quiz: the phone asks in English, a 5-second madal drumroll, then Abi's voice gives the Nepali. Big buttons, keeps the screen awake.
+- **🚗 Car ride:** an eyes-free family quiz: an English question recorded with the ElevenLabs voice "Nepali - Clear Middle Age" (keys `EN:<word>` in audio-manifest.js; the phone's own English voice is used for any word without a clip), a 5-second madal drumroll, then Abi's voice gives the Nepali. Big buttons, keeps the screen awake.
 - **🤝 Team round:** in any word lesson. Big kid reads and picks the Nepali, little kid listens and taps the picture, same word. Wins the shared Team Star sticker.
 - **🔍 Explore the room:** tap things inside a big room picture to hear them (`window.SCENES`). Turns on when scene-living-room / scene-kitchen exist and their tap spots are set.
 - **🏡 Decorate Pandu's room:** drag picture stickers into a room in the sticker book; tap a placed sticker to hear it, drag it back to remove. Saved per player.
