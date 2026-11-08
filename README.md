@@ -17,6 +17,10 @@ A free, Duolingo-style web game that teaches kids aged 4–15 basic Nepali.
 - **Chapter jump bar:** a row of chapter pills (Ch 1 … Ch 8) stays at the top while scrolling. Tap one to jump to that chapter.
 - **Players:** brothers and sisters on one device can each have their own player (name + animal), with separate stars, streak and stickers. Tap the player pill in the top bar to switch or add players.
 - **Mero Stickers (मेरो स्टिकर):** finish every lesson in a chapter to win its sticker, and get ★★★ on all of them to make it gold. Tap 🏅 in the top bar to see the sticker book. Every sticker talks when tapped (stickers not won yet say "अझै बाँकी छ!").
+- **Daily sticker drop:** every word picture is also a collectible sticker. One drops each new day a child visits and one for each lesson finished for the first time, newest uploads first (dates come from `scripts/img_dates.json`, written by `build_images.py`). Tapping a picture sticker says the word.
+- **Word of the day + Today's challenge:** the word of the day comes from the newest pictures; "🎯 Today's challenge" is 3 quick questions on that word for +10 ⭐ once a day.
+- **Pandu through the day:** chiya in the morning (`pandu-tea`), bike in the afternoon (`pandu-bike`), nightcap at bedtime (`pandu-sleep`). Missing poses fall back to waving; prompts in `docs/image-prompts-pandu-day.md`.
+- **Tap a picture and it wiggles** (flashcards, answers, stickers).
 - **Celebration and sharing:** a 3-star lesson ends with confetti and a ready-made message to share or copy for family.
 - **Print flashcards:** in a lesson's sheet, "🖨️ Print flashcards for home" makes a cut-out sheet of picture cards.
 - **Sound settings:** 🔊 turns all sound on or off. 🎵 turns off only the game beeps and keeps the recorded voice.

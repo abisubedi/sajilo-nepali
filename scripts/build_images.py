@@ -3,8 +3,10 @@ Run: python3 scripts/build_images.py
 - Every art/<name>.(jpg|jpeg|png|webp) whose name starts with w-, li-, st-, av- or pandu- becomes public/img/<name>.webp
   (skipped when the .webp is already newer than the original, so hand-tuned cut-outs are kept).
 - cast-* files are reference sheets for drawing and are not used in the game.
-- Writes public/img-manifest.js: window.IMG = { name: "img/name.webp?v=<hash>" } so updated pictures always reach phones."""
-import hashlib, json, os, subprocess, sys
+- Writes public/img-manifest.js: window.IMG = { name: "img/name.webp?v=<hash>" } so updated pictures always reach phones,
+  and window.IMG_ADDED = { name: "YYYY-MM-DD" }: the day each picture first appeared (kept in scripts/img_dates.json),
+  so the game can feature the newest pictures (daily sticker drop, word of the day)."""
+import datetime, hashlib, json, os, subprocess, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ART, IMG = os.path.join(ROOT, "art"), os.path.join(ROOT, "public", "img")
@@ -22,12 +24,21 @@ for f in sorted(os.listdir(ART)):
     subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "cutout.py"), src, out, size], check=True, capture_output=True)
     made.append(name)
 
+DATES = os.path.join(ROOT, "scripts", "img_dates.json")
+dates = json.load(open(DATES)) if os.path.exists(DATES) else {}
+def first_added(name):
+    out = subprocess.run(["git", "-C", ROOT, "log", "--diff-filter=A", "--format=%as", "--", f"public/img/{name}.webp"], capture_output=True, text=True).stdout.split()
+    return out[-1] if out else datetime.date.today().isoformat()
 manifest = {}
 for f in sorted(os.listdir(IMG)):
     if f.endswith(".webp"):
         h = hashlib.sha1(open(os.path.join(IMG, f), "rb").read()).hexdigest()[:8]
         manifest[f[:-5]] = f"img/{f}?v={h}"
+        if f[:-5] not in dates: dates[f[:-5]] = first_added(f[:-5])
+dates = {k: dates[k] for k in sorted(dates) if k in manifest}
+json.dump(dates, open(DATES, "w"), indent=0)
 with open(os.path.join(ROOT, "public", "img-manifest.js"), "w") as fh:
     fh.write("/* Pictures in public/img (built from art/ by scripts/build_images.py). ?v= changes when a picture changes. */\n")
     fh.write("window.IMG = " + json.dumps(manifest, indent=1) + ";\n")
+    fh.write("window.IMG_ADDED = " + json.dumps(dates, separators=(",", ":")) + ";\n")
 print(f"made {len(made)}: {', '.join(made) if made else '-'}\nmanifest: {len(manifest)} pictures")

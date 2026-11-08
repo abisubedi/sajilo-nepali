@@ -335,6 +335,31 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .wotd small { display: block; font-weight: 800; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 .wotd b { font-family: var(--display); font-size: 22px; } .wotd em { display: block; font-style: normal; font-weight: 700; color: var(--muted); font-size: 14px; }
 .wotd-pic { font-size: 34px; line-height: 1; flex: none; }
+.wotd-foot { display: flex; border-top: 2px dashed #f3d37a; background: #fff3c4; }
+.wotd-foot .wotd-go { border-top: 0; flex: 1; font-size: 15px; line-height: 1.2; }
+.wotd-chal { flex: none; font-size: 15px; border: 0; border-right: 2px dashed #f3d37a; background: #ffe9a8; padding: 8px 12px; font: inherit; font-weight: 800; color: #8a4b00; text-align: left; line-height: 1.15; }
+.wotd-chal small { text-transform: none; letter-spacing: 0; color: #8a6400; font-size: 11px; }
+.wotd-chal[disabled] { background: #e5f6ea; color: #1f7a3f; }
+/* Daily sticker drop */
+.drop { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; font: inherit; color: inherit; background: #f0f7ff; border: 2px dashed var(--flag-blue); border-radius: 18px; padding: 10px 14px; }
+.drop .wpic { width: 56px; height: 56px; }
+.drop small { display: block; font-weight: 800; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--flag-blue); }
+.drop b { font-family: var(--display); font-size: 22px; } .drop em { display: block; font-style: normal; font-weight: 700; color: var(--muted); font-size: 14px; }
+.drop-go { margin-left: auto; flex: none; font-weight: 800; color: var(--flag-blue); font-size: 14px; }
+.book-h { margin: 6px 0 0; font-family: var(--display); font-size: 18px; display: flex; justify-content: space-between; align-items: baseline; }
+.book-h small { font-family: var(--body, inherit); font-size: 14px; color: var(--muted); }
+.pic-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.pic-st { background: var(--snow); border: 2px solid var(--line); border-radius: 14px; padding: 6px 4px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; font: inherit; color: var(--ink); }
+.pic-st .wpic { width: 52px; height: 52px; }
+.pic-st small { font-size: 13px; font-weight: 700; line-height: 1.1; }
+.pic-st.new { border-color: var(--flag-yellow); background: #fff8e1; }
+.pic-st.new::before { content: "NEW"; font-size: 9px; font-weight: 800; color: #8a6400; margin-bottom: -4px; }
+.pic-empty { grid-column: 1 / -1; text-align: center; color: var(--muted); font-weight: 700; margin: 4px 0; }
+.chal-word { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 6px 0; }
+.chal-word .wpic { width: 72px; height: 72px; }
+/* Tapped pictures wiggle */
+@keyframes boing { 0% { transform: scale(1); } 35% { transform: scale(1.15) rotate(5deg); } 65% { transform: scale(.96) rotate(-3deg); } 100% { transform: scale(1); } }
+.boing { animation: boing .45s ease; }
 .confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 50; }
 .confetti i { position: absolute; top: -30px; width: 10px; height: 14px; border-radius: 3px; font-style: normal; font-size: 22px; animation: fall linear forwards; }
 @keyframes fall { to { transform: translate(var(--x), 110vh) rotate(720deg); } }
@@ -620,6 +645,36 @@ function greeting() {
   const [ne, rom] = h < 12 ? [window.PHRASES.morning, "shubha prabhaat!"] : h >= 20 ? [window.PHRASES.night, "shubha raatri!"] : [window.PHRASES.hello, "namaste!"];
   return `${neSpan(ne)} <span class="rom">${rom}</span>`;
 }
+/* Picture stickers: every word picture can be collected. One drops on each new day a player visits and one for each
+   lesson finished for the first time. The newest uploads (IMG_ADDED dates) drop first. */
+let PICS = null;
+function picPool() {
+  if (PICS) return PICS;
+  const seen = new Set(), added = window.IMG_ADDED || {}; PICS = [];
+  for (const l of window.LESSONS) if (!l.letters) for (const it of l.items || []) {
+    if (typeof it.ne !== "string" || it.word || !it.en) continue;
+    const name = "w-" + slugOf(it.en);
+    if (!(window.IMG || {})[name] || seen.has(name)) continue;
+    seen.add(name); PICS.push({ name, it, l, added: added[name] || "" });
+  }
+  return PICS;
+}
+const picByName = n => picPool().find(x => x.name === n);
+function dropPic() {
+  const got = new Set(P.pics || []), left = picPool().filter(x => !got.has(x.name)); if (!left.length) return null;
+  const newest = left.reduce((m, x) => x.added > m ? x.added : m, ""), batch = left.filter(x => x.added === newest);
+  let h = 0; for (const ch of today() + PL.current + got.size) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  const x = batch[h % batch.length]; P.pics = [...(P.pics || []), x.name]; return x;
+}
+function dailyDrop() {
+  if (P.picDay === today()) return;
+  P.picDay = today(); const x = dropPic(); P.dropName = x ? x.name : ""; P.dropSeen = !x; save();
+}
+function dropHTML() {
+  const x = !P.dropSeen && P.dropName && picByName(P.dropName); if (!x) return "";
+  return `<button class="drop" type="button" id="openDrop" data-say="${esc(K(x.it.ne))}"><img class="wpic" src="${window.IMG[x.name]}" alt="" draggable="false">
+    <span><small>🎁 Today's sticker drop</small><b lang="ne">${esc(x.it.ne)}</b> <span class="rom">${esc(x.it.rom)}</span><em>${esc(x.it.en)}</em></span><span class="drop-go">Open my book →</span></button>`;
+}
 function wordOfDay() {
   const pool = [];
   window.CHAPTERS.forEach(c => c.lessons.forEach(id => {
@@ -627,8 +682,13 @@ function wordOfDay() {
     (l.items || []).forEach(it => { if (typeof it.ne === "string" && !it.word && it.en && AUDIO[K(it.ne)]) pool.push({ it, c, l }); });
   }));
   if (!pool.length) return null;
+  // Feature the newest pictures: words whose picture was added in the latest upload (within the last 2 weeks).
+  const added = window.IMG_ADDED || {}, dateOf = x => artFor(x.it) ? added["w-" + slugOf(x.it.en)] || "" : "";
+  const newest = pool.reduce((m, x) => dateOf(x) > m ? dateOf(x) : m, "");
+  const fresh = newest && (Date.now() - new Date(newest).getTime()) < 14 * 864e5 ? pool.filter(x => dateOf(x) === newest) : pool.filter(x => artFor(x.it));
+  const list = fresh.length ? fresh : pool;
   let h = 0; for (const ch of today() + P.level) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
-  return pool[h % pool.length];
+  return list[h % list.length];
 }
 function wordOfDayHTML() {
   const w = wordOfDay(); if (!w) return "";
@@ -636,7 +696,8 @@ function wordOfDayHTML() {
   return `<div class="wotd${heard ? " heard" : ""}"><button class="wotd-main" type="button" id="wotdPlay" data-say="${esc(K(w.it.ne))}"><span class="wotd-pic" aria-hidden="true">${artFor(w.it) ? `<img class="wpic" src="${artFor(w.it)}" alt="">` : esc(w.it.pic || "💡")}</span>
     <span><small>💡 Word of the day · ${esc(w.c.en)}</small><b lang="ne">${esc(w.it.ne)}</b> <span class="rom">${esc(w.it.rom)}</span><em>${esc(w.it.en)}</em></span>
     <span class="wotd-say">${heard ? "✓ Heard today! +5 ⭐" : `${SPEAKER}<small>Tap for +5 ⭐</small>`}</span></button>
-    <button class="wotd-go" type="button" data-wotd-lesson="${esc(w.l.id)}">Practice “${esc(w.l.title)}” →</button></div>`;
+    <div class="wotd-foot"><button class="wotd-chal" type="button" id="wotdChal" ${P.chalDay === today() ? "disabled" : ""}>${P.chalDay === today() ? "✓ Challenge done!" : `🎯 Today's challenge<br><small>3 quick questions · +10 ⭐</small>`}</button>
+    <button class="wotd-go" type="button" data-wotd-lesson="${esc(w.l.id)}">Practice “${esc(w.l.title)}” →</button></div></div>`;
 }
 function streakLine() {
   const n = liveStreak();
@@ -656,7 +717,14 @@ function stickerState() {
   return list;
 }
 /* Pandu pictures by pose, with the drawn Pandu as a fallback */
-const pandu = (pose, cls = "") => (window.PANDU_IMG || {})[pose] ? `<img class="mascot pandu-art ${cls}" src="${window.PANDU_IMG[pose]}" alt="" draggable="false">` : MASCOT.replace('class="mascot"', `class="mascot ${cls}"`);
+const panduSrc = pose => (window.IMG || {})["pandu-" + pose] || (window.PANDU_IMG || {})[pose];
+const pandu = (pose, cls = "") => panduSrc(pose) ? `<img class="mascot pandu-art ${cls}" src="${panduSrc(pose)}" alt="" draggable="false">` : MASCOT.replace('class="mascot"', `class="mascot ${cls}"`);
+/* Pandu's activity on the home screen follows the clock: chiya in the morning, bike in the afternoon, nightcap at bedtime.
+   A pose shows as soon as its picture (art/pandu-tea, art/pandu-bike) is added; until then Pandu waves. */
+function panduNow() {
+  const h = new Date().getHours(), want = h >= 20 || h < 5 ? "sleep" : h < 12 ? "tea" : "bike";
+  return panduSrc(want) ? want : "wave";
+}
 const isNight = () => { const h = new Date().getHours(); return h >= 20 || h < 5; };
 /* Sticker and avatar pictures: artwork when we have it, otherwise the emoji. Not-yet-won stickers show greyed out with a lock. */
 function stickerPic(x, showLock) {
@@ -668,11 +736,21 @@ function stickersHTML() {
   return `<div class="sheet-back" id="stickBack"></div><div class="sheet stickers" role="dialog" aria-modal="true" aria-label="My stickers">
     <button class="x sheet-x" type="button" id="stickClose" aria-label="Close">✕</button>
     <div class="sheet-head"><div><strong>🏅 My stickers</strong>${neSpan(window.PHRASES.stickers)} <span class="rom">mero stikar</span></div></div>
-    <p class="note" style="text-align:left;margin:0">Finish every lesson in a chapter to win its sticker. Get ★★★ on all of them to make it gold! Tap a sticker to hear it talk.</p>
-    <div class="stick-say" id="stickSay"><span class="stick-say-pic" aria-hidden="true">💬</span><span>Tap a sticker!</span></div>
+    <div class="stick-say" id="stickSay">${S.showPic ? picSayHTML(picByName(S.showPic)) : `<span class="stick-say-pic" aria-hidden="true">💬</span><span>Tap a sticker to hear it talk!</span>`}</div>
+    ${picBookHTML()}
+    <h4 class="book-h">🏅 Chapter stickers</h4>
+    <p class="note" style="text-align:left;margin:0">Finish every lesson in a chapter to win its sticker. Get ★★★ on all of them to make it gold!</p>
     <div class="sticker-grid">${stickerState().map(x => `<button class="sticker${x.got ? " got" : ""}${x.gold ? " gold" : ""}" type="button" data-sticker="${x.id}" aria-label="${esc(x.name)}${x.got ? "" : " (not won yet)"}">
       <span class="sticker-pic">${stickerPic(x, true)}</span>
       <b>${esc(x.name)}</b><small>${x.got ? (x.gold ? "★★★ Gold!" : "Won!") : esc(x.need)}</small></button>`).join("")}</div></div>`;
+}
+const picSayHTML = x => x ? `<span class="stick-say-pic" aria-hidden="true"><img class="art" src="${window.IMG[x.name]}" alt=""></span><span>${neSpan(x.it.ne)} <span class="rom">${esc(x.it.rom)}</span><small>${esc(x.it.en)}</small></span>` : "";
+function picBookHTML() {
+  const mine = (P.pics || []).map(picByName).filter(Boolean).reverse(), all = picPool().length;
+  return `<h4 class="book-h">🖼️ Picture stickers <small>${mine.length} / ${all}</small></h4>
+    <p class="note" style="text-align:left;margin:0">A new picture drops every day you visit, and one for each lesson you finish. Newest pictures come first!</p>
+    <div class="pic-grid">${mine.map(x => `<button class="pic-st${x.name === P.dropName && P.picDay === today() ? " new" : ""}" type="button" data-picst="${x.name}" aria-label="${esc(x.it.en)}"><img class="wpic" src="${window.IMG[x.name]}" alt="" draggable="false"><small lang="ne">${esc(x.it.ne)}</small></button>`).join("")
+      || `<p class="pic-empty">Your first picture drops today!</p>`}</div>`;
 }
 function playersHTML() {
   const ed = S.playerEdit;   // null, "new", or a player id
@@ -750,6 +828,7 @@ function orderedLessons() {
   return window.CHAPTERS.flatMap(c => c.lessons).filter(id => vis.has(id)).map(id => window.LESSONS.find(l => l.id === id));
 }
 function renderMap() {
+  dailyDrop();
   const ordered = orderedLessons();
   // Every lesson is open; the first one without stars gets a "Start here" / "Next up!" cue.
   const anyStars = ordered.some(l => P.stars[starKey(l.id)]);
@@ -785,8 +864,8 @@ function renderMap() {
     return `<button class="jump-pill${done ? " done" : ""}${here ? " here" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}" style="--c:${c.color}">${art ? `<img src="${art}" alt="" draggable="false">` : `<span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span>`} Ch ${i + 1}${done ? " ✓" : ""}</button>`;
   }).join("");
   const pills = P.level === "big"
-    ? ["💛 No hearts", "4️⃣ 4 choices", "⌨️ Typing", "🧩 Sentences"]
-    : ["🖼️ Big pictures", "👂 Listen", "✍️ Trace letters", "💛 No hearts"];
+    ? ["4️⃣ 4 choices", "⌨️ Typing", "🧩 Sentences"]
+    : ["🖼️ Big pictures", "👂 Listen", "✍️ Trace letters"];
   const sheetL = S.sheet && window.LESSONS.find(l => l.id === S.sheet);
   $("#app").innerHTML = `
     <div class="top">
@@ -796,7 +875,7 @@ function renderMap() {
       <span class="stat" title="Days in a row">🔥 ${liveStreak()}</span>
       <span class="stat" title="Points">⭐ ${P.xp}</span>
       ${P.freezes ? `<span class="stat" title="Streak freezes: each one saves your streak if you miss a day">❄️ ${P.freezes}</span>` : ""}
-      <button class="stat stat-btn" type="button" id="openStickers" title="My stickers">🏅 ${stickerState().filter(x => x.got).length}</button>
+      <button class="stat stat-btn" type="button" id="openStickers" title="My stickers">🏅 ${stickerState().filter(x => x.got).length + (P.pics || []).filter(picByName).length}</button>
       </div>
     </div>
     <div class="levels-row">
@@ -810,8 +889,9 @@ function renderMap() {
         <button class="icon-btn" type="button" id="tBeeps" aria-pressed="${P.beeps !== false}" title="Game beeps (voice clips stay on)" aria-label="Game beeps ${P.beeps !== false ? "on" : "off"}"><span aria-hidden="true">${P.beeps !== false ? "🎵" : "🔕"}</span><small>beeps ${P.beeps !== false ? "on" : "off"}</small></button>
       </div>
     </div>
-    <div class="greet">${pandu(isNight() ? "sleep" : "wave", "bob")}<div><p>${greeting()} I'm Pandu. ${streakLine()}</p>
+    <div class="greet">${pandu(panduNow(), "bob")}<div><p>${greeting()} I'm Pandu. ${streakLine()}</p>
       <div class="pills">${pills.map(x => `<span class="pill">${x}</span>`).join("")}</div></div></div>
+    ${dropHTML()}
     ${wordOfDayHTML()}
     <nav class="jump" aria-label="Jump to a chapter">${jump}</nav>
     ${chapters}
@@ -893,6 +973,15 @@ function renderPrint() {
 function moveCard(d) { const i = S.cardIdx + d; if (i < 0 || i >= S.cards.length) return; S.cardIdx = i; beep("tap"); renderCards(); }
 document.addEventListener("keydown", e => { if (S.screen !== "cards") return; if (e.key === "ArrowRight") moveCard(1); if (e.key === "ArrowLeft") moveCard(-1); });
 
+function startChallenge() {
+  const w = wordOfDay(); if (!w) return;
+  const it = w.it, pool = (w.l.items || []).filter(x => x !== it && typeof x.ne === "string" && !x.word && x.en && x.en !== it.en);
+  const types = P.level === "big" ? ["listen", "pickNepaliText", "typeMeaning"] : ["pickMeaning", "pickNepali", "listen"];
+  S.lesson = { ...w.l, challenge: true, word: w };
+  S.queue = types.map(type => ({ type, item: it, opts: shuffle([it, ...pickN(pool, LV().options - 1)]) }));
+  S.total = 3; S.done = 0; S.hearts = Infinity; S.mistakes = 0; S.answered = false; S.newPic = null;
+  S.screen = "lesson"; beep("tap"); render(); window.scrollTo(0, 0);
+}
 function startLesson(id) {
   const l = window.LESSONS.find(x => x.id === id);
   S.lesson = l; S.queue = buildQuestions(l); S.total = S.queue.length; S.done = 0; S.hearts = LV().hearts || Infinity; S.mistakes = 0; S.answered = false;
@@ -1041,7 +1130,7 @@ function setFeedback(good, solutionHTML, sayKey) {
   const ch = window.CHEERS[Math.floor(Math.random() * window.CHEERS.length)];
   fb.className = "feedback " + (good ? "good" : "bad");
   fb.innerHTML = good
-    ? `<div class="fb-row">${pandu(window.PANDU_IMG && window.PANDU_IMG.cheer ? "cheer" : "wave", "fb-pandu pop")}<p>🎉 ${neSpan(ch[0])} <span class="rom">${ch[1]}</span> ${ch[2]}</p></div><button class="go" type="button" id="next">Continue</button>`
+    ? `<div class="fb-row">${pandu(panduSrc("cheer") ? "cheer" : "wave", "fb-pandu pop")}<p>🎉 ${neSpan(ch[0])} <span class="rom">${ch[1]}</span> ${ch[2]}</p></div><button class="go" type="button" id="next">Continue</button>`
     : `<div class="fb-row">${pandu("oops", "fb-pandu pop")}<div><p>Almost! Let\'s hear it together:</p><div class="sol">${solutionHTML}</div></div></div><button class="go" type="button" id="next">Got it</button>`;
   $("#next").focus();
   if (!good) {   // a miss: Pandu says the answer once, calmly
@@ -1141,10 +1230,15 @@ function matchTap(side, i) {
 }
 function nextStep() {
   if (S.hearts <= 0) { S.screen = "done"; S.outOfHearts = true; render(); return; }
+  if (!S.queue.length && S.lesson.challenge) {
+    S.chalFirst = P.chalDay !== today(); if (S.chalFirst) { P.chalDay = today(); P.xp += 10; }
+    bumpStreak(); save(); S.screen = "done"; render(); say(K(window.PHRASES.wellDone)); return;
+  }
   if (!S.queue.length) {
     const stars = S.mistakes === 0 ? 3 : S.mistakes <= 2 ? 2 : 1, k = starKey(S.lesson.id);
     S.earned = stars; S.xpGain = 10 + stars * 5;
     const before = new Set(stickerState().filter(x => x.got).map(x => x.id + (x.gold ? "*" : "")));
+    S.newPic = P.stars[k] ? null : dropPic();   // first time finishing this lesson: a picture sticker
     P.stars[k] = Math.max(P.stars[k] || 0, stars); P.xp += S.xpGain; bumpStreak(); save();
     S.newSticker = stickerState().find(x => x.got && !before.has(x.id + (x.gold ? "*" : ""))) || null;
     S.screen = "done"; S.outOfHearts = false; render(); say(K(window.PHRASES.wellDone)); return;
@@ -1158,11 +1252,22 @@ function renderDone() {
     say(K(window.PHRASES.tryAgain));
     return;
   }
+  if (S.lesson.challenge) {
+    const it = S.lesson.word.it;
+    $("#app").innerHTML = `<section class="done">${pandu(panduSrc("cheer") ? "cheer" : "wave", "pop")}<h2>🎯 Challenge complete!</h2>
+      <div class="chal-word">${artFor(it) ? `<img class="wpic" src="${artFor(it)}" alt="">` : `<span style="font-size:56px">${esc(it.pic || "")}</span>`}<div>${neHTML(it.ne, it.rom, K(it.ne))}<p style="margin:2px 0 0">${esc(it.en)}</p></div></div>
+      <p><strong>${S.chalFirst ? "+10 ⭐ bonus!" : "Bonus already earned today. Great practice!"}</strong>${S.mistakes ? "" : "<br>Perfect, no mistakes!"}</p>
+      <p class="ctx">A new word and picture tomorrow!</p>
+      <button class="go" type="button" id="home">Continue</button></section>`;
+    if (!S.mistakes) confetti();
+    return;
+  }
   const st = [1, 2, 3].map(n => `<span class="${n <= S.earned ? "" : "off"}">★</span>`).join("");
-  $("#app").innerHTML = `<section class="done">${pandu(window.PANDU_IMG && window.PANDU_IMG.cheer ? "cheer" : "wave", "pop")}<h2>${neSpan(window.PHRASES.wellDone)}<br>Lesson complete!</h2>
+  $("#app").innerHTML = `<section class="done">${pandu(panduSrc("cheer") ? "cheer" : "wave", "pop")}<h2>${neSpan(window.PHRASES.wellDone)}<br>Lesson complete!</h2>
     <div class="stars" aria-label="${S.earned} of 3 stars">${st}</div>
     <p><strong>+${S.xpGain} points</strong> · 🔥 ${liveStreak()} day streak<br>${S.mistakes === 0 ? "Perfect, no mistakes!" : S.mistakes + " mistake" + (S.mistakes > 1 ? "s" : "") + ". Those words will come back next time."}</p>
     ${S.streakNews ? `<p class="ctx">${esc(S.streakNews)}</p>` : ""}
+    ${S.newPic ? `<button class="sticker got new" type="button" data-picst="${S.newPic.name}"><span class="sticker-pic"><img class="art" src="${window.IMG[S.newPic.name]}" alt=""></span><b>🎁 New picture sticker: <span lang="ne">${esc(S.newPic.it.ne)}</span> (${esc(S.newPic.it.en)})</b></button>` : ""}
     ${S.newSticker ? `<button class="sticker got${S.newSticker.gold ? " gold" : ""} new" type="button" data-sticker="${S.newSticker.id}"><span class="sticker-pic">${stickerPic(S.newSticker)}</span><b>🎉 New sticker: ${esc(S.newSticker.name)}${S.newSticker.gold ? " (gold!)" : ""}</b></button>` : ""}
     ${S.earned === 3 ? `<div class="share-card"><p><b>Share your score with Aama or Baba!</b></p><p class="share-text" id="shareText">${esc(shareText())}</p>
       <div class="share-btns">${navigator.share ? `<button class="say" type="button" id="shareNow">📤 Share</button>` : ""}<button class="chip" type="button" id="copyShare">📋 Copy message</button></div></div>` : ""}
@@ -1219,6 +1324,19 @@ document.addEventListener("click", e => {
   if (t.matches("span[data-say]") && t.closest("button")) t = t.closest("button");
   // Any tappable Nepali text (outside answer buttons) just plays its sound.
   if (t.matches("span[data-say]") && !t.closest(".opt, .tile, .card, .stone, .flashcard")) { say(t.dataset.say, t); return; }
+  // Pictures wiggle when tapped (flashcards also go "boop").
+  const host = t.closest(".flashcard, .opt, .wotd-main, .pic-st, .drop, .tile");
+  const art = host && host.querySelector(".wpic, .big, .art");
+  if (art) { art.classList.remove("boing"); void art.offsetWidth; art.classList.add("boing"); if (host.matches(".flashcard, .pic-st")) beep("tap"); }
+  if (t.id === "openDrop") { P.dropSeen = true; save(); say(t.dataset.say); S.stickers = true; S.showPic = P.dropName; render(); S.showPic = null; return; }
+  if (t.id === "wotdChal") { startChallenge(); return; }
+  if (t.dataset.picst) {
+    const x = picByName(t.dataset.picst); if (!x) return;
+    say(K(x.it.ne), t);
+    const b = $("#stickSay");
+    if (b) { b.className = "stick-say"; b.innerHTML = picSayHTML(x); }
+    return;
+  }
   if (t.id === "wotdPlay") {
     say(t.dataset.say, t);
     if (P.wotdDay !== today()) { P.wotdDay = today(); P.xp += 5; save(); beep("good"); setTimeout(render, 150); }
