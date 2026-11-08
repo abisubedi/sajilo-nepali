@@ -368,6 +368,32 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .boing { animation: sticker-pop .45s cubic-bezier(.34, 1.56, .64, 1); }
 .pandu-btn { background: none; border: 0; padding: 0; flex: none; cursor: pointer; }
 .pandu-hi { animation: hello-sway 6s ease-in-out infinite; transform-origin: 50% 90%; }
+/* Phones: keep the home screen compact so the first lesson is close to the fold. */
+@media (max-width: 480px) {
+  .app { gap: 10px; padding-top: 8px; }
+  .levels-row { flex-direction: column; gap: 6px; }
+  .levels button { padding: 5px 6px; }
+  .toggles { gap: 6px; }
+  .toggles .icon-btn { flex: 1; flex-direction: row; gap: 6px; min-height: 34px; font-size: 16px; padding: 2px 8px; }
+  .greet { padding: 8px 12px; gap: 10px; }
+  .greet .mascot { width: 64px; height: 64px; }
+  .greet .ne { font-size: 19px; }
+  .greet .pills { display: none; }
+  .drop { padding: 6px 12px; gap: 10px; }
+  .drop .wpic { width: 44px; height: 44px; }
+  .drop b { font-size: 19px; } .drop em { display: inline; margin-left: 4px; }
+  .drop small { font-size: 11px; }
+  .drop-go { font-size: 13px; }
+  .wotd-main { padding: 6px 12px; gap: 10px; }
+  .wotd-pic .wpic { width: 44px; height: 44px; }
+  .wotd b { font-size: 19px; } .wotd em { display: inline; margin-left: 4px; }
+  .wotd small { font-size: 11px; }
+  .wotd-chal, .wotd-foot .wotd-go { padding: 6px 10px; font-size: 14px; }
+  .jump { padding: 4px 2px; }
+  .chapter-banner { padding: 8px 12px 14px; }
+  .wide-only { display: none; }
+  .stats .stat { padding-top: 2px; padding-bottom: 2px; }
+}
 .confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 50; }
 .confetti i { position: absolute; top: -30px; width: 10px; height: 14px; border-radius: 3px; font-style: normal; font-size: 22px; animation: fall linear forwards; }
 @keyframes fall { to { transform: translate(var(--x), 110vh) rotate(720deg); } }
@@ -648,10 +674,10 @@ function render() {
   else renderDone();
 }
 
-const greetPhrase = () => { const h = new Date().getHours(); return h < 12 ? window.PHRASES.morning : h >= 20 ? window.PHRASES.night : window.PHRASES.hello; };
+const greetPhrase = () => { const h = new Date().getHours(); return h >= 5 && h < 12 ? window.PHRASES.morning : h >= 20 || h < 5 ? window.PHRASES.night : window.PHRASES.hello; };
 function greeting() {
   const h = new Date().getHours();
-  const [ne, rom] = h < 12 ? [window.PHRASES.morning, "shubha prabhaat!"] : h >= 20 ? [window.PHRASES.night, "shubha raatri!"] : [window.PHRASES.hello, "namaste!"];
+  const [ne, rom] = h >= 5 && h < 12 ? [window.PHRASES.morning, "shubha prabhaat!"] : h >= 20 || h < 5 ? [window.PHRASES.night, "shubha raatri!"] : [window.PHRASES.hello, "namaste!"];
   return `${neSpan(ne)} <span class="rom">${rom}</span>`;
 }
 /* Picture stickers: every word picture can be collected. One drops on each new day a player visits and one for each
@@ -682,7 +708,7 @@ function dailyDrop() {
 function dropHTML() {
   const x = !P.dropSeen && P.dropName && picByName(P.dropName); if (!x) return "";
   return `<button class="drop" type="button" id="openDrop" data-say="${esc(K(x.it.ne))}"><img class="wpic" src="${window.IMG[x.name]}" alt="" draggable="false">
-    <span><small>🎁 Today's sticker drop</small><b lang="ne">${esc(x.it.ne)}</b> <span class="rom">${esc(x.it.rom)}</span><em>${esc(x.it.en)}</em></span><span class="drop-go">Open my book →</span></button>`;
+    <span><small>🎁 Today's sticker<span class="wide-only"> drop</span></small><b lang="ne">${esc(x.it.ne)}</b> <span class="rom">${esc(x.it.rom)}</span><em>${esc(x.it.en)}</em></span><span class="drop-go">Open<span class="wide-only"> my book</span> →</span></button>`;
 }
 function wordOfDay() {
   const pool = [];
@@ -703,7 +729,7 @@ function wordOfDayHTML() {
   const w = wordOfDay(); if (!w) return "";
   const heard = P.wotdDay === today();
   return `<div class="wotd${heard ? " heard" : ""}"><button class="wotd-main" type="button" id="wotdPlay" data-say="${esc(K(w.it.ne))}"><span class="wotd-pic" aria-hidden="true">${artFor(w.it) ? `<img class="wpic" src="${artFor(w.it)}" alt="">` : esc(w.it.pic || "💡")}</span>
-    <span><small>💡 Word of the day · ${esc(w.c.en)}</small><b lang="ne">${esc(w.it.ne)}</b> <span class="rom">${esc(w.it.rom)}</span><em>${esc(w.it.en)}</em></span>
+    <span><small>💡 Word of the day<span class="wide-only"> · ${esc(w.c.en)}</span></small><b lang="ne">${esc(w.it.ne)}</b> <span class="rom">${esc(w.it.rom)}</span><em>${esc(w.it.en)}</em></span>
     <span class="wotd-say">${heard ? "✓ Heard today! +5 ⭐" : `${SPEAKER}<small>Tap for +5 ⭐</small>`}</span></button>
     <div class="wotd-foot"><button class="wotd-chal" type="button" id="wotdChal" ${P.chalDay === today() ? "disabled" : ""}>${P.chalDay === today() ? "✓ Challenge done!" : `🎯 Today's challenge<br><small>3 quick questions · +10 ⭐</small>`}</button>
     <button class="wotd-go" type="button" data-wotd-lesson="${esc(w.l.id)}">Practice “${esc(w.l.title)}” →</button></div></div>`;
