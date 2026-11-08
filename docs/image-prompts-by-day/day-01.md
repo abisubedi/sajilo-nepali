@@ -17,8 +17,8 @@
 - [ ] pandu-oops.png
 - [ ] pandu-listen.png
 - [ ] pandu-sleep.png
-- [ ] pandu-tea.png
-- [ ] pandu-bike.png
+- [x] pandu-tea.png
+- [x] pandu-bike.png
 - [ ] cast-maya.png
 - [ ] cast-arjun.png
 - [ ] cast-aama.png
