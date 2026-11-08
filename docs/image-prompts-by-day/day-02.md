@@ -11,65 +11,65 @@
 
 ## Checklist
 
-- [ ] li-greet.png
-- [ ] li-respect-family.png
-- [ ] li-kitchen-tummy.png
-- [ ] li-daily-routines.png
-- [ ] li-house-objects.png
-- [ ] li-rooms-house.png
-- [ ] li-home-sentences.png
-- [ ] li-body.png
-- [ ] li-feelings-needs.png
-- [ ] li-clothes.png
-- [ ] li-what-i-have.png
-- [ ] li-playtime-verbs.png
-- [ ] li-helping-verbs.png
-- [ ] li-sports-outdoors.png
-- [ ] li-weather-nature.png
-- [ ] li-colours.png
-- [ ] li-opposites.png
-- [ ] li-play-sentences.png
-- [ ] li-festivals-culture.png
-- [ ] li-nepali-treats.png
-- [ ] li-time-of-day.png
-- [ ] li-days.png
-- [ ] li-question-words.png
-- [ ] li-culture-sentences.png
-- [ ] li-animals.png
-- [ ] li-birds-bugs.png
-- [ ] li-vehicles-travel.png
-- [ ] li-travel-sentences.png
-- [ ] li-num.png
-- [ ] li-school-supplies.png
-- [ ] li-fruits-snacks.png
-- [ ] li-numbers-11-20.png
-- [ ] li-likes-dislikes.png
-- [ ] li-phone-grandparents.png
-- [ ] li-polite-commands.png
-- [ ] li-grandparent-sentences.png
-- [ ] li-vowels.png
-- [ ] li-cons1.png
-- [ ] li-cons2.png
-- [ ] li-cons3.png
-- [ ] li-cons4.png
-- [ ] li-sentences.png
-- [ ] st-pandu.png
-- [ ] st-home.png
-- [ ] st-me.png
-- [ ] st-play.png
-- [ ] st-festival.png
-- [ ] st-explorer.png
-- [ ] st-school.png
-- [ ] st-chatter.png
-- [ ] st-letters.png
-- [ ] av-redpanda.png
-- [ ] av-tiger.png
-- [ ] av-rhino.png
-- [ ] av-elephant.png
-- [ ] av-danphe.png
-- [ ] av-snowleopard.png
-- [ ] av-yak.png
-- [ ] av-monkey.png
+- [x] li-greet.png
+- [x] li-respect-family.png
+- [x] li-kitchen-tummy.png
+- [x] li-daily-routines.png
+- [x] li-house-objects.png
+- [x] li-rooms-house.png
+- [x] li-home-sentences.png
+- [x] li-body.png
+- [x] li-feelings-needs.png
+- [x] li-clothes.png
+- [x] li-what-i-have.png
+- [x] li-playtime-verbs.png
+- [x] li-helping-verbs.png
+- [x] li-sports-outdoors.png
+- [x] li-weather-nature.png
+- [x] li-colours.png
+- [x] li-opposites.png
+- [x] li-play-sentences.png
+- [x] li-festivals-culture.png
+- [x] li-nepali-treats.png
+- [x] li-time-of-day.png
+- [x] li-days.png
+- [x] li-question-words.png
+- [x] li-culture-sentences.png
+- [x] li-animals.png
+- [x] li-birds-bugs.png
+- [x] li-vehicles-travel.png
+- [x] li-travel-sentences.png
+- [x] li-num.png
+- [x] li-school-supplies.png
+- [x] li-fruits-snacks.png
+- [x] li-numbers-11-20.png
+- [x] li-likes-dislikes.png
+- [x] li-phone-grandparents.png
+- [x] li-polite-commands.png
+- [x] li-grandparent-sentences.png
+- [x] li-vowels.png
+- [x] li-cons1.png
+- [x] li-cons2.png
+- [x] li-cons3.png
+- [x] li-cons4.png
+- [x] li-sentences.png
+- [x] st-pandu.png
+- [x] st-home.png
+- [x] st-me.png
+- [x] st-play.png
+- [x] st-festival.png
+- [x] st-explorer.png
+- [x] st-school.png
+- [x] st-chatter.png
+- [x] st-letters.png
+- [x] av-redpanda.png
+- [x] av-tiger.png
+- [x] av-rhino.png
+- [x] av-elephant.png
+- [x] av-danphe.png
+- [x] av-snowleopard.png
+- [x] av-yak.png
+- [x] av-monkey.png
 
 ## Prompts
 
