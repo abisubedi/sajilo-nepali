@@ -191,13 +191,13 @@ const W = {
   "yogurt": "a clay pot of creamy juju dhau yogurt",
   "papad": "a round crispy papad cracker",
   // time
-  "morning": "a sunrise over green hills with a rooster",
+  "morning": `a fresh early morning: the sun just peeking up over green hills, a rooster crowing on a fence, and ${C.bhai} stretching his arms and yawning at an open window`,
   "afternoon": "a high bright sun over a park",
-  "evening": "an orange sunset behind Himalayan peaks",
+  "evening": `a cozy evening at dusk: an orange sky, a glowing diyo lamp in the window of a Nepali house, cows walking home along the path and birds flying back to the trees`,
   "night": "a dark-blue sky with a crescent moon and stars over a small house",
   "today": "a calendar page with one day circled in red and a smiling sun",
-  "tomorrow": "a calendar page with an arrow pointing forward to the next day",
-  "yesterday": "a calendar page with an arrow pointing back to the previous day",
+  "tomorrow": "a calendar with today's page and the next page, a big bold green arrow pointing forward to the next page with a small rising sun on it",
+  "yesterday": "a calendar with today's page and the page before it, a big bold blue arrow pointing back to the earlier page with a small crescent moon on it",
   "right now": "an alarm clock ringing with a big exclamation burst",
   // questions
   "what is it?": `${kid}, looking curiously at a wrapped mystery box, a question mark above`,
@@ -206,7 +206,7 @@ const W = {
   "why?": `${boy}, scratching his head and thinking`,
   "when?": `${kid}, looking at a big clock with a question mark`,
   "how many?": `${boy}, counting apples on his fingers`,
-  "how is it?": `${kid}, giving a thumbs-up after tasting food`,
+  "how is it?": `${kid}, proudly holding up her own crayon drawing to show Hajuraama, with a hopeful curious face and a question mark bubble, asking what she thinks of it`,
   // birds & bugs
   "butterfly": "a colorful butterfly",
   "bee": "a smiling honeybee",
