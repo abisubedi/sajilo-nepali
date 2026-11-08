@@ -91,7 +91,7 @@ Anything without a recording uses the device's Nepali voice, or a Hindi one if t
 ## Deploying (and where sounds and pictures live)
 
 **Automatic (main way):** Cloudflare Workers Builds is connected to this GitHub repo, so every push to `main` deploys the site
-within a minute or two (connected 2026-11-08). It uses `wrangler.jsonc` in the repo root: every file in `public/` is served as its own static asset
+within a minute or two (connected 2026-11-08, auto-deploy on push). It uses `wrangler.jsonc` in the repo root: every file in `public/` is served as its own static asset
 (up to 20,000 files on the free plan, 25 MiB each), so thousands of pictures are fine. Cache rules: `public/_headers`.
 
 One-time setup (Cloudflare dashboard): Workers & Pages → **sajilo-nepali** → Settings → **Builds** → Connect →
