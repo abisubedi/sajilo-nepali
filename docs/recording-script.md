@@ -88,7 +88,7 @@ Every clip in the game, 487 in total, numbered in the order they appear.
 | 066 | किताब | kitaab | book |
 | 067 | झोला | jhola | bag |
 | 068 | बत्ती | batti | light |
-| 069 | घरका कोठाहरू | gharka kothaharu | Rooms Around the House |
+| 069 | घरका कोठाहरू | gharka kothaharu | My House |
 | 070 | भान्सा | bhansa | kitchen |
 | 071 | सुत्ने कोठा | sutne kotha | bedroom |
 | 072 | आँगन | aangan | yard / courtyard |

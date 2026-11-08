@@ -126,7 +126,7 @@ window.LESSONS = [
     { ne: "शनिबार", rom: "shanibaar", en: "Saturday", pic: "SAT" },
   ]},
   // --- Around the home ---
-  { id: "rooms-house", title: "Rooms Around the House", ne: "घरका कोठाहरू", rom: "gharka kothaharu", icon: "🏠", color: "#2f6fd6", items: [
+  { id: "rooms-house", title: "My House", ne: "घरका कोठाहरू", rom: "gharka kothaharu", icon: "🏠", color: "#2f6fd6", items: [
     { ne: "भान्सा", rom: "bhansa", en: "kitchen", pic: "🍳", alt: ["bhansakotha"] },
     { ne: "सुत्ने कोठा", rom: "sutne kotha", en: "bedroom", pic: "🛏️", alt: ["bedroom"] },
     { ne: "आँगन", rom: "aangan", en: "yard / courtyard", pic: "🏡", alt: ["courtyard", "yard", "garden"] },
