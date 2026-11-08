@@ -76,7 +76,7 @@ const W = {
   "brush teeth": `${boy}, brushing his teeth with a big foamy smile`,
   "wash hands": `${kid}, washing her hands with soap bubbles at a tap`,
   "put on shoes": `${boy}, sitting and putting on his sneakers`,
-  "come here": `${C.aama}, waving her hand to call a child over`,
+  "come here": `${C.aama}, kneeling down with a warm smile and one arm stretched out toward a small boy, her palm making the Nepali \"come here\" scooping gesture toward herself with curved motion lines pointing back to her, while the happy little boy (${C.bhai}) walks toward her with open arms, clearly being called over, not waving goodbye`,
   "let's play outside": `${kid} and ${boy}, running outside with a ball in a green yard`,
   "read a book": `${kid}, sitting cross-legged reading an open book`,
   "go to sleep": `${boy}, asleep in bed under a blanket with a crescent moon at the window`,
