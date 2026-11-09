@@ -233,7 +233,7 @@ body .pick-grid .opt .big { font-size: 34px !important; } body .pick-grid .opt .
 .bagh-node .ne { font-family: var(--display); font-size: 15px; line-height: 1.1; } .bagh-ic { font-size: 22px; line-height: 1; min-height: 4px; }
 .bagh-node.reach { border-color: var(--flag-blue); box-shadow: 0 0 0 4px rgba(47,111,214,.3); animation: pulse 1.5s infinite; } .bagh-node.visited { background: var(--good-bg); border-color: var(--flag-green); }
 .bagh-node.tiger { background: #fde2df; border-color: var(--flag-red); } .bagh-node.goal { background: #fff3c4; border-color: var(--flag-yellow); } .bagh-node[disabled] { cursor: default; }
-.bagh-q { margin-top: 8px; }
+.bagh-q { margin-top: 8px; } .car-cheer { width: 120px; height: 120px; display: block; margin: 0 auto; }
 .guide-sec { background: #faf4e8; border-left: 5px solid var(--panda); border-radius: 12px; padding: 10px 12px; text-align: left; }
 .guide-sec h4 { margin: 0 0 6px; font-family: var(--display); font-size: 17px; color: #4a2e1b; } .guide-sec ul { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.45; } .guide-sec li { margin-bottom: 6px; }
 .play-next { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 8px; font: inherit; text-align: left; color: #fff; background: var(--flag-blue); border: 0; border-radius: 18px; padding: 8px 12px; box-shadow: 0 4px 0 #1d4f9e; cursor: pointer; }
@@ -1497,11 +1497,22 @@ function drumroll(seconds) {
   try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); const t0 = actx.currentTime + .05;
     for (let i = 0; i < seconds * 4; i++) madal(t0 + i * .25, i % 4 === 0); } catch (e) {}
 }
+const CAR_CHEERS = [["EN:__cheer1", "Amazing! Five words done. Let's do five more!"], ["EN:__cheer2", "Wow, you're a Nepali superstar! Here come five more!"],
+  ["EN:__cheer3", "Great job, everyone! Ready for the next five?"], ["EN:__cheer4", "Fantastic! Hajuraama would be so proud. Let's keep going!"]];
 async function carRound() {
   const C = S.car; if (!C || S.screen !== "car") return;
   const my = ++C.token, alive = () => S.screen === "car" && S.car === C && C.token === my && !C.paused;
   if (!C.introDone) { C.introDone = true; if (AUDIO["EN:__intro"]) { C.phase = "intro"; await sayAndWait("EN:__intro"); if (!alive()) return; } }
-  C.item = C.pool[C.i++ % C.pool.length]; C.phase = "ask"; renderCar();
+  if (C.asked && C.asked % 5 === 0 && C.cheerAt !== C.asked) {   // every 5 words: a cheer, then a fresh set of 5
+    C.cheerAt = C.asked; C.phase = "cheer"; renderCar(); beep("done"); if (!matchMedia("(prefers-reduced-motion: reduce)").matches) confetti();
+    await new Promise(r => setTimeout(r, 1500)); if (!alive()) return; beep("flute");
+    const ck = CAR_CHEERS[(C.asked / 5 - 1) % CAR_CHEERS.length];
+    if (AUDIO[ck[0]]) await sayAndWait(ck[0]); else await speakEn(ck[1]); if (!alive()) return;
+    await sayAndWait(K(window.PHRASES.wellDone)); if (!alive()) return;
+    await new Promise(r => setTimeout(r, 1500)); if (!alive()) return;
+    C.score = 0; C.rounds = 0; C.set = (C.set || 1) + 1;
+  }
+  C.item = C.pool[C.i++ % C.pool.length]; C.asked = (C.asked || 0) + 1; C.phase = "ask"; renderCar();
   const en = C.item.en, clean = en.replace(/\(.*?\)/g, "").replace(/\s+/g, " ").trim(), polite = /\(polite\)/i.test(en);
   const qKey = "EN:" + (clean + (polite ? " polite" : "")).toLowerCase();   // recorded English question (voice: Nepali - Clear Middle Age)
   if (AUDIO[qKey]) await sayAndWait(qKey); else await speakEn(`How do you ${polite ? "politely " : ""}say: ${clean}, in Nepali?`);
@@ -1516,11 +1527,12 @@ function renderCar() {
   const C = S.car, it = C.item;
   $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Stop car ride">✕</button><h2 class="kin-title">🚗 Car ride</h2><span class="car-score">⭐ <span lang="ne">${toDeva(C.score)} / ${toDeva(C.rounds)}</span></span></div>
     <section class="car">
-      <div class="car-q">${!it ? `<p class="big-en">Ready for a car ride game?</p><p>The phone asks out loud, everyone shouts the Nepali, then you hear the answer. Turn the sound up!</p>`
+      <div class="car-q">${C.phase === "cheer" ? `${pandu("cheer", "car-cheer pop")}<p class="big-ne" lang="ne">🎉 पाँच शब्द!</p><p class="big-en">Five words!</p><p>You got <b lang="ne">${toDeva(C.score)}</b> of <b lang="ne">५</b>. ${neSpan(window.PHRASES.wellDone)} Here come five more!</p>`
+        : !it ? `<p class="big-en">Ready for a car ride game?</p><p>The phone asks out loud, everyone shouts the Nepali, then you hear the answer. Turn the sound up!</p>`
         : C.phase === "ask" ? `<p>How do you say…</p><p class="big-en">${esc(it.en)}</p>`
         : C.phase === "count" ? `<p class="big-en">${esc(it.en)}</p><p class="car-count">${C.count}</p><p>Shout it out!</p>`
         : `<p class="big-en">${esc(it.en)}</p><p class="big-ne" lang="ne">${esc(it.ne)}</p><p class="rom">${esc(it.rom)}</p><p>Did you get it?</p>`}</div>
-      ${!it ? `<button class="go" type="button" id="carStart">▶ Start</button>`
+      ${C.phase === "cheer" ? "" : !it ? `<button class="go" type="button" id="carStart">▶ Start</button>`
         : `<div class="car-btns"><button class="car-yes" type="button" id="carYes">✅ We got it!</button><button class="car-next" type="button" id="carNext">⏭ Next</button></div>
            <button class="chip" type="button" id="carPause">${C.paused ? "▶ Keep going" : "⏸ Pause"}</button>`}
     </section>`;
