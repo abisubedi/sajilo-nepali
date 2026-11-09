@@ -11,27 +11,27 @@
 
 ## Checklist
 
-- [ ] w-i-like-it.png
-- [ ] w-i-don-t-like-it.png
-- [ ] w-i-need-it.png
-- [ ] w-i-don-t-need-it.png
-- [ ] w-i-know.png
-- [ ] w-i-don-t-know.png
-- [ ] w-okay.png
-- [ ] w-not-allowed.png
-- [ ] w-how-are-you-polite.png
-- [ ] w-i-am-fine.png
-- [ ] w-did-you-eat-polite.png
-- [ ] w-i-ate.png
-- [ ] w-what-are-you-doing.png
-- [ ] w-i-love-you.png
-- [ ] w-please-come.png
-- [ ] w-please-sit.png
-- [ ] w-please-eat.png
-- [ ] w-please-give.png
-- [ ] w-please-look.png
-- [ ] w-please-listen.png
-- [ ] w-sorry.png
+- [x] w-i-like-it.png
+- [x] w-i-don-t-like-it.png
+- [x] w-i-need-it.png
+- [x] w-i-don-t-need-it.png
+- [x] w-i-know.png
+- [x] w-i-don-t-know.png
+- [x] w-okay.png
+- [x] w-not-allowed.png
+- [x] w-how-are-you-polite.png
+- [x] w-i-am-fine.png
+- [x] w-did-you-eat-polite.png
+- [x] w-i-ate.png
+- [x] w-what-are-you-doing.png
+- [x] w-i-love-you.png
+- [x] w-please-come.png
+- [x] w-please-sit.png
+- [x] w-please-eat.png
+- [x] w-please-give.png
+- [x] w-please-look.png
+- [x] w-please-listen.png
+- [x] w-sorry.png
 
 ## Prompts
 

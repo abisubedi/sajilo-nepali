@@ -12,7 +12,7 @@ New storybook sketch style from 2026-11-08 (see pandu-namaste). Done counts pict
 | 6 | [Chapter 4: हाम्रो संस्कृति (Nepali culture & time)](day-06.md) | 29 | 29/29 |
 | 7 | [Chapter 5: प्रकृति र यात्रा (Nature & travel)](day-07.md) | 27 | 27/27 |
 | 8 | [Chapter 6: स्कूल र गन्ती (School & counting)](day-08.md) | 13 | 13/13 |
-| 9 | [Chapter 7: कुराकानी र कथा (Real conversations)](day-09.md) | 21 | 0/21 |
+| 9 | [Chapter 7: कुराकानी र कथा (Real conversations)](day-09.md) | 21 | 21/21 |
 | 10 | [Chapter 8: अक्षर र वाक्य (Letters & sentences)](day-10.md) | 42 | 1/42 |
 | 11 | [Game icons, app icon and link preview](day-11.md) | 22 | 0/22 |
 | 12 | [Sentence scenes (optional)](day-12.md) | 39 | 0/39 |
