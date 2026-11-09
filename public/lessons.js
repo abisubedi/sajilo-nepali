@@ -583,5 +583,6 @@ window.SCENES = {
   "kitchen": { title: "भान्सा", rom: "bhaansaa", en: "Kitchen", img: "scene-kitchen", unlock: "w-kitchen", spots: [
     { ne: "लसुन", en: "garlic", x: 32, y: 15, r: 4 }, { ne: "मकै", en: "corn", x: 39, y: 15, r: 4 }, { ne: "खाना", en: "rice", x: 14, y: 61, r: 6 },
     { ne: "गिलास", en: "glass", x: 12, y: 83, r: 5 }, { ne: "चम्चा", en: "spoon", x: 18, y: 89, r: 4 }, { ne: "आलु", en: "potatoes", x: 71, y: 73, r: 7 },
-    { ne: "स्याउ", en: "apples", x: 84, y: 88, r: 4 }, { ne: "केरा", en: "bananas", x: 91, y: 85, r: 4 }, { ne: "झ्याल", en: "window", x: 60, y: 30, r: 8 }, { ne: "ढोका", en: "door", x: 89, y: 47, r: 7 } ] },
+    { ne: "स्याउ", en: "apples", x: 84, y: 88, r: 4 }, { ne: "केरा", en: "bananas", x: 91, y: 85, r: 4 }, { ne: "झ्याल", en: "window", x: 60, y: 30, r: 8 }, { ne: "ढोका", en: "door", x: 89, y: 47, r: 7 }, { ne: "थाल", en: "plates", x: 15, y: 33, r: 6 }, { ne: "करुवा", en: "water jug", x: 57, y: 54, r: 5 },
+    { ne: "चुलो", en: "stove", x: 35, y: 58, r: 4 }, { ne: "कुकर", en: "pressure cooker", x: 43, y: 50, r: 4 } ] },
 };
