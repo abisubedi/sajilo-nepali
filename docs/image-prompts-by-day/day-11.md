@@ -11,8 +11,8 @@
 
 ## Checklist
 
-- [ ] app-icon.png
-- [ ] og-image.png
+- [x] app-icon.png
+- [x] og-image.png
 
 ## Prompts
 
