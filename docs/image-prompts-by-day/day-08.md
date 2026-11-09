@@ -11,19 +11,19 @@
 
 ## Checklist
 
-- [ ] w-school.png
-- [ ] w-pen.png
-- [ ] w-paper.png
-- [ ] w-notebook.png
-- [ ] w-picture.png
-- [ ] w-story.png
-- [ ] w-song.png
-- [ ] w-teacher.png
-- [ ] w-mango.png
-- [ ] w-grapes.png
-- [ ] w-lemon.png
-- [ ] w-sweet.png
-- [ ] w-sour.png
+- [x] w-school.png
+- [x] w-pen.png
+- [x] w-paper.png
+- [x] w-notebook.png
+- [x] w-picture.png
+- [x] w-story.png
+- [x] w-song.png
+- [x] w-teacher.png
+- [x] w-mango.png
+- [x] w-grapes.png
+- [x] w-lemon.png
+- [x] w-sweet.png
+- [x] w-sour.png
 
 ## Prompts
 
