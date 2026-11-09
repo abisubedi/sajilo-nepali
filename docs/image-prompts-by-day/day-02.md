@@ -55,7 +55,7 @@
 - [x] li-cons2.png
 - [x] li-cons3.png
 - [x] li-cons4.png
-- [ ] li-barakhari.png
+- [x] li-barakhari.png
 - [x] li-sentences.png
 - [x] st-pandu.png
 - [x] st-home.png
