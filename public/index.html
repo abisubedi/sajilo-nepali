@@ -233,7 +233,7 @@ body .pick-grid .opt .big { font-size: 34px !important; } body .pick-grid .opt .
 .bagh-node .ne { font-family: var(--display); font-size: 15px; line-height: 1.1; } .bagh-ic { font-size: 22px; line-height: 1; min-height: 4px; }
 .bagh-node.reach { border-color: var(--flag-blue); box-shadow: 0 0 0 4px rgba(47,111,214,.3); animation: pulse 1.5s infinite; } .bagh-node.visited { background: var(--good-bg); border-color: var(--flag-green); }
 .bagh-node.tiger { background: #fde2df; border-color: var(--flag-red); } .bagh-node.goal { background: #fff3c4; border-color: var(--flag-yellow); } .bagh-node[disabled] { cursor: default; }
-.bagh-q { margin-top: 8px; }
+.bagh-q { margin-top: 8px; } .bagh-ic img { width: 34px; height: 34px; display: block; }
 .answer.tape { background: repeating-linear-gradient(90deg, #5a3a22 0 6px, #6b4529 6px 12px); border-radius: 12px; border-bottom: 0; padding: 8px; justify-content: center; }
 .answer { min-height: 64px; border-bottom: 3px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; padding: 6px 0; }
 .bank { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
@@ -1280,7 +1280,8 @@ function renderMap() {
       ${window.STORY && storyTime() ? `<button class="greet-story" type="button" id="openStory">🌙 Read tonight's bedtime story →</button>` : ""}</div></div>
     ${dropHTML()}
     ${wordOfDayHTML()}
-    <div class="culture-strip" aria-label="Family corner"><button class="jump-pill" type="button" id="openName">✍️ <span lang="ne">${esc(myDevaName())}</span></button><button class="jump-pill" type="button" id="openMadal">🥁 Madal</button><button class="jump-pill" type="button" id="openTika">🪔 Tika</button><button class="jump-pill" type="button" id="openJar">🏺 Story jar</button><button class="jump-pill" type="button" id="openBagh">🐐 Bagh-chal</button></div>
+    <div class="culture-strip" aria-label="Family corner">${[["openName", "li-family-name", "✍️", `<span lang="ne">${esc(/^player\s*\d*$/i.test(me().name) && !me().deva ? "मेरो नाम" : myDevaName())}</span>`], ["openMadal", "w-nepali-drum", "🥁", "Madal"], ["openTika", "w-tika", "🪔", "Tika"], ["openJar", "li-family-jar", "🏺", "Story jar"], ["openBagh", "li-family-bagh", "🐐", "Bagh-chal"]]
+      .map(([id, img, emo, label]) => `<button class="jump-pill" type="button" id="${id}">${(window.IMG || {})[img] ? `<img src="${window.IMG[img]}" alt="" draggable="false">` : emo} ${label}</button>`).join("")}</div>
     <nav class="jump" aria-label="Jump to a chapter"><button class="jump-pill top-pill" type="button" id="toTop" aria-label="Back to top">🐼 Top ↑</button>${jump}</nav>
     ${chapters}
     <section class="grownups" aria-label="For grown-ups">
@@ -2202,6 +2203,7 @@ function startBagh() {
   S.bagh = { pos: 0, tigers: new Set(pickN([1, 2, 3, 5, 6, 7], 2)), words, pick: null, opts: [], won: false };
   S.screen = "bagh"; render(); window.scrollTo(0, 0);
 }
+const baghPiece = (img, emo) => (window.IMG || {})[img] ? `<img src="${window.IMG[img]}" alt="">` : emo;
 function renderBagh() {
   const B = S.bagh, reach = new Set((BAGH_ADJ[B.pos] || []).filter(n => !B.tigers.has(n))), q = B.pick != null ? B.words[B.pick] : null;
   $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🐐 ${neSpan("बाघ")}-chal trail</h2></div>
@@ -2209,7 +2211,7 @@ function renderBagh() {
     <div class="bagh-board"><svg class="bagh-lines" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 0H100M0 50H100M0 100H100M0 0V100M50 0V100M100 0V100M0 0L100 100M100 0L0 100" fill="none"/></svg>
       ${B.words.map((w, i) => { const here = B.pos === i, tiger = B.tigers.has(i), goal = i === 8, can = !B.won && reach.has(i);
         return `<button type="button" class="bagh-node${here ? " visited" : ""}${tiger ? " tiger" : ""}${goal ? " goal" : ""}${can ? " reach" : ""}" data-baghnode="${i}" ${can ? "" : "disabled"}>
-          <span class="bagh-ic">${here ? "🐐" : tiger ? "🐅" : goal ? "🏡" : ""}</span><span class="ne" lang="ne">${esc(tiger ? "बाघ" : w.ne)}</span></button>`; }).join("")}</div>
+          <span class="bagh-ic">${here ? baghPiece("w-goat", "🐐") : tiger ? baghPiece("w-tiger", "🐅") : goal ? "🏡" : ""}</span><span class="ne" lang="ne">${esc(tiger ? "बाघ" : w.ne)}</span></button>`; }).join("")}</div>
     ${q ? `<div class="prompt bagh-q"><p style="margin:0;font-weight:800">${neSpan(q.ne)} <span class="rom">${esc(q.rom)}</span> means…</p>
       <div class="pick-grid">${B.opts.map((o, j) => `<button type="button" class="opt" data-baghans="${j}">${picHTML(o)}<span class="en">${esc(o.en)}</span></button>`).join("")}</div></div>`
       : B.won ? `<button class="go" type="button" id="baghAgain">🐐 Play again</button>` : ""}`;
