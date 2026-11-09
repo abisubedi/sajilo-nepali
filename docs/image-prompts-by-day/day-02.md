@@ -39,7 +39,7 @@
 - [x] li-culture-sentences.png
 - [x] li-animals.png
 - [x] li-birds-bugs.png
-- [ ] li-animal-sounds.png
+- [x] li-animal-sounds.png
 - [x] li-vehicles-travel.png
 - [x] li-travel-sentences.png
 - [x] li-num.png
