@@ -233,7 +233,7 @@ body .pick-grid .opt .big { font-size: 34px !important; } body .pick-grid .opt .
 .bagh-node .ne { font-family: var(--display); font-size: 15px; line-height: 1.1; } .bagh-ic { font-size: 22px; line-height: 1; min-height: 4px; }
 .bagh-node.reach { border-color: var(--flag-blue); box-shadow: 0 0 0 4px rgba(47,111,214,.3); animation: pulse 1.5s infinite; } .bagh-node.visited { background: var(--good-bg); border-color: var(--flag-green); }
 .bagh-node.tiger { background: #fde2df; border-color: var(--flag-red); } .bagh-node.goal { background: #fff3c4; border-color: var(--flag-yellow); } .bagh-node[disabled] { cursor: default; }
-.bagh-q { margin-top: 8px; } .bagh-ic img { width: 34px; height: 34px; display: block; }
+.bagh-q { margin-top: 8px; } .jump-pill .tick { color: #1f7a40; font-size: 13px; } .cert-explorer { margin: 4px 0; font-weight: 800; color: #8a5a00; } .bagh-ic img { width: 34px; height: 34px; display: block; }
 .answer.tape { background: repeating-linear-gradient(90deg, #5a3a22 0 6px, #6b4529 6px 12px); border-radius: 12px; border-bottom: 0; padding: 8px; justify-content: center; }
 .answer { min-height: 64px; border-bottom: 3px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; padding: 6px 0; }
 .bank { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
@@ -974,6 +974,7 @@ function buildQuestions(lesson) {
 const S = { screen: "map", lesson: null, queue: [], done: 0, total: 0, hearts: 3, mistakes: 0, answered: false };
 
 function render() {
+  if (S.screen !== "madal" && S.madalTimers && S.madalTimers.length) stopMadal();
   document.documentElement.classList.toggle("modal-open", !!(S.sheet || S.stickers || S.players || S.grown));
   document.body.classList.toggle("night", S.screen === "story");
   if (S.screen !== "car" && S.car) stopCar();
@@ -1281,7 +1282,7 @@ function renderMap() {
     ${dropHTML()}
     ${wordOfDayHTML()}
     <div class="culture-strip" aria-label="Family corner">${[["openName", "li-family-name", "✍️", `<span lang="ne">${esc(/^player\s*\d*$/i.test(me().name) && !me().deva ? "मेरो नाम" : myDevaName())}</span>`], ["openMadal", "w-nepali-drum", "🥁", "Madal"], ["openTika", "w-tika", "🪔", "Tika"], ["openJar", "li-family-jar", "🏺", "Story jar"], ["openBagh", "li-family-bagh", "🐐", "Bagh-chal"]]
-      .map(([id, img, emo, label]) => `<button class="jump-pill" type="button" id="${id}">${(window.IMG || {})[img] ? `<img src="${window.IMG[img]}" alt="" draggable="false">` : emo} ${label}</button>`).join("")}</div>
+      .map(([id, img, emo, label]) => `<button class="jump-pill${(P.worlds || {})[id] ? " tried" : ""}" type="button" id="${id}">${(window.IMG || {})[img] ? `<img src="${window.IMG[img]}" alt="" draggable="false">` : emo} ${label}${(P.worlds || {})[id] ? ` <b class="tick" aria-label="tried">✓</b>` : ""}</button>`).join("")}</div>
     <nav class="jump" aria-label="Jump to a chapter"><button class="jump-pill top-pill" type="button" id="toTop" aria-label="Back to top">🐼 Top ↑</button>${jump}</nav>
     ${chapters}
     <section class="grownups" aria-label="For grown-ups">
@@ -1606,6 +1607,7 @@ function renderCert() {
   $("#app").innerHTML = `<div class="print-bar no-print"><button class="chip" type="button" id="quit">← Back</button><button class="go" type="button" id="printNow" style="width:auto;padding:10px 22px">🖨️ Print</button><button class="chip" type="button" id="shareCert">📤 Share</button></div>
     <section class="cert">
       <p class="cert-kicker"><span lang="ne">मेरो नेपाली पासपोर्ट</span> · Mero Nepali Passport</p>
+      ${Object.keys(P.worlds || {}).length >= 5 ? `<p class="cert-explorer">🏔️ <span lang="ne">संस्कृति अन्वेषक</span> · Culture explorer: name, madal, tika, story jar and bagh-chal, all tried!</p>` : ""}
       <h2>Certificate</h2>
       <div class="cert-row">${pandu(panduSrc("cheer") ? "cheer" : "wave")}${st.img ? `<img class="cert-st" src="${st.img}" alt="">` : `<span style="font-size:80px">${esc(st.pic)}</span>`}</div>
       <p class="cert-name">${esc(me().name)}</p>
@@ -2036,7 +2038,7 @@ function renderDone() {
     ${S.earned === 3 ? `<div class="share-card"><p><b>Share your score with Aama or Baba!</b></p><p class="share-text" id="shareText">${esc(shareText())}</p>
       <div class="share-btns">${navigator.share ? `<button class="say" type="button" id="shareNow">📤 Share</button>` : ""}<button class="chip" type="button" id="copyShare">📋 Copy message</button></div></div>` : ""}
     ${missionHTML()}
-    <button class="go" type="button" id="home"><span lang="ne">ल जाऔँ!</span> · Let's go</button><button class="chip" type="button" id="again">Play again</button>${S.lesson && S.lesson.items && !S.lesson.letters ? `<button class="chip" type="button" id="sendPostcard">💌 Postcard for Hajuraama</button>` : ""}</section>`;
+    <button class="go" type="button" id="home"><span lang="ne">ल जाऔँ!</span> · Let's go</button><button class="chip" type="button" id="again">Play again</button>${S.lesson && (S.lesson.items || S.lesson.sentences) && !S.lesson.letters ? `<button class="chip" type="button" id="sendPostcard">💌 Postcard for Hajuraama</button>` : ""}</section>`;
   if (S.earned === 3) confetti(); beep("done");
 }
 function confetti() {
@@ -2084,7 +2086,7 @@ const myDevaName = () => { const c = me(); return c.deva || window.toDevanagariN
 function renderNameTrace() {
   const deva = myDevaName();
   $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">✍️ <span lang="ne">मेरो नाम</span> · My name</h2></div>
-    <div class="naam-card"><small>My name in Nepali letters</small><div class="naam-big" lang="ne">${esc(deva)}</div><b>${esc(me().name)}</b></div>
+    <div class="naam-card"><small>My name in Nepali letters</small><div class="naam-big" lang="ne">${esc(deva)}</div><b>${esc(me().name)}</b>${(FAM[K(deva)] || AUDIO[K(deva)]) ? ` <button class="say" type="button" data-say="${esc(K(deva))}">${SPEAKER} <span>Hear my name</span></button>` : ""}</div>
     <p class="ask" style="text-align:center;margin:0">Trace your name in chalk on the paati!</p>
     <div class="trace-wrap"><div class="trace-box" id="traceBox"><canvas id="guide"></canvas><canvas id="ink"></canvas></div>
       <div class="meter" aria-hidden="true"><i id="meter"></i></div>
@@ -2124,6 +2126,7 @@ function villageSfx(kind) {
 }
 function madalHit(low) { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); madal(actx.currentTime + .01, low); } catch (e) {}
   const s = document.querySelector(`[data-madal="${low ? "low" : "high"}"]`); if (s) { s.classList.add("hit"); setTimeout(() => s.classList.remove("hit"), 110); } }
+const stopMadal = () => { (S.madalTimers || []).forEach(clearTimeout); S.madalTimers = []; };
 function renderMadal() {
   $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🥁 ${neSpan("मादल")} · Madal & village sounds</h2></div>
     <div class="madal-stage"><p style="margin:0;font-weight:800">Tap both sides of the madal drum!</p>
@@ -2181,14 +2184,16 @@ function postcardCanvas(w) {
   x.strokeStyle = "#f6b71c"; x.lineWidth = 4; x.strokeRect(32, 32, 656, 476);
   const cols = ["#2f6fd6", "#ffffff", "#e2453c", "#2fa75a", "#f6b71c"]; for (let i = 0; i < 12; i++) { x.fillStyle = cols[i % 5]; x.fillRect(36 + i * 54, 36, 54, 14); }
   x.textAlign = "center"; x.fillStyle = "#b9541a"; x.font = "800 26px 'Nunito', sans-serif"; x.fillText(`A Nepali word from ${me().name} (${myDevaName()})`, 360, 108);
-  x.fillStyle = "#1f2a44"; x.font = "800 84px 'Baloo 2', 'Noto Sans Devanagari', sans-serif"; x.fillText(w.ne, 360, 250);
+  x.fillStyle = "#1f2a44"; let fs = 84; do { x.font = `800 ${fs}px 'Baloo 2', 'Noto Sans Devanagari', sans-serif`; fs -= 4; } while (x.measureText(w.ne).width > 640 && fs > 30); x.fillText(w.ne, 360, 250);
   x.fillStyle = "#1d4f9e"; x.font = "800 32px 'Nunito', sans-serif"; x.fillText(w.rom || "", 360, 310);
-  x.fillStyle = "#5d6b86"; x.font = "700 32px 'Nunito', sans-serif"; x.fillText(`“${w.en}”`, 360, 362);
+  x.fillStyle = "#5d6b86"; x.font = "700 30px 'Nunito', sans-serif"; x.fillText(`“${w.en}”`, 360, 362, 640);
   x.fillStyle = "#8a4b00"; x.font = "800 22px 'Nunito', sans-serif"; x.fillText("Learned on Sajilo Nepali · sajilonepali.app", 360, 470);
   return c;
 }
 async function sendPostcard(btn) {
-  const pool = ((S.lesson && S.lesson.items) || []).filter(x => x.ne && x.en && !isLabel(x.pic) && !/^Say /.test(x.en));
+  const L = S.lesson || {}, pool = L.items ? L.items.filter(x => x.ne && x.en && !isLabel(x.pic) && !/^Say /.test(x.en))
+    : (L.sentences || []).map(s => ({ ne: s.ne.join(" "), rom: s.rom.join(" "), en: s.en }));
+  try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch (e) {}
   const w = pool.length ? pool[Math.floor(Math.random() * pool.length)] : { ne: "नमस्ते", rom: "namaste", en: "hello" };
   const text = `${me().name} learned “${w.ne}” (${w.rom || ""}) = ${w.en} on Sajilo Nepali! https://sajilonepali.app`;
   try { const blob = await new Promise(r => postcardCanvas(w).toBlob(r, "image/png")); const file = blob && new File([blob], "sajilo-nepali-postcard.png", { type: "image/png" });
@@ -2264,12 +2269,13 @@ document.addEventListener("click", e => {
   if (t.dataset.famrec) { famRecord(t, t.dataset.famrec); return; }
   if (t.dataset.famdel) { famPut(t.dataset.famdel, null).then(renderVoices); return; }
   if (t.id === "openVoices") { S.screen = "voices"; render(); window.scrollTo(0, 0); return; }
+  if (["openName", "openMadal", "openTika", "openJar", "openBagh"].includes(t.id)) { P.worlds = P.worlds || {}; if (!P.worlds[t.id]) { P.worlds[t.id] = today(); save(); } }
   if (t.id === "openName") { S.screen = "nametrace"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "saveDevaName") { const v = ($("#customDeva").value || "").trim(); if (v) { me().deva = v; savePlayers(); beep("good"); renderNameTrace(); } return; }
   if (t.id === "nameDone") { if (P.nameDay !== today()) { P.nameDay = today(); P.xp += 5; save(); } beep("done"); confetti(); S.screen = "map"; render(); return; }
   if (t.id === "openMadal") { S.screen = "madal"; render(); window.scrollTo(0, 0); return; }
   if (t.dataset.madal) { madalHit(t.dataset.madal === "low"); return; }
-  if (t.dataset.rhythm != null) { const r = window.MADAL_RHYTHMS[+t.dataset.rhythm]; $("#madalLine").textContent = "🎶 " + r.desc; r.pattern.forEach((low, i) => setTimeout(() => madalHit(!!low), i * r.tempo)); return; }
+  if (t.dataset.rhythm != null) { stopMadal(); const r = window.MADAL_RHYTHMS[+t.dataset.rhythm]; $("#madalLine").textContent = "🎶 " + r.desc; S.madalTimers = r.pattern.map((low, i) => setTimeout(() => S.screen === "madal" && madalHit(!!low), i * r.tempo)); return; }
   if (t.dataset.gaun != null) { const g = window.GAUN_SOUNDS[+t.dataset.gaun]; villageSfx(g.sfx); setTimeout(() => say(K(g.ne), t), 300); $("#madalLine").textContent = g.line; return; }
   if (t.id === "openPride") { S.grown = "pride"; render(); return; }
   if (t.id === "openTika") { S.tika = { step: 1 }; S.screen = "tika"; render(); window.scrollTo(0, 0); return; }
