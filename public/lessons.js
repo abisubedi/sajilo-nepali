@@ -645,3 +645,78 @@ window.STORY_OPEN = { ne: "एकादेशमा...", rom: "ekaadeshmaa...", 
 window.STORY_CLOSE = { ne: "भन्नेलाई फूलको माला, सुन्नेलाई सुनको माला, यो कथा बैकुण्ठ जाला, फेरि भन्ने बेला खुरुखुरु आउला!", rom: "bhannelaai phoolko maalaa, sunnelaai sunko maalaa, yo kathaa baikuntha jaalaa, pheri bhanne belaa khurukhuru aaulaa!", en: "A flower garland for the teller, a gold garland for the listener! May this story go to heaven, and come running back the next time we tell it." };
 /* Phrases a family member can record in their own voice (kept on this device only) */
 window.FAMILY_PHRASES = ["नमस्ते!", "शुभ बिहानी!", "शुभ रात्रि!", "स्याबास!", "राम्रो!", "एकदम ठीक!", "फेरि प्रयास गरौँ!"];
+
+/* === Mero Naam: common names in Devanagari (a grown-up can correct any spelling) === */
+window.NAME_DICT = {
+  "luke": "लुक", "luna": "लुना", "abi": "अबी", "leela": "लीला", "nova": "नोभा", "nehal": "नेहल",
+  "aarav": "आरव", "aarya": "आर्या", "aayush": "आयुष", "aditya": "आदित्य", "ananya": "अनन्या",
+  "anmol": "अनमोल", "arjun": "अर्जुन", "avani": "अवनी", "bibek": "विवेक", "binod": "बिनोद",
+  "diya": "दिया", "eshan": "ईशान", "gaurav": "गौरव", "ishan": "ईशान", "kabir": "कबीर",
+  "kavya": "काव्या", "kira": "किरा", "krishna": "कृष्ण", "maya": "माया", "milan": "मिलन",
+  "nisha": "निशा", "prisha": "प्रिशा", "priya": "प्रिया", "rahul": "राहुल",
+  "rehan": "रेहान", "riya": "रिया", "rohan": "रोहन", "rosy": "रोजी", "saanvi": "सान्वी",
+  "samir": "समीर", "sara": "सारा", "shreya": "श्रेया", "siddharth": "सिद्धार्थ", "sita": "सीता",
+  "soham": "सोहम", "suhana": "सुहाना", "tara": "तारा", "vihaan": "विहान", "zoya": "जोया",
+  "noah": "नोआ", "sarah": "सारा", "max": "म्याक्स", "zara": "जारा", "emma": "एमा", "leo": "लियो", "ethan": "इथान", "isla": "आइला", "liam": "लियाम", "ava": "एभा", "mia": "मिया", "sophia": "सोफिया", "olivia": "ओलिभिया", "kiran": "किरण", "sanjay": "सञ्जय", "jack": "ज्याक", "ella": "एला", "lily": "लिली", "oliver": "ओलिभर", "james": "जेम्स", "grace": "ग्रेस"
+};
+window.toDevanagariName = function (raw) {
+  const clean = String(raw || "").trim().toLowerCase();
+  if (!clean) return "";
+  if (window.NAME_DICT[clean]) return window.NAME_DICT[clean];
+  if (/[ऀ-ॿ]/.test(clean)) return String(raw).trim();
+  const cons = { ksh: "क्ष", gy: "ज्ञ", chh: "छ", sh: "श", th: "थ", dh: "ध", ph: "फ", bh: "भ", kh: "ख", gh: "घ", ch: "च", jh: "झ", tr: "त्र",
+    k: "क", g: "ग", c: "क", j: "ज", t: "ट", d: "ड", n: "न", p: "प", f: "फ", b: "ब", m: "म", y: "य", r: "र", l: "ल", v: "भ", w: "व", s: "स", h: "ह", z: "ज", q: "क", x: "क्स" };
+  const V = ["aa", "ee", "oo", "ai", "au", "a", "i", "u", "e", "o", "y"];
+  const matra = { aa: "ा", ee: "ी", oo: "ू", ai: "ै", au: "ौ", a: "", i: "ि", u: "ु", e: "े", o: "ो", y: "ी" };
+  const fullV = { aa: "आ", ee: "ई", oo: "ऊ", ai: "ऐ", au: "औ", a: "अ", i: "इ", u: "उ", e: "ए", o: "ओ", y: "ई" };
+  let i = 0, out = "", prev = "";
+  const word = clean.replace(/([aeiou])h\b/g, "$1");   // silent final h: Noah, Sarah
+  const fin = j => j >= word.length || !/[a-z]/.test(word[j]);
+  while (i < word.length) {
+    const clean_ = word; if (!/[a-z]/.test(word[i])) { out += word[i] === " " ? " " : ""; prev = ""; i++; continue; }
+    const vKey = V.slice(0, 10).find(v => word.startsWith(v, i));
+    if (vKey) {
+      if (vKey === "a" && /[iy]$/.test(prev)) out += fin(i + 1) ? "या" : "य";   // Mia → मिया, Olivia → ओलिभिया
+      else out += fullV[vKey];
+      prev = vKey; i += vKey.length; continue;
+    }
+    const cKey = Object.keys(cons).find(c => word.startsWith(c, i));
+    if (!cKey) { i++; continue; }
+    i += cKey.length;
+    const end = fin(i);
+    const mKey = V.find(v => word.startsWith(v, i) && (v !== "y" || fin(i + 1)));
+    if (mKey) { const m = mKey === "a" && fin(i + 1) && out ? "ा" : matra[mKey]; out += cons[cKey] + m; prev = mKey; i += mKey.length; }   // final a is long: Ava → आभा-like
+    else { out += cons[cKey] + (end ? "" : "्"); prev = ""; }
+  }
+  return out || String(raw);
+};
+
+/* === Madal rhythms and the village sound map (all words already recorded) === */
+window.MADAL_RHYTHMS = [
+  { name: "झ्याउरे · Jhyaure", desc: "Hill folk dance beat: dhin, na, dhin, dhin, na", pattern: [1, 0, 1, 1, 0], tempo: 240 },
+  { name: "ख्याली · Khyali", desc: "Festive song beat: dhin, dhin, na, na", pattern: [1, 1, 0, 0], tempo: 220 },
+  { name: "सोरठी · Sorathi", desc: "Slow storytelling beat: dhin, na, dhin", pattern: [1, 0, 1], tempo: 320 }
+];
+window.GAUN_SOUNDS = [
+  { ne: "मन्दिर", rom: "mandir", en: "temple bell", art: "w-temple", sfx: "bell", line: "🔔 Ting-ting! The temple bell in the morning." },
+  { ne: "चिया", rom: "chiyaa", en: "hot milk tea", art: "w-milk-tea", sfx: "pour", line: "☕ Pouring hot chiya into a glass." },
+  { ne: "नदी", rom: "nadi", en: "mountain river", art: "w-river", sfx: "river", line: "🏞️ The river flows: kal-kal-kal." },
+  { ne: "चरा", rom: "charaa", en: "morning bird", art: "w-bird", sfx: "bird", line: "🐦 Chirbir chirbir! The birds wake up." },
+  { ne: "पानी पर्‍यो", rom: "paani paryo", en: "monsoon rain", art: "w-it-is-raining", sfx: "rain", line: "🌧️ Jhamjham! The monsoon rain." },
+  { ne: "दियो", rom: "diyo", en: "evening diyo", art: "w-oil-lamp", sfx: "bowl", line: "🪔 Light the diyo in the evening." }
+];
+
+/* === Tika and blessing === */
+window.TIKA_BLESSING = { ne: "ज्ञानी बन्नू, सधैँ खुसी रहनू!", rom: "gyaani bannu, sadhain khusi rahanu!", en: "Grow up wise, and always stay happy!" };
+
+/* === Family story jar: the child asks, the grown-up tells a story === */
+window.DINNER_JAR = [
+  { topic: "🪁 Childhood games", ne: "बाबा, आमा, तपाईं सानो हुँदा कुन खेल खेल्नुहुन्थ्यो?", rom: "baabaa, aamaa, tapaain saano hundaa kun khel khelnuhunthyo?", en: "Dad, Mom, what games did you play when you were little?",
+    tip: "Tell your child for a minute about chungi, marbles (गुच्चा) or flying kites (चङ्गा) when you were their age.", word: ["चङ्गा", "changa", "kite"] },
+  { topic: "🥟 Favourite treat", ne: "तपाईंलाई सानो हुँदा के खान मन पर्थ्यो?", rom: "tapaainlaai saano hundaa ke khaana man parthyo?", en: "What did you love to eat when you were little?",
+    tip: "Share a memory of hot momo, sel roti or Hajuraama's dal bhat.", word: ["मोमो", "momo", "momo"] },
+  { topic: "🏫 Going to school", ne: "तपाईंको स्कूल र साथी कस्ता थिए?", rom: "tapaainko skool ra saathi kastaa thie?", en: "What were your school and friends like?",
+    tip: "Tell them how you walked to school, and about your best friend (साथी).", word: ["साथी", "saathi", "friend"] },
+  { topic: "🪔 Festival memories", ne: "दशैँ र तिहारमा तपाईं के गर्नुहुन्थ्यो?", rom: "dashain ra tihaarmaa tapaain ke garnuhunthyo?", en: "What did you do at Dashain and Tihar?",
+    tip: "Talk about tika (टीका) from elders, lighting diyo lamps and flower garlands.", word: ["टीका", "tikaa", "tika"] }
+];

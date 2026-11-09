@@ -199,6 +199,41 @@ body .pick-grid .opt .big { font-size: 34px !important; } body .pick-grid .opt .
 .voice-row .ne { font-family: var(--display); font-size: 22px; font-weight: 800; flex: 1; } .voice-who { font-size: 12px; color: var(--muted); font-weight: 700; }
 .story-open { margin: 0; font-family: var(--display); font-size: 20px; color: #fde68a; } .story-close { margin: 6px 0 0; background: #fff8e1; color: #6b4a1f; border: 2px solid #f3d37a; border-radius: 16px; padding: 10px 12px; font-size: 15px; }
 .story-close .ne { font-family: var(--display); font-size: 18px; font-weight: 800; color: #6b4a1f; } .story-close small { display: block; color: #8a6a3f; }
+/* Family corner */
+.culture-strip { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 8px; scrollbar-width: none; } .culture-strip::-webkit-scrollbar { display: none; }
+.culture-strip .jump-pill { flex: none; }
+.naam-card { background: #2b3340; color: #fff8e1; border: 8px solid #b9763f; border-radius: 22px; padding: 12px; text-align: center; box-shadow: inset 0 0 18px rgba(0,0,0,.45), 0 5px 0 #7d481d; }
+.naam-card small { display: block; opacity: .8; font-weight: 800; } .naam-big { font-family: var(--display); font-size: 52px; line-height: 1.15; color: #fffdf5; }
+.deva-input { font: inherit; font-family: var(--display); font-size: 22px; width: 170px; text-align: center; padding: 6px 10px; border: 2px solid var(--line); border-radius: 12px; }
+.madal-stage { background: linear-gradient(180deg, #fff8e1, #fdecc8); border: 3px solid #e6b422; border-radius: 24px; padding: 16px 12px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; box-shadow: 0 5px 0 #e6b422; }
+.madal-pad { width: min(300px, 82vw); height: 140px; border-radius: 70px; background: linear-gradient(90deg, #5a3518 0 18%, #c98a4b 18% 82%, #4a2a12 82% 100%); border: 5px solid #3d220e; box-shadow: 0 8px 0 #2a1709, inset 0 6px 14px rgba(255,255,255,.22); display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; touch-action: manipulation; }
+.madal-side { border: 0; background: transparent; color: #fff8e1; font-family: var(--display); font-size: 28px; font-weight: 800; display: flex; flex-direction: column; align-items: center; justify-content: center; user-select: none; transition: transform .06s, background .1s; }
+.madal-side small { font-family: var(--body); font-size: 12px; opacity: .85; } .madal-side:first-child { border-right: 3px dashed rgba(255,248,225,.35); } .madal-side.hit { transform: scale(.95); background: rgba(255,216,74,.28); }
+.rhythm-pills { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.sound-map-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; }
+.sound-spot { background: var(--snow); border: 2px solid var(--line); border-radius: 18px; padding: 10px; display: flex; align-items: center; gap: 8px; text-align: left; box-shadow: 0 4px 0 var(--line); font: inherit; color: var(--ink); }
+.sound-spot .wpic { width: 48px; height: 48px; flex: none; } .sound-spot b { font-family: var(--display); font-size: 19px; } .sound-spot small { display: block; color: var(--muted); font-weight: 700; }
+.pride-box { display: flex; flex-direction: column; gap: 12px; text-align: left; }
+.pride-sec { border-left: 5px solid var(--flag-green); padding-left: 10px; } .pride-sec.weak { border-left-color: var(--flag-yellow); } .pride-sec h4 { margin: 0 0 6px; font-family: var(--display); font-size: 17px; }
+.pride-chips { display: flex; flex-wrap: wrap; gap: 6px; } .pride-chip { background: #eaf2ff; border: 1.5px solid #b9cbe6; border-radius: 999px; padding: 3px 10px; font-weight: 800; font-size: 14px; cursor: pointer; }
+.tika-stage { background: radial-gradient(circle at 50% 35%, #fff8e1, #fde4b4); border: 3px solid #f6b71c; border-radius: 24px; padding: 16px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; min-height: 320px; justify-content: center; }
+.tika-elder { width: 110px; height: 110px; object-fit: contain; }
+.tika-pandu-wrap { position: relative; width: 150px; height: 150px; display: grid; place-items: center; } .tika-pandu-wrap img { width: 150px; height: 150px; object-fit: contain; }
+.tika-mark { position: absolute; left: 50%; top: 30%; transform: translate(-50%, -50%) scale(0); width: 16px; height: 22px; background: #e2453c; border-radius: 50% 50% 45% 45%; box-shadow: 0 0 8px rgba(226,69,60,.6); transition: transform .35s cubic-bezier(.34,1.56,.64,1); }
+.tika-mark.on { transform: translate(-50%, -50%) scale(1); }
+.jamara-mark { position: absolute; right: 18%; top: 4%; transform: rotate(22deg) scale(0); font-size: 30px; transition: transform .35s cubic-bezier(.34,1.56,.64,1); } .jamara-mark.on { transform: rotate(22deg) scale(1); }
+.thali-tray { display: flex; gap: 14px; background: linear-gradient(135deg, #fff3c4, #f6cf65); border: 4px solid #c99318; border-radius: 999px; padding: 10px 22px; box-shadow: 0 5px 0 #9e710b; }
+.thali-item { border: 2px solid #c99318; background: #fffdf8; border-radius: 16px; padding: 6px 12px; display: flex; flex-direction: column; align-items: center; font: inherit; font-weight: 800; color: var(--ink); } .thali-item .wpic { width: 52px; height: 52px; } .thali-item[disabled] { opacity: .45; }
+.jar-card { background: #fff8e1; border: 3px solid #f3d37a; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 10px; text-align: center; box-shadow: 0 5px 0 #f3d37a; align-items: center; }
+.jar-q { margin: 0; font-family: var(--display); font-size: 25px; font-weight: 800; line-height: 1.3; }
+.jar-parent { background: var(--snow); border: 2px dashed #c99318; border-radius: 14px; padding: 10px 12px; font-size: 15px; text-align: left; width: 100%; }
+.bagh-board { position: relative; width: min(320px, 86vw); aspect-ratio: 1; background: #f6e7c8; border: 6px solid #8a4b20; border-radius: 20px; padding: 14px; box-shadow: 0 6px 0 #5c3012; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 14px; align-self: center; margin: 0 auto; }
+.bagh-lines { position: absolute; inset: calc(14px + (100% - 28px - 28px) / 6); width: auto; height: auto; pointer-events: none; stroke: #8a4b20; stroke-width: 1.2; }
+.bagh-node { position: relative; z-index: 2; border-radius: 50%; border: 3px solid #8a4b20; background: #fffdf8; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2px; font: inherit; font-weight: 800; color: var(--ink); box-shadow: 0 4px 0 rgba(138,75,32,.35); }
+.bagh-node .ne { font-family: var(--display); font-size: 15px; line-height: 1.1; } .bagh-ic { font-size: 22px; line-height: 1; min-height: 4px; }
+.bagh-node.reach { border-color: var(--flag-blue); box-shadow: 0 0 0 4px rgba(47,111,214,.3); animation: pulse 1.5s infinite; } .bagh-node.visited { background: var(--good-bg); border-color: var(--flag-green); }
+.bagh-node.tiger { background: #fde2df; border-color: var(--flag-red); } .bagh-node.goal { background: #fff3c4; border-color: var(--flag-yellow); } .bagh-node[disabled] { cursor: default; }
+.bagh-q { margin-top: 8px; }
 .answer.tape { background: repeating-linear-gradient(90deg, #5a3a22 0 6px, #6b4529 6px 12px); border-radius: 12px; border-bottom: 0; padding: 8px; justify-content: center; }
 .answer { min-height: 64px; border-bottom: 3px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; padding: 6px 0; }
 .bank { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
@@ -956,6 +991,11 @@ function render() {
   else if (S.screen === "scene") renderScene();
   else if (S.screen === "room") renderRoom();
   else if (S.screen === "cert") renderCert();
+  else if (S.screen === "nametrace") renderNameTrace();
+  else if (S.screen === "madal") renderMadal();
+  else if (S.screen === "tika") renderTika();
+  else if (S.screen === "jar") renderJar();
+  else if (S.screen === "bagh") renderBagh();
   else renderDone();
 }
 
@@ -1129,7 +1169,8 @@ function grownHTML() {
   if (g === "misses") body = `<p class="note" style="text-align:left;margin:0">These typed answers were marked wrong. If one should count, tap <b>Accept</b> and it will be right from now on for ${esc(me().name)}.</p>
     <div class="miss-list">${(P.misses || []).map((m, i) => `<div class="miss"><span>${neSpan(m.ne)}<small>expected “${esc(m.en)}”, typed “<b>${esc(m.got)}</b>”</small></span>
       <button class="chip primary" type="button" data-accept="${i}">Accept</button><button class="chip" type="button" data-dismiss="${i}" aria-label="Remove">✕</button></div>`).join("") || `<p class="note">Nothing to check.</p>`}</div>`;
-  const title = { save: "📤 Save code", load: "📥 Load save code", misses: "📝 Answers to check" }[g];
+  if (g === "pride") body = prideHTML();
+  const title = { save: "📤 Save code", load: "📥 Load save code", misses: "📝 Answers to check", pride: `📊 What ${esc(me().name)} can say` }[g];
   return `<div class="sheet-back" id="grownBack"></div><div class="sheet players" role="dialog" aria-modal="true" aria-label="${title}">
     <button class="x sheet-x" type="button" id="grownClose" aria-label="Close">✕</button>
     <div class="sheet-head"><div><strong>${title}</strong></div></div>${body}</div>`;
@@ -1239,6 +1280,7 @@ function renderMap() {
       ${window.STORY && storyTime() ? `<button class="greet-story" type="button" id="openStory">🌙 Read tonight's bedtime story →</button>` : ""}</div></div>
     ${dropHTML()}
     ${wordOfDayHTML()}
+    <div class="culture-strip" aria-label="Family corner"><button class="jump-pill" type="button" id="openName">✍️ <span lang="ne">${esc(myDevaName())}</span></button><button class="jump-pill" type="button" id="openMadal">🥁 Madal</button><button class="jump-pill" type="button" id="openTika">🪔 Tika</button><button class="jump-pill" type="button" id="openJar">🏺 Story jar</button><button class="jump-pill" type="button" id="openBagh">🐐 Bagh-chal</button></div>
     <nav class="jump" aria-label="Jump to a chapter"><button class="jump-pill top-pill" type="button" id="toTop" aria-label="Back to top">🐼 Top ↑</button>${jump}</nav>
     ${chapters}
     <section class="grownups" aria-label="For grown-ups">
@@ -1249,6 +1291,7 @@ function renderMap() {
         <button class="chip" type="button" id="loadCode">📥 Load save code</button>
         ${"serviceWorker" in navigator ? `<button class="chip" type="button" id="offlineAudio">📶 Save sounds for offline</button>` : ""}
         ${(P.misses || []).length ? `<button class="chip" type="button" id="openMisses">📝 Answers to check (<span lang="ne">${toDeva(P.misses.length)}</span>)</button>` : ""}
+        <button class="chip" type="button" id="openPride">📊 What ${esc(me().name)} can say</button>
         <button class="chip" type="button" id="openVoices">🎙️ Family voices</button>
         <button class="chip" type="button" id="tReset">Start over</button>
       </div>
@@ -1992,7 +2035,7 @@ function renderDone() {
     ${S.earned === 3 ? `<div class="share-card"><p><b>Share your score with Aama or Baba!</b></p><p class="share-text" id="shareText">${esc(shareText())}</p>
       <div class="share-btns">${navigator.share ? `<button class="say" type="button" id="shareNow">📤 Share</button>` : ""}<button class="chip" type="button" id="copyShare">📋 Copy message</button></div></div>` : ""}
     ${missionHTML()}
-    <button class="go" type="button" id="home"><span lang="ne">ल जाऔँ!</span> · Let's go</button><button class="chip" type="button" id="again">Play again</button></section>`;
+    <button class="go" type="button" id="home"><span lang="ne">ल जाऔँ!</span> · Let's go</button><button class="chip" type="button" id="again">Play again</button>${S.lesson && S.lesson.items && !S.lesson.letters ? `<button class="chip" type="button" id="sendPostcard">💌 Postcard for Hajuraama</button>` : ""}</section>`;
   if (S.earned === 3) confetti(); beep("done");
 }
 function confetti() {
@@ -2034,8 +2077,145 @@ function legacyCopy(text) {
 }
 function selectShare() { const el = $("#shareText"); if (!el) return; const r = document.createRange(); r.selectNodeContents(el); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); }
 
+/* ---------- Family corner: my name, madal, tika, story jar, postcard, bagh-chal ---------- */
+const myDevaName = () => { const c = me(); return c.deva || window.toDevanagariName(c.name); };
+// 1. Mero naam: the child's name in Devanagari, traced in chalk on the paati
+function renderNameTrace() {
+  const deva = myDevaName();
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">✍️ <span lang="ne">मेरो नाम</span> · My name</h2></div>
+    <div class="naam-card"><small>My name in Nepali letters</small><div class="naam-big" lang="ne">${esc(deva)}</div><b>${esc(me().name)}</b></div>
+    <p class="ask" style="text-align:center;margin:0">Trace your name in chalk on the paati!</p>
+    <div class="trace-wrap"><div class="trace-box" id="traceBox"><canvas id="guide"></canvas><canvas id="ink"></canvas></div>
+      <div class="meter" aria-hidden="true"><i id="meter"></i></div>
+      <div class="trace-tools"><button class="chip" type="button" id="traceClear">↺ Wipe the slate</button><button class="chip primary" type="button" id="nameDone">🌟 Done!</button></div></div>
+    <div class="grownups"><label for="customDeva" class="note" style="margin:0">Grown-ups: fix the Nepali spelling if it's not right</label>
+      <div class="share-btns"><input id="customDeva" lang="ne" value="${esc(deva)}" class="deva-input"><button class="chip" type="button" id="saveDevaName">Save spelling</button></div></div>`;
+  setupNameTrace(deva);
+}
+async function setupNameTrace(text) {
+  const box = $("#traceBox"), guide = $("#guide"), ink = $("#ink"); if (!box) return;
+  const size = Math.round(box.clientWidth), dpr = window.devicePixelRatio || 1;
+  [guide, ink].forEach(c => { c.width = size * dpr; c.height = size * dpr; c.style.width = c.style.height = size + "px"; c.getContext("2d").scale(dpr, dpr); });
+  const px = Math.min(Math.round(size * .5), Math.round(size * 1.5 / Math.max(2, [...text].length)));
+  const font = `700 ${px}px "Baloo 2", "Noto Sans Devanagari", sans-serif`;
+  try { await document.fonts.load(font, text); } catch (e) {}
+  const g = guide.getContext("2d"); g.font = font; g.textAlign = "center"; g.textBaseline = "middle";
+  g.fillStyle = "rgba(255,248,225,.16)"; g.fillText(text, size / 2, size * .54);
+  g.setLineDash([5, 7]); g.lineWidth = 2; g.strokeStyle = "rgba(255,248,225,.5)"; g.strokeText(text, size / 2, size * .54);
+  const c = ink.getContext("2d"); c.lineCap = c.lineJoin = "round"; c.strokeStyle = "#fffaf0"; c.lineWidth = Math.max(10, size * .05);
+  let down = false, last = null, len = 0;
+  const pos = e => { const r = ink.getBoundingClientRect(); return [(e.clientX - r.left) * size / r.width, (e.clientY - r.top) * size / r.height]; };
+  ink.onpointerdown = e => { down = true; last = pos(e); ink.setPointerCapture(e.pointerId); };
+  ink.onpointermove = e => { if (!down) return; const p = pos(e); c.beginPath(); c.moveTo(...last); c.lineTo(...p); c.stroke(); len += Math.hypot(p[0] - last[0], p[1] - last[1]); last = p;
+    $("#meter").style.width = Math.min(100, Math.round(len / (size * 1.6) * 100)) + "%"; };
+  ink.onpointerup = ink.onpointercancel = () => { down = false; };
+  $("#traceClear").onclick = () => { c.clearRect(0, 0, size, size); len = 0; $("#meter").style.width = "0%"; };
+}
+// 2. Madal drum + sounds of a Nepali village
+function villageSfx(kind) {
+  if (!P.sound || P.beeps === false) return;
+  try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); const t = actx.currentTime + .01;
+    if (kind === "bell") { bowl(t, 1046.5, .12); bowl(t + .08, 1568, .08); }
+    else if (kind === "bird") { tone(1350, t, .14, .08, "sine", 1850); tone(1400, t + .2, .18, .09, "sine", 1950); }
+    else if (kind === "pour") [440, 520, 610, 720, 840].forEach((f, i) => tone(f, t + i * .05, .06, .04, "triangle", f + 90));
+    else if (kind === "river" || kind === "rain") [280, 340, 410, 310, 390].forEach((f, i) => tone(f, t + i * .06, .12, .03, "sine", f - 60));
+    else bowl(t, 784, .09); } catch (e) {}
+}
+function madalHit(low) { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); madal(actx.currentTime + .01, low); } catch (e) {}
+  const s = document.querySelector(`[data-madal="${low ? "low" : "high"}"]`); if (s) { s.classList.add("hit"); setTimeout(() => s.classList.remove("hit"), 110); } }
+function renderMadal() {
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🥁 ${neSpan("मादल")} · Madal & village sounds</h2></div>
+    <div class="madal-stage"><p style="margin:0;font-weight:800">Tap both sides of the madal drum!</p>
+      <div class="madal-pad"><button type="button" class="madal-side" data-madal="low"><span lang="ne">धिं</span><small>dhin · left, low</small></button>
+        <button type="button" class="madal-side" data-madal="high"><span lang="ne">ना</span><small>na · right, high</small></button></div>
+      <div class="rhythm-pills">${window.MADAL_RHYTHMS.map((r, i) => `<button class="chip" type="button" data-rhythm="${i}">🎵 <span lang="ne">${esc(r.name.split(" · ")[0])}</span> · ${esc(r.name.split(" · ")[1])}</button>`).join("")}</div>
+      <p class="note" id="madalLine" style="margin:0">Tap a beat and Pandu drums it. Then you try!</p></div>
+    <h3 class="kin-h">🏔️ A morning in a Nepali village</h3>
+    <div class="sound-map-grid">${window.GAUN_SOUNDS.map((s, i) => `<button class="sound-spot" type="button" data-gaun="${i}">${(window.IMG || {})[s.art] ? `<img class="wpic" src="${window.IMG[s.art]}" alt="">` : "🔊"}
+      <span><b lang="ne">${esc(s.ne)}</b> <span class="rom">${esc(s.rom)}</span><small>${esc(s.en)}</small></span></button>`).join("")}</div>`;
+}
+// 3. For grown-ups: what my child can say tonight
+function prideHTML() {
+  const done = visibleLessons().filter(l => !l.letters && (P.stars[starKey(l.id)] || 0) > 0);
+  const words = done.flatMap(l => (l.items || []).filter(it => it.ne && it.en && !isLabel(it.pic) && AUDIO[K(it.ne)]).slice(0, 3));
+  const sents = done.flatMap(l => (l.sentences || []).slice(0, 1).map(s => ({ ne: s.ne.join(" "), en: s.en })));
+  const tonight = sents.length ? sents[Math.floor(Math.random() * sents.length)] : { ne: "खाना धेरै मिठो छ", en: "The food is very yummy." };
+  const weak = Object.keys(P.weak || {}).map(k => k.split("|").pop()).filter(ne => AUDIO[K(ne)]).slice(0, 6);
+  return `<div class="pride-box">
+    <div class="pride-sec"><h4>🗣️ Say it together tonight</h4><p class="note" style="margin:0 0 6px;text-align:left">Ask ${esc(me().name)} to say this at dinner or bedtime:</p>
+      <button class="say" type="button" data-say="${esc(K(tonight.ne))}">${SPEAKER} <span lang="ne">${esc(tonight.ne)}</span></button> <small>${esc(tonight.en)}</small></div>
+    <div class="pride-sec"><h4>🌟 Words ${esc(me().name)} has practised <small>(${toDeva(done.length)} lessons)</small></h4>
+      <div class="pride-chips">${(words.length ? words.slice(0, 12) : [{ ne: "नमस्ते", en: "hello" }, { ne: "आमा", en: "mother" }, { ne: "पानी", en: "water" }]).map(w => `<span class="pride-chip" data-say="${esc(K(w.ne))}"><span lang="ne">${esc(w.ne)}</span> · ${esc(w.en)}</span>`).join("")}</div></div>
+    ${weak.length ? `<div class="pride-sec weak"><h4>💛 Words to practise together</h4><div class="pride-chips">${weak.map(ne => `<span class="pride-chip" data-say="${esc(K(ne))}" lang="ne">${esc(ne)}</span>`).join("")}</div></div>` : ""}</div>`;
+}
+// 4. Tika and blessing (Dashain)
+function renderTika() {
+  const tk = S.tika, I = window.IMG || {};
+  const face = (pose, both) => `<div class="tika-pandu-wrap">${pandu(pose)}<span class="tika-mark${both || tk.tikaOn ? " on" : ""}"></span><span class="jamara-mark${both || tk.jamaraOn ? " on" : ""}">🌱</span></div>`;
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🪔 ${neSpan("टीका")} · Tika & blessing</h2></div>
+    <div class="tika-stage">${tk.step === 1 ? `${I["w-grandma"] ? `<img src="${I["w-grandma"]}" alt="" class="tika-elder">` : "👵"}
+        <p class="ask" style="margin:0">Hajuraama has the tika plate. First, greet her with respect!</p>
+        <div class="share-btns"><button class="say" type="button" data-tikagreet="ढोग गरेँ">🙏 <span lang="ne">ढोग गरेँ</span></button><button class="say" type="button" data-tikagreet="नमस्ते">🙏 <span lang="ne">नमस्ते</span></button></div>`
+      : tk.step === 2 ? `<p class="ask" style="margin:0">Now tap the red ${neSpan("टीका")} and the green ${neSpan("जमरा")} to bless Pandu!</p>${face("namaste")}
+        <div class="thali-tray"><button type="button" class="thali-item" id="putTika" ${tk.tikaOn ? "disabled" : ""}>${I["w-tika"] ? `<img class="wpic" src="${I["w-tika"]}" alt="">` : "🔴"}<span lang="ne">टीका</span></button>
+          <button type="button" class="thali-item" id="putJamara" ${tk.jamaraOn ? "disabled" : ""}>${I["w-barley-shoots"] ? `<img class="wpic" src="${I["w-barley-shoots"]}" alt="">` : "🌱"}<span lang="ne">जमरा</span></button></div>`
+      : `${face("cheer", true)}<p class="ask" style="margin:0"><b>${neSpan("आशीर्वाद")}</b> ${neSpan(window.TIKA_BLESSING.ne)}</p><span class="rom">${esc(window.TIKA_BLESSING.rom)}</span>
+        <p style="margin:0;font-weight:700">${esc(window.TIKA_BLESSING.en)}</p><button class="go" type="button" id="tikaThanks">🙏 <span lang="ne">धन्यवाद</span> · Thank you${P.tikaDay === today() ? "" : " (+१० ⭐)"}</button>`}</div>`;
+}
+// 5. Family story jar
+function renderJar() {
+  const it = window.DINNER_JAR[(S.jarIdx || 0) % window.DINNER_JAR.length];
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🏺 Family story jar</h2></div>
+    <div class="jar-card"><span class="ctx">${esc(it.topic)}</span><p class="note" style="margin:0">Ask Aama, Baba, Hajuraama or Hajurbaa:</p>
+      <p class="jar-q">${neSpan(it.ne)}</p><span class="rom">${esc(it.rom)}</span><p style="margin:0;font-weight:700">“${esc(it.en)}”</p>
+      <div class="share-btns"><button class="say" type="button" data-say="${esc(K(it.ne))}">${SPEAKER} <span>Hear the question</span></button>
+        <button class="say" type="button" data-say="${esc(K(it.word[0]))}">${SPEAKER} <span lang="ne">${esc(it.word[0])}</span> · ${esc(it.word[2])}</button></div>
+      <div class="jar-parent"><b>👨‍👩‍👧 For the grown-up:</b> ${esc(it.tip)}</div>
+      <button class="chip primary" type="button" id="jarNext">🔄 Another question</button></div>`;
+}
+// 6. Postcard for Hajuraama (picture to share)
+function postcardCanvas(w) {
+  const c = document.createElement("canvas"); c.width = 720; c.height = 540; const x = c.getContext("2d");
+  x.fillStyle = "#fff8e1"; x.fillRect(0, 0, 720, 540); x.strokeStyle = "#b9541a"; x.lineWidth = 14; x.strokeRect(18, 18, 684, 504);
+  x.strokeStyle = "#f6b71c"; x.lineWidth = 4; x.strokeRect(32, 32, 656, 476);
+  const cols = ["#2f6fd6", "#ffffff", "#e2453c", "#2fa75a", "#f6b71c"]; for (let i = 0; i < 12; i++) { x.fillStyle = cols[i % 5]; x.fillRect(36 + i * 54, 36, 54, 14); }
+  x.textAlign = "center"; x.fillStyle = "#b9541a"; x.font = "800 26px 'Nunito', sans-serif"; x.fillText(`A Nepali word from ${me().name} (${myDevaName()})`, 360, 108);
+  x.fillStyle = "#1f2a44"; x.font = "800 84px 'Baloo 2', 'Noto Sans Devanagari', sans-serif"; x.fillText(w.ne, 360, 250);
+  x.fillStyle = "#1d4f9e"; x.font = "800 32px 'Nunito', sans-serif"; x.fillText(w.rom || "", 360, 310);
+  x.fillStyle = "#5d6b86"; x.font = "700 32px 'Nunito', sans-serif"; x.fillText(`“${w.en}”`, 360, 362);
+  x.fillStyle = "#8a4b00"; x.font = "800 22px 'Nunito', sans-serif"; x.fillText("Learned on Sajilo Nepali · sajilonepali.app", 360, 470);
+  return c;
+}
+async function sendPostcard(btn) {
+  const pool = ((S.lesson && S.lesson.items) || []).filter(x => x.ne && x.en && !isLabel(x.pic) && !/^Say /.test(x.en));
+  const w = pool.length ? pool[Math.floor(Math.random() * pool.length)] : { ne: "नमस्ते", rom: "namaste", en: "hello" };
+  const text = `${me().name} learned “${w.ne}” (${w.rom || ""}) = ${w.en} on Sajilo Nepali! https://sajilonepali.app`;
+  try { const blob = await new Promise(r => postcardCanvas(w).toBlob(r, "image/png")); const file = blob && new File([blob], "sajilo-nepali-postcard.png", { type: "image/png" });
+    if (file && navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ title: "A postcard from Sajilo Nepali", text, files: [file] }); return; } } catch (e) { if (e && e.name === "AbortError") return; }
+  shareOrCopy(btn, { title: "Sajilo Nepali", text }, text);
+}
+// 7. Bagh-chal trail: lead the goat home past the sleeping tigers by knowing the words
+const BAGH_ADJ = { 0: [1, 3, 4], 1: [0, 2, 4], 2: [1, 5, 4], 3: [0, 4, 6], 4: [0, 1, 2, 3, 5, 6, 7, 8], 5: [2, 4, 8], 6: [3, 4, 7], 7: [6, 4, 8], 8: [4, 5, 7] };
+function startBagh() {
+  const pool = shuffle(visibleLessons().filter(l => !l.letters).flatMap(l => l.items || []).filter(it => it.ne && it.en && artFor(it) && AUDIO[K(it.ne)] && !isLabel(it.pic)));
+  const seen = new Set(), words = pool.filter(w => !seen.has(w.en) && seen.add(w.en)).slice(0, 9);
+  S.bagh = { pos: 0, tigers: new Set(pickN([1, 2, 3, 5, 6, 7], 2)), words, pick: null, opts: [], won: false };
+  S.screen = "bagh"; render(); window.scrollTo(0, 0);
+}
+function renderBagh() {
+  const B = S.bagh, reach = new Set((BAGH_ADJ[B.pos] || []).filter(n => !B.tigers.has(n))), q = B.pick != null ? B.words[B.pick] : null;
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🐐 ${neSpan("बाघ")}-chal trail</h2></div>
+    <p class="note" style="margin:0">${B.won ? "🏡 The goat is home safe! स्याबास!" : "Lead the goat 🐐 home to 🏡. Tigers 🐅 are sleeping: don't step on them! Tap a glowing circle, then pick its meaning."}</p>
+    <div class="bagh-board"><svg class="bagh-lines" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 0H100M0 50H100M0 100H100M0 0V100M50 0V100M100 0V100M0 0L100 100M100 0L0 100" fill="none"/></svg>
+      ${B.words.map((w, i) => { const here = B.pos === i, tiger = B.tigers.has(i), goal = i === 8, can = !B.won && reach.has(i);
+        return `<button type="button" class="bagh-node${here ? " visited" : ""}${tiger ? " tiger" : ""}${goal ? " goal" : ""}${can ? " reach" : ""}" data-baghnode="${i}" ${can ? "" : "disabled"}>
+          <span class="bagh-ic">${here ? "🐐" : tiger ? "🐅" : goal ? "🏡" : ""}</span><span class="ne" lang="ne">${esc(tiger ? "बाघ" : w.ne)}</span></button>`; }).join("")}</div>
+    ${q ? `<div class="prompt bagh-q"><p style="margin:0;font-weight:800">${neSpan(q.ne)} <span class="rom">${esc(q.rom)}</span> means…</p>
+      <div class="pick-grid">${B.opts.map((o, j) => `<button type="button" class="opt" data-baghans="${j}">${picHTML(o)}<span class="en">${esc(o.en)}</span></button>`).join("")}</div></div>`
+      : B.won ? `<button class="go" type="button" id="baghAgain">🐐 Play again</button>` : ""}`;
+}
 /* ---------- Events ---------- */
-const GATED = new Set(["openVoices", "shareApp", "saveCode", "loadCode", "offlineAudio", "openMisses", "tReset", "shareNow", "copyShare", "shareCert"]);
+const GATED = new Set(["openPride", "sendPostcard", "openVoices", "shareApp", "saveCode", "loadCode", "offlineAudio", "openMisses", "tReset", "shareNow", "copyShare", "shareCert"]);
 let gateUntil = 0;
 function openGate(targetId) {
   closeGate();
@@ -2082,6 +2262,29 @@ document.addEventListener("click", e => {
   if (t.dataset.famrec) { famRecord(t, t.dataset.famrec); return; }
   if (t.dataset.famdel) { famPut(t.dataset.famdel, null).then(renderVoices); return; }
   if (t.id === "openVoices") { S.screen = "voices"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "openName") { S.screen = "nametrace"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "saveDevaName") { const v = ($("#customDeva").value || "").trim(); if (v) { me().deva = v; savePlayers(); beep("good"); renderNameTrace(); } return; }
+  if (t.id === "nameDone") { if (P.nameDay !== today()) { P.nameDay = today(); P.xp += 5; save(); } beep("done"); confetti(); S.screen = "map"; render(); return; }
+  if (t.id === "openMadal") { S.screen = "madal"; render(); window.scrollTo(0, 0); return; }
+  if (t.dataset.madal) { madalHit(t.dataset.madal === "low"); return; }
+  if (t.dataset.rhythm != null) { const r = window.MADAL_RHYTHMS[+t.dataset.rhythm]; $("#madalLine").textContent = "🎶 " + r.desc; r.pattern.forEach((low, i) => setTimeout(() => madalHit(!!low), i * r.tempo)); return; }
+  if (t.dataset.gaun != null) { const g = window.GAUN_SOUNDS[+t.dataset.gaun]; villageSfx(g.sfx); setTimeout(() => say(K(g.ne), t), 300); $("#madalLine").textContent = g.line; return; }
+  if (t.id === "openPride") { S.grown = "pride"; render(); return; }
+  if (t.id === "openTika") { S.tika = { step: 1 }; S.screen = "tika"; render(); window.scrollTo(0, 0); return; }
+  if (t.dataset.tikagreet) { say(K(t.dataset.tikagreet)); beep("good"); S.tika.step = 2; setTimeout(renderTika, 900); return; }
+  if (t.id === "putTika" || t.id === "putJamara") { const tk = S.tika; tk[t.id === "putTika" ? "tikaOn" : "jamaraOn"] = true; say(t.id === "putTika" ? K("टीका") : K("जमरा")); beep("good");
+    if (tk.tikaOn && tk.jamaraOn) { tk.step = 3; setTimeout(() => playSeq([K("आशीर्वाद"), K(window.TIKA_BLESSING.ne)]), 800); } renderTika(); return; }
+  if (t.id === "tikaThanks") { say(K("धन्यवाद")); if (P.tikaDay !== today()) { P.tikaDay = today(); P.xp += 10; save(); } beep("done"); confetti(); setTimeout(() => { S.screen = "map"; render(); }, 900); return; }
+  if (t.id === "openJar") { S.screen = "jar"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "jarNext") { S.jarIdx = (S.jarIdx || 0) + 1; beep("tap"); renderJar(); return; }
+  if (t.id === "sendPostcard") { sendPostcard(t); return; }
+  if (t.id === "openBagh" || t.id === "baghAgain") { startBagh(); return; }
+  if (t.dataset.baghnode != null) { const B = S.bagh, i = +t.dataset.baghnode, w = B.words[i]; say(K(w.ne)); B.pick = i;
+    B.opts = shuffle([w, ...pickN(B.words.filter(x => x !== w && x.en !== w.en), LV().options - 1)]); renderBagh(); return; }
+  if (t.dataset.baghans != null) { const B = S.bagh, o = B.opts[+t.dataset.baghans], w = B.words[B.pick];
+    if (o === w) { beep("good"); B.pos = B.pick; B.pick = null; if (B.pos === 8) { B.won = true; P.xp += 15; save(); setTimeout(() => { beep("done"); confetti(); }, 300); } renderBagh(); }
+    else { beep("bad"); t.classList.add("wrong"); t.disabled = true; say(K(w.ne)); }
+    return; }
   if (t.id === "toggleMission") { S.showMission = !S.showMission; render(); return; }
   if (t.id === "openStory" || t.dataset.story) { beep("flute"); S.openedOnce = false; S.page = 0; S.screen = "story"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "storyNext" || t.id === "storyPrev") { S.page = Math.max(0, Math.min(window.STORY.pages.length - 1, (S.page || 0) + (t.id === "storyNext" ? 1 : -1))); renderStory(); return; }
