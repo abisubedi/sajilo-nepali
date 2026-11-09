@@ -117,6 +117,9 @@ const W = {
   "pouring rain sound": "heavy monsoon rain pouring down in big streaks on a Nepali house roof and courtyard, puddles splashing, a child watching from the window",
   "gobbling up everything fast!": `${boy}, gobbling up a plate of dal-bhat super fast with his hand, rice grains flying, cheeks full, motion lines`,
   "fast asleep (knocked out!)": `${boy}, fast asleep in bed with his mouth open, one leg out of a colorful quilt, big z-z bubbles, a crescent moon at the window`,
+  // riddle answer options with no picture of their own
+  "glass": "one simple clear drinking glass, empty, standing on a small wooden table",
+  "potato": "two brown potatoes with a little soil on them, one cut in half showing the pale yellow inside",
   // old-day games (retro-90s)
   "chungi (kick shuttlecock)": `${boy}, kicking a chungi (a small bundle of colorful rubber bands tied together) high into the air with the inside of his foot in a school yard`,
   "dandi biyo (stick and peg game)": `${boy}, swinging a long wooden stick to flick a small pointed wooden peg up into the air in an open harvested field`,
