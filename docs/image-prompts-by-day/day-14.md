@@ -4,10 +4,10 @@
 
 ## Checklist
 
-- [ ] li-family-name.png
-- [ ] li-family-jar.png
-- [ ] li-family-bagh.png
-- [ ] w-goat.png
+- [x] li-family-name.png
+- [x] li-family-jar.png
+- [x] li-family-bagh.png
+- [x] w-goat.png
 
 ## Prompts
 
