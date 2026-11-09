@@ -83,10 +83,10 @@ const W = {
   // body (point clearly at one part)
   "head": `${boy}, pointing at the top of his head, the head lightly highlighted`,
   "hair": `${kid}, holding one of her long braids`,
-  "eyes": "a friendly cartoon face with big bright eyes, the eyes highlighted",
+  "eyes": `${kid}, close-up of her face, making two little circles with her fingers around her big bright eyes like binoculars, the eyes clearly the focus`,
   "ear": `${boy}, pointing at his ear`,
   "nose": `${kid}, touching the tip of her nose with one finger`,
-  "mouth": "a friendly cartoon face with a big open smile, the mouth highlighted",
+  "mouth": `${boy}, close-up of his face, opening his mouth wide saying \"aaa\" and pointing at his open mouth with one finger`,
   "teeth": "a big smiling cartoon tooth with sparkles",
   "hand": "an open child's hand, palm forward, waving",
   "leg": `${boy}, standing on one leg like a flamingo, the raised leg highlighted`,
