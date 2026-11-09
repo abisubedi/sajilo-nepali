@@ -4,6 +4,6 @@ const INK = "A warm, hand-drawn children's storybook illustration with textured 
 const STICKER = INK + " Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle.";
 const PLAIN = INK + " One clear subject centered with empty space around it, isolated on a clean pure white background.";
 const FULL = INK;   // app icon, link preview and scenes keep their own background
-const styleFor = file => /^cast-/.test(file) ? PLAIN : /^(app-icon|og-image|s-)/.test(file) ? FULL : STICKER;
+const styleFor = file => /^cast-/.test(file) ? PLAIN : /^(app-icon|og-image)/.test(file) ? FULL : STICKER;
 const SINCE = "2026-11-08";   // pictures added or redrawn from this day are in the new style
 module.exports = { STICKER, PLAIN, FULL, styleFor, SINCE };

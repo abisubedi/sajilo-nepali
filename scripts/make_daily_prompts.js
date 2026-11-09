@@ -47,7 +47,7 @@ window.CHAPTERS.forEach((c, ci) => {
   take(items, item("og-image", `a wide banner: ${D.C.pandu} waving on the left, white Himalayan peaks and colorful prayer flags along the top, sky-blue background, empty space on the right for the title, no text`, "link preview when the site is shared (keep the full background)", "1200x630"));
   days.push({ title: "App icon and link preview", items }); }
 { const items = []; for (const l of window.LESSONS) for (const [i, s] of (l.sentences || []).entries())
-    take(items, item(`s-${l.id}-${i + 1}`, `a warm everyday scene that shows the meaning of the sentence "${s.en}", with ${/grand/i.test(s.en) ? D.C.hajuraama + ' or ' + D.C.hajurbaa : D.C.maya + ' or ' + D.C.arjun}, at home or outdoors in Nepal`, `${l.title}: ${s.ne.join(' ')}`, "1024x768"));
+    take(items, item(`s-${l.id}-${i + 1}`, D.S[`s-${l.id}-${i + 1}`] || `a simple scene that shows the meaning of "${s.en}"`, `${l.title}: ${s.ne.join(' ')} = ${s.en}`));
   days.push({ title: "Sentence scenes (optional)", items }); }
 
 const ART = path.join(__dirname, '..', 'art'), artFiles = fs.existsSync(ART) ? fs.readdirSync(ART) : [];

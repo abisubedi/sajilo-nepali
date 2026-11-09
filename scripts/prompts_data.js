@@ -423,4 +423,48 @@ const STICKERS = [
   ["st-letters", "Letter Master", "a wooden writing slate with a big golden swirl on it (leave the middle empty; the letter is added in the app)"],
 ];
 
-module.exports = { C, W, LW, LI, UI, CAST, PANDU, AVATARS, STICKERS };
+
+// Day 12: one clear, readable scene per sentence (small round sticker, so keep it simple)
+const S = {
+  "s-home-sentences-1": `${C.maya} rubbing her tummy with a hungry face and an empty plate, looking up at ${C.aama} in a cozy Nepali kitchen`,
+  "s-home-sentences-2": `${C.arjun} holding out an empty steel glass with a thirsty face while ${C.aama} pours water into it from a steel jug`,
+  "s-home-sentences-3": `${C.maya} pushing a wooden front door closed with both hands, a small arrow-like motion swoosh showing the door closing`,
+  "s-home-sentences-4": `${C.arjun} sitting on the floor eating dal bhat from a steel plate, eyes closed in delight, steam rising from the plate`,
+  "s-home-sentences-5": `${C.maya} washing her hands under a tap with a bar of soap and lots of bubbles`,
+  "s-home-sentences-6": `${C.arjun} putting toys (a ball, a toy car, a teddy) into a wooden toy box`,
+  "s-what-i-have-1": `${C.maya} proudly holding up a red school backpack with both hands`,
+  "s-what-i-have-2": `${C.arjun} proudly holding up one closed blue book with both hands`,
+  "s-what-i-have-3": `${C.maya} proudly holding up one big red pen`,
+  "s-what-i-have-4": `${C.arjun} hugging a shiny new toy car with a bow on it, very happy`,
+  "s-what-i-have-5": `${C.maya} touching her face with a puzzled look, a pair of glasses with a soft red cross mark floating next to her (she has no glasses)`,
+  "s-what-i-have-6": `${C.maya} pointing with a curious face at ${C.arjun}, who hides something behind his back, a small question mark between them`,
+  "s-play-sentences-1": `${C.maya} running behind with one hand stretched out, calling to ${C.arjun} who is running ahead on a park path`,
+  "s-play-sentences-2": `${C.arjun} on a playground swing while ${C.maya} stands beside it pointing at herself, waiting for her turn`,
+  "s-play-sentences-3": `${C.maya} and ${C.arjun} riding small bicycles side by side on a park path with green trees`,
+  "s-play-sentences-4": `${C.arjun} politely patting a park bench and inviting ${C.hajurbaa} to sit down`,
+  "s-play-sentences-5": `${C.maya} with open arms ready to catch while ${C.arjun} throws a football toward her`,
+  "s-culture-sentences-1": `${C.maya} and ${C.arjun} relaxing at home on a holiday morning, a wall calendar with a big red-circled day (no readable text), a cup of tea and a sunny window`,
+  "s-culture-sentences-2": `${C.hajuraama} putting a red tika on the forehead of ${C.maya}, who bows her head with folded hands, during Dashain with jamara grass`,
+  "s-culture-sentences-3": `${C.arjun} eating a plate of steaming momo with achar, giving a big thumbs-up`,
+  "s-culture-sentences-4": `${C.maya} lighting a small clay diyo lamp on a doorstep in the evening, purple dusk sky and a few stars`,
+  "s-culture-sentences-5": `${C.maya} and ${C.arjun} flying a colorful paper kite on a rooftop under a blue sky`,
+  "s-travel-sentences-1": `${C.arjun} pointing excitedly at a big grey elephant in the green Chitwan grasslands, ${C.maya} looking with wide eyes`,
+  "s-travel-sentences-2": `a small colorful bird sitting on a branch of a green tree, ${C.maya} looking up at it and pointing`,
+  "s-travel-sentences-3": `${C.maya} and ${C.arjun} in swimsuits splashing and swimming in the blue sea waves on a sunny beach`,
+  "s-travel-sentences-4": `a playful brown monkey leaping quickly between two temple rooftops with motion lines, ${C.arjun} watching in surprise`,
+  "s-grandparent-sentences-1": `${C.maya} holding a ripe yellow mango close with a big happy smile and small hearts around it`,
+  "s-grandparent-sentences-2": `${C.maya} greeting ${C.hajuraama} with namaste folded hands and a caring smile, grandma smiling back from her chair`,
+  "s-grandparent-sentences-3": `${C.arjun} walking through a school gate with a backpack, waving happily, a small Nepali school building behind`,
+  "s-grandparent-sentences-4": `${C.maya} hugging ${C.aama} tightly with a little red heart above them`,
+  "s-grandparent-sentences-5": `${C.arjun} searching under a bed and behind a chair with a confused face and a question mark, looking for his missing school bag`,
+  "s-sentences-1": `${C.maya} smiling and giving a thumbs-up, standing happy and healthy in sunshine`,
+  "s-sentences-2": `Sita, a cheerful 7-year-old Nepali girl with a short black bob haircut, a yellow kurta and a small red bindi, introducing herself with one hand on her chest and the other hand waving hello`,
+  "s-sentences-3": `${C.arjun} proudly hugging his friendly brown puppy dog`,
+  "s-sentences-4": `${C.maya} hugging a plate of momo with hearts floating around, dreamy happy face`,
+  "s-sentences-5": `${C.arjun} lying on green grass looking up at a wide clear bright blue sky with one small white cloud`,
+  "s-sentences-6": `${C.maya} drinking water from a steel glass`,
+  "s-sentences-7": `a tiny fluffy kitten sitting in the cupped hands of ${C.arjun}, showing how small it is`,
+  "s-sentences-8": `${C.maya} standing next to a huge friendly elephant that towers over her, showing how big it is`,
+};
+
+module.exports = { S, C, W, LW, LI, UI, CAST, PANDU, AVATARS, STICKERS };

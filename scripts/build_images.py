@@ -10,7 +10,7 @@ import datetime, hashlib, json, os, subprocess, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ART, IMG = os.path.join(ROOT, "art"), os.path.join(ROOT, "public", "img")
-PREFIXES = ("w-", "li-", "st-", "av-", "pandu-", "story-", "scene-")
+PREFIXES = ("w-", "li-", "st-", "av-", "pandu-", "story-", "scene-", "s-")
 os.makedirs(IMG, exist_ok=True)
 made = []
 for f in sorted(os.listdir(ART)):
@@ -20,10 +20,10 @@ for f in sorted(os.listdir(ART)):
     src, out = os.path.join(ART, f), os.path.join(IMG, name + ".webp")
     if os.path.exists(out) and os.path.getmtime(out) >= os.path.getmtime(src):
         continue
-    if name.startswith("scene-"):   # full-background scenes: no cut-out, just a sharp WebP
+    if name.startswith("scene-", "s-"):   # full-background scenes: no cut-out, just a sharp WebP
         from PIL import Image
         im = Image.open(src).convert("RGB"); im.thumbnail((1400, 1400)); im.save(out, "WEBP", quality=84, method=6); made.append(name); continue
-    size = "512" if name.startswith("story-") else "384" if name.startswith(("st-", "av-", "pandu-")) else "320"
+    size = "512" if name.startswith("story-") else "384" if name.startswith(("st-", "av-", "pandu-", "s-")) else "320"
     # Pictures in the storybook style (from 2026-11-08) are round stickers: protect the circle.
     subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "cutout.py"), src, out, size, "disk=auto"], check=True, capture_output=True)
     made.append(name)
