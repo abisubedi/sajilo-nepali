@@ -11,48 +11,48 @@
 
 ## Checklist
 
-- [ ] w-gooseberry.png
-- [ ] w-mother.png
-- [ ] w-well.png
-- [ ] w-god.png
-- [ ] w-sugarcane.png
-- [ ] w-wool.png
-- [ ] w-sage.png
-- [ ] w-one-string-lute.png
-- [ ] w-mirror.png
-- [ ] w-walnut.png
-- [ ] w-medicine.png
+- [x] w-gooseberry.png
+- [x] w-mother.png
+- [x] w-well.png
+- [x] w-god.png
+- [x] w-sugarcane.png
+- [x] w-wool.png
+- [x] w-sage.png
+- [x] w-one-string-lute.png
+- [x] w-mirror.png
+- [x] w-walnut.png
+- [x] w-medicine.png
 - [x] w-tortoise.png
-- [ ] w-flower-pot.png
-- [ ] w-watch.png
-- [ ] w-fingernail.png
+- [x] w-flower-pot.png
+- [x] w-watch.png
+- [x] w-fingernail.png
 - [x] w-umbrella.png
-- [ ] w-jug.png
-- [ ] w-flag.png
-- [ ] w-leaf-plate.png
-- [ ] w-lamp-stand.png
-- [ ] w-hand-drum.png
-- [ ] w-basket.png
-- [ ] w-book-stand.png
-- [ ] w-scales.png
-- [ ] w-flask.png
-- [ ] w-cupboard.png
-- [ ] w-bow.png
-- [ ] w-coconut.png
-- [ ] w-pigeon.png
-- [ ] w-fruits.png
+- [x] w-jug.png
+- [x] w-flag.png
+- [x] w-leaf-plate.png
+- [x] w-lamp-stand.png
+- [x] w-hand-drum.png
+- [x] w-basket.png
+- [x] w-book-stand.png
+- [x] w-scales.png
+- [x] w-flask.png
+- [x] w-cupboard.png
+- [x] w-bow.png
+- [x] w-coconut.png
+- [x] w-pigeon.png
+- [x] w-fruits.png
 - [x] w-football.png
-- [ ] w-corn.png
-- [ ] w-fire-ritual.png
-- [ ] w-chariot.png
-- [ ] w-garlic.png
-- [ ] w-lawyer.png
-- [ ] w-conch-shell.png
-- [ ] w-six-point-star.png
-- [ ] w-snake.png
-- [ ] w-plough.png
-- [ ] w-trident.png
-- [ ] w-good-child.png
+- [x] w-corn.png
+- [x] w-fire-ritual.png
+- [x] w-chariot.png
+- [x] w-garlic.png
+- [x] w-lawyer.png
+- [x] w-conch-shell.png
+- [x] w-six-point-star.png
+- [x] w-snake.png
+- [x] w-plough.png
+- [x] w-trident.png
+- [x] w-good-child.png
 
 ## Prompts
 
