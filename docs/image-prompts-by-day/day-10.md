@@ -22,7 +22,7 @@
 - [ ] w-mirror.png
 - [ ] w-walnut.png
 - [ ] w-medicine.png
-- [ ] w-tortoise.png
+- [x] w-tortoise.png
 - [ ] w-flower-pot.png
 - [ ] w-watch.png
 - [ ] w-fingernail.png
@@ -41,7 +41,7 @@
 - [ ] w-coconut.png
 - [ ] w-pigeon.png
 - [ ] w-fruits.png
-- [ ] w-football.png
+- [x] w-football.png
 - [ ] w-corn.png
 - [ ] w-fire-ritual.png
 - [ ] w-chariot.png
