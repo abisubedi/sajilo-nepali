@@ -171,6 +171,22 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .match .col { display: flex; flex-direction: column; gap: 10px; }
 .match .opt { min-height: 74px; }
 
+.pick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+body .pick-grid .opt { flex-direction: column !important; padding: 4px !important; gap: 0 !important; min-height: 0 !important; font-size: 13px; text-align: center; justify-content: center; }
+body .pick-grid .opt .big { font-size: 34px !important; } body .pick-grid .opt .has-art .wpic { width: 58px !important; height: 58px !important; }
+.pick-grid .opt .en { font-size: 12px; line-height: 1.1; font-weight: 800; }
+.order-box { min-height: 48px; margin: 6px auto 8px; padding: 6px; } .order-box.thali { width: 210px; height: 84px; }
+.order-box .wpic { width: 34px !important; height: 34px !important; }
+@media (min-width: 700px) { body .pick-grid .opt .has-art .wpic { width: 92px !important; height: 92px !important; } .order-box.thali { width: 260px; height: 100px; } }
+.order-prompt .order-words { font-family: var(--display); font-size: 26px; font-weight: 800; } .order-words i { color: var(--muted); font-style: normal; }
+.order-box { max-width: 360px; display: flex; gap: 6px; justify-content: center; align-items: center; flex-wrap: wrap; padding: 10px; }
+.order-box.basket { background: repeating-linear-gradient(45deg, #d9a35f 0 8px, #c78d47 8px 16px); border-radius: 12px 12px 40px 40px; border: 3px solid #9a6a2f; }
+.order-box.thali { background: radial-gradient(circle, #f4d27a 0 55%, #d9aa3d 56% 100%); border-radius: 50%; border: 3px solid #b8892a; }
+.order-box:empty::after { content: "Tap the pictures"; color: #6b4a1f; font-weight: 700; font-size: 14px; }
+.answer.seq { justify-content: center; gap: 10px; border-bottom: 0; }
+.answer.seq .slot { width: 96px; min-height: 110px; border: 3px dashed var(--line); border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); font-weight: 700; font-size: 13px; }
+.pic-tile { width: 104px; padding: 6px; } .pic-tile .big { margin: 2px 0; } .pic-tile .rom { font-size: 11px; }
+.step { font-family: var(--display); color: var(--flag-blue); font-size: 18px; line-height: 1; }
 .answer.tape { background: repeating-linear-gradient(90deg, #5a3a22 0 6px, #6b4529 6px 12px); border-radius: 12px; border-bottom: 0; padding: 8px; justify-content: center; }
 .answer { min-height: 64px; border-bottom: 3px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; padding: 6px 0; }
 .bank { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
@@ -774,7 +790,7 @@ const isLabel = pic => /^(SUN|MON|TUE|WED|THU|FRI|SAT|\d+)$/.test(pic);
 /* Word pictures: the artwork in img/ when there is one (named w-<english>), otherwise the emoji.
    Pass the word itself (it needs .pic and .en); a plain emoji string also works. */
 const slugOf = s => String(s).toLowerCase().replace(/\(polite\)/g, "polite").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-const artFor = x => x && typeof x === "object" && (x.art || (x.en && (window.IMG || {})["w-" + slugOf(x.en)]));
+const artFor = x => x && typeof x === "object" && (x.art || (x.img && (window.IMG || {})[x.img]) || (x.en && (window.IMG || {})["w-" + slugOf(x.en)]));
 /* A picture for a sentence: its own scene (s-<lesson>-<n>) if drawn, otherwise the picture of a word in it,
    looking from the end (where Nepali puts the main noun) and allowing endings like -मा, -ले, -को, -लाई. */
 let WORDS = null;
@@ -833,6 +849,19 @@ function cassetteQ(item) {   // "Pencil & cassette": the tape is tangled, tap th
   do mix = shuffle(parts.map((p, i) => [p, i])); while (parts.length > 1 && mix.every(([, i], k) => i === k));
   return { type: "cassette", item, mix };
 }
+// Hajuraama's basket (little) / Hajurbaa's thali order (big): hear 2-3 things, tap all of them
+function orderQ(lesson, big) {
+  const o = lesson.order, n = big ? 3 : 2, want = pickN(o.want.map(ne => lesson.items.find(x => x.ne === ne)).filter(Boolean), n);
+  const others = big ? o.want.map(ne => lesson.items.find(x => x.ne === ne)).filter(x => x && !want.includes(x)) : (o.extra || []).map(findWord).filter(Boolean);
+  return { type: "order", want, opts: shuffle([...want, ...pickN(others, big ? 3 : 3)]), box: o.box, who: big ? o.bigWho : o.who };
+}
+const findWord = ne => { for (const l of window.LESSONS) for (const x of l.items || []) if (x.ne === ne) return x; return null; };
+// put 3 routine pictures in order: first, next, last
+function sequenceQ(lesson) {
+  const steps = pickN(lesson.chains, 1)[0].map(ne => lesson.items.find(x => x.ne === ne));
+  let mix; do mix = shuffle(steps.map((x, i) => [x, i])); while (mix.every(([, i], k) => i === k));
+  return { type: "sequence", steps, mix };
+}
 function buildQuestions(lesson) {
   const big = P.level === "big";
   const total = LV().questions;
@@ -856,6 +885,8 @@ function buildQuestions(lesson) {
     qs.push({ type: t, item });
   }
   if (!lesson.letters) qs.splice(Math.min(3, qs.length), 0, { type: "match", items: pickN(items, big ? 5 : 3) });
+  if (lesson.order && (big ? lesson.order.bigWho : lesson.order.who)) qs.splice(4, 1, orderQ(lesson, big));
+  if (lesson.chains) qs.splice(big ? 7 : 5, 1, sequenceQ(lesson));
   if (lesson.cassette && big) pickN(items.filter(x => syllables(x.ne).length > 1), 2).forEach((x, k) => qs.splice(5 + k * 4, 1, cassetteQ(x)));
   qs.forEach(q => {
     if (!q.item) return;
@@ -1260,6 +1291,7 @@ function missionHTML() {
     <button class="chip${done ? "" : " primary"}" type="button" id="missionDone" ${done ? "disabled" : ""}>${done ? "✓ You said it today! +5 ⭐" : "✋ High five! I said it (+5 ⭐)"}</button></div>`;
 }
 /* ---------- Echo: hear the word, then hear yourself (recorded on this device only, never saved or sent) ---------- */
+async function playSeq(keys) { const my = (playSeq.n = (playSeq.n || 0) + 1); for (const k of keys) { if (my !== playSeq.n) return; await sayAndWait(k); await new Promise(r => setTimeout(r, 250)); } }
 function sayAndWait(key) {
   return new Promise(r => { say(key); const a = player; if (!AUDIO[key] || !a) return setTimeout(r, 900); const d = a.onended; a.onended = () => { d && d(); r(); }; a.onerror = () => r(); setTimeout(r, 6000); });
 }
@@ -1569,6 +1601,20 @@ function renderQuestion() {
     body = `<p class="ask">Tap the pairs that match</p>
       <div class="match"><div class="col">${S.matchLeft.map((o, i) => `<button class="opt" type="button" data-l="${i}"><span class="ne" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span></button>`).join("")}</div>
       <div class="col">${S.matchRight.map((o, i) => `<button class="opt" type="button" data-r="${i}">${picHTML(o, 34)}<span class="en">${esc(o.en)}</span></button>`).join("")}</div></div>`;
+  } else if (q.type === "order") {
+    S.picked = [];
+    const keys = q.want.map(x => K(x.ne));
+    body = `<p class="ask">${q.box === "thali" ? "🍛" : "🧺"} ${esc(q.who)}</p>
+      <div class="prompt order-prompt"><div class="order-words">${q.want.map(x => `<span lang="ne">${esc(x.ne)}</span>`).join(" <i>·</i> ")}</div>
+        <button class="say" type="button" data-seq="${esc(keys.join("|"))}" aria-label="Listen">${SPEAKER} <span>Listen</span></button></div>
+      <div class="order-box ${q.box}" id="box" aria-label="${q.box === "thali" ? "Thali plate" : "Basket"}"></div>
+      <div class="pick-grid">${q.opts.map((o, i) => `<button class="opt" type="button" data-pick="${i}">${picHTML(o)}<span class="en">${esc(o.en)}</span></button>`).join("")}</div>`;
+    if (P.sound) setTimeout(() => playSeq(keys), 350);
+  } else if (q.type === "sequence") {
+    S.bank = q.mix.map(([x]) => [x.ne, x.rom]); S.built = [];
+    body = `<p class="ask">☀️ What comes first? Tap them in order: first → next → last</p>
+      <div class="answer seq" id="answer" aria-label="Your order"></div>
+      <div class="bank" id="bank">${q.mix.map(([x], i) => `<button class="tile pic-tile" type="button" data-t="${i}">${picHTML(x, 40)}<span class="ne" lang="ne">${esc(x.ne)}</span><span class="rom">${esc(x.en)}</span></button>`).join("")}</div>`;
   } else if (q.type === "cassette") {
     S.bank = q.mix.map(([p]) => [p, ""]); S.built = [];
     body = `<p class="ask">📼 The tape got tangled! Wind it back: tap the pieces in order</p>
@@ -1725,8 +1771,21 @@ function checkTrace() {
   grade(true); say(window.letterKey(q.item));
   setFeedback(true, "");
 }
+function checkOrder() {
+  const q = S.queue[0]; if (S.answered) return;
+  const got = S.picked.map(i => q.opts[i]), good = got.length === q.want.length && q.want.every(x => got.includes(x));
+  document.querySelectorAll("[data-pick]").forEach(b => { const o = q.opts[+b.dataset.pick]; b.disabled = true; if (q.want.includes(o)) b.classList.add("right"); else if (b.classList.contains("sel")) b.classList.add("wrong"); });
+  grade(good);
+  if (good && q.box === "thali" && AUDIO[K("खाना धेरै मिठो छ")]) setTimeout(() => say(K("खाना धेरै मिठो छ")), 300); else playSeq(q.want.map(x => K(x.ne)));
+  setFeedback(good, q.want.map(x => neHTML(x.ne, x.rom)).join(" · ") + (good && q.box === "thali" ? ` <small>“${neSpan("खाना धेरै मिठो छ")}” the food is very yummy!</small>` : ""));
+}
 function checkBuild() {
   const q = S.queue[0]; if (S.answered) return;
+  if (q.type === "sequence") {
+    const good = S.built.length === 3 && S.built.every((ti, k) => q.mix[ti][1] === k);
+    grade(good); playSeq(q.steps.map(x => K(x.ne)));
+    setFeedback(good, q.steps.map(x => neHTML(x.ne, x.rom)).join(" → ")); return;
+  }
   if (q.type === "cassette") {
     const good = S.built.map(i => S.bank[i][0]).join("") === syllables(q.item.ne).join("");
     if (good) { beep("tap"); setTimeout(() => beep("tap"), 110); }   // click-click: the tape winds tight
@@ -1738,6 +1797,13 @@ function checkBuild() {
   setFeedback(good, q.s.ne.map((w, i) => neHTML(w, q.s.rom[i])).join(" "), K(q.s.ne.join(" ")));
 }
 function drawBuilt() {
+  const q = S.queue[0];
+  if (q.type === "sequence") {
+    $("#answer").innerHTML = [0, 1, 2].map(k => { const ti = S.built[k], x = ti != null && q.mix[ti][0];
+      return x ? `<button class="tile pic-tile" type="button" data-b="${k}"><b class="step">${["१", "२", "३"][k]}</b>${picHTML(x, 34)}<span class="ne" lang="ne">${esc(x.ne)}</span></button>` : `<span class="slot"><b class="step">${["१", "२", "३"][k]}</b>${["First", "Next", "Last"][k]}</span>`; }).join("");
+    document.querySelectorAll("#bank .tile").forEach(b => b.classList.toggle("used", S.built.includes(+b.dataset.t)));
+    $("#check").disabled = S.built.length !== 3; return;
+  }
   $("#answer").innerHTML = S.built.map((ti, pos) => `<button class="tile" type="button" data-b="${pos}"><span class="ne" lang="ne">${esc(S.bank[ti][0])}</span><span class="rom">${esc(S.bank[ti][1])}</span></button>`).join("");
   document.querySelectorAll("#bank .tile").forEach(b => b.classList.toggle("used", S.built.includes(+b.dataset.t)));
   $("#check").disabled = S.built.length === 0;
@@ -2066,7 +2132,7 @@ document.addEventListener("click", e => {
   if (t.id === "quit" || t.id === "home") { S.screen = "map"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "again") { startLesson(S.lesson.id); return; }
   if (t.id === "next") { if (S.queue[0] && S.queue[0].type === "learn" && !S.answered) { S.queue.shift(); S.done++; } nextStep(); return; }
-  if (t.id === "check") { const ty = S.queue[0].type; ty === "build" || ty === "cassette" ? checkBuild() : ty === "trace" ? checkTrace() : ty === "typeMeaning" ? checkTyped() : checkChoice(); return; }
+  if (t.id === "check") { const ty = S.queue[0].type; ty === "build" || ty === "cassette" || ty === "sequence" ? checkBuild() : ty === "order" ? checkOrder() : ty === "trace" ? checkTrace() : ty === "typeMeaning" ? checkTyped() : checkChoice(); return; }
   if (S.screen !== "lesson") return;
   if (t.dataset.learn) {
     say(t.dataset.learn, t); t.classList.add("heard"); t.querySelector(".tick").textContent = "✓ heard";
@@ -2075,6 +2141,14 @@ document.addEventListener("click", e => {
     return;
   }
   if (S.answered) return;
+  if (t.dataset.seq) { playSeq(t.dataset.seq.split("|")); return; }
+  if (t.dataset.pick != null && !S.answered) {
+    const i = +t.dataset.pick, q = S.queue[0], at = S.picked.indexOf(i);
+    if (at >= 0) S.picked.splice(at, 1); else if (S.picked.length < q.want.length) { S.picked.push(i); say(K(q.opts[i].ne), t); } else { beep("tap"); return; }
+    t.classList.toggle("sel", at < 0);
+    $("#box").innerHTML = S.picked.map(j => picHTML(q.opts[j], 30)).join("");
+    $("#check").disabled = S.picked.length !== q.want.length; return;
+  }
   if (t.dataset.i != null) {
     S.sel = +t.dataset.i;
     document.querySelectorAll(".opt").forEach(b => b.classList.toggle("sel", b === t));

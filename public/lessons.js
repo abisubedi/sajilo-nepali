@@ -62,7 +62,8 @@ window.LESSONS = [
     { ne: "हजुरआमा", rom: "hajur-aama", en: "grandma", pic: "👵", alt: ["grandmother", "granny", "nana"] },
     { ne: "हजुरबा", rom: "hajur-ba", en: "grandpa", pic: "👴", alt: ["grandfather", "granddad"] },
   ]},
-  { id: "kitchen-tummy", title: "Kitchen & Tummy", ne: "भान्सा र खाना", rom: "bhaansa ra khaana", icon: "🍛", color: "var(--flag-green)", items: [
+  { id: "kitchen-tummy", title: "Kitchen & Tummy", ne: "भान्सा र खाना", rom: "bhaansa ra khaana", icon: "🍛", color: "var(--flag-green)",
+    order: { box: "basket", who: "Hajuraama says: put these in the basket!", want: ["स्याउ", "दूध", "केरा", "मोमो", "रोटी", "पानी"], extra: ["जुत्ता", "किताब", "टोपी", "कुर्सी", "झोला"] }, items: [
     { ne: "पानी", rom: "paani", en: "water", pic: "💧", alt: ["drink water"] },
     { ne: "खाना", rom: "khaana", en: "rice", pic: "🍚", alt: ["cooked rice", "food", "meal", "khana", "bhat"] },
     { ne: "दूध", rom: "doodh", en: "milk", pic: "🥛", alt: ["warm milk"] },
@@ -77,7 +78,8 @@ window.LESSONS = [
     { ne: "तातो", rom: "taato", en: "hot", ctx: "👩 Aama warns you:", pic: "🔥", alt: ["warm"] },
     { ne: "चम्चा", rom: "chamcha", en: "spoon", pic: "🥄" },
   ]},
-  { id: "daily-routines", title: "Daily Routines", ne: "दैनिक काम", rom: "dainik kaam", icon: "🪥", color: "var(--flag-blue)", items: [
+  { id: "daily-routines", title: "Daily Routines", ne: "दैनिक काम", rom: "dainik kaam", icon: "🪥", color: "var(--flag-blue)",
+    chains: [["उठ", "दाँत माझ", "जुत्ता लाऊ"], ["बाहिर खेलौँ", "हात धोऊ", "सुत"]], items: [
     { ne: "उठ", rom: "utha", en: "wake up", ctx: "👩 Aama, in the morning:", pic: "☀️", alt: ["get up", "stand up"] },
     { ne: "दाँत माझ", rom: "daant maajha", en: "brush teeth", ctx: "👩 Aama, after breakfast:", pic: "🪥", alt: ["brush your teeth", "brush"] },
     { ne: "हात धोऊ", rom: "haat dhou", en: "wash hands", ctx: "👩 Aama, before dinner:", pic: "🧼", alt: ["wash your hands", "clean hands"] },
@@ -249,7 +251,8 @@ window.LESSONS = [
     { ne: "मन्दिर", rom: "mandir", en: "temple", pic: "🛕", alt: ["shrine"] },
     { ne: "आशीर्वाद", rom: "aashirwaad", en: "blessing", pic: "🙏", alt: ["blessings"] },
   ]},
-  { id: "nepali-treats", title: "Nepali Treats", ne: "मिठो परिकार", rom: "mitho parikaar", icon: "🥟", color: "var(--flag-red)", items: [
+  { id: "nepali-treats", title: "Nepali Treats", ne: "मिठो परिकार", rom: "mitho parikaar", icon: "🥟", color: "var(--flag-red)",
+    order: { box: "thali", bigWho: "Hajurbaa's order! Listen and fill his thali:", want: ["दाल भात", "अचार", "दही", "पापड", "चिया", "सेल रोटी", "रोटी", "मोमो"] }, items: [
     { ne: "मोमो", rom: "momo", en: "momo", pic: "🥟", alt: ["dumplings", "momos"] },
     { ne: "दाल भात", rom: "daal bhaat", en: "lentils and rice", pic: "🍛", alt: ["dal bhat", "rice and lentils"] },
     { ne: "चिया", rom: "chiya", en: "milk tea", pic: "☕", alt: ["tea", "chai"] },
@@ -305,6 +308,13 @@ window.LESSONS = [
     { ne: "नदी", rom: "nadi", en: "river", pic: "🏞️", alt: ["stream"] },
     { ne: "समुद्र", rom: "samudra", en: "sea", pic: "🏖️", alt: ["ocean", "beach"] },
     { ne: "पुल", rom: "pul", en: "bridge", pic: "🌉" },
+  ]},
+  { id: "animal-sounds", title: "Animal Sounds", ne: "जनावरको आवाज", rom: "janaawarko aawaaj", icon: "🐶", color: "var(--flag-green)", items: [
+    { ne: "भाउ भाउ", rom: "bhau bhau", en: "woof woof (dog)", pic: "🐕", img: "w-dog", alt: ["woof", "woof woof", "dog", "bark", "dog barking"] },
+    { ne: "म्याउँ म्याउँ", rom: "myaaun myaaun", en: "meow meow (cat)", pic: "🐈", img: "w-cat", alt: ["meow", "meow meow", "cat", "miaow"] },
+    { ne: "बाँ बाँ", rom: "baan baan", en: "moo moo (cow)", pic: "🐄", img: "w-cow", alt: ["moo", "moo moo", "cow"] },
+    { ne: "चिरबिर", rom: "chirbir", en: "tweet tweet (bird)", pic: "🐦", img: "w-bird", alt: ["tweet", "tweet tweet", "chirp", "bird", "chirping"] },
+    { ne: "ट्वार्र ट्वार्र", rom: "twaarra twaarra", en: "ribbit ribbit (frog)", pic: "🐸", img: "w-frog", alt: ["ribbit", "croak", "frog", "ribbit ribbit"] },
   ]},
   { id: "travel-sentences", title: "Out & About", ne: "घुम्न जाऔँ", rom: "ghumna jaaun", icon: "🏕️", color: "var(--panda)", bigOnly: true, sentences: [
     { ne: ["ठूलो", "हात्ती", "हेर"], rom: ["thulo", "hatti", "hera"], en: "Look at the big elephant." },
@@ -460,7 +470,7 @@ window.CHAPTERS = [
   { id: "me", ne: "म र मेरो शरीर", rom: "ma ra mero shareer", en: "All about me", color: "var(--flag-yellow)", sticker: { pic: "😊", img: "img/st-me.webp", name: "All About Me", say: { ne: "तिमी धेरै बाठो छौ!", rom: "timi dherai baatho chhau!", en: "You're so clever!" } }, lessons: ["body", "feelings-needs", "clothes", "what-i-have"] },
   { id: "play", ne: "खेल र बाहिर", rom: "khel ra baahira", en: "Play & outside", color: "var(--flag-green)", sticker: { pic: "⚽", img: "img/st-play.webp", name: "Play Champ", say: { ne: "खेलमा तिमी च्याम्पियन!", rom: "khelma timi chyaampiyan!", en: "You're a play champion!" } }, lessons: ["playtime-verbs", "helping-verbs", "sports-outdoors", "weather-nature", "colours", "opposites", "sound-words", "retro-90s", "play-sentences"] },
   { id: "culture", ne: "हाम्रो संस्कृति", rom: "haamro sanskriti", en: "Nepali culture & time", color: "var(--flag-red)", sticker: { pic: "🪔", img: "img/st-festival.webp", name: "Festival Star", say: { ne: "तिमी चाडपर्वको तारा हौ!", rom: "timi chaadparvako taara hau!", en: "You're a festival star!" } }, lessons: ["festivals-culture", "nepali-treats", "time-of-day", "days", "question-words", "culture-sentences"] },
-  { id: "nature", ne: "प्रकृति र यात्रा", rom: "prakriti ra yaatra", en: "Nature & travel", color: "var(--flag-green)", sticker: { pic: "🐘", img: "img/st-explorer.webp", name: "Explorer", say: { ne: "वाह! तिमी साहसी यात्री हौ!", rom: "waah! timi saahasi yaatri hau!", en: "Wow, you're a brave explorer!" } }, lessons: ["animals", "birds-bugs", "vehicles-travel", "travel-sentences"] },
+  { id: "nature", ne: "प्रकृति र यात्रा", rom: "prakriti ra yaatra", en: "Nature & travel", color: "var(--flag-green)", sticker: { pic: "🐘", img: "img/st-explorer.webp", name: "Explorer", say: { ne: "वाह! तिमी साहसी यात्री हौ!", rom: "waah! timi saahasi yaatri hau!", en: "Wow, you're a brave explorer!" } }, lessons: ["animals", "birds-bugs", "animal-sounds", "vehicles-travel", "travel-sentences"] },
   { id: "school", ne: "स्कूल र गन्ती", rom: "skul ra ganti", en: "School & counting", color: "var(--flag-blue)", sticker: { pic: "🎒", img: "img/st-school.webp", name: "School Star", say: { ne: "तिमी स्कूलको तारा हौ!", rom: "timi skulko taara hau!", en: "You're a school star!" } }, lessons: ["num", "school-supplies", "fruits-snacks", "numbers-11-20"] },
   { id: "talk", ne: "कुराकानी र कथा", rom: "kuraakaani ra katha", en: "Real conversations", color: "var(--panda)", sticker: { pic: "💬", img: "img/st-chatter.webp", name: "Chatterbox", say: { ne: "तिमी कति राम्रो कुरा गर्छौ!", rom: "timi kati raamro kura garchhau!", en: "You talk so well!" } }, lessons: ["likes-dislikes", "phone-grandparents", "polite-commands", "grandparent-sentences"] },
   { id: "letters", ne: "अक्षर र वाक्य", rom: "akshar ra waakya", en: "Letters & sentences", color: "var(--flag-blue)", sticker: { pic: "अ", img: "img/st-letters.webp", letter: "अ", name: "Letter Master", say: { ne: "तिमी अक्षरमा उस्ताद हौ!", rom: "timi aksharma ustaad hau!", en: "You're a letter master!" } }, lessons: ["vowels", "cons1", "cons2", "cons3", "cons4", "sentences"] },
@@ -572,6 +582,12 @@ window.RIDDLES = [
     answer: { ne: "केरा", rom: "keraa", en: "banana", pic: "🍌" }, wrong: [{ ne: "आलु", rom: "aalu", en: "potato", pic: "🥔" }, { ne: "रोटी", rom: "roti", en: "flatbread", pic: "🫓" }, { ne: "दूध", rom: "dudh", en: "milk", pic: "🥛" }] },
   { ne: "दुई भाइ सँगै बस्छन्, तर एक अर्कालाई कहिल्यै देख्दैनन् — के हो?", say: "दुई भाइ सँगै बस्छन्, तर एक अर्कालाई कहिल्यै देख्दैनन्। के हो?", rom: "dui bhaai sangai baschhan, tara ek arkaalaai kahilyai dekhdainan — ke ho?", en: "Two brothers live right next to each other, but can never see each other — what are they?",
     answer: { ne: "आँखा", rom: "aankhaa", en: "eyes", pic: "👀" }, wrong: [{ ne: "हात", rom: "haat", en: "hands", pic: "👐" }, { ne: "खुट्टा", rom: "khuttaa", en: "feet", pic: "🦶" }, { ne: "पेट", rom: "pet", en: "tummy", pic: "🫃" }] },
+  { ne: "आफू बोल्दैन तर तिम्रो अनुहार जस्ताको तस्तै देखाउँछ — के हो?", say: "आफू बोल्दैन तर तिम्रो अनुहार जस्ताको तस्तै देखाउँछ। के हो?", rom: "aafu boldaina tara timro anuhaar jastaako tastai dekhaaunchha — ke ho?", en: "It never speaks, but shows your face just as it is — what is it?",
+    answer: { ne: "ऐना", rom: "aina", en: "mirror", pic: "🪞" }, wrong: [{ ne: "ढोका", rom: "dhoka", en: "door", pic: "🚪" }, { ne: "कुर्सी", rom: "kursi", en: "chair", pic: "🪑" }, { ne: "टोपी", rom: "topi", en: "hat", pic: "🧢" }] },
+  { ne: "रातदिन टिक टिक हिँडिरहन्छ तर कहिल्यै थाक्दैन — के हो?", say: "रातदिन टिक टिक हिँडिरहन्छ तर कहिल्यै थाक्दैन। के हो?", rom: "raatdin tik tik hindirahanchha tara kahilyai thaakdaina — ke ho?", en: "It goes tick-tick day and night, but never gets tired — what is it?",
+    answer: { ne: "घडी", rom: "ghadi", en: "watch", pic: "⌚" }, wrong: [{ ne: "जुत्ता", rom: "jutta", en: "shoes", pic: "👟" }, { ne: "साइकल", rom: "saaikal", en: "bicycle", pic: "🚲" }, { ne: "गाडी", rom: "gaadi", en: "car", pic: "🚗" }] },
+  { ne: "पाना पल्टायो भने धेरै कुरा सिकाउँछ — के हो?", say: "पाना पल्टायो भने धेरै कुरा सिकाउँछ। के हो?", rom: "paanaa paltaayo bhane dherai kuraa sikaaunchha — ke ho?", en: "Turn its pages and it teaches you many things — what is it?",
+    answer: { ne: "किताब", rom: "kitaab", en: "book", pic: "📚" }, wrong: [{ ne: "कलम", rom: "kalam", en: "pen", pic: "🖊️" }, { ne: "झोला", rom: "jhola", en: "bag", pic: "🎒" }, { ne: "बत्ती", rom: "batti", en: "light", pic: "💡" }] },
 ];
 window.RIDDLE_TITLE = { ne: "गाउँ खाने कथा", rom: "gaaun khaane kathaa", en: "Pandu's riddle" };
 
