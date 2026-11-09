@@ -452,6 +452,18 @@ window.LESSONS = [
     { ne: "त्र", rom: "tra", word: "त्रिशूल", wordRom: "trishul", en: "Trident", pic: "🔱" },
     { ne: "ज्ञ", rom: "gya", word: "ज्ञानी", wordRom: "gyani", en: "Good child", pic: "🧒" },
   ]},
+  { id: "barakhari", title: "Matra Magic", ne: "बाह्रखरी", rom: "baahrakhari", icon: "का", color: "var(--flag-blue)", letters: true, barakhari: true, items: [
+    { ne: "पा", rom: "paa", base: "प", sign: "ा", word: "पानी", wordRom: "paani", en: "water", pic: "💧" },
+    { ne: "कि", rom: "ki", base: "क", sign: "ि", word: "किताब", wordRom: "kitaab", en: "book", pic: "📖" },
+    { ne: "दी", rom: "dee", base: "द", sign: "ी", word: "दिदी", wordRom: "didi", en: "older sister", pic: "👧", hint: true },
+    { ne: "कु", rom: "ku", base: "क", sign: "ु", word: "कुकुर", wordRom: "kukur", en: "dog", pic: "🐕" },
+    { ne: "दू", rom: "doo", base: "द", sign: "ू", word: "दूध", wordRom: "doodh", en: "milk", pic: "🥛" },
+    { ne: "के", rom: "ke", base: "क", sign: "े", word: "केरा", wordRom: "keraa", en: "banana", pic: "🍌" },
+    { ne: "कै", rom: "kai", base: "क", sign: "ै", word: "मकै", wordRom: "makai", en: "corn", pic: "🌽", hint: true },
+    { ne: "मो", rom: "mo", base: "म", sign: "ो", word: "मोमो", wordRom: "momo", en: "momo", pic: "🥟" },
+    { ne: "मौ", rom: "mau", base: "म", sign: "ौ", word: "मौरी", wordRom: "mauri", en: "bee", pic: "🐝" },
+    { ne: "अं", rom: "an", base: "अ", sign: "ं", word: "अंगुर", wordRom: "angur", en: "grapes", pic: "🍇" },
+  ]},
   { id: "sentences", title: "Make sentences", ne: "वाक्य", rom: "waakya", icon: "🧩", color: "var(--flag-green)", bigOnly: true, sentences: [
     { pic: "😊", ne: ["म", "ठीक", "छु"], rom: ["ma", "thik", "chhu"], en: "I am fine." },
     { pic: "👧", ne: ["मेरो", "नाम", "सीता", "हो"], rom: ["mero", "naam", "Sita", "ho"], en: "My name is Sita." },
@@ -473,7 +485,7 @@ window.CHAPTERS = [
   { id: "nature", ne: "प्रकृति र यात्रा", rom: "prakriti ra yaatra", en: "Nature & travel", color: "var(--flag-green)", sticker: { pic: "🐘", img: "img/st-explorer.webp", name: "Explorer", say: { ne: "वाह! तिमी साहसी यात्री हौ!", rom: "waah! timi saahasi yaatri hau!", en: "Wow, you're a brave explorer!" } }, lessons: ["animals", "birds-bugs", "animal-sounds", "vehicles-travel", "travel-sentences"] },
   { id: "school", ne: "स्कूल र गन्ती", rom: "skul ra ganti", en: "School & counting", color: "var(--flag-blue)", sticker: { pic: "🎒", img: "img/st-school.webp", name: "School Star", say: { ne: "तिमी स्कूलको तारा हौ!", rom: "timi skulko taara hau!", en: "You're a school star!" } }, lessons: ["num", "school-supplies", "fruits-snacks", "numbers-11-20"] },
   { id: "talk", ne: "कुराकानी र कथा", rom: "kuraakaani ra katha", en: "Real conversations", color: "var(--panda)", sticker: { pic: "💬", img: "img/st-chatter.webp", name: "Chatterbox", say: { ne: "तिमी कति राम्रो कुरा गर्छौ!", rom: "timi kati raamro kura garchhau!", en: "You talk so well!" } }, lessons: ["likes-dislikes", "phone-grandparents", "polite-commands", "grandparent-sentences"] },
-  { id: "letters", ne: "अक्षर र वाक्य", rom: "akshar ra waakya", en: "Letters & sentences", color: "var(--flag-blue)", sticker: { pic: "अ", img: "img/st-letters.webp", letter: "अ", name: "Letter Master", say: { ne: "तिमी अक्षरमा उस्ताद हौ!", rom: "timi aksharma ustaad hau!", en: "You're a letter master!" } }, lessons: ["vowels", "cons1", "cons2", "cons3", "cons4", "sentences"] },
+  { id: "letters", ne: "अक्षर र वाक्य", rom: "akshar ra waakya", en: "Letters & sentences", color: "var(--flag-blue)", sticker: { pic: "अ", img: "img/st-letters.webp", letter: "अ", name: "Letter Master", say: { ne: "तिमी अक्षरमा उस्ताद हौ!", rom: "timi aksharma ustaad hau!", en: "You're a letter master!" } }, lessons: ["vowels", "cons1", "cons2", "cons3", "cons4", "barakhari", "sentences"] },
 ];
 
 // More typed answers the Big learners game accepts (key = the lesson's English answer, lowercase).
@@ -612,3 +624,24 @@ window.SCENES = {
     { ne: "स्याउ", en: "apples", x: 84, y: 88, r: 4 }, { ne: "केरा", en: "bananas", x: 91, y: 85, r: 4 }, { ne: "झ्याल", en: "window", x: 60, y: 30, r: 8 }, { ne: "ढोका", en: "door", x: 89, y: 47, r: 7 }, { ne: "थाल", en: "plates", x: 15, y: 33, r: 6 }, { ne: "करुवा", en: "water jug", x: 57, y: 54, r: 5 },
     { ne: "चुलो", en: "stove", x: 35, y: 58, r: 4 }, { ne: "कुकर", en: "pressure cooker", x: 43, y: 50, r: 4 } ] },
 };
+
+/* Bikram Sambat months (approximate start day in the Gregorian calendar) and a seasonal line for Pandu's card. */
+window.BS_MONTHS = [
+  { ne: "वैशाख", rom: "baishaakh", start: [4, 14], line: "🌸 Nepali New Year season! Spring flowers everywhere." },
+  { ne: "जेठ", rom: "jeth", start: [5, 15], line: "🥭 Hot sunny days. Mango (|आँप|) season is coming!" },
+  { ne: "असार", rom: "asaar", start: [6, 15], line: "🌧️ Monsoon rain (|झमझम|) and rice planting in green fields." },
+  { ne: "साउन", rom: "saaun", start: [7, 17], line: "🐸 Green monsoon days. The frogs are singing!" },
+  { ne: "भदौ", rom: "bhadau", start: [8, 17], line: "⛅ Late monsoon clouds over the hills." },
+  { ne: "असोज", rom: "asoj", start: [9, 17], line: "🪁 Clear blue autumn skies: kite (|चङ्गा|) season!" },
+  { ne: "कात्तिक", rom: "kaattik", start: [10, 18], line: "🌼 Marigolds bloom and diyo lamps glow." },
+  { ne: "मंसिर", rom: "mansir", start: [11, 17], line: "🌾 Golden rice harvest in the villages." },
+  { ne: "पुस", rom: "pus", start: [12, 16], line: "🧣 Cold winter mornings. Time for warm |चिया|!" },
+  { ne: "माघ", rom: "maagh", start: [1, 15], line: "❄️ Snow on the Himalayas. Stay cosy!" },
+  { ne: "फागुन", rom: "phaagun", start: [2, 13], line: "🌺 Rhododendrons (लालीगुराँस) bloom in the hills." },
+  { ne: "चैत", rom: "chait", start: [3, 15], line: "💨 Windy spring days before the New Year." },
+];
+/* Traditional story opening and closing */
+window.STORY_OPEN = { ne: "एकादेशमा...", rom: "ekaadeshmaa...", en: "Once upon a time, in a faraway land..." };
+window.STORY_CLOSE = { ne: "भन्नेलाई फूलको माला, सुन्नेलाई सुनको माला, यो कथा बैकुण्ठ जाला, फेरि भन्ने बेला खुरुखुरु आउला!", rom: "bhannelaai phoolko maalaa, sunnelaai sunko maalaa, yo kathaa baikuntha jaalaa, pheri bhanne belaa khurukhuru aaulaa!", en: "A flower garland for the teller, a gold garland for the listener! May this story go to heaven, and come running back the next time we tell it." };
+/* Phrases a family member can record in their own voice (kept on this device only) */
+window.FAMILY_PHRASES = ["नमस्ते!", "शुभ प्रभात!", "शुभ रात्रि!", "स्याबास!", "राम्रो!", "एकदम ठीक!", "फेरि प्रयास गरौँ!"];

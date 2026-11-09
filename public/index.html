@@ -192,6 +192,13 @@ body .pick-grid .opt .big { font-size: 34px !important; } body .pick-grid .opt .
 .fb-ex { display: block; margin-top: 4px; font-size: 15px; } .fb-ex small { display: block; color: var(--muted); }
 .room-say { display: flex; align-items: center; gap: 8px; } .room-say .room-pandu { width: 48px; height: 48px; flex: none; } .room-say small { display: block; color: var(--muted); }
 .story-chip { display: block; margin: 6px auto 0; } .mission-chip { margin-top: 6px; font-size: 13px; padding: 4px 10px; } .greet .mission { margin-top: 8px; }
+.matra-sum { flex-direction: row; justify-content: center; gap: 10px; font-family: var(--display); font-size: 30px; }
+.m-part { font-size: 52px; font-weight: 800; min-width: 64px; text-align: center; } .m-part.sign { color: var(--flag-red); } .m-part.q { color: var(--muted); }
+.voice-list { display: flex; flex-direction: column; gap: 8px; }
+.voice-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; background: var(--snow); border: 2px solid var(--line); border-radius: 14px; padding: 8px 10px; }
+.voice-row .ne { font-family: var(--display); font-size: 22px; font-weight: 800; flex: 1; } .voice-who { font-size: 12px; color: var(--muted); font-weight: 700; }
+.story-open { margin: 0; font-family: var(--display); font-size: 20px; color: #fde68a; } .story-close { margin: 6px 0 0; background: #fff8e1; color: #6b4a1f; border: 2px solid #f3d37a; border-radius: 16px; padding: 10px 12px; font-size: 15px; }
+.story-close .ne { font-family: var(--display); font-size: 18px; font-weight: 800; color: #6b4a1f; } .story-close small { display: block; color: #8a6a3f; }
 .answer.tape { background: repeating-linear-gradient(90deg, #5a3a22 0 6px, #6b4529 6px 12px); border-radius: 12px; border-bottom: 0; padding: 8px; justify-content: center; }
 .answer { min-height: 64px; border-bottom: 3px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; padding: 6px 0; }
 .bank { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
@@ -741,16 +748,24 @@ document.addEventListener("pointerdown", function unlockAudio() {
   try { const AC = window.AudioContext || window.webkitAudioContext; if (AC) { actx = actx || new AC(); actx.resume && actx.resume(); const b = actx.createBuffer(1, 1, 22050), s = actx.createBufferSource(); s.buffer = b; s.connect(actx.destination); s.start(0); } } catch (e) {}
   try { if (!player) { player = new Audio(); player.muted = true; const pr = player.play(); if (pr) pr.catch(() => {}); player.pause(); player.muted = false; } } catch (e) {}
 }, { once: true, passive: true });
+/* Family voices: a grown-up can record greetings and cheers in their own voice. Kept on this device only (IndexedDB). */
+const FAM = {};
+const famDB = () => new Promise((ok, no) => { if (!window.indexedDB) return no(); const r = indexedDB.open("sn-family", 1); r.onupgradeneeded = () => r.result.createObjectStore("v"); r.onsuccess = () => ok(r.result); r.onerror = no; });
+async function famLoad() { try { const db = await famDB(); const st = db.transaction("v").objectStore("v"); const ks = await new Promise(r => { const q = st.getAllKeys(); q.onsuccess = () => r(q.result); q.onerror = () => r([]); });
+  for (const k of ks) { const b = await new Promise(r => { const q = db.transaction("v").objectStore("v").get(k); q.onsuccess = () => r(q.result); q.onerror = () => r(null); }); if (b) FAM[k] = URL.createObjectURL(b); } } catch (e) {} }
+async function famPut(k, blob) { const db = await famDB(); await new Promise((ok, no) => { const tx = db.transaction("v", "readwrite"); blob ? tx.objectStore("v").put(blob, k) : tx.objectStore("v").delete(k); tx.oncomplete = ok; tx.onerror = no; });
+  if (FAM[k]) URL.revokeObjectURL(FAM[k]); if (blob) FAM[k] = URL.createObjectURL(blob); else delete FAM[k]; }
+famLoad();
 function say(key, el) {
   if (!P.sound || !key) return;
   if (lastEl) lastEl.classList.remove("playing");
   if (el) { el.classList.add("playing"); lastEl = el; }
   const done = () => { if (el) el.classList.remove("playing"); };
   try { if (current) current.pause(); if (window.speechSynthesis && speechSynthesis.speaking) speechSynthesis.cancel(); } catch (e) {}
-  if (AUDIO[key]) {
+  if (AUDIO[key] || FAM[key]) {
     // One shared player: iPhones only allow sound from a player the child has already tapped.
     const a = player || (player = new Audio());
-    a.onended = done; a.onerror = done; a.src = AUDIO[key]; current = a;
+    a.onended = done; a.onerror = done; a.src = FAM[key] || AUDIO[key]; current = a;
     try { a.currentTime = 0; } catch (e) {}
     const pr = a.play(); if (pr) pr.catch(done); return;
   }
@@ -770,6 +785,14 @@ function tone(f, t, dur, peak, type = "sine", f2) {
   o.connect(g).connect(actx.destination); o.start(t); o.stop(t + dur + .02);
 }
 function bowl(t, root, peak) { [[1, 1], [2.71, .45], [5.2, .18]].forEach(([m, a]) => tone(root * m, t, 1.6 / Math.sqrt(m), peak * a)); }
+// Bansuri (bamboo flute): soft triangle tone with a breathy vibrato, on the pentatonic folk scale
+function bansuri(t, f, dur) {
+  const o = actx.createOscillator(), v = actx.createOscillator(), vg = actx.createGain(), g = actx.createGain(), lp = actx.createBiquadFilter();
+  o.type = "triangle"; o.frequency.setValueAtTime(f, t); v.frequency.value = 5.5; vg.gain.setValueAtTime(0, t); vg.gain.linearRampToValueAtTime(f * .008, t + .2);
+  lp.type = "lowpass"; lp.frequency.value = 2400; v.connect(vg).connect(o.frequency);
+  g.gain.setValueAtTime(.0001, t); g.gain.linearRampToValueAtTime(.07, t + .07); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+  o.connect(lp).connect(g).connect(actx.destination); o.start(t); v.start(t); o.stop(t + dur + .05); v.stop(t + dur + .05);
+}
 function madal(t, low) { tone(low ? 150 : 260, t, low ? .28 : .14, low ? .5 : .25, "sine", low ? 75 : 190); }
 function wood(t) { tone(1250, t, .05, .12, "triangle", 900); tone(2600, t, .025, .04); }
 function beep(kind) {
@@ -780,6 +803,7 @@ function beep(kind) {
     if (kind === "tap") wood(t);
     else if (kind === "good") { bowl(t, 784, .09); bowl(t + .12, 1046, .06); }
     else if (kind === "bad") bowl(t, 294, .06);
+    else if (kind === "flute") [[523.25, .3], [587.33, .3], [659.25, .3], [783.99, .45], [880, .45], [783.99, .9]].reduce((d, [f, l]) => (bansuri(t + d, f, l + .25), d + l), 0);
     else if (kind === "done") { [[0, 1], [.18, 0], [.27, 0], [.36, 1], [.54, 0], [.72, 1]].forEach(([d, low]) => madal(t + d, low)); bowl(t + .9, 784, .1); bowl(t + 1.02, 1175, .06); }
   } catch (e) {}
 }
@@ -869,6 +893,13 @@ function sequenceQ(lesson) {
   let mix; do mix = shuffle(steps.map((x, i) => [x, i])); while (mix.every(([, i], k) => i === k));
   return { type: "sequence", steps, mix };
 }
+// Same letter, different vowel signs, so the sign is the only clue: प + ा → पा / पि / पु / पो
+const MATRA_ROM = { "ा": "aa", "ि": "i", "ी": "ee", "ु": "u", "ू": "oo", "े": "e", "ै": "ai", "ो": "o", "ौ": "au" }, BASE_ROM = { "प": "p", "क": "k", "द": "d", "म": "m" };
+function matraQ(lesson, item) {
+  const n = LV().options - 1, others = BASE_ROM[item.base] ? pickN(Object.keys(MATRA_ROM).filter(s => s !== item.sign), n).map(s => ({ ne: item.base + s, rom: BASE_ROM[item.base] + MATRA_ROM[s] }))
+    : pickN(lesson.items.filter(x => x !== item), n);
+  return { type: "matra", item, opts: shuffle([item, ...others]) };
+}
 function buildQuestions(lesson) {
   const big = P.level === "big";
   const total = LV().questions;
@@ -892,11 +923,12 @@ function buildQuestions(lesson) {
     qs.push({ type: t, item });
   }
   if (!lesson.letters) qs.splice(Math.min(3, qs.length), 0, { type: "match", items: pickN(items, big ? 5 : 3) });
+  if (lesson.barakhari) pickN(lesson.items, 3).forEach((x, k) => qs.splice(1 + k * 3, 1, matraQ(lesson, x)));
   if (lesson.order && (big ? lesson.order.bigWho : lesson.order.who)) qs.splice(4, 1, orderQ(lesson, big));
   if (lesson.chains) qs.splice(big ? 7 : 5, 1, sequenceQ(lesson));
   if (lesson.cassette && big) pickN(items.filter(x => syllables(x.ne).length > 1), 2).forEach((x, k) => qs.splice(5 + k * 4, 1, cassetteQ(x)));
   qs.forEach(q => {
-    if (!q.item) return;
+    if (!q.item || q.type === "matra") return;   // matra questions pick their own options
     const pool = items.filter(x => x !== q.item && (q.type !== "letterPic" || x.word));   // picture options need a picture word
     q.opts = shuffle([q.item, ...pickN(pool, LV().options - 1)]);
   });
@@ -918,6 +950,7 @@ function render() {
   else if (S.screen === "cards") renderCards();
   else if (S.screen === "print") renderPrint();
   else if (S.screen === "kin") renderKin();
+  else if (S.screen === "voices") renderVoices();
   else if (S.screen === "story") renderStory();
   else if (S.screen === "car") renderCar();
   else if (S.screen === "scene") renderScene();
@@ -1216,6 +1249,7 @@ function renderMap() {
         <button class="chip" type="button" id="loadCode">📥 Load save code</button>
         ${"serviceWorker" in navigator ? `<button class="chip" type="button" id="offlineAudio">📶 Save sounds for offline</button>` : ""}
         ${(P.misses || []).length ? `<button class="chip" type="button" id="openMisses">📝 Answers to check (<span lang="ne">${toDeva(P.misses.length)}</span>)</button>` : ""}
+        <button class="chip" type="button" id="openVoices">🎙️ Family voices</button>
         <button class="chip" type="button" id="tReset">Start over</button>
       </div>
     </section>
@@ -1334,9 +1368,18 @@ const echoBtn = (key, cls = "chip") => P.sound && AUDIO[key] ? `<button class="$
 /* ---------- Festivals and Saturdays on Pandu's card ---------- */
 const isoToday = () => { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
 const festivalToday = () => { const d = isoToday(); return (window.FESTIVALS || []).find(f => d >= f.from && d <= f.to); };
+function bsMonth(d = new Date()) {   // approximate Bikram Sambat month and year
+  const M = window.BS_MONTHS || [], md = (d.getMonth() + 1) * 100 + d.getDate();
+  let cur = M[M.length - 1];
+  for (const m of M.slice().sort((a, b) => (a.start[0] * 100 + a.start[1]) - (b.start[0] * 100 + b.start[1]))) if (md >= m.start[0] * 100 + m.start[1]) cur = m;
+  const year = d.getFullYear() + (md >= 414 ? 57 : 56);
+  return cur && { ...cur, year };
+}
 function greetExtra() {
   const f = festivalToday();
   if (f) return `🌼 ${neSpan(f.ne)} <span class="rom">${esc(f.rom)}</span> ${esc(f.line)}`;
+  const bs = bsMonth();
+  if (new Date().getDay() !== 6 && bs) return `📅 ${neSpan(bs.ne)} <span lang="ne">${toDeva(bs.year)}</span> <span class="rom">${esc(bs.rom)} ${bs.year}</span> ${bs.line.split("|").map((x, i) => i % 2 ? neSpan(x) : esc(x)).join("")}`;
   if (new Date().getDay() === 6) return `Did you know? ${neSpan("शनिबार")} <span class="rom">shanibaar</span>, Saturday, is the weekly holiday in Nepal!`;
   return "";
 }
@@ -1351,10 +1394,12 @@ function renderStory() {
       <div class="bar"><i style="width:${((i + 1) / s.pages.length) * 100}%"></i></div><span class="hearts" lang="ne">${toDeva(i + 1)} / ${toDeva(s.pages.length)}</span></div>
     <section class="story">
       ${i === 0 ? `<h2 style="margin:0;font-family:var(--display)"><span lang="ne">${esc(s.ne)}</span> <small style="font-size:16px;color:#c7d2fe">${esc(s.en)}</small></h2>` : ""}
+      ${i === 0 && window.STORY_OPEN ? `<p class="story-open">${neSpan(window.STORY_OPEN.ne)} <small style="font-size:14px;color:#c7d2fe">${esc(window.STORY_OPEN.en)}</small></p>` : ""}
       <div class="story-pic">${art ? `<img src="${art}" alt="">` : pandu(pg.pic.replace(/^pandu-/, ""), "")}</div>
       <p class="story-text" lang="ne" id="storyText">${words.map((w, j) => `<span class="w" data-j="${j}">${esc(w)}</span>`).join(" ")}</p>
       <p class="rom" style="background:none;color:#a5b4fc">${esc(pg.rom)}</p>
       <p class="story-en">${esc(pg.en)}</p>
+      ${last && window.STORY_CLOSE ? `<p class="story-close">🌼 ${neSpan(window.STORY_CLOSE.ne)} 🌟<small>${esc(window.STORY_CLOSE.en)}</small></p>` : ""}
       <div class="story-nav">
         <button class="chip big" type="button" id="storyPrev" ${i ? "" : "disabled"} aria-label="Previous page">◀</button>
         <button class="chip big" type="button" id="storyAgain" aria-label="Read this page again">🔁</button>
@@ -1363,15 +1408,18 @@ function renderStory() {
     </section>`;
   setTimeout(readPage, 350);
 }
-function readPage() {
-  const s = window.STORY, pg = s.pages[S.page || 0], key = K(pg.ne), spans = [...document.querySelectorAll("#storyText .w")];
+async function readPage() {
+  const s = window.STORY, i = S.page || 0, pg = s.pages[i], key = K(pg.ne), spans = [...document.querySelectorAll("#storyText .w")];
   if (!spans.length) return;
+  if (i === 0 && window.STORY_OPEN && AUDIO[K(window.STORY_OPEN.ne)] && !S.openedOnce) { S.openedOnce = true; await sayAndWait(K(window.STORY_OPEN.ne)); if (S.screen !== "story" || (S.page || 0) !== 0) return; }
   const lens = spans.map(e => e.textContent.length + 1), total = lens.reduce((a, b) => a + b, 0);
   const mark = f => { let acc = 0; spans.forEach((e, j) => { e.classList.toggle("on", f >= acc / total && f < (acc + lens[j]) / total); acc += lens[j]; }); };
   say(key);
   const a = player; if (!a || !AUDIO[key]) return;
   a.ontimeupdate = () => { if (S.screen !== "story") { a.ontimeupdate = null; return; } if (a.duration) mark(a.currentTime / a.duration); };
-  const end = a.onended; a.onended = () => { end && end(); spans.forEach(e => e.classList.remove("on")); a.ontimeupdate = null; };
+  const last = i === s.pages.length - 1;
+  const end = a.onended; a.onended = () => { end && end(); spans.forEach(e => e.classList.remove("on")); a.ontimeupdate = null;
+    if (last && window.STORY_CLOSE && S.screen === "story") setTimeout(() => { if (S.screen === "story" && (S.page || 0) === i) say(K(window.STORY_CLOSE.ne)); }, 700); };
 }
 
 /* ================= Car ride: eyes-free family quiz over the car speakers ================= */
@@ -1476,6 +1524,26 @@ function setupRoomDrag() {
   };
   room.parentElement.onpointerdown = down;
   window.onpointermove = move; window.onpointerup = up; window.onpointercancel = () => { if (drag) { drag.g.remove(); drag = null; renderRoom(); } };
+}
+function renderVoices() {
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🎙️ Family voices</h2></div>
+    <p class="note" style="text-align:left;margin:0">Aama, Baba, Hajuraama or Hajurbaa: record these in your own voice. The game will cheer your child with <b>your</b> voice instead. Recordings stay on this device only.</p>
+    <div class="voice-list">${window.FAMILY_PHRASES.map(ph => { const k = K(ph), mine = !!FAM[k];
+      return `<div class="voice-row"><span class="ne" lang="ne">${esc(ph)}</span><span class="voice-who">${mine ? "👪 Family voice" : "App voice"}</span>
+        <button class="say" type="button" data-say="${esc(k)}" aria-label="Listen">${SPEAKER}</button>
+        <button class="chip primary" type="button" data-famrec="${esc(k)}">🎙️ ${mine ? "Again" : "Record"}</button>
+        ${mine ? `<button class="chip" type="button" data-famdel="${esc(k)}" aria-label="Use the app voice again">🗑️</button>` : ""}</div>`; }).join("")}</div>`;
+}
+async function famRecord(btn, k) {
+  if (!navigator.mediaDevices || !window.MediaRecorder) { btn.textContent = "🎤 Not on this device"; return; }
+  let stream; try { stream = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch (e) { btn.textContent = "🎤 Mic is off"; return; }
+  const rec = new MediaRecorder(stream), chunks = []; rec.ondataavailable = e => { if (e.data.size) chunks.push(e.data); };
+  const stopped = new Promise(r => { rec.onstop = r; });
+  let n = 3; btn.disabled = true; btn.textContent = `🔴 Speak now… ${toDeva(n)}`; rec.start();
+  const tick = setInterval(() => { n--; if (n > 0) btn.textContent = `🔴 Speak now… ${toDeva(n)}`; }, 1000);
+  await new Promise(r => setTimeout(r, 3000)); clearInterval(tick); rec.stop(); await stopped; stream.getTracks().forEach(t => t.stop());
+  try { await famPut(k, new Blob(chunks, rec.mimeType ? { type: rec.mimeType } : {})); beep("good"); } catch (e) { btn.textContent = "Couldn't save"; return; }
+  renderVoices(); say(k);
 }
 function renderKin() {
   const K2 = window.KIN, card = (side, x, i) => `<button class="kin-card" type="button" data-kin="${side}:${i}">${kinPic(x)}<b lang="ne">${esc(x.ne)}</b><span class="rom">${esc(x.rom)}</span><small>${esc(x.who)}</small></button>`;
@@ -1630,6 +1698,10 @@ function renderQuestion() {
     body = `<p class="ask">Tap the pairs that match</p>
       <div class="match"><div class="col">${S.matchLeft.map((o, i) => `<button class="opt" type="button" data-l="${i}"><span class="ne" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span></button>`).join("")}</div>
       <div class="col">${S.matchRight.map((o, i) => `<button class="opt" type="button" data-r="${i}">${picHTML(o, 34)}<span class="en">${esc(o.en)}</span></button>`).join("")}</div></div>`;
+  } else if (q.type === "matra") {
+    body = `<p class="ask">✨ Matra magic: join the letter and the vowel sign!</p>
+      <div class="prompt matra-sum"><span class="m-part" lang="ne">${esc(q.item.base)}</span><b>+</b><span class="m-part sign" lang="ne">◌${esc(q.item.sign)}</span><b>=</b><span class="m-part q">?</span></div>
+      <div class="opts">${q.opts.map((o, i) => optBtn(i, `<span class="letter-big" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span>`)).join("")}</div>`;
   } else if (q.type === "order") {
     S.picked = [];
     const keys = q.want.map(x => K(x.ne));
@@ -1661,7 +1733,8 @@ function renderQuestion() {
       <div class="answer" id="answer" aria-label="Your sentence"></div>
       <div class="bank" id="bank">${S.bank.map((t, i) => `<button class="tile" type="button" data-t="${i}"><span class="ne" lang="ne">${esc(t[0])}</span><span class="rom">${esc(t[1])}</span></button>`).join("")}</div>`;
   }
-  const host = !S.lesson.team && q.type !== "match" && hostFor(l);
+  if (q.type === "order") { const g = (window.IMG || {})[q.box === "thali" ? "w-grandpa" : "w-grandma"]; if (g) body = body.replace('<p class="ask">', `<p class="ask asked"><img class="host" src="${g}" alt=""><span>`).replace(/(<p class="ask asked">[\s\S]*?)<\/p>/, "$1</span></p>"); }
+  const host = !S.lesson.team && q.type !== "match" && q.type !== "order" && hostFor(l);
   if (host) body = body.replace('<p class="ask">', `<p class="ask asked"><img class="host" src="${host.img}" alt=""><span><b>${esc(host.who)}:</b> `).replace(/(<p class="ask asked">[\s\S]*?)<\/p>/, "$1</span></p>");
   if (q.item && q.item.ne && RESPECT.test(q.item.ne)) body = body.replace('<div class="prompt">', `<div class="prompt">${aadarHTML(q.item.ne)}`);
   body = turn + body;
@@ -1878,7 +1951,7 @@ function nextStep() {
     S.newPic = P.stars[k] ? null : dropPic();   // first time finishing this lesson: a picture sticker
     P.stars[k] = Math.max(P.stars[k] || 0, stars); P.xp += S.xpGain; bumpStreak(); save();
     S.newSticker = stickerState().find(x => x.got && !before.has(x.id + (x.gold ? "*" : ""))) || null;
-    S.screen = "done"; S.outOfHearts = false; render(); say(K(window.PHRASES.wellDone)); return;
+    S.screen = "done"; S.outOfHearts = false; render(); say(K(window.PHRASES.wellDone)); if (S.newSticker) setTimeout(() => beep("flute"), 1500); return;
   }
   render(); window.scrollTo(0, 0);
 }
@@ -1962,7 +2035,7 @@ function legacyCopy(text) {
 function selectShare() { const el = $("#shareText"); if (!el) return; const r = document.createRange(); r.selectNodeContents(el); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); }
 
 /* ---------- Events ---------- */
-const GATED = new Set(["shareApp", "saveCode", "loadCode", "offlineAudio", "openMisses", "tReset", "shareNow", "copyShare", "shareCert"]);
+const GATED = new Set(["openVoices", "shareApp", "saveCode", "loadCode", "offlineAudio", "openMisses", "tReset", "shareNow", "copyShare", "shareCert"]);
 let gateUntil = 0;
 function openGate(targetId) {
   closeGate();
@@ -2006,8 +2079,11 @@ document.addEventListener("click", e => {
   if (t.dataset.echo) { echo(t, t.dataset.echo); return; }
   if (t.id === "goTeam") { const id = S.sheet; S.sheet = null; startTeam(id); return; }
   if (t.id === "teamAgain") { startTeam(S.lesson.id); return; }
+  if (t.dataset.famrec) { famRecord(t, t.dataset.famrec); return; }
+  if (t.dataset.famdel) { famPut(t.dataset.famdel, null).then(renderVoices); return; }
+  if (t.id === "openVoices") { S.screen = "voices"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "toggleMission") { S.showMission = !S.showMission; render(); return; }
-  if (t.id === "openStory" || t.dataset.story) { S.page = 0; S.screen = "story"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "openStory" || t.dataset.story) { beep("flute"); S.openedOnce = false; S.page = 0; S.screen = "story"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "storyNext" || t.id === "storyPrev") { S.page = Math.max(0, Math.min(window.STORY.pages.length - 1, (S.page || 0) + (t.id === "storyNext" ? 1 : -1))); renderStory(); return; }
   if (t.id === "storyAgain") { readPage(); return; }
   if (t.id === "openCar") { startCar(); return; }

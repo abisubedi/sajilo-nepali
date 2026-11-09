@@ -1,6 +1,6 @@
 # Day 2 of 12: Map circles, chapter stickers and player pictures
 
-62 pictures in the **storybook sketch style** (ink outlines, colored pencil, watercolor, round sticker). Every prompt is complete, so paste it as is.
+63 pictures in the **storybook sketch style** (ink outlines, colored pencil, watercolor, round sticker). Every prompt is complete, so paste it as is.
 
 **Tips**
 - Same tool and settings as pandu-namaste, and attach **pandu-namaste** as a style reference for every picture.
@@ -55,6 +55,7 @@
 - [x] li-cons2.png
 - [x] li-cons3.png
 - [x] li-cons4.png
+- [ ] li-barakhari.png
 - [x] li-sentences.png
 - [x] st-pandu.png
 - [x] st-home.png
@@ -383,6 +384,13 @@
 **Attach:** pandu-namaste.png (style reference)
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a simple bold icon of a golden scroll.
+
+### li-barakhari.png
+512x512 · used for: lesson circle on the map: Matra Magic
+
+**Attach:** pandu-namaste.png (style reference)
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a simple bold icon of a dark wooden chalk slate (paati) with the Nepali syllables का and कि written in white chalk, a short piece of white chalk beside it, small sparkles around the vowel signs.
 
 ### li-sentences.png
 512x512 · used for: lesson circle on the map: Make sentences
