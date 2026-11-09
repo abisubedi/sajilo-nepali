@@ -230,7 +230,7 @@ const W = {
   "notebook": "a school notebook (kapi) with a colorful cover",
   "picture": "a child's crayon drawing of a house and mountains",
   "story": `${C.hajuraama}, telling a story to two children sitting at her feet`,
-  "song": "colorful music notes floating out of a madal drum",
+  "song": "a small group of three Nepali schoolchildren in uniforms singing together from an open songbook, mouths open, big colorful music notes floating above them",
   "teacher": `${C.teacher}, standing by a small blackboard`,
   // fruits
   "mango": "a ripe yellow-orange mango",
