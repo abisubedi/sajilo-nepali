@@ -252,14 +252,14 @@ const W = {
   "i am fine": `${boy}, giving a thumbs-up and smiling`,
   "did you eat? (polite)": `${C.hajuraama}, on a video call asking kindly, a small plate of food icon in a speech bubble`,
   "i ate": `${kid}, showing an empty plate and smiling`,
-  "what are you doing?": `${boy}, on a phone call, a thought bubble with a question mark`,
+  "what are you doing?": `${C.hajurbaa} on a tablet video call, curiously leaning toward the screen with a question mark bubble, while ${boy} is busy building a tall block tower in front of the tablet`,
   "i love you": `${kid}, making a heart shape with her hands`,
   // polite
   "please come": `${kid}, politely welcoming ${C.hajurbaa} inside with an open hand`,
   "please sit": `${boy}, pulling out a chair for ${C.hajuraama}`,
   "please eat": `${C.aama}, offering a plate of food with both hands`,
   "please give": `${kid}, holding out both hands politely to receive something`,
-  "please look": `${boy}, showing a drawing to ${C.hajurbaa}`,
+  "please look": `${boy}, excitedly pointing up at a bright rainbow and a flying bird in the sky, while ${C.hajurbaa} turns to look where he is pointing`,
   "please listen": `${kid}, telling something to ${C.aama}, who leans in to listen`,
   "sorry": `${boy}, apologizing with folded hands and a small bow`,
 };
