@@ -200,8 +200,6 @@ body .pick-grid .opt .big { font-size: 34px !important; } body .pick-grid .opt .
 .story-open { margin: 0; font-family: var(--display); font-size: 20px; color: #fde68a; } .story-close { margin: 6px 0 0; background: #fff8e1; color: #6b4a1f; border: 2px solid #f3d37a; border-radius: 16px; padding: 10px 12px; font-size: 15px; }
 .story-close .ne { font-family: var(--display); font-size: 18px; font-weight: 800; color: #6b4a1f; } .story-close small { display: block; color: #8a6a3f; }
 /* Family corner */
-.culture-strip { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 8px; scrollbar-width: none; } .culture-strip::-webkit-scrollbar { display: none; }
-.culture-strip .jump-pill { flex: none; }
 .naam-card { background: #2b3340; color: #fff8e1; border: 8px solid #b9763f; border-radius: 22px; padding: 12px; text-align: center; box-shadow: inset 0 0 18px rgba(0,0,0,.45), 0 5px 0 #7d481d; }
 .naam-card small { display: block; opacity: .8; font-weight: 800; } .naam-big { font-family: var(--display); font-size: 52px; line-height: 1.15; color: #fffdf5; }
 .deva-input { font: inherit; font-family: var(--display); font-size: 22px; width: 170px; text-align: center; padding: 6px 10px; border: 2px solid var(--line); border-radius: 12px; }
@@ -233,7 +231,16 @@ body .pick-grid .opt .big { font-size: 34px !important; } body .pick-grid .opt .
 .bagh-node .ne { font-family: var(--display); font-size: 15px; line-height: 1.1; } .bagh-ic { font-size: 22px; line-height: 1; min-height: 4px; }
 .bagh-node.reach { border-color: var(--flag-blue); box-shadow: 0 0 0 4px rgba(47,111,214,.3); animation: pulse 1.5s infinite; } .bagh-node.visited { background: var(--good-bg); border-color: var(--flag-green); }
 .bagh-node.tiger { background: #fde2df; border-color: var(--flag-red); } .bagh-node.goal { background: #fff3c4; border-color: var(--flag-yellow); } .bagh-node[disabled] { cursor: default; }
-.bagh-q { margin-top: 8px; } .car-cheer { width: 120px; height: 120px; display: block; margin: 0 auto; }
+.bagh-q { margin-top: 8px; }
+.nav-space { height: calc(74px + env(safe-area-inset-bottom)); }
+.bottom-nav { position: fixed; left: 50%; transform: translateX(-50%); bottom: 0; width: min(720px, 100%); display: flex; background: var(--snow); background-image: var(--paper); border-top: 3px solid var(--line); border-radius: 22px 22px 0 0; padding: 4px 6px calc(4px + env(safe-area-inset-bottom)); z-index: 6; box-shadow: 0 -4px 14px rgba(31,42,68,.1); }
+.nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 1px; background: none; border: 0; border-radius: 16px; padding: 6px 2px; font: inherit; color: var(--muted); cursor: pointer; }
+.nav-btn.active { background: #e6efff; color: #1d4f9e; } .nav-icon { font-size: 26px; line-height: 1.1; } .nav-label { font-family: var(--display); font-size: 12px; font-weight: 800; white-space: nowrap; }
+.play-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
+.play-tile { display: flex; flex-direction: column; align-items: center; gap: 2px; background: var(--snow); background-image: var(--paper); border: 2px solid var(--line); border-radius: 18px; padding: 8px 4px; box-shadow: 0 4px 0 var(--line); font: inherit; color: var(--ink); cursor: pointer; text-align: center; }
+.play-tile img { width: 64px; height: 64px; object-fit: contain; } .play-emo { font-size: 48px; line-height: 64px; height: 64px; } .play-tile b { font-family: var(--display); font-size: 14px; line-height: 1.15; } .play-tile small { font-family: var(--display); color: var(--muted); font-weight: 700; } .play-tile .tick { color: #1f7a40; font-style: normal; }
+.play-tile:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--line); }
+@media print { .bottom-nav, .nav-space { display: none; } } .car-cheer { width: 120px; height: 120px; display: block; margin: 0 auto; }
 .guide-sec { background: #faf4e8; border-left: 5px solid var(--panda); border-radius: 12px; padding: 10px 12px; text-align: left; }
 .guide-sec h4 { margin: 0 0 6px; font-family: var(--display); font-size: 17px; color: #4a2e1b; } .guide-sec ul { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.45; } .guide-sec li { margin-bottom: 6px; }
 .play-next { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 8px; font: inherit; text-align: left; color: #fff; background: var(--flag-blue); border: 0; border-radius: 18px; padding: 8px 12px; box-shadow: 0 4px 0 #1d4f9e; cursor: pointer; }
@@ -989,7 +996,12 @@ function buildQuestions(lesson) {
   const big = P.level === "big";
   const total = LV().questions;
   if (lesson.sentences) return pickN(lesson.sentences, Math.min(total, lesson.sentences.length)).map(s => ({ type: "build", s, art: (window.IMG || {})[`s-${lesson.id}-${lesson.sentences.indexOf(s) + 1}`] }));
-  const items = lesson.items, qs = [];
+  // Little learners get 5 words per game: the first five at first, then missed words plus a fresh mix, so nothing is lost
+  let items = lesson.items; const qs = [];
+  if (!big && !lesson.letters && items.length > 5) {
+    const wk = x => (P.weak || {})[`${lesson.id}|${x.ne}`] || 0;
+    items = P.stars[starKey(lesson.id)] ? shuffle(items).sort((a, b) => wk(b) - wk(a)).slice(0, 5) : items.slice(0, 5);
+  }
   let types;
   if (lesson.letters) types = big ? ["letterPic", "listenLetter", "letterFind", "trace", "listenLetter", "letterFind"] : ["letterPic", "trace", "listenLetter", "letterPic"];
   else types = big ? ["pickNepaliText", "typeMeaning", "listen", "pickMeaning", "typeMeaning", "pickNepaliText"] : ["pickMeaning", "pickNepali", "listen", "pickMeaning"];
@@ -1029,7 +1041,7 @@ const S = { screen: "map", lesson: null, queue: [], done: 0, total: 0, hearts: 3
 
 function render() {
   if (S.screen !== "madal" && S.madalTimers && S.madalTimers.length) stopMadal();
-  document.documentElement.classList.toggle("modal-open", !!(S.sheet || S.stickers || S.players || S.grown));
+  document.documentElement.classList.toggle("modal-open", !!(S.sheet || S.stickers || S.players || S.grown || S.play));
   document.body.classList.toggle("night", S.screen === "story");
   if (S.screen !== "car" && S.car) stopCar();
   if (S.screen !== "room") { window.onpointermove = null; window.onpointerup = null; }
@@ -1150,6 +1162,27 @@ function stickerPic(x, showLock) {
   return art + (showLock && !x.got ? `<span class="lock-badge" aria-hidden="true">🔒</span>` : "");
 }
 const avatarHTML = a => (window.AVATAR_IMG || {})[a] ? `<img class="av-img" src="${window.AVATAR_IMG[a]}" alt="" draggable="false">` : a;
+// The Play drawer: every game and activity in one place, as big picture tiles
+function playHTML() {
+  const I = window.IMG || {}, W = P.worlds || {}, SC = window.SCENES || {};
+  const tile = (attr, img, emo, label, ne, tried) => `<button class="play-tile" type="button" ${attr}>${I[img] ? `<img src="${I[img]}" alt="" draggable="false">` : `<span class="play-emo">${emo}</span>`}<b>${label}${tried ? ` <i class="tick">✓</i>` : ""}</b>${ne ? `<small lang="ne">${esc(ne)}</small>` : ""}</button>`;
+  const nm = /^player\s*\d*$/i.test(me().name) && !me().deva ? "मेरो नाम" : myDevaName();
+  return `<div class="sheet-back" id="playBack"></div><div class="sheet players play-sheet" id="playSheet" role="dialog" aria-modal="true" aria-label="Play">
+    <button class="x sheet-x" type="button" id="playClose" aria-label="Close">✕</button>
+    <div class="sheet-head"><div><strong>🎪 <span lang="ne">खेलौँ</span> · Play</strong></div></div>
+    <div class="play-grid">
+      ${sceneReady(SC["living-room"]) ? tile('data-scene="living-room"', "w-living-room", "🛋️", "Explore the living room", SC["living-room"].title) : ""}
+      ${sceneReady(SC.kitchen) ? tile('data-scene="kitchen"', "w-kitchen", "🍳", "Explore the kitchen", SC.kitchen.title) : ""}
+      ${tile('id="openRoom"', "pandu-wave", "🏡", "Pandu's room", "पाण्डुको कोठा")}
+      ${window.STORY ? tile('data-story="1"', "story-2", "🌙", "Story time", window.STORY.ne) : ""}
+      ${tile('id="openCar"', "pandu-bike", "🚗", "Car ride", "")}
+      ${tile('id="openName"', "li-family-name", "✍️", "My name", nm, W.openName)}
+      ${tile('id="openMadal"', "w-nepali-drum", "🥁", "Madal", "मादल", W.openMadal)}
+      ${tile('id="openTika"', "w-tika", "🪔", "Tika", "टीका", W.openTika)}
+      ${tile('id="openJar"', "li-family-jar", "🏺", "Story jar", "", W.openJar)}
+      ${tile('id="openBagh"', "li-family-bagh", "🐐", "Bagh-chal", "बाघचाल", W.openBagh)}
+    </div></div>`;
+}
 function stickersHTML() {
   return `<div class="sheet-back" id="stickBack"></div><div class="sheet stickers" role="dialog" aria-modal="true" aria-label="My stickers">
     <button class="x sheet-x" type="button" id="stickClose" aria-label="Close">✕</button>
@@ -1315,7 +1348,6 @@ function renderMap() {
       <span class="stat" title="Diyo lamp: days in a row you played">🪔 <span lang="ne">${toDeva(liveStreak())}</span></span>
       <span class="stat" title="Stars: ${P.xp}">⭐ <span lang="ne">${toDeva(P.xp)}</span></span>
       ${P.freezes ? `<span class="stat" title="Marigold garlands: each one keeps your diyo lit if you miss a day">🌼 <span lang="ne">${toDeva(P.freezes)}</span></span>` : ""}
-      <button class="stat stat-btn" type="button" id="openCar" title="Car ride: a family quiz you can play without looking">🚗</button>
       <button class="stat stat-btn" type="button" id="openStickers" title="My stickers">🏅 ${stickerState().filter(x => x.got).length + (P.pics || []).filter(picByName).length}</button>
       </div>
     </div>
@@ -1337,8 +1369,6 @@ function renderMap() {
       ${window.STORY && storyTime() ? `<button class="greet-story" type="button" id="openStory">🌙 Read tonight's bedtime story →</button>` : ""}</div></div>
     ${dropHTML()}
     ${wordOfDayHTML()}
-    <div class="culture-strip" aria-label="Family corner">${[["openName", "li-family-name", "✍️", `<span lang="ne">${esc(/^player\s*\d*$/i.test(me().name) && !me().deva ? "मेरो नाम" : myDevaName())}</span>`], ["openMadal", "w-nepali-drum", "🥁", "Madal"], ["openTika", "w-tika", "🪔", "Tika"], ["openJar", "li-family-jar", "🏺", "Story jar"], ["openBagh", "li-family-bagh", "🐐", "Bagh-chal"]]
-      .map(([id, img, emo, label]) => `<button class="jump-pill${(P.worlds || {})[id] ? " tried" : ""}" type="button" id="${id}">${(window.IMG || {})[img] ? `<img src="${window.IMG[img]}" alt="" draggable="false">` : emo} ${label}${(P.worlds || {})[id] ? ` <b class="tick" aria-label="tried">✓</b>` : ""}</button>`).join("")}</div>
     <nav class="jump" aria-label="Jump to a chapter"><button class="jump-pill top-pill" type="button" id="toTop" aria-label="Back to top">🐼 Top ↑</button>${jump}</nav>
     ${chapters}
     <section class="grownups" aria-label="For grown-ups">
@@ -1364,6 +1394,14 @@ function renderMap() {
       </button>
       <span class="creator-sub">📍 Built at home in <strong>Pittsburgh, Pennsylvania</strong> to help kids everywhere speak everyday Nepali with their families.</span>
     </footer>
+    <div class="nav-space"></div>
+    <nav class="bottom-nav" aria-label="Main">
+      <button type="button" class="nav-btn${S.play || S.stickers ? "" : " active"}" id="navLearn"><span class="nav-icon">🗺️</span><span class="nav-label"><span lang="ne">सिकौँ</span> · Learn</span></button>
+      <button type="button" class="nav-btn${S.play ? " active" : ""}" id="navPlay"><span class="nav-icon">🎪</span><span class="nav-label"><span lang="ne">खेलौँ</span> · Play</span></button>
+      <button type="button" class="nav-btn${S.stickers ? " active" : ""}" id="navStickers"><span class="nav-icon">🏅</span><span class="nav-label"><span lang="ne">स्टिकर</span> · Stickers</span></button>
+      <button type="button" class="nav-btn" id="navGrown"><span class="nav-icon">👨‍👩‍👧</span><span class="nav-label">Grown-ups</span></button>
+    </nav>
+    ${S.play ? playHTML() : ""}
     ${S.stickers ? stickersHTML() : ""}
     ${S.players ? playersHTML() : ""}
     ${S.grown ? grownHTML() : ""}
@@ -2345,7 +2383,7 @@ function openGate(targetId) {
   document.documentElement.classList.add("modal-open"); document.body.append(back, box); setTimeout(() => { const i = $("#gateIn"); i && i.focus(); }, 60);
   $("#gateIn").addEventListener("keydown", ev => { if (ev.key === "Enter") checkGate(); });
 }
-function closeGate() { ["gate", "gateBack"].forEach(id => { const e = document.getElementById(id); if (e) e.remove(); }); document.documentElement.classList.toggle("modal-open", !!(S.sheet || S.stickers || S.players || S.grown)); }
+function closeGate() { ["gate", "gateBack"].forEach(id => { const e = document.getElementById(id); if (e) e.remove(); }); document.documentElement.classList.toggle("modal-open", !!(S.sheet || S.stickers || S.players || S.grown || S.play)); }
 function checkGate() {
   const box = $("#gate"); if (!box) return;
   if (($("#gateIn").value || "").trim() === box.dataset.answer) {
@@ -2357,6 +2395,8 @@ document.addEventListener("click", e => {
   if (e.target.id === "gateBack" || (e.target.closest && e.target.closest("#gateNo"))) { closeGate(); return; }
   if (e.target.closest && e.target.closest("#gateOk")) { checkGate(); return; }
   { const g = e.target.closest && e.target.closest("button"); if (g && GATED.has(g.id) && Date.now() > gateUntil) { e.stopImmediatePropagation(); openGate(g.id); return; } }
+  if (e.target.id === "playBack") { S.play = false; render(); return; }
+  if (S.play && e.target.closest && e.target.closest(".play-tile")) S.play = false;   // picking a tile closes the drawer
   if (e.target.id === "sheetBack") { S.sheet = null; render(); return; }
   if (e.target.id === "stickBack") { S.stickers = false; render(); return; }
   if (e.target.id === "grownBack") { S.grown = null; render(); return; }
@@ -2459,6 +2499,11 @@ document.addEventListener("click", e => {
   if (t.id === "goCards") { openCards(S.sheet); return; }
   if (t.id === "goPrint") { S.lesson = window.LESSONS.find(l => l.id === S.sheet); S.sheet = null; S.screen = "print"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "printNow") { try { window.print(); } catch (err) {} return; }
+  if (t.id === "playClose") { S.play = false; render(); return; }
+  if (t.id === "navLearn") { S.play = false; S.stickers = false; beep("tap"); render(); window.scrollTo({ top: 0, behavior: "smooth" }); return; }
+  if (t.id === "navPlay") { S.stickers = false; S.play = !S.play; beep("tap"); render(); return; }
+  if (t.id === "navStickers") { S.play = false; S.stickers = !S.stickers; beep("tap"); render(); return; }
+  if (t.id === "navGrown") { S.play = false; S.stickers = false; render(); const g = document.querySelector(".grownups"); if (g) g.scrollIntoView({ behavior: "smooth", block: "start" }); return; }
   if (t.id === "openStickers") { S.stickers = true; beep("tap"); render(); return; }
   if (t.id === "stickClose") { S.stickers = false; render(); return; }
   if (t.dataset.sticker) {
