@@ -520,7 +520,7 @@ window.STICKER_PANDU = { ne: "नमस्ते साथी! म पाण्�
 window.STICKER_LOCKED = { ne: "अझै बाँकी छ!", rom: "ajhai baanki chha!", en: "Not yet! Keep playing to win me." };
 // Tapping the creator's name in the footer plays this greeting.
 window.CREDIT_INTRO = { ne: "नमस्ते! मेरो नाम अबी सुवेदी हो। सजिलो नेपालीमा स्वागत छ!", rom: "namaste! mero naam Abi Subedi ho. sajilo nepaalima swaagat chha!", en: "Hello! My name is Abi Subedi. Welcome to Sajilo Nepali!" };
-window.PHRASES = { hello: "नमस्ते!", morning: "शुभ प्रभात!", night: "शुभ रात्रि!", stickers: "मेरो स्टिकर", brand: "सजिलो नेपाली", tryAgain: "फेरि प्रयास गरौँ!", wellDone: "स्याबास!" };
+window.PHRASES = { hello: "नमस्ते!", morning: "शुभ बिहानी!", night: "शुभ रात्रि!", stickers: "मेरो स्टिकर", brand: "सजिलो नेपाली", tryAgain: "फेरि प्रयास गरौँ!", wellDone: "स्याबास!" };
 
 /* What to say for a piece of Nepali text. Letters say the letter, then their example word. */
 window.audioKey = function (text) { return String(text).replace(/[!।?.,]/g, "").trim(); };
@@ -644,4 +644,4 @@ window.BS_MONTHS = [
 window.STORY_OPEN = { ne: "एकादेशमा...", rom: "ekaadeshmaa...", en: "Once upon a time, in a faraway land..." };
 window.STORY_CLOSE = { ne: "भन्नेलाई फूलको माला, सुन्नेलाई सुनको माला, यो कथा बैकुण्ठ जाला, फेरि भन्ने बेला खुरुखुरु आउला!", rom: "bhannelaai phoolko maalaa, sunnelaai sunko maalaa, yo kathaa baikuntha jaalaa, pheri bhanne belaa khurukhuru aaulaa!", en: "A flower garland for the teller, a gold garland for the listener! May this story go to heaven, and come running back the next time we tell it." };
 /* Phrases a family member can record in their own voice (kept on this device only) */
-window.FAMILY_PHRASES = ["नमस्ते!", "शुभ प्रभात!", "शुभ रात्रि!", "स्याबास!", "राम्रो!", "एकदम ठीक!", "फेरि प्रयास गरौँ!"];
+window.FAMILY_PHRASES = ["नमस्ते!", "शुभ बिहानी!", "शुभ रात्रि!", "स्याबास!", "राम्रो!", "एकदम ठीक!", "फेरि प्रयास गरौँ!"];

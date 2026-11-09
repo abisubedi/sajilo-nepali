@@ -459,7 +459,6 @@ window.AUDIO = {
  "हजुरआमाले टीका लगाइदिनुभयो": "audio/be44258a8a.mp3?v=5da303a3",
  "मोमो धेरै मिठो छ": "audio/729307bca5.mp3?v=7b2a2306",
  "साँझमा दियो बाल": "audio/1126e0cf38.mp3?v=b566a534",
- "शुभ प्रभात": "audio/a11592f8a2.mp3?v=b6392aa5",
  "मेरो स्टिकर": "audio/9719da70c3.mp3?v=f8ad7e86",
  "नमस्ते साथी म पाण्डु हुँ": "audio/5832456a8e.mp3?v=cb9b2ffd",
  "तिमी घरको हिरो हौ": "audio/16a4e81afa.mp3?v=6fe1f5b9",
@@ -808,5 +807,6 @@ window.AUDIO = {
  "पुस": "audio/6045b069a5.mp3?v=15573147",
  "माघ": "audio/3d0714dd90.mp3?v=748513c9",
  "फागुन": "audio/4e88941ed7.mp3?v=22bc949c",
- "चैत": "audio/da883943a5.mp3?v=9e0bd25e"
+ "चैत": "audio/da883943a5.mp3?v=9e0bd25e",
+ "शुभ बिहानी": "audio/ccd3b40c29.mp3?v=a645912e"
 };

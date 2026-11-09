@@ -11,7 +11,7 @@ A free web game that teaches kids aged 4–15 basic Nepali.
 - **Situations:** everyday phrases show who is speaking, e.g. "👩 Aama calls you: यता आऊ".
 - **Letters:** meet each letter with an example word and picture, find letters, listen for letters, and trace them with a finger.
 - **Tap to hear:** every Nepali word, letter and sentence on screen can be tapped to hear it.
-- **Game features:** stars, points and a red panda mascot (Pandu) who greets kids by the time of day (शुभ प्रभात!).
+- **Game features:** stars, points and a red panda mascot (Pandu) who greets kids by the time of day (शुभ बिहानी!).
 - **Daily streak + streak freeze:** play one lesson a day to grow your 🔥 streak. Every 7 days in a row earns a ❄️ streak freeze (keep up to 2), which saves the streak if one day is missed.
 - **Word of the day:** a banner under Pandu shows a new word every day. The first listen each day earns +5 ⭐, and "Practice →" opens the lesson the word comes from.
 - **Chapter jump bar:** a row of chapter pills (Ch 1 … Ch 8) stays at the top while scrolling. Tap one to jump to that chapter.

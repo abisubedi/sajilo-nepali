@@ -8,7 +8,7 @@ let cur = null; const sec = t => { cur = { title: t, rows: [] }; sections.push(c
 const POLITE = new Set(["उठ","हेर","सुत","दौड","उफ्र","नाच","हाँस","फ्याँक","समात","लुक","सुन","खोल","पर्ख","जित","फुकाल","दाँत माझ","किताब पढ","बन्द गर","सफा गर","ढोका बन्द गर","खेलौना मिलाएर राख","मलाई पर्ख","भकुण्डो मलाई फ्याँक","साँझमा दियो बाल","ठूलो हात्ती हेर","गर","राख","बाल"]);
 const add = (key, say, rom, en) => { if (!key || seen.has(key) || !W.AUDIO[key]) return; seen.add(key); cur.rows.push({ key, say, rom: rom || '', en: en || '', polite: POLITE.has(key) }); };
 sec("Greetings, Pandu and stickers");
-add(K(W.PHRASES.hello), W.PHRASES.hello, 'namaste!', 'Hello!'); add(K(W.PHRASES.morning), W.PHRASES.morning, 'shubha prabhaat!', 'Good morning!');
+add(K(W.PHRASES.hello), W.PHRASES.hello, 'namaste!', 'Hello!'); add(K(W.PHRASES.morning), W.PHRASES.morning, 'shubha bihaani!', 'Good morning!');
 add(K(W.PHRASES.night), W.PHRASES.night, 'shubha raatri!', 'Good night!'); add(K(W.PHRASES.brand), W.PHRASES.brand, 'sajilo nepaali', 'Easy Nepali');
 add(K(W.PHRASES.stickers), W.PHRASES.stickers, 'mero stikar', 'My stickers'); add(K(W.PHRASES.wellDone), W.PHRASES.wellDone, 'syaabaas!', 'Well done!');
 add(K(W.PHRASES.tryAgain), W.PHRASES.tryAgain, 'pheri prayas garaun!', "Let's try again!");

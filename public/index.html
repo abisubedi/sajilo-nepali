@@ -962,7 +962,7 @@ function render() {
 const greetPhrase = () => { const h = new Date().getHours(); return h >= 5 && h < 12 ? window.PHRASES.morning : h >= 20 || h < 5 ? window.PHRASES.night : window.PHRASES.hello; };
 function greeting() {
   const h = new Date().getHours();
-  const [ne, rom] = h >= 5 && h < 12 ? [window.PHRASES.morning, "shubha prabhaat!"] : h >= 20 || h < 5 ? [window.PHRASES.night, "shubha raatri!"] : [window.PHRASES.hello, "namaste!"];
+  const [ne, rom] = h >= 5 && h < 12 ? [window.PHRASES.morning, "shubha bihaani!"] : h >= 20 || h < 5 ? [window.PHRASES.night, "shubha raatri!"] : [window.PHRASES.hello, "namaste!"];
   return `${neSpan(ne)} <span class="rom">${rom}</span>`;
 }
 /* Picture stickers: every word picture can be collected. One drops on each new day a player visits and one for each
