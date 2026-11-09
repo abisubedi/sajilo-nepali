@@ -11,33 +11,33 @@
 
 ## Checklist
 
-- [ ] w-dog.png
-- [ ] w-cat.png
-- [ ] w-cow.png
-- [ ] w-elephant.png
-- [ ] w-monkey.png
-- [ ] w-bird.png
-- [ ] w-fish.png
-- [ ] w-tiger.png
-- [ ] w-bear.png
-- [ ] w-rhino.png
-- [ ] w-deer.png
-- [ ] w-rabbit.png
-- [ ] w-red-panda.png
-- [ ] w-butterfly.png
-- [ ] w-bee.png
-- [ ] w-ant.png
-- [ ] w-spider.png
-- [ ] w-frog.png
-- [ ] w-turtle.png
-- [ ] w-car.png
-- [ ] w-bus.png
-- [ ] w-train.png
-- [ ] w-airplane.png
-- [ ] w-boat.png
-- [ ] w-river.png
-- [ ] w-sea.png
-- [ ] w-bridge.png
+- [x] w-dog.png
+- [x] w-cat.png
+- [x] w-cow.png
+- [x] w-elephant.png
+- [x] w-monkey.png
+- [x] w-bird.png
+- [x] w-fish.png
+- [x] w-tiger.png
+- [x] w-bear.png
+- [x] w-rhino.png
+- [x] w-deer.png
+- [x] w-rabbit.png
+- [x] w-red-panda.png
+- [x] w-butterfly.png
+- [x] w-bee.png
+- [x] w-ant.png
+- [x] w-spider.png
+- [x] w-frog.png
+- [x] w-turtle.png
+- [x] w-car.png
+- [x] w-bus.png
+- [x] w-train.png
+- [x] w-airplane.png
+- [x] w-boat.png
+- [x] w-river.png
+- [x] w-sea.png
+- [x] w-bridge.png
 
 ## Prompts
 
