@@ -41,10 +41,11 @@ window.CHAPTERS.forEach((c, ci) => {
   }
   days.push({ title: `Chapter ${ci + 1}: ${c.ne} (${c.en})`, items });
 });
-{ const items = []; D.UI.forEach(([f, d]) => take(items, item(f, `a small simple bold game icon of ${d}`, "game interface", "256x256")));
+{ const items = []; // ui-* icons dropped: the game uses emoji, kept simple
+  void D.UI; [].forEach(([f, d]) => take(items, item(f, `a small simple bold game icon of ${d}`, "game interface", "256x256")));
   take(items, item("app-icon", `${D.C.pandu}, face and shoulders, waving, on a solid sky-blue (#e8f4ff) background filling the whole square, no text`, "home-screen app icon (keep the full background)", "1024x1024"));
   take(items, item("og-image", `a wide banner: ${D.C.pandu} waving on the left, white Himalayan peaks and colorful prayer flags along the top, sky-blue background, empty space on the right for the title, no text`, "link preview when the site is shared (keep the full background)", "1200x630"));
-  days.push({ title: "Game icons, app icon and link preview", items }); }
+  days.push({ title: "App icon and link preview", items }); }
 { const items = []; for (const l of window.LESSONS) for (const [i, s] of (l.sentences || []).entries())
     take(items, item(`s-${l.id}-${i + 1}`, `a warm everyday scene that shows the meaning of the sentence "${s.en}", with ${/grand/i.test(s.en) ? D.C.hajuraama + ' or ' + D.C.hajurbaa : D.C.maya + ' or ' + D.C.arjun}, at home or outdoors in Nepal`, `${l.title}: ${s.ne.join(' ')}`, "1024x768"));
   days.push({ title: "Sentence scenes (optional)", items }); }
