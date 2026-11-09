@@ -65,11 +65,11 @@
 - [x] w-pouring-rain-sound.png
 - [x] w-gobbling-up-everything-fast.png
 - [x] w-fast-asleep-knocked-out.png
-- [ ] w-chungi-kick-shuttlecock.png
-- [ ] w-dandi-biyo-stick-and-peg-game.png
-- [ ] w-marbles.png
-- [ ] w-cassette-tape.png
-- [ ] w-ice-pop-pepsi-cola.png
+- [x] w-chungi-kick-shuttlecock.png
+- [x] w-dandi-biyo-stick-and-peg-game.png
+- [x] w-marbles.png
+- [x] w-cassette-tape.png
+- [x] w-ice-pop-pepsi-cola.png
 
 ## Prompts
 

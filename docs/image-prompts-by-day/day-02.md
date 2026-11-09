@@ -29,7 +29,7 @@
 - [x] li-colours.png
 - [x] li-opposites.png
 - [x] li-sound-words.png
-- [ ] li-retro-90s.png
+- [x] li-retro-90s.png
 - [x] li-play-sentences.png
 - [x] li-festivals-culture.png
 - [x] li-nepali-treats.png
