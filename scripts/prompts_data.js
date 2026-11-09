@@ -35,7 +35,7 @@ const W = {
   "tiger": "a Bengal tiger cub from Chitwan sitting in tall grass",
   "bear": "a cuddly Himalayan black bear cub with a white V on its chest",
   "rhino": "a baby one-horned rhinoceros from Chitwan standing in green grass",
-  "deer": "a spotted deer fawn with big ears in a forest clearing",
+  "deer": "a cute young spotted deer (chital) with big soft ears and white spots on its brown coat, standing calmly in a sunny green meadow with a few trees behind",
   "rabbit": "a fluffy white rabbit with long ears nibbling a carrot",
   "red panda": "a wild Himalayan red panda (a real animal, not a cartoon mascot, no hat and no clothes) with orange-red fur, a white face mask and a long ringed tail, climbing a mossy rhododendron branch",
   // colors
