@@ -1,6 +1,6 @@
 # Day 5 of 12: Chapter 3: खेल र बाहिर (Play & outside)
 
-54 pictures in the **storybook sketch style** (ink outlines, colored pencil, watercolor, round sticker). Every prompt is complete, so paste it as is.
+59 pictures in the **storybook sketch style** (ink outlines, colored pencil, watercolor, round sticker). Every prompt is complete, so paste it as is.
 
 **Tips**
 - Same tool and settings as pandu-namaste, and attach **pandu-namaste** as a style reference for every picture.
@@ -65,6 +65,11 @@
 - [x] w-pouring-rain-sound.png
 - [x] w-gobbling-up-everything-fast.png
 - [x] w-fast-asleep-knocked-out.png
+- [ ] w-chungi-kick-shuttlecock.png
+- [ ] w-dandi-biyo-stick-and-peg-game.png
+- [ ] w-marbles.png
+- [ ] w-cassette-tape.png
+- [ ] w-ice-pop-pepsi-cola.png
 
 ## Prompts
 
@@ -445,4 +450,39 @@
 **Attach:** pandu-namaste.png (style reference), cast-arjun.png
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, fast asleep in bed with his mouth open, one leg out of a colorful quilt, big z-z bubbles, a crescent moon at the window.
+
+### w-chungi-kick-shuttlecock.png
+512x512 · used for: Old-Day Games: चुङ्गी = chungi (kick shuttlecock)
+
+**Attach:** pandu-namaste.png (style reference), cast-arjun.png
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, kicking a chungi (a small bundle of colorful rubber bands tied together) high into the air with the inside of his foot in a school yard.
+
+### w-dandi-biyo-stick-and-peg-game.png
+512x512 · used for: Old-Day Games: डण्डीबियो = dandi biyo (stick and peg game)
+
+**Attach:** pandu-namaste.png (style reference), cast-arjun.png
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, swinging a long wooden stick to flick a small pointed wooden peg up into the air in an open harvested field.
+
+### w-marbles.png
+512x512 · used for: Old-Day Games: गुच्चा = marbles
+
+**Attach:** pandu-namaste.png (style reference)
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a few shiny colorful glass marbles with swirls inside, next to a small hole in dusty ground.
+
+### w-cassette-tape.png
+512x512 · used for: Old-Day Games: क्यासेट = cassette tape
+
+**Attach:** pandu-namaste.png (style reference)
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: an old audio cassette tape with a pencil stuck in one of its holes, a loop of brown tape ribbon hanging out.
+
+### w-ice-pop-pepsi-cola.png
+512x512 · used for: Old-Day Games: पेप्सीकोला = ice pop (pepsi-cola)
+
+**Attach:** pandu-namaste.png (style reference)
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a long thin frozen ice pop in a clear plastic tube, bright orange, with a little cold frost.
 

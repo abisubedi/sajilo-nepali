@@ -171,6 +171,7 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .match .col { display: flex; flex-direction: column; gap: 10px; }
 .match .opt { min-height: 74px; }
 
+.answer.tape { background: repeating-linear-gradient(90deg, #5a3a22 0 6px, #6b4529 6px 12px); border-radius: 12px; border-bottom: 0; padding: 8px; justify-content: center; }
 .answer { min-height: 64px; border-bottom: 3px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; padding: 6px 0; }
 .bank { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
 .tile { background: var(--snow); border: 2px solid var(--line); border-radius: 12px; padding: 6px 14px; box-shadow: 0 3px 0 var(--line); display: flex; flex-direction: column; align-items: center; }
@@ -824,6 +825,14 @@ const MASCOT = `<svg class="mascot" viewBox="0 0 100 100" aria-hidden="true">
 </svg>`;
 
 /* ---------- Question builder ---------- */
+// Split Devanagari into readable syllables (consonant clusters keep their vowel signs): चुङ्गी → चु · ङ्गी
+const AKSHARA = /[\u0915-\u0939\u0958-\u095F]\u093C?(?:\u094D[\u0915-\u0939\u0958-\u095F]\u093C?)*(?:[\u093E-\u094C\u0962\u0963]|\u094D(?![\u0915-\u0939]))?[\u0901-\u0903]?|[\u0904-\u0914][\u0901-\u0903]?|\S/gu;
+const syllables = w => w.replace(/\s+/g, "").match(AKSHARA) || [];
+function cassetteQ(item) {   // "Pencil & cassette": the tape is tangled, tap the pieces in order to wind it back
+  const parts = syllables(item.ne); let mix;
+  do mix = shuffle(parts.map((p, i) => [p, i])); while (parts.length > 1 && mix.every(([, i], k) => i === k));
+  return { type: "cassette", item, mix };
+}
 function buildQuestions(lesson) {
   const big = P.level === "big";
   const total = LV().questions;
@@ -847,6 +856,7 @@ function buildQuestions(lesson) {
     qs.push({ type: t, item });
   }
   if (!lesson.letters) qs.splice(Math.min(3, qs.length), 0, { type: "match", items: pickN(items, big ? 5 : 3) });
+  if (lesson.cassette && big) pickN(items.filter(x => syllables(x.ne).length > 1), 2).forEach((x, k) => qs.splice(5 + k * 4, 1, cassetteQ(x)));
   qs.forEach(q => {
     if (!q.item) return;
     const pool = items.filter(x => x !== q.item && (q.type !== "letterPic" || x.word));   // picture options need a picture word
@@ -1559,6 +1569,13 @@ function renderQuestion() {
     body = `<p class="ask">Tap the pairs that match</p>
       <div class="match"><div class="col">${S.matchLeft.map((o, i) => `<button class="opt" type="button" data-l="${i}"><span class="ne" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span></button>`).join("")}</div>
       <div class="col">${S.matchRight.map((o, i) => `<button class="opt" type="button" data-r="${i}">${picHTML(o, 34)}<span class="en">${esc(o.en)}</span></button>`).join("")}</div></div>`;
+  } else if (q.type === "cassette") {
+    S.bank = q.mix.map(([p]) => [p, ""]); S.built = [];
+    body = `<p class="ask">📼 The tape got tangled! Wind it back: tap the pieces in order</p>
+      <div class="prompt">${picHTML(q.item)}<span class="en">${esc(q.item.en)}</span>${sayBtn(K(q.item.ne))}</div>
+      <div class="answer tape" id="answer" aria-label="Your word"></div>
+      <div class="bank" id="bank">${S.bank.map((t, i) => `<button class="tile" type="button" data-t="${i}"><span class="ne" lang="ne">${esc(t[0])}</span></button>`).join("")}</div>`;
+    autoKey = K(q.item.ne);
   } else if (q.type === "build") {
     const s = q.s;
     const extras = pickN(window.EXTRA_TILES.filter(t => !s.ne.includes(t[0])), P.level === "big" ? 2 : 0);
@@ -1710,6 +1727,12 @@ function checkTrace() {
 }
 function checkBuild() {
   const q = S.queue[0]; if (S.answered) return;
+  if (q.type === "cassette") {
+    const good = S.built.map(i => S.bank[i][0]).join("") === syllables(q.item.ne).join("");
+    if (good) { beep("tap"); setTimeout(() => beep("tap"), 110); }   // click-click: the tape winds tight
+    grade(good); say(K(q.item.ne));
+    setFeedback(good, neHTML(q.item.ne, q.item.rom, K(q.item.ne)) + ` = ${esc(q.item.en)}`, K(q.item.ne)); return;
+  }
   const good = S.built.map(i => S.bank[i][0]).join(" ") === q.s.ne.join(" ");
   grade(good); if (good) say(K(q.s.ne.join(" ")));
   setFeedback(good, q.s.ne.map((w, i) => neHTML(w, q.s.rom[i])).join(" "), K(q.s.ne.join(" ")));
@@ -1906,7 +1929,17 @@ document.addEventListener("click", e => {
   }
   if (t.dataset.cert) { S.certId = t.dataset.cert; S.stickers = false; S.screen = "cert"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "shareCert") { const st = stickerState().find(x => x.id === S.certId); shareOrCopy(t, { title: "Sajilo Nepali", text: `${me().name} earned the ${st ? st.name : ""} sticker on Sajilo Nepali! 🌟 https://sajilonepali.app` }, `${me().name} earned the ${st ? st.name : ""} sticker on Sajilo Nepali! 🌟 https://sajilonepali.app`); return; }
-  if (t.dataset.pandusay) { say(t.dataset.pandusay); return; }
+  if (t.dataset.pandusay) {
+    // secret: tap Pandu 5 times quickly for the old-days cassette trick
+    clearTimeout(window._pt); window._ptN = (window._ptN || 0) + 1; window._pt = setTimeout(() => { window._ptN = 0; }, 900);
+    const box = document.querySelector(".greet p");
+    if (window._ptN >= 5 && box && !box.dataset.retro) {
+      window._ptN = 0; beep("done"); const before = box.innerHTML; box.dataset.retro = "1";
+      box.innerHTML = `📼 <b>Old-days mode!</b> The cassette tape got tangled! Quick, wind it back with a ${neHTML("पेन्सिल", "pensil")} (pencil). Ask a grown-up if they remember!`;
+      setTimeout(() => { box.innerHTML = before; delete box.dataset.retro; }, 6000); return;
+    }
+    say(t.dataset.pandusay); return;
+  }
   if (t.dataset.picst) {
     const x = picByName(t.dataset.picst); if (!x) return;
     say(K(x.it.ne), t);
@@ -2033,7 +2066,7 @@ document.addEventListener("click", e => {
   if (t.id === "quit" || t.id === "home") { S.screen = "map"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "again") { startLesson(S.lesson.id); return; }
   if (t.id === "next") { if (S.queue[0] && S.queue[0].type === "learn" && !S.answered) { S.queue.shift(); S.done++; } nextStep(); return; }
-  if (t.id === "check") { const ty = S.queue[0].type; ty === "build" ? checkBuild() : ty === "trace" ? checkTrace() : ty === "typeMeaning" ? checkTyped() : checkChoice(); return; }
+  if (t.id === "check") { const ty = S.queue[0].type; ty === "build" || ty === "cassette" ? checkBuild() : ty === "trace" ? checkTrace() : ty === "typeMeaning" ? checkTyped() : checkChoice(); return; }
   if (S.screen !== "lesson") return;
   if (t.dataset.learn) {
     say(t.dataset.learn, t); t.classList.add("heard"); t.querySelector(".tick").textContent = "✓ heard";
@@ -2051,7 +2084,7 @@ document.addEventListener("click", e => {
   }
   if (t.dataset.l != null) { matchTap("l", +t.dataset.l); return; }
   if (t.dataset.r != null) { matchTap("r", +t.dataset.r); return; }
-  if (t.dataset.t != null && !t.classList.contains("used")) { S.built.push(+t.dataset.t); say(K(S.bank[+t.dataset.t][0]), t); drawBuilt(); return; }
+  if (t.dataset.t != null && !t.classList.contains("used")) { S.built.push(+t.dataset.t); S.queue[0].type === "cassette" ? beep("tap") : say(K(S.bank[+t.dataset.t][0]), t); drawBuilt(); return; }
   if (t.dataset.b != null) { S.built.splice(+t.dataset.b, 1); drawBuilt(); return; }
 });
 
