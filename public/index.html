@@ -234,6 +234,8 @@ body .pick-grid .opt .big { font-size: 34px !important; } body .pick-grid .opt .
 .bagh-node.reach { border-color: var(--flag-blue); box-shadow: 0 0 0 4px rgba(47,111,214,.3); animation: pulse 1.5s infinite; } .bagh-node.visited { background: var(--good-bg); border-color: var(--flag-green); }
 .bagh-node.tiger { background: #fde2df; border-color: var(--flag-red); } .bagh-node.goal { background: #fff3c4; border-color: var(--flag-yellow); } .bagh-node[disabled] { cursor: default; }
 .bagh-q { margin-top: 8px; }
+.guide-sec { background: #faf4e8; border-left: 5px solid var(--panda); border-radius: 12px; padding: 10px 12px; text-align: left; }
+.guide-sec h4 { margin: 0 0 6px; font-family: var(--display); font-size: 17px; color: #4a2e1b; } .guide-sec ul { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.45; } .guide-sec li { margin-bottom: 6px; }
 .play-next { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 8px; font: inherit; text-align: left; color: #fff; background: var(--flag-blue); border: 0; border-radius: 18px; padding: 8px 12px; box-shadow: 0 4px 0 #1d4f9e; cursor: pointer; }
 .play-next .disc { width: 46px; height: 46px; flex: none; } .play-next b { display: block; font-family: var(--display); font-size: 19px; } .play-next span[lang] { font-family: var(--display); font-weight: 700; } .jump-pill .tick { color: #1f7a40; font-size: 13px; } .cert-explorer { margin: 4px 0; font-weight: 800; color: #8a5a00; } .bagh-ic img { width: 34px; height: 34px; display: block; }
 .answer.tape { background: repeating-linear-gradient(90deg, #5a3a22 0 6px, #6b4529 6px 12px); border-radius: 12px; border-bottom: 0; padding: 8px; justify-content: center; }
@@ -1177,7 +1179,8 @@ function grownHTML() {
     <div class="miss-list">${(P.misses || []).map((m, i) => `<div class="miss"><span>${neSpan(m.ne)}<small>expected “${esc(m.en)}”, typed “<b>${esc(m.got)}</b>”</small></span>
       <button class="chip primary" type="button" data-accept="${i}">Accept</button><button class="chip" type="button" data-dismiss="${i}" aria-label="Remove">✕</button></div>`).join("") || `<p class="note">Nothing to check.</p>`}</div>`;
   if (g === "pride") body = prideHTML();
-  const title = { save: "📤 Save code", load: "📥 Load save code", misses: "📝 Answers to check", pride: `📊 What ${esc(me().name)} can say` }[g];
+  if (g === "guide") body = guideHTML();
+  const title = { save: "📤 Save code", load: "📥 Load save code", misses: "📝 Answers to check", guide: "👨‍👩‍👧 For grown-ups & teachers", pride: `📊 What ${esc(me().name)} can say` }[g];
   return `<div class="sheet-back" id="grownBack"></div><div class="sheet players" role="dialog" aria-modal="true" aria-label="${title}">
     <button class="x sheet-x" type="button" id="grownClose" aria-label="Close">✕</button>
     <div class="sheet-head"><div><strong>${title}</strong></div></div>${body}</div>`;
@@ -1300,6 +1303,7 @@ function renderMap() {
         <button class="chip" type="button" id="loadCode">📥 Load save code</button>
         ${"serviceWorker" in navigator ? `<button class="chip" type="button" id="offlineAudio">📶 Save sounds for offline</button>` : ""}
         ${(P.misses || []).length ? `<button class="chip" type="button" id="openMisses">📝 Answers to check (<span lang="ne">${toDeva(P.misses.length)}</span>)</button>` : ""}
+        <button class="chip" type="button" id="openGuide">ℹ️ About this app</button>
         <button class="chip" type="button" id="openPride">📊 What ${esc(me().name)} can say</button>
         <button class="chip" type="button" id="openVoices">🎙️ Family voices</button>
         <button class="chip" type="button" id="tReset">Start over</button>
@@ -2145,6 +2149,34 @@ function renderMadal() {
     <div class="sound-map-grid">${window.GAUN_SOUNDS.map((s, i) => `<button class="sound-spot" type="button" data-gaun="${i}">${(window.IMG || {})[s.art] ? `<img class="wpic" src="${window.IMG[s.art]}" alt="">` : "🔊"}
       <span><b lang="ne">${esc(s.ne)}</b> <span class="rom">${esc(s.rom)}</span><small>${esc(s.en)}</small></span></button>`).join("")}</div>`;
 }
+// For grown-ups & teachers: how the app works, privacy, culture
+function guideHTML() {
+  const sec = (h, items) => `<div class="guide-sec"><h4>${h}</h4><ul>${items.map(([b, t]) => `<li><b>${b}</b> ${t}</li>`).join("")}</ul></div>`;
+  return `<p class="note" style="margin:0;text-align:left">Why Sajilo Nepali is built a little differently for your family.</p>
+    ${sec("🔒 Private: no accounts, no ads", [
+      ["No sign-up.", "No email or password. Stars, stickers and settings are saved only in this browser on this device."],
+      ["No ads, no analytics.", "The app doesn't track your child. (The two fonts load from Google Fonts.)"],
+      ["Voice practice stays on the device.", "🎤 Try it records 2 seconds so your child can hear themselves next to the native voice. Nothing is saved or sent anywhere."],
+      ["Family voices stay here too.", "Recordings you make in 🎙️ Family voices are kept on this device only, and are not part of save codes."],
+      ["Move to a new device.", "📤 Copy save code, then 📥 Load save code on the other phone or tablet."]])}
+    ${sec("🇳🇵 Real Nepali, real culture", [
+      ["Abi's voice.", "Every Nepali word, letter and sentence uses the voice of Abi Subedi (अबी सुवेदी), made for now with a digital model of his voice. Abi is recording them all himself. The English car-ride questions use a separate voice."],
+      ["Made to feel like home.", "Hand-drawn storybook pictures on lokta-paper texture, with madal, singing-bowl and bamboo-flute sounds made right in the browser."],
+      ["Festivals and folk ways.", "Dashain and Tihar decorations in season, the Bikram Sambat month on Pandu's card, sound words like टम्म and मुसुक्क, गाउँ खाने कथा riddles, एकादेशमा stories, and 🙏 आदर badges on respectful words for elders."]])}
+    ${sec("🤝 Made for families", [
+      ["Family corner.", "✍️ Your child's name in Nepali letters, 🥁 madal, 🪔 tika and blessing, 🏺 a story jar of questions for parents and grandparents, and 🐐 bagh-chal."],
+      ["🎙️ Family voices.", "Record नमस्ते, स्याबास and other cheers in your own voice, and the game cheers your child with it."],
+      ["🤝 Team round.", "An older sibling reads, a younger one listens and taps the picture, and they win a Team Star together."],
+      ["🚗 Car ride.", "An eyes-free family quiz: an English question, a madal drumroll, then the Nepali answer out loud."],
+      ["🌳 Family words.", "Kaka, Mama, Phupu… on Dad's and Mom's side, with how to greet each one."],
+      ["🌙 Bedtime story.", "पाण्डु र जून, read aloud with each word lighting up. It appears on Pandu's card in the evening, and anytime in Chapter 7."]])}
+    ${sec("🖨️ For home and the classroom", [
+      ["Printable flashcards.", "Print cut-out cards from any lesson for practice away from screens."],
+      ["🏅 Mero Nepali Passport.", "A printable certificate for each finished chapter, listing the words learned."],
+      ["📊 What your child can say.", "A sentence to try at dinner tonight, words practised, and words to practise together."],
+      ["📝 Answers to check.", "Big learners type answers. You can accept a near miss (like mum for mom) so it counts from then on."],
+      ["📶 Works offline.", "Once opened, the app works without internet. 📶 Save sounds for offline downloads every recording for trips."]])}`;
+}
 // 3. For grown-ups: what my child can say tonight
 function prideHTML() {
   const done = visibleLessons().filter(l => !l.letters && (P.stars[starKey(l.id)] || 0) > 0);
@@ -2285,6 +2317,7 @@ document.addEventListener("click", e => {
   if (t.dataset.rhythm != null) { stopMadal(); const r = window.MADAL_RHYTHMS[+t.dataset.rhythm]; $("#madalLine").textContent = "🎶 " + r.desc; S.madalTimers = r.pattern.map((low, i) => setTimeout(() => S.screen === "madal" && madalHit(!!low), i * r.tempo)); return; }
   if (t.dataset.gaun != null) { const g = window.GAUN_SOUNDS[+t.dataset.gaun]; villageSfx(g.sfx); setTimeout(() => say(K(g.ne), t), 300); $("#madalLine").textContent = g.line; return; }
   if (t.id === "openPride") { S.grown = "pride"; render(); return; }
+  if (t.id === "openGuide") { S.grown = "guide"; render(); return; }
   if (t.id === "openTika") { S.tika = { step: 1 }; S.screen = "tika"; render(); window.scrollTo(0, 0); return; }
   if (t.dataset.tikagreet) { say(K(t.dataset.tikagreet)); beep("good"); S.tika.step = 2; setTimeout(renderTika, 900); return; }
   if (t.id === "putTika" || t.id === "putJamara") { const tk = S.tika; tk[t.id === "putTika" ? "tikaOn" : "jamaraOn"] = true; say(t.id === "putTika" ? K("टीका") : K("जमरा")); beep("good");
