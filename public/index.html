@@ -187,6 +187,11 @@ body .pick-grid .opt .big { font-size: 34px !important; } body .pick-grid .opt .
 .answer.seq .slot { width: 96px; min-height: 110px; border: 3px dashed var(--line); border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); font-weight: 700; font-size: 13px; }
 .pic-tile { width: 104px; padding: 6px; } .pic-tile .big { margin: 2px 0; } .pic-tile .rom { font-size: 11px; }
 .step { font-family: var(--display); color: var(--flag-blue); font-size: 18px; line-height: 1; }
+.ask.asked { display: flex; align-items: center; gap: 8px; } .ask .host { width: 40px; height: 40px; border-radius: 50%; flex: none; background: var(--snow); border: 2px solid var(--line); object-fit: contain; }
+.aadar { display: inline-block; align-self: center; font-size: 12px; font-weight: 800; color: #8a5a00; background: #fff3c4; border: 1.5px solid #f3d37a; border-radius: 999px; padding: 1px 10px; }
+.fb-ex { display: block; margin-top: 4px; font-size: 15px; } .fb-ex small { display: block; color: var(--muted); }
+.room-say { display: flex; align-items: center; gap: 8px; } .room-say .room-pandu { width: 48px; height: 48px; flex: none; } .room-say small { display: block; color: var(--muted); }
+.story-chip { display: block; margin: 6px auto 0; } .mission-chip { margin-top: 6px; font-size: 13px; padding: 4px 10px; } .greet .mission { margin-top: 8px; }
 .answer.tape { background: repeating-linear-gradient(90deg, #5a3a22 0 6px, #6b4529 6px 12px); border-radius: 12px; border-bottom: 0; padding: 8px; justify-content: center; }
 .answer { min-height: 64px; border-bottom: 3px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; padding: 6px 0; }
 .bank { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
@@ -656,7 +661,8 @@ span[data-say]:hover { background: rgba(47,111,214,.10); }
 
 /* tracing */
 .trace-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.trace-box { position: relative; width: min(300px, 82vw); aspect-ratio: 1; background: var(--snow); border: 3px dashed var(--line); border-radius: 24px; touch-action: none; }
+.trace-box { position: relative; width: min(300px, 82vw); aspect-ratio: 1; background: #2b3340 radial-gradient(circle at 30% 20%, #36404f, #262d38 70%); border: 10px solid #b9763f; box-shadow: inset 0 0 18px rgba(0,0,0,.5), 0 6px 0 #7d481d; border-radius: 22px; touch-action: none; }
+.trace-box::after { content: "पाटी"; position: absolute; right: 10px; bottom: 4px; font: 700 12px var(--display); color: rgba(255,248,225,.35); pointer-events: none; }
 .trace-box canvas { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 22px; }
 .trace-tools { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
 .meter { width: min(300px, 82vw); height: 12px; background: #d5e1f2; border-radius: 999px; overflow: hidden; }
@@ -705,14 +711,15 @@ const dayKey = d => d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate
 const today = () => dayKey(new Date());
 const yesterday = () => { const y = new Date(); y.setDate(y.getDate() - 1); return dayKey(y); };
 const daysAgo = n => { const d = new Date(); d.setDate(d.getDate() - n); return dayKey(d); };
-/* Streak: a ❄️ freeze is earned every 7 days in a row (keep up to 2). Missing one day uses a freeze instead of losing the 🔥. */
+/* Diyo lamp: lit every day you play (the streak). Every 7 days in a row weaves a 🌼 marigold garland (keep up to 2); a garland keeps the diyo lit if you miss a day. */
+const DEVA = "०१२३४५६७८९", toDeva = n => String(n).replace(/\d/g, d => DEVA[d]);
 function bumpStreak() {
   const t = today(); S.streakNews = ""; if (P.lastDay === t) return;
   P.freezes = P.freezes || 0;
   if (P.lastDay === yesterday()) P.streak += 1;
-  else if (P.lastDay === daysAgo(2) && P.freezes > 0) { P.freezes -= 1; P.streak += 1; S.streakNews = "❄️ A streak freeze saved your 🔥 streak!"; }
+  else if (P.lastDay === daysAgo(2) && P.freezes > 0) { P.freezes -= 1; P.streak += 1; S.streakNews = "🌼 Your marigold garland kept the 🪔 diyo lit!"; }
   else P.streak = 1;
-  if (P.streak % 7 === 0 && P.freezes < 2) { P.freezes += 1; S.streakNews = `❄️ ${P.streak} days in a row! You earned a streak freeze.`; }
+  if (P.streak % 7 === 0 && P.freezes < 2) { P.freezes += 1; S.streakNews = `🌼 ${P.streak} days in a row! You wove a marigold garland (माला). It keeps your diyo lit if you miss a day.`; }
   P.lastDay = t;
 }
 const liveStreak = () => (P.lastDay === today() || P.lastDay === yesterday() || (P.lastDay === daysAgo(2) && P.freezes > 0)) ? P.streak : 0;
@@ -983,8 +990,8 @@ function wordOfDayHTML() {
 function streakLine() {
   const n = liveStreak();
   if (!n) return "Tap any Nepali word to hear it.";
-  if (P.lastDay === today()) return `🔥 ${n} day${n > 1 ? "s" : ""} in a row! See you tomorrow.`;
-  return `Welcome back! You\'ve played ${n} day${n > 1 ? "s" : ""} in a row. 🔥`;
+  if (P.lastDay === today()) return `🪔 Your diyo has been lit ${n} day${n > 1 ? "s" : ""} in a row! See you tomorrow.`;
+  return `Welcome back! Your 🪔 diyo has been lit ${n} day${n > 1 ? "s" : ""} in a row.`;
 }
 function stickerState() {
   const vis = new Set(visibleLessons().map(l => l.id));
@@ -1153,10 +1160,11 @@ function renderMap() {
     const got = ls.reduce((a, l) => a + (P.stars[starKey(l.id)] || 0), 0);
     return `<section class="chapter" id="ch-${c.id}" aria-label="Chapter ${i + 1}: ${esc(c.en)}">
       <div class="chapter-banner" style="--c:${c.color}">
-        <span><small>Chapter ${i + 1}</small>${neSpan(c.ne)} <span class="rom">${esc(c.rom)}</span><em>${esc(c.en)}</em></span>
+        <span><small>Chapter ${i + 1} · <span lang="ne">अध्याय ${toDeva(i + 1)}</span></small>${neSpan(c.ne)} <span class="rom">${esc(c.rom)}</span><em>${esc(c.en)}</em></span>
         <span class="chapter-stars" aria-label="${got} of ${ls.length * 3} stars">★ ${got}/${ls.length * 3}</span>
         <i class="chapter-bar" aria-hidden="true"><b style="width:${Math.round(got / (ls.length * 3) * 100)}%"></b></i>
       </div>
+      ${c.id === "talk" && window.STORY ? `<button class="chip story-chip" type="button" data-story="1">🌙 Story time: <span lang="ne">${esc(window.STORY.ne)}</span></button>` : ""}
       <nav class="trail">${ls.map(stone).join("")}</nav>
     </section>`;
   }).join("");
@@ -1174,9 +1182,9 @@ function renderMap() {
       <div class="brand">${pandu("wave", "brand-pandu")}<h1>Sajilo Nepali<small>${neSpan(window.PHRASES.brand, "", K(window.PHRASES.brand))} · easy Nepali</small></h1></div>
       <button class="stat stat-btn player-pill" type="button" id="openPlayers" title="Change player"><span aria-hidden="true">${avatarHTML(me().avatar)}</span> ${esc(me().name)} ▾</button>
       <div class="stats">
-      <span class="stat" title="Days in a row">🔥 ${liveStreak()}</span>
-      <span class="stat" title="Points">⭐ ${P.xp}</span>
-      ${P.freezes ? `<span class="stat" title="Streak freezes: each one saves your streak if you miss a day">❄️ ${P.freezes}</span>` : ""}
+      <span class="stat" title="Diyo lamp: days in a row you played">🪔 <span lang="ne">${toDeva(liveStreak())}</span></span>
+      <span class="stat" title="Stars: ${P.xp}">⭐ <span lang="ne">${toDeva(P.xp)}</span></span>
+      ${P.freezes ? `<span class="stat" title="Marigold garlands: each one keeps your diyo lit if you miss a day">🌼 <span lang="ne">${toDeva(P.freezes)}</span></span>` : ""}
       <button class="stat stat-btn" type="button" id="openCar" title="Car ride: a family quiz you can play without looking">🚗</button>
       <button class="stat stat-btn" type="button" id="openStickers" title="My stickers">🏅 ${stickerState().filter(x => x.got).length + (P.pics || []).filter(picByName).length}</button>
       </div>
@@ -1193,6 +1201,8 @@ function renderMap() {
       </div>
     </div>
     <div class="greet${festivalToday() ? " festive" : ""}"><button class="pandu-btn" type="button" data-pandusay="${esc(K(greetPhrase()))}" aria-label="Pandu says hello">${pandu(panduNow(), "pandu-hi")}${festivalToday() && festivalToday().diyo ? `<span class="diyo" aria-hidden="true">🪔</span>` : ""}</button><div><p>${greeting()} I'm Pandu. ${greetExtra() || streakLine()}</p>
+      ${missionToday() ? `<button class="chip mission-chip" type="button" id="toggleMission">🗣️ ${S.showMission ? "Hide" : "Today's"} mission</button>` : ""}
+      ${S.showMission ? missionHTML() : ""}
       ${window.STORY && storyTime() ? `<button class="greet-story" type="button" id="openStory">🌙 Read tonight's bedtime story →</button>` : ""}</div></div>
     ${dropHTML()}
     ${wordOfDayHTML()}
@@ -1229,6 +1239,8 @@ function renderMap() {
         <button class="sheet-btn learn" type="button" id="goCards">📖 <span><b>Flashcards</b><small>Learn and listen at your own pace</small></span></button>
         <button class="sheet-btn play" type="button" id="goPlay">🎮 <span><b>Play game</b><small>Answer questions and earn ★★★</small></span></button>
         ${sheetL && sheetL.items && !sheetL.letters ? `<button class="sheet-btn team" type="button" id="goTeam">🤝 <span><b>Team round (2 players)</b><small>Big kid reads, little kid listens. Win the Team Star!</small></span></button>` : ""}
+        ${(() => { const sid = { "kitchen-tummy": "kitchen", "rooms-house": "living-room", "house-objects": "living-room" }[S.sheet], s = sid && (window.SCENES || {})[sid];
+          return s && sceneReady(s) ? `<button class="sheet-btn kin" type="button" data-scene="${sid}">🔍 <span><b>Explore the ${esc(s.en.toLowerCase())}</b><small>Find ${s.spots.length} things and hear their names</small></span></button>` : ""; })()}
         ${S.sheet === "respect-family" ? `<button class="sheet-btn kin" type="button" id="goKin">🌳 <span><b>Who's who in our family</b><small>Kaka, Mama, Phupu… tap to hear</small></span></button>` : ""}
         <button class="chip" type="button" id="goPrint">🖨️ Print flashcards for home</button>
       </div>` : ""}`;
@@ -1430,7 +1442,7 @@ function renderRoom() {
   const mine = (P.pics || []).map(picByName).filter(Boolean), placed = P.room || [];
   const bg = (window.IMG || {})["scene-pandu-room"];
   $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🏡 Pandu's room</h2>${placed.length ? `<button class="chip" type="button" id="roomClear">Clear</button>` : ""}</div>
-    <p class="note" style="margin:0">Drag your stickers into the room. Tap one to hear it. Drag it back to the tray to take it out.</p>
+    <p class="note room-say" id="roomSay" style="margin:0">Drag your stickers into the room. Tap one to hear it. Drag it back to the tray to take it out.</p>
     <div class="room" id="room">${bg ? `<img class="room-bg" src="${bg}" alt="">` : `<div class="room-flags"></div><div class="room-window"></div>${pandu("namaste", "room-pandu")}`}
       ${placed.map((p, i) => { const x = picByName(p.n); return x ? `<img class="placed" data-placed="${i}" src="${window.IMG[x.name]}" alt="${esc(x.it.en)}" style="left:${p.x}%;top:${p.y}%" draggable="false">` : ""; }).join("")}</div>
     <div class="tray" id="tray">${mine.length ? mine.map(x => `<img class="tray-st" data-tray="${x.name}" src="${window.IMG[x.name]}" alt="${esc(x.it.en)}" draggable="false">`).join("") : `<p class="pic-empty">Collect picture stickers to decorate the room!</p>`}</div>`;
@@ -1457,7 +1469,8 @@ function setupRoomDrag() {
     if (inside) {
       const pos = { n: d.name, x: Math.round((e.clientX - r.left) / r.width * 1000) / 10, y: Math.round((e.clientY - r.top) / r.height * 1000) / 10 };
       if (d.from != null) P.room[d.from] = pos; else if (P.room.length < 40) P.room.push(pos);
-      beep("tap"); if (x && d.from == null) say(K(x.it.ne));
+      beep("tap");
+      if (x && d.from == null) { const line = ROOM_TALK[x.it.ne]; say(K(x.it.ne)); if (line && AUDIO[K(line[0])]) setTimeout(() => { say(K(line[0])); const b = $("#roomSay"); if (b) b.innerHTML = `${pandu("cheer", "room-pandu")}<span>${neHTML(line[0], line[1])}<small>${esc(line[2])}</small></span>`; }, 1100); }
     } else if (d.from != null) P.room.splice(d.from, 1);
     save(); renderRoom();
   };
@@ -1523,9 +1536,25 @@ function startLesson(id) {
 function lessonTop() {
   return `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Leave lesson">✕</button>
     <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${S.total}" aria-valuenow="${S.done}"><i style="width:${(S.done / S.total) * 100}%"></i></div>
-    ${S.hearts === Infinity ? `<span class="hearts" style="color:var(--muted)" aria-label="Question ${Math.min(S.done + 1, S.total)} of ${S.total}">${Math.min(S.done + 1, S.total)} / ${S.total}</span>` : `<span class="hearts" aria-label="${S.hearts} hearts left">❤️ ${S.hearts}</span>`}</div>`;
+    ${S.hearts === Infinity ? `<span class="hearts" style="color:var(--muted)" aria-label="Question ${Math.min(S.done + 1, S.total)} of ${S.total}"><span lang="ne">${toDeva(Math.min(S.done + 1, S.total))} / ${toDeva(S.total)}</span></span>` : `<span class="hearts" aria-label="${S.hearts} hearts left">❤️ ${S.hearts}</span>`}</div>`;
 }
 
+// Who asks the question: the family member who'd say this at home
+const HOSTS = [
+  [["kitchen-tummy", "nepali-treats", "fruits-snacks", "daily-routines", "home-sentences"], "w-mom", "Aama"],
+  [["greet", "respect-family", "festivals-culture", "phone-grandparents", "polite-commands", "days", "time-of-day"], "w-grandma", "Hajuraama"],
+  [["playtime-verbs", "sports-outdoors", "sound-words", "retro-90s", "colours", "opposites", "feelings-needs"], "w-older-sister", "Didi"],
+  [["animals", "birds-bugs", "animal-sounds", "vehicles-travel", "weather-nature"], "w-older-brother", "Dai"],
+  [["num", "numbers-11-20", "school-supplies", "question-words", "vowels", "cons1", "cons2", "cons3", "cons4"], "w-teacher", "The teacher"],
+  [["body", "clothes", "what-i-have", "house-objects", "rooms-house", "helping-verbs", "likes-dislikes"], "w-dad", "Baba"]];
+function hostFor(l) { const h = HOSTS.find(([ids]) => ids.includes(l.id)); const img = h && (window.IMG || {})[h[1]]; return img ? { img, who: h[2] } : null; }
+const RESPECT = /नुहोस्$|^हजुर$|हुनुहुन्छ\??$|तपाईं/;
+const aadarHTML = ne => RESPECT.test(ne) ? `<span class="aadar" title="Respectful form: use it with elders">🙏 <span lang="ne">आदर</span> · for elders</span>` : "";
+// Pandu says a whole sentence when you put certain stickers in his room (all already recorded)
+const ROOM_TALK = { "दियो": ["साँझमा दियो बाल", "saanjhmaa diyo baal", "Light the lamp in the evening."], "मोमो": ["मोमो धेरै मिठो छ", "momo dherai mitho chha", "Momo is very yummy."],
+  "कुकुर": ["यो मेरो कुकुर हो", "yo mero kukur ho", "This is my dog."], "बिरालो": ["बिरालो सानो छ", "biraalo saano chha", "The cat is small."], "हात्ती": ["हात्ती ठूलो छ", "haatti thulo chha", "The elephant is big."],
+  "आँप": ["मलाई आँप मन पर्छ", "malaai aanp man parchha", "I really like mangoes."], "चङ्गा": ["बाहिर चङ्गा उडाऔँ", "baahira changa udaaun", "Let's fly a kite outside."], "पानी": ["म पानी पिउँछु", "ma paani piunchhu", "I drink water."],
+  "किताब": ["मसँग किताब छ", "masanga kitaab chha", "I have a book."], "झोला": ["मसँग झोला छ", "masanga jhola chha", "I have a bag."], "चरा": ["चरा रूखमा छ", "charaa rukhmaa chha", "The bird is in the tree."] };
 function optBtn(i, inner, key) { return `<button class="opt" type="button" data-i="${i}"${key ? ` data-optsay="${esc(key)}"` : ""}>${inner}</button>`; }
 
 function renderQuestion() {
@@ -1632,6 +1661,9 @@ function renderQuestion() {
       <div class="answer" id="answer" aria-label="Your sentence"></div>
       <div class="bank" id="bank">${S.bank.map((t, i) => `<button class="tile" type="button" data-t="${i}"><span class="ne" lang="ne">${esc(t[0])}</span><span class="rom">${esc(t[1])}</span></button>`).join("")}</div>`;
   }
+  const host = !S.lesson.team && q.type !== "match" && hostFor(l);
+  if (host) body = body.replace('<p class="ask">', `<p class="ask asked"><img class="host" src="${host.img}" alt=""><span><b>${esc(host.who)}:</b> `).replace(/(<p class="ask asked">[\s\S]*?)<\/p>/, "$1</span></p>");
+  if (q.item && q.item.ne && RESPECT.test(q.item.ne)) body = body.replace('<div class="prompt">', `<div class="prompt">${aadarHTML(q.item.ne)}`);
   body = turn + body;
   const footer = q.type === "match" ? "" : q.type === "learn"
     ? `<div class="feedback" id="fb"><button class="go" type="button" id="next" disabled>${learnLabel(0)}</button></div>`
@@ -1655,8 +1687,8 @@ async function setupTrace(item) {
   try { await document.fonts.load(`700 ${size * .7}px "Baloo 2"`, item.ne); } catch (e) {}
   const font = `700 ${Math.round(size * .7)}px "Baloo 2", "Noto Sans Devanagari", sans-serif`;
   const drawLetter = (ctx, fill) => { ctx.font = font; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillStyle = fill; ctx.fillText(item.ne, size / 2, size * .56); };
-  const g = guide.getContext("2d"); g.clearRect(0, 0, size, size); drawLetter(g, "#d9e4f4");
-  g.setLineDash([6, 8]); g.lineWidth = 2; g.strokeStyle = "#9fb3d1"; g.font = font; g.textAlign = "center"; g.textBaseline = "middle"; g.strokeText(item.ne, size / 2, size * .56);
+  const g = guide.getContext("2d"); g.clearRect(0, 0, size, size); drawLetter(g, "rgba(255,248,225,.16)");
+  g.setLineDash([6, 8]); g.lineWidth = 2; g.strokeStyle = "rgba(255,248,225,.5)"; g.font = font; g.textAlign = "center"; g.textBaseline = "middle"; g.strokeText(item.ne, size / 2, size * .56);
   // low-res masks for scoring
   const N = 120, sc = N / size;
   const mk = () => { const c = document.createElement("canvas"); c.width = c.height = N; const x = c.getContext("2d"); x.scale(sc, sc); return [c, x]; };
@@ -1667,7 +1699,7 @@ async function setupTrace(item) {
   TR.total = TR.mask.filter(Boolean).length;
   const [ic, ix] = mk(); TR.inkCanvas = ic; TR.inkCtx = ix; TR.N = N; TR.drawn = false;
   const c = ink.getContext("2d");
-  [c, ix].forEach(x => { x.lineCap = "round"; x.lineJoin = "round"; x.strokeStyle = "#e8742a"; x.lineWidth = size * .085; });
+  [c, ix].forEach(x => { x.lineCap = "round"; x.lineJoin = "round"; x.strokeStyle = "#fffaf0"; x.shadowColor = "rgba(255,250,240,.6)"; x.shadowBlur = 3; x.lineWidth = size * .085; });
   let drawing = false, last = null;
   const pos = e => { const r = ink.getBoundingClientRect(); return [(e.clientX - r.left) * size / r.width, (e.clientY - r.top) * size / r.height]; };
   ink.onpointerdown = e => { drawing = true; last = pos(e); ink.setPointerCapture(e.pointerId); dot(last); };
@@ -1688,12 +1720,14 @@ function updateMeter() {
 
 /* ---------- Answers ---------- */
 function setFeedback(good, solutionHTML, sayKey) {
+  const ex = S.lastItem && S.lastItem.ex; S.lastItem = null;
+  if (ex && solutionHTML) solutionHTML += `<span class="fb-ex">🗣️ ${neHTML(ex.ne.replace(/।$/, ""), ex.rom, K(ex.ne))} <small>${esc(ex.en)}</small></span>`;
   const fb = $("#fb");
   const ch = window.CHEERS[Math.floor(Math.random() * window.CHEERS.length)];
   fb.className = "feedback " + (good ? "good" : "bad");
   fb.innerHTML = good
-    ? `<div class="fb-row">${pandu(panduSrc("cheer") ? "cheer" : "wave", "fb-pandu pop")}<div><p>🎉 ${neSpan(ch[0])} <span class="rom">${ch[1]}</span> ${ch[2]}</p>${solutionHTML ? `<div class="sol">${solutionHTML}</div>` : ""}</div></div><button class="go" type="button" id="next">Continue</button>`
-    : `<div class="fb-row">${pandu("oops", "fb-pandu pop")}<div><p>Almost! Let\'s hear it together:</p><div class="sol">${solutionHTML}</div></div></div><button class="go" type="button" id="next">Got it</button>`;
+    ? `<div class="fb-row">${pandu(panduSrc("cheer") ? "cheer" : "wave", "fb-pandu pop")}<div><p>🎉 ${neSpan(ch[0])} <span class="rom">${ch[1]}</span> ${ch[2]}</p>${solutionHTML ? `<div class="sol">${solutionHTML}</div>` : ""}</div></div><button class="go" type="button" id="next"><span lang="ne">हुन्छ!</span> · Continue</button>`
+    : `<div class="fb-row">${pandu("oops", "fb-pandu pop")}<div><p>Almost! Let\'s hear it together:</p><div class="sol">${solutionHTML}</div></div></div><button class="go" type="button" id="next"><span lang="ne">ठीक छ</span> · Got it</button>`;
   $("#next").focus({ preventScroll: true });
   const keepVisible = () => {
     const drawer = fb.getBoundingClientRect(), pick = document.querySelector(".opt.right") || document.querySelector(".opt.wrong");
@@ -1710,7 +1744,7 @@ function setFeedback(good, solutionHTML, sayKey) {
 }
 function grade(good) {
   S.answered = true; beep(good ? "good" : "bad");
-  const q = S.queue.shift();
+  const q = S.queue.shift(); S.lastItem = q.item || null;
   if (good) S.done++; else { S.mistakes++; S.hearts--; S.queue.push(q); }
   // remember missed words so the next game asks them first ("those words will come back next time")
   const w = q.item && q.item.ne && `${S.lesson.id}|${q.item.ne}`;
@@ -1860,7 +1894,7 @@ function renderDone() {
       <p><strong>+15 ⭐</strong> · Team rounds won on this device: <b>${PL.team}</b></p>
       <button class="sticker got${PL.team >= 5 ? " gold" : ""} new" type="button" data-sticker="team"><span class="sticker-pic">${stickerPic(stickerState().find(x => x.id === "team"))}</span><b>${PL.team === 1 ? "🎉 New sticker: Team Star!" : PL.team >= 5 ? "🌟 Gold Team Star!" : "⭐ Team Star"}</b></button>
       ${missionHTML()}
-      <button class="go" type="button" id="home">Continue</button><button class="chip" type="button" id="teamAgain">Play another team round</button></section>`;
+      <button class="go" type="button" id="home"><span lang="ne">ल जाऔँ!</span> · Let's go</button><button class="chip" type="button" id="teamAgain">Play another team round</button></section>`;
     confetti(); beep("done");
     return;
   }
@@ -1871,21 +1905,21 @@ function renderDone() {
       <p><strong>${S.chalFirst ? "+10 ⭐ bonus!" : "Bonus already earned today. Great practice!"}</strong>${S.mistakes ? "" : "<br>Perfect, no mistakes!"}</p>
       ${missionHTML()}
       <p class="ctx">A new word and picture tomorrow!</p>
-      <button class="go" type="button" id="home">Continue</button></section>`;
+      <button class="go" type="button" id="home"><span lang="ne">ल जाऔँ!</span> · Let's go</button></section>`;
     if (!S.mistakes) confetti(); beep("done");
     return;
   }
   const st = [1, 2, 3].map(n => `<span class="${n <= S.earned ? "" : "off"}">★</span>`).join("");
   $("#app").innerHTML = `<section class="done">${pandu(panduSrc("cheer") ? "cheer" : "wave", "pop")}<h2>${neSpan(window.PHRASES.wellDone)}<br>Lesson complete!</h2>
     <div class="stars" aria-label="${S.earned} of 3 stars">${st}</div>
-    <p><strong>+${S.xpGain} points</strong> · 🔥 ${liveStreak()} day streak<br>${S.mistakes === 0 ? "Perfect, no mistakes!" : S.mistakes + " mistake" + (S.mistakes > 1 ? "s" : "") + ". Those words will come back next time."}</p>
+    <p><strong>+${S.xpGain} points</strong> · 🪔 diyo lit ${liveStreak()} day${liveStreak() === 1 ? "" : "s"} in a row<br>${S.mistakes === 0 ? "Perfect, no mistakes!" : S.mistakes + " mistake" + (S.mistakes > 1 ? "s" : "") + ". Those words will come back next time."}</p>
     ${S.streakNews ? `<p class="ctx">${esc(S.streakNews)}</p>` : ""}
     ${S.newPic ? `<button class="sticker got new" type="button" data-picst="${S.newPic.name}"><span class="sticker-pic"><img class="art" src="${window.IMG[S.newPic.name]}" alt=""></span><b>🎁 New picture sticker: <span lang="ne">${esc(S.newPic.it.ne)}</span> (${esc(S.newPic.it.en)})</b></button>` : ""}
     ${S.newSticker ? `<button class="sticker got${S.newSticker.gold ? " gold" : ""} new" type="button" data-sticker="${S.newSticker.id}"><span class="sticker-pic">${stickerPic(S.newSticker)}</span><b>🎉 New sticker: ${esc(S.newSticker.name)}${S.newSticker.gold ? " (gold!)" : ""}</b></button>` : ""}
     ${S.earned === 3 ? `<div class="share-card"><p><b>Share your score with Aama or Baba!</b></p><p class="share-text" id="shareText">${esc(shareText())}</p>
       <div class="share-btns">${navigator.share ? `<button class="say" type="button" id="shareNow">📤 Share</button>` : ""}<button class="chip" type="button" id="copyShare">📋 Copy message</button></div></div>` : ""}
     ${missionHTML()}
-    <button class="go" type="button" id="home">Continue</button><button class="chip" type="button" id="again">Play again</button></section>`;
+    <button class="go" type="button" id="home"><span lang="ne">ल जाऔँ!</span> · Let's go</button><button class="chip" type="button" id="again">Play again</button></section>`;
   if (S.earned === 3) confetti(); beep("done");
 }
 function confetti() {
@@ -1903,7 +1937,7 @@ function confetti() {
 }
 function shareText() {
   const n = liveStreak();
-  return `I got 3 stars in “${S.lesson.title}” on Sajilo Nepali! 🌟${n > 1 ? ` 🔥 ${n}-day streak!` : ""} Learn with me: https://sajilonepali.app`;
+  return `I got 3 stars in “${S.lesson.title}” on Sajilo Nepali! 🌟${n > 1 ? ` 🪔 ${n} days in a row!` : ""} Learn with me: https://sajilonepali.app`;
 }
 
 /* Share: the phone's share sheet when it works; otherwise copy the text and say so (some computers have no
@@ -1972,14 +2006,15 @@ document.addEventListener("click", e => {
   if (t.dataset.echo) { echo(t, t.dataset.echo); return; }
   if (t.id === "goTeam") { const id = S.sheet; S.sheet = null; startTeam(id); return; }
   if (t.id === "teamAgain") { startTeam(S.lesson.id); return; }
-  if (t.id === "openStory") { S.page = 0; S.screen = "story"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "toggleMission") { S.showMission = !S.showMission; render(); return; }
+  if (t.id === "openStory" || t.dataset.story) { S.page = 0; S.screen = "story"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "storyNext" || t.id === "storyPrev") { S.page = Math.max(0, Math.min(window.STORY.pages.length - 1, (S.page || 0) + (t.id === "storyNext" ? 1 : -1))); renderStory(); return; }
   if (t.id === "storyAgain") { readPage(); return; }
   if (t.id === "openCar") { startCar(); return; }
   if (t.id === "carStart") { carRound(); return; }
   if (t.id === "carYes" || t.id === "carNext") { const C = S.car; if (!C) return; if (t.id === "carYes" && C.item && !C.counted) { C.score++; beep("good"); } C.rounds += C.item ? 1 : 0; C.counted = false; clearTimeout(C.timer); C.paused = false; carRound(); return; }
   if (t.id === "carPause") { const C = S.car; if (!C) return; C.paused = !C.paused; clearTimeout(C.timer); C.token++; try { speechSynthesis.cancel(); } catch (e) {} if (player) player.pause(); if (C.paused) renderCar(); else carRound(); return; }
-  if (t.dataset.scene) { S.sceneId = t.dataset.scene; S.found = new Set(); S.stickers = false; S.screen = "scene"; render(); window.scrollTo(0, 0); return; }
+  if (t.dataset.scene) { S.sheet = null; S.sceneId = t.dataset.scene; S.found = new Set(); S.stickers = false; S.screen = "scene"; render(); window.scrollTo(0, 0); return; }
   if (t.dataset.spot) { const s = window.SCENES[S.sceneId], i = +t.dataset.spot, p = s.spots[i]; say(K(p.ne)); S.found.add(i); t.classList.add("found");
     document.querySelectorAll(".scene-label").forEach(e => e.remove()); const lb = document.createElement("span"); lb.className = "scene-label"; lb.style.left = p.x + "%"; lb.style.top = p.y + "%"; if (p.x > 68) lb.style.transform = "translate(-100%, -130%)"; else if (p.x < 22) lb.style.transform = "translate(0, -130%)"; if (p.y < 15) lb.style.transform = lb.style.transform.replace("-130%", "60%") || "translate(-50%, 60%)"; lb.innerHTML = `<span lang="ne">${esc(p.ne)}</span> · ${esc(p.en)}`; $("#scene").appendChild(lb);
     const c = document.querySelector(".lesson-top .car-score"); if (c) c.textContent = `${S.found.size} / ${s.spots.length}`; if (S.found.size === s.spots.length) { beep("done"); confetti(); } return; }
