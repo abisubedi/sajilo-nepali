@@ -11,45 +11,45 @@
 
 ## Checklist
 
-- [ ] s-home-sentences-1.png
-- [ ] s-home-sentences-2.png
-- [ ] s-home-sentences-3.png
-- [ ] s-home-sentences-4.png
-- [ ] s-home-sentences-5.png
-- [ ] s-home-sentences-6.png
-- [ ] s-what-i-have-1.png
-- [ ] s-what-i-have-2.png
-- [ ] s-what-i-have-3.png
-- [ ] s-what-i-have-4.png
-- [ ] s-what-i-have-5.png
-- [ ] s-what-i-have-6.png
-- [ ] s-play-sentences-1.png
-- [ ] s-play-sentences-2.png
-- [ ] s-play-sentences-3.png
-- [ ] s-play-sentences-4.png
-- [ ] s-play-sentences-5.png
-- [ ] s-culture-sentences-1.png
-- [ ] s-culture-sentences-2.png
-- [ ] s-culture-sentences-3.png
-- [ ] s-culture-sentences-4.png
-- [ ] s-culture-sentences-5.png
-- [ ] s-travel-sentences-1.png
-- [ ] s-travel-sentences-2.png
-- [ ] s-travel-sentences-3.png
-- [ ] s-travel-sentences-4.png
-- [ ] s-grandparent-sentences-1.png
-- [ ] s-grandparent-sentences-2.png
-- [ ] s-grandparent-sentences-3.png
-- [ ] s-grandparent-sentences-4.png
-- [ ] s-grandparent-sentences-5.png
-- [ ] s-sentences-1.png
-- [ ] s-sentences-2.png
-- [ ] s-sentences-3.png
-- [ ] s-sentences-4.png
-- [ ] s-sentences-5.png
-- [ ] s-sentences-6.png
-- [ ] s-sentences-7.png
-- [ ] s-sentences-8.png
+- [x] s-home-sentences-1.png
+- [x] s-home-sentences-2.png
+- [x] s-home-sentences-3.png
+- [x] s-home-sentences-4.png
+- [x] s-home-sentences-5.png
+- [x] s-home-sentences-6.png
+- [x] s-what-i-have-1.png
+- [x] s-what-i-have-2.png
+- [x] s-what-i-have-3.png
+- [x] s-what-i-have-4.png
+- [x] s-what-i-have-5.png
+- [x] s-what-i-have-6.png
+- [x] s-play-sentences-1.png
+- [x] s-play-sentences-2.png
+- [x] s-play-sentences-3.png
+- [x] s-play-sentences-4.png
+- [x] s-play-sentences-5.png
+- [x] s-culture-sentences-1.png
+- [x] s-culture-sentences-2.png
+- [x] s-culture-sentences-3.png
+- [x] s-culture-sentences-4.png
+- [x] s-culture-sentences-5.png
+- [x] s-travel-sentences-1.png
+- [x] s-travel-sentences-2.png
+- [x] s-travel-sentences-3.png
+- [x] s-travel-sentences-4.png
+- [x] s-grandparent-sentences-1.png
+- [x] s-grandparent-sentences-2.png
+- [x] s-grandparent-sentences-3.png
+- [x] s-grandparent-sentences-4.png
+- [x] s-grandparent-sentences-5.png
+- [x] s-sentences-1.png
+- [x] s-sentences-2.png
+- [x] s-sentences-3.png
+- [x] s-sentences-4.png
+- [x] s-sentences-5.png
+- [x] s-sentences-6.png
+- [x] s-sentences-7.png
+- [x] s-sentences-8.png
 
 ## Prompts
 

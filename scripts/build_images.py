@@ -20,7 +20,7 @@ for f in sorted(os.listdir(ART)):
     src, out = os.path.join(ART, f), os.path.join(IMG, name + ".webp")
     if os.path.exists(out) and os.path.getmtime(out) >= os.path.getmtime(src):
         continue
-    if name.startswith("scene-", "s-"):   # full-background scenes: no cut-out, just a sharp WebP
+    if name.startswith("scene-"):   # full-background scenes: no cut-out, just a sharp WebP
         from PIL import Image
         im = Image.open(src).convert("RGB"); im.thumbnail((1400, 1400)); im.save(out, "WEBP", quality=84, method=6); made.append(name); continue
     size = "512" if name.startswith("story-") else "384" if name.startswith(("st-", "av-", "pandu-", "s-")) else "320"

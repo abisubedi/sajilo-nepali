@@ -292,6 +292,8 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .fb-row { display: flex; align-items: center; gap: 10px; }
 .fb-pandu { width: 56px; height: 56px; }
 .side-pandu { width: 64px; height: 64px; }
+.build-art { width: 128px; height: 128px; object-fit: contain; display: block; margin: 0 auto; }
+@media (max-height: 700px) { .build-art { width: 96px; height: 96px; } }
 .st-letter { position: absolute; left: 48%; top: 64%; transform: translate(-50%, -50%); font-family: var(--display); font-weight: 800; font-size: 21px; line-height: 1; color: #ffd84a; text-shadow: 0 0 6px rgba(255,216,74,.7), 0 1px 0 #7a5a00; background: #3b4656; border-radius: 6px; padding: 1px 6px 0; }
 .sticker.new .st-letter { font-size: 25px; }
 .stick-say-pic .st-letter { font-size: 15px; padding: 0 3px; }
@@ -829,7 +831,7 @@ const MASCOT = `<svg class="mascot" viewBox="0 0 100 100" aria-hidden="true">
 function buildQuestions(lesson) {
   const big = P.level === "big";
   const total = LV().questions;
-  if (lesson.sentences) return pickN(lesson.sentences, Math.min(total, lesson.sentences.length)).map(s => ({ type: "build", s }));
+  if (lesson.sentences) return pickN(lesson.sentences, Math.min(total, lesson.sentences.length)).map(s => ({ type: "build", s, art: (window.IMG || {})[`s-${lesson.id}-${lesson.sentences.indexOf(s) + 1}`] }));
   const items = lesson.items, qs = [];
   let types;
   if (lesson.letters) types = big ? ["letterPic", "listenLetter", "letterFind", "trace", "listenLetter", "letterFind"] : ["letterPic", "trace", "listenLetter", "letterPic"];
@@ -1571,7 +1573,7 @@ function renderQuestion() {
     S.bank = shuffle([...s.ne.map((w, i) => [w, s.rom[i]]), ...extras]);
     S.built = [];
     body = `<p class="ask">Make this sentence in Nepali</p>
-      <div class="prompt">${pandu("think", "side-pandu bob")}<span class="en">“${esc(s.en)}”</span>${sayBtn(K(s.ne.join(" ")))}</div>
+      <div class="prompt">${q.art ? `<img class="build-art" src="${q.art}" alt="" draggable="false">` : pandu("think", "side-pandu bob")}<span class="en">“${esc(s.en)}”</span>${sayBtn(K(s.ne.join(" ")))}</div>
       <div class="answer" id="answer" aria-label="Your sentence"></div>
       <div class="bank" id="bank">${S.bank.map((t, i) => `<button class="tile" type="button" data-t="${i}"><span class="ne" lang="ne">${esc(t[0])}</span><span class="rom">${esc(t[1])}</span></button>`).join("")}</div>`;
   }
