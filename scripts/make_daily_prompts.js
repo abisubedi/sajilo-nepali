@@ -65,7 +65,7 @@ days.forEach((d, i) => {
   md += `**Tips**\n- Same tool and settings as pandu-namaste, and attach **pandu-namaste** as a style reference for every picture.\n- White outside the circle is fine: I remove it.\n- Where it says **Attach**, also add that cast picture so the person looks the same everywhere.${n === 1 ? ' Make the 11 cast sheets today: every picture with people uses them.' : ''}\n- Keep the file names. A new picture with an old name replaces the old one in the game automatically.\n- Send them in batches of 5–10, each batch in a new message, or upload them to art/ on GitHub.\n\n`;
   md += `## Checklist\n\n${d.items.map(x => `- [${have(x.file) ? 'x' : ' '}] ${x.file}`).join('\n')}\n\n## Prompts\n\n`;
   for (const x of d.items) {
-    const refs = [...(x.file.startsWith('pandu-') || /Pandu/.test(x.subject) ? ['pandu-namaste.png (style + Pandu)'] : []), ...(x.file.startsWith('cast-') ? [] : refsFor(x.subject))];
+    const refs = [x.file.startsWith('pandu-') || /Pandu/.test(x.subject) ? 'pandu-namaste.png (style + Pandu)' : 'pandu-namaste.png (style reference)', ...(x.file.startsWith('cast-') ? [] : refsFor(x.subject))];
     md += `### ${x.file}\n${x.size} · used for: ${x.used.join('; ')}${refs.length ? `\n\n**Attach:** ${refs.join(', ')}` : ''}\n\n> ${styleFor(x.file)} Subject: ${x.subject}.\n\n`;
   }
   fs.writeFileSync(path.join(OUT, file), md);

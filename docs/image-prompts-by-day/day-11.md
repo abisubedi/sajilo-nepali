@@ -39,100 +39,140 @@
 ### ui-streak.png
 256x256 · used for: game interface
 
+**Attach:** pandu-namaste.png (style reference)
+
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a cheerful orange flame with a happy face (daily streak).
 
 ### ui-points.png
 256x256 · used for: game interface
+
+**Attach:** pandu-namaste.png (style reference)
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a shiny yellow star (points).
 
 ### ui-freeze.png
 256x256 · used for: game interface
 
+**Attach:** pandu-namaste.png (style reference)
+
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a sparkling ice crystal shield (streak freeze).
 
 ### ui-stickers.png
 256x256 · used for: game interface
+
+**Attach:** pandu-namaste.png (style reference)
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a gold medal on a red ribbon (sticker book).
 
 ### ui-heart.png
 256x256 · used for: game interface
 
+**Attach:** pandu-namaste.png (style reference)
+
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a glossy red heart (lives).
 
 ### ui-heart-empty.png
 256x256 · used for: game interface
+
+**Attach:** pandu-namaste.png (style reference)
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of an empty grey outline heart.
 
 ### ui-lock.png
 256x256 · used for: game interface
 
+**Attach:** pandu-namaste.png (style reference)
+
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a cute padlock (sticker not won yet).
 
 ### ui-bulb.png
 256x256 · used for: game interface
+
+**Attach:** pandu-namaste.png (style reference)
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a glowing light bulb (word of the day).
 
 ### ui-flashcards.png
 256x256 · used for: game interface
 
+**Attach:** pandu-namaste.png (style reference)
+
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a small stack of picture flashcards.
 
 ### ui-play.png
 256x256 · used for: game interface
+
+**Attach:** pandu-namaste.png (style reference)
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a game controller.
 
 ### ui-print.png
 256x256 · used for: game interface
 
+**Attach:** pandu-namaste.png (style reference)
+
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a friendly printer printing a card.
 
 ### ui-share.png
 256x256 · used for: game interface
+
+**Attach:** pandu-namaste.png (style reference)
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a love-letter envelope with a heart (share).
 
 ### ui-save.png
 256x256 · used for: game interface
 
+**Attach:** pandu-namaste.png (style reference)
+
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a treasure chest (save progress).
 
 ### ui-offline.png
 256x256 · used for: game interface
+
+**Attach:** pandu-namaste.png (style reference)
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a cloud with a download arrow (save for offline).
 
 ### ui-beeps.png
 256x256 · used for: game interface
 
+**Attach:** pandu-namaste.png (style reference)
+
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of musical notes (game sounds).
 
 ### ui-check.png
 256x256 · used for: game interface
+
+**Attach:** pandu-namaste.png (style reference)
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a big green tick mark.
 
 ### ui-cross.png
 256x256 · used for: game interface
 
+**Attach:** pandu-namaste.png (style reference)
+
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a soft red cross mark.
 
 ### ui-trophy.png
 256x256 · used for: game interface
+
+**Attach:** pandu-namaste.png (style reference)
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a gold trophy (lesson complete).
 
 ### ui-confetti.png
 256x256 · used for: game interface
 
+**Attach:** pandu-namaste.png (style reference)
+
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of colorful confetti burst with prayer-flag colors.
 
 ### ui-mic.png
 256x256 · used for: game interface
+
+**Attach:** pandu-namaste.png (style reference)
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a small simple bold game icon of a vintage microphone (real human voice badge).
 

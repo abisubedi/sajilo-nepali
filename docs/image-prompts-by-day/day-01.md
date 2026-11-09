@@ -92,55 +92,77 @@
 ### cast-maya.png
 1024x1024 · used for: reference for every picture with this person
 
+**Attach:** pandu-namaste.png (style reference)
+
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. One clear subject centered with empty space around it, isolated on a clean pure white background. Subject: character reference sheet of Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, front view, full body, standing in a neutral friendly pose.
 
 ### cast-arjun.png
 1024x1024 · used for: reference for every picture with this person
+
+**Attach:** pandu-namaste.png (style reference)
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. One clear subject centered with empty space around it, isolated on a clean pure white background. Subject: character reference sheet of Arjun, a friendly 8-year-old Nepali boy with short black hair, a blue shirt, brown shorts and a small colorful dhaka topi hat, front view, full body, standing in a neutral friendly pose.
 
 ### cast-aama.png
 1024x1024 · used for: reference for every picture with this person
 
+**Attach:** pandu-namaste.png (style reference)
+
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. One clear subject centered with empty space around it, isolated on a clean pure white background. Subject: character reference sheet of Aama (mother), a kind Nepali woman in her 30s with a long black braid, a red-and-green kurta, a small red tika and a gentle smile, front view, full body, standing in a neutral friendly pose.
 
 ### cast-baba.png
 1024x1024 · used for: reference for every picture with this person
+
+**Attach:** pandu-namaste.png (style reference)
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. One clear subject centered with empty space around it, isolated on a clean pure white background. Subject: character reference sheet of Baba (father), a friendly Nepali man in his 30s with short black hair and a neat moustache, a light-blue shirt and a dhaka topi hat, front view, full body, standing in a neutral friendly pose.
 
 ### cast-didi.png
 1024x1024 · used for: reference for every picture with this person
 
+**Attach:** pandu-namaste.png (style reference)
+
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. One clear subject centered with empty space around it, isolated on a clean pure white background. Subject: character reference sheet of Didi (older sister), a 13-year-old Nepali girl with a ponytail, a yellow kurta and a blue school-style cardigan, front view, full body, standing in a neutral friendly pose.
 
 ### cast-dai.png
 1024x1024 · used for: reference for every picture with this person
+
+**Attach:** pandu-namaste.png (style reference)
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. One clear subject centered with empty space around it, isolated on a clean pure white background. Subject: character reference sheet of Dai (older brother), a 14-year-old Nepali boy with neat black hair, a green T-shirt and jeans, front view, full body, standing in a neutral friendly pose.
 
 ### cast-bahini.png
 1024x1024 · used for: reference for every picture with this person
 
+**Attach:** pandu-namaste.png (style reference)
+
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. One clear subject centered with empty space around it, isolated on a clean pure white background. Subject: character reference sheet of Bahini (little sister), a 3-year-old Nepali toddler girl with a tiny top-knot, chubby cheeks and a pink frock, front view, full body, standing in a neutral friendly pose.
 
 ### cast-bhai.png
 1024x1024 · used for: reference for every picture with this person
+
+**Attach:** pandu-namaste.png (style reference)
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. One clear subject centered with empty space around it, isolated on a clean pure white background. Subject: character reference sheet of Bhai (little brother), a 5-year-old Nepali boy with messy black hair, an orange T-shirt and red shorts, front view, full body, standing in a neutral friendly pose.
 
 ### cast-hajuraama.png
 1024x1024 · used for: reference for every picture with this person
 
+**Attach:** pandu-namaste.png (style reference)
+
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. One clear subject centered with empty space around it, isolated on a clean pure white background. Subject: character reference sheet of Hajuraama (grandmother), a sweet elderly Nepali woman with grey hair in a bun, a maroon sari-style dress, a shawl, a red tika and round glasses, front view, full body, standing in a neutral friendly pose.
 
 ### cast-hajurbaa.png
 1024x1024 · used for: reference for every picture with this person
 
+**Attach:** pandu-namaste.png (style reference)
+
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. One clear subject centered with empty space around it, isolated on a clean pure white background. Subject: character reference sheet of Hajurbaa (grandfather), a jolly elderly Nepali man with white hair, a white moustache, a dhaka topi hat, a daura-suruwal outfit and a waistcoat, front view, full body, standing in a neutral friendly pose.
 
 ### cast-teacher.png
 1024x1024 · used for: reference for every picture with this person
+
+**Attach:** pandu-namaste.png (style reference)
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. One clear subject centered with empty space around it, isolated on a clean pure white background. Subject: character reference sheet of the teacher, a warm young Nepali woman in a sky-blue kurta with a cardigan, holding a book, front view, full body, standing in a neutral friendly pose.
 
