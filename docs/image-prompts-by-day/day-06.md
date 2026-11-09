@@ -11,35 +11,35 @@
 
 ## Checklist
 
-- [ ] w-tika.png
-- [ ] w-barley-shoots.png
-- [ ] w-oil-lamp.png
-- [ ] w-flower-garland.png
-- [ ] w-kite.png
-- [ ] w-nepali-drum.png
-- [ ] w-temple.png
-- [ ] w-blessing.png
-- [ ] w-lentils-and-rice.png
-- [ ] w-milk-tea.png
-- [ ] w-sel-roti.png
-- [ ] w-pickle.png
-- [ ] w-yogurt.png
-- [ ] w-papad.png
-- [ ] w-morning.png
-- [ ] w-afternoon.png
-- [ ] w-evening.png
-- [ ] w-night.png
-- [ ] w-today.png
-- [ ] w-tomorrow.png
-- [ ] w-yesterday.png
-- [ ] w-right-now.png
-- [ ] w-what-is-it.png
-- [ ] w-where-is-it.png
-- [ ] w-who-is-it.png
-- [ ] w-why.png
-- [ ] w-when.png
-- [ ] w-how-many.png
-- [ ] w-how-is-it.png
+- [x] w-tika.png
+- [x] w-barley-shoots.png
+- [x] w-oil-lamp.png
+- [x] w-flower-garland.png
+- [x] w-kite.png
+- [x] w-nepali-drum.png
+- [x] w-temple.png
+- [x] w-blessing.png
+- [x] w-lentils-and-rice.png
+- [x] w-milk-tea.png
+- [x] w-sel-roti.png
+- [x] w-pickle.png
+- [x] w-yogurt.png
+- [x] w-papad.png
+- [x] w-morning.png
+- [x] w-afternoon.png
+- [x] w-evening.png
+- [x] w-night.png
+- [x] w-today.png
+- [x] w-tomorrow.png
+- [x] w-yesterday.png
+- [x] w-right-now.png
+- [x] w-what-is-it.png
+- [x] w-where-is-it.png
+- [x] w-who-is-it.png
+- [x] w-why.png
+- [x] w-when.png
+- [x] w-how-many.png
+- [x] w-how-is-it.png
 
 ## Prompts
 
