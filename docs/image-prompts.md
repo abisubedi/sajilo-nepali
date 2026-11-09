@@ -1,6 +1,6 @@
 # Sajilo Nepali: picture prompts
 
-Every picture in the game, 406 in total. Each prompt below is complete (it already includes the shared style), so you can paste it as is.
+Every picture in the game, 407 in total. Each prompt below is complete (it already includes the shared style), so you can paste it as is.
 
 ## How to make them match
 
@@ -1231,7 +1231,7 @@ Every picture in the game, 406 in total. Each prompt below is complete (it alrea
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: Maya, a cheerful 7-year-old Nepali girl with two black braids tied with red ribbons, a red kurta with yellow trim and green leggings, a wise good child, reading a book with a small glowing star above her.
 
-## 7. Lesson icons (trail discs) (44)
+## 7. Lesson icons (trail discs) (45)
 
 **li-greet.png** · 512x512 · used for: trail: Greetings
 
@@ -1352,6 +1352,10 @@ Every picture in the game, 406 in total. Each prompt below is complete (it alrea
 **li-vehicles-travel.png** · 512x512 · used for: trail: On the Go
 
 > A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a simple bold icon of a colorful Nepali bus, inside nothing (no circle; the app adds the colored disc).
+
+**li-animal-sounds.png** · 512x512 · used for: trail: Animal Sounds
+
+> A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a simple bold icon of a happy puppy, kitten and little frog sitting together with their mouths open, singing, small musical notes and sound bursts floating above them, inside nothing (no circle; the app adds the colored disc).
 
 **li-travel-sentences.png** · 512x512 · used for: trail: Out & About
 

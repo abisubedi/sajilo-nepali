@@ -27,6 +27,7 @@ for (const l of window.LESSONS) {
       const k = D.W[it.en.toLowerCase()] ? 'w-' + slug(it.en) : 'w-' + slug(it.en);
       add("6. Letter example words", k, d, `${l.title}: ${it.ne} = ${it.word} (${it.en})`, "512x512");
     } else if (!isLabel(it.pic) && !/^Say /.test(it.en)) {
+      if (it.img) continue;   // reuses another word's picture (animal sounds)
       const d = D.W[it.en.toLowerCase()]; if (!d) { missing.push(`${l.id}: ${it.en}`); continue; }
       add("5. Word pictures", 'w-' + slug(it.en), d, `${l.title}: ${it.ne} = ${it.en}`, "512x512");
     }
