@@ -37,7 +37,7 @@ const W = {
   "rhino": "a baby one-horned rhinoceros from Chitwan standing in green grass",
   "deer": "a spotted deer fawn with big ears in a forest clearing",
   "rabbit": "a fluffy white rabbit with long ears nibbling a carrot",
-  "red panda": `${C.pandu}, without the hat, climbing a mossy branch`,
+  "red panda": "a wild Himalayan red panda (a real animal, not a cartoon mascot, no hat and no clothes) with orange-red fur, a white face mask and a long ringed tail, climbing a mossy rhododendron branch",
   // colors
   "red": "a big glossy red rhododendron flower (laligurans, Nepal's national flower)",
   "blue": "a bright blue sky with one fluffy cloud inside a circle",
