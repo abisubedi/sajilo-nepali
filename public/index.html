@@ -556,11 +556,48 @@ body.night .x, body.night .hearts { color: #c7d2fe; }
 .story-nav { display: flex; gap: 10px; align-items: center; }
 .story-nav .chip { background: #2b3a60; color: #fdf6e3; border-color: #3b4c78; }
 /* Car ride */
+/* Car ride: a little road trip */
+.car, .car * { font-family: var(--display); }
+.cr-scene { position: relative; height: 128px; border-radius: 24px; overflow: hidden; border: 3px solid #b9cbe6; background: linear-gradient(#bfe3ff, #e8f4ff 60%); }
+.cr-sun { position: absolute; top: 10px; right: 18px; z-index: 1; width: 34px; height: 34px; border-radius: 50%; background: #f6b71c; box-shadow: 0 0 0 6px rgba(246,183,28,.25); }
+.cr-peaks { position: absolute; left: 0; right: 0; bottom: 44px; height: 80px; background: #7e93b8; clip-path: polygon(0 100%, 14% 30%, 24% 62%, 40% 0, 55% 58%, 68% 20%, 82% 64%, 92% 36%, 100% 70%, 100% 100%); }
+.cr-peaks::after { content: ""; position: absolute; inset: 0; background: #fff; clip-path: polygon(14% 30%, 17% 42%, 11% 42%, 40% 0, 45% 18%, 35% 18%, 68% 20%, 72% 32%, 64% 32%, 92% 36%, 94% 46%, 89% 46%); }
+.cr-hills { position: absolute; left: -10%; right: -10%; bottom: 34px; height: 40px; background: radial-gradient(70px 34px at 15% 100%, #2fa75a 98%, transparent), radial-gradient(90px 40px at 50% 100%, #3cb46a 98%, transparent), radial-gradient(80px 36px at 85% 100%, #2fa75a 98%, transparent); }
+.cr-road { position: absolute; left: 0; right: 0; bottom: 0; height: 36px; background: #5d6b86; border-top: 4px solid #8a96ad; }
+.cr-road::after { content: ""; position: absolute; left: 0; right: 0; top: 15px; height: 4px; background: repeating-linear-gradient(90deg, #fff 0 22px, transparent 22px 44px); animation: crRoad .6s linear infinite; }
+@keyframes crRoad { to { background-position: -44px 0; } }
+.cr-pandu { position: absolute; left: 34%; bottom: 14px; width: 76px; height: 76px; animation: crBob .5s ease-in-out infinite alternate; }
+@keyframes crBob { to { transform: translateY(-4px) rotate(-2deg); } }
+.cr-scene.still .cr-road::after, .cr-scene.still .cr-pandu { animation: none; }
+.cr-flags { position: absolute; top: 8px; left: 12px; display: flex; gap: 6px; }
+.cr-flag { width: 20px; height: 15px; border-radius: 3px; background: var(--f); opacity: .3; border: 1.5px solid rgba(31,42,68,.35); transform-origin: left; transition: opacity .3s; }
+.cr-flag.done { opacity: 1; } .cr-flag.now { opacity: 1; animation: crWave .6s ease-in-out infinite alternate; }
+@keyframes crWave { to { transform: skewY(-10deg) scaleX(.9); } }
+.cr-card { background: var(--snow); border: 3px solid var(--line); border-radius: 24px; padding: 14px; min-height: 230px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; box-shadow: 0 5px 0 var(--line); }
+.cr-card.reveal { background: #f2fbf4; border-color: #9fd8b2; box-shadow: 0 5px 0 #9fd8b2; } .cr-card.cheer { background: #fff8e1; border-color: #f3d37a; box-shadow: 0 5px 0 #f3d37a; }
+.cr-title { margin: 0; font-size: 30px; font-weight: 800; color: var(--ink); }
+.cr-kicker { margin: 0; font-size: 20px; font-weight: 700; color: var(--muted); }
+.cr-en { margin: 0; font-size: 32px; font-weight: 800; color: var(--ink); line-height: 1.15; }
+.cr-en.pill { background: linear-gradient(135deg, #fff3c4, #ffe08a); border: 2px solid #f3d37a; border-radius: 999px; padding: 4px 18px; }
+.cr-row .cr-en.pill { font-size: 22px; }
+.cr-pic .wpic { width: 120px; height: 120px; } .cr-pic .big { font-size: 90px; line-height: 1; } .cr-pic.sm .wpic { width: 54px; height: 54px; } .cr-pic.sm .big { font-size: 44px; }
+.cr-row { display: flex; align-items: center; gap: 10px; justify-content: center; }
+.cr-ring { --c: #e2453c; width: 118px; height: 118px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--c) calc(var(--p) * 360deg), #e8eef8 0); animation: crPulse 1s ease-in-out infinite; }
+.cr-ring b { width: 92px; height: 92px; border-radius: 50%; background: var(--snow); display: grid; place-items: center; font-size: 56px; font-weight: 800; color: var(--c); }
+.cr-ring.c3, .cr-ring.c2 { --c: #f6b71c; } .cr-ring.c1 { --c: #2fa75a; }
+@keyframes crPulse { 50% { transform: scale(1.06); } }
+.cr-shout { margin: 0; font-size: 24px; font-weight: 800; color: var(--flag-red); animation: crBob .4s ease-in-out infinite alternate; }
+.cr-big-ne { margin: 0; font-size: 52px; font-weight: 800; line-height: 1.15; color: #1f7a40; text-shadow: 0 3px 0 rgba(47,167,90,.18); } .cr-big-ne .ne { font-size: inherit; color: inherit; }
+.cr-rom { margin: 0; font-size: 18px; font-weight: 700; color: #1d4f9e; background: #e6efff; border-radius: 999px; padding: 2px 14px; }
+.cr-small { margin: 0; font-size: 17px; font-weight: 700; color: var(--muted); }
+.cr-steps { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.cr-steps span { display: flex; flex-direction: column; align-items: center; gap: 2px; width: 96px; background: #eaf2ff; border: 2px solid #b9cbe6; border-radius: 18px; padding: 8px 4px; font-weight: 800; font-size: 14px; color: var(--ink); }
+.cr-steps b { font-size: 34px; line-height: 1; animation: crBob .7s ease-in-out infinite alternate; } .cr-steps span:nth-child(2) b { animation-delay: .2s; } .cr-steps span:nth-child(3) b { animation-delay: .4s; }
+.cr-go { font-size: 24px; } .car-btns button { transition: transform .08s; } .car-btns button:active { transform: translateY(4px); box-shadow: none; }
+.cr-pause { align-self: center; }
+@media (prefers-reduced-motion: reduce) { .cr-road::after, .cr-pandu, .cr-flag.now, .cr-ring, .cr-shout, .cr-steps b { animation: none; } }
+@media (max-height: 700px) { .cr-scene { height: 104px; } .cr-pandu { width: 62px; height: 62px; } .cr-card { min-height: 200px; } .cr-pic .wpic { width: 96px; height: 96px; } }
 .car { display: flex; flex-direction: column; gap: 14px; align-items: stretch; text-align: center; }
-.car-q { background: var(--snow); border: 3px solid var(--line); border-radius: 24px; padding: 18px; min-height: 180px; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
-.car-q .big-en { font-family: var(--display); font-size: 34px; }
-.car-q .big-ne { font-size: 44px; font-weight: 800; }
-.car-count { font-family: var(--display); font-size: 64px; color: var(--flag-blue); }
 .car-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .car-btns button { font: inherit; font-family: var(--display); font-size: 26px; border: 0; border-radius: 22px; padding: 22px 10px; color: #fff; }
 .car-yes { background: var(--flag-green); box-shadow: 0 6px 0 #1f7a40; } .car-next { background: var(--flag-blue); box-shadow: 0 6px 0 #1d4f9e; }
@@ -1524,17 +1561,28 @@ async function carRound() {
   C.timer = setTimeout(() => { if (alive()) carRound(); }, 7000);
 }
 function renderCar() {
-  const C = S.car, it = C.item;
+  const C = S.car, it = C.item, still = C.paused || !it || C.phase === "cheer" ? " still" : "";
+  const step = it ? ((C.asked || 1) - 1) % 5 : -1, cols = ["#2f6fd6", "#fff", "#e2453c", "#2fa75a", "#f6b71c"];
+  const flags = [0, 1, 2, 3, 4].map(k => `<i class="cr-flag${k < step || (k === step && C.phase === "reveal") ? " done" : ""}${k === step ? " now" : ""}" style="--f:${cols[k]}"></i>`).join("");
+  const pic = it ? picHTML(it) : "";
+  const ring = n => `<div class="cr-ring c${n}" style="--p:${n / 5}"><b lang="ne">${toDeva(n)}</b></div>`;
+  let card;
+  if (C.phase === "cheer") card = `<div class="cr-card cheer">${pandu("cheer", "car-cheer pop")}<p class="cr-big-ne" lang="ne">🎉 पाँच शब्द!</p><p class="cr-en">Five words!</p>
+      <p class="cr-small">You got <b lang="ne">${toDeva(C.score)}</b> of <b lang="ne">५</b>. ${neSpan(window.PHRASES.wellDone)} Here come five more!</p></div>`;
+  else if (!it) card = `<div class="cr-card start"><p class="cr-title">Ready for a car ride?</p>
+      <div class="cr-steps"><span><b>👂</b>Listen</span><span><b>📣</b>Shout it in Nepali</span><span><b>✅</b>Check!</span></div>
+      <p class="cr-small">Turn the sound up. Everyone can play!</p></div>`;
+  else if (C.phase === "ask") card = `<div class="cr-card"><p class="cr-kicker">How do you say…</p><div class="cr-pic pop">${pic}</div><p class="cr-en pill">${esc(it.en)}</p></div>`;
+  else if (C.phase === "count") card = `<div class="cr-card"><div class="cr-row"><div class="cr-pic sm">${pic}</div><p class="cr-en pill">${esc(it.en)}</p></div>${ring(C.count)}<p class="cr-shout">📣 Shout it out!</p></div>`;
+  else card = `<div class="cr-card reveal"><div class="cr-row"><div class="cr-pic sm">${pic}</div><p class="cr-en pill">${esc(it.en)}</p></div>
+      <p class="cr-big-ne pop">${neSpan(it.ne)}</p><p class="cr-rom">${esc(it.rom)}</p><p class="cr-small">Did you get it?</p></div>`;
   $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Stop car ride">✕</button><h2 class="kin-title">🚗 Car ride</h2><span class="car-score">⭐ <span lang="ne">${toDeva(C.score)} / ${toDeva(C.rounds)}</span></span></div>
     <section class="car">
-      <div class="car-q">${C.phase === "cheer" ? `${pandu("cheer", "car-cheer pop")}<p class="big-ne" lang="ne">🎉 पाँच शब्द!</p><p class="big-en">Five words!</p><p>You got <b lang="ne">${toDeva(C.score)}</b> of <b lang="ne">५</b>. ${neSpan(window.PHRASES.wellDone)} Here come five more!</p>`
-        : !it ? `<p class="big-en">Ready for a car ride game?</p><p>The phone asks out loud, everyone shouts the Nepali, then you hear the answer. Turn the sound up!</p>`
-        : C.phase === "ask" ? `<p>How do you say…</p><p class="big-en">${esc(it.en)}</p>`
-        : C.phase === "count" ? `<p class="big-en">${esc(it.en)}</p><p class="car-count">${C.count}</p><p>Shout it out!</p>`
-        : `<p class="big-en">${esc(it.en)}</p><p class="big-ne" lang="ne">${esc(it.ne)}</p><p class="rom">${esc(it.rom)}</p><p>Did you get it?</p>`}</div>
-      ${C.phase === "cheer" ? "" : !it ? `<button class="go" type="button" id="carStart">▶ Start</button>`
+      <div class="cr-scene${still}" aria-hidden="true"><span class="cr-peaks"></span><span class="cr-sun"></span><span class="cr-hills"></span><span class="cr-road"></span>${pandu("bike", "cr-pandu")}<div class="cr-flags">${flags}</div></div>
+      ${card}
+      ${C.phase === "cheer" ? "" : !it ? `<button class="go cr-go" type="button" id="carStart">▶ <span lang="ne">ल जाऔँ!</span> · Let's go</button>`
         : `<div class="car-btns"><button class="car-yes" type="button" id="carYes">✅ We got it!</button><button class="car-next" type="button" id="carNext">⏭ Next</button></div>
-           <button class="chip" type="button" id="carPause">${C.paused ? "▶ Keep going" : "⏸ Pause"}</button>`}
+           <button class="chip cr-pause" type="button" id="carPause">${C.paused ? "▶ Keep going" : "⏸ Pause"}</button>`}
     </section>`;
 }
 function startCar() {
