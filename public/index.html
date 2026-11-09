@@ -233,7 +233,9 @@ body .pick-grid .opt .big { font-size: 34px !important; } body .pick-grid .opt .
 .bagh-node .ne { font-family: var(--display); font-size: 15px; line-height: 1.1; } .bagh-ic { font-size: 22px; line-height: 1; min-height: 4px; }
 .bagh-node.reach { border-color: var(--flag-blue); box-shadow: 0 0 0 4px rgba(47,111,214,.3); animation: pulse 1.5s infinite; } .bagh-node.visited { background: var(--good-bg); border-color: var(--flag-green); }
 .bagh-node.tiger { background: #fde2df; border-color: var(--flag-red); } .bagh-node.goal { background: #fff3c4; border-color: var(--flag-yellow); } .bagh-node[disabled] { cursor: default; }
-.bagh-q { margin-top: 8px; } .jump-pill .tick { color: #1f7a40; font-size: 13px; } .cert-explorer { margin: 4px 0; font-weight: 800; color: #8a5a00; } .bagh-ic img { width: 34px; height: 34px; display: block; }
+.bagh-q { margin-top: 8px; }
+.play-next { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 8px; font: inherit; text-align: left; color: #fff; background: var(--flag-blue); border: 0; border-radius: 18px; padding: 8px 12px; box-shadow: 0 4px 0 #1d4f9e; cursor: pointer; }
+.play-next .disc { width: 46px; height: 46px; flex: none; } .play-next b { display: block; font-family: var(--display); font-size: 19px; } .play-next span[lang] { font-family: var(--display); font-weight: 700; } .jump-pill .tick { color: #1f7a40; font-size: 13px; } .cert-explorer { margin: 4px 0; font-weight: 800; color: #8a5a00; } .bagh-ic img { width: 34px; height: 34px; display: block; }
 .answer.tape { background: repeating-linear-gradient(90deg, #5a3a22 0 6px, #6b4529 6px 12px); border-radius: 12px; border-bottom: 0; padding: 8px; justify-content: center; }
 .answer { min-height: 64px; border-bottom: 3px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; padding: 6px 0; }
 .bank { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
@@ -958,6 +960,10 @@ function buildQuestions(lesson) {
     qs.push({ type: t, item });
   }
   if (!lesson.letters) qs.splice(Math.min(3, qs.length), 0, { type: "match", items: pickN(items, big ? 5 : 3) });
+  if (!big && !lesson.letters && !lesson.sentences && !P.stars[starKey(lesson.id)]) {   // first time: meet 4 words before the quiz
+    const meet = pickN(items.filter(x => artFor(x) && AUDIO[K(x.ne)]), 4);
+    if (meet.length >= 3) { qs.unshift({ type: "learn", items: meet }); qs.forEach(q => { if (q.item && !meet.includes(q.item) && Math.random() < .5) { const m = meet[Math.floor(Math.random() * meet.length)]; if (!qs.some(o => o.item === m && o.type === q.type)) q.item = m; } }); }
+  }
   if (lesson.barakhari) pickN(lesson.items, 3).forEach((x, k) => qs.splice(1 + k * 3, 1, matraQ(lesson, x)));
   if (lesson.order && (big ? lesson.order.bigWho : lesson.order.who)) qs.splice(4, 1, orderQ(lesson, big));
   if (lesson.chains) qs.splice(big ? 7 : 5, 1, sequenceQ(lesson));
@@ -1058,7 +1064,7 @@ function wordOfDayHTML() {
     <span><small>💡 Word of the day<span class="wide-only"> · ${esc(w.c.en)}</span></small><b lang="ne">${esc(w.it.ne)}</b> <span class="rom">${esc(w.it.rom)}</span><em>${esc(w.it.en)}</em></span>
     <span class="wotd-say">${heard ? "✓ Heard today! +5 ⭐" : `${SPEAKER}<small>Tap for +5 ⭐</small>`}</span></button>
     ${echoBtn(K(w.it.ne), "wotd-echo")}</div>
-    <div class="wotd-foot"><button class="wotd-chal" type="button" id="wotdChal" ${P.chalDay === today() ? "disabled" : ""}>${P.chalDay === today() ? "✓ Challenge done!" : `🎯 Today's challenge<br><small>3 quick questions · +10 ⭐</small>`}</button>
+    <div class="wotd-foot">${P.level !== "big" ? "" : `<button class="wotd-chal" type="button" id="wotdChal" ${P.chalDay === today() ? "disabled" : ""}>${P.chalDay === today() ? "✓ Challenge done!" : `🎯 Today's challenge<br><small>3 quick questions · +10 ⭐</small>`}</button>`}
     <button class="wotd-go" type="button" data-wotd-lesson="${esc(w.l.id)}">Practice “${esc(w.l.title)}” →</button></div></div>`;
 }
 function streakLine() {
@@ -1276,6 +1282,7 @@ function renderMap() {
       </div>
     </div>
     <div class="greet${festivalToday() ? " festive" : ""}"><button class="pandu-btn" type="button" data-pandusay="${esc(K(greetPhrase()))}" aria-label="Pandu says hello">${pandu(panduNow(), "pandu-hi")}${festivalToday() && festivalToday().diyo ? `<span class="diyo" aria-hidden="true">🪔</span>` : ""}</button><div><p>${greeting()} I'm Pandu. ${greetExtra() || streakLine()}</p>
+      ${(() => { const nx = orderedLessons().find(l => !P.stars[starKey(l.id)]); return nx ? `<button class="play-next" type="button" data-playnext="${nx.id}"><span class="disc" style="--c:${nx.color}">${iconHTML(nx)}</span><span><b>▶ Play next</b><span lang="ne">${esc(nx.ne)}</span> · ${esc(nx.title)}</span></button>` : ""; })()}
       ${missionToday() ? `<button class="chip mission-chip" type="button" id="toggleMission">🗣️ ${S.showMission ? "Hide" : "Today's"} mission</button>` : ""}
       ${S.showMission ? missionHTML() : ""}
       ${window.STORY && storyTime() ? `<button class="greet-story" type="button" id="openStory">🌙 Read tonight's bedtime story →</button>` : ""}</div></div>
@@ -1677,7 +1684,7 @@ function renderQuestion() {
   const turn = q.turn ? `<div class="turn turn-${q.turn}">${q.turn === "big" ? "🧑 Big kid's turn: read it and pick the Nepali!" : "🧒 Little kid's turn: listen and tap the picture!"}</div>` : "";
   if (q.type === "learn") {
     needsCheck = false;
-    const cards = l.items.map(it => {
+    const cards = (q.items || l.items).map(it => {
       const k = itemKey(l, it);
       return l.letters
         ? `<button class="card" type="button" data-learn="${esc(k)}"><span class="letter-big" lang="ne">${esc(it.ne)}</span><span class="rom">${esc(it.rom)}</span>${it.word ? `${picHTML(it, 30)}<span class="ne word" lang="ne">${esc(it.word)}</span>` : ""}<span class="en">${esc(it.en)}</span><span class="tick"></span></button>`
@@ -1794,7 +1801,7 @@ function renderQuestion() {
 }
 
 /* Kids hear a few cards before the quiz unlocks. */
-const learnNeeded = () => Math.min(3, (S.lesson.items || []).length);
+const learnNeeded = () => { const q = S.queue && S.queue[0]; return Math.min(q && q.items ? q.items.length : 3, (S.lesson.items || []).length); };
 const learnLabel = heard => heard >= learnNeeded() ? "Start the quiz" : `Tap ${toDeva(learnNeeded())} cards to start (${toDeva(heard)}/${toDeva(learnNeeded())})`;
 
 /* ---------- Tracing ---------- */
@@ -2343,6 +2350,7 @@ document.addEventListener("click", e => {
   }
   if (t.dataset.wotdLesson) { const l = window.LESSONS.find(x => x.id === t.dataset.wotdLesson); say(K(l.ne)); S.sheet = l.id; render(); return; }
   if (t.matches("button.say")) { say(t.dataset.say, t); return; }
+  if (t.dataset.playnext) { const l = window.LESSONS.find(x => x.id === t.dataset.playnext); say(K(l.ne)); startLesson(l.id); return; }
   if (t.dataset.lesson) { const l = window.LESSONS.find(x => x.id === t.dataset.lesson); say(K(l.ne)); S.sheet = l.id; render(); return; }
   if (t.id === "sheetClose") { S.sheet = null; render(); return; }
   if (t.id === "goCards") { openCards(S.sheet); return; }
@@ -2438,6 +2446,7 @@ document.addEventListener("click", e => {
   }
   if (t.id === "toTop") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
   if (t.dataset.jump) {
+    const ch = window.CHAPTERS.find(c => c.id === t.dataset.jump); if (ch && AUDIO[K(ch.ne)]) say(K(ch.ne));
     const el = document.getElementById("ch-" + t.dataset.jump);
     if (el) el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
     beep("tap"); return;
