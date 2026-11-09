@@ -213,14 +213,14 @@ const W = {
   "ant": "a small friendly red ant carrying a crumb",
   "spider": "a friendly cartoon spider on a web",
   "frog": "a happy green frog on a lily pad",
-  "turtle": "a smiling turtle",
+  "turtle": "a green sea turtle swimming underwater with its flippers spread, bubbles and a little seaweed around",
   // travel
   "car": "a small red car",
   "bus": "a colorful decorated Nepali bus",
   "train": "a little red toy-like train",
   "airplane": "a white airplane flying over mountains",
-  "boat": "a small wooden boat on a river",
-  "river": "a winding blue river between green hills",
+  "boat": "a close-up of a small wooden rowing boat with two oars and a little flag, only a strip of water under it",
+  "river": "a wide sparkling blue river rushing over smooth round stones, a fish jumping out of the water, green banks on both sides, no boats and no bridge",
   "sea": "blue sea waves and a sandy beach",
   "bridge": "a Nepali suspension bridge with prayer flags over a river",
   // school
