@@ -593,14 +593,23 @@ body.night .x, body.night .hearts { color: #c7d2fe; }
 .cr-steps { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
 .cr-steps span { display: flex; flex-direction: column; align-items: center; gap: 2px; width: 96px; background: #eaf2ff; border: 2px solid #b9cbe6; border-radius: 18px; padding: 8px 4px; font-weight: 800; font-size: 14px; color: var(--ink); }
 .cr-steps b { font-size: 34px; line-height: 1; animation: crBob .7s ease-in-out infinite alternate; } .cr-steps span:nth-child(2) b { animation-delay: .2s; } .cr-steps span:nth-child(3) b { animation-delay: .4s; }
-.cr-go { font-size: 24px; } .car-btns button { transition: transform .08s; } .car-btns button:active { transform: translateY(4px); box-shadow: none; }
-.cr-pause { align-self: center; }
+.cr-go { font-size: 24px; }
+.car-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.car-btns button { display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 22px; padding: 12px 8px; font-size: clamp(17px, 5vw, 22px); white-space: nowrap; font-weight: 800; cursor: pointer; transition: transform .08s, box-shadow .08s; background-image: var(--paper); }
+.car-btns button span { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; } .car-btns small { font-size: 15px; font-weight: 700; opacity: .85; }
+.car-btns button:active { transform: translateY(4px); }
+.car-yes { background-color: #f2fbf4; color: #1f7a40; border: 3px solid #2fa75a; box-shadow: 0 5px 0 #2fa75a; } .car-yes:active { box-shadow: 0 1px 0 #2fa75a; }
+.car-next { background-color: #eef4ff; color: #1d4f9e; border: 3px solid #2f6fd6; box-shadow: 0 5px 0 #2f6fd6; } .car-next:active { box-shadow: 0 1px 0 #2f6fd6; }
+.cr-ic { flex: none; width: clamp(34px, 10vw, 42px); height: clamp(34px, 10vw, 42px); border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 24px; font-weight: 800; color: #fff; }
+.car-yes .cr-ic { background: #2fa75a; box-shadow: inset 0 -3px 0 rgba(0,0,0,.15); } .car-next .cr-ic { background: #2f6fd6; box-shadow: inset 0 -3px 0 rgba(0,0,0,.15); }
+.cr-pause { align-self: center; display: inline-flex; align-items: center; gap: 8px; font-size: 17px; font-weight: 800; color: #6b4a1f; background: #fff3c4; border: 2.5px solid #e6b422; border-radius: 999px; padding: 7px 18px 7px 10px; box-shadow: 0 3px 0 #e6b422; cursor: pointer; }
+.cr-pause.on { background: #f2fbf4; color: #1f7a40; border-color: #2fa75a; box-shadow: 0 3px 0 #2fa75a; }
+.cr-pz { width: 26px; height: 26px; border-radius: 50%; background: #e6b422; position: relative; flex: none; }
+.cr-pz::before, .cr-pz::after { content: ""; position: absolute; top: 7px; width: 4px; height: 12px; border-radius: 2px; background: #fff; } .cr-pz::before { left: 8px; } .cr-pz::after { right: 8px; }
+.cr-pz.play { background: #2fa75a; } .cr-pz.play::before { left: 10px; top: 7px; width: 0; height: 0; border-radius: 0; background: none; border-left: 10px solid #fff; border-top: 6px solid transparent; border-bottom: 6px solid transparent; } .cr-pz.play::after { display: none; }
 @media (prefers-reduced-motion: reduce) { .cr-road::after, .cr-pandu, .cr-flag.now, .cr-ring, .cr-shout, .cr-steps b { animation: none; } }
 @media (max-height: 700px) { .cr-scene { height: 104px; } .cr-pandu { width: 62px; height: 62px; } .cr-card { min-height: 200px; } .cr-pic .wpic { width: 96px; height: 96px; } }
 .car { display: flex; flex-direction: column; gap: 14px; align-items: stretch; text-align: center; }
-.car-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.car-btns button { font: inherit; font-family: var(--display); font-size: 26px; border: 0; border-radius: 22px; padding: 22px 10px; color: #fff; }
-.car-yes { background: var(--flag-green); box-shadow: 0 6px 0 #1f7a40; } .car-next { background: var(--flag-blue); box-shadow: 0 6px 0 #1d4f9e; }
 .car-score { font-weight: 800; font-size: 20px; }
 /* Explore the room */
 .scene { position: relative; width: 100%; border-radius: 18px; overflow: hidden; border: 3px solid var(--line); }
@@ -1581,8 +1590,9 @@ function renderCar() {
       <div class="cr-scene${still}" aria-hidden="true"><span class="cr-peaks"></span><span class="cr-sun"></span><span class="cr-hills"></span><span class="cr-road"></span>${pandu("bike", "cr-pandu")}<div class="cr-flags">${flags}</div></div>
       ${card}
       ${C.phase === "cheer" ? "" : !it ? `<button class="go cr-go" type="button" id="carStart">▶ <span lang="ne">ल जाऔँ!</span> · Let's go</button>`
-        : `<div class="car-btns"><button class="car-yes" type="button" id="carYes">✅ We got it!</button><button class="car-next" type="button" id="carNext">⏭ Next</button></div>
-           <button class="chip cr-pause" type="button" id="carPause">${C.paused ? "▶ Keep going" : "⏸ Pause"}</button>`}
+        : `<div class="car-btns"><button class="car-yes" type="button" id="carYes"><i class="cr-ic">✓</i><span>We got it!<small lang="ne">मिल्यो!</small></span></button>
+             <button class="car-next" type="button" id="carNext"><i class="cr-ic">➜</i><span>Next<small lang="ne">अर्को</small></span></button></div>
+           <button class="cr-pause${C.paused ? " on" : ""}" type="button" id="carPause"><i class="cr-pz${C.paused ? " play" : ""}" aria-hidden="true"></i>${C.paused ? "Keep going" : "Pause"}</button>`}
     </section>`;
 }
 function startCar() {
