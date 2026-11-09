@@ -23,6 +23,7 @@ D.STICKERS.forEach(([f, name, d]) => add("4. Chapter stickers", f, `${d}`, `stic
 for (const l of window.LESSONS) {
   for (const it of l.items || []) {
     if (it.word) {
+      if (l.barakhari) continue;   // Matra Magic reuses the word pictures
       const d = D.LW[it.word]; if (!d) { missing.push('letter ' + it.word); continue; }
       const k = D.W[it.en.toLowerCase()] ? 'w-' + slug(it.en) : 'w-' + slug(it.en);
       add("6. Letter example words", k, d, `${l.title}: ${it.ne} = ${it.word} (${it.en})`, "512x512");
