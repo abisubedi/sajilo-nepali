@@ -338,6 +338,7 @@ const LI = {
   "feelings-needs": "three faces: happy, sad and sleepy",
   "clothes": "a kurta and a dhaka topi",
   "playtime-verbs": "a child running and jumping",
+  "animal-sounds": "a happy puppy, kitten and little frog sitting together with their mouths open, singing, small musical notes and sound bursts floating above them",
   "retro-90s": "Pandu the red panda holding an old cassette tape and a pencil, a chungi of colorful rubber bands at his feet",
   "sound-words": "Pandu the red panda laughing with musical notes and little sound bursts popping around him",
   "helping-verbs": "a broom and a dustpan",
