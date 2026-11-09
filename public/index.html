@@ -18,9 +18,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#e8f4ff">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='22' cy='26' r='15' fill='%23b9541a'/><circle cx='78' cy='26' r='15' fill='%23b9541a'/><circle cx='22' cy='26' r='8' fill='%23fff'/><circle cx='78' cy='26' r='8' fill='%23fff'/><ellipse cx='50' cy='56' rx='38' ry='34' fill='%23e8742a'/><ellipse cx='32' cy='60' rx='13' ry='10' fill='%23fff'/><ellipse cx='68' cy='60' rx='13' ry='10' fill='%23fff'/><ellipse cx='50' cy='72' rx='15' ry='11' fill='%23fff'/><circle cx='35' cy='52' r='5' fill='%231f2a44'/><circle cx='65' cy='52' r='5' fill='%231f2a44'/><ellipse cx='50' cy='66' rx='5' ry='3.5' fill='%231f2a44'/><path d='M44 73 q6 5 12 0' stroke='%231f2a44' stroke-width='2.5' fill='none' stroke-linecap='round'/></svg>">
-<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Sajilo Nepali">
@@ -220,8 +220,6 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .icon-btn[aria-pressed="false"] { border-style: dashed; color: var(--muted); background: #f3f6fb; }
 .greet p { font-weight: 700; }
 .greet .ne { font-size: 20px; }
-.pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-.pill { background: var(--sky); border: 2px solid var(--line); border-radius: 999px; padding: 2px 10px; font-weight: 800; font-size: 13px; }
 .sheet-back { position: fixed; inset: 0; background: rgba(31,42,68,.45); z-index: 20; }
 .sheet { position: fixed; left: 50%; bottom: 0; transform: translateX(-50%); width: min(640px, 100%); background: var(--snow); border-radius: 26px 26px 0 0; padding: 20px 16px calc(24px + env(safe-area-inset-bottom)); z-index: 21; display: flex; flex-direction: column; gap: 12px; animation: up .2s ease-out; }
 @keyframes up { from { transform: translate(-50%, 40px); opacity: .4; } }
@@ -397,7 +395,7 @@ body { background-image: var(--paper); }
 .wotd-top .wotd-main { flex: 1; min-width: 0; }
 .wotd-echo { flex: none; width: 46px; height: 46px; margin-right: 12px; border-radius: 50%; border: 2px solid #f3d37a; background: var(--snow); font-size: 20px; display: grid; place-items: center; padding: 0; box-shadow: 0 3px 0 #f3d37a; }
 .wotd-echo .echo-l { display: none; }
-.wotd-echo.rec { width: auto; padding: 0 12px; border-radius: 999px; font-size: 14px; }
+.wotd-echo.rec { border-color: var(--flag-red); background: #fde2df; }
 .wotd-foot .echo-l { display: none; }
 .wotd-foot .echo { flex: none; border: 0; border-right: 2px dashed #f3d37a; background: #fff8e1; padding: 6px 12px; font-size: 20px; border-radius: 0; }
 /* Who's who in our family */
@@ -477,8 +475,7 @@ body { background-image: var(--paper); }
 .turn-little { background: #fff1d6; color: #8a4b00; border: 2px solid #f3d37a; }
 .sheet-btn.team { background: #7a4fd0; box-shadow: 0 5px 0 #4f2f95; }
 /* Bedtime story */
-.story-card { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; font: inherit; background: #1f2a44; color: #fdf6e3; border: 0; border-radius: 18px; padding: 10px 14px; box-shadow: 0 4px 0 #111827; }
-.story-card .moon { font-size: 34px; } .story-card b { display: block; font-family: var(--display); font-size: 19px; } .story-card small { color: #c7d2fe; font-weight: 700; }
+.greet-story { display: block; margin-top: 8px; font: inherit; font-weight: 800; font-size: 15px; color: #fdf6e3; background: #1f2a44; border: 0; border-radius: 999px; padding: 7px 14px; cursor: pointer; text-align: left; }
 body.night { background: #16203a; color: #fdf6e3; }
 body.night .x, body.night .hearts { color: #c7d2fe; }
 .story { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
@@ -549,7 +546,6 @@ html.modal-open, html.modal-open body { overflow: hidden; }
   .greet { padding: 8px 12px; gap: 10px; }
   .greet .mascot { width: 64px; height: 64px; }
   .greet .ne { font-size: 19px; }
-  .greet .pills { display: none; }
   .drop { padding: 6px 12px; gap: 10px; }
   .drop .wpic { width: 44px; height: 44px; }
   .drop b { font-size: 19px; } .drop em { display: inline; margin-left: 4px; }
@@ -657,7 +653,7 @@ span[data-say]:hover { background: rgba(47,111,214,.10); }
 <script src="lessons.js"></script>
 <script src="audio-manifest.js"></script>
 <script src="img-manifest.js"></script>
-<script>if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));</script>
+<script>if ("serviceWorker" in navigator && !window.Capacitor && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));</script>
 <script>
 /* ---------- Saved progress (this browser only) ---------- */
 /* Players: each child on this device has their own stars, streak and stickers.
@@ -837,7 +833,8 @@ function buildQuestions(lesson) {
   if (lesson.letters) types = big ? ["letterPic", "listenLetter", "letterFind", "trace", "listenLetter", "letterFind"] : ["letterPic", "trace", "listenLetter", "letterPic"];
   else types = big ? ["pickNepaliText", "typeMeaning", "listen", "pickMeaning", "typeMeaning", "pickNepaliText"] : ["pickMeaning", "pickNepali", "listen", "pickMeaning"];
   if (lesson.count) types.push("count", "count");
-  const pool = shuffle(items);
+  const weak = P.weak || {}, wk = x => weak[`${lesson.id}|${x.ne}`] || 0;
+  const pool = shuffle(items).sort((a, b) => wk(b) - wk(a));   // words missed last time come first
   for (let i = 0; qs.length < total; i++) {
     const item = pool[i % pool.length];
     let t = types[i % types.length];
@@ -1074,10 +1071,12 @@ function orderedLessons() {
   return window.CHAPTERS.flatMap(c => c.lessons).filter(id => vis.has(id)).map(id => window.LESSONS.find(l => l.id === id));
 }
 let chapterObserver = null;
+let userScrolled = false; addEventListener("scroll", () => { userScrolled = true; }, { passive: true, once: true });
 function watchChapters() {
   if (chapterObserver) chapterObserver.disconnect();
   if (!("IntersectionObserver" in window)) return;
   chapterObserver = new IntersectionObserver(entries => {
+    if (!userScrolled) return;
     for (const e of entries) if (e.isIntersecting) {
       const id = e.target.id.replace(/^ch-/, "");
       document.querySelectorAll(".jump-pill[data-jump]").forEach(p => {
@@ -1128,9 +1127,6 @@ function renderMap() {
     const art = c.sticker.img && (window.IMG || {})[c.sticker.img.replace(/^img\/|\.webp$/g, "")];
     return `<button class="jump-pill${done ? " finished" : ""}${here ? " here" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}" style="--c:${c.color}">${art ? `<img src="${art}" alt="" draggable="false">` : `<span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span>`} Ch ${i + 1}${done ? " ✓" : ""}</button>`;
   }).join("");
-  const pills = P.level === "big"
-    ? ["4️⃣ 4 choices", "⌨️ Typing", "🧩 Sentences"]
-    : ["🖼️ Big pictures", "👂 Listen", "✍️ Trace letters"];
   const sheetL = S.sheet && window.LESSONS.find(l => l.id === S.sheet);
   $("#app").innerHTML = `
     <div class="top">
@@ -1156,8 +1152,7 @@ function renderMap() {
       </div>
     </div>
     <div class="greet${festivalToday() ? " festive" : ""}"><button class="pandu-btn" type="button" data-pandusay="${esc(K(greetPhrase()))}" aria-label="Pandu says hello">${pandu(panduNow(), "pandu-hi")}${festivalToday() && festivalToday().diyo ? `<span class="diyo" aria-hidden="true">🪔</span>` : ""}</button><div><p>${greeting()} I'm Pandu. ${greetExtra() || streakLine()}</p>
-      <div class="pills">${pills.map(x => `<span class="pill">${x}</span>`).join("")}</div></div></div>
-    ${storyCardHTML()}
+      ${window.STORY && storyTime() ? `<button class="greet-story" type="button" id="openStory">🌙 Read tonight's bedtime story →</button>` : ""}</div></div>
     ${dropHTML()}
     ${wordOfDayHTML()}
     <nav class="jump" aria-label="Jump to a chapter"><button class="jump-pill top-pill" type="button" id="toTop" aria-label="Back to top">🐼 Top ↑</button>${jump}</nav>
@@ -1260,7 +1255,8 @@ function sayAndWait(key) {
 }
 async function echo(btn, key) {
   if (btn.dataset.busy) return;
-  const label = btn.innerHTML, back = (msg, ms = 2500) => { btn.innerHTML = msg; setTimeout(() => { btn.innerHTML = label; delete btn.dataset.busy; }, ms); };
+  const icon = btn.classList.contains("wotd-echo"), short = m => icon ? m.split(" ")[0] : m;   // the round word-of-the-day button only shows the emoji
+  const label = btn.innerHTML, back = (msg, ms = 2500) => { msg = short(msg); btn.innerHTML = msg; setTimeout(() => { btn.innerHTML = label; delete btn.dataset.busy; }, ms); };
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) return back("🎤 Not on this device");
   btn.dataset.busy = "1";
   let stream;
@@ -1269,10 +1265,10 @@ async function echo(btn, key) {
     const rec = new MediaRecorder(stream), chunks = [];
     rec.ondataavailable = e => { if (e.data.size) chunks.push(e.data); };
     const stopped = new Promise(r => { rec.onstop = r; });
-    btn.classList.add("rec"); btn.innerHTML = "🔴 Say it now!";
+    btn.classList.add("rec"); btn.innerHTML = short("🔴 Say it now!");
     rec.start(); await new Promise(r => setTimeout(r, 2300)); rec.stop(); await stopped;
     stream.getTracks().forEach(t => t.stop()); btn.classList.remove("rec");
-    btn.innerHTML = "👂 Listen… then you!";
+    btn.innerHTML = short("👂 Listen… then you!");
     const url = URL.createObjectURL(new Blob(chunks, { type: rec.mimeType || "audio/webm" }));
     await sayAndWait(key);
     const me = new Audio(url); await new Promise(r => { me.onended = r; me.onerror = r; me.play().catch(r); setTimeout(r, 4000); });
@@ -1293,10 +1289,6 @@ function greetExtra() {
 /* ---------- Who's who in our family ---------- */
 function kinPic(x) { const a = x.art && (window.IMG || {})[x.art]; return `<span class="kin-pic" aria-hidden="true">${a ? `<img src="${a}" alt="">` : esc(x.pic)}</span>`; }
 const storyTime = () => { const d = new Date(), m = d.getHours() * 60 + d.getMinutes(); return m >= 19 * 60 + 30 || m < 5 * 60; };
-function storyCardHTML() {
-  const s = window.STORY; if (!s || !storyTime()) return "";
-  return `<button class="story-card" type="button" id="openStory"><span class="moon" aria-hidden="true">🌙</span><span><b>Bedtime story · <span lang="ne">२ मिनेटको कथा</span></b><small><span lang="ne">${esc(s.ne)}</span> · ${esc(s.en)}</small></span></button>`;
-}
 function renderStory() {
   const s = window.STORY, i = S.page || 0, pg = s.pages[i], last = i === s.pages.length - 1;
   const art = (window.IMG || {})[pg.art];
@@ -1657,6 +1649,9 @@ function grade(good) {
   S.answered = true; beep(good ? "good" : "bad");
   const q = S.queue.shift();
   if (good) S.done++; else { S.mistakes++; S.hearts--; S.queue.push(q); }
+  // remember missed words so the next game asks them first ("those words will come back next time")
+  const w = q.item && q.item.ne && `${S.lesson.id}|${q.item.ne}`;
+  if (w) { P.weak = P.weak || {}; if (!good) P.weak[w] = Math.min(3, (P.weak[w] || 0) + 1); else if (P.weak[w] && !--P.weak[w]) delete P.weak[w]; save(); }
 }
 function checkChoice() {
   const q = S.queue[0], l = S.lesson; if (S.sel == null || S.answered) return;
