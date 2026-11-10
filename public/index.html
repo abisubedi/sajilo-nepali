@@ -232,6 +232,9 @@ body .pick-grid .opt .big { font-size: 34px !important; } body .pick-grid .opt .
 .bagh-node.reach { border-color: var(--flag-blue); box-shadow: 0 0 0 4px rgba(47,111,214,.3); animation: pulse 1.5s infinite; } .bagh-node.visited { background: var(--good-bg); border-color: var(--flag-green); }
 .bagh-node.tiger { background: #fde2df; border-color: var(--flag-red); } .bagh-node.goal { background: #fff3c4; border-color: var(--flag-yellow); } .bagh-node[disabled] { cursor: default; }
 .bagh-q { margin-top: 8px; }
+.chapter.folded .chapter-banner { cursor: pointer; } .fold-hint { display: block; text-align: right; font-family: var(--display); font-size: 13px; font-weight: 800; color: var(--flag-blue); }
+.chapter.folded { margin-bottom: 4px; } .ch-lessons { display: block; font-size: 12px; color: var(--muted); font-weight: 800; text-align: right; }
+body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) .jump-pill[data-jump] img { width: 38px; height: 38px; }
 .nav-space { height: calc(74px + env(safe-area-inset-bottom)); }
 .bottom-nav { position: fixed; left: 50%; transform: translateX(-50%); bottom: 0; width: min(720px, 100%); display: flex; background: var(--snow); background-image: var(--paper); border-top: 3px solid var(--line); border-radius: 22px 22px 0 0; padding: 4px 6px calc(4px + env(safe-area-inset-bottom)); z-index: 6; box-shadow: 0 -4px 14px rgba(31,42,68,.1); }
 .nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 1px; background: none; border: 0; border-radius: 16px; padding: 6px 2px; font: inherit; color: var(--muted); cursor: pointer; }
@@ -1320,15 +1323,17 @@ function renderMap() {
   const chapters = window.CHAPTERS.map((c, i) => {
     const ls = c.lessons.filter(id => vis.has(id)).map(id => window.LESSONS.find(l => l.id === id));
     if (!ls.length) return "";
-    const got = ls.reduce((a, l) => a + (P.stars[starKey(l.id)] || 0), 0);
-    return `<section class="chapter" id="ch-${c.id}" aria-label="Chapter ${i + 1}: ${esc(c.en)}">
-      <div class="chapter-banner" style="--c:${c.color}">
+    const got = ls.reduce((a, l) => a + (P.stars[starKey(l.id)] || 0), 0), nDone = ls.filter(l => P.stars[starKey(l.id)]).length;
+    // Little learners: only one chapter is open at a time (the one with the next lesson); the others fold into a banner
+    const little = P.level !== "big", openCh = S.openCh || (window.CHAPTERS.find(x => x.lessons.includes(nextId)) || window.CHAPTERS[0]).id, folded = little && c.id !== openCh;
+    return `<section class="chapter${folded ? " folded" : ""}" id="ch-${c.id}" aria-label="Chapter ${i + 1}: ${esc(c.en)}">
+      <div class="chapter-banner${folded ? " fold-btn" : ""}" style="--c:${c.color}"${folded ? ` data-opench="${c.id}" role="button" tabindex="0" aria-expanded="false" aria-label="Open chapter ${i + 1}"` : ""}>
         <span><small>Chapter ${i + 1} · <span lang="ne">अध्याय ${toDeva(i + 1)}</span></small>${neSpan(c.ne)} <span class="rom">${esc(c.rom)}</span><em>${esc(c.en)}</em></span>
-        <span class="chapter-stars" aria-label="${got} of ${ls.length * 3} stars">★ <span lang="ne">${toDeva(got)}/${toDeva(ls.length * 3)}</span></span>
+        <span class="chapter-stars" aria-label="${got} of ${ls.length * 3} stars">★ <span lang="ne">${toDeva(got)}/${toDeva(ls.length * 3)}</span>${little ? "" : `<small class="ch-lessons">${toDeva(nDone)}/${toDeva(ls.length)} lessons</small>`}${folded ? `<small class="fold-hint">${nDone === ls.length ? "🏅 Done!" : "▾ Open"}</small>` : ""}</span>
         <i class="chapter-bar" aria-hidden="true"><b style="width:${Math.round(got / (ls.length * 3) * 100)}%"></b></i>
       </div>
       ${c.id === "talk" && window.STORY ? `<button class="chip story-chip" type="button" data-story="1">🌙 Story time: <span lang="ne">${esc(window.STORY.ne)}</span></button>` : ""}
-      <nav class="trail">${ls.map(stone).join("")}</nav>
+      ${folded ? "" : `<nav class="trail">${ls.map(stone).join("")}</nav>`}
     </section>`;
   }).join("");
   let hereSet = false;
@@ -1337,7 +1342,7 @@ function renderMap() {
     const done = ls.every(id => (P.stars[starKey(id)] || 0) > 0);
     const here = !done && !hereSet && (hereSet = true);
     const art = c.sticker.img && (window.IMG || {})[c.sticker.img.replace(/^img\/|\.webp$/g, "")];
-    return `<button class="jump-pill${done ? " finished" : ""}${here ? " here" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}" style="--c:${c.color}">${art ? `<img src="${art}" alt="" draggable="false">` : `<span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span>`} Ch ${i + 1}${done ? " ✓" : ""}</button>`;
+    return `<button class="jump-pill${done ? " finished" : ""}${here ? " here" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}" style="--c:${c.color}">${art ? `<img src="${art}" alt="" draggable="false">` : `<span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span>`}${P.level === "big" ? ` Ch ${i + 1}` : ""}${done ? " ✓" : ""}</button>`;
   }).join("");
   const sheetL = S.sheet && window.LESSONS.find(l => l.id === S.sheet);
   $("#app").innerHTML = `
@@ -2401,7 +2406,7 @@ document.addEventListener("click", e => {
   if (e.target.id === "stickBack") { S.stickers = false; render(); return; }
   if (e.target.id === "grownBack") { S.grown = null; render(); return; }
   if (e.target.id === "playersBack") { S.players = false; S.playerEdit = null; render(); return; }
-  let t = e.target.closest("button, [data-say]"); if (!t) return;
+  let t = e.target.closest("[data-opench]") || e.target.closest("button, [data-say]"); if (!t) return;   // a folded chapter opens wherever you tap it
   // Nepali text inside a button belongs to that button (lesson stones, answer options, tiles, cards).
   if (t.matches("span[data-say]") && t.closest("button")) t = t.closest("button");
   // Any tappable Nepali text (outside answer buttons) just plays its sound.
@@ -2494,7 +2499,9 @@ document.addEventListener("click", e => {
   if (t.dataset.wotdLesson) { const l = window.LESSONS.find(x => x.id === t.dataset.wotdLesson); say(K(l.ne)); S.sheet = l.id; render(); return; }
   if (t.matches("button.say")) { say(t.dataset.say, t); return; }
   if (t.dataset.playnext) { const l = window.LESSONS.find(x => x.id === t.dataset.playnext); say(K(l.ne)); startLesson(l.id); return; }
-  if (t.dataset.lesson) { const l = window.LESSONS.find(x => x.id === t.dataset.lesson); say(K(l.ne)); S.sheet = l.id; render(); return; }
+  if (t.dataset.lesson) { const l = window.LESSONS.find(x => x.id === t.dataset.lesson); say(K(l.ne));
+    if (P.level !== "big" && !P.stars[starKey(l.id)]) { startLesson(l.id); return; }   // little learners: a new lesson starts straight away (meet the words first)
+    S.sheet = l.id; render(); return; }
   if (t.id === "sheetClose") { S.sheet = null; render(); return; }
   if (t.id === "goCards") { openCards(S.sheet); return; }
   if (t.id === "goPrint") { S.lesson = window.LESSONS.find(l => l.id === S.sheet); S.sheet = null; S.screen = "print"; render(); window.scrollTo(0, 0); return; }
@@ -2593,6 +2600,8 @@ document.addEventListener("click", e => {
     savePlayers(); render(); return;
   }
   if (t.id === "toTop") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
+  if (t.dataset.opench) { S.openCh = t.dataset.opench; const ch = window.CHAPTERS.find(c => c.id === S.openCh); if (ch && AUDIO[K(ch.ne)]) say(K(ch.ne)); render(); const el = document.getElementById("ch-" + S.openCh); if (el) el.scrollIntoView({ block: "start" }); return; }
+  if (t.dataset.jump && P.level !== "big") { S.openCh = t.dataset.jump; render(); }
   if (t.dataset.jump) {
     const ch = window.CHAPTERS.find(c => c.id === t.dataset.jump); if (ch && AUDIO[K(ch.ne)]) say(K(ch.ne));
     const el = document.getElementById("ch-" + t.dataset.jump);
