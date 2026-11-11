@@ -1042,7 +1042,25 @@ function buildQuestions(lesson) {
 /* ---------- State + render ---------- */
 const S = { screen: "map", lesson: null, queue: [], done: 0, total: 0, hearts: 3, mistakes: 0, answered: false };
 
+/* Home Screen apps (iPad/iPhone) stay frozen in memory instead of reloading, so they can keep an old version for days.
+   When the app comes back after a minute or more, check whether a newer version is live, and reload on the map (never mid-game). */
+let BUILD = null, hiddenAt = 0;
+async function buildId() {
+  try {
+    const [page, les] = await Promise.all([fetch("/", { cache: "no-store" }).then(r => r.ok ? r.text() : ""), fetch("lessons.js", { method: "HEAD", cache: "no-store" })]);
+    let h = 0; for (let i = 0; i < page.length; i += 5) h = (h * 31 + page.charCodeAt(i)) | 0;
+    return page ? `${h}:${page.length}:${les.headers.get("etag") || ""}` : null;
+  } catch (e) { return null; }
+}
+addEventListener("load", () => setTimeout(async () => { BUILD = await buildId(); }, 4000));
+document.addEventListener("visibilitychange", async () => {
+  if (document.hidden) { hiddenAt = Date.now(); return; }
+  if (!BUILD || !navigator.onLine || Date.now() - hiddenAt < 60000) return;
+  const now = await buildId(); if (!now || now === BUILD) return;
+  if (S.screen === "map" && !S.sheet && !S.play && !S.stickers && !S.grown) location.reload(); else S.needsReload = true;
+});
 function render() {
+  if (S.needsReload && S.screen === "map") { location.reload(); return; }
   if (S.screen !== "madal" && S.madalTimers && S.madalTimers.length) stopMadal();
   document.documentElement.classList.toggle("modal-open", !!(S.sheet || S.stickers || S.players || S.grown || S.play));
   document.body.classList.toggle("night", S.screen === "story");
