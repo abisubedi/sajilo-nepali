@@ -618,27 +618,28 @@ window.MISSIONS = [
    Lunar dates move every year: add next year's dates when the Nepali calendar is published. */
 /* Festivals and national holidays, shown on the home screen while they last, with a countdown in the days before.
    2083 BS dates (to mid-April 2027) are the government's published holidays. Entries marked approx are projections
-   for 2084 BS: check them against the official 2084 holiday list when it is published (early 2027) and add the next year. */
+   for 2084 BS: check them against the official 2084 holiday list when it is published (early 2027) and add the next year.
+   tint = the colour theme of the home-screen greeting during the festival and its countdown (see .greet.tint-* in index.html). */
 window.FESTIVALS = [
-  { from: "2026-10-11", to: "2026-10-25", ne: "दशैँ", rom: "dashain", en: "Dashain", line: "Happy Dashain! Time for tika, jamara and big family visits.", soon: "Get ready for tika and jamara!", diyo: false },
-  { from: "2026-11-07", to: "2026-11-11", ne: "तिहार", rom: "tihaar", en: "Tihar", line: "Happy Tihar! Diyo lamps, marigold garlands and Bhai Tika.", soon: "Diyo lamps and marigolds are coming!", diyo: true },
-  { from: "2026-11-15", to: "2026-11-15", ne: "छठ", rom: "chhath", en: "Chhath", line: "Happy Chhath! Families pray to the rising and setting sun at the riverbank.", soon: "Prayers to the sun at the river." },
-  { from: "2026-12-25", to: "2026-12-25", ne: "क्रिसमस", rom: "krismas", en: "Christmas", line: "Merry Christmas! It is a public holiday in Nepal too.", soon: "A public holiday in Nepal too." },
-  { from: "2026-12-30", to: "2026-12-30", ne: "तमु ल्होसार", rom: "tamu lhosaar", en: "Tamu Lhosar", line: "Happy Tamu Lhosar! The Gurung New Year, with songs and dances.", soon: "The Gurung New Year is coming." },
-  { from: "2027-01-11", to: "2027-01-11", ne: "पृथ्वी जयन्ती", rom: "prithvi jayanti", en: "National Unity Day", line: "National Unity Day! Nepal remembers King Prithvi Narayan Shah, who joined Nepal together.", soon: "Nepal's Unity Day is coming." },
-  { from: "2027-01-15", to: "2027-01-15", ne: "माघे सङ्क्रान्ति", rom: "maaghe sankraanti", en: "Maghe Sankranti", line: "Happy Maghe Sankranti! Til ko laddu, ghee and sweet potatoes today.", soon: "Til ko laddu and sweet potatoes!" },
-  { from: "2027-02-07", to: "2027-02-07", ne: "सोनाम ल्होसार", rom: "sonaam lhosaar", en: "Sonam Lhosar", line: "Happy Sonam Lhosar! The Tamang New Year.", soon: "The Tamang New Year is coming." },
-  { from: "2027-02-19", to: "2027-02-19", ne: "प्रजातन्त्र दिवस", rom: "prajaatantra diwas", en: "Democracy Day", line: "Democracy Day! Nepal celebrates the people's right to choose their leaders.", soon: "Democracy Day is coming." },
-  { from: "2027-03-06", to: "2027-03-06", ne: "महाशिवरात्रि", rom: "mahaashivaraatri", en: "Maha Shivaratri", line: "Happy Maha Shivaratri! Bonfires to keep warm and visits to Pashupatinath.", soon: "Bonfires and Pashupatinath!" },
-  { from: "2027-03-21", to: "2027-03-22", ne: "होली", rom: "holi", en: "Holi", line: "Happy Holi! The festival of colors.", soon: "The festival of colors is coming!" },
-  { from: "2027-04-14", to: "2027-04-14", ne: "नयाँ वर्ष", rom: "nayaa barsha", en: "Nepali New Year", line: "Happy Nepali New Year! Naya barsha ko shubhakaamanaa!", soon: "A brand-new Nepali year, 2084!" },
-  { from: "2027-05-20", to: "2027-05-20", approx: true, ne: "बुद्ध जयन्ती", rom: "buddha jayanti", en: "Buddha Jayanti", line: "Happy Buddha Jayanti! The Buddha was born in Lumbini, Nepal.", soon: "The Buddha's birthday is coming." },
-  { from: "2027-05-29", to: "2027-05-29", approx: true, ne: "गणतन्त्र दिवस", rom: "ganatantra diwas", en: "Republic Day", line: "Republic Day! Nepal became a republic on this day.", soon: "Republic Day is coming." },
-  { from: "2027-08-17", to: "2027-08-17", approx: true, ne: "जनै पूर्णिमा", rom: "janai purnimaa", en: "Janai Purnima", line: "Happy Janai Purnima! A sacred thread on the wrist and a bowl of kwati soup.", soon: "Kwati soup and sacred threads!" },
-  { from: "2027-09-03", to: "2027-09-03", approx: true, ne: "तीज", rom: "teej", en: "Teej", line: "Happy Teej! Women dress in red, sing and dance.", soon: "Red saris, songs and dances!" },
-  { from: "2027-09-20", to: "2027-09-20", approx: true, ne: "संविधान दिवस", rom: "sambidhaan diwas", en: "Constitution Day", line: "Constitution Day! Nepal's constitution was written on this day.", soon: "Constitution Day is coming." },
-  { from: "2027-09-30", to: "2027-10-14", approx: true, ne: "दशैँ", rom: "dashain", en: "Dashain", line: "Happy Dashain! Time for tika, jamara and big family visits.", soon: "Get ready for tika and jamara!" },
-  { from: "2027-10-27", to: "2027-10-31", approx: true, ne: "तिहार", rom: "tihaar", en: "Tihar", line: "Happy Tihar! Diyo lamps, marigold garlands and Bhai Tika.", soon: "Diyo lamps and marigolds are coming!", diyo: true },
+  { from: "2026-10-11", to: "2026-10-25", tint: "dashain", ne: "दशैँ", rom: "dashain", en: "Dashain", line: "Happy Dashain! Time for tika, jamara and big family visits.", soon: "Get ready for tika and jamara!", diyo: false },
+  { from: "2026-11-07", to: "2026-11-11", tint: "marigold", ne: "तिहार", rom: "tihaar", en: "Tihar", line: "Happy Tihar! Diyo lamps, marigold garlands and Bhai Tika.", soon: "Diyo lamps and marigolds are coming!", diyo: true },
+  { from: "2026-11-15", to: "2026-11-15", tint: "sun", ne: "छठ", rom: "chhath", en: "Chhath", line: "Happy Chhath! Families pray to the rising and setting sun at the riverbank.", soon: "Prayers to the sun at the river." },
+  { from: "2026-12-25", to: "2026-12-25", tint: "xmas", ne: "क्रिसमस", rom: "krismas", en: "Christmas", line: "Merry Christmas! It is a public holiday in Nepal too.", soon: "A public holiday in Nepal too." },
+  { from: "2026-12-30", to: "2026-12-30", tint: "lhosar", ne: "तमु ल्होसार", rom: "tamu lhosaar", en: "Tamu Lhosar", line: "Happy Tamu Lhosar! The Gurung New Year, with songs and dances.", soon: "The Gurung New Year is coming." },
+  { from: "2027-01-11", to: "2027-01-11", tint: "flag", ne: "पृथ्वी जयन्ती", rom: "prithvi jayanti", en: "National Unity Day", line: "National Unity Day! Nepal remembers King Prithvi Narayan Shah, who joined Nepal together.", soon: "Nepal's Unity Day is coming." },
+  { from: "2027-01-15", to: "2027-01-15", tint: "sun", ne: "माघे सङ्क्रान्ति", rom: "maaghe sankraanti", en: "Maghe Sankranti", line: "Happy Maghe Sankranti! Til ko laddu, ghee and sweet potatoes today.", soon: "Til ko laddu and sweet potatoes!" },
+  { from: "2027-02-07", to: "2027-02-07", tint: "lhosar", ne: "सोनाम ल्होसार", rom: "sonaam lhosaar", en: "Sonam Lhosar", line: "Happy Sonam Lhosar! The Tamang New Year.", soon: "The Tamang New Year is coming." },
+  { from: "2027-02-19", to: "2027-02-19", tint: "flag", ne: "प्रजातन्त्र दिवस", rom: "prajaatantra diwas", en: "Democracy Day", line: "Democracy Day! Nepal celebrates the people's right to choose their leaders.", soon: "Democracy Day is coming." },
+  { from: "2027-03-06", to: "2027-03-06", tint: "shiva", ne: "महाशिवरात्रि", rom: "mahaashivaraatri", en: "Maha Shivaratri", line: "Happy Maha Shivaratri! Bonfires to keep warm and visits to Pashupatinath.", soon: "Bonfires and Pashupatinath!" },
+  { from: "2027-03-21", to: "2027-03-22", tint: "holi", ne: "होली", rom: "holi", en: "Holi", line: "Happy Holi! The festival of colors.", soon: "The festival of colors is coming!" },
+  { from: "2027-04-14", to: "2027-04-14", tint: "newyear", ne: "नयाँ वर्ष", rom: "nayaa barsha", en: "Nepali New Year", line: "Happy Nepali New Year! Naya barsha ko shubhakaamanaa!", soon: "A brand-new Nepali year, 2084!" },
+  { from: "2027-05-20", to: "2027-05-20", approx: true, tint: "lotus", ne: "बुद्ध जयन्ती", rom: "buddha jayanti", en: "Buddha Jayanti", line: "Happy Buddha Jayanti! The Buddha was born in Lumbini, Nepal.", soon: "The Buddha's birthday is coming." },
+  { from: "2027-05-29", to: "2027-05-29", approx: true, tint: "flag", ne: "गणतन्त्र दिवस", rom: "ganatantra diwas", en: "Republic Day", line: "Republic Day! Nepal became a republic on this day.", soon: "Republic Day is coming." },
+  { from: "2027-08-17", to: "2027-08-17", approx: true, tint: "sun", ne: "जनै पूर्णिमा", rom: "janai purnimaa", en: "Janai Purnima", line: "Happy Janai Purnima! A sacred thread on the wrist and a bowl of kwati soup.", soon: "Kwati soup and sacred threads!" },
+  { from: "2027-09-03", to: "2027-09-03", approx: true, tint: "teej", ne: "तीज", rom: "teej", en: "Teej", line: "Happy Teej! Women dress in red, sing and dance.", soon: "Red saris, songs and dances!" },
+  { from: "2027-09-20", to: "2027-09-20", approx: true, tint: "flag", ne: "संविधान दिवस", rom: "sambidhaan diwas", en: "Constitution Day", line: "Constitution Day! Nepal's constitution was written on this day.", soon: "Constitution Day is coming." },
+  { from: "2027-09-30", to: "2027-10-14", approx: true, tint: "dashain", ne: "दशैँ", rom: "dashain", en: "Dashain", line: "Happy Dashain! Time for tika, jamara and big family visits.", soon: "Get ready for tika and jamara!" },
+  { from: "2027-10-27", to: "2027-10-31", approx: true, tint: "marigold", ne: "तिहार", rom: "tihaar", en: "Tihar", line: "Happy Tihar! Diyo lamps, marigold garlands and Bhai Tika.", soon: "Diyo lamps and marigolds are coming!", diyo: true },
 ];
 
 /* Gau Khane Katha (गाउँ खाने कथा): Pandu's riddle, the last question of Today's challenge. say = the recorded line. */

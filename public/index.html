@@ -535,6 +535,20 @@ body { background-image: var(--paper); }
 .sheet-btn.kin { background: #b9541a; box-shadow: 0 5px 0 #7d3810; }
 /* Festivals: marigold garland + diyo on Pandu's card */
 .greet.festive { position: relative; padding-top: 22px; }
+/* seasonal and festival colours for the greeting (soft, so the text stays easy to read) */
+.greet[class*="tint-"] { transition: background-color .4s, border-color .4s; }
+.greet.tint-marigold { background-image: linear-gradient(135deg, #fff4d6, #ffe2b8), var(--paper); background-blend-mode: multiply; border-color: #f6b71c; }
+.greet.tint-sun { background-image: radial-gradient(circle at 97% 96%, rgba(246,183,28,.3) 0 34px, transparent 35px), linear-gradient(135deg, #fff1db, #ffe3c6), var(--paper); background-blend-mode: multiply; border-color: #e8742a; }
+.greet.tint-dashain { background-image: linear-gradient(135deg, #ffe9e5 0 55%, #e6f5e3), var(--paper); background-blend-mode: multiply; border-color: #e2453c; }
+.greet.tint-holi { background-image: radial-gradient(circle at 8% 22%, rgba(226,69,60,.24) 0 7px, transparent 8px), radial-gradient(circle at 26% 82%, rgba(47,111,214,.24) 0 9px, transparent 10px), radial-gradient(circle at 48% 14%, rgba(246,183,28,.32) 0 6px, transparent 7px), radial-gradient(circle at 68% 86%, rgba(47,167,90,.24) 0 8px, transparent 9px), radial-gradient(circle at 90% 30%, rgba(217,79,160,.24) 0 10px, transparent 11px), radial-gradient(circle at 80% 60%, rgba(232,116,42,.24) 0 5px, transparent 6px), linear-gradient(135deg, #fff, #fff6fb), var(--paper); background-blend-mode: multiply; border-color: #d94fa0; }
+.greet.tint-snow { background-image: radial-gradient(circle at 12% 18%, #fff 0 3px, transparent 4px), radial-gradient(circle at 40% 80%, #fff 0 2px, transparent 3px), radial-gradient(circle at 72% 22%, #fff 0 3px, transparent 4px), radial-gradient(circle at 90% 70%, #fff 0 2px, transparent 3px), linear-gradient(180deg, #e3f0ff, #f7fbff), var(--paper); background-blend-mode: normal, normal, normal, normal, multiply, multiply; border-color: #9ec3ec; }
+.greet.tint-flag { background-image: linear-gradient(135deg, #fdecec 0 50%, #eaf1fd), var(--paper); background-blend-mode: multiply; border-color: #2f6fd6; }
+.greet.tint-xmas { background-image: linear-gradient(135deg, #e8f6eb 0 50%, #fdeceb), var(--paper); background-blend-mode: multiply; border-color: #2fa75a; }
+.greet.tint-lhosar { background-image: linear-gradient(135deg, #e7f1ff, #fff4d6), var(--paper); background-blend-mode: multiply; border-color: #2f6fd6; }
+.greet.tint-shiva { background-image: linear-gradient(135deg, #ecebfb, #fff1db), var(--paper); background-blend-mode: multiply; border-color: #6c63c9; }
+.greet.tint-newyear { background-image: linear-gradient(135deg, #fff4d6, #ffe6ea), var(--paper); background-blend-mode: multiply; border-color: #e8742a; }
+.greet.tint-lotus { background-image: linear-gradient(135deg, #f3eefe, #fff7e8), var(--paper); background-blend-mode: multiply; border-color: #b38bd6; }
+.greet.tint-teej { background-image: linear-gradient(135deg, #ffe4e6, #fff0f0), var(--paper); background-blend-mode: multiply; border-color: #e2453c; }
 .greet.festive::before { content: ""; position: absolute; left: 10px; right: 10px; top: -6px; height: 22px; border-radius: 0 0 50% 50% / 0 0 100% 100%;
   background: radial-gradient(circle at 50% 55%, #f6b71c 0 6px, #e8742a 6.5px 8px, transparent 8.5px) 0 0 / 20px 22px repeat-x; filter: drop-shadow(0 2px 0 rgba(31,42,68,.15)); }
 .pandu-btn { position: relative; }
@@ -1472,7 +1486,7 @@ function renderMap() {
         <button class="icon-btn" type="button" id="tBeeps" aria-pressed="${P.beeps !== false}" title="Game chimes (voice clips stay on)" aria-label="Game chimes ${P.beeps !== false ? "on" : "off"}"><span aria-hidden="true">${P.beeps !== false ? "🎵" : "🔕"}</span><small>chimes ${P.beeps !== false ? "on" : "off"}</small></button>
       </div>
     </div>
-    <div class="greet${festivalToday() ? " festive" : ""}"><button class="pandu-btn" type="button" data-pandusay="${esc(K(greetPhrase()))}" aria-label="Pandu says hello">${pandu(panduNow(), "pandu-hi")}${festivalToday() && festivalToday().diyo ? `<span class="diyo" aria-hidden="true">🪔</span>` : ""}</button><div><p>${greeting()} I'm Pandu. ${greetExtra() || streakLine()}</p>
+    <div class="greet${festivalToday() ? " festive" : ""}${greetTint() ? " tint-" + greetTint() : ""}"><button class="pandu-btn" type="button" data-pandusay="${esc(K(greetPhrase()))}" aria-label="Pandu says hello">${pandu(panduNow(), "pandu-hi")}${festivalToday() && festivalToday().diyo ? `<span class="diyo" aria-hidden="true">🪔</span>` : ""}</button><div><p>${greeting()} I'm Pandu. ${greetExtra() || streakLine()}</p>
       ${(() => { const nx = orderedLessons().find(l => !P.stars[starKey(l.id)]); return nx ? `<button class="play-next" type="button" data-playnext="${nx.id}"><span class="disc" style="--c:${nx.color}">${iconHTML(nx)}</span><span><b>▶ Play next</b><span lang="ne">${esc(nx.ne)}</span> · ${esc(nx.title)}</span></button>` : ""; })()}
       ${missionToday() ? `<button class="chip mission-chip" type="button" id="toggleMission">🗣️ ${S.showMission ? "Hide" : "Today's"} mission</button>` : ""}
       ${S.showMission ? missionHTML() : ""}
@@ -1627,6 +1641,11 @@ function bsMonth(d = new Date()) {   // approximate Bikram Sambat month and year
   for (const m of M.slice().sort((a, b) => (a.start[0] * 100 + a.start[1]) - (b.start[0] * 100 + b.start[1]))) if (md >= m.start[0] * 100 + m.start[1]) cur = m;
   const year = d.getFullYear() + (md >= 414 ? 57 : 56);
   return cur && { ...cur, year };
+}
+/* the greeting's colour: the festival now or coming up (tint in FESTIVALS), else a winter blue in पुस and माघ */
+function greetTint() {
+  const f = festivalToday() || festivalNext(); if (f && f.tint) return f.tint;
+  const bs = bsMonth(); return bs && (bs.ne === "पुस" || bs.ne === "माघ") ? "snow" : "";
 }
 function greetExtra() {
   const f = festivalToday();
