@@ -417,6 +417,13 @@ body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) 
 .miss > span { flex: 1; } .miss small { display: block; color: var(--muted); font-weight: 700; }
 .chip.primary { background: var(--flag-blue); color: var(--snow); border-color: #1d4f9e; }
 .sheet.stickers, .sheet.players { max-height: 86vh; overflow-y: auto; }
+.seal-row { display: flex; justify-content: space-around; gap: 8px; margin: 8px 0 4px; }
+.seal { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 13px; font-weight: 700; color: var(--muted); } .seal i { font-style: normal; }
+.seal-ring { width: 84px; height: 84px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 4px dashed #c9d3e6; background: #f4f7fb; color: #9aa5b8; line-height: 1; }
+.seal-ring b { font: 700 30px "Baloo 2", "Noto Sans Devanagari", sans-serif; } .seal-ring small { font-size: 13px; font-weight: 800; }
+.seal.got .seal-ring { border: 4px double var(--seal); background: #fff; background: radial-gradient(circle at 35% 30%, #fff 0, color-mix(in srgb, var(--seal) 30%, #fff) 70%); color: var(--seal); box-shadow: 0 3px 0 var(--seal); }
+.seal.got i { color: var(--seal); }
+.seal-new { display: flex; align-items: center; gap: 14px; justify-content: center; background: #fff8e6; border: 2px solid #f6b71c; border-radius: 18px; padding: 10px 14px; margin: 8px 0; animation: pop .5s ease-out; } .seal-new p { margin: 0; text-align: left; }
 .sticker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .sticker { background: #f3f6fb; border: 2px dashed var(--line); border-radius: 18px; padding: 10px 6px; display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center; color: var(--muted); }
 .sticker b { font-size: 14px; line-height: 1.15; } .sticker small { font-size: 12px; font-weight: 700; }
@@ -922,7 +929,7 @@ function beep(kind) {
     if (kind === "tap") wood(t);
     else if (kind === "good") { bowl(t, 784, .09); bowl(t + .12, 1046, .06); }
     else if (kind === "bad") bowl(t, 294, .06);
-    else if (kind === "night") { bowl(t, 392, .09); bowl(t + 1.6, 294, .06); }
+    else if (kind === "night") { bowl(t, 392, .045); bowl(t + 1.6, 294, .03); }
     else if (kind === "flute") [[523.25, .3], [587.33, .3], [659.25, .3], [783.99, .45], [880, .45], [783.99, .9]].reduce((d, [f, l]) => (bansuri(t + d, f, l + .25), d + l), 0);
     else if (kind === "done") { [[0, 1], [.18, 0], [.27, 0], [.36, 1], [.54, 0], [.72, 1]].forEach(([d, low]) => madal(t + d, low)); bowl(t + .9, 784, .1); bowl(t + 1.02, 1175, .06); }
   } catch (e) {}
@@ -1250,6 +1257,15 @@ function playHTML() {
       ${tile('id="openBagh"', "li-family-bagh", "🐐", "Bagh-chal", "बाघचाल", W.openBagh)}
     </div></div>`;
 }
+/* Word seals: long-term goals for every different word learned (bronze 25, silver 50, gold 100) */
+const SEALS = [[25, "Bronze", "#c97a3d"], [50, "Silver", "#8c97ab"], [100, "Gold", "#e0a10c"]];
+const sealHTML = ([n, name, col], got, have) => `<div class="seal${got ? " got" : ""}" style="--seal:${col}"><span class="seal-ring"><b lang="ne">${toDeva(n)}</b><small lang="ne">शब्द</small></span><i>${got ? `${name} seal` : `<span lang="ne">${toDeva(Math.min(have, n))}</span> / <span lang="ne">${toDeva(n)}</span>`}</i></div>`;
+function sealsHTML() {
+  const have = knownWordCount();
+  return `<h4 class="book-h">🎖️ Word seals <small lang="ne">${toDeva(have)} शब्द</small></h4>
+    <p class="note" style="text-align:left;margin:0">Every different word from a finished lesson counts. Collect all three seals!</p>
+    <div class="seal-row">${SEALS.map(x => sealHTML(x, have >= x[0], have)).join("")}</div>`;
+}
 function stickersHTML() {
   return `<div class="sheet-back" id="stickBack"></div><div class="sheet stickers" role="dialog" aria-modal="true" aria-label="My stickers">
     <button class="x sheet-x" type="button" id="stickClose" aria-label="Close">✕</button>
@@ -1260,7 +1276,8 @@ function stickersHTML() {
     <p class="note" style="text-align:left;margin:0">Finish every lesson in a chapter to win its sticker. Get ★★★ on all of them to make it gold!</p>
     <div class="sticker-grid">${stickerState().map(x => `<button class="sticker${x.got ? " got" : ""}${x.gold ? " gold" : ""}" type="button" data-sticker="${x.id}" aria-label="${esc(x.name)}${x.got ? "" : " (not won yet)"}">
       <span class="sticker-pic">${stickerPic(x, true)}</span>
-      <b>${esc(x.name)}</b><small>${x.got ? (x.gold ? "★★★ Gold!" : "Won!") : esc(x.need)}</small></button>`).join("")}</div></div>`;
+      <b>${esc(x.name)}</b><small>${x.got ? (x.gold ? "★★★ Gold!" : "Won!") : esc(x.need)}</small></button>`).join("")}</div>
+    ${sealsHTML()}</div>`;
 }
 const picSayHTML = x => x ? `<span class="stick-say-pic" aria-hidden="true"><img class="art" src="${window.IMG[x.name]}" alt=""></span><span>${neSpan(x.it.ne)} <span class="rom">${esc(x.it.rom)}</span><small>${esc(x.it.en)}</small></span>` : "";
 function picBookHTML() {
@@ -2240,17 +2257,21 @@ function renderDone() {
     return;
   }
   const st = [1, 2, 3].map(n => `<span class="${n <= S.earned ? "" : "off"}">★</span>`).join("");
+  const words = knownWordCount(), fresh = SEALS.filter(x => words >= x[0] && !(P.seals || []).includes(x[0]));
+  if (fresh.length) { P.seals = [...(P.seals || []), ...fresh.map(x => x[0])]; save(); }
+  const newSeal = fresh[fresh.length - 1];
   $("#app").innerHTML = `<section class="done">${pandu(panduSrc("cheer") ? "cheer" : "wave", "pop")}<h2>${neSpan(window.PHRASES.wellDone)}<br>Lesson complete!</h2>
     <div class="stars" aria-label="${S.earned} of 3 stars">${st}</div>
     <p><strong>+<span lang="ne">${toDeva(S.xpGain)}</span> points</strong> · 🪔 diyo lit <span lang="ne">${toDeva(liveStreak())}</span> day${liveStreak() === 1 ? "" : "s"} in a row<br>${S.mistakes === 0 ? "Perfect, no mistakes!" : toDeva(S.mistakes) + " mistake" + (S.mistakes > 1 ? "s" : "") + ". Those words will come back next time."}</p>
     ${S.streakNews ? `<p class="ctx">${esc(S.streakNews)}</p>` : ""}
     ${S.newPic ? `<button class="sticker got new" type="button" data-picst="${S.newPic.name}"><span class="sticker-pic"><img class="art" src="${window.IMG[S.newPic.name]}" alt=""></span><b>🎁 New picture sticker: <span lang="ne">${esc(S.newPic.it.ne)}</span> (${esc(S.newPic.it.en)})</b></button>` : ""}
     ${S.newSticker ? `<button class="sticker got${S.newSticker.gold ? " gold" : ""} new" type="button" data-sticker="${S.newSticker.id}"><span class="sticker-pic">${stickerPic(S.newSticker)}</span><b>🎉 New sticker: ${esc(S.newSticker.name)}${S.newSticker.gold ? " (gold!)" : ""}</b></button>` : ""}
+    ${newSeal ? `<div class="seal-new">${sealHTML(newSeal, true, words)}<p><b>🎖️ New ${newSeal[1].toLowerCase()} seal!</b><br>You know <b lang="ne">${toDeva(words)}</b> (${words}) Nepali words!</p></div>` : ""}
     ${S.earned === 3 ? `<div class="share-card"><p><b>Share your score with Aama or Baba!</b></p><p class="share-text" id="shareText">${esc(shareText())}</p>
       <div class="share-btns">${navigator.share ? `<button class="say" type="button" id="shareNow">📤 Share</button>` : ""}<button class="chip" type="button" id="copyShare">📋 Copy message</button></div></div>` : ""}
     ${missionHTML()}
     <button class="go" type="button" id="home"><span lang="ne">ल जाऔँ!</span> · Let's go</button><button class="chip" type="button" id="again">Play again</button>${S.lesson && (S.lesson.items || S.lesson.sentences) && !S.lesson.letters ? `<button class="chip" type="button" id="sendPostcard">💌 Postcard for Hajuraama</button>` : ""}</section>`;
-  if (S.earned === 3) confetti(); beep("done");
+  if (S.earned === 3 || newSeal) confetti(); beep("done");
 }
 function confetti() {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -2574,7 +2595,7 @@ document.addEventListener("click", e => {
   if (t.dataset.rhyme != null) { S.rhyme = +t.dataset.rhyme; render(); window.scrollTo(0, 0); setTimeout(() => S.screen === "rhymes" && singRhyme(0), 500); return; }
   if (t.id === "rhymeBack") { S.rhymeRun++; try { player && player.pause(); } catch (e) {} S.rhyme = null; render(); return; }
   if (t.id === "rhymeAll") { singRhyme(0); return; }
-  if (t.dataset.rline != null) { S.rhymeRun = (S.rhymeRun || 0) + 1; const i = +t.dataset.rline; document.querySelectorAll(".rhyme-line").forEach((b, j) => b.classList.toggle("on", j === i)); $("#rhymePic")?.classList.remove("singing"); say(K(window.RHYMES[S.rhyme].lines[i].ne), t); return; }
+  if (t.dataset.rline != null) { S.rhymeRun = (S.rhymeRun || 0) + 1; const i = +t.dataset.rline; document.querySelectorAll(".rhyme-line").forEach((b, j) => b.classList.toggle("on", j === i)); $("#rhymePic")?.classList.remove("singing"); const run = S.rhymeRun; sayAndWait(K(window.RHYMES[S.rhyme].lines[i].ne)).then(() => { if (S.rhymeRun === run && S.screen === "rhymes") t.classList.remove("on"); }); return; }
   if (t.id === "storyEnd") { S.screen = "goodnight"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "openBlend") { P.worlds = P.worlds || {}; if (!P.worlds.openBlend) { P.worlds.openBlend = today(); save(); } S.blendI = 0; S.blendTap = []; S.screen = "blend"; render(); window.scrollTo(0, 0); setTimeout(() => S.screen === "blend" && say(K(window.BLEND_TITLE.ne)), 300); return; }
   if (t.dataset.blend != null) { const w = window.BLEND_WORDS[S.blendI % window.BLEND_WORDS.length], i = +t.dataset.blend; say("L:" + w.letters[i], t);
