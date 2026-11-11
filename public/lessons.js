@@ -12,6 +12,8 @@ window.LESSONS = [
     { ne: "होइन", rom: "hoina", en: "No", pic: "❌" },
     { ne: "शुभ रात्रि", rom: "shubha ratri", en: "Good night", ctx: "🌙 At bedtime you say:", alt: ["goodnight"], pic: "🌙" },
     { ne: "फेरि भेटौँला", rom: "pheri bhetaunla", en: "See you again", ctx: "👋 When a friend goes home you say:", alt: ["see you", "see you later", "goodbye", "bye"], pic: "👋" },
+    { ne: "कृपया", rom: "kripayaa", en: "please", ctx: "🍪 You want one more cookie. You start with:", pic: "🥺", alt: ["pls", "please may i"] },
+    { ne: "स्वागत छ", rom: "swaagat chha", en: "welcome", ctx: "🚪 A friend comes to your house. You say:", pic: "🤗", alt: ["welcome home", "you are welcome here"] },
   ]},
   { id: "num", title: "Numbers 1–10", ne: "अङ्क", rom: "anka", icon: "🔢", color: "var(--flag-yellow)", count: true, items: [
     { ne: "एक", rom: "ek", en: "one", pic: "1", digit: "१", n: 1 },
@@ -167,6 +169,7 @@ window.LESSONS = [
     { ne: "गर्मी भयो", rom: "garmi bhayo", en: "I feel hot", pic: "☀️", alt: ["hot", "it is hot", "i am hot", "feeling hot"] },
     { ne: "दुख्यो", rom: "dukhyo", en: "it hurts", pic: "🤕", alt: ["ouch", "pain", "hurts"], ctx: "🤕 You fall down and cry:" },
     { ne: "डर लाग्यो", rom: "dar laagyo", en: "I am scared", pic: "😨", alt: ["scared", "afraid", "im scared"] },
+    { ne: "ठिक छ", rom: "thik chha", en: "it's okay", ctx: "🤝 Your friend says sorry. You smile and say:", pic: "👌", alt: ["its okay", "it is okay", "that's okay", "okay"] },
   ]},
   { id: "clothes", title: "Clothes & Shoes", ne: "लुगा र जुत्ता", rom: "luga ra jutta", icon: "👕", color: "var(--flag-green)", items: [
     { ne: "लुगा", rom: "luga", en: "clothes", pic: "👕", alt: ["shirt", "clothing"] },
@@ -188,6 +191,7 @@ window.LESSONS = [
     { ne: "फ्याँक", rom: "phyaanka", en: "throw", pic: "🤾", alt: ["toss", "throw the ball"] },
     { ne: "समात", rom: "samaata", en: "catch", pic: "🤲", alt: ["hold", "grab"] },
     { ne: "लुक", rom: "luka", en: "hide", pic: "🙈", alt: ["hide and seek"] },
+    { ne: "सँगै खेलौँ", rom: "sangai khelaun", en: "let's play together", ctx: "🧸 A new kid is alone at the park. You say:", pic: "🤝", alt: ["lets play together", "let us play together", "play together"] },
   ]},
   { id: "helping-verbs", title: "Everyday Actions", ne: "दैनिक क्रिया", rom: "dainik kriya", icon: "🧹", color: "var(--flag-blue)", items: [
     { ne: "हेर", rom: "hera", en: "look", pic: "👀", alt: ["see", "watch"] },
@@ -198,6 +202,7 @@ window.LESSONS = [
     { ne: "बन्द गर", rom: "banda gara", en: "close", pic: "🔒", alt: ["shut", "turn off", "close it"] },
     { ne: "सफा गर", rom: "saphaa gara", en: "clean up", pic: "🧹", alt: ["clean", "tidy up"] },
     { ne: "पर्ख", rom: "parkha", en: "wait", pic: "✋", alt: ["hold on", "wait for me"] },
+    { ne: "म मद्दत गर्छु", rom: "ma maddat garchhu", en: "I will help", ctx: "🧺 Aama is carrying heavy bags. You say:", pic: "💪", alt: ["i'll help", "ill help", "let me help", "i can help"] },
   ]},
   { id: "sports-outdoors", title: "Bikes, Balls & Park", ne: "पार्क र खेल", rom: "paark ra khel", icon: "🚲", color: "var(--panda)", items: [
     { ne: "भकुण्डो", rom: "bhakundo", en: "ball", pic: "⚽", alt: ["football", "soccer ball"] },
@@ -354,6 +359,14 @@ window.LESSONS = [
     { ne: "गीत", rom: "geet", en: "song", pic: "🎵", alt: ["music"] },
     { ne: "शिक्षक", rom: "shikshak", en: "teacher", pic: "👩‍🏫" },
   ]},
+  { id: "shapes", title: "Shapes", ne: "आकार", rom: "aakaar", icon: "🔷", color: "var(--flag-yellow)", items: [
+    { ne: "गोलो", rom: "golo", en: "circle", pic: "⭕", alt: ["round", "a circle"] },
+    { ne: "वर्ग", rom: "barga", en: "square", pic: "🟦", alt: ["a square"] },
+    { ne: "त्रिभुज", rom: "tribhuj", en: "triangle", pic: "🔺", alt: ["a triangle"] },
+    { ne: "आयत", rom: "aayat", en: "rectangle", pic: "▬", alt: ["a rectangle", "oblong"] },
+    { ne: "तारा", rom: "taaraa", en: "star", pic: "⭐", alt: ["a star"] },
+    { ne: "मुटु", rom: "mutu", en: "heart", pic: "❤️", alt: ["a heart", "heart shape"] },
+  ]},
   { id: "fruits-snacks", title: "Fruits & Lunchbox", ne: "फलफूल र खाजा", rom: "phalphul ra khaaja", icon: "🍎", color: "var(--flag-red)", items: [
     { ne: "स्याउ", rom: "syaau", en: "apple", pic: "🍎", alt: ["apples"] },
     { ne: "केरा", rom: "kera", en: "banana", pic: "🍌", alt: ["bananas"] },
@@ -504,7 +517,7 @@ window.CHAPTERS = [
   { id: "me", ne: "म र मेरो शरीर", rom: "ma ra mero shareer", en: "All about me", color: "var(--flag-yellow)", sticker: { pic: "😊", img: "img/st-me.webp", name: "All About Me", say: { ne: "तिमी धेरै बाठो छौ!", rom: "timi dherai baatho chhau!", en: "You're so clever!" } }, lessons: ["body", "feelings-needs", "clothes", "what-i-have"] },
   { id: "play", ne: "खेल र बाहिर", rom: "khel ra baahira", en: "Play & outside", color: "var(--flag-green)", sticker: { pic: "⚽", img: "img/st-play.webp", name: "Play Champ", say: { ne: "खेलमा तिमी च्याम्पियन!", rom: "khelma timi chyaampiyan!", en: "You're a play champion!" } }, lessons: ["playtime-verbs", "helping-verbs", "sports-outdoors", "weather-nature", "colours", "opposites", "sound-words", "retro-90s", "play-sentences"] },
   { id: "culture", ne: "हाम्रो संस्कृति", rom: "haamro sanskriti", en: "Nepali culture & time", color: "var(--flag-red)", sticker: { pic: "🪔", img: "img/st-festival.webp", name: "Festival Star", say: { ne: "तिमी चाडपर्वको तारा हौ!", rom: "timi chaadparvako taara hau!", en: "You're a festival star!" } }, lessons: ["festivals-culture", "our-nepal", "nepali-treats", "time-of-day", "days", "question-words", "culture-sentences"] },
-  { id: "school", ne: "स्कूल र गन्ती", rom: "skul ra ganti", en: "School & counting", color: "var(--flag-blue)", sticker: { pic: "🎒", img: "img/st-school.webp", name: "School Star", say: { ne: "तिमी स्कूलको तारा हौ!", rom: "timi skulko taara hau!", en: "You're a school star!" } }, lessons: ["num", "school-supplies", "fruits-snacks", "numbers-11-20"] },
+  { id: "school", ne: "स्कूल र गन्ती", rom: "skul ra ganti", en: "School & counting", color: "var(--flag-blue)", sticker: { pic: "🎒", img: "img/st-school.webp", name: "School Star", say: { ne: "तिमी स्कूलको तारा हौ!", rom: "timi skulko taara hau!", en: "You're a school star!" } }, lessons: ["num", "school-supplies", "shapes", "fruits-snacks", "numbers-11-20"] },
   { id: "talk", ne: "कुराकानी र कथा", rom: "kuraakaani ra katha", en: "Real conversations", color: "var(--panda)", sticker: { pic: "💬", img: "img/st-chatter.webp", name: "Chatterbox", say: { ne: "तिमी कति राम्रो कुरा गर्छौ!", rom: "timi kati raamro kura garchhau!", en: "You talk so well!" } }, lessons: ["likes-dislikes", "phone-grandparents", "polite-commands", "grandparent-sentences"] },
   { id: "letters", ne: "अक्षर र वाक्य", rom: "akshar ra waakya", en: "Letters & sentences", color: "var(--flag-blue)", sticker: { pic: "अ", img: "img/st-letters.webp", letter: "अ", name: "Letter Master", say: { ne: "तिमी अक्षरमा उस्ताद हौ!", rom: "timi aksharma ustaad hau!", en: "You're a letter master!" } }, lessons: ["vowels", "cons1", "cons2", "cons3", "cons4", "barakhari", "sentences"] },
 ];
@@ -639,6 +652,17 @@ window.STORY = { ne: "पाण्डु र जून", rom: "paandu ra joon", 
   { ne: "पाण्डुले भन्यो, नमस्ते जून! तिमी कति राम्रो!", rom: "paandule bhanyo, namaste joon! timi kati raamro!", en: "Pandu said, “Hello, Moon! You are so pretty!”", art: "story-3", pic: "pandu-namaste" },
   { ne: "जूनले मुसुक्क हाँसेर भन्यो, अब सुत्ने बेला भयो, पाण्डु।", rom: "joonle musukka haansera bhanyo, aba sutne belaa bhayo, paandu.", en: "The moon smiled sweetly and said, “It’s time to sleep now, Pandu.”", art: "story-4", pic: "pandu-listen" },
   { ne: "पाण्डु ओछ्यानमा गयो र भुसुक्क निदायो। शुभ रात्रि!", rom: "paandu ochhyaanmaa gayo ra bhusukka nidaayo. shubha raatri!", en: "Pandu went to bed and fell fast asleep. Good night!", art: "story-5", pic: "pandu-sleep" },
+] };
+
+/* Second bedtime story (alternates nightly with the first). */
+window.STORY2 = { ne: "पाण्डु र डाँफे", rom: "paandu ra daanphe", en: "Pandu and the Danphe", pages: [
+  { ne: "एक दिन बिहान, पाण्डु डाँडामा घुम्न गयो।", rom: "ek din bihaan, paandu daandaamaa ghumna gayo.", en: "One morning, Pandu went for a walk on the hill.", art: "story-danphe-1", pic: "pandu-wave" },
+  { ne: "लालीगुराँसको रूखमुनि एउटा सानो डाँफे रोइरहेको थियो।", rom: "laaliguraansko rukhmuni euta saano daanphe roiraheko thiyo.", en: "Under a rhododendron tree, a little Danphe bird was crying.", art: "story-danphe-2", pic: "pandu-think" },
+  { ne: "पाण्डुले सोध्यो, के भयो साथी?", rom: "paandule sodhyo, ke bhayo saathi?", en: "Pandu asked, “What happened, friend?”", art: "story-danphe-3", pic: "pandu-listen" },
+  { ne: "डाँफेले भन्यो, म घर जाने बाटो बिर्सेँ।", rom: "daanphele bhanyo, ma ghar jaane baato birsen.", en: "The Danphe said, “I forgot the way home.”", art: "story-danphe-4", pic: "pandu-oops" },
+  { ne: "पाण्डुले भन्यो, नडराऊ, म मद्दत गर्छु!", rom: "paandule bhanyo, nadaraau, ma maddat garchhu!", en: "Pandu said, “Don’t be scared, I will help!”", art: "story-danphe-5", pic: "pandu-cheer" },
+  { ne: "डाँफेकी आमाले भनिन्, धन्यवाद पाण्डु! तिमी असल साथी हौ।", rom: "daanpheki aamaale bhanin, dhanyabaad paandu! timi asal saathi hau.", en: "The Danphe’s mother said, “Thank you, Pandu! You are a good friend.”", art: "story-danphe-6", pic: "pandu-namaste" },
+  { ne: "त्यो राति पाण्डु खुसी हुँदै भुसुक्क निदायो। शुभ रात्रि!", rom: "tyo raati paandu khusi hundai bhusukka nidaayo. shubha raatri!", en: "That night, Pandu fell fast asleep, feeling happy. Good night!", art: "story-danphe-7", pic: "pandu-sleep" },
 ] };
 
 /* Explore the room: tap things in a big picture. Hotspots (x, y, r in % of the picture) are set once the picture exists. */
