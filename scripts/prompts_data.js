@@ -142,6 +142,11 @@ const W = {
   "triangle": "a big hand-drawn yellow triangle",
   "rectangle": "a big hand-drawn green rectangle",
   "heart": "a big hand-drawn red heart shape",
+  "that's enough": `${kid}, politely holding up one hand over her plate of rice as ${C.hajuraama} offers another spoonful`,
+  "a little more": `${boy}, happily holding out his plate for a little more dal, pinching two fingers to show "a little"`,
+  "it's spicy": `${kid}, fanning her open mouth with her hand after tasting red achaar, cheeks pink, a glass of water nearby`,
+  "i washed them": `${boy}, proudly showing his clean wet hands beside a sink with soap bubbles`,
+  "i am eating": `${kid}, sitting cross-legged on the floor happily eating dal-bhat from a brass plate with her right hand`,
   "potato": "two brown potatoes with a little soil on them, one cut in half showing the pale yellow inside",
   // old-day games (retro-90s)
   "chungi (kick shuttlecock)": `${boy}, kicking a chungi (a small bundle of colorful rubber bands tied together) high into the air with the inside of his foot in a school yard`,

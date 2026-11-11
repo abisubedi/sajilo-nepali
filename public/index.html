@@ -244,6 +244,16 @@ body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) 
 .play-tile { display: flex; flex-direction: column; align-items: center; gap: 2px; background: var(--snow); background-image: var(--paper); border: 2px solid var(--line); border-radius: 18px; padding: 8px 4px; box-shadow: 0 4px 0 var(--line); font: inherit; color: var(--ink); cursor: pointer; text-align: center; }
 .play-tile img { width: 64px; height: 64px; object-fit: contain; } .play-emo { font-size: 48px; line-height: 64px; height: 64px; } .play-tile b { font-family: var(--display); font-size: 14px; line-height: 1.15; } .play-tile small { font-family: var(--display); color: var(--muted); font-weight: 700; } .play-tile .tick { color: #1f7a40; font-style: normal; }
 .play-tile[data-story="2"] img, .play-tile[data-scene="village-kitchen"] img { object-fit: cover; border-radius: 50%; border: 2px solid var(--line); }
+.blend { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 10px 14px 30px; }
+.blend-row { display: flex; align-items: center; gap: 10px; justify-content: center; transition: gap .4s; } .blend-row.joined { gap: 0; }
+.blend-l { font: 700 64px/1 "Baloo 2", "Noto Sans Devanagari", sans-serif; width: 104px; height: 116px; border-radius: 22px; border: 3px solid var(--line); background: var(--snow); background-image: var(--paper); color: var(--ink); box-shadow: 0 5px 0 var(--line); cursor: pointer; }
+.blend-l.on { background: #fff4d6; border-color: #f6b71c; } .blend-l.next { animation: pulse 1.4s ease-in-out infinite; }
+.blend-row.joined .blend-l { border-radius: 0; box-shadow: none; border-color: #f6b71c; background: #fff4d6; } .blend-row.joined .blend-l:first-child { border-radius: 22px 0 0 22px; } .blend-row.joined .blend-l:last-child { border-radius: 0 22px 22px 0; }
+.blend-plus { font: 700 34px var(--display); color: var(--muted); }
+.blend-word { display: flex; flex-direction: column; align-items: center; gap: 2px; animation: pop .45s ease-out; } .blend-pic img { width: 150px; height: 150px; object-fit: contain; }
+.blend-ne { font: 700 48px "Baloo 2", "Noto Sans Devanagari", sans-serif; } .blend-word .en { font-weight: 700; color: var(--muted); }
+.prompt.who-talk { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; } .prompt.who-talk img { width: 120px; height: 120px; object-fit: contain; }
+.np-row { width: 100%; height: auto; display: block; margin: 4px 0; }
 .play-tile:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--line); }
 @media print { .bottom-nav, .nav-space { display: none; } } .car-cheer { width: 120px; height: 120px; display: block; margin: 0 auto; }
 .guide-sec { background: #faf4e8; border-left: 5px solid var(--panda); border-radius: 12px; padding: 10px 12px; text-align: left; }
@@ -1034,13 +1044,21 @@ function buildQuestions(lesson) {
   if (lesson.barakhari) pickN(lesson.items, 3).forEach((x, k) => qs.splice(1 + k * 3, 1, matraQ(lesson, x)));
   if (lesson.order && (big ? lesson.order.bigWho : lesson.order.who && !firstLittle)) qs.splice(4, 1, orderQ(lesson, big));
   if (lesson.chains && !firstLittle) qs.splice(big ? 7 : 5, 1, sequenceQ(lesson));
+  if (lesson.id === "polite-commands" && window.POLITE_PAIRS) [2, 6, 9].forEach(k => k < qs.length && qs.splice(k, 1, whoTalkQ()));
   if (lesson.cassette && big) pickN(items.filter(x => syllables(x.ne).length > 1), 2).forEach((x, k) => qs.splice(5 + k * 4, 1, cassetteQ(x)));
   qs.forEach(q => {
-    if (!q.item || q.type === "matra") return;   // matra questions pick their own options
+    if (!q.item || q.type === "matra" || q.type === "whoTalk") return;   // matra questions pick their own options
     const pool = items.filter(x => x !== q.item && (q.type !== "letterPic" || x.word));   // picture options need a picture word
     q.opts = shuffle([q.item, ...pickN(pool, LV().options - 1)]);
   });
   return qs;
+}
+
+/* "Who are you talking to?": the polite -नुहोस् form for elders, the friendly form for younger kids and friends */
+function whoTalkQ() {
+  const pr = pickN(window.POLITE_PAIRS, 1)[0], to = pickN(window.TALK_TO, 1)[0];
+  const pol = { ne: pr.polite.ne, rom: pr.polite.rom, en: "please " + pr.en + " (polite)" }, pl = { ne: pr.plain.ne, rom: pr.plain.rom, en: pr.en + " (friendly)" };
+  return { type: "whoTalk", to, pair: pr, item: to.polite ? pol : pl, opts: shuffle([pol, pl]) };
 }
 
 /* ---------- State + render ---------- */
@@ -1084,6 +1102,8 @@ function render() {
   else if (S.screen === "room") renderRoom();
   else if (S.screen === "cert") renderCert();
   else if (S.screen === "nametrace") renderNameTrace();
+  else if (S.screen === "blend") renderBlend();
+  else if (S.screen === "nameprint") renderNamePrint();
   else if (S.screen === "madal") renderMadal();
   else if (S.screen === "tika") renderTika();
   else if (S.screen === "jar") renderJar();
@@ -1203,6 +1223,7 @@ function playHTML() {
       ${window.STORY ? tile('data-story="1"', "story-2", "🌙", "Moon story", window.STORY.ne) : ""}
       ${window.STORY2 ? tile('data-story="2"', "story-danphe-2", "🐦", "Danphe story", window.STORY2.ne) : ""}
       ${tile('id="openCar"', "pandu-bike", "🚗", "Car ride", "")}
+      ${window.BLEND_WORDS ? tile('id="openBlend"', "li-cons1", "🔤", "Join the letters", window.BLEND_TITLE.ne, W.openBlend) : ""}
       ${tile('id="openName"', "li-family-name", "✍️", "My name", nm, W.openName)}
       ${tile('id="openMadal"', "w-nepali-drum", "🥁", "Madal", "मादल", W.openMadal)}
       ${tile('id="openTika"', "w-tika", "🪔", "Tika", "टीका", W.openTika)}
@@ -1359,6 +1380,7 @@ function renderMap() {
         <span class="chapter-stars" aria-label="${got} of ${ls.length * 3} stars">★ <span lang="ne">${toDeva(got)}/${toDeva(ls.length * 3)}</span>${little ? "" : `<small class="ch-lessons">${toDeva(nDone)}/${toDeva(ls.length)} lessons</small>`}${folded ? `<small class="fold-hint">${nDone === ls.length ? "🏅 Done!" : later ? "Later ▾" : "▾ Open"}</small>` : ""}</span>
         <i class="chapter-bar" aria-hidden="true"><b style="width:${Math.round(got / (ls.length * 3) * 100)}%"></b></i>
       </div>
+      ${c.id === "letters" && window.BLEND_WORDS ? `<button class="chip story-chip" type="button" id="openBlend">🔤 ${esc(window.BLEND_TITLE.en)}: <span lang="ne">${esc(window.BLEND_TITLE.ne)}</span></button>` : ""}
       ${c.id === "talk" && stories().length ? `<button class="chip story-chip" type="button" data-story="tonight">🌙 Story time: <span lang="ne">${esc(stories()[tonightStory()].ne)}</span></button>` : ""}
       ${folded ? "" : `<nav class="trail">${ls.map(stone).join("")}</nav>`}
     </section>`;
@@ -1862,6 +1884,11 @@ function renderQuestion() {
       <div class="prompt">${q.item.ctx ? `<span class="ctx">${esc(q.item.ctx)}</span>` : ""}<div class="say-row">${pandu("listen", "side-pandu bob")}${sayBtn(K(q.item.ne), "huge")}</div></div>
       <div class="opts">${q.opts.map((o, i) => optBtn(i, `${picHTML(o)}${(q.turn ? q.turn === "big" : P.level === "big") ? "" : `<span class="en">${esc(o.en)}</span>`}`)).join("")}</div>`;
     autoKey = K(q.item.ne);
+  } else if (q.type === "whoTalk") {
+    const a = (window.IMG || {})[q.to.img];
+    body = `<p class="ask">🙇 Who are you talking to?</p>
+      <div class="prompt who-talk">${a ? `<img class="wpic" src="${a}" alt="">` : ""}<b>You're talking to ${esc(q.to.who)} <span lang="ne">(${esc(q.to.ne)})</span></b><span class="en">Ask them to <b>${esc(q.pair.en)}</b>. Which do you say?</span></div>
+      <div class="opts two">${q.opts.map((o, i) => optBtn(i, `<span class="ne" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span>`, K(o.ne))).join("")}</div>`;
   } else if (q.type === "riddle") {
     const RT = window.RIDDLE_TITLE;
     body = `<p class="ask">🧩 ${neSpan(RT.ne)} <span class="rom">${esc(RT.rom)}</span> · ${esc(RT.en)}</p>
@@ -2037,7 +2064,8 @@ function checkChoice() {
     setFeedback(good, q.item.word ? `${neHTML(q.item.ne, q.item.rom, itemKey(l, q.item))} as in ${neHTML(q.item.word, q.item.wordRom)} = ${esc(q.item.en)}` : neHTML(q.item.ne, q.item.rom, itemKey(l, q.item)));
   } else {
     say(K(q.item.ne));
-    setFeedback(good, `${neHTML(q.item.ne, q.item.rom)} = ${esc(q.item.en)}`);
+    if (q.type === "whoTalk") setFeedback(good, `${neHTML(q.item.ne, q.item.rom)} · ${q.to.polite ? `${esc(q.to.who)} is an elder: use the polite -नुहोस् form.` : `With ${esc(q.to.who)}, the friendly form is just right.`}`);
+    else setFeedback(good, `${neHTML(q.item.ne, q.item.rom)} = ${esc(q.item.en)}`);
   }
 }
 /* Typed answers: ignore case, punctuation, "(polite)" notes, a/the/my/to, contractions (im = i'm = i am),
@@ -2241,6 +2269,28 @@ function selectShare() { const el = $("#shareText"); if (!el) return; const r = 
 /* ---------- Family corner: my name, madal, tika, story jar, postcard, bagh-chal ---------- */
 const myDevaName = () => { const c = me(); return c.deva || window.toDevanagariName(c.name); };
 // 1. Mero naam: the child's name in Devanagari, traced in chalk on the paati
+/* ---------- Join the letters (अक्षर जोडौँ): hear each letter, then they snap into a word ---------- */
+function renderBlend() {
+  const ws = window.BLEND_WORDS, w = ws[(S.blendI || 0) % ws.length], tapped = S.blendTap || [], done = tapped.length >= w.letters.length, BT = window.BLEND_TITLE, a = (window.IMG || {})[w.img];
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🔤 <span lang="ne">${esc(BT.ne)}</span> · ${esc(BT.en)}</h2><span class="car-score" lang="ne">${toDeva((S.blendI || 0) % ws.length + 1)} / ${toDeva(ws.length)}</span></div>
+    <section class="blend">
+      <p class="ask">${done ? "You joined them!" : "Tap each letter to hear it"}</p>
+      <div class="blend-row${done ? " joined" : ""}">${w.letters.map((L, i) => `<button class="blend-l${tapped.includes(i) ? " on" : ""}${!done && i === tapped.length ? " next" : ""}" type="button" data-blend="${i}" lang="ne">${esc(L)}</button>`).join(done ? "" : `<span class="blend-plus">+</span>`)}</div>
+      ${done ? `<div class="blend-word"><div class="blend-pic">${a ? `<img src="${a}" alt="">` : ""}</div><button class="say" type="button" data-say="${esc(K(w.ne))}"><span class="blend-ne" lang="ne">${esc(w.ne)}</span></button><span class="rom">${esc(w.rom)}</span><span class="en">${esc(w.en)}</span></div>
+        <button class="go" type="button" id="blendNext">Next word →</button>` : ""}
+    </section>`;
+}
+function renderNamePrint() {
+  const deva = myDevaName(), F = `font-family="'Baloo 2','Noto Sans Devanagari',sans-serif" font-weight="700"`;
+  const row = solid => `<svg class="np-row" viewBox="0 0 1000 220" aria-hidden="true"><line x1="0" y1="62" x2="1000" y2="62" stroke="#c9d3e6" stroke-width="2"/><line x1="0" y1="190" x2="1000" y2="190" stroke="#c9d3e6" stroke-width="2"/>
+    <text x="30" y="170" font-size="150" ${F} ${solid ? `fill="#1f2a44"` : `fill="none" stroke="#5d6780" stroke-width="3" stroke-dasharray="8 6"`}>${esc(deva)}</text></svg>`;
+  $("#app").innerHTML = `<div class="print-bar no-print"><button class="chip" type="button" id="quit">← Back</button><button class="go" type="button" id="printNow" style="width:auto;padding:10px 22px">🖨️ Print</button></div>
+    <h2 class="print-title"><span lang="ne">मेरो नाम</span> · My name: ${esc(me().name)}</h2>
+    <p class="note">Trace the dotted letters with a pencil. Start with the line on top (शिरोरेखा), then each letter from top to bottom.</p>
+    ${row(true)}${row(false)}${row(false)}${row(false)}
+    <svg class="np-row" viewBox="0 0 1000 220" aria-hidden="true"><line x1="0" y1="62" x2="1000" y2="62" stroke="#c9d3e6" stroke-width="2"/><line x1="0" y1="190" x2="1000" y2="190" stroke="#c9d3e6" stroke-width="2"/></svg>
+    <p class="print-foot">sajilonepali.app · Sajilo Nepali सजिलो नेपाली</p>`;
+}
 function renderNameTrace() {
   const deva = myDevaName();
   $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">✍️ <span lang="ne">मेरो नाम</span> · My name</h2></div>
@@ -2248,7 +2298,8 @@ function renderNameTrace() {
     <p class="ask" style="text-align:center;margin:0">Trace your name in chalk on the paati!</p>
     <div class="trace-wrap"><div class="trace-box" id="traceBox"><canvas id="guide"></canvas><canvas id="ink"></canvas></div>
       <div class="meter" aria-hidden="true"><i id="meter"></i></div>
-      <div class="trace-tools"><button class="chip" type="button" id="traceClear">↺ Wipe the slate</button><button class="chip primary" type="button" id="nameDone">🌟 Done!</button></div></div>
+      <div class="trace-tools"><button class="chip" type="button" id="traceClear">↺ Wipe the slate</button><button class="chip primary" type="button" id="nameDone">🌟 Done!</button></div>
+      <button class="chip" type="button" id="printName" style="margin:8px auto 0;display:block">🖨️ Print a pencil tracing sheet</button></div>
     <div class="grownups"><label for="customDeva" class="note" style="margin:0">Grown-ups: fix the Nepali spelling if it's not right</label>
       <div class="share-btns"><input id="customDeva" lang="ne" value="${esc(deva)}" class="deva-input"><button class="chip" type="button" id="saveDevaName">Save spelling</button></div></div>`;
   setupNameTrace(deva);
@@ -2457,6 +2508,12 @@ document.addEventListener("click", e => {
   if (t.dataset.famrec) { famRecord(t, t.dataset.famrec); return; }
   if (t.dataset.famdel) { famPut(t.dataset.famdel, null).then(renderVoices); return; }
   if (t.id === "openVoices") { S.screen = "voices"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "openBlend") { P.worlds = P.worlds || {}; if (!P.worlds.openBlend) { P.worlds.openBlend = today(); save(); } S.blendI = 0; S.blendTap = []; S.screen = "blend"; render(); window.scrollTo(0, 0); setTimeout(() => S.screen === "blend" && say(K(window.BLEND_TITLE.ne)), 300); return; }
+  if (t.dataset.blend != null) { const w = window.BLEND_WORDS[S.blendI % window.BLEND_WORDS.length], i = +t.dataset.blend; say("L:" + w.letters[i], t);
+    if (i === S.blendTap.length) { S.blendTap.push(i); if (S.blendTap.length === w.letters.length) { setTimeout(() => { if (S.screen !== "blend") return; render(); beep("good"); setTimeout(() => say(K(w.ne)), 350); }, 700); } else render(); }
+    return; }
+  if (t.id === "blendNext") { S.blendI = (S.blendI || 0) + 1; S.blendTap = []; if (S.blendI % window.BLEND_WORDS.length === 0) { confetti(); P.xp += 5; save(); } render(); return; }
+  if (t.id === "printName") { S.screen = "nameprint"; render(); window.scrollTo(0, 0); return; }
   if (["openName", "openMadal", "openTika", "openJar", "openBagh"].includes(t.id)) { P.worlds = P.worlds || {}; if (!P.worlds[t.id]) { P.worlds[t.id] = today(); save(); } }
   if (t.id === "openName") { S.screen = "nametrace"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "saveDevaName") { const v = ($("#customDeva").value || "").trim(); if (v) { me().deva = v; savePlayers(); beep("good"); renderNameTrace(); } return; }

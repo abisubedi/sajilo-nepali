@@ -81,6 +81,9 @@ window.LESSONS = [
     { ne: "अघाएँ", rom: "aghaaen", en: "I am full", ctx: "🍽️ After dinner you tell Aama:", pic: "😌", alt: ["full", "im full", "i'm full", "done eating"] },
     { ne: "तातो", rom: "taato", en: "hot", ctx: "👩 Aama warns you:", pic: "🔥", alt: ["warm"] },
     { ne: "चम्चा", rom: "chamcha", en: "spoon", pic: "🥄" },
+    { ne: "पुग्यो", rom: "pugyo", en: "that's enough", ctx: "👵 Hajuraama offers more rice, but you're full. You say:", pic: "✋", alt: ["enough", "no more", "no more please", "that is enough", "i am good"] },
+    { ne: "अझै अलिकति", rom: "ajhai alikati", en: "a little more", ctx: "🍛 The dal is so good. You hold out your plate:", pic: "🤏", alt: ["little more", "a bit more", "some more", "more please"] },
+    { ne: "पिरो छ", rom: "piro chha", en: "it's spicy", ctx: "🌶️ You taste the achaar and fan your mouth:", pic: "🥵", alt: ["spicy", "it is spicy", "too spicy", "hot spicy"] },
   ]},
   { id: "veggies", title: "Veggies", ne: "तरकारी", rom: "tarkaari", icon: "🥕", color: "var(--flag-green)", items: [
     { ne: "आलु", rom: "aalu", en: "potato", pic: "🥔", alt: ["potatoes"] },
@@ -102,6 +105,8 @@ window.LESSONS = [
     { ne: "बाहिर खेलौँ", rom: "baahira khelaun", en: "let's play outside", ctx: "🧒 You ask Dai:", pic: "⚽", alt: ["play outside", "lets play", "lets play outside"] },
     { ne: "किताब पढ", rom: "kitaab padha", en: "read a book", ctx: "👨 Baba, after school:", pic: "📖", alt: ["read book", "read", "study"] },
     { ne: "सुत", rom: "suta", en: "go to sleep", ctx: "👩 Aama, at bedtime:", pic: "🛌", alt: ["sleep", "bedtime", "go to bed"] },
+    { ne: "धोएँ", rom: "dhoen", en: "I washed them", ctx: "👩 Aama said “हात धोऊ”. When you're done, you tell her:", pic: "🙌", alt: ["i washed", "i washed my hands", "washed", "done washing"] },
+    { ne: "खाँदै छु", rom: "khaandai chhu", en: "I am eating", ctx: "👩 Aama calls “खाना खाऊ!” You answer:", pic: "🍽️", alt: ["eating", "i m eating", "im eating", "i am eating now"] },
   ]},
   { id: "home-sentences", title: "Home Talk", ne: "घरको कुराकानी", rom: "gharko kuraakaani", icon: "🏠", color: "var(--flag-red)", sentences: [
     { ne: ["आमा", "मलाई", "भोक", "लाग्यो"], rom: ["aama", "malai", "bhok", "laagyo"], en: "Mom, I am hungry." },
@@ -667,6 +672,34 @@ window.STORY2 = { ne: "पाण्डु र डाँफे", rom: "paandu ra 
   { ne: "डाँफेकी आमाले भनिन्, धन्यवाद पाण्डु! तिमी असल साथी हौ।", rom: "daanpheki aamaale bhanin, dhanyabaad paandu! timi asal saathi hau.", en: "The Danphe’s mother said, “Thank you, Pandu! You are a good friend.”", art: "story-danphe-6", pic: "pandu-namaste" },
   { ne: "त्यो राति पाण्डु खुसी हुँदै भुसुक्क निदायो। शुभ रात्रि!", rom: "tyo raati paandu khusi hundai bhusukka nidaayo. shubha raatri!", en: "That night, Pandu fell fast asleep, feeling happy. Good night!", art: "story-danphe-7", pic: "pandu-sleep" },
 ] };
+
+/* "Who are you talking to?" (Talking to Elders): pick the polite or the friendly form. */
+window.POLITE_PAIRS = [
+  { en: "eat", polite: { ne: "खानुहोस्", rom: "khaanuhos" }, plain: { ne: "खाऊ", rom: "khaau" } },
+  { en: "sit", polite: { ne: "बस्नुहोस्", rom: "basnuhos" }, plain: { ne: "बस", rom: "basa" } },
+  { en: "come", polite: { ne: "आउनुहोस्", rom: "aaunuhos" }, plain: { ne: "आऊ", rom: "aau" } },
+  { en: "look", polite: { ne: "हेर्नुहोस्", rom: "hernuhos" }, plain: { ne: "हेर", rom: "hera" } },
+  { en: "listen", polite: { ne: "सुन्नुहोस्", rom: "sunnuhos" }, plain: { ne: "सुन", rom: "suna" } },
+  { en: "give it", polite: { ne: "दिनुहोस्", rom: "dinuhos" }, plain: { ne: "देऊ", rom: "deu" } },
+];
+window.TALK_TO = [
+  { who: "Hajuraama", ne: "हजुरआमा", img: "w-grandma", polite: true },
+  { who: "Hajurbaa", ne: "हजुरबा", img: "w-grandpa", polite: true },
+  { who: "your teacher", ne: "गुरुआमा", img: "w-teacher", polite: true },
+  { who: "your little brother", ne: "भाइ", img: "w-younger-brother", polite: false },
+  { who: "your little sister", ne: "बहिनी", img: "w-younger-sister", polite: false },
+  { who: "your friend", ne: "साथी", img: "w-friend", polite: false },
+];
+/* Join the letters: tap each letter to hear it, then they snap into a word (no matras yet). */
+window.BLEND_WORDS = [
+  { letters: ["ब", "स"], ne: "बस", rom: "bas", en: "bus", img: "w-bus" },
+  { letters: ["घ", "र"], ne: "घर", rom: "ghar", en: "house", img: "li-rooms-house" },
+  { letters: ["ज", "ग"], ne: "जग", rom: "jag", en: "jug", img: "w-jug" },
+  { letters: ["फ", "ल"], ne: "फल", rom: "phal", en: "fruit", img: "w-fruits" },
+  { letters: ["र", "थ"], ne: "रथ", rom: "rath", en: "chariot", img: "w-chariot" },
+  { letters: ["क", "ल", "म"], ne: "कलम", rom: "kalam", en: "pen", img: "w-pen" },
+];
+window.BLEND_TITLE = { ne: "अक्षर जोडौँ", rom: "akshar jodaun", en: "Join the letters" };
 
 /* Explore the room: tap things in a big picture. Hotspots (x, y, r in % of the picture) are set once the picture exists. */
 window.SCENES = {

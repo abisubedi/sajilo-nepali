@@ -868,5 +868,16 @@ window.AUDIO = {
  "आज के पकाउनुभयो": "audio/1e8e2ffe80.mp3?v=0cf8048b",
  "म थाली राख्न मद्दत गर्छु": "audio/7e9da7bc48.mp3?v=5befb2ba",
  "हजुरबा मलाई एउटा कथा सुनाउनुहोस्": "audio/206e48a023.mp3?v=68a82292",
- "पुन्यु": "audio/b3d8943e16.mp3?v=d164db83"
+ "पुन्यु": "audio/b3d8943e16.mp3?v=d164db83",
+ "पुग्यो": "audio/a4f5ded0f0.mp3?v=a2017441",
+ "अझै अलिकति": "audio/d10861f9b1.mp3?v=d4eaad69",
+ "पिरो छ": "audio/2cb4cadc59.mp3?v=66c16f71",
+ "धोएँ": "audio/f21f1b8225.mp3?v=06248708",
+ "खाँदै छु": "audio/8068b7e47e.mp3?v=0891c713",
+ "खाऊ": "audio/7857534b44.mp3?v=a28a34a1",
+ "आऊ": "audio/d236a3fc8c.mp3?v=1b3571d9",
+ "घर": "audio/01de2fc4cf.mp3?v=9f96fca2",
+ "फल": "audio/775628f55e.mp3?v=7574525c",
+ "अक्षर जोडौँ": "audio/0291792d58.mp3?v=3cff6d75",
+ "गुरुआमा": "audio/31e3cf1093.mp3?v=57177e5a"
 };
