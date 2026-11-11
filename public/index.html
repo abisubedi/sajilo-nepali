@@ -1358,7 +1358,7 @@ function renderMap() {
         <span class="chapter-stars" aria-label="${got} of ${ls.length * 3} stars">★ <span lang="ne">${toDeva(got)}/${toDeva(ls.length * 3)}</span>${little ? "" : `<small class="ch-lessons">${toDeva(nDone)}/${toDeva(ls.length)} lessons</small>`}${folded ? `<small class="fold-hint">${nDone === ls.length ? "🏅 Done!" : later ? "Later ▾" : "▾ Open"}</small>` : ""}</span>
         <i class="chapter-bar" aria-hidden="true"><b style="width:${Math.round(got / (ls.length * 3) * 100)}%"></b></i>
       </div>
-      ${c.id === "talk" ? stories().map((st, j) => `<button class="chip story-chip" type="button" data-story="${j + 1}">${j ? "🐦" : "🌙"} Story time: <span lang="ne">${esc(st.ne)}</span></button>`).join("") : ""}
+      ${c.id === "talk" && stories().length ? `<button class="chip story-chip" type="button" data-story="tonight">🌙 Story time: <span lang="ne">${esc(stories()[tonightStory()].ne)}</span></button>` : ""}
       ${folded ? "" : `<nav class="trail">${ls.map(stone).join("")}</nav>`}
     </section>`;
   }).join("");
@@ -2478,7 +2478,7 @@ document.addEventListener("click", e => {
     else { beep("bad"); t.classList.add("wrong"); t.disabled = true; say(K(w.ne)); }
     return; }
   if (t.id === "toggleMission") { S.showMission = !S.showMission; render(); return; }
-  if (t.id === "openStory" || t.dataset.story) { beep("flute"); S.story = t.dataset.story ? Math.max(0, +t.dataset.story - 1) : tonightStory(); S.openedOnce = false; S.page = 0; S.screen = "story"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "openStory" || t.dataset.story) { beep("flute"); S.story = /^\d+$/.test(t.dataset.story || "") ? +t.dataset.story - 1 : tonightStory(); S.openedOnce = false; S.page = 0; S.screen = "story"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "storyNext" || t.id === "storyPrev") { S.page = Math.max(0, Math.min(curStory().pages.length - 1, (S.page || 0) + (t.id === "storyNext" ? 1 : -1))); renderStory(); return; }
   if (t.id === "storyAgain") { readPage(); return; }
   if (t.id === "openCar") { startCar(); return; }
