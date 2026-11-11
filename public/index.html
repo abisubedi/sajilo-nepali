@@ -272,6 +272,12 @@ body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) 
 .story-choice { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 .choice-btn { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 140px; padding: 12px; border-radius: 18px; border: 3px solid var(--line); background: var(--snow); box-shadow: 0 5px 0 var(--line); font: inherit; color: var(--ink); cursor: pointer; animation: pulse 1.8s ease-in-out infinite; }
 .choice-btn .choice-pic { font-size: 40px; } .choice-btn .ne { font: 700 22px "Baloo 2", "Noto Sans Devanagari", sans-serif; } .choice-btn.on { border-color: #f6b71c; background: #fff4d6; animation: none; }
+.color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; padding: 0 14px; }
+.color-thumb { padding: 4px; border: 2px solid var(--line); border-radius: 12px; background: #fff; cursor: pointer; box-shadow: 0 3px 0 var(--line); } .color-thumb img { width: 100%; display: block; border-radius: 8px; }
+.color-sheet { background: #fff; max-width: 820px; margin: 0 auto; padding: 16px; text-align: center; color: #222; }
+.color-kicker { font-weight: 800; margin: 0 0 8px; } .color-img { width: 100%; height: auto; display: block; border: 2px solid #ccc; border-radius: 10px; }
+.color-line { font: 700 22px "Baloo 2", "Noto Sans Devanagari", sans-serif; margin: 10px 0 0; } .color-en { margin: 2px 0 0; color: #555; } .color-name { margin: 18px 0 0; font-weight: 700; }
+@media print { .color-sheet { padding: 0; max-width: none; } .color-img { border: none; } }
 .np-row { width: 100%; height: auto; display: block; margin: 4px 0; break-inside: avoid; }
 .play-tile:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--line); }
 @media print { .bottom-nav, .nav-space { display: none; } } .car-cheer { width: 120px; height: 120px; display: block; margin: 0 auto; }
@@ -817,6 +823,7 @@ span[data-say]:hover { background: rgba(47,111,214,.10); }
 <script src="lessons.js"></script>
 <script src="audio-manifest.js"></script>
 <script src="img-manifest.js"></script>
+<script src="coloring-manifest.js"></script>
 <script>if ("serviceWorker" in navigator && !window.Capacitor && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));</script>
 <script>
 /* ---------- Saved progress (this browser only) ---------- */
@@ -1137,6 +1144,7 @@ function render() {
   else if (S.screen === "rhymes") renderRhymes();
   else if (S.screen === "goodnight") renderGoodnight();
   else if (S.screen === "talequiz") renderTaleQuiz();
+  else if (S.screen === "coloring") renderColoring();
   else if (S.screen === "nameprint") renderNamePrint();
   else if (S.screen === "madal") renderMadal();
   else if (S.screen === "tika") renderTika();
@@ -1244,7 +1252,8 @@ const avatarHTML = a => (window.AVATAR_IMG || {})[a] ? `<img class="av-img" src=
 // The Play drawer: every game and activity in one place, as big picture tiles
 function playHTML() {
   const I = window.IMG || {}, W = P.worlds || {}, SC = window.SCENES || {};
-  const tile = (attr, img, emo, label, ne, tried) => `<button class="play-tile" type="button" ${attr}>${I[img] ? `<img src="${I[img]}" alt="" draggable="false">` : `<span class="play-emo">${emo}</span>`}<b>${label}${tried ? ` <i class="tick">✓</i>` : ""}</b>${ne ? `<small lang="ne">${esc(ne)}</small>` : ""}</button>`;
+  const pic = img => I[img] || (window.COLORING || {})[String(img).replace(/^color-/, "")];
+  const tile = (attr, img, emo, label, ne, tried) => `<button class="play-tile" type="button" ${attr}>${pic(img) ? `<img src="${pic(img)}" alt="" draggable="false">` : `<span class="play-emo">${emo}</span>`}<b>${label}${tried ? ` <i class="tick">✓</i>` : ""}</b>${ne ? `<small lang="ne">${esc(ne)}</small>` : ""}</button>`;
   const nm = /^player\s*\d*$/i.test(me().name) && !me().deva ? "मेरो नाम" : myDevaName();
   return `<div class="sheet-back" id="playBack"></div><div class="sheet players play-sheet" id="playSheet" role="dialog" aria-modal="true" aria-label="Play">
     <button class="x sheet-x" type="button" id="playClose" aria-label="Close">✕</button>
@@ -1258,6 +1267,7 @@ function playHTML() {
       ${window.STORY2 ? tile('data-story="2"', "story-danphe-2", "🐦", "Danphe story", window.STORY2.ne) : ""}
       ${tile('id="openCar"', "pandu-bike", "🚗", "Car ride", "")}
       ${tales().map(tl => tile(`data-story="${allStories().indexOf(tl) + 1}"`, tl.art, tl.pic, tl.en, tl.ne, (P.worlds || {})["tale-" + tl.id])).join("")}
+      ${window.COLORING && Object.keys(window.COLORING).length ? tile('id="openColoring"', "color-tale-jackal-4", "🖍️", "Coloring pages", "रङ भरौँ") : ""}
       ${window.RHYMES ? tile('id="openRhymes"', "scene-rhyme-tara", "🎵", "Rhymes", window.RHYMES_TITLE.ne, W.openRhymes) : ""}
       ${window.BLEND_WORDS ? tile('id="openBlend"', "li-cons1", "🔤", "Join the letters", window.BLEND_TITLE.ne, W.openBlend) : ""}
       ${tile('id="openName"', "li-family-name", "✍️", "My name", nm, W.openName)}
@@ -1358,7 +1368,7 @@ function grownHTML() {
     <button class="x sheet-x" type="button" id="grownClose" aria-label="Close">✕</button>
     <div class="sheet-head"><div><strong>${title}</strong></div></div>${body}</div>`;
 }
-const offlineUrls = () => [...new Set([...Object.values(AUDIO), ...Object.values(window.IMG || {})])];
+const offlineUrls = () => [...new Set([...Object.values(AUDIO), ...Object.values(window.IMG || {}), ...Object.values(window.COLORING || {})])];
 async function saveSoundsOffline(btn) {
   if (!navigator.serviceWorker.controller) { btn.textContent = "Reload the page once, then try again"; return; }
   const all = offlineUrls(), cache = await caches.open("sn-media-v1").catch(() => null), urls = [];
@@ -1674,6 +1684,26 @@ async function readPage() {
   const last = i === ps.length - 1 && !pg.choice;
   const end = a.onended; a.onended = () => { end && end(); spans.forEach(e => e.classList.remove("on")); a.ontimeupdate = null;
     if (last && window.STORY_CLOSE && S.screen === "story") setTimeout(() => { if (S.screen === "story" && (S.page || 0) === i) say(K(window.STORY_CLOSE.ne)); }, 700); };
+}
+/* Coloring pages (made from the story pictures by scripts/build_coloring.py): pick a page, print, color with crayons */
+function renderColoring() {
+  const C = window.COLORING || {}, books = allStories().map((st, k) => ({ st, k, pages: st.pages.filter(p => C[p.art]) })).filter(b => b.pages.length);
+  const pick = S.colorPick && books.find(b => b.k === S.colorPick[0]), pg = pick && pick.pages[S.colorPick[1]];
+  if (!pg) {
+    $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🖍️ <span lang="ne">रङ भरौँ</span> · Coloring pages</h2></div>
+      <p class="note" style="text-align:center">Pick a page, print it, and color it with crayons. Screen-free fun!</p>
+      ${books.map(b => `<h4 class="book-h" style="margin:14px 14px 6px"><span lang="ne">${esc(b.st.ne)}</span> <small>${esc(b.st.en)}</small></h4>
+        <div class="color-grid">${b.pages.map((p, i) => `<button class="color-thumb" type="button" data-colorpick="${b.k}:${i}" aria-label="${esc(p.en)}"><img src="${C[p.art]}" alt="" loading="lazy"></button>`).join("")}</div>`).join("")}`;
+    return;
+  }
+  $("#app").innerHTML = `<div class="print-bar no-print"><button class="chip" type="button" id="colorBack">← Pages</button><button class="go" type="button" id="printNow" style="width:auto;padding:10px 22px">🖨️ Print</button></div>
+    <section class="color-sheet">
+      <p class="color-kicker"><span lang="ne">${esc(pick.st.ne)}</span> · ${esc(pick.st.en)}</p>
+      <img class="color-img" src="${C[pg.art]}" alt="">
+      <p class="color-line" lang="ne">${esc(pg.ne)}</p><p class="color-en">${esc(pg.en)}</p>
+      <p class="color-name">My name: ________________________ <span lang="ne">मेरो नाम</span></p>
+      <p class="print-foot">sajilonepali.app · Sajilo Nepali सजिलो नेपाली</p>
+    </section>`;
 }
 /* After a daytime story: big learners answer one question (+5 points, once a day per story) */
 function renderTaleQuiz() {
@@ -2575,8 +2605,8 @@ function renderBagh() {
       ${B.words.map((w, i) => { const here = B.pos === i, tiger = B.tigers.has(i), goal = i === 8, can = !B.won && reach.has(i);
         return `<button type="button" class="bagh-node${here ? " visited" : ""}${tiger ? " tiger" : ""}${goal ? " goal" : ""}${can ? " reach" : ""}" data-baghnode="${i}" ${can ? "" : "disabled"}>
           <span class="bagh-ic">${here ? baghPiece("w-goat", "🐐") : tiger ? baghPiece("w-tiger", "🐅") : goal ? "🏡" : ""}</span><span class="ne" lang="ne">${esc(tiger ? "बाघ" : w.ne)}</span></button>`; }).join("")}</div>
-    ${q ? `<div class="prompt bagh-q"><p style="margin:0;font-weight:800">${neSpan(q.ne)} <span class="rom">${esc(q.rom)}</span> means…</p>
-      <div class="pick-grid">${B.opts.map((o, j) => `<button type="button" class="opt" data-baghans="${j}">${picHTML(o)}<span class="en">${esc(o.en)}</span></button>`).join("")}</div></div>`
+    ${q ? `<div class="prompt bagh-q"><p style="margin:0;font-weight:800">${sayBtn(K(q.ne))} ${neSpan(q.ne)} <span class="rom">${esc(q.rom)}</span> means…</p>
+      <div class="pick-grid">${B.opts.map((o, j) => `<button type="button" class="opt" data-baghans="${j}">${P.level === "big" ? "" : picHTML(o)}<span class="en">${esc(o.en)}</span></button>`).join("")}</div></div>`
       : B.won ? `<button class="go" type="button" id="baghAgain">🐐 Play again</button>` : ""}`;
 }
 /* ---------- Events ---------- */
@@ -2634,6 +2664,9 @@ document.addEventListener("click", e => {
   if (t.id === "rhymeBack") { S.rhymeRun++; try { player && player.pause(); } catch (e) {} S.rhyme = null; render(); return; }
   if (t.id === "rhymeAll") { singRhyme(0); return; }
   if (t.dataset.rline != null) { S.rhymeRun = (S.rhymeRun || 0) + 1; const i = +t.dataset.rline; document.querySelectorAll(".rhyme-line").forEach((b, j) => b.classList.toggle("on", j === i)); $("#rhymePic")?.classList.remove("singing"); const run = S.rhymeRun; sayAndWait(K(window.RHYMES[S.rhyme].lines[i].ne)).then(() => { if (S.rhymeRun === run && S.screen === "rhymes") t.classList.remove("on"); }); return; }
+  if (t.id === "openColoring") { S.colorPick = null; S.screen = "coloring"; render(); window.scrollTo(0, 0); return; }
+  if (t.dataset.colorpick) { S.colorPick = t.dataset.colorpick.split(":").map(Number); render(); window.scrollTo(0, 0); return; }
+  if (t.id === "colorBack") { S.colorPick = null; render(); return; }
   if (t.id === "storyEnd") { S.screen = "goodnight"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "openBlend") { P.worlds = P.worlds || {}; if (!P.worlds.openBlend) { P.worlds.openBlend = today(); save(); } S.blendI = 0; S.blendTap = []; S.screen = "blend"; render(); window.scrollTo(0, 0); setTimeout(() => S.screen === "blend" && say(K(window.BLEND_TITLE.ne)), 300); return; }
   if (t.dataset.blend != null) { const w = window.BLEND_WORDS[S.blendI % window.BLEND_WORDS.length], i = +t.dataset.blend; say("L:" + w.letters[i], t);
