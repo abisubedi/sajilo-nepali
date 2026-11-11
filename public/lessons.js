@@ -361,8 +361,8 @@ window.LESSONS = [
   ]},
   { id: "shapes", title: "Shapes", ne: "आकार", rom: "aakaar", icon: "🔷", color: "var(--flag-yellow)", items: [
     { ne: "गोलो", rom: "golo", en: "circle", pic: "⭕", alt: ["round", "a circle"] },
-    { ne: "वर्ग", rom: "barga", en: "square", pic: "🟦", alt: ["a square"] },
-    { ne: "त्रिभुज", rom: "tribhuj", en: "triangle", pic: "🔺", alt: ["a triangle"] },
+    { ne: "वर्ग", rom: "barga", en: "square", pic: "🟦", alt: ["a square"], ex: { ne: "वर्गलाई चारकुने पनि भन्छन्।", rom: "bargalaai chaarkune pani bhanchhan.", en: "People also call a square चारकुने (four corners)." } },
+    { ne: "त्रिभुज", rom: "tribhuj", en: "triangle", pic: "🔺", alt: ["a triangle"], ex: { ne: "त्रिभुजलाई तीनकुने पनि भन्छन्।", rom: "tribhujlaai teenkune pani bhanchhan.", en: "People also call a triangle तीनकुने (three corners)." } },
     { ne: "आयत", rom: "aayat", en: "rectangle", pic: "▬", alt: ["a rectangle", "oblong"] },
     { ne: "तारा", rom: "taaraa", en: "star", pic: "⭐", alt: ["a star"] },
     { ne: "मुटु", rom: "mutu", en: "heart", pic: "❤️", alt: ["a heart", "heart shape"] },
@@ -676,6 +676,11 @@ window.SCENES = {
     { ne: "गिलास", en: "glass", x: 12, y: 83, r: 5 }, { ne: "चम्चा", en: "spoon", x: 18, y: 89, r: 4 }, { ne: "आलु", en: "potatoes", x: 71, y: 73, r: 7 },
     { ne: "स्याउ", en: "apples", x: 84, y: 88, r: 4 }, { ne: "केरा", en: "bananas", x: 91, y: 85, r: 4 }, { ne: "झ्याल", en: "window", x: 60, y: 30, r: 8 }, { ne: "ढोका", en: "door", x: 89, y: 47, r: 7 }, { ne: "थाल", en: "plates", x: 15, y: 33, r: 6 }, { ne: "करुवा", en: "water jug", x: 57, y: 54, r: 5 },
     { ne: "चुलो", en: "stove", x: 35, y: 58, r: 4 }, { ne: "कुकर", en: "pressure cooker", x: 43, y: 50, r: 4 } ] },
+  "village-kitchen": { title: "हाम्रो भान्सा", rom: "haamro bhaansaa", en: "Village kitchen", img: "scene-village-kitchen", unlock: "w-kitchen", spots: [   // x/y set once the picture exists
+    { ne: "चुलो", en: "stove", x: 0, y: 0, r: 6 }, { ne: "कराही", en: "wok", x: 0, y: 0, r: 5 }, { ne: "डाडु", en: "ladle", x: 0, y: 0, r: 4 },
+    { ne: "पन्यु", en: "flat rice spatula", x: 0, y: 0, r: 4 }, { ne: "सिलौटो", en: "grinding stone", x: 0, y: 0, r: 6 }, { ne: "लोहोरो", en: "grinding pestle", x: 0, y: 0, r: 4 },
+    { ne: "करुवा", en: "water jug", x: 0, y: 0, r: 5 }, { ne: "अम्खोरा", en: "brass tumbler", x: 0, y: 0, r: 4 }, { ne: "थाली", en: "plate", x: 0, y: 0, r: 5 },
+    { ne: "गिलास", en: "glass", x: 0, y: 0, r: 4 }, { ne: "चिया", en: "milk tea", x: 0, y: 0, r: 4 } ] },
 };
 
 /* Bikram Sambat months (approximate start day in the Gregorian calendar) and a seasonal line for Pandu's card. */

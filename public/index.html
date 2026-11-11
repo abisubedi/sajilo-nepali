@@ -243,7 +243,7 @@ body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) 
 .play-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
 .play-tile { display: flex; flex-direction: column; align-items: center; gap: 2px; background: var(--snow); background-image: var(--paper); border: 2px solid var(--line); border-radius: 18px; padding: 8px 4px; box-shadow: 0 4px 0 var(--line); font: inherit; color: var(--ink); cursor: pointer; text-align: center; }
 .play-tile img { width: 64px; height: 64px; object-fit: contain; } .play-emo { font-size: 48px; line-height: 64px; height: 64px; } .play-tile b { font-family: var(--display); font-size: 14px; line-height: 1.15; } .play-tile small { font-family: var(--display); color: var(--muted); font-weight: 700; } .play-tile .tick { color: #1f7a40; font-style: normal; }
-.play-tile[data-story="2"] img { object-fit: cover; border-radius: 50%; border: 2px solid var(--line); }
+.play-tile[data-story="2"] img, .play-tile[data-scene="village-kitchen"] img { object-fit: cover; border-radius: 50%; border: 2px solid var(--line); }
 .play-tile:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--line); }
 @media print { .bottom-nav, .nav-space { display: none; } } .car-cheer { width: 120px; height: 120px; display: block; margin: 0 auto; }
 .guide-sec { background: #faf4e8; border-left: 5px solid var(--panda); border-radius: 12px; padding: 10px 12px; text-align: left; }
@@ -1198,6 +1198,7 @@ function playHTML() {
     <div class="play-grid">
       ${sceneReady(SC["living-room"]) ? tile('data-scene="living-room"', "w-living-room", "🛋️", "Explore the living room", SC["living-room"].title) : ""}
       ${sceneReady(SC.kitchen) ? tile('data-scene="kitchen"', "w-kitchen", "🍳", "Explore the kitchen", SC.kitchen.title) : ""}
+      ${sceneReady(SC["village-kitchen"]) ? tile('data-scene="village-kitchen"', "scene-village-kitchen", "🔥", "Hajuraama's kitchen", SC["village-kitchen"].title) : ""}
       ${tile('id="openRoom"', "pandu-wave", "🏡", "Pandu's room", "पाण्डुको कोठा")}
       ${window.STORY ? tile('data-story="1"', "story-2", "🌙", "Moon story", window.STORY.ne) : ""}
       ${window.STORY2 ? tile('data-story="2"', "story-danphe-2", "🐦", "Danphe story", window.STORY2.ne) : ""}
