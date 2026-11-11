@@ -233,7 +233,7 @@ body .pick-grid .opt .big { font-size: 34px !important; } body .pick-grid .opt .
 .bagh-node.tiger { background: #fde2df; border-color: var(--flag-red); } .bagh-node.goal { background: #fff3c4; border-color: var(--flag-yellow); } .bagh-node[disabled] { cursor: default; }
 .bagh-q { margin-top: 8px; }
 .chapter.folded .chapter-banner { cursor: pointer; } .fold-hint { display: block; text-align: right; font-family: var(--display); font-size: 13px; font-weight: 800; color: var(--flag-blue); }
-.chapter.folded { margin-bottom: 4px; } .ch-lessons { display: block; font-size: 12px; color: var(--muted); font-weight: 800; text-align: right; }
+.chapter.folded { margin-bottom: 4px; } .chapter.later .chapter-banner { opacity: .55; filter: saturate(.6); } .chapter.later .fold-hint { color: var(--muted); } .ch-lessons { display: block; font-size: 12px; color: var(--muted); font-weight: 800; text-align: right; }
 body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) .jump-pill[data-jump] img { width: 38px; height: 38px; }
 .nav-space { height: calc(74px + env(safe-area-inset-bottom)); }
 .bottom-nav { position: fixed; left: 50%; transform: translateX(-50%); bottom: 0; width: min(720px, 100%); display: flex; background: var(--snow); background-image: var(--paper); border-top: 3px solid var(--line); border-radius: 22px 22px 0 0; padding: 4px 6px calc(4px + env(safe-area-inset-bottom)); z-index: 6; box-shadow: 0 -4px 14px rgba(31,42,68,.1); }
@@ -1344,10 +1344,11 @@ function renderMap() {
     const got = ls.reduce((a, l) => a + (P.stars[starKey(l.id)] || 0), 0), nDone = ls.filter(l => P.stars[starKey(l.id)]).length;
     // Little learners: only one chapter is open at a time (the one with the next lesson); the others fold into a banner
     const little = P.level !== "big", openCh = S.openCh || (window.CHAPTERS.find(x => x.lessons.includes(nextId)) || window.CHAPTERS[0]).id, folded = little && c.id !== openCh;
-    return `<section class="chapter${folded ? " folded" : ""}" id="ch-${c.id}" aria-label="Chapter ${i + 1}: ${esc(c.en)}">
+    const curIdx = window.CHAPTERS.findIndex(x => x.lessons.includes(nextId)), later = folded && curIdx >= 0 && i > curIdx && nDone === 0;   // not reached yet: faded, still tappable
+    return `<section class="chapter${folded ? " folded" : ""}${later ? " later" : ""}" id="ch-${c.id}" aria-label="Chapter ${i + 1}: ${esc(c.en)}">
       <div class="chapter-banner${folded ? " fold-btn" : ""}" style="--c:${c.color}"${folded ? ` data-opench="${c.id}" role="button" tabindex="0" aria-expanded="false" aria-label="Open chapter ${i + 1}"` : ""}>
         <span><small>Chapter ${i + 1} · <span lang="ne">अध्याय ${toDeva(i + 1)}</span></small>${neSpan(c.ne)} <span class="rom">${esc(c.rom)}</span><em>${esc(c.en)}</em></span>
-        <span class="chapter-stars" aria-label="${got} of ${ls.length * 3} stars">★ <span lang="ne">${toDeva(got)}/${toDeva(ls.length * 3)}</span>${little ? "" : `<small class="ch-lessons">${toDeva(nDone)}/${toDeva(ls.length)} lessons</small>`}${folded ? `<small class="fold-hint">${nDone === ls.length ? "🏅 Done!" : "▾ Open"}</small>` : ""}</span>
+        <span class="chapter-stars" aria-label="${got} of ${ls.length * 3} stars">★ <span lang="ne">${toDeva(got)}/${toDeva(ls.length * 3)}</span>${little ? "" : `<small class="ch-lessons">${toDeva(nDone)}/${toDeva(ls.length)} lessons</small>`}${folded ? `<small class="fold-hint">${nDone === ls.length ? "🏅 Done!" : later ? "Later ▾" : "▾ Open"}</small>` : ""}</span>
         <i class="chapter-bar" aria-hidden="true"><b style="width:${Math.round(got / (ls.length * 3) * 100)}%"></b></i>
       </div>
       ${c.id === "talk" && window.STORY ? `<button class="chip story-chip" type="button" data-story="1">🌙 Story time: <span lang="ne">${esc(window.STORY.ne)}</span></button>` : ""}
