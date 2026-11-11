@@ -10,7 +10,7 @@ import datetime, hashlib, json, os, subprocess, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ART, IMG = os.path.join(ROOT, "art"), os.path.join(ROOT, "public", "img")
-PREFIXES = ("w-", "li-", "st-", "av-", "pandu-", "story-", "scene-", "s-")
+PREFIXES = ("w-", "li-", "st-", "av-", "pandu-", "story-", "scene-", "s-", "tale-")
 os.makedirs(IMG, exist_ok=True)
 made = []
 for f in sorted(os.listdir(ART)):
