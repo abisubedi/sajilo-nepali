@@ -243,6 +243,7 @@ body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) 
 .play-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
 .play-tile { display: flex; flex-direction: column; align-items: center; gap: 2px; background: var(--snow); background-image: var(--paper); border: 2px solid var(--line); border-radius: 18px; padding: 8px 4px; box-shadow: 0 4px 0 var(--line); font: inherit; color: var(--ink); cursor: pointer; text-align: center; }
 .play-tile img { width: 64px; height: 64px; object-fit: contain; } .play-emo { font-size: 48px; line-height: 64px; height: 64px; } .play-tile b { font-family: var(--display); font-size: 14px; line-height: 1.15; } .play-tile small { font-family: var(--display); color: var(--muted); font-weight: 700; } .play-tile .tick { color: #1f7a40; font-style: normal; }
+.play-tile[data-story="2"] img { object-fit: cover; border-radius: 50%; border: 2px solid var(--line); }
 .play-tile:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--line); }
 @media print { .bottom-nav, .nav-space { display: none; } } .car-cheer { width: 120px; height: 120px; display: block; margin: 0 auto; }
 .guide-sec { background: #faf4e8; border-left: 5px solid var(--panda); border-radius: 12px; padding: 10px 12px; text-align: left; }
@@ -1198,8 +1199,8 @@ function playHTML() {
       ${sceneReady(SC["living-room"]) ? tile('data-scene="living-room"', "w-living-room", "🛋️", "Explore the living room", SC["living-room"].title) : ""}
       ${sceneReady(SC.kitchen) ? tile('data-scene="kitchen"', "w-kitchen", "🍳", "Explore the kitchen", SC.kitchen.title) : ""}
       ${tile('id="openRoom"', "pandu-wave", "🏡", "Pandu's room", "पाण्डुको कोठा")}
-      ${window.STORY ? tile('data-story="1"', "story-2", "🌙", "Story time", window.STORY.ne) : ""}
-      ${window.STORY2 ? tile('data-story="2"', "story-danphe-2", "🐦", "Story time", window.STORY2.ne) : ""}
+      ${window.STORY ? tile('data-story="1"', "story-2", "🌙", "Moon story", window.STORY.ne) : ""}
+      ${window.STORY2 ? tile('data-story="2"', "story-danphe-2", "🐦", "Danphe story", window.STORY2.ne) : ""}
       ${tile('id="openCar"', "pandu-bike", "🚗", "Car ride", "")}
       ${tile('id="openName"', "li-family-name", "✍️", "My name", nm, W.openName)}
       ${tile('id="openMadal"', "w-nepali-drum", "🥁", "Madal", "मादल", W.openMadal)}
@@ -1289,13 +1290,15 @@ function grownHTML() {
     <button class="x sheet-x" type="button" id="grownClose" aria-label="Close">✕</button>
     <div class="sheet-head"><div><strong>${title}</strong></div></div>${body}</div>`;
 }
+const offlineUrls = () => [...new Set([...Object.values(AUDIO), ...Object.values(window.IMG || {})])];
 async function saveSoundsOffline(btn) {
-  const urls = [...new Set(Object.values(AUDIO))];
   if (!navigator.serviceWorker.controller) { btn.textContent = "Reload the page once, then try again"; return; }
-  let n = 0; btn.disabled = true;
-  const next = async () => { while (urls.length) { const u = urls.pop(); try { await fetch(u); } catch (e) {} n++; btn.textContent = `Saving sounds… ${toDeva(n)}/${toDeva(n + urls.length)}`; } };
+  const all = offlineUrls(), cache = await caches.open("sn-media-v1").catch(() => null), urls = [];
+  for (const u of all) if (!cache || !(await cache.match(new URL(u, location.href).href))) urls.push(u);   // only what is not saved yet
+  let n = 0; const total = urls.length; btn.disabled = true;
+  const next = async () => { while (urls.length) { const u = urls.pop(); try { await fetch(u); } catch (e) {} n++; btn.textContent = `Saving sounds and pictures… ${toDeva(n)}/${toDeva(total)}`; } };
   await Promise.all(Array.from({ length: 6 }, next));
-  btn.textContent = "✓ All sounds saved for offline"; P.offlineSaved = today(); save();
+  btn.textContent = "✓ All sounds and pictures saved for offline"; P.offlineSaved = today(); P.offlineN = all.length; save();
 }
 function switchPlayer(id) {
   save(); PL.current = id; savePlayers(); KEY = keyFor(id); P = load();
@@ -1405,7 +1408,7 @@ function renderMap() {
         <button class="chip" type="button" id="shareApp">💌 Share with another family</button>
         <button class="chip" type="button" id="saveCode">📤 Copy save code</button>
         <button class="chip" type="button" id="loadCode">📥 Load save code</button>
-        ${"serviceWorker" in navigator ? `<button class="chip" type="button" id="offlineAudio">📶 Save sounds for offline</button>` : ""}
+        ${"serviceWorker" in navigator ? `<button class="chip" type="button" id="offlineAudio">${P.offlineSaved && (P.offlineN || 0) < offlineUrls().length ? "📶 Update offline pack (new sounds and pictures)" : P.offlineSaved ? "📶 Offline pack saved ✓ (tap to check)" : "📶 Save sounds and pictures for offline"}</button>` : ""}
         ${(P.misses || []).length ? `<button class="chip" type="button" id="openMisses">📝 Answers to check (<span lang="ne">${toDeva(P.misses.length)}</span>)</button>` : ""}
         <button class="chip" type="button" id="openGuide">ℹ️ About this app</button>
         <button class="chip" type="button" id="openPride">📊 What ${esc(me().name)} can say</button>
@@ -2314,7 +2317,7 @@ function guideHTML() {
       ["🏅 Mero Nepali Passport.", "A printable certificate for each finished chapter, listing the words learned."],
       ["📊 What your child can say.", "A sentence to try at dinner tonight, words practised, and words to practise together."],
       ["📝 Answers to check.", "Big learners type answers. You can accept a near miss (like mum for mom) so it counts from then on."],
-      ["📶 Works offline.", "Once opened, the app works without internet. 📶 Save sounds for offline downloads every recording for trips."]])}`;
+      ["📶 Works offline.", "Once opened, the app works without internet. 📶 Save sounds and pictures for offline downloads every recording and picture (about 35 MB) for trips. After an update, the button offers to add just the new ones."]])}`;
 }
 // 3. For grown-ups: what my child can say tonight
 function prideHTML() {
