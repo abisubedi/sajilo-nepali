@@ -922,7 +922,7 @@ const artFor = x => x && typeof x === "object" && (x.art || (x.img && (window.IM
    looking from the end (where Nepali puts the main noun) and allowing endings like -मा, -ले, -को, -लाई. */
 let WORDS = null;
 const SKIP = new Set(["हो", "होइन", "छ", "छैन", "म", "मेरो", "यो", "तिमी", "मलाई", "के", "हजुर", "ठीक", "अब", "यहाँ"]);
-const NOUN_LESSONS = new Set(["animals", "respect-family", "kitchen-tummy", "body", "rooms-house", "house-objects", "clothes", "sports-outdoors",
+const NOUN_LESSONS = new Set(["animals", "home-animals", "veggies", "our-nepal", "respect-family", "kitchen-tummy", "body", "rooms-house", "house-objects", "clothes", "sports-outdoors",
   "weather-nature", "festivals-culture", "nepali-treats", "birds-bugs", "vehicles-travel", "school-supplies", "fruits-snacks", "time-of-day"]);
 function sentencePic(l, s, i) {
   const scene = (window.IMG || {})[`s-${l.id}-${i + 1}`];
@@ -1801,8 +1801,8 @@ function lessonTop() {
 
 // Who asks the question: the family member who'd say this at home
 const HOSTS = [
-  [["kitchen-tummy", "nepali-treats", "fruits-snacks", "daily-routines", "home-sentences"], "w-mom", "Aama"],
-  [["greet", "respect-family", "festivals-culture", "phone-grandparents", "polite-commands", "days", "time-of-day"], "w-grandma", "Hajuraama"],
+  [["kitchen-tummy", "veggies", "nepali-treats", "fruits-snacks", "daily-routines", "home-sentences"], "w-mom", "Aama"],
+  [["greet", "respect-family", "festivals-culture", "our-nepal", "phone-grandparents", "polite-commands", "days", "time-of-day"], "w-grandma", "Hajuraama"],
   [["playtime-verbs", "sports-outdoors", "sound-words", "retro-90s", "colours", "opposites", "feelings-needs"], "w-older-sister", "Didi"],
   [["home-animals", "animals", "birds-bugs", "animal-sounds", "vehicles-travel", "weather-nature"], "w-older-brother", "Dai"],
   [["num", "numbers-11-20", "school-supplies", "question-words", "vowels", "cons1", "cons2", "cons3", "cons4"], "w-teacher", "The teacher"],
