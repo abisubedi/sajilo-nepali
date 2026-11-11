@@ -63,8 +63,8 @@ window.LESSONS = [
     { ne: "दाइ", rom: "daai", en: "older brother", pic: "👦", alt: ["big brother", "elder brother", "brother"] },
     { ne: "बहिनी", rom: "bahini", en: "younger sister", pic: "👶", alt: ["little sister", "sister"] },
     { ne: "भाइ", rom: "bhaai", en: "younger brother", pic: "🧒", alt: ["little brother", "brother"] },
-    { ne: "हजुरआमा", rom: "hajur-aama", en: "grandma", pic: "👵", alt: ["grandmother", "granny", "nana"] },
-    { ne: "हजुरबा", rom: "hajur-ba", en: "grandpa", pic: "👴", alt: ["grandfather", "granddad"] },
+    { ne: "हजुरआमा", rom: "hajur-aama", en: "grandma", pic: "👵", alt: ["grandmother", "granny", "nana", "nani", "grandmom", "grandmama", "gran"] },
+    { ne: "हजुरबा", rom: "hajur-ba", en: "grandpa", pic: "👴", alt: ["grandfather", "granddad", "grandad", "gramps", "grandpapa", "grandpop"] },
   ]},
   { id: "kitchen-tummy", title: "Kitchen & Tummy", ne: "भान्सा र खाना", rom: "bhaansa ra khaana", icon: "🍛", color: "var(--flag-green)",
     order: { box: "basket", who: "Hajuraama says: put these in the basket!", want: ["स्याउ", "दूध", "केरा", "मोमो", "रोटी", "पानी"], extra: ["जुत्ता", "किताब", "टोपी", "कुर्सी", "झोला"] }, items: [

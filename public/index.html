@@ -529,6 +529,7 @@ body { background-image: var(--paper); }
 .cert-words { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
 .cert-words span { background: #fff3c4; border-radius: 999px; padding: 3px 10px; font-weight: 700; font-size: 15px; } .cert-words small { color: var(--muted); }
 .cert-foot { margin: 8px 0 0; color: var(--muted); font-weight: 700; font-size: 13px; }
+.cert-count { font-family: var(--display); font-size: 20px; margin: 4px 0 0; } .cert-count b { color: #e2453c; font-size: 1.3em; }
 @media print { .cert { break-inside: avoid; margin-top: 10mm; } .cert-row .mascot { width: 140px; height: 140px; } }
 /* Flashcard buttons: one even row on every screen */
 .card-nav > * { height: 52px; white-space: nowrap; flex: none; }
@@ -1099,6 +1100,9 @@ function render() {
   document.documentElement.classList.toggle("modal-open", !!(S.sheet || S.stickers || S.players || S.grown || S.play));
   document.body.classList.toggle("night", S.screen === "story" || S.screen === "goodnight");
   if (S.screen !== "car" && S.car) stopCar();
+  // leaving a screen that talks or sings (rhymes, stories, letters, rooms): stop its voice so it never plays over the next one
+  if (S.lastScreen && S.lastScreen !== S.screen && ["rhymes", "story", "goodnight", "blend", "scene"].includes(S.lastScreen)) { S.rhymeRun = (S.rhymeRun || 0) + 1; try { player && player.pause(); } catch (e) {} }
+  S.lastScreen = S.screen;
   if (S.screen !== "room") { window.onpointermove = null; window.onpointerup = null; }
   document.body.classList.toggle("hide-rom", !romOn()); document.body.classList.toggle("lv-big", P.level === "big");
   if (S.screen !== "done") document.querySelectorAll(".confetti").forEach(c => c.remove());
@@ -1791,6 +1795,11 @@ function renderKin() {
     <div class="kin-tip">🙏 <b>Respect tip:</b> greet elders with ${neHTML(K2.greetElder.ne, K2.greetElder.rom, K(K2.greetElder.ne))} or ${neHTML("नमस्ते", "namaste", K("नमस्ते"))} and call them <span lang="ne">तपाईं</span> / <span lang="ne">हजुर</span>. With younger ones, say <span lang="ne">तिमी</span>.</div>`;
 }
 /* ---------- Mero Nepali Passport: a certificate for each chapter sticker ---------- */
+function knownWordCount() {   // every different word in a lesson this player has finished (any stars)
+  const seen = new Set();
+  for (const l of window.LESSONS) if (!l.letters && P.stars[starKey(l.id)]) for (const it of l.items || []) if (typeof it.ne === "string" && it.en && !/^Say /.test(it.en)) seen.add(it.ne);
+  return seen.size;
+}
 function renderCert() {
   const c = window.CHAPTERS.find(x => x.id === S.certId), st = stickerState().find(x => x.id === S.certId); if (!c || !st) { S.screen = "map"; return render(); }
   const words = []; for (const id of c.lessons) { const l = window.LESSONS.find(x => x.id === id); for (const it of (l && l.items) || []) if (typeof it.ne === "string" && it.en && !/^Say /.test(it.en) && words.length < 14 && !words.some(w => w.ne === it.ne)) words.push(it); }
@@ -1803,6 +1812,7 @@ function renderCert() {
       <div class="cert-row">${pandu(panduSrc("cheer") ? "cheer" : "wave")}${st.img ? `<img class="cert-st" src="${st.img}" alt="">` : `<span style="font-size:80px">${esc(st.pic)}</span>`}</div>
       <p class="cert-name">${esc(me().name)}</p>
       <p>earned the <b>${esc(st.name)}</b> sticker for finishing <b lang="ne">${esc(c.ne)}</b> (${esc(c.en)})${st.gold ? " with ★★★ on every lesson" : ""}!</p>
+      ${(() => { const n = knownWordCount(); return n ? `<p class="cert-count">🌟 I know <b lang="ne">${toDeva(n)}</b> (${n}) words in Nepali!</p>` : ""; })()}
       <h3 style="margin:6px 0 0">Words I know</h3>
       <div class="cert-words">${words.map(w => `<span><span lang="ne">${esc(w.ne)}</span> <small>${esc(w.en)}</small></span>`).join("")}</div>
       <p class="cert-foot">${esc(date)} · Sajilo Nepali · sajilonepali.app</p>
