@@ -342,6 +342,7 @@ const LI = {
   "clothes": "a kurta and a dhaka topi",
   "playtime-verbs": "a child running and jumping",
   "barakhari": "a dark wooden chalk slate (paati) in a warm wooden frame with a few simple white chalk swirls and dots on it (no writing), a short piece of white chalk beside it and small magic sparkles above",
+  "home-animals": "a friendly cow, a puppy and a kitten together in a Nepali farmyard with a small haystack",
   "animal-sounds": "a happy puppy, kitten and little frog sitting together with their mouths open, singing, small musical notes and sound bursts floating above them",
   "retro-90s": "Pandu the red panda holding an old cassette tape and a pencil, a chungi of colorful rubber bands at his feet",
   "sound-words": "Pandu the red panda laughing with musical notes and little sound bursts popping around him",
