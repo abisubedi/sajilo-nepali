@@ -264,6 +264,14 @@ body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) 
 .gn-pandu svg, .gn-pandu img { width: 200px; height: auto; } .gn-ne { font: 700 28px "Baloo 2", "Noto Sans Devanagari", sans-serif; color: #e0e7ff; margin: 0; } .gn-en { color: #a5b4fc; margin: 0; font-weight: 700; }
 .gn-back { margin-top: 18px; background: #283458; color: #e0e7ff; border-color: #3b4a78; box-shadow: 0 3px 0 #1a2340; }
 @keyframes gn-fade { 0% { opacity: 0; } 15% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: .35; } }
+.story.tale { color: var(--ink); } .story.tale .story-en { color: var(--muted); } .story.tale .story-pic img { filter: none; border-radius: 18px; }
+.story.tale .story-pic { aspect-ratio: auto; width: min(92vw, 520px); }
+.sp-wrap { position: relative; display: inline-block; width: 100%; } .sp-wrap img { display: block; width: 100%; height: auto; }
+.story-spot { position: absolute; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; border: 3px dashed rgba(255,255,255,.85); background: rgba(255,244,214,.18); cursor: pointer; animation: pulse 1.8s ease-in-out infinite; }
+.story-spot.hit { animation: pop .45s ease-out; border-color: #f6b71c; }
+.story-choice { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.choice-btn { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 140px; padding: 12px; border-radius: 18px; border: 3px solid var(--line); background: var(--snow); box-shadow: 0 5px 0 var(--line); font: inherit; color: var(--ink); cursor: pointer; animation: pulse 1.8s ease-in-out infinite; }
+.choice-btn .choice-pic { font-size: 40px; } .choice-btn .ne { font: 700 22px "Baloo 2", "Noto Sans Devanagari", sans-serif; } .choice-btn.on { border-color: #f6b71c; background: #fff4d6; animation: none; }
 .np-row { width: 100%; height: auto; display: block; margin: 4px 0; break-inside: avoid; }
 .play-tile:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--line); }
 @media print { .bottom-nav, .nav-space { display: none; } } .car-cheer { width: 120px; height: 120px; display: block; margin: 0 auto; }
@@ -1105,7 +1113,7 @@ function render() {
   if (S.needsReload && S.screen === "map") { location.reload(); return; }
   if (S.screen !== "madal" && S.madalTimers && S.madalTimers.length) stopMadal();
   document.documentElement.classList.toggle("modal-open", !!(S.sheet || S.stickers || S.players || S.grown || S.play));
-  document.body.classList.toggle("night", S.screen === "story" || S.screen === "goodnight");
+  document.body.classList.toggle("night", (S.screen === "story" && !isTale(curStory())) || S.screen === "goodnight");
   if (S.screen !== "car" && S.car) stopCar();
   // leaving a screen that talks or sings (rhymes, stories, letters, rooms): stop its voice so it never plays over the next one
   if (S.lastScreen && S.lastScreen !== S.screen && ["rhymes", "story", "goodnight", "blend", "scene"].includes(S.lastScreen)) { S.rhymeRun = (S.rhymeRun || 0) + 1; try { player && player.pause(); } catch (e) {} }
@@ -1128,6 +1136,7 @@ function render() {
   else if (S.screen === "blend") renderBlend();
   else if (S.screen === "rhymes") renderRhymes();
   else if (S.screen === "goodnight") renderGoodnight();
+  else if (S.screen === "talequiz") renderTaleQuiz();
   else if (S.screen === "nameprint") renderNamePrint();
   else if (S.screen === "madal") renderMadal();
   else if (S.screen === "tika") renderTika();
@@ -1248,6 +1257,7 @@ function playHTML() {
       ${window.STORY ? tile('data-story="1"', "story-2", "🌙", "Moon story", window.STORY.ne) : ""}
       ${window.STORY2 ? tile('data-story="2"', "story-danphe-2", "🐦", "Danphe story", window.STORY2.ne) : ""}
       ${tile('id="openCar"', "pandu-bike", "🚗", "Car ride", "")}
+      ${tales().map(tl => tile(`data-story="${allStories().indexOf(tl) + 1}"`, tl.art, tl.pic, tl.en, tl.ne, (P.worlds || {})["tale-" + tl.id])).join("")}
       ${window.RHYMES ? tile('id="openRhymes"', "scene-rhyme-tara", "🎵", "Rhymes", window.RHYMES_TITLE.ne, W.openRhymes) : ""}
       ${window.BLEND_WORDS ? tile('id="openBlend"', "li-cons1", "🔤", "Join the letters", window.BLEND_TITLE.ne, W.openBlend) : ""}
       ${tile('id="openName"', "li-family-name", "✍️", "My name", nm, W.openName)}
@@ -1616,33 +1626,44 @@ function greetExtra() {
 /* ---------- Who's who in our family ---------- */
 function kinPic(x) { const a = x.art && (window.IMG || {})[x.art]; return `<span class="kin-pic" aria-hidden="true">${a ? `<img src="${a}" alt="">` : esc(x.pic)}</span>`; }
 const stories = () => [window.STORY, window.STORY2].filter(Boolean);
-const curStory = () => stories()[S.story || 0] || window.STORY;
+const tales = () => (window.TALES || []).filter(t => AUDIO[K(t.pages[0].ne)]);   // daytime stories appear once their voice is recorded
+const allStories = () => [...stories(), ...(window.TALES || [])];
+const curStory = () => allStories()[S.story || 0] || window.STORY;
+const isTale = s => (window.TALES || []).includes(s);
+/* the pages for this reading: one path after a choice, and nothing past the choice until it is made */
+function storyPages(s) {
+  const out = [];
+  for (const p of s.pages) { if (p.branch && p.branch !== S.branch) continue; out.push(p); if (p.choice && !S.branch) break; }
+  return out;
+}
 const tonightStory = () => Math.floor((Date.now() - new Date().getTimezoneOffset() * 6e4) / 864e5) % Math.max(1, stories().length);
 const storyTime = () => { const d = new Date(), m = d.getHours() * 60 + d.getMinutes(); return m >= 19 * 60 + 30 || m < 5 * 60; };
 function renderStory() {
-  const s = curStory(), i = S.page || 0, pg = s.pages[i], last = i === s.pages.length - 1;
-  const art = (window.IMG || {})[pg.art];
-  const words = pg.ne.split(" ");
+  const s = curStory(), ps = storyPages(s), i = Math.min(S.page || 0, ps.length - 1), pg = ps[i], tale = isTale(s);
+  const choosing = pg.choice, last = i === ps.length - 1 && !choosing;
+  const art = (window.IMG || {})[pg.art], sp = pg.spot && pg.spot.x != null && art ? pg.spot : null;
+  const words = pg.ne.split(" "), n = tale && !S.branch && s.pages.some(p => p.branch) ? s.pages.filter(p => !p.branch || p.branch === s.pages.find(q => q.branch).branch).length : ps.length;
   $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Close story">✕</button>
-      <div class="bar"><i style="width:${((i + 1) / s.pages.length) * 100}%"></i></div><span class="hearts" lang="ne">${toDeva(i + 1)} / ${toDeva(s.pages.length)}</span></div>
-    <section class="story">
-      ${i === 0 ? `<h2 style="margin:0;font-family:var(--display)"><span lang="ne">${esc(s.ne)}</span> <small style="font-size:16px;color:#c7d2fe">${esc(s.en)}</small></h2>` : ""}
-      ${i === 0 && window.STORY_OPEN ? `<p class="story-open">${neSpan(window.STORY_OPEN.ne)} <small style="font-size:14px;color:#c7d2fe">${esc(window.STORY_OPEN.en)}</small></p>` : ""}
-      <div class="story-pic">${art ? `<img src="${art}" alt="">` : pandu(pg.pic.replace(/^pandu-/, ""), "")}</div>
+      <div class="bar"><i style="width:${((i + 1) / n) * 100}%"></i></div><span class="hearts" lang="ne">${toDeva(i + 1)} / ${toDeva(n)}</span></div>
+    <section class="story${tale ? " tale" : ""}">
+      ${i === 0 ? `<h2 style="margin:0;font-family:var(--display)"><span lang="ne">${esc(s.ne)}</span> <small style="font-size:16px;color:${tale ? "var(--muted)" : "#c7d2fe"}">${esc(s.en)}</small></h2>` : ""}
+      ${i === 0 && window.STORY_OPEN ? `<p class="story-open">${neSpan(window.STORY_OPEN.ne)} <small style="font-size:14px">${esc(window.STORY_OPEN.en)}</small></p>` : ""}
+      <div class="story-pic">${art ? `<span class="sp-wrap"><img src="${art}" alt="">${sp ? `<button class="story-spot" type="button" id="storySpot" aria-label="${esc(sp.en)}" style="left:${sp.x}%;top:${sp.y}%;width:${sp.r * 2}%"></button>` : ""}</span>` : pandu(pg.pic.replace(/^pandu-/, ""), "")}</div>
       <p class="story-text" lang="ne" id="storyText">${words.map((w, j) => `<span class="w" data-j="${j}">${esc(w)}</span>`).join(" ")}</p>
-      <p class="rom" style="background:none;color:#a5b4fc">${esc(pg.rom)}</p>
+      <p class="rom" style="background:none">${esc(pg.rom)}</p>
       <p class="story-en">${esc(pg.en)}</p>
+      ${choosing ? `<div class="story-choice">${pg.choice.map(c => `<button class="choice-btn${S.branch === c.go ? " on" : ""}" type="button" data-branch="${c.go}"><span class="choice-pic">${c.pic}</span><span class="ne" lang="ne">${esc(c.ne)}</span><small>${esc(c.en)}</small></button>`).join("")}</div>` : ""}
       ${last && window.STORY_CLOSE ? `<p class="story-close">🌼 ${neSpan(window.STORY_CLOSE.ne)} 🌟<small>${esc(window.STORY_CLOSE.en)}</small></p>` : ""}
       <div class="story-nav">
         <button class="chip big" type="button" id="storyPrev" ${i ? "" : "disabled"} aria-label="Previous page">◀</button>
         <button class="chip big" type="button" id="storyAgain" aria-label="Read this page again">🔁</button>
-        ${last ? `<button class="chip big" type="button" id="storyEnd">🌙 The end</button>` : `<button class="chip big" type="button" id="storyNext" aria-label="Next page">▶</button>`}
+        ${last ? (tale ? `<button class="chip big" type="button" id="taleEnd">🌟 The end</button>` : `<button class="chip big" type="button" id="storyEnd">🌙 The end</button>`) : choosing && !S.branch ? "" : `<button class="chip big" type="button" id="storyNext" aria-label="Next page">▶</button>`}
       </div>
     </section>`;
   setTimeout(readPage, 350);
 }
 async function readPage() {
-  const s = curStory(), i = S.page || 0, pg = s.pages[i], key = K(pg.ne), spans = [...document.querySelectorAll("#storyText .w")];
+  const s = curStory(), ps = storyPages(s), i = Math.min(S.page || 0, ps.length - 1), pg = ps[i], key = K(pg.ne), spans = [...document.querySelectorAll("#storyText .w")];
   if (!spans.length) return;
   if (i === 0 && window.STORY_OPEN && AUDIO[K(window.STORY_OPEN.ne)] && !S.openedOnce) { S.openedOnce = true; await sayAndWait(K(window.STORY_OPEN.ne)); if (S.screen !== "story" || (S.page || 0) !== 0) return; }
   const lens = spans.map(e => e.textContent.length + 1), total = lens.reduce((a, b) => a + b, 0);
@@ -1650,9 +1671,26 @@ async function readPage() {
   say(key);
   const a = player; if (!a || !AUDIO[key]) return;
   a.ontimeupdate = () => { if (S.screen !== "story") { a.ontimeupdate = null; return; } if (a.duration) mark(a.currentTime / a.duration); };
-  const last = i === s.pages.length - 1;
+  const last = i === ps.length - 1 && !pg.choice;
   const end = a.onended; a.onended = () => { end && end(); spans.forEach(e => e.classList.remove("on")); a.ontimeupdate = null;
     if (last && window.STORY_CLOSE && S.screen === "story") setTimeout(() => { if (S.screen === "story" && (S.page || 0) === i) say(K(window.STORY_CLOSE.ne)); }, 700); };
+}
+/* After a daytime story: big learners answer one question (+5 points, once a day per story) */
+function renderTaleQuiz() {
+  const s = curStory(), q = s.quiz, I = window.IMG || {}, opts = S.taleOpts || (S.taleOpts = shuffle([q.answer, ...q.wrong]));
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🌟 <span lang="ne">${esc(s.ne)}</span></h2></div>
+    <section class="done">${pandu("think", "")}
+      <p class="ask">Story question</p>
+      <div class="say-row">${sayBtn(K(q.ne), "huge")}</div><p lang="ne" style="font-size:22px;font-weight:700;margin:0">${esc(q.ne)}</p><p class="rom">${esc(q.rom)}</p><p style="margin:0">${esc(q.en)}</p>
+      <div class="opts">${opts.map((o, i) => `<button class="opt" type="button" data-tq="${i}">${I[o.img] ? `<img class="wpic" src="${I[o.img]}" alt="">` : ""}<span class="ne" lang="ne">${esc(o.ne)}</span><span class="en">${esc(o.en)}</span></button>`).join("")}</div>
+      <p id="tqFeed" class="ctx"></p>
+    </section>`;
+  setTimeout(() => S.screen === "talequiz" && say(K(q.ne)), 300);
+}
+function finishTale() {
+  const s = curStory(); P.worlds = P.worlds || {}; P.worlds["tale-" + s.id] = P.worlds["tale-" + s.id] || today(); save();
+  if (P.level === "big" && s.quiz) { S.taleOpts = null; S.screen = "talequiz"; render(); window.scrollTo(0, 0); return; }
+  confetti(); beep("done"); S.screen = "map"; S.play = true; render();
 }
 
 /* ================= Car ride: eyes-free family quiz over the car speakers ================= */
@@ -2629,8 +2667,16 @@ document.addEventListener("click", e => {
     else { beep("bad"); t.classList.add("wrong"); t.disabled = true; say(K(w.ne)); }
     return; }
   if (t.id === "toggleMission") { S.showMission = !S.showMission; render(); return; }
-  if (t.id === "openStory" || t.dataset.story) { beep("flute"); S.story = /^\d+$/.test(t.dataset.story || "") ? +t.dataset.story - 1 : tonightStory(); S.openedOnce = false; S.page = 0; S.screen = "story"; render(); window.scrollTo(0, 0); return; }
-  if (t.id === "storyNext" || t.id === "storyPrev") { S.page = Math.max(0, Math.min(curStory().pages.length - 1, (S.page || 0) + (t.id === "storyNext" ? 1 : -1))); renderStory(); return; }
+  if (t.id === "openStory" || t.dataset.story) { beep("flute"); S.story = /^\d+$/.test(t.dataset.story || "") ? +t.dataset.story - 1 : tonightStory(); S.branch = null; S.openedOnce = false; S.page = 0; S.screen = "story"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "storyNext" || t.id === "storyPrev") { S.page = Math.max(0, Math.min(storyPages(curStory()).length - 1, (S.page || 0) + (t.id === "storyNext" ? 1 : -1))); renderStory(); return; }
+  if (t.dataset.branch) { S.branch = t.dataset.branch; beep("good"); S.page = (S.page || 0) + 1; renderStory(); return; }
+  if (t.id === "storySpot") { const s = curStory(), pg = storyPages(s)[S.page || 0]; say(K(pg.spot.ne), t); t.classList.remove("hit"); void t.offsetWidth; t.classList.add("hit"); return; }
+  if (t.id === "taleEnd") { finishTale(); return; }
+  if (t.dataset.tq != null) { const q = curStory().quiz, o = S.taleOpts[+t.dataset.tq], ok = o === q.answer; say(K(o.ne), t);
+    if (!ok) { beep("bad"); t.classList.add("wrong"); $("#tqFeed").textContent = "Not quite. Listen again and try another!"; return; }
+    document.querySelectorAll("[data-tq]").forEach(b => b.disabled = true); t.classList.add("right"); beep("good"); confetti();
+    const k = "tq-" + curStory().id, first = (P.taleDay || {})[k] !== today(); P.taleDay = { ...(P.taleDay || {}), [k]: today() }; if (first) P.xp += 5; save();
+    $("#tqFeed").innerHTML = `${first ? "<b>+5 ⭐</b> " : ""}You remembered the story! <button class="chip" type="button" id="quit">Back to the map</button>`; return; }
   if (t.id === "storyAgain") { readPage(); return; }
   if (t.id === "openCar") { startCar(); return; }
   if (t.id === "carStart") { carRound(); return; }
