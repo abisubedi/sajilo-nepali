@@ -624,6 +624,7 @@ window.FESTIVALS = [
   { from: "2026-10-11", to: "2026-10-25", tint: "dashain", ne: "दशैँ", rom: "dashain", en: "Dashain", line: "Happy Dashain! Time for tika, jamara and big family visits.", soon: "Get ready for tika and jamara!", diyo: false },
   { from: "2026-11-07", to: "2026-11-11", tint: "marigold", ne: "तिहार", rom: "tihaar", en: "Tihar", line: "Happy Tihar! Diyo lamps, marigold garlands and Bhai Tika.", soon: "Diyo lamps and marigolds are coming!", diyo: true },
   { from: "2026-11-15", to: "2026-11-15", tint: "sun", ne: "छठ", rom: "chhath", en: "Chhath", line: "Happy Chhath! Families pray to the rising and setting sun at the riverbank.", soon: "Prayers to the sun at the river." },
+  { from: "2026-11-26", to: "2026-11-26", tint: "harvest", ne: "थ्याङ्क्सगिभिङ", rom: "thyaanksagibhing", en: "Thanksgiving", line: "Happy Thanksgiving! Around the world, families in places like the USA and Canada share a big meal and say धन्यवाद (thank you) for everything they have.", soon: "A day to say धन्यवाद, thank you!" },
   { from: "2026-12-25", to: "2026-12-25", tint: "xmas", ne: "क्रिसमस", rom: "krismas", en: "Christmas", line: "Merry Christmas! It is a public holiday in Nepal too.", soon: "A public holiday in Nepal too." },
   { from: "2026-12-30", to: "2026-12-30", tint: "lhosar", ne: "तमु ल्होसार", rom: "tamu lhosaar", en: "Tamu Lhosar", line: "Happy Tamu Lhosar! The Gurung New Year, with songs and dances.", soon: "The Gurung New Year is coming." },
   { from: "2027-01-11", to: "2027-01-11", tint: "flag", ne: "पृथ्वी जयन्ती", rom: "prithvi jayanti", en: "National Unity Day", line: "National Unity Day! Nepal remembers King Prithvi Narayan Shah, who joined Nepal together.", soon: "Nepal's Unity Day is coming." },
@@ -640,6 +641,7 @@ window.FESTIVALS = [
   { from: "2027-09-20", to: "2027-09-20", approx: true, tint: "flag", ne: "संविधान दिवस", rom: "sambidhaan diwas", en: "Constitution Day", line: "Constitution Day! Nepal's constitution was written on this day.", soon: "Constitution Day is coming." },
   { from: "2027-09-30", to: "2027-10-14", approx: true, tint: "dashain", ne: "दशैँ", rom: "dashain", en: "Dashain", line: "Happy Dashain! Time for tika, jamara and big family visits.", soon: "Get ready for tika and jamara!" },
   { from: "2027-10-27", to: "2027-10-31", approx: true, tint: "marigold", ne: "तिहार", rom: "tihaar", en: "Tihar", line: "Happy Tihar! Diyo lamps, marigold garlands and Bhai Tika.", soon: "Diyo lamps and marigolds are coming!", diyo: true },
+  { from: "2027-11-25", to: "2027-11-25", tint: "harvest", ne: "थ्याङ्क्सगिभिङ", rom: "thyaanksagibhing", en: "Thanksgiving", line: "Happy Thanksgiving! Around the world, families in places like the USA and Canada share a big meal and say धन्यवाद (thank you) for everything they have.", soon: "A day to say धन्यवाद, thank you!" },
 ];
 
 /* Gau Khane Katha (गाउँ खाने कथा): Pandu's riddle, the last question of Today's challenge. say = the recorded line. */

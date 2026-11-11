@@ -976,5 +976,6 @@ window.AUDIO = {
  "गणतन्त्र दिवस": "audio/19331e20c5.mp3?v=3d510f15",
  "जनै पूर्णिमा": "audio/d7efc8a533.mp3?v=486310f1",
  "तीज": "audio/80caa82908.mp3?v=17f15140",
- "संविधान दिवस": "audio/d0426fa2af.mp3?v=bbffd5fa"
+ "संविधान दिवस": "audio/d0426fa2af.mp3?v=bbffd5fa",
+ "थ्याङ्क्सगिभिङ": "audio/a627e36a29.mp3?v=17737624"
 };
