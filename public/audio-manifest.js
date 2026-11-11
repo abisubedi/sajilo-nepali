@@ -860,7 +860,6 @@ window.AUDIO = {
  "सिलौटो": "audio/6e198cdd60.mp3?v=66c9bc00",
  "लोहोरो": "audio/b2536778c8.mp3?v=fad9e39f",
  "डाडु": "audio/6b55e02f89.mp3?v=a522a91e",
- "पन्यु": "audio/eb127fcccd.mp3?v=426a2d21",
  "अम्खोरा": "audio/f6a30fb05f.mp3?v=227a86d0",
  "थाली": "audio/9d4f5b23e7.mp3?v=cfdc91d8",
  "हाम्रो भान्सा": "audio/40c8f3d1ea.mp3?v=87e736e0",
@@ -868,5 +867,6 @@ window.AUDIO = {
  "त्रिभुजलाई तीनकुने पनि भन्छन्": "audio/d01f71105f.mp3?v=0db304d5",
  "आज के पकाउनुभयो": "audio/1e8e2ffe80.mp3?v=0cf8048b",
  "म थाली राख्न मद्दत गर्छु": "audio/7e9da7bc48.mp3?v=5befb2ba",
- "हजुरबा मलाई एउटा कथा सुनाउनुहोस्": "audio/206e48a023.mp3?v=68a82292"
+ "हजुरबा मलाई एउटा कथा सुनाउनुहोस्": "audio/206e48a023.mp3?v=68a82292",
+ "पुन्यु": "audio/b3d8943e16.mp3?v=d164db83"
 };

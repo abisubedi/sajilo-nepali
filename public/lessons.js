@@ -681,7 +681,7 @@ window.SCENES = {
     { ne: "चुलो", en: "stove", x: 35, y: 58, r: 4 }, { ne: "कुकर", en: "pressure cooker", x: 43, y: 50, r: 4 } ] },
   "village-kitchen": { title: "हाम्रो भान्सा", rom: "haamro bhaansaa", en: "Village kitchen", img: "scene-village-kitchen", unlock: "w-kitchen", spots: [
     { ne: "चुलो", en: "stove", x: 27, y: 64, r: 6 }, { ne: "कराही", en: "wok", x: 23, y: 46, r: 6 }, { ne: "डाडु", en: "ladle", x: 24.5, y: 30, r: 4 },
-    { ne: "पन्यु", en: "flat rice spatula", x: 33.5, y: 28, r: 4 }, { ne: "सिलौटो", en: "grinding stone", x: 25, y: 86, r: 6 }, { ne: "लोहोरो", en: "grinding pestle", x: 19, y: 79, r: 4 },
+    { ne: "पुन्यु", en: "flat rice spatula", x: 33.5, y: 28, r: 4 }, { ne: "सिलौटो", en: "grinding stone", x: 25, y: 86, r: 6 }, { ne: "लोहोरो", en: "grinding pestle", x: 19, y: 79, r: 4 },
     { ne: "करुवा", en: "water jug", x: 82, y: 60, r: 5.5 }, { ne: "अम्खोरा", en: "brass tumbler", x: 90, y: 69, r: 4 }, { ne: "थाली", en: "plate", x: 47, y: 52, r: 6 },
     { ne: "गिलास", en: "glass", x: 58, y: 55, r: 3 }, { ne: "चिया", en: "milk tea", x: 65, y: 56, r: 3.5 } ] },
 };
