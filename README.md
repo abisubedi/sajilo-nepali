@@ -27,7 +27,7 @@ A free web game that teaches kids aged 4–15 basic Nepali.
 - **🌳 Who's who in our family:** from the Family & Respect lesson. Dad's side, Mom's side and siblings, with what to call each relative and how to greet them (`window.KIN`).
 - **Festivals:** a marigold garland (and a diyo for Tihar) on Pandu's card during festivals in `window.FESTIVALS` (add next year's lunar dates when the calendar is out). Saturdays get a fun fact.
 - **Mero Nepali Passport:** tap a won chapter sticker → "Make my certificate" for a printable/shareable certificate with the child's name and the words they know.
-- **Fun Sound Words (रमाइलो आवाज):** a Chapter 3 lesson of Nepali sound words (टम्म, मुसुक्क, ग्लुक्क, झमझम, खरपखुरुप, भुसुक्क), each with an example sentence on its flashcard.
+- **Fun Sound Words (रमाइलो आवाज):** a Chapter 4 lesson of Nepali sound words (टम्म, मुसुक्क, ग्लुक्क, झमझम, खरपखुरुप, भुसुक्क), each with an example sentence on its flashcard.
 - **Pandu's riddle (गाउँ खाने कथा):** question 3 of Today's challenge is a folk riddle from `window.RIDDLES`.
 - **Bedtime story:** after 7:30 PM a 🌙 card opens "पाण्डु र जून", 5 calm narrated pages with each word lit up as it is read (`window.STORY`; pictures story-1…5).
 - **🚗 Car ride:** an eyes-free family quiz: an English question recorded with the ElevenLabs voice "Nepali - Clear Middle Age" (keys `EN:<word>` in audio-manifest.js; the phone's own English voice is used for any word without a clip), a 5-second madal drumroll, then Abi's voice gives the Nepali. Big buttons, keeps the screen awake.

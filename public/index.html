@@ -1838,7 +1838,7 @@ function renderQuestion() {
   } else if (q.type === "pickNepali" || q.type === "pickNepaliText") {
     body = `<p class="ask">Which one is “${esc(q.item.en)}”?</p>
       <div class="prompt">${q.item.ctx ? `<span class="ctx">${esc(q.item.ctx)}</span>` : ""}${q.type === "pickNepali" ? picHTML(q.item) : ""}<span class="en">${esc(q.item.en)}</span></div>
-      <div class="opts">${q.opts.map((o, i) => optBtn(i, `<span class="ne" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span>`, K(o.ne))).join("")}</div>`;
+      <div class="opts">${q.opts.map((o, i) => optBtn(i, `${P.level !== "big" ? `<span class="m-spk" aria-hidden="true">🔊</span>` : ""}<span class="ne" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span>`, K(o.ne))).join("")}</div>`;
   } else if (q.type === "typeMeaning") {
     body = `<p class="ask">Type this in English</p>
       <div class="prompt">${q.item.ctx ? `<span class="ctx">${esc(q.item.ctx)}</span>` : ""}${neHTML(q.item.ne, q.item.rom)}${sayBtn(K(q.item.ne))}</div>
