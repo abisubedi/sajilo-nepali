@@ -231,7 +231,8 @@ body .pick-grid .opt .big { font-size: 34px !important; } body .pick-grid .opt .
 .bagh-node .ne { font-family: var(--display); font-size: 15px; line-height: 1.1; } .bagh-ic { font-size: 22px; line-height: 1; min-height: 4px; }
 .bagh-node.reach { border-color: var(--flag-blue); box-shadow: 0 0 0 4px rgba(47,111,214,.3); animation: pulse 1.5s infinite; } .bagh-node.visited { background: var(--good-bg); border-color: var(--flag-green); }
 .bagh-node.tiger { background: #fde2df; border-color: var(--flag-red); } .bagh-node.goal { background: #fff3c4; border-color: var(--flag-yellow); } .bagh-node[disabled] { cursor: default; }
-.bagh-q { margin-top: 8px; }
+body:not(.lv-big) .match .opt { flex-direction: column; gap: 2px; min-height: 0; padding: 6px; font-size: 16px; } body:not(.lv-big) .match .opt .has-art .wpic { width: 72px; height: 72px; }
+.bagh-q { margin-top: 8px; } .m-spk { font-size: 18px; line-height: 1; }
 .chapter.folded .chapter-banner { cursor: pointer; } .fold-hint { display: block; text-align: right; font-family: var(--display); font-size: 13px; font-weight: 800; color: var(--flag-blue); }
 .chapter.folded { margin-bottom: 4px; } .chapter.later .chapter-banner { opacity: .55; filter: saturate(.6); } .chapter.later .fold-hint { color: var(--muted); } .ch-lessons { display: block; font-size: 12px; color: var(--muted); font-weight: 800; text-align: right; }
 body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) .jump-pill[data-jump] img { width: 38px; height: 38px; }
@@ -946,7 +947,7 @@ const picHTML = (x, size) => {
   return isLabel(pic) ? `<span class="pic-label">${esc(pic)}</span>` : `<span class="big"${st}>${esc(pic)}</span>`;
 };
 const iconHTML = l => (window.IMG || {})["li-" + l.id] ? `<img class="li-art" src="${window.IMG["li-" + l.id]}" alt="" draggable="false">` : `<span lang="ne" style="font-family:var(--display)">${esc(l.icon)}</span>`;
-const visibleLessons = () => window.LESSONS.filter(l => !l.bigOnly || P.level === "big");
+const visibleLessons = () => window.LESSONS.filter(l => P.level === "big" || (!l.bigOnly && !l.sentences && !l.barakhari));   // little learners: no sentence-tile or matra lessons (they need reading)
 const SPEAKER = `<svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>`;
 const MUTED = `<svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><line x1="16" y1="9" x2="22" y2="15"/><line x1="22" y1="9" x2="16" y2="15"/></svg>`;
 const sayBtn = (key, cls = "") => canSay(key) && P.sound ? `<button class="say ${cls}" data-say="${esc(key)}" type="button" aria-label="Listen">${SPEAKER} <span>Listen</span></button>` : "";
@@ -1001,7 +1002,11 @@ function buildQuestions(lesson) {
   if (lesson.sentences) return pickN(lesson.sentences, Math.min(total, lesson.sentences.length)).map(s => ({ type: "build", s, art: (window.IMG || {})[`s-${lesson.id}-${lesson.sentences.indexOf(s) + 1}`] }));
   // Little learners get 5 words per game: the first five at first, then missed words plus a fresh mix, so nothing is lost
   let items = lesson.items; const qs = [];
-  if (!big && !lesson.letters && items.length > 5) {
+  const firstLittle = !big && !lesson.letters && !P.stars[starKey(lesson.id)];
+  if (firstLittle && items.length > 4) {   // first game: the 4 words they meet in the warm-up, and only those
+    const good = items.filter(x => artFor(x) && AUDIO[K(x.ne)]);
+    items = (good.length >= 3 ? good : items).slice(0, 4);
+  } else if (!big && !lesson.letters && items.length > 5) {
     const wk = x => (P.weak || {})[`${lesson.id}|${x.ne}`] || 0;
     items = P.stars[starKey(lesson.id)] ? shuffle(items).sort((a, b) => wk(b) - wk(a)).slice(0, 5) : items.slice(0, 5);
   }
@@ -1023,13 +1028,11 @@ function buildQuestions(lesson) {
     qs.push({ type: t, item });
   }
   if (!lesson.letters) qs.splice(Math.min(3, qs.length), 0, { type: "match", items: pickN(items, big ? 5 : 3) });
-  if (!big && !lesson.letters && !lesson.sentences && !P.stars[starKey(lesson.id)]) {   // first time: meet 4 words before the quiz
-    const meet = pickN(items.filter(x => artFor(x) && AUDIO[K(x.ne)]), 4);
-    if (meet.length >= 3) { qs.unshift({ type: "learn", items: meet }); qs.forEach(q => { if (q.item && !meet.includes(q.item) && Math.random() < .5) { const m = meet[Math.floor(Math.random() * meet.length)]; if (!qs.some(o => o.item === m && o.type === q.type)) q.item = m; } }); }
-  }
+  if (firstLittle && items.length >= 3) qs.unshift({ type: "learn", items: items.slice() });   // meet the words, then play with exactly those
+
   if (lesson.barakhari) pickN(lesson.items, 3).forEach((x, k) => qs.splice(1 + k * 3, 1, matraQ(lesson, x)));
-  if (lesson.order && (big ? lesson.order.bigWho : lesson.order.who)) qs.splice(4, 1, orderQ(lesson, big));
-  if (lesson.chains) qs.splice(big ? 7 : 5, 1, sequenceQ(lesson));
+  if (lesson.order && (big ? lesson.order.bigWho : lesson.order.who && !firstLittle)) qs.splice(4, 1, orderQ(lesson, big));
+  if (lesson.chains && !firstLittle) qs.splice(big ? 7 : 5, 1, sequenceQ(lesson));
   if (lesson.cassette && big) pickN(items.filter(x => syllables(x.ne).length > 1), 2).forEach((x, k) => qs.splice(5 + k * 4, 1, cassetteQ(x)));
   qs.forEach(q => {
     if (!q.item || q.type === "matra") return;   // matra questions pick their own options
@@ -1885,7 +1888,7 @@ function renderQuestion() {
     needsCheck = false;
     S.matchLeft = shuffle(q.items); S.matchRight = shuffle(q.items); S.pairs = 0; S.pickL = null; S.pickR = null;
     body = `<p class="ask">Tap the pairs that match</p>
-      <div class="match"><div class="col">${S.matchLeft.map((o, i) => `<button class="opt" type="button" data-l="${i}"><span class="ne" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span></button>`).join("")}</div>
+      <div class="match"><div class="col">${S.matchLeft.map((o, i) => `<button class="opt" type="button" data-l="${i}">${P.level !== "big" ? `<span class="m-spk" aria-hidden="true">🔊</span>` : ""}<span class="ne" lang="ne">${esc(o.ne)}</span><span class="rom">${esc(o.rom)}</span></button>`).join("")}</div>
       <div class="col">${S.matchRight.map((o, i) => `<button class="opt" type="button" data-r="${i}">${picHTML(o, 34)}<span class="en">${esc(o.en)}</span></button>`).join("")}</div></div>`;
   } else if (q.type === "matra") {
     body = `<p class="ask">✨ Matra magic: join the letter and the vowel sign!</p>
@@ -2109,7 +2112,7 @@ function matchTap(side, i) {
   const btn = document.querySelector(`[data-${side}="${i}"]`);
   document.querySelectorAll(`[data-${side}]`).forEach(b => b.classList.remove("sel"));
   btn.classList.add("sel");
-  if (side === "l") { S.pickL = i; say(K(S.matchLeft[i].ne), btn); } else { S.pickR = i; beep("tap"); }
+  if (side === "l") { S.pickL = i; say(K(S.matchLeft[i].ne), btn); } else { S.pickR = i; if (P.level !== "big") say(K(S.matchRight[i].ne), btn); else beep("tap"); }
   if (S.pickL == null || S.pickR == null) return;
   const L = document.querySelector(`[data-l="${S.pickL}"]`), R = document.querySelector(`[data-r="${S.pickR}"]`);
   if (S.matchLeft[S.pickL] === S.matchRight[S.pickR]) {
