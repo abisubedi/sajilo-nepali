@@ -361,8 +361,8 @@ window.LESSONS = [
   ]},
   { id: "shapes", title: "Shapes", ne: "आकार", rom: "aakaar", icon: "🔷", color: "var(--flag-yellow)", items: [
     { ne: "गोलो", rom: "golo", en: "circle", pic: "⭕", alt: ["round", "a circle"] },
-    { ne: "वर्ग", rom: "barga", en: "square", pic: "🟦", alt: ["a square"], ex: { ne: "वर्गलाई चारकुने पनि भन्छन्।", rom: "bargalaai chaarkune pani bhanchhan.", en: "People also call a square चारकुने (four corners)." } },
-    { ne: "त्रिभुज", rom: "tribhuj", en: "triangle", pic: "🔺", alt: ["a triangle"], ex: { ne: "त्रिभुजलाई तीनकुने पनि भन्छन्।", rom: "tribhujlaai teenkune pani bhanchhan.", en: "People also call a triangle तीनकुने (three corners)." } },
+    { ne: "वर्ग", rom: "barga", en: "square", pic: "🟦", alt: ["a square", "four cornered", "four-cornered", "four corners", "chaarkune", "charkune"], ex: { ne: "वर्गलाई चारकुने पनि भन्छन्।", rom: "bargalaai chaarkune pani bhanchhan.", en: "People also call a square चारकुने (four corners)." } },
+    { ne: "त्रिभुज", rom: "tribhuj", en: "triangle", pic: "🔺", alt: ["a triangle", "three cornered", "three-cornered", "three corners", "teenkune", "tinkune"], ex: { ne: "त्रिभुजलाई तीनकुने पनि भन्छन्।", rom: "tribhujlaai teenkune pani bhanchhan.", en: "People also call a triangle तीनकुने (three corners)." } },
     { ne: "आयत", rom: "aayat", en: "rectangle", pic: "▬", alt: ["a rectangle", "oblong"] },
     { ne: "तारा", rom: "taaraa", en: "star", pic: "⭐", alt: ["a star"] },
     { ne: "मुटु", rom: "mutu", en: "heart", pic: "❤️", alt: ["a heart", "heart shape"] },
@@ -604,6 +604,9 @@ window.MISSIONS = [
   { ne: "नमस्ते", rom: "namaste", en: "Hello.", go: "Fold your hands and say to the next grown-up you see:" },
   { ne: "आमा मलाई भोक लाग्यो", rom: "aamaa malaai bhok laagyo", en: "Mom, I am hungry.", go: "Go to Aama and say:" },
   { ne: "बस्नुहोस्", rom: "basnuhos", en: "Please sit.", go: "Offer a grown-up a seat and say:" },
+  { ne: "आज के पकाउनुभयो?", rom: "aaja ke pakaaunubhayo?", en: "What did you cook today?", go: "At dinner, ask the cook:" },
+  { ne: "म थाली राख्न मद्दत गर्छु", rom: "ma thaali raakhna maddat garchhu", en: "I will help put out the plates.", go: "Before dinner, tell Aama or Baba:" },
+  { ne: "हजुरबा, मलाई एउटा कथा सुनाउनुहोस्", rom: "hajurbaa, malaai euta kathaa sunaaunuhos", en: "Grandpa, please tell me a story.", go: "Ask Hajurba (or Hajuraama) at bedtime:" },
 ];
 
 /* Festivals: Pandu's card gets a marigold garland (and a diyo for lamp festivals) on these days.
