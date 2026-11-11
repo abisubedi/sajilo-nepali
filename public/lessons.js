@@ -701,6 +701,34 @@ window.BLEND_WORDS = [
 ];
 window.BLEND_TITLE = { ne: "अक्षर जोडौँ", rom: "akshar jodaun", en: "Join the letters" };
 
+/* Rhymes (बालगीत): sung line by line; tap a line to hear just that line. */
+window.RHYMES_TITLE = { ne: "बालगीत", rom: "baalgeet", en: "Rhymes" };
+window.RHYMES = [
+  { id: "tara", ne: "तारा बाजी लै लै", rom: "taaraa baaji lai lai", en: "Stars twinkle, lai lai", art: "scene-rhyme-tara", pic: "🐴", lines: [
+    { ne: "तारा बाजी लै लै,", rom: "taaraa baaji lai lai,", en: "Stars twinkle, lai lai," },
+    { ne: "मामा आए घोडा।", rom: "maamaa aae ghodaa.", en: "Uncle came riding a horse." },
+    { ne: "हात्ती आयो सरर,", rom: "haatti aayo sarara,", en: "The elephant came, swish swish," },
+    { ne: "घोडा आयो फरर।", rom: "ghodaa aayo pharara.", en: "The horse came, whoosh!" },
+    { ne: "मामाले ल्याए गुड,", rom: "maamaale lyaae gud,", en: "Uncle brought sweet gud," },
+    { ne: "मैले खाएँ सुप्प!", rom: "maile khaaen supp!", en: "I ate it all up, slurp!" } ] },
+  { id: "kukhuri", ne: "कुखुरी काँ", rom: "kukhuri kaan", en: "Cock-a-doodle-doo", art: "scene-rhyme-kukhuri", pic: "🐓", lines: [
+    { ne: "काग कराउँछ काँ काँ,", rom: "kaag karaaunchha kaan kaan,", en: "The crow calls kaa kaa," },
+    { ne: "भाले बास्छ कुखुरी काँ!", rom: "bhaale baaschha kukhuri kaan!", en: "The rooster crows cock-a-doodle-doo!" },
+    { ne: "ढुकुर बोल्छ घुर घुर,", rom: "dhukur bolchha ghur ghur,", en: "The dove coos ghur ghur," },
+    { ne: "भँगेरा नाच्छ फुर फुर!", rom: "bhangeraa naachchha phur phur!", en: "The sparrow dances flutter flutter!" },
+    { ne: "बिहानी भयो उठौँ अब,", rom: "bihaani bhayo uthaun aba,", en: "It's morning, let's get up now," },
+    { ne: "हातमुख धोई पढौँ अब!", rom: "haatmukh dhoi padhaun aba!", en: "Wash hands and face, then let's study!" } ] },
+  { id: "chari", ne: "चरी बस्यो रूखमा", rom: "chari basyo rukhmaa", en: "A bird sat in the tree", art: "scene-rhyme-chari", pic: "🐦", lines: [
+    { ne: "एक दुई तीन,", rom: "ek dui teen,", en: "One, two, three," },
+    { ne: "चरी बस्यो रूखमा।", rom: "chari basyo rukhmaa.", en: "A little bird sat in the tree." },
+    { ne: "चार पाँच छ,", rom: "chaar paanch chha,", en: "Four, five, six," },
+    { ne: "मिठो फल छ मुखमा।", rom: "mitho phal chha mukhmaa.", en: "A tasty fruit in its beak." },
+    { ne: "सात आठ नौ,", rom: "saat aath nau,", en: "Seven, eight, nine," },
+    { ne: "पखेटा फिँजाई उड्यो पर,", rom: "pakhetaa phinjaai udyo para,", en: "It spread its wings and flew far," },
+    { ne: "दस भन्दै आयो घर!", rom: "das bhandai aayo ghar!", en: "Counting ten, it came back home!" } ] },
+];
+window.GOODNIGHT = { ne: "शुभ रात्रि! अब सुत्ने बेला भयो।", rom: "shubha raatri! aba sutne belaa bhayo.", en: "Good night! It's time to sleep now." };
+
 /* Explore the room: tap things in a big picture. Hotspots (x, y, r in % of the picture) are set once the picture exists. */
 window.SCENES = {
   "living-room": { title: "बैठक कोठा", rom: "baithak kothaa", en: "Living room", img: "scene-living-room", unlock: "w-living-room", spots: [

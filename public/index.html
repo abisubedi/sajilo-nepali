@@ -253,7 +253,18 @@ body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) 
 .blend-word { display: flex; flex-direction: column; align-items: center; gap: 2px; animation: pop .45s ease-out; } .blend-pic img { width: 150px; height: 150px; object-fit: contain; }
 .blend-ne { font: 700 48px "Baloo 2", "Noto Sans Devanagari", sans-serif; } .blend-word .en { font-weight: 700; color: var(--muted); }
 .prompt.who-talk { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; } .prompt.who-talk img { width: 120px; height: 120px; object-fit: contain; }
-.np-row { width: 100%; height: auto; display: block; margin: 4px 0; }
+.rhyme-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; padding: 12px 14px 30px; } .rhyme-card img { width: 96px; height: 96px; object-fit: cover; border-radius: 50%; }
+.rhyme { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 8px 14px 30px; }
+.rhyme-pic img, .rhyme-pic svg { width: 220px; max-width: 70vw; height: auto; border-radius: 24px; } .rhyme-pic.singing { animation: rock .6s ease-in-out infinite; } @keyframes rock { 0%, 100% { transform: rotate(-4deg) translateY(0); } 50% { transform: rotate(4deg) translateY(-8px); } }
+.rhyme-lines { list-style: none; margin: 0; padding: 0; width: 100%; max-width: 560px; display: flex; flex-direction: column; gap: 8px; }
+.rhyme-line { width: 100%; text-align: left; display: flex; flex-direction: column; gap: 1px; padding: 10px 14px; border-radius: 16px; border: 2px solid var(--line); background: var(--snow); font: inherit; color: var(--ink); cursor: pointer; transition: background .2s, transform .2s; }
+.rhyme-line .ne { font: 700 22px "Baloo 2", "Noto Sans Devanagari", sans-serif; } .rhyme-line small { color: var(--muted); font-weight: 700; }
+.rhyme-line.on { background: #fff4d6; border-color: #f6b71c; transform: scale(1.02); }
+.goodnight { min-height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; padding: 20px; animation: gn-fade 9s ease-in forwards; }
+.gn-pandu svg, .gn-pandu img { width: 200px; height: auto; } .gn-ne { font: 700 28px "Baloo 2", "Noto Sans Devanagari", sans-serif; color: #e0e7ff; margin: 0; } .gn-en { color: #a5b4fc; margin: 0; font-weight: 700; }
+.gn-back { margin-top: 18px; background: #283458; color: #e0e7ff; border-color: #3b4a78; box-shadow: 0 3px 0 #1a2340; }
+@keyframes gn-fade { 0% { opacity: 0; } 15% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: .35; } }
+.np-row { width: 100%; height: auto; display: block; margin: 4px 0; break-inside: avoid; }
 .play-tile:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--line); }
 @media print { .bottom-nav, .nav-space { display: none; } } .car-cheer { width: 120px; height: 120px; display: block; margin: 0 auto; }
 .guide-sec { background: #faf4e8; border-left: 5px solid var(--panda); border-radius: 12px; padding: 10px 12px; text-align: left; }
@@ -910,6 +921,7 @@ function beep(kind) {
     if (kind === "tap") wood(t);
     else if (kind === "good") { bowl(t, 784, .09); bowl(t + .12, 1046, .06); }
     else if (kind === "bad") bowl(t, 294, .06);
+    else if (kind === "night") { bowl(t, 392, .09); bowl(t + 1.6, 294, .06); }
     else if (kind === "flute") [[523.25, .3], [587.33, .3], [659.25, .3], [783.99, .45], [880, .45], [783.99, .9]].reduce((d, [f, l]) => (bansuri(t + d, f, l + .25), d + l), 0);
     else if (kind === "done") { [[0, 1], [.18, 0], [.27, 0], [.36, 1], [.54, 0], [.72, 1]].forEach(([d, low]) => madal(t + d, low)); bowl(t + .9, 784, .1); bowl(t + 1.02, 1175, .06); }
   } catch (e) {}
@@ -1085,7 +1097,7 @@ function render() {
   if (S.needsReload && S.screen === "map") { location.reload(); return; }
   if (S.screen !== "madal" && S.madalTimers && S.madalTimers.length) stopMadal();
   document.documentElement.classList.toggle("modal-open", !!(S.sheet || S.stickers || S.players || S.grown || S.play));
-  document.body.classList.toggle("night", S.screen === "story");
+  document.body.classList.toggle("night", S.screen === "story" || S.screen === "goodnight");
   if (S.screen !== "car" && S.car) stopCar();
   if (S.screen !== "room") { window.onpointermove = null; window.onpointerup = null; }
   document.body.classList.toggle("hide-rom", !romOn()); document.body.classList.toggle("lv-big", P.level === "big");
@@ -1103,6 +1115,8 @@ function render() {
   else if (S.screen === "cert") renderCert();
   else if (S.screen === "nametrace") renderNameTrace();
   else if (S.screen === "blend") renderBlend();
+  else if (S.screen === "rhymes") renderRhymes();
+  else if (S.screen === "goodnight") renderGoodnight();
   else if (S.screen === "nameprint") renderNamePrint();
   else if (S.screen === "madal") renderMadal();
   else if (S.screen === "tika") renderTika();
@@ -1223,6 +1237,7 @@ function playHTML() {
       ${window.STORY ? tile('data-story="1"', "story-2", "🌙", "Moon story", window.STORY.ne) : ""}
       ${window.STORY2 ? tile('data-story="2"', "story-danphe-2", "🐦", "Danphe story", window.STORY2.ne) : ""}
       ${tile('id="openCar"', "pandu-bike", "🚗", "Car ride", "")}
+      ${window.RHYMES ? tile('id="openRhymes"', "scene-rhyme-tara", "🎵", "Rhymes", window.RHYMES_TITLE.ne, W.openRhymes) : ""}
       ${window.BLEND_WORDS ? tile('id="openBlend"', "li-cons1", "🔤", "Join the letters", window.BLEND_TITLE.ne, W.openBlend) : ""}
       ${tile('id="openName"', "li-family-name", "✍️", "My name", nm, W.openName)}
       ${tile('id="openMadal"', "w-nepali-drum", "🥁", "Madal", "मादल", W.openMadal)}
@@ -1600,7 +1615,7 @@ function renderStory() {
       <div class="story-nav">
         <button class="chip big" type="button" id="storyPrev" ${i ? "" : "disabled"} aria-label="Previous page">◀</button>
         <button class="chip big" type="button" id="storyAgain" aria-label="Read this page again">🔁</button>
-        ${last ? `<button class="chip big" type="button" id="quit">🌙 The end</button>` : `<button class="chip big" type="button" id="storyNext" aria-label="Next page">▶</button>`}
+        ${last ? `<button class="chip big" type="button" id="storyEnd">🌙 The end</button>` : `<button class="chip big" type="button" id="storyNext" aria-label="Next page">▶</button>`}
       </div>
     </section>`;
   setTimeout(readPage, 350);
@@ -2269,6 +2284,43 @@ function selectShare() { const el = $("#shareText"); if (!el) return; const r = 
 /* ---------- Family corner: my name, madal, tika, story jar, postcard, bagh-chal ---------- */
 const myDevaName = () => { const c = me(); return c.deva || window.toDevanagariName(c.name); };
 // 1. Mero naam: the child's name in Devanagari, traced in chalk on the paati
+/* ---------- Rhymes (बालगीत): sing it all with each line lighting up, or tap one line ---------- */
+function renderRhymes() {
+  const RT = window.RHYMES_TITLE, I = window.IMG || {}, r = S.rhyme != null && window.RHYMES[S.rhyme];
+  const top = `<div class="lesson-top"><button class="x" type="button" id="${r ? "rhymeBack" : "quit"}" aria-label="Back">✕</button><h2 class="kin-title">🎵 <span lang="ne">${esc(r ? r.ne : RT.ne)}</span> · ${esc(r ? r.en : RT.en)}</h2></div>`;
+  if (!r) {
+    $("#app").innerHTML = top + `<section class="rhyme-pick">${window.RHYMES.map((x, i) => `<button class="play-tile rhyme-card" type="button" data-rhyme="${i}">${I[x.art] ? `<img src="${I[x.art]}" alt="">` : `<span class="play-emo">${x.pic}</span>`}<b lang="ne">${esc(x.ne)}</b><small>${esc(x.en)}</small></button>`).join("")}</section>`;
+    return;
+  }
+  $("#app").innerHTML = top + `<section class="rhyme">
+      <div class="rhyme-pic" id="rhymePic">${I[r.art] ? `<img src="${I[r.art]}" alt="">` : pandu("cheer", "")}</div>
+      <button class="go" type="button" id="rhymeAll">▶ Sing it all</button>
+      <ol class="rhyme-lines">${r.lines.map((l, i) => `<li><button class="rhyme-line" type="button" data-rline="${i}"><span class="ne" lang="ne">${esc(l.ne)}</span><span class="rom">${esc(l.rom)}</span><small>${esc(l.en)}</small></button></li>`).join("")}</ol>
+      <p class="note" style="text-align:center">Tap any line to hear just that line.</p>
+    </section>`;
+}
+async function singRhyme(from) {
+  const r = window.RHYMES[S.rhyme], run = S.rhymeRun = (S.rhymeRun || 0) + 1, pic = $("#rhymePic");
+  pic && pic.classList.add("singing");
+  for (let i = from; i < r.lines.length; i++) {
+    if (S.rhymeRun !== run || S.screen !== "rhymes") return;
+    document.querySelectorAll(".rhyme-line").forEach((b, j) => b.classList.toggle("on", j === i));
+    const el = document.querySelector(`.rhyme-line[data-rline="${i}"]`); el && el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    await sayAndWait(K(r.lines[i].ne));
+  }
+  if (S.rhymeRun !== run) return;
+  document.querySelectorAll(".rhyme-line").forEach(b => b.classList.remove("on")); pic && pic.classList.remove("singing");
+  beep("good"); P.worlds = P.worlds || {}; if (!P.worlds.openRhymes) { P.worlds.openRhymes = today(); } save();
+}
+/* ---------- After the bedtime story: a calm goodnight that fades out ---------- */
+function renderGoodnight() {
+  const G = window.GOODNIGHT;
+  $("#app").innerHTML = `<section class="goodnight"><div class="gn-pandu">${pandu("sleep", "")}</div>
+    <p class="gn-ne" lang="ne">${esc(G.ne)}</p><p class="gn-en">${esc(G.en)}</p>
+    <button class="chip gn-back" type="button" id="quit">🌙 Back to the map</button></section>`;
+  try { beep("night"); } catch (e) {}
+  setTimeout(() => S.screen === "goodnight" && say(K(G.ne)), 900);
+}
 /* ---------- Join the letters (अक्षर जोडौँ): hear each letter, then they snap into a word ---------- */
 function renderBlend() {
   const ws = window.BLEND_WORDS, w = ws[(S.blendI || 0) % ws.length], tapped = S.blendTap || [], done = tapped.length >= w.letters.length, BT = window.BLEND_TITLE, a = (window.IMG || {})[w.img];
@@ -2508,6 +2560,12 @@ document.addEventListener("click", e => {
   if (t.dataset.famrec) { famRecord(t, t.dataset.famrec); return; }
   if (t.dataset.famdel) { famPut(t.dataset.famdel, null).then(renderVoices); return; }
   if (t.id === "openVoices") { S.screen = "voices"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "openRhymes") { S.rhyme = null; S.rhymeRun = (S.rhymeRun || 0) + 1; S.screen = "rhymes"; render(); window.scrollTo(0, 0); setTimeout(() => S.screen === "rhymes" && say(K(window.RHYMES_TITLE.ne)), 300); return; }
+  if (t.dataset.rhyme != null) { S.rhyme = +t.dataset.rhyme; render(); window.scrollTo(0, 0); setTimeout(() => S.screen === "rhymes" && singRhyme(0), 500); return; }
+  if (t.id === "rhymeBack") { S.rhymeRun++; try { player && player.pause(); } catch (e) {} S.rhyme = null; render(); return; }
+  if (t.id === "rhymeAll") { singRhyme(0); return; }
+  if (t.dataset.rline != null) { S.rhymeRun = (S.rhymeRun || 0) + 1; const i = +t.dataset.rline; document.querySelectorAll(".rhyme-line").forEach((b, j) => b.classList.toggle("on", j === i)); $("#rhymePic")?.classList.remove("singing"); say(K(window.RHYMES[S.rhyme].lines[i].ne), t); return; }
+  if (t.id === "storyEnd") { S.screen = "goodnight"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "openBlend") { P.worlds = P.worlds || {}; if (!P.worlds.openBlend) { P.worlds.openBlend = today(); save(); } S.blendI = 0; S.blendTap = []; S.screen = "blend"; render(); window.scrollTo(0, 0); setTimeout(() => S.screen === "blend" && say(K(window.BLEND_TITLE.ne)), 300); return; }
   if (t.dataset.blend != null) { const w = window.BLEND_WORDS[S.blendI % window.BLEND_WORDS.length], i = +t.dataset.blend; say("L:" + w.letters[i], t);
     if (i === S.blendTap.length) { S.blendTap.push(i); if (S.blendTap.length === w.letters.length) { setTimeout(() => { if (S.screen !== "blend") return; render(); beep("good"); setTimeout(() => say(K(w.ne)), 350); }, 700); } else render(); }
