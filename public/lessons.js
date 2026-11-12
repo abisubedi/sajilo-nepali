@@ -719,6 +719,13 @@ window.BLEND_WORDS = [
   { letters: ["फ", "ल"], ne: "फल", rom: "phal", en: "fruit", img: "w-fruits" },
   { letters: ["र", "थ"], ne: "रथ", rom: "rath", en: "chariot", img: "w-chariot" },
   { letters: ["क", "ल", "म"], ne: "कलम", rom: "kalam", en: "pen", img: "w-pen" },
+  // second set (shown after the first six)
+  { letters: ["न", "ल"], ne: "नल", rom: "nal", en: "water tap", img: "w-water-tap" },
+  { letters: ["त", "ल"], ne: "तल", rom: "tala", en: "down", img: "w-down" },
+  { letters: ["ध", "न"], ne: "धन", rom: "dhan", en: "coins (wealth)", img: "w-coins" },
+  { letters: ["म", "ट", "र"], ne: "मटर", rom: "matar", en: "peas", img: "w-peas" },
+  { letters: ["क", "म", "ल"], ne: "कमल", rom: "kamal", en: "lotus", img: "w-lotus" },
+  { letters: ["स", "ड", "क"], ne: "सडक", rom: "sadak", en: "road", img: "w-road" },
 ];
 window.BLEND_TITLE = { ne: "अक्षर जोडौँ", rom: "akshar jodaun", en: "Join the letters" };
 

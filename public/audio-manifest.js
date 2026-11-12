@@ -978,5 +978,10 @@ window.AUDIO = {
  "तीज": "audio/80caa82908.mp3?v=17f15140",
  "संविधान दिवस": "audio/d0426fa2af.mp3?v=bbffd5fa",
  "थ्याङ्क्सगिभिङ": "audio/a627e36a29.mp3?v=17737624",
- "अङ्ग्रेजी नयाँ वर्ष": "audio/df4eb24d74.mp3?v=5fd8bbe8"
+ "अङ्ग्रेजी नयाँ वर्ष": "audio/df4eb24d74.mp3?v=5fd8bbe8",
+ "नल": "audio/3e071bb8b4.mp3?v=62e428c6",
+ "धन": "audio/736d22e122.mp3?v=6b852303",
+ "मटर": "audio/b0074e44f9.mp3?v=582c100f",
+ "कमल": "audio/0cf37192b4.mp3?v=af451fa8",
+ "सडक": "audio/da9eb74212.mp3?v=862d27aa"
 };

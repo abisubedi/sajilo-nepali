@@ -240,10 +240,11 @@ body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) 
 .bottom-nav { position: fixed; left: 50%; transform: translateX(-50%); bottom: 0; width: min(720px, 100%); display: flex; background: var(--snow); background-image: var(--paper); border-top: 3px solid var(--line); border-radius: 22px 22px 0 0; padding: 4px 6px calc(4px + env(safe-area-inset-bottom)); z-index: 6; box-shadow: 0 -4px 14px rgba(31,42,68,.1); }
 .nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 1px; background: none; border: 0; border-radius: 16px; padding: 6px 2px; font: inherit; color: var(--muted); cursor: pointer; }
 .nav-btn.active { background: #e6efff; color: #1d4f9e; } .nav-icon { font-size: 26px; line-height: 1.1; } .nav-label { font-family: var(--display); font-size: 12px; font-weight: 800; white-space: nowrap; }
+.play-shelf { margin: 14px 2px 8px; font: 800 15px var(--display); color: var(--ink); } .play-shelf:first-of-type { margin-top: 4px; }
 .play-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
 .play-tile { display: flex; flex-direction: column; align-items: center; gap: 2px; background: var(--snow); background-image: var(--paper); border: 2px solid var(--line); border-radius: 18px; padding: 8px 4px; box-shadow: 0 4px 0 var(--line); font: inherit; color: var(--ink); cursor: pointer; text-align: center; }
 .play-tile img { width: 64px; height: 64px; object-fit: contain; } .play-emo { font-size: 48px; line-height: 64px; height: 64px; } .play-tile b { font-family: var(--display); font-size: 14px; line-height: 1.15; } .play-tile small { font-family: var(--display); color: var(--muted); font-weight: 700; } .play-tile .tick { color: #1f7a40; font-style: normal; }
-.play-tile[data-story]:not([data-story="1"]) img, .play-tile[data-scene="village-kitchen"] img, #openRhymes img { object-fit: cover; border-radius: 50%; border: 2px solid var(--line); }
+.play-tile[data-story]:not([data-story="1"]) img, #openColoring img, .play-tile[data-scene="village-kitchen"] img, #openRhymes img { object-fit: cover; border-radius: 50%; border: 2px solid var(--line); }
 .blend { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 10px 14px 30px; }
 .blend-row { display: flex; align-items: center; gap: 10px; justify-content: center; transition: gap .4s; } .blend-row.joined { gap: 0; }
 .blend-l { font: 700 64px/1 "Baloo 2", "Noto Sans Devanagari", sans-serif; width: 104px; height: 116px; border-radius: 22px; border: 3px solid var(--line); background: var(--snow); background-image: var(--paper); color: var(--ink); box-shadow: 0 5px 0 var(--line); cursor: pointer; }
@@ -431,6 +432,8 @@ body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) 
 .miss > span { flex: 1; } .miss small { display: block; color: var(--muted); font-weight: 700; }
 .chip.primary { background: var(--flag-blue); color: var(--snow); border-color: #1d4f9e; }
 .sheet.stickers, .sheet.players { max-height: 86vh; overflow-y: auto; }
+.story-st .sticker-pic img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; } .story-st:not(.got) .sticker-pic { filter: grayscale(1) opacity(.45); }
+.toast { position: fixed; left: 50%; bottom: 96px; transform: translateX(-50%); z-index: 90; max-width: min(92vw, 460px); background: #1f2a44; color: #fff; font-weight: 800; padding: 12px 18px; border-radius: 16px; box-shadow: 0 6px 18px rgba(0,0,0,.25); animation: pop .4s ease-out; text-align: center; transition: opacity .5s; } .toast.bye { opacity: 0; }
 .seal-row { display: flex; justify-content: space-around; gap: 8px; margin: 8px 0 4px; }
 .seal { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 13px; font-weight: 700; color: var(--muted); } .seal i { font-style: normal; }
 .seal-ring { width: 84px; height: 84px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 4px dashed #c9d3e6; background: #f4f7fb; color: #9aa5b8; line-height: 1; }
@@ -1274,17 +1277,24 @@ function playHTML() {
   return `<div class="sheet-back" id="playBack"></div><div class="sheet players play-sheet" id="playSheet" role="dialog" aria-modal="true" aria-label="Play">
     <button class="x sheet-x" type="button" id="playClose" aria-label="Close">✕</button>
     <div class="sheet-head"><div><strong>🎪 <span lang="ne">खेलौँ</span> · Play</strong></div></div>
+    <h4 class="play-shelf">🌙 <span lang="ne">सुत्ने बेलाको कथा</span> · Bedtime stories</h4>
+    <div class="play-grid">
+      ${window.STORY ? tile('data-story="1"', "story-2", "🌙", "Moon story", window.STORY.ne) : ""}
+      ${window.STORY2 ? tile('data-story="2"', "story-danphe-2", "🐦", "Danphe story", window.STORY2.ne) : ""}
+      ${window.RHYMES ? tile('id="openRhymes"', "scene-rhyme-tara", "🎵", "Rhymes", window.RHYMES_TITLE.ne, W.openRhymes) : ""}
+    </div>
+    ${tales().length ? `<h4 class="play-shelf">🦊 <span lang="ne">रमाइलो कथा</span> · Daytime stories</h4>
+    <div class="play-grid">
+      ${tales().map(tl => tile(`data-story="${allStories().indexOf(tl) + 1}"`, tl.art, tl.pic, tl.en, tl.ne, (P.worlds || {})["tale-" + tl.id])).join("")}
+      ${window.COLORING && Object.keys(window.COLORING).length ? tile('id="openColoring"', "color-tale-jackal-4", "🖍️", "Coloring pages", "रङ भरौँ") : ""}
+    </div>` : ""}
+    <h4 class="play-shelf">🎪 <span lang="ne">खेल र घर</span> · Games and home</h4>
     <div class="play-grid">
       ${sceneReady(SC["living-room"]) ? tile('data-scene="living-room"', "w-living-room", "🛋️", "Explore the living room", SC["living-room"].title) : ""}
       ${sceneReady(SC.kitchen) ? tile('data-scene="kitchen"', "w-kitchen", "🍳", "Explore the kitchen", SC.kitchen.title) : ""}
       ${sceneReady(SC["village-kitchen"]) ? tile('data-scene="village-kitchen"', "scene-village-kitchen", "🔥", "Hajuraama's kitchen", SC["village-kitchen"].title) : ""}
       ${tile('id="openRoom"', "pandu-wave", "🏡", "Pandu's room", "पाण्डुको कोठा")}
-      ${window.STORY ? tile('data-story="1"', "story-2", "🌙", "Moon story", window.STORY.ne) : ""}
-      ${window.STORY2 ? tile('data-story="2"', "story-danphe-2", "🐦", "Danphe story", window.STORY2.ne) : ""}
       ${tile('id="openCar"', "pandu-bike", "🚗", "Car ride", "")}
-      ${tales().map(tl => tile(`data-story="${allStories().indexOf(tl) + 1}"`, tl.art, tl.pic, tl.en, tl.ne, (P.worlds || {})["tale-" + tl.id])).join("")}
-      ${window.COLORING && Object.keys(window.COLORING).length ? tile('id="openColoring"', "color-tale-jackal-4", "🖍️", "Coloring pages", "रङ भरौँ") : ""}
-      ${window.RHYMES ? tile('id="openRhymes"', "scene-rhyme-tara", "🎵", "Rhymes", window.RHYMES_TITLE.ne, W.openRhymes) : ""}
       ${window.BLEND_WORDS ? tile('id="openBlend"', "li-cons1", "🔤", "Join the letters", window.BLEND_TITLE.ne, W.openBlend) : ""}
       ${tile('id="openName"', "li-family-name", "✍️", "My name", nm, W.openName)}
       ${tile('id="openMadal"', "w-nepali-drum", "🥁", "Madal", "मादल", W.openMadal)}
@@ -1296,6 +1306,21 @@ function playHTML() {
 /* Word seals: long-term goals for every different word learned (bronze 25, silver 50, gold 100) */
 const SEALS = [[25, "Bronze", "#c97a3d"], [50, "Silver", "#8c97ab"], [100, "Gold", "#e0a10c"]];
 const sealHTML = ([n, name, col], got, have) => `<div class="seal${got ? " got" : ""}" style="--seal:${col}"><span class="seal-ring"><b lang="ne">${toDeva(n)}</b><small lang="ne">शब्द</small></span><i>${got ? `${name} seal` : `<span lang="ne">${toDeva(Math.min(have, n))}</span> / <span lang="ne">${toDeva(n)}</span>`}</i></div>`;
+/* a short message that floats at the bottom of the screen for a few seconds */
+function toast(msg) {
+  document.querySelectorAll(".toast").forEach(t => t.remove());
+  const t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status"); t.textContent = msg; document.body.appendChild(t);
+  setTimeout(() => t.classList.add("bye"), 3800); setTimeout(() => t.remove(), 4400);
+}
+/* Story stickers: one for each daytime story read to the end */
+function storyStickersHTML() {
+  const ts = tales(); if (!ts.length) return "";
+  const W = P.worlds || {}, I = window.IMG || {}, n = ts.filter(t => W["tale-" + t.id]).length;
+  return `<h4 class="book-h">📚 Story stickers <small lang="ne">${toDeva(n)} / ${toDeva(ts.length)}</small></h4>
+    <p class="note" style="text-align:left;margin:0">Read a daytime story all the way to the end to win its sticker.</p>
+    <div class="sticker-grid">${ts.map(t => { const got = W["tale-" + t.id], a = I[t.art];
+      return `<button class="sticker story-st${got ? " got" : ""}" type="button" data-story="${allStories().indexOf(t) + 1}" aria-label="${esc(t.en)}"><span class="sticker-pic">${a ? `<img class="art" src="${a}" alt="">` : t.pic}</span><b lang="ne">${esc(t.ne)}</b><small>${got ? "Read it! ⭐" : "Read to the end"}</small></button>`; }).join("")}</div>`;
+}
 function sealsHTML() {
   const have = knownWordCount();
   return `<h4 class="book-h">🎖️ Word seals <small lang="ne">${toDeva(have)} शब्द</small></h4>
@@ -1313,6 +1338,7 @@ function stickersHTML() {
     <div class="sticker-grid">${stickerState().map(x => `<button class="sticker${x.got ? " got" : ""}${x.gold ? " gold" : ""}" type="button" data-sticker="${x.id}" aria-label="${esc(x.name)}${x.got ? "" : " (not won yet)"}">
       <span class="sticker-pic">${stickerPic(x, true)}</span>
       <b>${esc(x.name)}</b><small>${x.got ? (x.gold ? "★★★ Gold!" : "Won!") : esc(x.need)}</small></button>`).join("")}</div>
+    ${storyStickersHTML()}
     ${sealsHTML()}</div>`;
 }
 const picSayHTML = x => x ? `<span class="stick-say-pic" aria-hidden="true"><img class="art" src="${window.IMG[x.name]}" alt=""></span><span>${neSpan(x.it.ne)} <span class="rom">${esc(x.it.rom)}</span><small>${esc(x.it.en)}</small></span>` : "";
@@ -1744,7 +1770,8 @@ function renderTaleQuiz() {
   setTimeout(() => S.screen === "talequiz" && say(K(q.ne)), 300);
 }
 function finishTale() {
-  const s = curStory(); P.worlds = P.worlds || {}; P.worlds["tale-" + s.id] = P.worlds["tale-" + s.id] || today(); save();
+  const s = curStory(); P.worlds = P.worlds || {}; const first = !P.worlds["tale-" + s.id]; P.worlds["tale-" + s.id] = P.worlds["tale-" + s.id] || today(); save();
+  if (first) toast(`📚 New story sticker: ${s.en}! Find it in your sticker book.`);
   if (P.level === "big" && s.quiz) { S.taleOpts = null; S.screen = "talequiz"; render(); window.scrollTo(0, 0); return; }
   confetti(); beep("done"); S.screen = "map"; S.play = true; render();
 }
@@ -2698,7 +2725,7 @@ document.addEventListener("click", e => {
   if (t.dataset.blend != null) { const w = window.BLEND_WORDS[S.blendI % window.BLEND_WORDS.length], i = +t.dataset.blend; say("L:" + w.letters[i], t);
     if (i === S.blendTap.length) { S.blendTap.push(i); if (S.blendTap.length === w.letters.length) { setTimeout(() => { if (S.screen !== "blend") return; render(); beep("good"); setTimeout(() => say(K(w.ne)), 350); }, 700); } else render(); }
     return; }
-  if (t.id === "blendNext") { S.blendI = (S.blendI || 0) + 1; S.blendTap = []; if (S.blendI % window.BLEND_WORDS.length === 0) { confetti(); P.xp += 5; save(); } render(); return; }
+  if (t.id === "blendNext") { S.blendI = (S.blendI || 0) + 1; S.blendTap = []; if (S.blendI % 6 === 0) { confetti(); P.xp += 5; save(); toast(S.blendI % window.BLEND_WORDS.length === 0 ? "🎉 You joined every word! Starting again." : "🎉 Six words joined! Here come six more."); } render(); return; }
   if (t.id === "printName") { S.screen = "nameprint"; render(); window.scrollTo(0, 0); return; }
   if (["openName", "openMadal", "openTika", "openJar", "openBagh"].includes(t.id)) { P.worlds = P.worlds || {}; if (!P.worlds[t.id]) { P.worlds[t.id] = today(); save(); } }
   if (t.id === "openName") { S.screen = "nametrace"; render(); window.scrollTo(0, 0); return; }
