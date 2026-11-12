@@ -289,6 +289,7 @@ body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) 
 .count-num { width: 84px; height: 92px; border-radius: 18px; border: 3px solid var(--line); background: var(--snow); box-shadow: 0 5px 0 var(--line); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; color: var(--ink); }
 .count-num b { font: 700 40px/1 "Baloo 2", "Noto Sans Devanagari", sans-serif; } .count-num small { font-weight: 700; color: var(--muted); }
 .count-num.right { background: #e3f6e8; border-color: #2fa75a; } .count-num.wrong { animation: shake .4s; border-color: #e2453c; }
+.phrase-today { margin: 8px 14px 4px; padding: 10px; border-radius: 18px; background: #fff4d6; border: 2px solid #f6b71c; } .phrase-today p { margin: 0 0 8px; } .phrase-today .phrase { width: 100%; }
 .phrase-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; padding: 10px 14px 30px; }
 .phrase { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 12px 34px 12px 14px; border-radius: 16px; border: 2px solid var(--line); background: var(--snow); font: inherit; color: var(--ink); cursor: pointer; text-align: left; }
 .phrase .ne { font: 700 22px "Baloo 2", "Noto Sans Devanagari", sans-serif; } .phrase small { color: var(--muted); font-weight: 700; } .phrase-spk { position: absolute; top: 10px; right: 10px; } .hide-rom .phrase .rom { display: inline-block; }
@@ -1157,6 +1158,7 @@ function render() {
   // leaving a screen that talks or sings (rhymes, stories, letters, rooms): stop its voice so it never plays over the next one
   if (S.lastScreen && S.lastScreen !== S.screen && ["rhymes", "story", "goodnight", "blend", "scene"].includes(S.lastScreen)) { S.rhymeRun = (S.rhymeRun || 0) + 1; try { player && player.pause(); } catch (e) {} }
   S.lastScreen = S.screen;
+  keepAwake(S.screen === "story" && !!P.autoRead);
   if (S.screen !== "room") { window.onpointermove = null; window.onpointerup = null; }
   document.body.classList.toggle("hide-rom", !romOn()); document.body.classList.toggle("lv-big", P.level === "big");
   if (S.screen !== "done") document.querySelectorAll(".confetti").forEach(c => c.remove());
@@ -1755,9 +1757,9 @@ async function readPage() {
   const end = a.onended; a.onended = () => { end && end(); spans.forEach(e => e.classList.remove("on")); a.ontimeupdate = null;
     const here = () => S.screen === "story" && (S.page || 0) === i && curStory() === s;
     if (last && window.STORY_CLOSE && S.screen === "story") setTimeout(async () => { if (!here()) return; await sayAndWait(K(window.STORY_CLOSE.ne));
-      if (P.autoRead && here() && !isTale(s)) setTimeout(() => { if (here()) { S.screen = "goodnight"; render(); window.scrollTo(0, 0); } }, 2000); }, 700);
+      if (P.autoRead && here() && !isTale(s)) { clearTimeout(S.autoTimer); S.autoTimer = setTimeout(() => { S.autoTimer = null; if (here()) { S.screen = "goodnight"; render(); window.scrollTo(0, 0); } }, 2000); } }, 700);
     // Read to me: turn the page by itself after a gentle pause (never past a choice: the child picks the path)
-    else if (P.autoRead && !last && !pg.choice) setTimeout(() => { if (here() && P.autoRead) { S.page = i + 1; renderStory(); } }, 2000); };
+    else if (P.autoRead && !last && !pg.choice) { clearTimeout(S.autoTimer); S.autoTimer = setTimeout(() => { S.autoTimer = null; if (here() && P.autoRead) { S.page = i + 1; renderStory(); } }, 2000); } };
 }
 /* ---------- Let's count (गन्ती गरौँ): one-to-one counting with everyday Nepali things ---------- */
 function newCountRound() {
@@ -1783,9 +1785,25 @@ function renderPhrases() {
   const all = window.LESSONS.flatMap(l => l.items || []), find = ph => all.find(it => typeof it.ne === "string" && K(it.ne) === K(ph));
   $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🗣️ Everyday phrases</h2></div>
     <p class="note" style="text-align:center;margin:6px 14px">For grown-ups: tap a phrase to hear it, then say it with your child at home. The spelling under each one shows how to say it.</p>
+    ${(() => { const m = missionToday(); return m && AUDIO[K(m.ne)] ? `<div class="phrase-today"><p><b>🌟 Today's mission for ${esc(me().name)}</b><br><small>${esc(m.go || "")}</small></p>
+      <button class="phrase" type="button" data-say="${esc(K(m.ne))}"><span class="ne" lang="ne">${esc(m.ne)}</span><span class="rom">${esc(m.rom)}</span><small>${esc(m.en)}</small><span class="phrase-spk" aria-hidden="true">🔊</span></button></div>` : ""; })()}
     <div class="phrase-list">${window.PARENT_PHRASES.map(ph => { const it = find(ph), k = K(ph); if (!AUDIO[k]) return "";
       return `<button class="phrase" type="button" data-say="${esc(k)}"><span class="ne" lang="ne">${esc(ph)}</span><span class="rom">${esc(it ? it.rom : "")}</span><small>${esc(it ? it.en : "")}</small><span class="phrase-spk" aria-hidden="true">🔊</span></button>`; }).join("")}</div>`;
 }
+/* Keep the screen on while "Read to me" reads a story (phones would otherwise dim and lock mid-story) */
+let wakeLock = null;
+let wantAwake = false, wakeAsking = false;
+async function keepAwake(on) {
+  wantAwake = on;
+  try {
+    if (on && !wakeLock && !wakeAsking && "wakeLock" in navigator && document.visibilityState === "visible") {
+      wakeAsking = true; const w = await navigator.wakeLock.request("screen"); wakeAsking = false;
+      if (!wantAwake) { await w.release(); return; }   // the child left the story while we were asking
+      wakeLock = w; w.addEventListener("release", () => { if (wakeLock === w) wakeLock = null; });
+    } else if (!on && wakeLock) { const w = wakeLock; wakeLock = null; await w.release(); }
+  } catch (e) { wakeAsking = false; wakeLock = null; }
+}
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") keepAwake(S.screen === "story" && !!P.autoRead); });   // the browser drops the lock when the app is hidden
 /* Coloring pages (made from the story pictures by scripts/build_coloring.py): pick a page, print, color with crayons */
 function renderColoring() {
   const C = window.COLORING || {}, books = allStories().map((st, k) => ({ st, k, pages: st.pages.filter(p => C[p.art]) })).filter(b => b.pages.length);
@@ -2740,6 +2758,8 @@ document.addEventListener("click", e => {
   { const g = e.target.closest && e.target.closest("button"); if (g && GATED.has(g.id) && Date.now() > gateUntil) { e.stopImmediatePropagation(); openGate(g.id); return; } }
   if (e.target.id === "playBack") { S.play = false; render(); return; }
   if (S.play && e.target.closest && e.target.closest(".play-tile")) S.play = false;   // picking a tile closes the drawer
+  // Read to me: any tap during a story (a word, 🔁, ◀) cancels the page turn that was about to happen
+  if (S.screen === "story" && S.autoTimer) { clearTimeout(S.autoTimer); S.autoTimer = null; }
   if (e.target.id === "sheetBack") { S.sheet = null; render(); return; }
   if (e.target.id === "stickBack") { S.stickers = false; render(); return; }
   if (e.target.id === "grownBack") { S.grown = null; render(); return; }
@@ -2823,7 +2843,7 @@ document.addEventListener("click", e => {
     $("#tqFeed").innerHTML = `${first ? "<b>+5 ⭐</b> " : ""}You remembered the story! <button class="chip" type="button" id="quit">Back to the map</button>`; return; }
   if (t.id === "storyAgain") { readPage(); return; }
   if (t.id === "storyAuto") { P.autoRead = !P.autoRead; save(); toast(P.autoRead ? "📖 Read to me: the pages turn by themselves." : "✋ Turn the pages yourself."); t.classList.toggle("on", P.autoRead); t.textContent = P.autoRead ? "📖" : "✋"; t.setAttribute("aria-pressed", P.autoRead);
-    if (P.autoRead && player && player.paused) readPage(); return; }
+    keepAwake(!!P.autoRead); if (P.autoRead && player && player.paused) readPage(); return; }
   if (t.id === "openCar") { startCar(); return; }
   if (t.id === "carStart") { carRound(); return; }
   if (t.id === "carYes" || t.id === "carNext") { const C = S.car; if (!C) return; if (t.id === "carYes" && C.item && !C.counted) { C.score++; beep("good"); } C.rounds += C.item ? 1 : 0; C.counted = false; clearTimeout(C.timer); C.paused = false; carRound(); return; }
