@@ -283,6 +283,7 @@ body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) 
 .count { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 14px 30px; } .count .ask { text-align: center; }
 .count-plate { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 520px; padding: 18px; border-radius: 50%/40%; background: radial-gradient(circle, #f6d27a, #d9a640 70%, #b9832a); box-shadow: inset 0 4px 10px rgba(0,0,0,.2), 0 6px 0 #8a6220; }
 .count-thing { position: relative; width: 76px; height: 76px; border-radius: 50%; border: 3px solid transparent; background: rgba(255,255,255,.55); cursor: pointer; padding: 4px; }
+.count-plate.many { gap: 8px; } .count-plate.many .count-thing { width: 62px; height: 62px; } .count-plate.many .count-thing i { min-width: 24px; height: 24px; line-height: 24px; font-size: 15px; top: -6px; right: -6px; }
 .count-thing img { width: 100%; height: 100%; object-fit: contain; } .count-thing.on { border-color: #fff; animation: pop .35s ease-out; background: #fff; }
 .count-thing i { position: absolute; top: -8px; right: -8px; min-width: 28px; height: 28px; border-radius: 14px; background: #e2453c; color: #fff; font: 700 18px/28px "Baloo 2", "Noto Sans Devanagari", sans-serif; font-style: normal; text-align: center; }
 .count-opts { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; } .count-opts.wait { opacity: .45; }
@@ -632,6 +633,7 @@ body { background-image: var(--paper); }
 .sheet-btn.team { background: #7a4fd0; box-shadow: 0 5px 0 #4f2f95; }
 /* Bedtime story */
 .greet-story { display: block; margin-top: 8px; font: inherit; font-weight: 800; font-size: 15px; color: #fdf6e3; background: #1f2a44; border: 0; border-radius: 999px; padding: 7px 14px; cursor: pointer; text-align: left; }
+body.night .flags { opacity: .25; transition: opacity 2s; }
 body.night { background: #16203a; color: #fdf6e3; }
 body.night .x, body.night .hearts { color: #c7d2fe; }
 .story { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
@@ -1698,7 +1700,7 @@ function greetExtra() {
   const f = festivalToday();
   if (f) return `🌼 ${neSpan(f.ne)} <span class="rom">${esc(f.rom)}</span> ${esc(f.line)}`;
   const nx = festivalNext();
-  if (nx) return `🗓️ ${nx.days === 1 ? "Tomorrow" : `In <span lang="ne">${toDeva(nx.days)}</span> days`}: ${neSpan(nx.ne)} <span class="rom">${esc(nx.rom)}</span> (${esc(nx.en)}). ${esc(nx.soon || "")}`;
+  if (nx) return `🗓️ ${nx.days === 1 ? `${neSpan("भोलि")} · Tomorrow` : `In <span lang="ne">${toDeva(nx.days)}</span> days`}: ${neSpan(nx.ne)} <span class="rom">${esc(nx.rom)}</span> (${esc(nx.en)}). ${esc(nx.soon || "")}`;
   const bs = bsMonth();
   if (new Date().getDay() !== 6 && bs) return `📅 ${neSpan(bs.ne)} <span lang="ne">${toDeva(bs.year)}</span> <span class="rom">${esc(bs.rom)} ${bs.year}</span> ${bs.line.split("|").map((x, i) => i % 2 ? neSpan(x) : esc(x)).join("")}`;
   if (new Date().getDay() === 6) return `Did you know? ${neSpan("शनिबार")} <span class="rom">shanibaar</span>, Saturday, is the weekly holiday in Nepal!`;
@@ -1773,7 +1775,7 @@ function renderCount() {
   $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🔢 <span lang="ne">${esc(T.ne)}</span> · ${esc(T.en)}</h2><span class="car-score" lang="ne">${toDeva(Math.min(C.round, 5))} / ${toDeva(5)}</span></div>
     <section class="count">
       <p class="ask">${sayBtn(K(window.COUNT_ASK.ne))} <span lang="ne">${esc(window.COUNT_ASK.ne)}</span><br><small>${esc(window.COUNT_ASK.en)} (${esc(C.thing.en)})</small></p>
-      <div class="count-plate">${Array.from({ length: C.n }, (_, i) => { const k = C.tapped.indexOf(i);
+      <div class="count-plate${C.n > 6 ? " many" : ""}">${Array.from({ length: C.n }, (_, i) => { const k = C.tapped.indexOf(i);
         return `<button class="count-thing${k >= 0 ? " on" : ""}" type="button" data-countthing="${i}" aria-label="${esc(C.thing.en)}">${img ? `<img src="${img}" alt="">` : "⭐"}${k >= 0 ? `<i lang="ne">${toDeva(k + 1)}</i>` : ""}</button>`; }).join("")}</div>
       <p class="note" style="text-align:center">${all ? "Now tap the number!" : "Tap each one to count it."}</p>
       <div class="count-opts${all ? "" : " wait"}">${C.opts.map(o => `<button class="count-num" type="button" data-countnum="${o}" ${all && !C.done ? "" : "disabled"}><b lang="ne">${toDeva(o)}</b><small lang="ne">${esc(num[o - 1].ne)}</small></button>`).join("")}</div>
