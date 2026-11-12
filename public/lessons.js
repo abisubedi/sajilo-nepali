@@ -809,6 +809,17 @@ window.TALES = [
     answer: { ne: "मह", rom: "maha", en: "honey", img: "w-honey" }, wrong: [{ ne: "दूध", rom: "doodh", en: "milk", img: "w-milk" }, { ne: "स्याउ", rom: "syaau", en: "apple", img: "w-apple" }] } },
 ];
 
+/* Let's count (गन्ती गरौँ): tap each thing to count it aloud, then pick the number. */
+window.COUNT_TITLE = { ne: "गन्ती गरौँ", rom: "ganti garaun", en: "Let's count" };
+window.COUNT_ASK = { ne: "कति वटा छन्? गन्ती गरौँ!", rom: "kati wataa chhan? ganti garaun!", en: "How many are there? Let's count!" };
+window.COUNT_THINGS = [
+  { ne: "स्याउ", en: "apples", img: "w-apple" }, { ne: "सेल रोटी", en: "sel rotis", img: "w-sel-roti" }, { ne: "दियो", en: "oil lamps", img: "w-oil-lamp" },
+  { ne: "मोमो", en: "momos", img: "w-momo" }, { ne: "केरा", en: "bananas", img: "w-banana" }, { ne: "चङ्गा", en: "kites", img: "w-kite" }, { ne: "फूल", en: "flowers", img: "w-flower" },
+];
+/* Everyday phrases for grown-ups who are still learning to say them (all already recorded in the lessons). */
+window.PARENT_PHRASES = ["खाना खानुभयो?", "भोक लाग्यो", "मिठो छ", "पुग्यो", "अझै अलिकति", "अघाएँ", "हात धोऊ", "दाँत माझ", "जुत्ता लाऊ", "यता आऊ", "उठ", "सुत",
+  "धन्यवाद", "कृपया", "माफ गर्नुहोस्", "ठिक छ", "आउनुहोस्", "बस्नुहोस्", "माया गर्छु", "शुभ बिहानी!", "शुभ रात्रि"];
+
 /* Explore the room: tap things in a big picture. Hotspots (x, y, r in % of the picture) are set once the picture exists. */
 window.SCENES = {
   "living-room": { title: "बैठक कोठा", rom: "baithak kothaa", en: "Living room", img: "scene-living-room", unlock: "w-living-room", spots: [

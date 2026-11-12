@@ -983,5 +983,7 @@ window.AUDIO = {
  "धन": "audio/736d22e122.mp3?v=6b852303",
  "मटर": "audio/b0074e44f9.mp3?v=582c100f",
  "कमल": "audio/0cf37192b4.mp3?v=af451fa8",
- "सडक": "audio/da9eb74212.mp3?v=862d27aa"
+ "सडक": "audio/da9eb74212.mp3?v=862d27aa",
+ "कति वटा छन् गन्ती गरौँ": "audio/21f7c9f382.mp3?v=33b34647",
+ "गन्ती गरौँ": "audio/06d25bd376.mp3?v=919f6b50"
 };

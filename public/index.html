@@ -279,6 +279,19 @@ body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) 
 .color-kicker { font-weight: 800; margin: 0 0 8px; } .color-img { width: 100%; height: auto; display: block; border: 2px solid #ccc; border-radius: 10px; }
 .color-line { font: 700 22px "Baloo 2", "Noto Sans Devanagari", sans-serif; margin: 10px 0 0; } .color-en { margin: 2px 0 0; color: #555; } .color-name { margin: 18px 0 0; font-weight: 700; }
 @media print { .color-sheet { padding: 0; max-width: none; } .color-img { border: none; } }
+.auto-btn.on { background: #fff4d6; border-color: #f6b71c; }
+.count { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 14px 30px; } .count .ask { text-align: center; }
+.count-plate { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 520px; padding: 18px; border-radius: 50%/40%; background: radial-gradient(circle, #f6d27a, #d9a640 70%, #b9832a); box-shadow: inset 0 4px 10px rgba(0,0,0,.2), 0 6px 0 #8a6220; }
+.count-thing { position: relative; width: 76px; height: 76px; border-radius: 50%; border: 3px solid transparent; background: rgba(255,255,255,.55); cursor: pointer; padding: 4px; }
+.count-thing img { width: 100%; height: 100%; object-fit: contain; } .count-thing.on { border-color: #fff; animation: pop .35s ease-out; background: #fff; }
+.count-thing i { position: absolute; top: -8px; right: -8px; min-width: 28px; height: 28px; border-radius: 14px; background: #e2453c; color: #fff; font: 700 18px/28px "Baloo 2", "Noto Sans Devanagari", sans-serif; font-style: normal; text-align: center; }
+.count-opts { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; } .count-opts.wait { opacity: .45; }
+.count-num { width: 84px; height: 92px; border-radius: 18px; border: 3px solid var(--line); background: var(--snow); box-shadow: 0 5px 0 var(--line); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; color: var(--ink); }
+.count-num b { font: 700 40px/1 "Baloo 2", "Noto Sans Devanagari", sans-serif; } .count-num small { font-weight: 700; color: var(--muted); }
+.count-num.right { background: #e3f6e8; border-color: #2fa75a; } .count-num.wrong { animation: shake .4s; border-color: #e2453c; }
+.phrase-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; padding: 10px 14px 30px; }
+.phrase { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 12px 34px 12px 14px; border-radius: 16px; border: 2px solid var(--line); background: var(--snow); font: inherit; color: var(--ink); cursor: pointer; text-align: left; }
+.phrase .ne { font: 700 22px "Baloo 2", "Noto Sans Devanagari", sans-serif; } .phrase small { color: var(--muted); font-weight: 700; } .phrase-spk { position: absolute; top: 10px; right: 10px; } .hide-rom .phrase .rom { display: inline-block; }
 .np-row { width: 100%; height: auto; display: block; margin: 4px 0; break-inside: avoid; }
 .play-tile:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--line); }
 @media print { .bottom-nav, .nav-space { display: none; } } .car-cheer { width: 120px; height: 120px; display: block; margin: 0 auto; }
@@ -1163,6 +1176,8 @@ function render() {
   else if (S.screen === "rhymes") renderRhymes();
   else if (S.screen === "goodnight") renderGoodnight();
   else if (S.screen === "talequiz") renderTaleQuiz();
+  else if (S.screen === "count") renderCount();
+  else if (S.screen === "phrases") renderPhrases();
   else if (S.screen === "coloring") renderColoring();
   else if (S.screen === "nameprint") renderNamePrint();
   else if (S.screen === "madal") renderMadal();
@@ -1295,6 +1310,7 @@ function playHTML() {
       ${sceneReady(SC["village-kitchen"]) ? tile('data-scene="village-kitchen"', "scene-village-kitchen", "🔥", "Hajuraama's kitchen", SC["village-kitchen"].title) : ""}
       ${tile('id="openRoom"', "pandu-wave", "🏡", "Pandu's room", "पाण्डुको कोठा")}
       ${tile('id="openCar"', "pandu-bike", "🚗", "Car ride", "")}
+      ${tile('id="openCount"', "w-apple", "🔢", "Let's count", window.COUNT_TITLE.ne, W.openCount)}
       ${window.BLEND_WORDS ? tile('id="openBlend"', "li-cons1", "🔤", "Join the letters", window.BLEND_TITLE.ne, W.openBlend) : ""}
       ${tile('id="openName"', "li-family-name", "✍️", "My name", nm, W.openName)}
       ${tile('id="openMadal"', "w-nepali-drum", "🥁", "Madal", "मादल", W.openMadal)}
@@ -1534,6 +1550,7 @@ function renderMap() {
         <button class="chip" type="button" id="openGuide">ℹ️ About this app</button>
         <button class="chip" type="button" id="openPride">📊 What ${esc(me().name)} can say</button>
         <button class="chip" type="button" id="openVoices">🎙️ Family voices</button>
+        <button class="chip" type="button" id="openPhrases">🗣️ Everyday phrases</button>
         <button class="chip" type="button" id="tReset">Start over</button>
       </div>
     </section>
@@ -1718,6 +1735,7 @@ function renderStory() {
       ${last && window.STORY_CLOSE ? `<p class="story-close">🌼 ${neSpan(window.STORY_CLOSE.ne)} 🌟<small>${esc(window.STORY_CLOSE.en)}</small></p>` : ""}
       <div class="story-nav">
         <button class="chip big" type="button" id="storyPrev" ${i ? "" : "disabled"} aria-label="Previous page">◀</button>
+        <button class="chip big auto-btn${P.autoRead ? " on" : ""}" type="button" id="storyAuto" aria-pressed="${!!P.autoRead}" title="${P.autoRead ? "Read to me: on" : "Read to me: off"}">${P.autoRead ? "📖" : "✋"}</button>
         <button class="chip big" type="button" id="storyAgain" aria-label="Read this page again">🔁</button>
         ${last ? (tale ? `<button class="chip big" type="button" id="taleEnd">🌟 The end</button>` : `<button class="chip big" type="button" id="storyEnd">🌙 The end</button>`) : choosing && !S.branch ? "" : `<button class="chip big" type="button" id="storyNext" aria-label="Next page">▶</button>`}
       </div>
@@ -1735,7 +1753,38 @@ async function readPage() {
   a.ontimeupdate = () => { if (S.screen !== "story") { a.ontimeupdate = null; return; } if (a.duration) mark(a.currentTime / a.duration); };
   const last = i === ps.length - 1 && !pg.choice;
   const end = a.onended; a.onended = () => { end && end(); spans.forEach(e => e.classList.remove("on")); a.ontimeupdate = null;
-    if (last && window.STORY_CLOSE && S.screen === "story") setTimeout(() => { if (S.screen === "story" && (S.page || 0) === i) say(K(window.STORY_CLOSE.ne)); }, 700); };
+    const here = () => S.screen === "story" && (S.page || 0) === i && curStory() === s;
+    if (last && window.STORY_CLOSE && S.screen === "story") setTimeout(async () => { if (!here()) return; await sayAndWait(K(window.STORY_CLOSE.ne));
+      if (P.autoRead && here() && !isTale(s)) setTimeout(() => { if (here()) { S.screen = "goodnight"; render(); window.scrollTo(0, 0); } }, 2000); }, 700);
+    // Read to me: turn the page by itself after a gentle pause (never past a choice: the child picks the path)
+    else if (P.autoRead && !last && !pg.choice) setTimeout(() => { if (here() && P.autoRead) { S.page = i + 1; renderStory(); } }, 2000); };
+}
+/* ---------- Let's count (गन्ती गरौँ): one-to-one counting with everyday Nepali things ---------- */
+function newCountRound() {
+  const big = P.level === "big", n = big ? 3 + Math.floor(Math.random() * 7) : 1 + Math.floor(Math.random() * 5);
+  const th = pickN(window.COUNT_THINGS.filter(x => !S.count || x !== S.count.thing), 1)[0];
+  const opts = new Set([n]); while (opts.size < (big ? 4 : 3)) { const k = Math.max(1, Math.min(10, n + Math.floor(Math.random() * 5) - 2)); opts.add(k); }
+  S.count = { ...(S.count || { round: 0 }), thing: th, n, tapped: [], opts: shuffle([...opts]), done: false, round: ((S.count && S.count.round) || 0) + 1 };
+}
+function renderCount() {
+  const C = S.count, I = window.IMG || {}, num = window.LESSONS.find(l => l.id === "num").items, T = window.COUNT_TITLE, img = I[C.thing.img], all = C.tapped.length === C.n;
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🔢 <span lang="ne">${esc(T.ne)}</span> · ${esc(T.en)}</h2><span class="car-score" lang="ne">${toDeva(Math.min(C.round, 5))} / ${toDeva(5)}</span></div>
+    <section class="count">
+      <p class="ask">${sayBtn(K(window.COUNT_ASK.ne))} <span lang="ne">${esc(window.COUNT_ASK.ne)}</span><br><small>${esc(window.COUNT_ASK.en)} (${esc(C.thing.en)})</small></p>
+      <div class="count-plate">${Array.from({ length: C.n }, (_, i) => { const k = C.tapped.indexOf(i);
+        return `<button class="count-thing${k >= 0 ? " on" : ""}" type="button" data-countthing="${i}" aria-label="${esc(C.thing.en)}">${img ? `<img src="${img}" alt="">` : "⭐"}${k >= 0 ? `<i lang="ne">${toDeva(k + 1)}</i>` : ""}</button>`; }).join("")}</div>
+      <p class="note" style="text-align:center">${all ? "Now tap the number!" : "Tap each one to count it."}</p>
+      <div class="count-opts${all ? "" : " wait"}">${C.opts.map(o => `<button class="count-num" type="button" data-countnum="${o}" ${all && !C.done ? "" : "disabled"}><b lang="ne">${toDeva(o)}</b><small lang="ne">${esc(num[o - 1].ne)}</small></button>`).join("")}</div>
+      ${C.done ? `<button class="go" type="button" id="countNext">${C.round >= 5 ? "🎉 All done!" : "Next →"}</button>` : ""}
+    </section>`;
+}
+/* ---------- Everyday phrases for grown-ups: tap to hear, say it with your child ---------- */
+function renderPhrases() {
+  const all = window.LESSONS.flatMap(l => l.items || []), find = ph => all.find(it => typeof it.ne === "string" && K(it.ne) === K(ph));
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🗣️ Everyday phrases</h2></div>
+    <p class="note" style="text-align:center;margin:6px 14px">For grown-ups: tap a phrase to hear it, then say it with your child at home. The spelling under each one shows how to say it.</p>
+    <div class="phrase-list">${window.PARENT_PHRASES.map(ph => { const it = find(ph), k = K(ph); if (!AUDIO[k]) return "";
+      return `<button class="phrase" type="button" data-say="${esc(k)}"><span class="ne" lang="ne">${esc(ph)}</span><span class="rom">${esc(it ? it.rom : "")}</span><small>${esc(it ? it.en : "")}</small><span class="phrase-spk" aria-hidden="true">🔊</span></button>`; }).join("")}</div>`;
 }
 /* Coloring pages (made from the story pictures by scripts/build_coloring.py): pick a page, print, color with crayons */
 function renderColoring() {
@@ -2717,6 +2766,15 @@ document.addEventListener("click", e => {
   if (t.id === "rhymeBack") { S.rhymeRun++; try { player && player.pause(); } catch (e) {} S.rhyme = null; render(); return; }
   if (t.id === "rhymeAll") { singRhyme(0); return; }
   if (t.dataset.rline != null) { S.rhymeRun = (S.rhymeRun || 0) + 1; const i = +t.dataset.rline; document.querySelectorAll(".rhyme-line").forEach((b, j) => b.classList.toggle("on", j === i)); $("#rhymePic")?.classList.remove("singing"); const run = S.rhymeRun; sayAndWait(K(window.RHYMES[S.rhyme].lines[i].ne)).then(() => { if (S.rhymeRun === run && S.screen === "rhymes") t.classList.remove("on"); }); return; }
+  if (t.id === "openPhrases") { S.screen = "phrases"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "openCount") { P.worlds = P.worlds || {}; if (!P.worlds.openCount) { P.worlds.openCount = today(); save(); } S.count = null; newCountRound(); S.screen = "count"; render(); window.scrollTo(0, 0); setTimeout(() => S.screen === "count" && say(K(window.COUNT_ASK.ne)), 300); return; }
+  if (t.dataset.countthing != null) { const C = S.count, i = +t.dataset.countthing; if (C.tapped.includes(i)) return;
+    C.tapped.push(i); const num = window.LESSONS.find(l => l.id === "num").items; say(K(num[C.tapped.length - 1].ne)); render(); return; }
+  if (t.dataset.countnum != null) { const C = S.count, v = +t.dataset.countnum, num = window.LESSONS.find(l => l.id === "num").items;
+    if (v !== C.n) { beep("bad"); t.classList.add("wrong"); setTimeout(() => t.classList.remove("wrong"), 500); return; }
+    C.done = true; beep("good"); render(); document.querySelector(`[data-countnum="${v}"]`)?.classList.add("right"); setTimeout(() => say(K(num[v - 1].ne)), 250);
+    if (C.round >= 5) { confetti(); P.xp += 5; save(); } return; }
+  if (t.id === "countNext") { if (S.count.round >= 5) { S.screen = "map"; S.play = true; render(); return; } newCountRound(); render(); setTimeout(() => S.screen === "count" && say(K(window.COUNT_ASK.ne)), 250); return; }
   if (t.id === "openColoring") { S.colorPick = null; S.screen = "coloring"; render(); window.scrollTo(0, 0); return; }
   if (t.dataset.colorpick) { S.colorPick = t.dataset.colorpick.split(":").map(Number); render(); window.scrollTo(0, 0); return; }
   if (t.id === "colorBack") { S.colorPick = null; render(); return; }
@@ -2764,6 +2822,8 @@ document.addEventListener("click", e => {
     const k = "tq-" + curStory().id, first = (P.taleDay || {})[k] !== today(); P.taleDay = { ...(P.taleDay || {}), [k]: today() }; if (first) P.xp += 5; save();
     $("#tqFeed").innerHTML = `${first ? "<b>+5 ⭐</b> " : ""}You remembered the story! <button class="chip" type="button" id="quit">Back to the map</button>`; return; }
   if (t.id === "storyAgain") { readPage(); return; }
+  if (t.id === "storyAuto") { P.autoRead = !P.autoRead; save(); toast(P.autoRead ? "📖 Read to me: the pages turn by themselves." : "✋ Turn the pages yourself."); t.classList.toggle("on", P.autoRead); t.textContent = P.autoRead ? "📖" : "✋"; t.setAttribute("aria-pressed", P.autoRead);
+    if (P.autoRead && player && player.paused) readPage(); return; }
   if (t.id === "openCar") { startCar(); return; }
   if (t.id === "carStart") { carRound(); return; }
   if (t.id === "carYes" || t.id === "carNext") { const C = S.car; if (!C) return; if (t.id === "carYes" && C.item && !C.counted) { C.score++; beep("good"); } C.rounds += C.item ? 1 : 0; C.counted = false; clearTimeout(C.timer); C.paused = false; carRound(); return; }
