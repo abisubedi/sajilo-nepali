@@ -287,6 +287,18 @@ body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) 
 .count-thing img { width: 100%; height: 100%; object-fit: contain; } .count-thing.on { border-color: #fff; animation: pop .35s ease-out; background: #fff; }
 .count-thing i { position: absolute; top: -8px; right: -8px; min-width: 28px; height: 28px; border-radius: 14px; background: #e2453c; color: #fff; font: 700 18px/28px "Baloo 2", "Noto Sans Devanagari", sans-serif; font-style: normal; text-align: center; }
 .count-opts { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; } .count-opts.wait { opacity: .45; }
+.mem { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 14px 30px; }
+.mem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; max-width: 380px; }
+.mem-grid.big { gap: 8px; max-width: 330px; } @media (min-width: 600px) { .mem-grid.big { grid-template-columns: repeat(4, 1fr); max-width: 520px; } }
+.mem-card { aspect-ratio: 1 / 1.15; perspective: 700px; border: 0; background: none; padding: 0; cursor: pointer; touch-action: manipulation; font: inherit; }
+.mem-in { position: relative; display: block; width: 100%; height: 100%; transition: transform .4s ease; transform-style: preserve-3d; }
+.mem-card.on .mem-in, .mem-card.got .mem-in { transform: rotateY(180deg); }
+.mem-back, .mem-face { position: absolute; inset: 0; border-radius: 16px; -webkit-backface-visibility: hidden; backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 3px 8px rgba(0,0,0,.12); }
+.mem-back { background: repeating-radial-gradient(circle at 50% 50%, #b33939 0 9px, #9c2f2f 9px 18px); border: 3px solid #fff6e0; color: #f6d27a; font-size: 34px; }
+.mem-face { background: #fff; border: 3px solid #e8dfc8; transform: rotateY(180deg); padding: 6px; color: var(--ink, #1f2a44); }
+.mem-face img { width: 74%; height: 62%; object-fit: contain; } .mem-face b { font-size: 18px; line-height: 1.3; }
+.mem-card.got .mem-face { border-color: #2e9e5b; background: #f0faf3; }
+.mem-win { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; align-items: center; } .mem-win .go { width: auto; padding: 10px 22px; }
 .count-num { width: 84px; height: 92px; border-radius: 18px; border: 3px solid var(--line); background: var(--snow); box-shadow: 0 5px 0 var(--line); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; color: var(--ink); }
 .count-num b { font: 700 40px/1 "Baloo 2", "Noto Sans Devanagari", sans-serif; } .count-num small { font-weight: 700; color: var(--muted); }
 .count-num.right { background: #e3f6e8; border-color: #2fa75a; } .count-num.wrong { animation: shake .4s; border-color: #e2453c; }
@@ -1181,6 +1193,7 @@ function render() {
   else if (S.screen === "goodnight") renderGoodnight();
   else if (S.screen === "talequiz") renderTaleQuiz();
   else if (S.screen === "count") renderCount();
+  else if (S.screen === "memory") renderMemory();
   else if (S.screen === "phrases") renderPhrases();
   else if (S.screen === "coloring") renderColoring();
   else if (S.screen === "nameprint") renderNamePrint();
@@ -1315,6 +1328,7 @@ function playHTML() {
       ${tile('id="openRoom"', "pandu-wave", "🏡", "Pandu's room", "पाण्डुको कोठा")}
       ${tile('id="openCar"', "pandu-bike", "🚗", "Car ride", "")}
       ${tile('id="openCount"', "w-apple", "🔢", "Let's count", window.COUNT_TITLE.ne, W.openCount)}
+      ${tile('id="openMemory"', "li-memory", "🃏", "Match the pairs", MEM_T.ne, W.openMemory)}
       ${window.BLEND_WORDS ? tile('id="openBlend"', "li-cons1", "🔤", "Join the letters", window.BLEND_TITLE.ne, W.openBlend) : ""}
       ${tile('id="openName"', "li-family-name", "✍️", "My name", nm, W.openName)}
       ${tile('id="openMadal"', "w-nepali-drum", "🥁", "Madal", "मादल", W.openMadal)}
@@ -1780,6 +1794,30 @@ function renderCount() {
       <p class="note" style="text-align:center">${all ? "Now tap the number!" : "Tap each one to count it."}</p>
       <div class="count-opts${all ? "" : " wait"}">${C.opts.map(o => `<button class="count-num" type="button" data-countnum="${o}" ${all && !C.done ? "" : "disabled"}><b lang="ne">${toDeva(o)}</b><small lang="ne">${esc(num[o - 1].ne)}</small></button>`).join("")}</div>
       ${C.done ? `<button class="go" type="button" id="countNext">${C.round >= 5 ? "🎉 All done!" : "Next →"}</button>` : ""}
+    </section>`;
+}
+/* ---------- Match the pairs (जोडा मिलाऊ): flip two cards, hear each word, find the twins.
+   Words come from lessons this child has finished (a gentle review), topped up from the first chapter. */
+const MEM_T = { ne: "जोडा मिलाऊ", en: "Match the pairs" };
+function newMemory() {
+  const n = P.level === "big" ? 6 : 3, skip = l => l.letters || /sentences/.test(l.id);
+  const ok = it => typeof it.ne === "string" && !/\s/.test(it.ne.trim()) && artFor(it) && AUDIO[K(it.ne)];
+  const done = shuffle(window.LESSONS.filter(l => !skip(l) && P.stars[starKey(l.id)]));
+  const first = window.CHAPTERS[0].lessons.map(id => window.LESSONS.find(l => l.id === id)).filter(l => l && !skip(l));
+  const seen = new Set(), pick = [];
+  const prev = new Set(((S.mem && S.mem.cards) || []).map(c => c.it.ne));   // a new set of words each round when we can
+  for (const fresh of [true, false]) for (const l of [...done, ...first]) for (const it of shuffle(l.items || [])) {
+    if (pick.length >= n) break; const a = artFor(it);
+    if (ok(it) && !seen.has(a) && !seen.has(it.ne) && (!fresh || !prev.has(it.ne))) { seen.add(a); seen.add(it.ne); pick.push(it); } }
+  S.mem = { cards: shuffle([...pick, ...pick].map(it => ({ it, pair: pick.indexOf(it) }))), open: [], got: [], lock: false };
+}
+function renderMemory() {
+  const M = S.mem, won = M.got.length === M.cards.length;
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🃏 <span lang="ne">${esc(MEM_T.ne)}</span> · ${esc(MEM_T.en)}</h2><span class="car-score" lang="ne">${toDeva(M.got.length / 2)} / ${toDeva(M.cards.length / 2)}</span></div>
+    <section class="mem">
+      <p class="note" style="text-align:center">${won ? "🎉 You found every pair! +5 ⭐" : "Tap two cards. Can you find the twins?"}</p>
+      <div class="mem-grid${M.cards.length > 6 ? " big" : ""}">${M.cards.map((c, i) => `<button class="mem-card${M.got.includes(i) ? " got" : ""}" type="button" data-mem="${i}" aria-label="Card ${i + 1}"><span class="mem-in"><span class="mem-back" aria-hidden="true">✿</span><span class="mem-face"><img src="${artFor(c.it)}" alt="" draggable="false"><b lang="ne">${esc(c.it.ne)}</b></span></span></button>`).join("")}</div>
+      ${won ? `<div class="mem-win"><button class="go" type="button" id="memAgain">🔁 Play again</button><button class="chip" type="button" id="memBack">🎪 More games</button></div>` : ""}
     </section>`;
 }
 /* ---------- Everyday phrases for grown-ups: tap to hear, say it with your child ---------- */
@@ -2796,6 +2834,19 @@ document.addEventListener("click", e => {
     if (v !== C.n) { beep("bad"); t.classList.add("wrong"); setTimeout(() => t.classList.remove("wrong"), 500); return; }
     C.done = true; beep("good"); render(); document.querySelector(`[data-countnum="${v}"]`)?.classList.add("right"); setTimeout(() => say(K(num[v - 1].ne)), 250);
     if (C.round >= 5) { confetti(); P.xp += 5; save(); } return; }
+  if (t.id === "openMemory" || t.id === "memAgain") { P.worlds = P.worlds || {}; if (!P.worlds.openMemory) { P.worlds.openMemory = today(); save(); } newMemory(); S.screen = "memory"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "memBack") { S.screen = "map"; S.play = true; render(); return; }
+  if (t.dataset.mem != null) { const M = S.mem, i = +t.dataset.mem; if (M.lock || M.got.includes(i) || M.open.includes(i)) return;
+    M.open.push(i); t.classList.add("on"); beep("tap"); say(K(M.cards[i].it.ne));
+    if (M.open.length < 2) return;
+    const [a, b] = M.open; M.lock = true;   // no third card while two are showing
+    if (M.cards[a].pair === M.cards[b].pair) setTimeout(() => { if (S.mem !== M || S.screen !== "memory") return;
+      M.got.push(a, b); M.open = []; M.lock = false; beep("good");
+      if (M.got.length === M.cards.length) { P.xp += 5; save(); setTimeout(() => { if (S.mem === M && S.screen === "memory") { beep("done"); confetti(); render(); } }, 500); }
+      else render(); }, 700);
+    else setTimeout(() => { if (S.mem !== M || S.screen !== "memory") return;
+      document.querySelectorAll(`[data-mem="${a}"],[data-mem="${b}"]`).forEach(e => e.classList.remove("on")); M.open = []; M.lock = false; }, 1400);
+    return; }
   if (t.id === "countNext") { if (S.count.round >= 5) { S.screen = "map"; S.play = true; render(); return; } newCountRound(); render(); setTimeout(() => S.screen === "count" && say(K(window.COUNT_ASK.ne)), 250); return; }
   if (t.id === "openColoring") { S.colorPick = null; S.screen = "coloring"; render(); window.scrollTo(0, 0); return; }
   if (t.dataset.colorpick) { S.colorPick = t.dataset.colorpick.split(":").map(Number); render(); window.scrollTo(0, 0); return; }
