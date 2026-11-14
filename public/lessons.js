@@ -886,6 +886,7 @@ window.toDevanagariName = function (raw) {
   const clean = String(raw || "").trim().toLowerCase();
   if (!clean) return "";
   if (window.NAME_DICT[clean]) return window.NAME_DICT[clean];
+  if (/\s/.test(clean)) return String(raw).trim().split(/\s+/).map(w => window.toDevanagariName(w)).join(" ");   // each word of a full name on its own, so "Luke Smith" uses the dictionary for Luke
   if (/[ऀ-ॿ]/.test(clean)) return String(raw).trim();
   const cons = { ksh: "क्ष", gy: "ज्ञ", chh: "छ", sh: "श", th: "थ", dh: "ध", ph: "फ", bh: "भ", kh: "ख", gh: "घ", ch: "च", jh: "झ", tr: "त्र",
     k: "क", g: "ग", c: "क", j: "ज", t: "ट", d: "ड", n: "न", p: "प", f: "फ", b: "ब", m: "म", y: "य", r: "र", l: "ल", v: "भ", w: "व", s: "स", h: "ह", z: "ज", q: "क", x: "क्स" };
