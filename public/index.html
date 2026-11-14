@@ -100,12 +100,7 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .jump-pill.finished { border-color: #f3d37a; background: #fff8e1; }
 .jump-pill { display: inline-flex; align-items: center; gap: 6px; }
 .jump { flex-wrap: wrap; overflow: visible; }   /* every chapter button stays in view on any screen */
-/* Phones: every chapter button stays in view (two rows of five) instead of hiding the later ones off to the right */
-@media (max-width: 600px) {
-  .jump { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; overflow: visible; }
-  .jump-pill { justify-content: center; padding: 4px 4px; gap: 3px; font-size: 13px; min-width: 0; }
-  .jump-pill img { width: 22px !important; height: 22px !important; }
-}
+@media (max-width: 600px) { .jump { gap: 4px; justify-content: center; } .jump-pill { padding: 3px; } .jump-pill img { margin: 0; transform: none; width: 30px; height: 30px; } }
 .jump-pill img { width: 28px; height: 28px; object-fit: cover; border-radius: 50%; margin: -5px 0 -5px -6px; transform: scale(1.12); }
 .top-pill { display: none; }
 .jump.scrolled .top-pill { display: inline-flex; position: sticky; left: 0; z-index: 2; background: #1f2a44; color: #fff; border-color: #1f2a44; box-shadow: 4px 3px 0 var(--sky, #e8f4ff); }
@@ -1532,7 +1527,7 @@ function renderMap() {
     const done = ls.every(id => (P.stars[starKey(id)] || 0) > 0);
     const here = !done && !hereSet && (hereSet = true);
     const art = c.sticker.img && (window.IMG || {})[c.sticker.img.replace(/^img\/|\.webp$/g, "")];
-    return `<button class="jump-pill${done ? " finished" : ""}${here ? " here" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}" style="--c:${c.color}">${art ? `<img src="${art}" alt="" draggable="false">` : `<span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span>`}${P.level === "big" ? ` Ch ${chNum(c)}` : ""}${done ? " ✓" : ""}</button>`;
+    return `<button class="jump-pill${done ? " finished" : ""}${here ? " here" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}" style="--c:${c.color}">${art ? `<img src="${art}" alt="" draggable="false">` : `<span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span>`}${done ? " ✓" : ""}</button>`;
   }).join("");
   const sheetL = S.sheet && window.LESSONS.find(l => l.id === S.sheet);
   $("#app").innerHTML = `
