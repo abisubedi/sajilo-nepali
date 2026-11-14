@@ -27,7 +27,7 @@ Until a batch is installed, the app keeps playing the current voice for those li
 
 ## Step 2: open the recording page
 
-1. Open **Safari** or **Chrome** on the Mac and go to **https://sajilonepali.app/studio.html**
+1. Open **Safari** or **Chrome** on the Mac and go to **https://sajilonepali.app/studio**
    (this page is not linked from the app, and it is not listed in search engines).
 2. Choose the batch at the top (start with **1**).
 3. Click **● Record** once. When the browser asks to use the microphone, click **Allow**.

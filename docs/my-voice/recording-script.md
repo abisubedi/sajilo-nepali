@@ -2,7 +2,7 @@
 
 868 Nepali clips in 5 batches (the English car-ride questions are not included).
 Read the **Nepali** column exactly as written. The other columns are only there to help.
-The easiest way to record is the recording page: https://sajilonepali.app/studio.html (see docs/my-voice/HOW-TO-RECORD.md).
+The easiest way to record is the recording page: https://sajilonepali.app/studio (see docs/my-voice/HOW-TO-RECORD.md).
 
 ## Batch 1: Letters, numbers and the app's own phrases (197 clips)
 

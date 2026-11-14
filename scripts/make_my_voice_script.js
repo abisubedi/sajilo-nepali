@@ -42,7 +42,7 @@ for (const k of Object.keys(W)) if (!["LESSONS", "AUDIO", "CHAPTERS", "PHRASES",
 addNe(5, W.RHYMES_TITLE, "rhymes"); (W.RHYMES || []).forEach(r => walk(5, r, "rhyme: sing-song")); addNe(5, W.GOODNIGHT, "goodnight: softly");
 // anything the app plays that the data walk did not reach (a handful of phrases written in the app itself)
 const left = Object.keys(A).filter(k => !k.startsWith("EN:") && !seen.has(k)); left.forEach(k => add(4, k, k + "।", "", "", "app phrase"));
-let md = `# Sajilo Nepali: recordings in my own voice\n\n${rows.flat().length} Nepali clips in 5 batches (the English car-ride questions are not included).\nRead the **Nepali** column exactly as written. The other columns are only there to help.\nThe easiest way to record is the recording page: https://sajilonepali.app/studio.html (see docs/my-voice/HOW-TO-RECORD.md).\n\n`;
+let md = `# Sajilo Nepali: recordings in my own voice\n\n${rows.flat().length} Nepali clips in 5 batches (the English car-ride questions are not included).\nRead the **Nepali** column exactly as written. The other columns are only there to help.\nThe easiest way to record is the recording page: https://sajilonepali.app/studio (see docs/my-voice/HOW-TO-RECORD.md).\n\n`;
 const out = { batches: [] }, studio = [];
 BATCHES.forEach(B => { const rs = rows[B.n]; rs.forEach((r, i) => r.id = `${B.n}-${String(i + 1).padStart(3, "0")}`);
   md += `## Batch ${B.n}: ${B.title} (${rs.length} clips)\n\nTone: ${B.tone}\n\n| ID | Nepali (read this) | How to say it | Meaning | Note |\n|---|---|---|---|---|\n` + rs.map(r => `| ${r.id} | ${r.read.replace(/\|/g, "/")} | ${r.rom} | ${(r.en || "").replace(/\|/g, "/")} | ${r.note} |`).join("\n") + "\n\n";
