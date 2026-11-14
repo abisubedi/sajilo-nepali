@@ -317,6 +317,35 @@ body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) 
 .mem-face img { width: 74%; height: 62%; object-fit: contain; } .mem-face b { font-size: 18px; line-height: 1.3; }
 .mem-card.got .mem-face { border-color: #2e9e5b; background: #f0faf3; }
 .mem-win { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; align-items: center; } .mem-win .go { width: auto; padding: 10px 22px; }
+/* Trace and print */
+.tp { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 6px 12px 30px; }
+.tp-tabs { display: flex; gap: 4px; background: #e9e4d8; padding: 4px; border-radius: 16px; }
+.tp-tabs button { border: 0; background: transparent; border-radius: 12px; padding: 5px 14px; font: inherit; display: flex; flex-direction: column; align-items: center; line-height: 1.15; color: var(--ink); cursor: pointer; }
+.tp-tabs button b { font-family: var(--display); font-size: 18px; } .tp-tabs button small { font-size: 11px; font-weight: 700; color: var(--muted); }
+.tp-tabs button[aria-selected="true"] { background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.12); }
+.tp-card { display: flex; align-items: center; gap: 10px; background: #fff; border: 2px solid var(--line); border-radius: 16px; padding: 6px 10px; width: min(340px, 92vw); }
+.tp-pic { flex: none; } .tp-pic .wpic { width: 48px; height: 48px; }
+.tp-word { flex: 1; display: flex; flex-direction: column; line-height: 1.25; min-width: 0; } .tp-word > b { font-family: var(--display); font-size: 26px; color: var(--flag-red); line-height: 1; }
+.tp-word em { font-size: 13px; color: var(--muted); } .tp-dots { display: grid; grid-template-columns: repeat(5, 10px); gap: 3px; } .tp-dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--flag-red); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.tp .trace-tools { flex-wrap: nowrap; gap: 6px; } .tp .trace-tools .chip { padding-left: 12px; padding-right: 12px; }
+.tp-msg { min-height: 1.4em; margin: 0; text-align: center; font-weight: 700; }
+.tp-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; max-width: 540px; }
+.tp-chip { position: relative; min-width: 40px; height: 40px; padding: 0 4px; border-radius: 10px; border: 2px solid var(--line); background: #fff; font: 700 19px var(--display); color: var(--ink); cursor: pointer; }
+.tp-chip.on { border-color: var(--flag-blue); background: #eaf2ff; }
+.tp-chip.did::after { content: "✓"; position: absolute; right: -5px; top: -7px; width: 16px; height: 16px; border-radius: 50%; background: #2e9e5b; color: #fff; font: 800 10px/16px sans-serif; }
+.tps-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; margin: 10px 0 6px; } .tps-name { margin: 0; font-size: 14px; }
+.tps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.tps-cell { background: #fff; border: 2px dashed #9fb3d1; border-radius: 14px; padding: 8px; break-inside: avoid; }
+.tps-top { display: flex; align-items: center; gap: 8px; font: 700 20px var(--display); } .tps-top .wpic { width: 40px; height: 40px; }
+.tps-letters { display: flex; justify-content: space-around; align-items: center; }
+.tps-solid, .tps-ghost { font: 800 72px/1.3 "Baloo 2", "Noto Sans Devanagari", sans-serif; }
+.tps-solid { color: #1f2a44; } .tps-ghost { color: #f2f2f2; -webkit-text-stroke: 1.5px #a3a3a3; }
+.tps-rows { display: flex; flex-direction: column; gap: 4px; }
+.tps-row { display: flex; align-items: center; height: 66px; break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  background: linear-gradient(#d9534f, #d9534f) 0 var(--head, 31%) / 100% 1.5px no-repeat, linear-gradient(#cfd8e6, #cfd8e6) 0 56% / 100% 1px no-repeat, linear-gradient(#7f97bd, #7f97bd) 0 82% / 100% 1.5px no-repeat; }
+.tps-row .tps-solid, .tps-row .tps-ghost { font-size: 46px; line-height: 66px; width: 15%; text-align: center; }
+.tps-blank { flex: 1; }
+@media print { .tps-cell, .tps-row { break-inside: avoid; } .tps-ghost { color: #f4f4f4; } }
 .count-num { width: 84px; height: 92px; border-radius: 18px; border: 3px solid var(--line); background: var(--snow); box-shadow: 0 5px 0 var(--line); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; color: var(--ink); }
 .count-num b { font: 700 40px/1 "Baloo 2", "Noto Sans Devanagari", sans-serif; } .count-num small { font-weight: 700; color: var(--muted); }
 .count-num.right { background: #e3f6e8; border-color: #2fa75a; } .count-num.wrong { animation: shake .4s; border-color: #e2453c; }
@@ -1210,6 +1239,8 @@ function render() {
   else if (S.screen === "rhymes") renderRhymes();
   else if (S.screen === "goodnight") renderGoodnight();
   else if (S.screen === "talequiz") renderTaleQuiz();
+  else if (S.screen === "tracepad") renderTracepad();
+  else if (S.screen === "traceprint") renderTracePrint();
   else if (S.screen === "count") renderCount();
   else if (S.screen === "memory") renderMemory();
   else if (S.screen === "phrases") renderPhrases();
@@ -1348,6 +1379,7 @@ function playHTML() {
       ${tile('id="openCar"', "pandu-bike", "🚗", "Car ride", "")}
       ${tile('id="openCount"', "w-apple", "🔢", "Let's count", window.COUNT_TITLE.ne, W.openCount)}
       ${tile('id="openMemory"', "li-memory", "🃏", "Match the pairs", MEM_T.ne, W.openMemory)}
+      ${tile('id="openTrace"', "li-trace", "✏️", "Trace & print", "अक्षर कोरौँ", W.openTrace)}
       ${window.BLEND_WORDS ? tile('id="openBlend"', "li-cons1", "🔤", "Join the letters", window.BLEND_TITLE.ne, W.openBlend) : ""}
       ${tile('id="openName"', "li-family-name", "✍️", "My name", nm, W.openName)}
       ${tile('id="openMadal"', "w-nepali-drum", "🥁", "Madal", "मादल", W.openMadal)}
@@ -1839,6 +1871,42 @@ function renderMemory() {
       ${won ? `<div class="mem-win"><button class="go" type="button" id="memAgain">🔁 Play again</button><button class="chip" type="button" id="memBack">🎪 More games</button></div>` : ""}
     </section>`;
 }
+/* ---------- Trace and print (अक्षर कोरौँ): free tracing on the slate (पाटी), plus printable tracing sheets.
+   Uses the letters, numbers, pictures and recordings the lessons already have, and the same fair scoring as the lesson trace. */
+const TP_CATS = [["vowels", "अ आ इ", "Vowels"], ["cons", "क ख ग", "Consonants"], ["num", "१ २ ३", "Numbers"]];
+function tpItems(cat) {
+  const L = id => window.LESSONS.find(l => l.id === id);
+  if (cat === "num") return L("num").items.map(it => ({ ch: it.digit, it, key: K(it.ne), word: it.ne, wordRom: it.rom, en: it.en }));
+  return (cat === "vowels" ? ["vowels"] : ["cons1", "cons2", "cons3", "cons4"]).flatMap(id => L(id).items.map(it => ({ ch: it.ne, it, key: window.letterKey(it), word: it.word, wordRom: it.wordRom, en: it.en })));
+}
+const tpSay = () => { const x = tpItems(S.tp.cat)[S.tp.i]; setTimeout(() => S.screen === "tracepad" && say(x.key), 300); };
+function renderTracepad() {
+  const T = S.tp, list = tpItems(T.cat), x = list[T.i], did = P.traced || {};
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">✏️ <span lang="ne">अक्षर कोरौँ</span> · Trace</h2><button class="chip" type="button" id="tpPrint">🖨️ Print</button></div>
+    <section class="tp">
+      <div class="tp-tabs" role="tablist">${TP_CATS.map(([c, ne, en]) => `<button type="button" role="tab" aria-selected="${c === T.cat}" data-tpcat="${c}"><b lang="ne">${ne}</b><small>${en}</small></button>`).join("")}</div>
+      <div class="tp-card"><span class="tp-pic">${x.it.n ? `<span class="tp-dots" aria-hidden="true">${"<i></i>".repeat(x.it.n)}</span>` : picHTML(x.it, 40)}</span>
+        <span class="tp-word"><b lang="ne">${esc(x.ch)}</b> <span><span lang="ne">${esc(x.word || "")}</span> <span class="rom">${esc(x.wordRom || "")}</span></span><em>${esc(x.en)}</em></span>${sayBtn(x.key)}</div>
+      <div class="trace-wrap">
+        <div class="trace-box" id="traceBox"><canvas id="guide"></canvas><canvas id="ink"></canvas></div>
+        <div class="meter" aria-hidden="true"><i id="meter"></i></div>
+        <div class="trace-tools"><button class="chip" type="button" id="tpPrev" aria-label="Previous">◀</button><button class="chip" type="button" id="traceClear">↺ Again</button><button class="go" type="button" id="tpDone" style="width:auto;padding:10px 20px">✓ Done</button><button class="chip" type="button" id="tpNext" aria-label="Next">▶</button></div>
+        <p class="tp-msg" id="tpMsg" aria-live="polite">Trace over the dotted ${T.cat === "num" ? "number" : "letter"} with your finger.</p>
+      </div>
+      <div class="tp-strip">${list.map((y, j) => `<button type="button" class="tp-chip${j === T.i ? " on" : ""}${did[y.ch] ? " did" : ""}" data-tpi="${j}" lang="ne" aria-label="${esc(y.ch)}${did[y.ch] ? " (traced)" : ""}">${esc(y.ch)}</button>`).join("")}</div>
+    </section>`;
+  setupTrace({ ne: x.ch });
+}
+/* Printable sheets: little learners get big boxes (picture, letter, two outline letters); big learners get ruled copybook rows */
+function renderTracePrint() {
+  const T = S.tp, list = tpItems(T.cat), big = P.level === "big", cat = TP_CATS.find(c => c[0] === T.cat);
+  $("#app").innerHTML = `<div class="print-bar no-print"><button class="chip" type="button" id="tpBack">← Back</button><button class="go" type="button" id="printNow" style="width:auto;padding:10px 22px">🖨️ Print</button></div>
+    <div class="tps-head"><h2 class="print-title">✏️ <span lang="ne">अक्षर कोरौँ</span> · ${esc(cat[2])}</h2><p class="tps-name">Name: ____________________ &nbsp; Date: __________</p></div>
+    <p class="note no-print">${big ? "Copy each letter on the lines: the red line is the शिरोरेघा (headline)." : "Trace the grey letters with a crayon, then colour the picture."}</p>
+    ${big ? `<div class="tps-rows">${list.map(x => `<div class="tps-row"><span class="tps-solid" lang="ne">${esc(x.ch)}</span>${`<span class="tps-ghost" lang="ne">${esc(x.ch)}</span>`.repeat(3)}<span class="tps-blank"></span></div>`).join("")}</div>`
+      : `<div class="tps-grid">${list.map(x => `<div class="tps-cell"><div class="tps-top">${x.it.n ? `<span class="tp-dots">${"<i></i>".repeat(x.it.n)}</span>` : picHTML(x.it, 34)}<span lang="ne">${esc(x.word || "")}</span></div><div class="tps-letters"><span class="tps-solid" lang="ne">${esc(x.ch)}</span><span class="tps-ghost" lang="ne">${esc(x.ch)}</span><span class="tps-ghost" lang="ne">${esc(x.ch)}</span></div></div>`).join("")}</div>`}
+    <p class="print-foot">sajilonepali.app · Sajilo Nepali सजिलो नेपाली</p>`;
+}
 /* ---------- Everyday phrases for grown-ups: tap to hear, say it with your child ---------- */
 function renderPhrases() {
   const all = window.LESSONS.flatMap(l => l.items || []), find = ph => all.find(it => typeof it.ne === "string" && K(it.ne) === K(ph));
@@ -2278,7 +2346,10 @@ async function setupTrace(item) {
   const size = Math.round(box.clientWidth), dpr = window.devicePixelRatio || 1;
   [guide, ink].forEach(c => { c.width = size * dpr; c.height = size * dpr; c.getContext("2d").scale(dpr, dpr); });
   try { await document.fonts.load(`700 ${size * .7}px "Baloo 2"`, item.ne); } catch (e) {}
-  const font = `700 ${Math.round(size * .7)}px "Baloo 2", "Noto Sans Devanagari", sans-serif`;
+  if (!document.contains(box)) return;   // the child left this screen while the font loaded
+  let fpx = Math.round(size * .7); const fit = document.createElement("canvas").getContext("2d"); fit.font = `700 ${fpx}px "Baloo 2", "Noto Sans Devanagari", sans-serif`;
+  const fw = fit.measureText(item.ne).width; if (fw > size * .86) fpx = Math.floor(fpx * size * .86 / fw);   // wide characters such as १० shrink to fit the slate
+  const font = `700 ${fpx}px "Baloo 2", "Noto Sans Devanagari", sans-serif`;
   const drawLetter = (ctx, fill) => { ctx.font = font; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillStyle = fill; ctx.fillText(item.ne, size / 2, size * .56); };
   const g = guide.getContext("2d"); g.clearRect(0, 0, size, size); drawLetter(g, "rgba(255,248,225,.16)");
   g.setLineDash([6, 8]); g.lineWidth = 2; g.strokeStyle = "rgba(255,248,225,.5)"; g.font = font; g.textAlign = "center"; g.textBaseline = "middle"; g.strokeText(item.ne, size / 2, size * .56);
@@ -2865,6 +2936,22 @@ document.addEventListener("click", e => {
       else render(); }, 700);
     else setTimeout(() => { if (S.mem !== M || S.screen !== "memory") return;
       document.querySelectorAll(`[data-mem="${a}"],[data-mem="${b}"]`).forEach(e => e.classList.remove("on")); M.open = []; M.lock = false; }, 1400);
+    return; }
+  if (t.id === "openTrace") { P.worlds = P.worlds || {}; if (!P.worlds.openTrace) { P.worlds.openTrace = today(); save(); } S.tp = S.tp || { cat: "vowels", i: 0 }; S.screen = "tracepad"; render(); window.scrollTo(0, 0); tpSay(); return; }
+  if (t.dataset.tpcat) { S.tp = { cat: t.dataset.tpcat, i: 0 }; S.tpRun = (S.tpRun || 0) + 1; render(); tpSay(); return; }
+  if (t.dataset.tpi != null) { S.tp.i = +t.dataset.tpi; S.tpRun = (S.tpRun || 0) + 1; render(); tpSay(); return; }
+  if (t.id === "tpPrev" || t.id === "tpNext") { const n = tpItems(S.tp.cat).length; S.tp.i = (S.tp.i + (t.id === "tpNext" ? 1 : n - 1)) % n; S.tpRun = (S.tpRun || 0) + 1; render(); tpSay(); return; }
+  if (t.id === "tpPrint") { S.screen = "traceprint"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "tpBack") { S.screen = "tracepad"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "tpDone") { const msg = $("#tpMsg");
+    if (!TR.drawn) { msg.textContent = "Trace over the dotted letter first."; return; }
+    const sc = traceScore(); if (sc.cover < .55 || sc.stray > .45) { beep("bad"); msg.textContent = sc.cover < .55 ? "Almost! Cover more of the letter." : "Almost! Try to stay on the dotted lines."; return; }
+    const T = S.tp, list = tpItems(T.cat), x = list[T.i], ch = window.CHEERS[Math.floor(Math.random() * window.CHEERS.length)];
+    P.traced = P.traced || {}; const fresh = P.traced[x.ch] !== today(); P.traced[x.ch] = today(); if (fresh) P.xp += 2; save();
+    beep("good"); say(K(ch[0])); msg.innerHTML = `🎉 ${neSpan(ch[0])} <span class="rom">${esc(ch[1])}</span> ${esc(ch[2])}${fresh ? " +2 ⭐" : ""}`;
+    t.disabled = true; if (list.every(y => P.traced[y.ch])) { confetti(); beep("done"); }
+    const run = S.tpRun = (S.tpRun || 0) + 1;
+    setTimeout(() => { if (S.screen === "tracepad" && S.tpRun === run) { S.tp.i = (T.i + 1) % list.length; render(); tpSay(); } }, 1800);
     return; }
   if (t.id === "countNext") { if (S.count.round >= 5) { S.screen = "map"; S.play = true; render(); return; } newCountRound(); render(); setTimeout(() => S.screen === "count" && say(K(window.COUNT_ASK.ne)), 250); return; }
   if (t.id === "openColoring") { S.colorPick = null; S.screen = "coloring"; render(); window.scrollTo(0, 0); return; }
