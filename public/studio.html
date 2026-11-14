@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sajilo Nepali · Recording studio</title>
+<style>
+  :root { --ink: #1f2a44; --red: #c8402f; --line: #d8dfeb; --sky: #eef4fc; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 16px/1.4 -apple-system, system-ui, sans-serif; color: var(--ink); background: var(--sky); }
+  header { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 16px; background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 2; }
+  header h1 { font-size: 18px; margin: 0 12px 0 0; }
+  select, button { font: inherit; }
+  button { border: 1.5px solid var(--line); background: #fff; border-radius: 10px; padding: 7px 14px; cursor: pointer; }
+  button:disabled { opacity: .45; cursor: default; }
+  .rec { background: var(--red); color: #fff; border-color: var(--red); font-weight: 700; min-width: 150px; }
+  .rec.on { animation: pulse 1s infinite; }
+  @keyframes pulse { 50% { opacity: .65; } }
+  main { max-width: 900px; margin: 0 auto; padding: 16px; }
+  .card { background: #fff; border-radius: 18px; padding: 22px; box-shadow: 0 2px 10px rgba(31,42,68,.08); text-align: center; }
+  .id { color: #7a869c; font-weight: 700; }
+  .ne { font: 700 44px/1.35 "Noto Sans Devanagari", "Kohinoor Devanagari", sans-serif; margin: 10px 0; }
+  .rom { color: #5a6780; font-style: italic; } .en { color: #5a6780; } .note { margin-top: 6px; color: #8a5a00; font-size: 14px; }
+  .controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+  .meter { height: 8px; background: #e3e8f1; border-radius: 4px; overflow: hidden; margin: 14px auto 0; max-width: 360px; } .meter i { display: block; height: 100%; width: 0; background: #2e9e5b; }
+  .status { margin-top: 10px; min-height: 1.4em; font-weight: 600; }
+  .tone { margin: 10px 0; color: #5a6780; }
+  ol { list-style: none; padding: 0; margin: 16px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; }
+  ol li { background: #fff; border: 1.5px solid var(--line); border-radius: 10px; padding: 6px 8px; cursor: pointer; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  ol li.done { border-color: #2e9e5b; background: #f0faf3; } ol li.done::before { content: "✓ "; color: #2e9e5b; font-weight: 700; }
+  ol li.cur { outline: 3px solid #2f6fd6; }
+  .help { font-size: 14px; color: #5a6780; text-align: center; margin-top: 8px; }
+  kbd { background: #fff; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: 0 5px; font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🎙️ Recording studio</h1>
+  <label>Batch <select id="batch"></select></label>
+  <span id="count"></span>
+  <span style="flex:1"></span>
+  <button id="zip">⬇️ Download this batch (.zip)</button>
+</header>
+<main>
+  <p class="tone" id="tone"></p>
+  <div class="card">
+    <div class="id" id="cid"></div>
+    <div class="ne" id="cne" lang="ne"></div>
+    <div class="rom" id="crom"></div><div class="en" id="cen"></div><div class="note" id="cnote"></div>
+    <div class="controls">
+      <button id="prev">◀ Back</button>
+      <button id="rec" class="rec">● Record</button>
+      <button id="play" disabled>▶ Play</button>
+      <button id="next">Skip ▶</button>
+    </div>
+    <div class="meter"><i id="lvl"></i></div>
+    <div class="status" id="status">Click “● Record” (or press <kbd>Space</kbd>) and allow the microphone.</div>
+  </div>
+  <p class="help"><kbd>Space</kbd> start / stop (stopping saves the line and moves on) · <kbd>P</kbd> play it back · <kbd>←</kbd> <kbd>→</kbd> previous / next line. To redo a line, go back to it and record again.</p>
+  <ol id="list"></ol>
+</main>
+<script src="studio-script.js"></script>
+<script>
+/* Each line is saved in this browser (IndexedDB) as soon as you stop recording, so you can close the page and carry on later.
+   "Download this batch" makes one .zip with a file per line, named by its ID (for example 1-005.m4a). */
+const B = window.STUDIO, $ = id => document.getElementById(id);
+let batch = +(localStorage.studioBatch || 1), idx = 0, rec = null, chunks = [], stream = null, db = null, done = new Set(), lastUrl = null;
+const rows = () => B.find(b => b.n === batch).rows;
+const ext = t => /mp4|m4a|aac/.test(t) ? "m4a" : /ogg/.test(t) ? "ogg" : /wav/.test(t) ? "wav" : "webm";
+function openDB() { return new Promise((ok, no) => { const r = indexedDB.open("sajilo-studio", 1); r.onupgradeneeded = () => r.result.createObjectStore("clips"); r.onsuccess = () => ok(r.result); r.onerror = () => no(r.error); }); }
+const tx = (mode, fn) => new Promise((ok, no) => { const t = db.transaction("clips", mode), s = t.objectStore("clips"), r = fn(s); t.oncomplete = () => ok(r && r.result); t.onerror = () => no(t.error); });
+const getClip = id => tx("readonly", s => s.get(id)), putClip = (id, v) => tx("readwrite", s => s.put(v, id));
+async function loadDone() { const keys = await tx("readonly", s => s.getAllKeys()); done = new Set(keys); }
+function draw() {
+  const rs = rows(), r = rs[idx], b = B.find(x => x.n === batch);
+  $("tone").textContent = `Batch ${batch}: ${b.title}. Tone: ${b.tone}`;
+  $("cid").textContent = `${r[0]}  ·  line ${idx + 1} of ${rs.length}`; $("cne").textContent = r[1]; $("crom").textContent = r[2]; $("cen").textContent = r[3]; $("cnote").textContent = r[4] ? "Note: " + r[4] : "";
+  const n = rs.filter(x => done.has(x[0])).length; $("count").textContent = `${n} / ${rs.length} recorded`;
+  $("play").disabled = !done.has(r[0]);
+  $("list").innerHTML = rs.map((x, i) => `<li class="${done.has(x[0]) ? "done" : ""}${i === idx ? " cur" : ""}" data-i="${i}" title="${x[1]}">${x[0]} ${x[1]}</li>`).join("");
+  const cur = $("list").querySelector(".cur"); if (cur) cur.scrollIntoView({ block: "nearest" });
+}
+async function mic() {
+  if (stream) return stream;
+  stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false, channelCount: 1 } });
+  const ac = new (window.AudioContext || window.webkitAudioContext)(), an = ac.createAnalyser(); an.fftSize = 512; ac.createMediaStreamSource(stream).connect(an);
+  const d = new Uint8Array(an.fftSize); (function loop() { an.getByteTimeDomainData(d); let m = 0; for (const v of d) m = Math.max(m, Math.abs(v - 128)); $("lvl").style.width = Math.min(100, m / 1.28) + "%"; $("lvl").style.background = m > 120 ? "#c8402f" : "#2e9e5b"; requestAnimationFrame(loop); })();
+  return stream;
+}
+async function toggle() {
+  if (rec && rec.state === "recording") { rec.stop(); return; }
+  try { await mic(); } catch (e) { $("status").textContent = "The microphone was blocked. Allow it in the browser's address bar, then try again."; return; }
+  const type = ["audio/mp4", "audio/webm;codecs=opus", "audio/webm"].find(t => window.MediaRecorder && MediaRecorder.isTypeSupported(t)) || "";
+  rec = new MediaRecorder(stream, Object.assign({ audioBitsPerSecond: 96000 }, type ? { mimeType: type } : {})); chunks = []; const id = rows()[idx][0];
+  rec.ondataavailable = e => e.data.size && chunks.push(e.data);
+  rec.onstop = async () => { $("rec").classList.remove("on"); $("rec").textContent = "● Record";
+    const blob = new Blob(chunks, { type: rec.mimeType || type || "audio/webm" });
+    if (blob.size < 2000) { $("status").textContent = "That was too short. Try again."; return; }
+    await putClip(id, blob); done.add(id); $("status").textContent = `✓ Saved ${id}.`;
+    if (idx < rows().length - 1) idx++; draw(); };
+  rec.start(); $("rec").classList.add("on"); $("rec").textContent = "■ Stop"; $("status").textContent = `Recording ${id}… leave half a second of quiet at the start and end.`;
+}
+async function play(id) { const b = await getClip(id || rows()[idx][0]); if (!b) return; if (lastUrl) URL.revokeObjectURL(lastUrl); lastUrl = URL.createObjectURL(b); new Audio(lastUrl).play(); }
+/* a tiny .zip writer (files stored as they are, no compression) */
+const crcT = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+const crc32 = u => { let c = 0xFFFFFFFF; for (let i = 0; i < u.length; i++) c = crcT[(c ^ u[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; };
+async function zipBatch() {
+  const enc = new TextEncoder(), parts = [], central = []; let off = 0, n = 0;
+  const files = [];
+  for (const r of rows()) { const b = await getClip(r[0]); if (b) files.push([`${r[0]}.${ext(b.type)}`, new Uint8Array(await b.arrayBuffer())]); }
+  files.push([`batch-${batch}-lines.txt`, enc.encode(rows().map(r => `${r[0]}\t${r[1]}`).join("\n") + "\n")]);
+  for (const [name, data] of files) { const nm = enc.encode(name), c = crc32(data), h = new DataView(new ArrayBuffer(30));
+    h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true); h.setUint32(14, c, true); h.setUint32(18, data.length, true); h.setUint32(22, data.length, true); h.setUint16(26, nm.length, true);
+    parts.push(h, nm, data);
+    const e = new DataView(new ArrayBuffer(46)); e.setUint32(0, 0x02014b50, true); e.setUint16(4, 20, true); e.setUint16(6, 20, true); e.setUint16(8, 0x0800, true); e.setUint32(16, c, true); e.setUint32(20, data.length, true); e.setUint32(24, data.length, true); e.setUint16(28, nm.length, true); e.setUint32(42, off, true);
+    central.push(e, nm); off += 30 + nm.length + data.length; n++; }
+  const csize = central.reduce((a, x) => a + (x.byteLength || x.length), 0), end = new DataView(new ArrayBuffer(22));
+  end.setUint32(0, 0x06054b50, true); end.setUint16(8, n, true); end.setUint16(10, n, true); end.setUint32(12, csize, true); end.setUint32(16, off, true);
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([...parts, ...central, end], { type: "application/zip" })); a.download = `sajilo-voice-batch-${batch}.zip`; a.click();
+  $("status").textContent = `Downloaded ${n - 1} recordings for batch ${batch}.`;
+}
+$("batch").innerHTML = B.map(b => `<option value="${b.n}">${b.n}: ${b.title} (${b.rows.length})</option>`).join(""); $("batch").value = batch;
+$("batch").onchange = e => { batch = +e.target.value; localStorage.studioBatch = batch; idx = Math.max(0, rows().findIndex(r => !done.has(r[0]))); draw(); };
+$("rec").onclick = toggle; $("play").onclick = () => play(); $("zip").onclick = zipBatch;
+$("prev").onclick = () => { if (idx > 0) idx--; draw(); }; $("next").onclick = () => { if (idx < rows().length - 1) idx++; draw(); };
+$("list").onclick = e => { const li = e.target.closest("li"); if (li) { idx = +li.dataset.i; draw(); play(); } };
+document.addEventListener("keydown", e => { if (e.target.tagName === "SELECT") return;
+  if (e.code === "Space") { e.preventDefault(); toggle(); } else if (e.key === "p" || e.key === "P") play(); else if (e.key === "ArrowLeft") $("prev").click(); else if (e.key === "ArrowRight") $("next").click(); });
+openDB().then(async d => { db = d; await loadDone(); idx = Math.max(0, rows().findIndex(r => !done.has(r[0]))); draw(); });
+</script>
+</body>
+</html>
