@@ -2631,7 +2631,11 @@ function legacyCopy(text) {
 function selectShare() { const el = $("#shareText"); if (!el) return; const r = document.createRange(); r.selectNodeContents(el); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); }
 
 /* ---------- Family corner: my name, madal, tika, story jar, postcard, bagh-chal ---------- */
-const myDevaName = () => { const c = me(); return c.deva || window.toDevanagariName(c.name); };
+const isDefaultName = n => /^player\s*\d*$/i.test(String(n || "").trim());
+const myDevaName = () => { const c = me();
+  // a spelling saved while the player was still called "Player" doesn't belong to their real name: drop it
+  if (c.deva && !isDefaultName(c.name) && c.deva.startsWith(window.toDevanagariName("Player"))) { delete c.deva; savePlayers(); }
+  return c.deva || window.toDevanagariName(c.name); };
 // 1. Mero naam: the child's name in Devanagari, traced in chalk on the paati
 /* ---------- Rhymes (बालगीत): sing it all with each line lighting up, or tap one line ---------- */
 function renderRhymes() {
@@ -3138,7 +3142,7 @@ document.addEventListener("click", e => {
       let n = 2; while (PL.list.some(x => x.id === "p" + n)) n++;
       const id = "p" + n; PL.list.push({ id, name: name || "Player " + n, avatar: av }); savePlayers(); beep("good"); switchPlayer(id);
     } else {
-      const x = PL.list.find(x => x.id === S.playerEdit); x.name = name || x.name; x.avatar = av; savePlayers(); S.playerEdit = null; render();
+      const x = PL.list.find(x => x.id === S.playerEdit); if (name && name !== x.name) delete x.deva;   /* a new name gets a fresh Nepali spelling */ x.name = name || x.name; x.avatar = av; savePlayers(); S.playerEdit = null; render();
     }
     return;
   }
