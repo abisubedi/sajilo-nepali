@@ -919,6 +919,9 @@ span[data-say]:hover { background: rgba(47,111,214,.10); }
 <script src="coloring-manifest.js"></script>
 <script>if ("serviceWorker" in navigator && !window.Capacitor && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));</script>
 <script>
+/* Running inside the iPhone/iPad app (Capacitor) rather than in a browser: everything is bundled, so the web-only extras are hidden */
+const NATIVE = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
+if (NATIVE) document.documentElement.classList.add("native");
 /* ---------- Saved progress (this browser only) ---------- */
 /* Players: each child on this device has their own stars, streak and stickers.
    Player 1 keeps the original storage key, so progress saved before players existed is kept. */
@@ -1610,10 +1613,10 @@ function renderMap() {
     <section class="grownups" aria-label="For grown-ups">
       <h3>👨‍👩‍👧 For grown-ups</h3>
       <div class="settings">
-        <button class="chip" type="button" id="shareApp">💌 Share with another family</button>
+        ${NATIVE ? "" : `<button class="chip" type="button" id="shareApp">💌 Share with another family</button>`}
         <button class="chip" type="button" id="saveCode">📤 Copy save code</button>
         <button class="chip" type="button" id="loadCode">📥 Load save code</button>
-        ${"serviceWorker" in navigator ? `<button class="chip" type="button" id="offlineAudio">${P.offlineSaved && (P.offlineN || 0) < offlineUrls().length ? "📶 Update offline pack (new sounds and pictures)" : P.offlineSaved ? "📶 Offline pack saved ✓ (tap to check)" : "📶 Save sounds and pictures for offline"}</button>` : ""}
+        ${"serviceWorker" in navigator && !NATIVE ? `<button class="chip" type="button" id="offlineAudio">${P.offlineSaved && (P.offlineN || 0) < offlineUrls().length ? "📶 Update offline pack (new sounds and pictures)" : P.offlineSaved ? "📶 Offline pack saved ✓ (tap to check)" : "📶 Save sounds and pictures for offline"}</button>` : ""}
         ${(P.misses || []).length ? `<button class="chip" type="button" id="openMisses">📝 Answers to check (<span lang="ne">${toDeva(P.misses.length)}</span>)</button>` : ""}
         <button class="chip" type="button" id="openGuide">ℹ️ About this app</button>
         <button class="chip" type="button" id="openPride">📊 What ${esc(me().name)} can say</button>
@@ -1921,6 +1924,8 @@ let wakeLock = null;
 let wantAwake = false, wakeAsking = false;
 async function keepAwake(on) {
   wantAwake = on;
+  const KA = NATIVE && window.Capacitor.Plugins && window.Capacitor.Plugins.KeepAwake;   // the app uses the native screen lock
+  if (KA) { try { await (on ? KA.keepAwake() : KA.allowSleep()); } catch (e) {} return; }
   try {
     if (on && !wakeLock && !wakeAsking && "wakeLock" in navigator && document.visibilityState === "visible") {
       wakeAsking = true; const w = await navigator.wakeLock.request("screen"); wakeAsking = false;

@@ -1,0 +1,12 @@
+{
+  "appId": "app.sajilonepali",
+  "appName": "Sajilo Nepali",
+  "webDir": "public",
+  "backgroundColor": "#e8f4ff",
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#e8f4ff",
+    "limitsNavigationsToAppBoundDomains": false,
+    "scrollEnabled": true
+  }
+}
