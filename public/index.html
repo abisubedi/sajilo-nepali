@@ -25,9 +25,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Sajilo Nepali">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/baloo2-devanagari-e3e5fc.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 /* Layout idea: a single bright "Himalayan morning" world — a winding trail of lesson stones
    under a strip of prayer flags; lessons take over the screen like a game card. Single theme by choice. */
@@ -2758,7 +2757,7 @@ function guideHTML() {
   return `<p class="note" style="margin:0;text-align:left">Why Sajilo Nepali is built a little differently for your family.</p>
     ${sec("🔒 Private: no accounts, no ads", [
       ["No sign-up.", "No email or password. Stars, stickers and settings are saved only in this browser on this device."],
-      ["No ads, no analytics.", "The app doesn't track your child. (The two fonts load from Google Fonts.)"],
+      ["No ads, no analytics.", "The app doesn't track your child, and it never contacts any other company: even its fonts are built in."],
       ["Voice practice stays on the device.", "🎤 Try it records 2 seconds so your child can hear themselves next to the native voice. Nothing is saved or sent anywhere."],
       ["Family voices stay here too.", "Recordings you make in 🎙️ Family voices are kept on this device only, and are not part of save codes."],
       ["Move to a new device.", "📤 Copy save code, then 📥 Load save code on the other phone or tablet."]])}

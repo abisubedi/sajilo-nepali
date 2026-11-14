@@ -3,7 +3,7 @@
    - Audio clips and pictures: cached the first time they are used (their URLs change when the file changes).
    - Safari asks for audio in byte ranges, so cached clips are answered with the requested slice. */
 const SHELL = "sn-shell-v1", MEDIA = "sn-media-v1";
-const CORE = ["/", "/lessons.js", "/audio-manifest.js", "/img-manifest.js", "/coloring-manifest.js", "/manifest.webmanifest", "/icon-192.png", "/apple-touch-icon.png"];
+const CORE = ["/", "/lessons.js", "/audio-manifest.js", "/img-manifest.js", "/coloring-manifest.js", "/fonts/baloo2-devanagari-e3e5fc.woff2", "/fonts/baloo2-latin-983902.woff2", "/fonts/baloo2-latin-ext-b5a7e4.woff2", "/fonts/fonts.css", "/fonts/nunito-latin-57f464.woff2", "/fonts/nunito-latin-ext-2a3013.woff2", "/manifest.webmanifest", "/icon-192.png", "/apple-touch-icon.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(SHELL).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
@@ -60,6 +60,6 @@ self.addEventListener("fetch", e => {
   const u = new URL(req.url);
   if (u.hostname === "fonts.googleapis.com" || u.hostname === "fonts.gstatic.com") { e.respondWith(fonts(req)); return; }
   if (u.origin !== self.location.origin) return;
-  if (u.pathname.startsWith("/audio/") || /\.(png|svg|webp)$/.test(u.pathname)) { e.respondWith(media(req)); return; }
+  if (u.pathname.startsWith("/audio/") || u.pathname.startsWith("/fonts/") || /\.(png|svg|webp)$/.test(u.pathname)) { e.respondWith(media(req)); return; }
   e.respondWith(networkFirst(req));
 });
