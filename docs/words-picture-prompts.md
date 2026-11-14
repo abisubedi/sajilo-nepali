@@ -114,8 +114,12 @@ Make 21 separate square 512x512 pictures, one for each line below. Every picture
 21. w-to-ask.png: a cheerful Nepali child who is about to ask (सोध्ने)
 ```
 
-## Extra: the chapter sticker (1 picture)
+## Extra: 2 pictures (the crow from batch 2 did not come through, plus the chapter sticker)
 
 ```
 st-words.png (512x512). A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a round badge showing a small snowy Himalayan peak with an open storybook in front of it and a few Devanagari letters floating up like birds.
+```
+
+```
+w-crow.png (512x512). A warm, hand-drawn children's storybook illustration with textured dark navy-charcoal ink outlines (#1f2a44) and visible colored-pencil texture with soft watercolor wash fills in warm Himalayan colors: terracotta orange (#e8742a), marigold yellow (#f6b71c), crimson red (#e2453c), royal blue (#2f6fd6), leaf green (#2fa75a) and cream white. People and animals have friendly, gentle faces; objects and food stay simple without faces. Authentic Nepali details. Flat 2D children's book sketch style, no 3D gloss, no gradients, no text, no letters, no numbers, no watermark, cozy and authentic. Circular sticker icon composition: the subject centered inside a loose hand-drawn ink circle on cream paper, with a few tiny doodled leaves or flowers along the circle's edge, isolated on a clean pure white background outside the circle. Subject: a glossy black house crow (काग) with a grey neck, perched on a rooftop edge of a Nepali village house.
 ```
