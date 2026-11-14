@@ -2699,7 +2699,7 @@ function renderNamePrint() {
 function renderNameTrace() {
   const deva = myDevaName();
   $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">✍️ <span lang="ne">मेरो नाम</span> · My name</h2></div>
-    <div class="naam-card"><small>My name in Nepali letters</small><div class="naam-big" lang="ne">${esc(deva)}</div><b>${esc(me().name)}</b>${(FAM[K(deva)] || AUDIO[K(deva)]) ? ` <button class="say" type="button" data-say="${esc(K(deva))}">${SPEAKER} <span>Hear my name</span></button>` : ""}</div>
+    <div class="naam-card"><small>My name in Nepali letters</small><div class="naam-big" lang="ne">${esc(deva)}</div><b>${esc(me().name)}</b></div>
     <p class="ask" style="text-align:center;margin:0">Trace your name in chalk on the paati!</p>
     <div class="trace-wrap"><div class="trace-box" id="traceBox"><canvas id="guide"></canvas><canvas id="ink"></canvas></div>
       <div class="meter" aria-hidden="true"><i id="meter"></i></div>

@@ -871,7 +871,7 @@ window.FAMILY_PHRASES = ["नमस्ते!", "शुभ बिहानी!",
 
 /* === Mero Naam: common names in Devanagari (a grown-up can correct any spelling) === */
 window.NAME_DICT = {
-  "luke": "ल्युक", "luna": "लुना", "abi": "अबी", "leela": "लीला", "nova": "नोभा", "nehal": "नेहल",
+  "luke": "लुक", "luna": "लुना", "abi": "अबी", "leela": "लीला", "nova": "नोभा", "nehal": "नेहल",
   "aarav": "आरव", "aarya": "आर्या", "aayush": "आयुष", "aditya": "आदित्य", "ananya": "अनन्या",
   "anmol": "अनमोल", "arjun": "अर्जुन", "avani": "अवनी", "bibek": "विवेक", "binod": "बिनोद",
   "diya": "दिया", "eshan": "ईशान", "gaurav": "गौरव", "ishan": "ईशान", "kabir": "कबीर",
