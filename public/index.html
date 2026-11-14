@@ -1500,16 +1500,17 @@ function renderMap() {
     </button>`;
   };
   const vis = new Set(ordered.map(l => l.id));
+  const visCh = window.CHAPTERS.filter(c => c.lessons.some(id => vis.has(id))), chNum = c => visCh.indexOf(c) + 1;   // number only the chapters this level sees
   const chapters = window.CHAPTERS.map((c, i) => {
     const ls = c.lessons.filter(id => vis.has(id)).map(id => window.LESSONS.find(l => l.id === id));
     if (!ls.length) return "";
     const got = ls.reduce((a, l) => a + (P.stars[starKey(l.id)] || 0), 0), nDone = ls.filter(l => P.stars[starKey(l.id)]).length;
     // Little learners: only one chapter is open at a time (the one with the next lesson); the others fold into a banner
-    const little = P.level !== "big", openCh = S.openCh || (window.CHAPTERS.find(x => x.lessons.includes(nextId)) || window.CHAPTERS[0]).id, folded = little && c.id !== openCh;
+    const little = P.level !== "big", openCh = S.openCh || (window.CHAPTERS.find(x => x.lessons.includes(nextId)) || visCh[0]).id, folded = little && c.id !== openCh;
     const curIdx = window.CHAPTERS.findIndex(x => x.lessons.includes(nextId)), later = folded && curIdx >= 0 && i > curIdx && nDone === 0;   // not reached yet: faded, still tappable
-    return `<section class="chapter${folded ? " folded" : ""}${later ? " later" : ""}" id="ch-${c.id}" aria-label="Chapter ${i + 1}: ${esc(c.en)}">
-      <div class="chapter-banner${folded ? " fold-btn" : ""}" style="--c:${c.color}"${folded ? ` data-opench="${c.id}" role="button" tabindex="0" aria-expanded="false" aria-label="Open chapter ${i + 1}"` : ""}>
-        <span><small>Chapter ${i + 1} · <span lang="ne">अध्याय ${toDeva(i + 1)}</span></small>${neSpan(c.ne)} <span class="rom">${esc(c.rom)}</span><em>${esc(c.en)}</em></span>
+    return `<section class="chapter${folded ? " folded" : ""}${later ? " later" : ""}" id="ch-${c.id}" aria-label="Chapter ${chNum(c)}: ${esc(c.en)}">
+      <div class="chapter-banner${folded ? " fold-btn" : ""}" style="--c:${c.color}"${folded ? ` data-opench="${c.id}" role="button" tabindex="0" aria-expanded="false" aria-label="Open chapter ${chNum(c)}"` : ""}>
+        <span><small>Chapter ${chNum(c)} · <span lang="ne">अध्याय ${toDeva(chNum(c))}</span></small>${neSpan(c.ne)} <span class="rom">${esc(c.rom)}</span><em>${esc(c.en)}</em></span>
         <span class="chapter-stars" aria-label="${got} of ${ls.length * 3} stars">★ <span lang="ne">${toDeva(got)}/${toDeva(ls.length * 3)}</span>${little ? "" : `<small class="ch-lessons">${toDeva(nDone)}/${toDeva(ls.length)} lessons</small>`}${folded ? `<small class="fold-hint">${nDone === ls.length ? "🏅 Done!" : later ? "Later ▾" : "▾ Open"}</small>` : ""}</span>
         <i class="chapter-bar" aria-hidden="true"><b style="width:${Math.round(got / (ls.length * 3) * 100)}%"></b></i>
       </div>
@@ -1524,7 +1525,7 @@ function renderMap() {
     const done = ls.every(id => (P.stars[starKey(id)] || 0) > 0);
     const here = !done && !hereSet && (hereSet = true);
     const art = c.sticker.img && (window.IMG || {})[c.sticker.img.replace(/^img\/|\.webp$/g, "")];
-    return `<button class="jump-pill${done ? " finished" : ""}${here ? " here" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}" style="--c:${c.color}">${art ? `<img src="${art}" alt="" draggable="false">` : `<span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span>`}${P.level === "big" ? ` Ch ${i + 1}` : ""}${done ? " ✓" : ""}</button>`;
+    return `<button class="jump-pill${done ? " finished" : ""}${here ? " here" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}" style="--c:${c.color}">${art ? `<img src="${art}" alt="" draggable="false">` : `<span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span>`}${P.level === "big" ? ` Ch ${chNum(c)}` : ""}${done ? " ✓" : ""}</button>`;
   }).join("");
   const sheetL = S.sheet && window.LESSONS.find(l => l.id === S.sheet);
   $("#app").innerHTML = `
@@ -1804,7 +1805,7 @@ function newMemory() {
   const n = P.level === "big" ? 6 : 3, skip = l => l.letters || /sentences/.test(l.id);
   const ok = it => typeof it.ne === "string" && !/\s/.test(it.ne.trim()) && artFor(it) && AUDIO[K(it.ne)];
   const done = shuffle(window.LESSONS.filter(l => !skip(l) && P.stars[starKey(l.id)]));
-  const first = window.CHAPTERS[0].lessons.map(id => window.LESSONS.find(l => l.id === id)).filter(l => l && !skip(l));
+  const first = window.CHAPTERS.find(c => c.id === "home").lessons.map(id => window.LESSONS.find(l => l.id === id)).filter(l => l && !skip(l));
   const seen = new Set(), pick = [];
   const prev = new Set(((S.mem && S.mem.cards) || []).map(c => c.it.ne));   // a new set of words each round when we can
   for (const fresh of [true, false]) for (const l of [...done, ...first]) for (const it of shuffle(l.items || [])) {
