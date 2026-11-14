@@ -83,3 +83,9 @@ Free download. Chapter 1 free; the Sajilo Family Pass unlocks everything: 7-day 
 ### Your voice recordings
 They fit in at any time: each recorded batch goes into both the website and the next app build. If you finish them
 within the week, the first App Store version can launch with your own voice.
+
+## Step 9: after the app is live, send website visitors to the App Store [Claude, later: not yet]
+Once Apple has approved the app and it has an App Store ID:
+- iPhone and iPad visitors to sajilonepali.app are sent to the App Store page (Safari's "Smart App Banner" plus a clear
+  "Get the app" screen; a direct redirect for iPhone and iPad users).
+- Decide then what the website shows to everyone else (Android phones, computers).
