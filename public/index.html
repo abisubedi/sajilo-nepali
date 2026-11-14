@@ -1277,6 +1277,7 @@ function stickerState() {
   const list = [{ id: "pandu", pic: "PANDU", name: "Pandu's Friend", ne: "", img: window.STICKER_PANDU_IMG, line: window.STICKER_PANDU, got: first, gold: first, need: "Finish any lesson" }];
   window.CHAPTERS.forEach(c => {
     const ls = c.lessons.filter(id => vis.has(id)), st = ls.map(id => P.stars[starKey(id)] || 0);
+    if (!ls.length) return;   // a chapter this level never sees (World of Words for little learners)
     const done = st.filter(x => x > 0).length;
     list.push({ id: c.id, pic: c.sticker.pic, name: c.sticker.name, ne: c.ne, img: c.sticker.img, letter: c.sticker.letter, line: c.sticker.say, got: ls.length && done === ls.length, gold: ls.length && st.every(x => x === 3), need: `${done}/${ls.length} lessons in ${c.en}` });
   });
