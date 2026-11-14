@@ -31,7 +31,7 @@ Sound plays even when the silent switch is on. The microphone permission text is
 The encryption question is answered once in the project, so App Store uploads don't ask it every time. Inside the app,
 the website-only buttons (save for offline, share the website) are hidden, and Read to me keeps the screen on through the native plugin.
 
-## Step 2b: the Family Pass subscription [Claude, next]
+## Step 2b: the Family Pass subscription [Claude] ✅ built (needs step 4 before real purchases work)
 Decided: **Chapter 1 is free.** Everything else needs the **Sajilo Family Pass**, which starts with a **7-day free trial**, then
 **$2.99 a month** or **$24.99 a year**. The website stays free.
 - The purchase screen in the app: Pandu, what's included, both prices with the trial, **Restore purchases**, and links to the
@@ -41,6 +41,28 @@ Decided: **Chapter 1 is free.** Everything else needs the **Sajilo Family Pass**
 - In App Store Connect (step 4) you'll create a subscription group **Sajilo Family Pass** with two products:
   `app.sajilonepali.pass.monthly` ($2.99) and `app.sajilonepali.pass.yearly` ($24.99), each with a 7-day free trial
   (an "introductory offer"). You'll also need to accept the **Paid Apps agreement** and add bank and tax details.
+
+### Built (step 2b)
+- App only (the website stays free): Chapter 1 is open; other chapters, the Play drawer, the daily challenge and the phrases page
+  show a 🔒. Tapping one asks the grown-ups' question, then opens the Family Pass screen.
+- The Family Pass screen shows Apple's real local prices with the 7-day free trial, Restore purchases, the renewal terms Apple
+  requires, and links to the privacy policy and Apple's standard Terms of Use.
+- The app asks Apple whether the pass is active when it opens, when it comes back to the front, and whenever a purchase changes.
+  The answer is remembered on the device, so the pass keeps working offline. Grown-ups get "Manage subscription" (Apple's own screen).
+- Purchases use the StoreKit plugin `@capgo/native-purchases` (no other company involved, as the Kids category requires).
+
+### What you set up in App Store Connect for the pass (part of step 4)
+1. **Business** (top menu): accept the **Paid Apps** agreement, add bank account and tax forms. Subscriptions can't be sold until this is done.
+2. Your app, then **Monetization, then Subscriptions**: create a subscription group named **Sajilo Family Pass**.
+3. In that group, create two subscriptions:
+   - Reference name "Family Pass Yearly", product ID `app.sajilonepali.pass.yearly`, duration 1 year, price $24.99.
+   - Reference name "Family Pass Monthly", product ID `app.sajilonepali.pass.monthly`, duration 1 month, price $2.99.
+   Put the yearly one at level 1 (top) so a family can switch between them.
+4. For each one: **Subscription Prices, then Introductory Offers, then +**: type **Free trial**, duration **1 week**, all countries.
+5. For each one: add a display name ("Sajilo Family Pass, yearly" / "monthly"), a short description, and the review screenshot
+   (I'll give you one of the Family Pass screen).
+6. To test before launch: **Users and Access, then Sandbox, then Test Accounts**: make a sandbox Apple ID, sign in with it on the
+   iPhone under Settings, then App Store, then Sandbox Account. Sandbox purchases are free, and a trial week lasts only minutes.
 
 ## Step 3: run it on your Mac and iPhone [You, about 1 hour the first time]
 1. Install **Xcode** from the Mac App Store (free, large download).

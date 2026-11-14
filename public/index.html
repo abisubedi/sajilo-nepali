@@ -344,6 +344,19 @@ body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) 
   background: linear-gradient(#d9534f, #d9534f) 0 var(--head, 31%) / 100% 1.5px no-repeat, linear-gradient(#cfd8e6, #cfd8e6) 0 56% / 100% 1px no-repeat, linear-gradient(#7f97bd, #7f97bd) 0 82% / 100% 1.5px no-repeat; }
 .tps-row .tps-solid, .tps-row .tps-ghost { font-size: 46px; line-height: 66px; width: 15%; text-align: center; }
 .tps-blank { flex: 1; }
+/* Family Pass (app only) */
+html.locked .chapter.paid .stone .disc::after, html.locked .play-tile::after { content: "🔒"; position: absolute; right: -4px; top: -6px; font-size: 16px; line-height: 1; filter: drop-shadow(0 1px 1px rgba(0,0,0,.25)); }
+html.locked .chapter.paid .stone .disc, html.locked .play-tile { position: relative; }
+html.locked .chapter.paid .chapter-banner::after { content: "🔒 Family Pass"; position: absolute; right: 12px; bottom: 4px; font: 800 11px var(--display); color: #8a5a00; }
+html.locked .chapter.paid .chapter-banner { position: relative; }
+.pass { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 4px 16px 36px; max-width: 520px; margin: 0 auto; text-align: center; }
+.pass-pandu { width: 110px; height: 110px; } .pass-h { font: 800 22px var(--display); margin: 0; }
+.pass-list { list-style: none; padding: 0; margin: 0; text-align: left; display: flex; flex-direction: column; gap: 6px; font-weight: 700; }
+.pass-plans { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+.pass-plan { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; width: 100%; padding: 14px 12px; border-radius: 18px; border: 3px solid var(--line); background: #fff; font: inherit; color: var(--ink); cursor: pointer; }
+.pass-plan b { font: 800 19px var(--display); } .pass-plan span { font-weight: 700; color: var(--muted); }
+.pass-plan.best { border-color: var(--flag-blue); background: #eef5ff; } .pass-plan em { position: absolute; top: -11px; background: var(--flag-blue); color: #fff; font: 800 12px var(--display); font-style: normal; padding: 2px 10px; border-radius: 999px; }
+.pass-msg { min-height: 1.3em; margin: 0; font-weight: 700; } .pass-fine { font-size: 12px; color: var(--muted); margin: 0; line-height: 1.4; } .pass-links { font-size: 13px; margin: 0; } .pass-links a { color: var(--flag-blue); }
 @media print { .tps-cell, .tps-row { break-inside: avoid; } .tps-ghost { color: #f4f4f4; } }
 .count-num { width: 84px; height: 92px; border-radius: 18px; border: 3px solid var(--line); background: var(--snow); box-shadow: 0 5px 0 var(--line); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; color: var(--ink); }
 .count-num b { font: 700 40px/1 "Baloo 2", "Noto Sans Devanagari", sans-serif; } .count-num small { font-weight: 700; color: var(--muted); }
@@ -922,6 +935,30 @@ span[data-say]:hover { background: rgba(47,111,214,.10); }
 /* Running inside the iPhone/iPad app (Capacitor) rather than in a browser: everything is bundled, so the web-only extras are hidden */
 const NATIVE = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
 if (NATIVE) document.documentElement.classList.add("native");
+/* ---------- Sajilo Family Pass (App Store app only; the website stays free) ----------
+   Chapter 1 is free. Everything else needs the pass: a 7-day free trial, then monthly or yearly (prices come from Apple).
+   Purchases go straight to Apple's StoreKit (plugin @capgo/native-purchases); no other company is involved.
+   The result is remembered on the device so the pass keeps working offline (with 3 days of grace past the renewal date). */
+const PASS_IDS = { yearly: "app.sajilonepali.pass.yearly", monthly: "app.sajilonepali.pass.monthly" };
+const FREE_CHAPTERS = ["home"];
+let PASS = (() => { try { return JSON.parse(localStorage.getItem("sn-pass") || "null"); } catch (e) { return null; } })();
+const hasPass = () => !NATIVE || !!(PASS && Date.now() < PASS.until + 3 * 864e5);
+const IAP = () => NATIVE && window.Capacitor.Plugins && window.Capacitor.Plugins.NativePurchases;
+const freeLesson = id => window.CHAPTERS.some(c => FREE_CHAPTERS.includes(c.id) && c.lessons.includes(id));
+const syncLock = () => document.documentElement.classList.toggle("locked", NATIVE && !hasPass());
+async function refreshPass() {
+  const N = IAP(); if (!N) return;
+  try {
+    const { purchases } = await N.getPurchases({ productType: "subs" }), now = Date.now(); let until = 0, id = null;
+    for (const p of purchases || []) if (Object.values(PASS_IDS).includes(p.productIdentifier) && p.isActive !== false) {
+      const ex = p.expirationDate ? Date.parse(p.expirationDate) : now + 864e5; if (ex > until) { until = ex; id = p.productIdentifier; } }
+    const before = hasPass(); PASS = until > now ? { until, id } : null;
+    if (PASS) localStorage.setItem("sn-pass", JSON.stringify(PASS)); else localStorage.removeItem("sn-pass");
+    syncLock(); if (before !== hasPass() && typeof render === "function") render();
+  } catch (e) {}   // offline or no App Store: keep what was remembered
+}
+syncLock();
+if (NATIVE) { setTimeout(refreshPass, 300); try { const N = IAP(); N && N.addListener("transactionUpdated", refreshPass); } catch (e) {} document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") refreshPass(); }); }
 /* ---------- Saved progress (this browser only) ---------- */
 /* Players: each child on this device has their own stars, streak and stickers.
    Player 1 keeps the original storage key, so progress saved before players existed is kept. */
@@ -1241,6 +1278,7 @@ function render() {
   else if (S.screen === "rhymes") renderRhymes();
   else if (S.screen === "goodnight") renderGoodnight();
   else if (S.screen === "talequiz") renderTaleQuiz();
+  else if (S.screen === "pass") renderPass();
   else if (S.screen === "tracepad") renderTracepad();
   else if (S.screen === "traceprint") renderTracePrint();
   else if (S.screen === "count") renderCount();
@@ -1558,7 +1596,7 @@ function renderMap() {
     // Little learners: only one chapter is open at a time (the one with the next lesson); the others fold into a banner
     const little = P.level !== "big", openCh = S.openCh || (window.CHAPTERS.find(x => x.lessons.includes(nextId)) || visCh[0]).id, folded = little && c.id !== openCh;
     const curIdx = window.CHAPTERS.findIndex(x => x.lessons.includes(nextId)), later = folded && curIdx >= 0 && i > curIdx && nDone === 0;   // not reached yet: faded, still tappable
-    return `<section class="chapter${folded ? " folded" : ""}${later ? " later" : ""}" id="ch-${c.id}" aria-label="Chapter ${chNum(c)}: ${esc(c.en)}">
+    return `<section class="chapter${folded ? " folded" : ""}${later ? " later" : ""}${FREE_CHAPTERS.includes(c.id) ? "" : " paid"}" id="ch-${c.id}" aria-label="Chapter ${chNum(c)}: ${esc(c.en)}">
       <div class="chapter-banner${folded ? " fold-btn" : ""}" style="--c:${c.color}"${folded ? ` data-opench="${c.id}" role="button" tabindex="0" aria-expanded="false" aria-label="Open chapter ${chNum(c)}"` : ""}>
         <span><small>Chapter ${chNum(c)} · <span lang="ne">अध्याय ${toDeva(chNum(c))}</span></small>${neSpan(c.ne)} <span class="rom">${esc(c.rom)}</span><em>${esc(c.en)}</em></span>
         <span class="chapter-stars" aria-label="${got} of ${ls.length * 3} stars">★ <span lang="ne">${toDeva(got)}/${toDeva(ls.length * 3)}</span>${little ? "" : `<small class="ch-lessons">${toDeva(nDone)}/${toDeva(ls.length)} lessons</small>`}${folded ? `<small class="fold-hint">${nDone === ls.length ? "🏅 Done!" : later ? "Later ▾" : "▾ Open"}</small>` : ""}</span>
@@ -1614,6 +1652,7 @@ function renderMap() {
       <h3>👨‍👩‍👧 For grown-ups</h3>
       <div class="settings">
         ${NATIVE ? "" : `<button class="chip" type="button" id="shareApp">💌 Share with another family</button>`}
+        ${NATIVE ? (hasPass() ? `<button class="chip" type="button" id="managePass">🌟 Family Pass: manage subscription</button>` : `<button class="chip" type="button" id="getPass" onclick="askForPass()">🌟 Get the Family Pass</button>`) : ""}
         <button class="chip" type="button" id="saveCode">📤 Copy save code</button>
         <button class="chip" type="button" id="loadCode">📥 Load save code</button>
         ${"serviceWorker" in navigator && !NATIVE ? `<button class="chip" type="button" id="offlineAudio">${P.offlineSaved && (P.offlineN || 0) < offlineUrls().length ? "📶 Update offline pack (new sounds and pictures)" : P.offlineSaved ? "📶 Offline pack saved ✓ (tap to check)" : "📶 Save sounds and pictures for offline"}</button>` : ""}
@@ -1908,6 +1947,47 @@ function renderTracePrint() {
     ${big ? `<div class="tps-rows">${list.map(x => `<div class="tps-row"><span class="tps-solid" lang="ne">${esc(x.ch)}</span>${`<span class="tps-ghost" lang="ne">${esc(x.ch)}</span>`.repeat(3)}<span class="tps-blank"></span></div>`).join("")}</div>`
       : `<div class="tps-grid">${list.map(x => `<div class="tps-cell"><div class="tps-top">${x.it.n ? `<span class="tp-dots">${"<i></i>".repeat(x.it.n)}</span>` : picHTML(x.it, 34)}<span lang="ne">${esc(x.word || "")}</span></div><div class="tps-letters"><span class="tps-solid" lang="ne">${esc(x.ch)}</span><span class="tps-ghost" lang="ne">${esc(x.ch)}</span><span class="tps-ghost" lang="ne">${esc(x.ch)}</span></div></div>`).join("")}</div>`}
     <p class="print-foot">sajilonepali.app · Sajilo Nepali सजिलो नेपाली</p>`;
+}
+/* Family Pass screen (reached only through the grown-ups' check) */
+let passProducts = null, passMsg = "";
+async function loadPassProducts() {
+  const N = IAP(); if (!N) return;
+  try { const { products } = await N.getProducts({ productIdentifiers: Object.values(PASS_IDS), productType: "subs" });
+    passProducts = {}; for (const pr of products || []) passProducts[pr.identifier] = pr; } catch (e) { passProducts = {}; }
+  if (S.screen === "pass") render();
+}
+function renderPass() {
+  if (!passProducts) loadPassProducts();
+  const plan = (key, best) => { const pr = passProducts && passProducts[PASS_IDS[key]], per = key === "yearly" ? "year" : "month";
+    if (!pr) return "";
+    const trial = pr.introductoryPrice && Number(pr.introductoryPrice.price) === 0;
+    return `<button class="pass-plan${best ? " best" : ""}" type="button" data-buy="${key}">${best ? `<em>Best value</em>` : ""}
+      <b>${trial ? "Start 7-day free trial" : `Subscribe ${key}`}</b><span>${trial ? `then ${esc(pr.priceString)} a ${per}` : `${esc(pr.priceString)} a ${per}`}</span></button>`; };
+  const ready = passProducts && passProducts[PASS_IDS.yearly] && passProducts[PASS_IDS.monthly];
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🌟 Sajilo Family Pass</h2></div>
+    <section class="pass">
+      ${pandu("cheer", "pass-pandu")}
+      ${hasPass() ? `<p class="pass-h">You have the Family Pass. Thank you! 💛</p>` : `<p class="pass-h">Unlock all of Sajilo Nepali</p>`}
+      <ul class="pass-list"><li>📚 All 9 chapters and every lesson (Chapter 1 is free)</li><li>🌙 Bedtime stories, fables and rhymes</li>
+        <li>🎪 Every game: counting, matching, tracing, Bagh-chal and more</li><li>🖨️ Printable tracing sheets and coloring pages</li><li>👨‍👩‍👧 Every child on this device, no ads, ever</li></ul>
+      ${hasPass() ? "" : passProducts == null ? `<p class="note">Loading prices from the App Store…</p>` : ready ? `<div class="pass-plans">${plan("yearly", true)}${plan("monthly")}</div>`
+        : `<p class="note">The App Store can't be reached right now. Please check the internet connection.</p><button class="chip" type="button" id="passRetry">↻ Try again</button>`}
+      <p class="pass-msg" id="passMsg" aria-live="polite">${esc(passMsg)}</p>
+      <button class="chip" type="button" id="passRestore">Restore purchases</button>
+      <p class="pass-fine">The free trial lasts 7 days and is for new subscribers. Payment is charged to your Apple ID when the trial ends.
+        The subscription renews automatically unless it is turned off at least 24 hours before the end of the current period, and the account is
+        charged for renewal within 24 hours before the period ends. Manage or cancel any time in your Apple ID's Subscriptions settings.</p>
+      <p class="pass-links"><a href="https://sajilonepali.app/privacy" target="_blank" rel="noopener">Privacy policy</a> · <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Terms of use</a></p>
+    </section>`;
+}
+async function buyPass(key) {
+  const N = IAP(), msg = t => { passMsg = t; const m = $("#passMsg"); if (m) m.textContent = t; };
+  if (!N) return; document.querySelectorAll("[data-buy]").forEach(b => b.disabled = true); msg("Opening the App Store…");
+  try { await N.purchaseProduct({ productIdentifier: PASS_IDS[key], productType: "subs" }); await refreshPass();
+    if (hasPass()) { passMsg = ""; beep("done"); confetti(); toast("🌟 Welcome to the Family Pass!"); S.screen = "map"; render(); return; }
+    msg("The purchase is waiting for approval. It will unlock as soon as it goes through.");
+  } catch (e) { msg(/cancel/i.test(String(e && (e.message || e.code))) ? "" : "The purchase didn't go through. Please try again."); }
+  document.querySelectorAll("[data-buy]").forEach(b => b.disabled = false);
 }
 /* ---------- Everyday phrases for grown-ups: tap to hear, say it with your child ---------- */
 function renderPhrases() {
@@ -2868,7 +2948,15 @@ function renderBagh() {
       : B.won ? `<button class="go" type="button" id="baghAgain">🐐 Play again</button>` : ""}`;
 }
 /* ---------- Events ---------- */
-const GATED = new Set(["openPride", "sendPostcard", "openVoices", "shareApp", "saveCode", "loadCode", "offlineAudio", "openMisses", "tReset", "shareNow", "copyShare", "shareCert"]);
+const GATED = new Set(["openPass", "managePass", "openPride", "sendPostcard", "openVoices", "shareApp", "saveCode", "loadCode", "offlineAudio", "openMisses", "tReset", "shareNow", "copyShare", "shareCert"]);
+/* Which taps need the Family Pass (app only): any lesson outside Chapter 1, and every activity in the Play drawer and beyond */
+const PAID_IDS = new Set(["openRhymes", "openCount", "openMemory", "openTrace", "openBlend", "openName", "openMadal", "openTika", "openJar", "openBagh", "openRoom", "openCar", "openColoring", "wotdChal", "openPhrases", "openStory", "openTeam"]);
+function needsPass(el) {
+  const d = el.dataset || {};
+  if (d.lesson || d.playnext || d.wotdLesson) return !freeLesson(d.lesson || d.playnext || d.wotdLesson);
+  return PAID_IDS.has(el.id) || !!d.story || !!d.scene;
+}
+function askForPass() { let b = document.getElementById("openPass"); if (!b) { b = document.createElement("button"); b.id = "openPass"; b.type = "button"; b.hidden = true; document.body.appendChild(b); } b.click(); }
 let gateUntil = 0;
 function openGate(targetId) {
   closeGate();
@@ -2894,6 +2982,7 @@ document.addEventListener("click", e => {
   if (e.target.id === "gateBack" || (e.target.closest && e.target.closest("#gateNo"))) { closeGate(); return; }
   if (e.target.closest && e.target.closest("#gateOk")) { checkGate(); return; }
   { const g = e.target.closest && e.target.closest("button"); if (g && GATED.has(g.id) && Date.now() > gateUntil) { e.stopImmediatePropagation(); openGate(g.id); return; } }
+  if (NATIVE && !hasPass()) { const lk = e.target.closest && e.target.closest("button, [data-lesson]"); if (lk && needsPass(lk)) { e.stopImmediatePropagation(); beep("tap"); askForPass(); return; } }
   if (e.target.id === "playBack") { S.play = false; render(); return; }
   if (S.play && e.target.closest && e.target.closest(".play-tile")) S.play = false;   // picking a tile closes the drawer
   // Read to me: any tap during a story (a word, 🔁, ◀) cancels the page turn that was about to happen
@@ -2961,6 +3050,12 @@ document.addEventListener("click", e => {
     const run = S.tpRun = (S.tpRun || 0) + 1;
     setTimeout(() => { if (S.screen === "tracepad" && S.tpRun === run) { S.tp.i = (T.i + 1) % list.length; render(); tpSay(); } }, 1800);
     return; }
+  if (t.id === "openPass") { S.play = false; S.sheet = null; passMsg = ""; S.screen = "pass"; render(); window.scrollTo(0, 0); return; }
+  if (t.dataset.buy) { buyPass(t.dataset.buy); return; }
+  if (t.id === "passRetry") { passProducts = null; render(); return; }
+  if (t.id === "passRestore") { const N = IAP(); if (!N) return; passMsg = "Checking with the App Store…"; render();
+    N.restorePurchases().catch(() => {}).then(refreshPass).then(() => { passMsg = hasPass() ? "✓ Your Family Pass is restored." : "No Family Pass was found for this Apple ID."; if (hasPass()) { beep("good"); } render(); }); return; }
+  if (t.id === "managePass") { const N = IAP(); if (N) N.manageSubscriptions().catch(() => {}); return; }
   if (t.id === "countNext") { if (S.count.round >= 5) { S.screen = "map"; S.play = true; render(); return; } newCountRound(); render(); setTimeout(() => S.screen === "count" && say(K(window.COUNT_ASK.ne)), 250); return; }
   if (t.id === "openColoring") { S.colorPick = null; S.screen = "coloring"; render(); window.scrollTo(0, 0); return; }
   if (t.dataset.colorpick) { S.colorPick = t.dataset.colorpick.split(":").map(Number); render(); window.scrollTo(0, 0); return; }
