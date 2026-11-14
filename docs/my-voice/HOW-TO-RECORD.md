@@ -58,15 +58,13 @@ You can also download a batch that is only half done. Lines you haven't recorded
 ## Step 5: upload it to GitHub
 
 **On the GitHub website (zip files up to 25 MB):**
-1. Go to **https://github.com/abisubedi/sajilo-nepali** and sign in.
+1. Go to **https://github.com/abisubedi/sajilo-nepali/tree/main/recording** and sign in. This is the **recording** folder.
 2. Click **Add file**, then **Upload files**.
 3. Drag **sajilo-voice-batch-1.zip** from Downloads onto the page.
-4. In the box above the file list, type `recordings/` before the file name, so it goes into a folder called **recordings**.
-   (If the folder already exists, open it first and then use Add file, then Upload files.)
-5. Click **Commit changes**.
+4. Click **Commit changes**.
 
 **With GitHub Desktop (for bigger zips, usually batch 5):**
-1. Copy the zip into the **recordings** folder inside your sajilo-nepali folder on the Mac.
+1. Copy the zip into the **recording** folder inside your sajilo-nepali folder on the Mac.
 2. In GitHub Desktop, write a summary such as "voice batch 5", click **Commit to main**, then **Push origin**.
 
 ## Step 6: tell me
@@ -83,5 +81,5 @@ To see the new voice on a phone, close the app fully and open it again.
 ### For later: changing the words in the app
 
 If lines are added to or changed in the app, run `node scripts/make_my_voice_script.js` to rebuild the list, the recording page
-and `docs/my-voice/script.json`. The install step is `python3 scripts/install_my_voice.py recordings/sajilo-voice-batch-1.zip`
+and `docs/my-voice/script.json`. The install step is `python3 scripts/install_my_voice.py recording/sajilo-voice-batch-1.zip`
 (add `--dry-run` to only check the recordings).

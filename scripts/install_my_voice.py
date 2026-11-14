@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Install recordings made in my own voice.
 
-Usage:  python3 scripts/install_my_voice.py recordings/sajilo-voice-batch-1.zip [more zips or folders ...] [--dry-run]
+Usage:  python3 scripts/install_my_voice.py recording/sajilo-voice-batch-1.zip [more zips or folders ...] [--dry-run]
 
 Each file is named by its line ID (for example 1-005.m4a), as the recording page (public/studio.html) saves them.
 docs/my-voice/script.json maps every ID to the clip it replaces. Each recording is cleaned up the same way:
