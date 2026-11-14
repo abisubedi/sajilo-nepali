@@ -100,7 +100,23 @@ button:focus-visible { outline: 3px solid var(--flag-blue); outline-offset: 3px;
 .jump-pill.finished { border-color: #f3d37a; background: #fff8e1; }
 .jump-pill { display: inline-flex; align-items: center; gap: 6px; }
 .jump { flex-wrap: wrap; overflow: visible; }   /* every chapter button stays in view on any screen */
-@media (max-width: 600px) { .jump { gap: 4px; justify-content: center; } .jump-pill { padding: 3px; } .jump-pill img { margin: 0; transform: none; width: 30px; height: 30px; } }
+/* Chapter bar: big sticker icon with the English chapter name under it; wraps to two rows on phones.
+   Once you scroll into the chapters it shrinks to one row of small icons (.mini) so it doesn't cover the lessons. */
+.jump { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; padding: 8px 4px; }
+.jump .jump-pill[data-jump] { flex-direction: column; justify-content: flex-start; gap: 4px; border-radius: 18px; padding: 8px 4px 6px; white-space: normal; min-width: 0; }
+.jp-ico { position: relative; display: block; font-style: normal; line-height: 0; }
+.jump .jump-pill[data-jump] img { width: 52px; height: 52px; margin: 0; transform: none; }
+.jp-ico span { font-size: 40px; line-height: 52px; display: inline-block; width: 52px; text-align: center; }
+.jp-done { position: absolute; right: -4px; bottom: -2px; width: 20px; height: 20px; border-radius: 50%; background: #2e9e5b; color: #fff; font: 800 12px/20px var(--display, sans-serif); text-align: center; font-style: normal; }
+.jp-name { font-size: 12px; line-height: 1.2; font-weight: 800; text-align: center; overflow-wrap: normal; word-break: normal; -webkit-hyphens: auto; hyphens: auto; }
+@media (max-width: 600px) { .jump { grid-template-columns: repeat(5, 1fr); gap: 5px; padding: 6px 2px; } .jump .jump-pill[data-jump] { padding: 4px 2px; gap: 2px; border-radius: 14px; } .jump .jump-pill[data-jump] img { width: 42px; height: 42px; } .jp-ico span { font-size: 30px; line-height: 42px; width: 42px; } .jp-name { font-size: 10.5px; line-height: 1.15; } }
+.jump.mini { display: flex; flex-wrap: nowrap; justify-content: center; gap: 4px; padding: 4px; }
+.jump.mini .jump-pill[data-jump] { padding: 3px; border-radius: 999px; } .jump.mini .jp-name { display: none; }
+.jump.mini .jump-pill[data-jump] { flex: 0 1 38px; min-width: 0; padding: 2px; } .jump.mini .jump-pill[data-jump] img { width: 100%; max-width: 32px; height: auto; aspect-ratio: 1; } .jump.mini .jp-ico span { font-size: 22px; line-height: 30px; width: 30px; } .jump.mini .jp-done { width: 14px; height: 14px; font-size: 9px; line-height: 14px; }
+.jump.jump-big { position: static; }
+.jump.jump-mini { position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; margin: 0; z-index: 20; box-shadow: 0 2px 8px rgba(31,42,68,.12); transform: translateY(-110%); transition: transform .2s ease; }
+body.show-mini .jump.jump-mini { transform: none; }
+section.chapter { scroll-margin-top: 62px; }   /* a jump lands just below the small sticky chapter bar */
 .jump-pill img { width: 28px; height: 28px; object-fit: cover; border-radius: 50%; margin: -5px 0 -5px -6px; transform: scale(1.12); }
 .top-pill { display: none; }
 .jump.scrolled .top-pill { display: inline-flex; position: sticky; left: 0; z-index: 2; background: #1f2a44; color: #fff; border-color: #1f2a44; box-shadow: 4px 3px 0 var(--sky, #e8f4ff); }
@@ -1178,7 +1194,7 @@ function render() {
   if (S.screen !== "room") { window.onpointermove = null; window.onpointerup = null; }
   document.body.classList.toggle("hide-rom", !romOn()); document.body.classList.toggle("lv-big", P.level === "big");
   if (S.screen !== "done") document.querySelectorAll(".confetti").forEach(c => c.remove());
-  if (S.screen === "map") { renderMap(); watchChapters(); }
+  if (S.screen === "map") { renderMap(); watchChapters(); updateMiniBar(); }
   else if (S.screen === "lesson") renderQuestion();
   else if (S.screen === "cards") renderCards();
   else if (S.screen === "print") renderPrint();
@@ -1483,10 +1499,8 @@ function watchChapters() {
   }, { rootMargin: "-20% 0px -65% 0px" });
   document.querySelectorAll("section.chapter").forEach(s => chapterObserver.observe(s));
 }
-window.addEventListener("scroll", () => {
-  const nav = document.querySelector(".jump"), second = document.querySelectorAll("section.chapter")[1];
-  if (nav && second) nav.classList.toggle("scrolled", second.getBoundingClientRect().top < 0);
-}, { passive: true });
+function updateMiniBar() { const big = document.querySelector(".jump-big"); document.body.classList.toggle("show-mini", !!big && big.getBoundingClientRect().bottom < 0); }   // small chapter bar slides in once the big one has scrolled away (no layout shift)
+window.addEventListener("scroll", updateMiniBar, { passive: true });
 function renderMap() {
   dailyDrop();
   const ordered = orderedLessons();
@@ -1527,7 +1541,7 @@ function renderMap() {
     const done = ls.every(id => (P.stars[starKey(id)] || 0) > 0);
     const here = !done && !hereSet && (hereSet = true);
     const art = c.sticker.img && (window.IMG || {})[c.sticker.img.replace(/^img\/|\.webp$/g, "")];
-    return `<button class="jump-pill${done ? " finished" : ""}${here ? " here" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}" style="--c:${c.color}">${art ? `<img src="${art}" alt="" draggable="false">` : `<span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span>`}${done ? " ✓" : ""}</button>`;
+    return `<button class="jump-pill${done ? " finished" : ""}${here ? " here" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}" style="--c:${c.color}"><i class="jp-ico">${art ? `<img src="${art}" alt="" draggable="false">` : `<span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span>`}${done ? `<em class="jp-done" aria-hidden="true">✓</em>` : ""}</i><b class="jp-name" lang="en">${esc(c.en)}</b></button>`;
   }).join("");
   const sheetL = S.sheet && window.LESSONS.find(l => l.id === S.sheet);
   $("#app").innerHTML = `
@@ -1552,6 +1566,8 @@ function renderMap() {
         <button class="icon-btn" type="button" id="tBeeps" aria-pressed="${P.beeps !== false}" title="Game chimes (voice clips stay on)" aria-label="Game chimes ${P.beeps !== false ? "on" : "off"}"><span aria-hidden="true">${P.beeps !== false ? "🎵" : "🔕"}</span><small>chimes ${P.beeps !== false ? "on" : "off"}</small></button>
       </div>
     </div>
+    <nav class="jump jump-big" aria-label="Jump to a chapter">${jump}</nav>
+    <nav class="jump mini jump-mini" aria-label="Chapters">${jump}</nav>
     <div class="greet${festivalToday() ? " festive" : ""}${greetTint() ? " tint-" + greetTint() : ""}"><button class="pandu-btn" type="button" data-pandusay="${esc(K(greetPhrase()))}" aria-label="Pandu says hello">${pandu(panduNow(), "pandu-hi")}${festivalToday() && festivalToday().diyo ? `<span class="diyo" aria-hidden="true">🪔</span>` : ""}</button><div><p>${greeting()} I'm Pandu. ${greetExtra() || streakLine()}</p>
       ${(() => { const nx = orderedLessons().find(l => !P.stars[starKey(l.id)]); return nx ? `<button class="play-next" type="button" data-playnext="${nx.id}"><span class="disc" style="--c:${nx.color}">${iconHTML(nx)}</span><span><b>▶ Play next</b><span lang="ne">${esc(nx.ne)}</span> · ${esc(nx.title)}</span></button>` : ""; })()}
       ${missionToday() ? `<button class="chip mission-chip" type="button" id="toggleMission">🗣️ ${S.showMission ? "Hide" : "Today's"} mission</button>` : ""}
@@ -1559,7 +1575,6 @@ function renderMap() {
       ${window.STORY && storyTime() ? `<button class="greet-story" type="button" id="openStory">🌙 Read tonight's bedtime story →</button>` : ""}</div></div>
     ${dropHTML()}
     ${wordOfDayHTML()}
-    <nav class="jump" aria-label="Jump to a chapter"><button class="jump-pill top-pill" type="button" id="toTop" aria-label="Back to top">🐼 Top ↑</button>${jump}</nav>
     ${chapters}
     <section class="grownups" aria-label="For grown-ups">
       <h3>👨‍👩‍👧 For grown-ups</h3>
