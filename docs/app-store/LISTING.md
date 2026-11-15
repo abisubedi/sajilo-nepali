@@ -21,7 +21,7 @@ with Pandu the red panda as their guide.
 Made for Nepali families everywhere, especially children growing up outside Nepal who want to talk with their grandparents.
 
 WHAT'S INSIDE
-• 12 chapters of picture lessons: home and family, animals, food, feelings, festivals, school, real conversations, toys and play, the geography of Nepal, kitchen and spices, and more
+• Up to 11 chapters of picture lessons: home and family, animals, food, feelings, festivals, school, real conversations, the geography of Nepal, kitchen and spices, and a toys-and-play chapter just for little learners
 • Every word spoken aloud in a warm Nepali voice. Tap any word to hear it again
 • Two levels: Little learners (listen and tap) and Big learners (read and type)
 • The Nepali alphabet: vowels, consonants and बाराखरी, with a chalk slate to trace every letter
