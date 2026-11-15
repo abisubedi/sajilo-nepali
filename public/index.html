@@ -1651,17 +1651,10 @@ function renderMap() {
     <section class="grownups" aria-label="For grown-ups">
       <h3>👨‍👩‍👧 For grown-ups</h3>
       <div class="settings">
-        ${NATIVE ? "" : `<button class="chip" type="button" id="shareApp">💌 Share with another family</button>`}
-        ${NATIVE ? (hasPass() ? `<button class="chip" type="button" id="managePass">🌟 Family Pass: manage subscription</button>` : `<button class="chip" type="button" id="getPass" onclick="askForPass()">🌟 Get the Family Pass</button>`) : ""}
-        <button class="chip" type="button" id="saveCode">📤 Copy save code</button>
-        <button class="chip" type="button" id="loadCode">📥 Load save code</button>
-        ${"serviceWorker" in navigator && !NATIVE ? `<button class="chip" type="button" id="offlineAudio">${P.offlineSaved && (P.offlineN || 0) < offlineUrls().length ? "📶 Update offline pack (new sounds and pictures)" : P.offlineSaved ? "📶 Offline pack saved ✓ (tap to check)" : "📶 Save sounds and pictures for offline"}</button>` : ""}
-        ${(P.misses || []).length ? `<button class="chip" type="button" id="openMisses">📝 Answers to check (<span lang="ne">${toDeva(P.misses.length)}</span>)</button>` : ""}
-        <button class="chip" type="button" id="openGuide">ℹ️ About this app</button>
-        <button class="chip" type="button" id="openPride">📊 What ${esc(me().name)} can say</button>
-        <button class="chip" type="button" id="openVoices">🎙️ Family voices</button>
-        <button class="chip" type="button" id="openPhrases">🗣️ Everyday phrases</button>
-        <button class="chip" type="button" id="tReset">Start over</button>
+        ${NATIVE ? (hasPass() ? `<button class="chip" type="button" id="managePass">🌟 Family Pass: manage subscription</button>` : `<button class="chip" type="button" id="getPass" onclick="askForPass()">🌟 Get the Family Pass</button>`) + `<button class="chip" type="button" id="restorePass">↻ Restore purchases</button>` : ""}
+        <button class="chip" type="button" id="openPrivacy">🔒 Privacy policy</button>
+        ${NATIVE ? `<button class="chip" type="button" id="openTerms">📄 Terms of use</button>` : ""}
+        <button class="chip" type="button" id="openHelp">💬 Help</button>
       </div>
     </section>
     <div class="nav-space"></div>
@@ -2939,7 +2932,7 @@ function renderBagh() {
       : B.won ? `<button class="go" type="button" id="baghAgain">🐐 Play again</button>` : ""}`;
 }
 /* ---------- Events ---------- */
-const GATED = new Set(["openPass", "managePass", "openPride", "sendPostcard", "openVoices", "shareApp", "saveCode", "loadCode", "offlineAudio", "openMisses", "tReset", "shareNow", "copyShare", "shareCert"]);
+const GATED = new Set(["openPass", "managePass", "restorePass", "openPrivacy", "openTerms", "openHelp", "openPride", "sendPostcard", "openVoices", "shareApp", "saveCode", "loadCode", "offlineAudio", "openMisses", "tReset", "shareNow", "copyShare", "shareCert"]);
 /* Which taps need the Family Pass (app only): any lesson outside Chapter 1, and every activity in the Play drawer and beyond */
 const PAID_IDS = new Set(["openRhymes", "openCount", "openMemory", "openTrace", "openBlend", "openName", "openMadal", "openTika", "openJar", "openBagh", "openRoom", "openCar", "openColoring", "wotdChal", "openPhrases", "openStory", "openTeam"]);
 function needsPass(el) {
@@ -3046,6 +3039,10 @@ document.addEventListener("click", e => {
   if (t.id === "passRetry") { passProducts = null; render(); return; }
   if (t.id === "passRestore") { const N = IAP(); if (!N) return; passMsg = "Checking with the App Store…"; render();
     N.restorePurchases().catch(() => {}).then(refreshPass).then(() => { passMsg = hasPass() ? "✓ Your Family Pass is restored." : "No Family Pass was found for this Apple ID."; if (hasPass()) { beep("good"); } render(); }); return; }
+  if (t.id === "openPrivacy" || t.id === "openTerms" || t.id === "openHelp") {   // opens in Safari (or a new tab on the web)
+    window.open({ openPrivacy: "https://sajilonepali.app/privacy", openTerms: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/", openHelp: "https://sajilonepali.app/support" }[t.id], "_blank", "noopener"); return; }
+  if (t.id === "restorePass") { const N = IAP(); if (!N) return; toast("Checking with the App Store…");
+    N.restorePurchases().catch(() => {}).then(refreshPass).then(() => { toast(hasPass() ? "✓ Your Family Pass is restored." : "No Family Pass was found for this Apple ID."); if (hasPass()) beep("good"); }); return; }
   if (t.id === "managePass") { const N = IAP(); if (N) N.manageSubscriptions().catch(() => {}); return; }
   if (t.id === "countNext") { if (S.count.round >= 5) { S.screen = "map"; S.play = true; render(); return; } newCountRound(); render(); setTimeout(() => S.screen === "count" && say(K(window.COUNT_ASK.ne)), 250); return; }
   if (t.id === "openColoring") { S.colorPick = null; S.screen = "coloring"; render(); window.scrollTo(0, 0); return; }
