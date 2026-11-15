@@ -1955,7 +1955,7 @@ function renderPass() {
     <section class="pass">
       ${pandu("cheer", "pass-pandu")}
       ${hasPass() ? `<p class="pass-h">You have the Family Pass. Thank you! 💛</p>` : `<p class="pass-h">Unlock all of Sajilo Nepali</p>`}
-      <ul class="pass-list"><li>📚 All 9 chapters and every lesson (Chapter 1 is free)</li><li>🌙 Bedtime stories, fables and rhymes</li>
+      <ul class="pass-list"><li>📚 Every chapter and every lesson (Chapter 1 is free)</li><li>🌙 Bedtime stories, fables and rhymes</li>
         <li>🎪 Every game: counting, matching, tracing, Bagh-chal and more</li><li>🖨️ Printable tracing sheets and coloring pages</li><li>👨‍👩‍👧 Every child on this device, no ads, ever</li></ul>
       ${hasPass() ? "" : passProducts == null ? `<p class="note">Loading prices from the App Store…</p>` : ready ? `<div class="pass-plans">${plan("yearly", true)}${plan("monthly")}</div>`
         : `<p class="note">The App Store can't be reached right now. Please check the internet connection.</p><button class="chip" type="button" id="passRetry">↻ Try again</button>`}
