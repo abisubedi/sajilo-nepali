@@ -80,7 +80,7 @@ I'll give exact screenshots-level instructions when we get there.
 4. App Privacy: **Data Not Collected**. Privacy policy URL: `https://sajilonepali.app/privacy`.
 5. Age rating questionnaire: answer "None" to everything; it comes out 4+.
 
-## Step 5: icon, launch screen and screenshots [Claude, you approve]
+## Step 5: icon, launch screen and screenshots [Claude, you approve] ✅ made: see LISTING.md and screenshots/
 - App icon 1024×1024 (no transparency, no rounded corners: Apple rounds it), from the Pandu icon.
 - Screenshots Apple requires: iPhone 6.9" (1320×2868) and iPad 13" (2064×2752). I'll make them from the real app.
 - Description, keywords and the "What's new" text: I'll draft, you edit.
