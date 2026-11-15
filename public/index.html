@@ -2045,7 +2045,9 @@ function finishTale() {
 
 /* ================= Car ride: eyes-free family quiz over the car speakers ================= */
 function carPool() {
-  const out = []; for (const l of visibleLessons()) if (!l.letters) for (const it of l.items || []) if (typeof it.ne === "string" && it.en && !/^Say /.test(it.en) && !isLabel(it.pic) && canSay(K(it.ne))) out.push(it);
+  const out = [], seen = new Set(), add = it => { const k = K(it.ne); if (!seen.has(k) && canSay(k)) { seen.add(k); out.push(it); } };
+  for (const l of visibleLessons()) if (!l.letters) for (const it of l.items || []) if (typeof it.ne === "string" && it.en && !/^Say /.test(it.en) && !isLabel(it.pic)) add(it);
+  for (const it of window.CAR_EXTRA || []) if (!it.big || P.level === "big") add(it);   // words from the rest of the app
   return out;
 }
 function speakEn(text) {
