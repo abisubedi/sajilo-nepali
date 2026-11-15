@@ -1126,7 +1126,8 @@ const picHTML = (x, size) => {
   if (art) return `<span class="big has-art"${st}><img class="wpic" src="${art}" alt="" draggable="false"></span>`;
   return isLabel(pic) ? `<span class="pic-label">${esc(pic)}</span>` : `<span class="big"${st}>${esc(pic)}</span>`;
 };
-const iconHTML = l => (window.IMG || {})["li-" + l.id] ? `<img class="li-art" src="${window.IMG["li-" + l.id]}" alt="" draggable="false">` : `<span lang="ne" style="font-family:var(--display)">${esc(l.icon)}</span>`;
+const iconHTML = l => { const I = window.IMG || {}, a = I["li-" + l.id] || (l.iconImg && I[l.iconImg]);   // own lesson icon, else a picture from the lesson
+  return a ? `<img class="li-art" src="${a}" alt="" draggable="false">` : `<span lang="ne" style="font-family:var(--display)">${esc(l.icon)}</span>`; };
 const visibleLessons = () => window.LESSONS.filter(l => P.level === "big" ? !l.littleOnly : (!l.bigOnly && !l.sentences && !l.barakhari));   // little learners: no sentence-tile or matra lessons (they need reading)
 const SPEAKER = `<svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>`;
 const MUTED = `<svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><line x1="16" y1="9" x2="22" y2="15"/><line x1="22" y1="9" x2="16" y2="15"/></svg>`;
@@ -1799,7 +1800,7 @@ function greetExtra() {
   return "";
 }
 /* ---------- Who's who in our family ---------- */
-function kinPic(x) { const a = x.art && (window.IMG || {})[x.art]; return `<span class="kin-pic" aria-hidden="true">${a ? `<img src="${a}" alt="">` : esc(x.pic)}</span>`; }
+function kinPic(x) { const I = window.IMG || {}, a = (x.art && I[x.art]) || (x.img && I[x.img]); return `<span class="kin-pic" aria-hidden="true">${a ? `<img src="${a}" alt="">` : esc(x.pic)}</span>`; }
 const stories = () => [window.STORY, window.STORY2].filter(Boolean);
 const tales = () => (window.TALES || []).filter(t => AUDIO[K(t.pages[0].ne)]);   // daytime stories appear once their voice is recorded
 const allStories = () => [...stories(), ...(window.TALES || [])];
