@@ -155,6 +155,7 @@ section.chapter { scroll-margin-top: 62px; }   /* a jump lands just below the sm
 
 .settings { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
 .chip { border: 2px solid var(--line); background: var(--snow); border-radius: 999px; padding: 6px 14px; font-weight: 800; font-size: 15px; }
+.spot-chip { display: block; margin: 8px auto 0; font-size: 18px; padding: 8px 18px; }
 .note { color: var(--muted); font-size: 14px; text-align: center; margin: 0; max-width: 60ch; align-self: center; }
 
 /* lesson */
@@ -1823,6 +1824,7 @@ function renderStory() {
       ${i === 0 ? `<h2 style="margin:0;font-family:var(--display)"><span lang="ne">${esc(s.ne)}</span> <small style="font-size:16px;color:${tale ? "var(--muted)" : "#c7d2fe"}">${esc(s.en)}</small></h2>` : ""}
       ${i === 0 && window.STORY_OPEN ? `<p class="story-open">${neSpan(window.STORY_OPEN.ne)} <small style="font-size:14px">${esc(window.STORY_OPEN.en)}</small></p>` : ""}
       <div class="story-pic">${art ? `<span class="sp-wrap"><img src="${art}" alt="">${sp ? `<button class="story-spot" type="button" id="storySpot" aria-label="${esc(sp.en)}" style="left:${sp.x}%;top:${sp.y}%;width:${sp.r * 2}%"></button>` : ""}</span>` : pandu(pg.pic.replace(/^pandu-/, ""), "")}</div>
+      ${pg.spot && !sp ? `<button class="chip spot-chip" type="button" id="storySpot" aria-label="${esc(pg.spot.en)}">🔊 <span lang="ne">${esc(pg.spot.ne)}</span></button>` : ""}
       <p class="story-text" lang="ne" id="storyText">${words.map((w, j) => `<span class="w" data-j="${j}">${esc(w)}</span>`).join(" ")}</p>
       <p class="rom" style="background:none">${esc(pg.rom)}</p>
       <p class="story-en">${esc(pg.en)}</p>
@@ -2020,9 +2022,11 @@ function renderColoring() {
       <p class="print-foot">sajilonepali.app · Sajilo Nepali सजिलो नेपाली</p>
     </section>`;
 }
-/* After a daytime story: big learners answer one question (+5 points, once a day per story) */
+/* After a daytime story: one question (+5 points, once a day per story). Big learners get the reading question;
+   little learners get a picture question (littleQuiz) where the story has one. */
+const taleQ = s => P.level === "big" ? s.quiz : s.littleQuiz;
 function renderTaleQuiz() {
-  const s = curStory(), q = s.quiz, I = window.IMG || {}, opts = S.taleOpts || (S.taleOpts = shuffle([q.answer, ...q.wrong]));
+  const s = curStory(), q = taleQ(s), I = window.IMG || {}, opts = S.taleOpts || (S.taleOpts = shuffle([q.answer, ...q.wrong]));
   $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🌟 <span lang="ne">${esc(s.ne)}</span></h2></div>
     <section class="done">${pandu("think", "")}
       <p class="ask">Story question</p>
@@ -2035,7 +2039,7 @@ function renderTaleQuiz() {
 function finishTale() {
   const s = curStory(); P.worlds = P.worlds || {}; const first = !P.worlds["tale-" + s.id]; P.worlds["tale-" + s.id] = P.worlds["tale-" + s.id] || today(); save();
   if (first) toast(`📚 New story sticker: ${s.en}! Find it in your sticker book.`);
-  if (P.level === "big" && s.quiz) { S.taleOpts = null; S.screen = "talequiz"; render(); window.scrollTo(0, 0); return; }
+  if (taleQ(s)) { S.taleOpts = null; S.screen = "talequiz"; render(); window.scrollTo(0, 0); return; }
   confetti(); beep("done"); S.screen = "map"; S.play = true; render();
 }
 
@@ -3087,7 +3091,7 @@ document.addEventListener("click", e => {
   if (t.dataset.branch) { S.branch = t.dataset.branch; beep("good"); S.page = (S.page || 0) + 1; renderStory(); return; }
   if (t.id === "storySpot") { const s = curStory(), pg = storyPages(s)[S.page || 0]; say(K(pg.spot.ne), t); t.classList.remove("hit"); void t.offsetWidth; t.classList.add("hit"); return; }
   if (t.id === "taleEnd") { finishTale(); return; }
-  if (t.dataset.tq != null) { const q = curStory().quiz, o = S.taleOpts[+t.dataset.tq], ok = o === q.answer; say(K(o.ne), t);
+  if (t.dataset.tq != null) { const q = taleQ(curStory()), o = S.taleOpts[+t.dataset.tq], ok = o === q.answer; say(K(o.ne), t);
     if (!ok) { beep("bad"); t.classList.add("wrong"); $("#tqFeed").textContent = "Not quite. Listen again and try another!"; return; }
     document.querySelectorAll("[data-tq]").forEach(b => b.disabled = true); t.classList.add("right"); beep("good"); confetti();
     const k = "tq-" + curStory().id, first = (P.taleDay || {})[k] !== today(); P.taleDay = { ...(P.taleDay || {}), [k]: today() }; if (first) P.xp += 5; save();

@@ -1,6 +1,6 @@
 // Run: node scripts/make_my_voice_script.js
 // Builds the "record it in my own voice" script: every Nepali clip the app plays (English car-ride questions left out),
-// in 6 batches. Writes docs/my-voice/recording-script.md (to read from), docs/my-voice/script.json (id -> clip key, used by
+// in 7 batches. Writes docs/my-voice/recording-script.md (to read from), docs/my-voice/script.json (id -> clip key, used by
 // scripts/install_my_voice.py) and public/studio-script.js (used by the recording page at /studio.html).
 const fs = require("fs"), path = require("path"), R = path.join(__dirname, "..");
 global.window = {}; require(R + "/public/lessons.js"); require(R + "/public/audio-manifest.js");
@@ -11,10 +11,11 @@ const BATCHES = [
   { n: 3, title: "Lessons: play, weather, culture, school, numbers and talking with grandparents", tone: "Clear and friendly." },
   { n: 4, title: "World of Words, festivals, calendar, missions, riddles and games", tone: "Clear and friendly; riddles a little playful." },
   { n: 5, title: "Stories, fables and rhymes", tone: "Warm storyteller. Bedtime stories softly and slowly; rhymes sing-song." },
-  { n: 6, title: "New chapters: My Toys & Playtime, Geography of Nepal, Kitchen, Spices & Taste", tone: "Clear and friendly." }];
+  { n: 6, title: "New chapters: My Toys & Playtime, Geography of Nepal, Kitchen, Spices & Taste", tone: "Clear and friendly." },
+  { n: 7, title: "New stories: the crow and the jackal, two cats and the monkey", tone: "Warm storyteller; the sound words (काँ-काँ, म्याउँ-म्याउँ) big and playful." }];
 // Chapters added after batches 1 to 5 were made: they all go in batch 6, so the line IDs of batches 1 to 5 never change.
-const NEW_CHAPTERS = ["toys", "nepal-geo", "kitchen-sci"];
-const rows = [[], [], [], [], [], [], []], seen = new Set();
+const NEW_CHAPTERS = ["toys", "nepal-geo", "kitchen-sci"], NEW_TALES = ["crow", "cats"];   // stories added later go in batch 7
+const rows = [[], [], [], [], [], [], [], []], seen = new Set();
 const add = (b, key, read, rom, en, note) => { if (!key || seen.has(key) || !A[key] || key.startsWith("EN:")) return; seen.add(key); rows[b].push({ key, read: read.trim(), rom: rom || "", en: en || "", note: note || "" }); };
 const addNe = (b, o, note) => { if (o && typeof o.ne === "string") add(b, K(o.ne), o.ne, o.rom, o.en || o.title, note); };
 const walk = (b, o, note) => { if (Array.isArray(o)) return o.forEach(x => walk(b, x, note)); if (!o || typeof o !== "object") { if (typeof o === "string") add(b, K(o), o, "", "", note); return; }
@@ -41,13 +42,15 @@ for (const k of Object.keys(W)) if (!["LESSONS", "AUDIO", "CHAPTERS", "PHRASES",
 // Batch 5: stories and rhymes
 [W.STORY_OPEN, W.STORY_CLOSE].forEach(s => addNe(5, s, "story opening / ending"));
 [W.STORY, W.STORY2].forEach(s => { addNe(5, s, "bedtime story title"); s.pages.forEach(p => addNe(5, p, "bedtime story: softly")); });
-(W.TALES || []).forEach(t => { addNe(5, t, "story title"); walk(5, t.pages, `story: ${t.en}`); walk(5, t.quiz, `story question: ${t.en}`); });
+(W.TALES || []).filter(t => !NEW_TALES.includes(t.id)).forEach(t => { addNe(5, t, "story title"); walk(5, t.pages, `story: ${t.en}`); walk(5, t.quiz, `story question: ${t.en}`); });
 addNe(5, W.RHYMES_TITLE, "rhymes"); (W.RHYMES || []).forEach(r => walk(5, r, "rhyme: sing-song")); addNe(5, W.GOODNIGHT, "goodnight: softly");
 // Batch 6: the new chapters (lines already in batches 1 to 5 are not repeated)
 NEW_CHAPTERS.forEach(c => { addNe(6, ch(c), "chapter name"); addNe(6, ch(c).sticker && ch(c).sticker.say, "sticker line"); ch(c).lessons.forEach(id => doLesson(6, lesson(id))); });
+// Batch 7: the new stories
+(W.TALES || []).filter(t => NEW_TALES.includes(t.id)).forEach(t => { addNe(7, t, "story title"); walk(7, t.pages, `story: ${t.en}`); walk(7, t.quiz, `story question (big learners): ${t.en}`); walk(7, t.littleQuiz, `story question (little learners): ${t.en}`); });
 // anything the app plays that the data walk did not reach (a handful of phrases written in the app itself)
 const left = Object.keys(A).filter(k => !k.startsWith("EN:") && !seen.has(k)); left.forEach(k => add(4, k, k + "।", "", "", "app phrase"));
-let md = `# Sajilo Nepali: recordings in my own voice\n\n${rows.flat().length} Nepali clips in 6 batches (the English car-ride questions are not included).\nRead the **Nepali** column exactly as written. The other columns are only there to help.\nThe easiest way to record is the recording page: https://sajilonepali.app/studio (see docs/my-voice/HOW-TO-RECORD.md).\n\n`;
+let md = `# Sajilo Nepali: recordings in my own voice\n\n${rows.flat().length} Nepali clips in 7 batches (the English car-ride questions are not included).\nRead the **Nepali** column exactly as written. The other columns are only there to help.\nThe easiest way to record is the recording page: https://sajilonepali.app/studio (see docs/my-voice/HOW-TO-RECORD.md).\n\n`;
 const out = { batches: [] }, studio = [];
 BATCHES.forEach(B => { const rs = rows[B.n]; rs.forEach((r, i) => r.id = `${B.n}-${String(i + 1).padStart(3, "0")}`);
   md += `## Batch ${B.n}: ${B.title} (${rs.length} clips)\n\nTone: ${B.tone}\n\n| ID | Nepali (read this) | How to say it | Meaning | Note |\n|---|---|---|---|---|\n` + rs.map(r => `| ${r.id} | ${r.read.replace(/\|/g, "/")} | ${r.rom} | ${(r.en || "").replace(/\|/g, "/")} | ${r.note} |`).join("\n") + "\n\n";

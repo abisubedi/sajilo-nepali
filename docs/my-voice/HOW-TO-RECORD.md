@@ -1,6 +1,6 @@
 # Recording Sajilo Nepali in my own voice
 
-There are **970 Nepali clips** in **6 batches**: every Nepali word, letter, sentence, story page and rhyme the app plays.
+There are **1015 Nepali clips** in **7 batches**: every Nepali word, letter, sentence, story page and rhyme the app plays.
 English is not included. The full list, with how to say each line and what it means, is in
 `docs/my-voice/recording-script.md`.
 
@@ -12,6 +12,7 @@ English is not included. The full list, with how to say each line and what it me
 | 4 | World of Words, festivals, calendar months, missions, riddles, games | 183 | 1 hour |
 | 5 | Stories, fables and rhymes (long lines, storyteller voice) | 125 | 1.5 to 2 hours |
 | 6 | New chapters: My Toys & Playtime, Geography of Nepal, Kitchen, Spices & Taste | 102 | 45 minutes |
+| 7 | New stories: the crow and the jackal, two cats and the monkey (storyteller voice; sound words big and playful) | 45 | 30 to 45 minutes |
 
 Until a batch is installed, the app keeps playing the current voice for those lines.
 
