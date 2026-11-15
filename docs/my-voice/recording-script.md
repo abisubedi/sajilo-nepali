@@ -1,6 +1,6 @@
 # Sajilo Nepali: recordings in my own voice
 
-868 Nepali clips in 5 batches (the English car-ride questions are not included).
+970 Nepali clips in 6 batches (the English car-ride questions are not included).
 Read the **Nepali** column exactly as written. The other columns are only there to help.
 The easiest way to record is the recording page: https://sajilonepali.app/studio (see docs/my-voice/HOW-TO-RECORD.md).
 
@@ -906,4 +906,113 @@ Tone: Warm storyteller. Bedtime stories softly and slowly; rhymes sing-song.
 | 5-123 | पखेटा फिँजाई उड्यो पर, | pakhetaa phinjaai udyo para, | It spread its wings and flew far, | rhyme: sing-song |
 | 5-124 | दस भन्दै आयो घर! | das bhandai aayo ghar! | Counting ten, it came back home! | rhyme: sing-song |
 | 5-125 | शुभ रात्रि! अब सुत्ने बेला भयो। | shubha raatri! aba sutne belaa bhayo. | Good night! It's time to sleep now. | goodnight: softly |
+
+## Batch 6: New chapters: My Toys & Fun, Geography of Nepal, Kitchen, Spices & Taste (102 clips)
+
+Tone: Clear and friendly.
+
+| ID | Nepali (read this) | How to say it | Meaning | Note |
+|---|---|---|---|---|
+| 6-001 | मेरो खेलौना र रमाइलो | mero khelaunaa ra ramailo | My Toys & Playtime | chapter name |
+| 6-002 | वाह! तिमीले खेल्दै धेरै शब्दहरू सिक्यौ! | waah! timile kheldai dherai shabdaharu sikyau! | Awesome! You learned so many words while playing! | sticker line |
+| 6-003 | खेल्ने कुराहरू | khelne kuraaharu | Toys & Play | lesson name |
+| 6-004 | म भकुण्डो खेल्छु। | ma bhakundo khelchhu. | I play with a ball. |  |
+| 6-005 | गुडिया | gudiyaa | Doll |  |
+| 6-006 | हावामा चङ्गा फररर उड्यो! | haawaamaa changaa phararara udyo! | The kite fluttered high in the wind! |  |
+| 6-007 | सिट्ठी | sitthi | Whistle |  |
+| 6-008 | बेलुन | belun | Balloon |  |
+| 6-009 | रातो बेलुन आकाशमा उड्यो। | raato belun aakaashmaa udyo. | The red balloon flew into the sky. |  |
+| 6-010 | रमाइला रङहरू | ramailaa rangaharu | Fun Colors | lesson name |
+| 6-011 | स्याउको रङ रातो छ। | syaauko rang raato chha. | The apple's color is red. |  |
+| 6-012 | मेरो टोपी निलो छ। | mero topi nilo chha. | My cap is blue. |  |
+| 6-013 | घाँस हरियो हुन्छ। | ghaans hariyo hunchha. | Grass is green. |  |
+| 6-014 | शरीरका चाल | shareerkaa chaal | Body Moves | lesson name |
+| 6-015 | ताली | taali | Clap |  |
+| 6-016 | दुई हातले ताली बजाऊ! | dui haatle taali bajaau! | Clap your hands together! |  |
+| 6-017 | उफ्रने | uphrane | To jump |  |
+| 6-018 | सानो खरायो फुत्त उफ्रियो। | saano kharaayo phutta uphriyo. | The little rabbit hopped quickly. |  |
+| 6-019 | नाच्ने | naachne | To dance |  |
+| 6-020 | हामी खुसी भएर नाच्छौँ। | haami khusi bhaera naachchhaun. | We dance happily. |  |
+| 6-021 | मुस्कुराउने | muskuraaune | To smile |  |
+| 6-022 | हात हल्लाउने | haat hallaaune | To wave hand |  |
+| 6-023 | हाम्रो भूगोल र नेपाल | haamro bhugol ra nepaal | Geography of Nepal | chapter name |
+| 6-024 | बधाई छ! तिमीले नेपालको भूगोल चिन्यौ! | badhaai chha! timile nepaalko bhugol chinyau! | Congratulations! You know the geography of Nepal! | sticker line |
+| 6-025 | धरातल र भूगोल | dharaatal ra bhugol | Ecological Belts | lesson name |
+| 6-026 | तराई | taraai | Terai plains |  |
+| 6-027 | नेपाललाई तराई, पहाड र हिमालमा बाँडिएको छ। | nepaallaai taraai, pahaad ra himaalmaa baandieko chha. | Nepal is divided into Terai, Hill, and Mountain regions. |  |
+| 6-028 | घाँसे मैदान | ghaanse maidaan | Meadow / Pasture |  |
+| 6-029 | उपत्यका | upatyakaa | Valley |  |
+| 6-030 | काठमाडौँ एउटा सुन्दर हरियो उपत्यका हो। | kaathmaadaun euta sundar hariyo upatyakaa ho. | Kathmandu is a beautiful green valley. |  |
+| 6-031 | भञ्ज्याङ | bhanjyaang | Mountain pass |  |
+| 6-032 | पहाडको भञ्ज्याङमा चिसो हावा चल्छ। | pahaadko bhanjyaangmaa chiso haawaa chalchha. | A cool breeze blows across the mountain pass. |  |
+| 6-033 | खोँच | khonch | Gorge / Canyon |  |
+| 6-034 | प्रसिद्ध ठाउँहरू | prasiddha thaaunharu | Landmarks & Cities | lesson name |
+| 6-035 | सगरमाथा संसारको सबैभन्दा अग्लो चुचुरो हो। | sagarmaathaa sansaarko sabaibhandaa aglo chuchuro ho. | Mt. Everest is the highest peak in the world. |  |
+| 6-036 | लुम्बिनी | lumbini | Lumbini (birthplace of Buddha) |  |
+| 6-037 | भगवान बुद्धको जन्म लुम्बिनीमा भएको थियो। | bhagawaan buddhako janma lumbinimaa bhaeko thiyo. | Lord Buddha was born in Lumbini. |  |
+| 6-038 | पशुपतिनाथ | pashupatinaath | Pashupatinath temple |  |
+| 6-039 | मुक्तिनाथ | muktinaath | Muktinath temple |  |
+| 6-040 | पोखरा | pokharaa | Pokhara city |  |
+| 6-041 | पोखराबाट अन्नपूर्ण हिमाल छर्लङ्ग देखिन्छ। | pokharaabaata annapurna himaal chharlanga dekhinchha. | The Annapurna range is clearly visible from Pokhara. |  |
+| 6-042 | जनकपुर | janakpur | Janakpur city |  |
+| 6-043 | दरबार | darbaar | Historical palace / Square |  |
+| 6-044 | नदीनाला र ताल | nadinaalaa ra taal | Rivers & Lakes | lesson name |
+| 6-045 | कोशी | koshi | Koshi river |  |
+| 6-046 | गण्डकी | gandaki | Gandaki river |  |
+| 6-047 | कर्णाली | karnaali | Karnali river (longest) |  |
+| 6-048 | कर्णाली नदी हिमालबाट बग्दै आउँछ। | karnaali nadi himaalbaata bagdai aaunchha. | The Karnali river flows down from the Himalayas. |  |
+| 6-049 | रारा ताल | raaraa taal | Rara Lake |  |
+| 6-050 | रारा ताल नेपालको सबैभन्दा ठूलो ताल हो। | raaraa taal nepaalko sabaibhandaa thulo taal ho. | Rara Lake is the largest lake in Nepal. |  |
+| 6-051 | फेवाताल | phewaataal | Phewa Lake |  |
+| 6-052 | हामीले फेवातालमा डुङ्गा चढ्यौँ। | haamile phewaataalmaa dungaa chadhyaun. | We rode a wooden boat on Phewa Lake. |  |
+| 6-053 | तिलिचो ताल | tilicho taal | Tilicho Lake (high altitude) |  |
+| 6-054 | त्रिशूली | trishuli | Trishuli river |  |
+| 6-055 | दिशा र यात्रा | dishaa ra yaatraa | Directions & Travel | lesson name |
+| 6-056 | पूर्व | poorwa | East |  |
+| 6-057 | सूर्य पूर्वबाट उदाउँछ र पश्चिममा अस्ताउँछ। | soorya poorwabaata udaaunchha ra pashchimmaa astaaunchha. | The sun rises in the east and sets in the west. |  |
+| 6-058 | पश्चिम | pashchim | West |  |
+| 6-059 | उत्तर | uttar | North |  |
+| 6-060 | नेपालको उत्तरमा अग्ला हिमालहरू छन्। | nepaalko uttarmaa aglaa himaalharu chhan. | To the north of Nepal lie tall snow mountains. |  |
+| 6-061 | दक्षिण | dakshin | South |  |
+| 6-062 | नक्सा | naksaa | Map |  |
+| 6-063 | हामी नक्सा हेरेर नयाँ बाटो खोज्छौँ। | haami naksaa herera nayaan baato khojchhaun. | We look at the map to find a new path. |  |
+| 6-064 | भान्सा र स्वादको संसार | bhaansaa ra swaadko sansaar | Kitchen, Spices & Taste | chapter name |
+| 6-065 | स्याबास! तिमीले भान्सा र स्वादका सबै शब्द सिक्यौ! | syaabaas! timile bhaansaa ra swaadkaa sabai shabda sikyau! | Bravo! You've mastered kitchen words and flavors! | sticker line |
+| 6-066 | छ स्वादहरू | chha swaadaharu | The Six Tastes | lesson name |
+| 6-067 | आमाले पकाउनुभएको खीर धेरै गुलियो र मिठो छ। | aamaale pakaaunubhaeko kheer dherai guliyo ra mitho chha. | The rice pudding mother cooked is sweet and delicious. |  |
+| 6-068 | पिरो | piro | Spicy / Hot |  |
+| 6-069 | कागतीको रस असाध्यै अमिलो हुन्छ। | kaagatiko ras asaadhyai amilo hunchha. | Lemon juice is very sour. |  |
+| 6-070 | नुनिलो | nunilo | Salty |  |
+| 6-071 | तितो | tito | Bitter |  |
+| 6-072 | तितेकरेला स्वास्थ्यको लागि राम्रो तर तितो हुन्छ। | titekarelaa swaasthyako laagi raamro tara tito hunchha. | Bitter gourd is healthy but tastes bitter. |  |
+| 6-073 | टर्रो | tarro | Astringent (like unripe fruit) |  |
+| 6-074 | मसाला र जडिबुटी | masaalaa ra jadibuti | Spices & Herbs | lesson name |
+| 6-075 | जिरा | jiraa | Cumin seeds |  |
+| 6-076 | धनियाँ | dhaniyaan | Coriander |  |
+| 6-077 | तरकारीमा ताजा हरियो धनियाँ हालौँ। | tarkaarimaa taajaa hariyo dhaniyaan haalaun. | Let's garnish the curry with fresh green coriander. |  |
+| 6-078 | मरिच | marich | Black pepper |  |
+| 6-079 | दालचिनी | daalchini | Cinnamon |  |
+| 6-080 | सुकमेल | sukmel | Cardamom |  |
+| 6-081 | चियामा सुकमेल र दालचिनी मिसाउँदा मिठो हुन्छ। | chiyaamaa sukmel ra daalchini misaaundaa mitho hunchha. | Adding cardamom and cinnamon makes the tea fragrant. |  |
+| 6-082 | मेथी | methi | Fenugreek seeds |  |
+| 6-083 | दाल झान्दा मेथीको बास्ना आउँछ। | daal jhaandaa methiko baasnaa aaunchha. | Tempering lentils brings out the rich aroma of fenugreek. |  |
+| 6-084 | तेजपात | tejpaat | Bay leaf |  |
+| 6-085 | पकाउने तरिकाहरू | pakaaune tarikaaharu | Cooking Verbs | lesson name |
+| 6-086 | उमाल्ने | umaalne | To boil |  |
+| 6-087 | चिया पकाउन पहिले पानी उमालौँ। | chiyaa pakaauna pahile paani umaalaun. | To make tea, let's first boil the water. |  |
+| 6-088 | भुट्ने | bhutne | To stir-fry / roast |  |
+| 6-089 | प्याज र लसुनलाई खैरो हुन्जेल भुट्नुपर्छ। | pyaaj ra lasunlaai khairo hunjel bhutnuparchha. | Stir-fry the onions and garlic until golden brown. |  |
+| 6-090 | तार्ने | taarne | To deep fry |  |
+| 6-091 | चलाउने | chalaaune | To stir |  |
+| 6-092 | काट्ने | kaatne | To chop / cut |  |
+| 6-093 | चक्कुले होसियारीपूर्वक तरकारी काट्नुहोस्। | chakkule hosiyaaripoorwak tarkaari kaatnuhos. | Chop the vegetables carefully using the knife. |  |
+| 6-094 | छोप्ने | chhopne | To cover with a lid |  |
+| 6-095 | मथ्ने | mathne | To churn (curd to butter) |  |
+| 6-096 | भान्साका संवाद | bhaansaakaa samwaad | Kitchen Dialogue | lesson name |
+| 6-097 | मलाई धेरै भोक लाग्यो, खाना खान्छु। | malaai dherai bhok laagyo, khaanaa khaanchhu. | I am very hungry, I will eat food. |  |
+| 6-098 | तिर्खा | tirkhaa | Thirst |  |
+| 6-099 | मेरो पेट भरियो, म अघाएँ। धन्यवाद! | mero pet bhariyo, ma aghaaen. dhanyawaad! | My belly is full, I am satisfied. Thank you! |  |
+| 6-100 | खाजा | khaajaa | Snack / Afternoon meal |  |
+| 6-101 | खाना धेरै तातो छ, बिस्तारै खानुहोस्। | khaanaa dherai taato chha, bistaarai khaanuhos. | The food is very hot, please eat slowly. |  |
+| 6-102 | बास्ना | baasnaa | Pleasant aroma / Smell |  |
 

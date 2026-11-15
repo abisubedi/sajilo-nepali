@@ -1126,7 +1126,7 @@ const picHTML = (x, size) => {
   return isLabel(pic) ? `<span class="pic-label">${esc(pic)}</span>` : `<span class="big"${st}>${esc(pic)}</span>`;
 };
 const iconHTML = l => (window.IMG || {})["li-" + l.id] ? `<img class="li-art" src="${window.IMG["li-" + l.id]}" alt="" draggable="false">` : `<span lang="ne" style="font-family:var(--display)">${esc(l.icon)}</span>`;
-const visibleLessons = () => window.LESSONS.filter(l => P.level === "big" || (!l.bigOnly && !l.sentences && !l.barakhari));   // little learners: no sentence-tile or matra lessons (they need reading)
+const visibleLessons = () => window.LESSONS.filter(l => P.level === "big" ? !l.littleOnly : (!l.bigOnly && !l.sentences && !l.barakhari));   // little learners: no sentence-tile or matra lessons (they need reading)
 const SPEAKER = `<svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>`;
 const MUTED = `<svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><line x1="16" y1="9" x2="22" y2="15"/><line x1="22" y1="9" x2="16" y2="15"/></svg>`;
 const sayBtn = (key, cls = "") => canSay(key) && P.sound ? `<button class="say ${cls}" data-say="${esc(key)}" type="button" aria-label="Listen">${SPEAKER} <span>Listen</span></button>` : "";
@@ -1368,7 +1368,7 @@ function stickerState() {
     const ls = c.lessons.filter(id => vis.has(id)), st = ls.map(id => P.stars[starKey(id)] || 0);
     if (!ls.length) return;   // a chapter this level never sees (World of Words for little learners)
     const done = st.filter(x => x > 0).length;
-    list.push({ id: c.id, pic: c.sticker.pic, name: c.sticker.name, ne: c.ne, img: c.sticker.img, letter: c.sticker.letter, line: c.sticker.say, got: ls.length && done === ls.length, gold: ls.length && st.every(x => x === 3), need: `${done}/${ls.length} lessons in ${c.en}` });
+    list.push({ id: c.id, pic: c.sticker.pic, name: c.sticker.name, ne: c.ne, img: c.sticker.img && (window.IMG || {})[c.sticker.img.replace(/^img\/|\.webp$/g, "")], letter: c.sticker.letter, line: c.sticker.say, got: ls.length && done === ls.length, gold: ls.length && st.every(x => x === 3), need: `${done}/${ls.length} lessons in ${c.en}` });
   });
   const team = PL.team || 0;
   list.push({ id: "team", pic: "🤝", name: "Team Star", ne: "", img: (window.IMG || {})["st-team"] || null, line: { ne: window.PHRASES.wellDone, rom: "syaabaas!", en: "Well done, team!" }, got: team > 0, gold: team >= 5, need: "Finish a 🤝 Team round" });
