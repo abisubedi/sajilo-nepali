@@ -984,7 +984,7 @@ window.CAR_EXTRA = [
   { ne: "कुकर", rom: "kukar", en: "pressure cooker", img: "w-pressure-cooker", pic: "🍲" },
   { ne: "पुन्यु", rom: "punyu", en: "flat rice spatula", img: "w-punyu", pic: "🥄" },
   { ne: "सिलौटो", rom: "silauto", en: "grinding stone", img: "w-silauto", pic: "🪨" },
-  { ne: "लोहोरो", rom: "lohoro", en: "grinding pestle", img: "w-lohoro", pic: "🪨" },
+  { ne: "लोहोरो", rom: "lohoro", en: "grinding pestle", img: "w-silauto", pic: "🪨" },
   { ne: "थाली", rom: "thaali", en: "plate", img: "w-plate-platter", pic: "🍽️" },
   { ne: "जग", rom: "jag", en: "jug", img: "w-jug", pic: "🫗" },
   { ne: "फल", rom: "phal", en: "fruit", img: "w-fruits", pic: "🍎" },
