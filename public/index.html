@@ -1652,9 +1652,10 @@ function renderMap() {
       <h3>👨‍👩‍👧 For grown-ups</h3>
       <div class="settings">
         ${NATIVE ? (hasPass() ? `<button class="chip" type="button" id="managePass">🌟 Family Pass: manage subscription</button>` : `<button class="chip" type="button" id="getPass" onclick="askForPass()">🌟 Get the Family Pass</button>`) + `<button class="chip" type="button" id="restorePass">↻ Restore purchases</button>` : ""}
-        <button class="chip" type="button" id="openPrivacy">🔒 Privacy policy</button>
-        ${NATIVE ? `<button class="chip" type="button" id="openTerms">📄 Terms of use</button>` : ""}
-        <button class="chip" type="button" id="openHelp">💬 Help</button>
+        <button class="chip" type="button" id="openGuide">ℹ️ About this app</button>
+        <button class="chip" type="button" id="openPride">📊 What ${esc(me().name)} can say</button>
+        <button class="chip" type="button" id="openVoices">🎙️ Family voices</button>
+        <button class="chip" type="button" id="openPhrases">🗣️ Everyday phrases</button>
       </div>
     </section>
     <div class="nav-space"></div>
