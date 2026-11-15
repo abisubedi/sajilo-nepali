@@ -63,7 +63,7 @@ Terms of use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 - Contact: your name, phone and email (only Apple sees these).
 
 ## Screenshots (in docs/app-store/screenshots)
-Upload into whichever iPhone size App Store Connect asks for, 7 pictures in number order (1 to 7):
+Upload into whichever iPhone size App Store Connect asks for, 10 pictures in number order (1 to 10):
 - iPhone 6.9" display: `iphone-6.9-*.jpg` (1320 × 2868)
 - iPhone 6.3" display: `iphone-6.3-*.jpg` (1206 × 2622)
 - iPhone 6.1" display: `iphone-6.1-*.jpg` (1179 × 2556)
