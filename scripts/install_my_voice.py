@@ -5,7 +5,8 @@ Usage:  python3 scripts/install_my_voice.py recording/sajilo-voice-batch-1.zip [
 
 Each file is named by its line ID (for example 1-005.m4a), as the recording page (public/studio.html) saves them.
 docs/my-voice/script.json maps every ID to the clip it replaces. Each recording is cleaned up the same way:
-  rumble removed (high-pass 70 Hz), silence trimmed at both ends, loudness evened out
+  rumble and hiss removed, background noise reduced, dead air trimmed at both ends and long pauses
+  inside a line shortened (to 0.3 s, 0.6 s for stories), loudness evened out
   (-19 LUFS for words and phrases, -21 for story narration), a 10 ms fade-in, 80 ms of quiet at the end,
   mono 96 kbps MP3.
 It replaces the old clip file in place and gives it a new ?v= tag in public/audio-manifest.js so phones fetch the new one.
@@ -69,9 +70,12 @@ for rid in sorted(found):
     dest = os.path.join(work, "out", os.path.basename(rel)) if DRY else os.path.join(ROOT, "public", rel)
     os.makedirs(os.path.dirname(dest), exist_ok=True)
     lufs = -21 if row.get("slow") else -19
-    chain = ("highpass=f=70,"
-             "silenceremove=start_periods=1:start_threshold=-42dB:start_silence=0.05,areverse,"
-             "silenceremove=start_periods=1:start_threshold=-42dB:start_silence=0.05,areverse,"
+    gap = 0.6 if row.get("slow") else 0.3   # longest pause kept inside a line (stories breathe a little more)
+    chain = ("highpass=f=80,lowpass=f=12000,"            # rumble and hiss
+             "afftdn=nr=14:nf=-48:tn=1,"                  # background noise, learnt from the recording itself
+             f"silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.04:"
+             f"stop_periods=-1:stop_duration={gap + 0.15}:stop_threshold=-45dB:stop_silence={gap},"   # dead air at the start, long pauses inside
+             "areverse,silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.06,areverse,"   # dead air at the end
              f"loudnorm=I={lufs}:TP=-1.5:LRA=11,afade=t=in:d=0.01,apad=pad_dur=0.08")
     r = subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", raw, "-af", chain, "-ac", "1", "-ar", "44100", "-b:a", "96k", dest], capture_output=True, text=True)
     if r.returncode:
