@@ -54,7 +54,7 @@ let md = `# Sajilo Nepali: recordings in my own voice\n\n${rows.flat().length} N
 const out = { batches: [] }, studio = [];
 BATCHES.forEach(B => { const rs = rows[B.n]; rs.forEach((r, i) => r.id = `${B.n}-${String(i + 1).padStart(3, "0")}`);
   md += `## Batch ${B.n}: ${B.title} (${rs.length} clips)\n\nTone: ${B.tone}\n\n| ID | Nepali (read this) | How to say it | Meaning | Note |\n|---|---|---|---|---|\n` + rs.map(r => `| ${r.id} | ${r.read.replace(/\|/g, "/")} | ${r.rom} | ${(r.en || "").replace(/\|/g, "/")} | ${r.note} |`).join("\n") + "\n\n";
-  out.batches.push({ n: B.n, title: B.title, rows: rs.map(r => ({ id: r.id, key: r.key, slow: B.n === 5 })) });
+  out.batches.push({ n: B.n, title: B.title, rows: rs.map(r => ({ id: r.id, key: r.key, slow: B.n === 5 || B.n === 7 })) });
   studio.push({ n: B.n, title: B.title, tone: B.tone, rows: rs.map(r => [r.id, r.read, r.rom, r.en, r.note]) }); });
 fs.writeFileSync(R + "/docs/my-voice/recording-script.md", md);
 fs.writeFileSync(R + "/docs/my-voice/script.json", JSON.stringify(out));
