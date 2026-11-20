@@ -755,13 +755,15 @@ window.BLEND_TITLE = { ne: "अक्षर जोडौँ", rom: "akshar jodau
 /* Rhymes (बालगीत): sung line by line; tap a line to hear just that line. */
 window.RHYMES_TITLE = { ne: "बालगीत", rom: "baalgeet", en: "Rhymes" };
 window.RHYMES = [
-  { id: "tara", ne: "तारा बाजी लै लै", rom: "taaraa baaji lai lai", en: "Stars twinkle, lai lai", art: "scene-rhyme-tara", pic: "🐴", lines: [
-    { ne: "तारा बाजी लै लै,", rom: "taaraa baaji lai lai,", en: "Stars twinkle, lai lai," },
-    { ne: "मामा आए घोडा।", rom: "maamaa aae ghodaa.", en: "Uncle came riding a horse." },
-    { ne: "हात्ती आयो सरर,", rom: "haatti aayo sarara,", en: "The elephant came, swish swish," },
-    { ne: "घोडा आयो फरर।", rom: "ghodaa aayo pharara.", en: "The horse came, whoosh!" },
-    { ne: "मामाले ल्याए गुड,", rom: "maamaale lyaae gud,", en: "Uncle brought sweet gud," },
-    { ne: "मैले खाएँ सुप्प!", rom: "maile khaaen supp!", en: "I ate it all up, slurp!" } ] },
+  { id: "tara", ne: "ताराबाजी लै लै", rom: "taaraabaaji lai lai", en: "Twinkling stars, lai lai", art: "scene-rhyme-tara", pic: "🐴", lines: [
+    { ne: "ताराबाजी लै लै,", rom: "taaraabaaji lai lai,", en: "Twinkling stars, lai lai," },
+    { ne: "मामा आए घोडा,", rom: "maamaa aae ghodaa,", en: "Uncle came riding a horse," },
+    { ne: "माइजु आइन् डोली,", rom: "maaiju aain doli,", en: "Auntie came in a doli (palanquin)," },
+    { ne: "पापा ल्याइन् सोली,", rom: "paapaa lyaain soli,", en: "Papa brought a little basket," },
+    { ne: "बुबु माम सुपुक्क,", rom: "bubu maam supukka,", en: "Baby's food, gobbled up, supukka!" },
+    { ne: "काफल गेडी कुटुक!", rom: "kaaphal gedi kutuka!", en: "Kaphal berries, crunch, kutuka!" },
+    { ne: "बिरालो भन्छ म्याऊँ म्याऊँ,", rom: "biraalo bhanchha myaaun myaaun,", en: "The cat says meow meow," },
+    { ne: "अगुल्टो भन्छ उछिट्टिऊँ!", rom: "agulto bhanchha uchhittiun!", en: "The glowing ember says, I'll spark and jump!" } ] },
   { id: "kukhuri", ne: "कुखुरी काँ", rom: "kukhuri kaan", en: "Cock-a-doodle-doo", art: "scene-rhyme-kukhuri", pic: "🐓", lines: [
     { ne: "काग कराउँछ काँ काँ,", rom: "kaag karaaunchha kaan kaan,", en: "The crow calls kaa kaa," },
     { ne: "भाले बास्छ कुखुरी काँ!", rom: "bhaale baaschha kukhuri kaan!", en: "The rooster crows cock-a-doodle-doo!" },
