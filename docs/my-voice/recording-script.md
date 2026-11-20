@@ -891,9 +891,9 @@ Tone: Warm storyteller. Bedtime stories softly and slowly; rhymes sing-song.
 | 5-108 | ताराबाजी लै लै | taaraabaaji lai lai | Twinkling stars, lai lai | rhyme: sing-song |
 | 5-109 | मामा आए घोडा, | maamaa aae ghodaa, | Uncle came riding a horse, | rhyme: sing-song |
 | 5-110 | माइजु आइन् डोली, | maaiju aain doli, | Auntie came in a doli (palanquin), | rhyme: sing-song |
-| 5-111 | पापा ल्याइन् सोली, | paapaa lyaain soli, | Papa brought a little basket, | rhyme: sing-song |
-| 5-112 | बुबु माम सुपुक्क, | bubu maam supukka, | Baby's food, gobbled up, supukka! | rhyme: sing-song |
-| 5-113 | काफल गेडी कुटुक! | kaaphal gedi kutuka! | Kaphal berries, crunch, kutuka! | rhyme: sing-song |
+| 5-111 | पापा ल्याइन् सोली, | paapaa lyaain soli, | With a little cone-funnel right there! | rhyme: sing-song |
+| 5-112 | बुबु माम सुपुक्क, | bubu maam supukka, | Gulp down your milk and yummy food! | rhyme: sing-song |
+| 5-113 | काफल गेडी कुटुक! | kaaphal gedi kutuka! | Crunch-crunch-crunch on berries—yum! | rhyme: sing-song |
 | 5-114 | बिरालो भन्छ म्याऊँ म्याऊँ, | biraalo bhanchha myaaun myaaun, | The cat says meow meow, | rhyme: sing-song |
 | 5-115 | अगुल्टो भन्छ उछिट्टिऊँ! | agulto bhanchha uchhittiun! | The glowing ember says, I'll spark and jump! | rhyme: sing-song |
 | 5-116 | काग कराउँछ काँ काँ, | kaag karaaunchha kaan kaan, | The crow calls kaa kaa, | rhyme: sing-song |

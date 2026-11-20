@@ -759,9 +759,9 @@ window.RHYMES = [
     { ne: "ताराबाजी लै लै,", rom: "taaraabaaji lai lai,", en: "Twinkling stars, lai lai," },
     { ne: "मामा आए घोडा,", rom: "maamaa aae ghodaa,", en: "Uncle came riding a horse," },
     { ne: "माइजु आइन् डोली,", rom: "maaiju aain doli,", en: "Auntie came in a doli (palanquin)," },
-    { ne: "पापा ल्याइन् सोली,", rom: "paapaa lyaain soli,", en: "Papa brought a little basket," },
-    { ne: "बुबु माम सुपुक्क,", rom: "bubu maam supukka,", en: "Baby's food, gobbled up, supukka!" },
-    { ne: "काफल गेडी कुटुक!", rom: "kaaphal gedi kutuka!", en: "Kaphal berries, crunch, kutuka!" },
+    { ne: "पापा ल्याइन् सोली,", rom: "paapaa lyaain soli,", en: "With a little cone-funnel right there!" },
+    { ne: "बुबु माम सुपुक्क,", rom: "bubu maam supukka,", en: "Gulp down your milk and yummy food!" },
+    { ne: "काफल गेडी कुटुक!", rom: "kaaphal gedi kutuka!", en: "Crunch-crunch-crunch on berries—yum!" },
     { ne: "बिरालो भन्छ म्याऊँ म्याऊँ,", rom: "biraalo bhanchha myaaun myaaun,", en: "The cat says meow meow," },
     { ne: "अगुल्टो भन्छ उछिट्टिऊँ!", rom: "agulto bhanchha uchhittiun!", en: "The glowing ember says, I'll spark and jump!" } ] },
   { id: "kukhuri", ne: "कुखुरी काँ", rom: "kukhuri kaan", en: "Cock-a-doodle-doo", art: "scene-rhyme-kukhuri", pic: "🐓", lines: [
