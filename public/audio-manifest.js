@@ -1462,5 +1462,7 @@ window.AUDIO = {
  "EN:dandi biyo": "audio/296e696b1b.mp3?v=ed3c3d38",
  "EN:dhaka topi": "audio/37ab631210.mp3?v=a8ac6a15",
  "EN:small bowl": "audio/41eb9867cf.mp3?v=f6552813",
- "EN:phewa lake": "audio/64562c27b7.mp3?v=7ad0dc3f"
+ "EN:phewa lake": "audio/64562c27b7.mp3?v=7ad0dc3f",
+ "बाँदर र गोही": "audio/4329ba7298.mp3?v=c263cedb",
+ "सानो मुसो र ठूलो सिंह": "audio/9c10e2885f.mp3?v=bae4064b"
 };
