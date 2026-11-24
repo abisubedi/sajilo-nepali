@@ -6,13 +6,14 @@ Paste these into App Store Connect, under your app, then **iOS App**, then versi
 Sajilo Nepali
 
 ## Subtitle (max 30)
-Learn Nepali with Pandu
+Easy Nepali: Kids & Beginners
 
 ## Promotional text (max 170, can be changed any time without a new review)
-नमस्ते! Picture lessons, folk tales, rhymes and games in a warm Nepali voice. Start free with Chapter 1, then try the Family Pass free for 7 days.
+नमस्ते! Picture lessons, folk tales, rhymes and games in a warm Nepali voice, for kids and beginners. Start free with Chapter 1, then try the Family Pass free for 7 days.
 
 ## Keywords (max 100, commas, no spaces)
-nepali,learn nepali,kids,devanagari,alphabet,nepal,heritage,language,stories,rhymes,family,words
+learn,devanagari,alphabet,nepal,language,speak,words,phrases,stories,rhymes,family,heritage,lesson
+(Words already in the app name or subtitle, like nepali, easy, kids and beginners, are searched anyway, so they are left out here.)
 
 ## Description (max 4000)
 Sajilo Nepali (सजिलो नेपाली, "easy Nepali") helps children learn to understand, speak and read Nepali, one happy step at a time,
