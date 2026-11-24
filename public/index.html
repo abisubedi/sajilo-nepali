@@ -941,6 +941,51 @@ span[data-say]:hover { background: rgba(47,111,214,.10); }
 .trace-tools { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
 .meter { width: min(300px, 82vw); height: 12px; background: #d5e1f2; border-radius: 999px; overflow: hidden; }
 .meter i { display: block; height: 100%; width: 0; background: var(--flag-yellow); transition: width .2s; }
+.feat-hdr { display: block; width: 100%; aspect-ratio: 2 / 1; object-fit: cover; border-radius: 18px; margin: 0 0 12px; box-shadow: 0 4px 0 rgba(31,42,68,.12); }
+.play-shelf .new-badge { font: 800 11px var(--body, sans-serif); font-style: normal; background: var(--flag-red, #e2453c); color: #fff; border-radius: 99px; padding: 2px 8px; vertical-align: 2px; margin-left: 4px; }
+/* 1.2 · घरभित्रको खोजी */
+.hunt-card { background: #fff8e1; border: 3px solid #f3d37a; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 10px; align-items: center; text-align: center; box-shadow: 0 5px 0 #f3d37a; }
+.hunt-top { display: flex; align-items: center; gap: 12px; justify-content: center; }
+.hunt-top .mascot { width: 92px; height: 92px; }
+.hunt-letter { width: 104px; height: 104px; border-radius: 26px; background: #fff; border: 4px solid var(--flag-red, #e2453c); color: var(--flag-red, #e2453c); font: 800 68px/1 var(--display); display: grid; place-items: center; box-shadow: 0 5px 0 rgba(0,0,0,.12); cursor: pointer; padding-top: 10px; }
+.hunt-line { margin: 0; font: 800 21px/1.35 var(--display); }
+.hunt-ideas { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 8px; width: 100%; }
+.hunt-idea { background: #fff; border: 2px solid #f0e2b6; border-radius: 16px; padding: 8px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; font: inherit; color: inherit; cursor: pointer; }
+.hunt-idea img, .hunt-idea .wpic { width: 64px; height: 64px; object-fit: contain; }
+.hunt-idea b { font: 800 18px var(--display); } .hunt-idea small { color: #5d6b86; font-weight: 700; font-size: 12px; }
+.hunt-blur img, .hunt-blur b { filter: blur(7px); } .hunt-blur { position: relative; } .hunt-blur::after { content: "?"; position: absolute; inset: 0; display: grid; place-items: center; font: 800 30px var(--display); color: #b9541a; }
+.hunt-found { font-size: 22px; padding: 16px 22px; }
+.stamp-board { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; width: 100%; }
+.stamp { aspect-ratio: 1; border-radius: 50%; border: 3px dashed #d7c79a; display: grid; place-items: center; font: 800 22px var(--display); color: #c9b98a; background: #fffdf5; padding-top: 4px; }
+.stamp.on { border: 3px solid #c0392b; color: #c0392b; background: radial-gradient(circle, #fff 55%, #fde3df 56%); transform: rotate(-8deg); box-shadow: 0 0 0 3px #fff inset; }
+.stamp.today { outline: 3px solid var(--flag-blue, #2f6fd6); outline-offset: 2px; }
+/* 1.2 · उखान-टुक्का */
+.uk-card { background: #fff; border: 3px solid #e6dcc6; border-radius: 22px; padding: 14px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 5px 0 #e6dcc6; }
+.uk-tag { align-self: flex-start; background: #ffe9c7; color: #8a4b00; font-weight: 800; font-size: 13px; border-radius: 99px; padding: 2px 10px; }
+.uk-ne { margin: 0; font: 800 26px/1.3 var(--display); text-align: center; }
+.uk-panels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.uk-panel { border: 3px solid #1f2a44; border-radius: 14px; background: #fffdf7; overflow: hidden; display: flex; flex-direction: column; }
+.uk-panel h4 { margin: 0; padding: 5px 10px; background: #1f2a44; color: #fff; font: 800 14px var(--display); }
+.uk-panel.p2 h4 { background: var(--flag-blue, #2f6fd6); } .uk-panel.p3 h4 { background: var(--flag-green, #2fa75a); }
+.uk-pic { aspect-ratio: 4 / 3; display: grid; place-items: center; background: #fff4dc; font-size: 52px; letter-spacing: 4px; }
+.uk-pic img { width: 100%; height: 100%; object-fit: cover; }
+.uk-panel p { margin: 0; padding: 8px 10px 10px; font-weight: 700; line-height: 1.4; }
+.uk-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.uk-dots { display: flex; gap: 6px; } .uk-dots i { width: 10px; height: 10px; border-radius: 50%; background: #d8dce6; } .uk-dots i.on { background: var(--flag-red, #e2453c); }
+@media (max-width: 560px) { .uk-panels { grid-template-columns: 1fr; } .uk-panel { display: grid; grid-template-columns: 40% minmax(0, 1fr); } .uk-panel h4 { grid-column: 1 / -1; } .uk-panel .uk-pic { aspect-ratio: 1; font-size: 40px; } .uk-panel p { align-self: center; } }
+/* 1.2 · ऋतु चक्र र जन्मदिन */
+.ritu-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.ritu-wheel { width: min(330px, 88vw); aspect-ratio: 1; touch-action: manipulation; }
+.ritu-wheel path { stroke: #fff; stroke-width: 1.2; cursor: pointer; transition: transform .25s; transform-origin: 50px 50px; }
+.ritu-wheel g.sel path { transform: scale(1.05); stroke: #1f2a44; stroke-width: 1.4; }
+.ritu-wheel text { pointer-events: none; font-family: var(--display); font-weight: 800; }
+.ritu-card { width: 100%; background: #fff; border-radius: 20px; padding: 14px 16px; border: 3px solid var(--rc); box-shadow: 0 5px 0 var(--rc); text-align: center; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.ritu-card .big { margin: 0; font: 800 30px/1.2 var(--display); }
+.ritu-months { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.bday-box { width: 100%; background: #fff3f6; border: 3px solid #f7c6d3; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 10px; align-items: center; text-align: center; box-shadow: 0 5px 0 #f7c6d3; }
+.bday-box input[type=date] { font: 700 17px var(--body, sans-serif); padding: 10px 12px; border-radius: 12px; border: 2px solid #e8a5b8; background: #fff; color: var(--ink); min-height: 48px; }
+.bday-out { margin: 0; font: 800 38px/1.15 var(--display); color: #b03a62; }
+@media (prefers-reduced-motion: reduce) { .ritu-wheel path { transition: none; } }
 </style>
 </head>
 <body>
@@ -1312,6 +1357,9 @@ function render() {
   else if (S.screen === "tika") renderTika();
   else if (S.screen === "jar") renderJar();
   else if (S.screen === "bagh") renderBagh();
+  else if (S.screen === "hunt") renderHunt();
+  else if (S.screen === "ukhan") renderUkhan();
+  else if (S.screen === "ritu") renderRitu();
   else renderDone();
 }
 
@@ -1449,7 +1497,13 @@ function playHTML() {
       ${tile('id="openTika"', "w-tika", "🪔", "Tika", "टीका", W.openTika)}
       ${tile('id="openJar"', "li-family-jar", "🏺", "Story jar", "कथाको भाँडो", W.openJar)}
       ${tile('id="openBagh"', "li-family-bagh", "🐐", "Bagh-chal", "बाघचाल", W.openBagh)}
-    </div></div>`;
+    </div>
+    ${window.HUNT ? `<h4 class="play-shelf">🇳🇵 <span lang="ne">घरमै नेपाल</span> · Nepal at home <i class="new-badge">New</i></h4>
+    <div class="play-grid">
+      ${tile('id="openHunt"', "tile-hunt", "🔎", "Treasure hunt", window.HUNT_TITLE.ne, W.openHunt)}
+      ${tile('id="openUkhan"', "tile-ukhan", "🐸", "Sayings", window.UKHAN_TITLE.ne, W.openUkhan)}
+      ${tile('id="openRitu"', "tile-ritu", "🌸", "Seasons & birthday", "ऋतु र जन्मदिन", W.openRitu)}
+    </div>` : ""}</div>`;
 }
 /* Word seals: long-term goals for every different word learned (bronze 25, silver 50, gold 100) */
 const SEALS = [[25, "Bronze", "#c97a3d"], [50, "Silver", "#8c97ab"], [100, "Gold", "#e0a10c"]];
@@ -2916,6 +2970,74 @@ function renderJar() {
       <div class="jar-parent"><b>👨‍👩‍👧 For the grown-up:</b> ${esc(it.tip)}</div>
       <button class="chip primary" type="button" id="jarNext">🔄 Another question</button></div>`;
 }
+/* ===== 1.2 · Nepal at home ===== */
+const wordObj = ne => { for (const l of window.LESSONS) for (const it of l.items || []) if (it.ne === ne && it.en) return it; return { ne, en: "" }; };
+const featHdr = k => (window.IMG || {})[k] ? `<img class="feat-hdr" src="${window.IMG[k]}" alt="" draggable="false">` : "";
+const dayNum = () => Math.floor(new Date(isoToday() + "T12:00:00") / 864e5);
+// 8. घरभित्रको खोजी: a letter a day; find something at home that starts with it, then stamp it
+function renderHunt() {
+  const H = window.HUNT, i = ((S.huntI ?? dayNum()) % H.length + H.length) % H.length, h = H[i], got = P.hunt || {}, stamped = !!got[h.l];
+  const line = window.huntLine(h.l);
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🔎 ${neSpan(window.HUNT_TITLE.ne)} · Hunt</h2></div>${featHdr("hdr-hunt")}
+    <div class="hunt-card"><div class="hunt-top">${pandu(S.huntWin ? "cheer" : "think")}<button type="button" class="hunt-letter" data-say="L:${esc(h.l)}" lang="ne" aria-label="Hear the letter">${esc(h.l)}</button></div>
+      <p class="hunt-line">${neSpan(line)}</p><span class="rom">aaja '${esc(h.rom)}' ko din! gharbhitra '${esc(h.rom)}' baata aaune kunai kuraa khojnuhos!</span>
+      <p style="margin:0;font-weight:700">Today is <b>${esc(h.rom)}</b> day! Find something in your home that starts with <span lang="ne">${esc(h.l)}</span>, and show it to a grown-up.</p>
+      ${S.huntWin ? `<p class="ask" style="margin:0">🎉 ${neSpan(window.PHRASES.wellDone)} You found a <span lang="ne">${esc(h.l)}</span> thing!</p>`
+        : `<button class="go hunt-found" type="button" id="huntFound">🙌 ${neSpan(window.HUNT_FOUND.ne)} · I found it!</button>`}
+      <details class="hunt-help"${S.huntWin ? " open" : ""}><summary style="font-weight:800;cursor:pointer">💡 Need an idea? Tap to peek</summary>
+        <div class="hunt-ideas" style="margin-top:8px">${h.words.map(ne => { const w = wordObj(ne); return `<button type="button" class="hunt-idea" data-say="${esc(K(ne))}">${picHTML(w)}<b lang="ne">${esc(ne)}</b><small>${esc(w.en.toLowerCase())}</small></button>`; }).join("")}</div></details></div>
+    <h3 class="kin-h">🏅 My letter stamps <small>(${toDeva(Object.keys(got).length)} / ${toDeva(H.length)})</small></h3>
+    <div class="stamp-board">${H.map((x, j) => `<button type="button" class="stamp${got[x.l] ? " on" : ""}${j === i ? " today" : ""}" data-huntpick="${j}" lang="ne" aria-label="${esc(x.rom)}">${esc(x.l)}</button>`).join("")}</div>
+    <p class="note" style="margin:8px 0 0">A new letter comes every day. Tap any stamp to hunt that letter now.${stamped && !S.huntWin ? " You already stamped this one: find a different thing!" : ""}</p>`;
+}
+// 9. उखान-टुक्का: three-panel comics of Nepali sayings
+function renderUkhan() {
+  const U = window.UKHAN, n = U.length, i = ((S.ukI || 0) % n + n) % n, u = U[i], I = window.IMG || {};
+  const pic = (k, emo) => I[k] ? `<img src="${I[k]}" alt="" draggable="false">` : `<span aria-hidden="true">${emo}</span>`;
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🐸 ${neSpan(window.UKHAN_TITLE.ne)} · Sayings</h2></div>${featHdr("hdr-ukhan")}
+    <div class="uk-card"><span class="uk-tag">${u.tukka ? "टुक्का · idiom" : "उखान · proverb"}</span>
+      <p class="uk-ne">${neSpan(u.ne)}</p><span class="rom" style="text-align:center">${esc(u.rom)}</span>
+      <div style="text-align:center">${sayBtn(K(u.ne))}</div>
+      <div class="uk-panels">
+        <div class="uk-panel p1"><h4>1 · It says…</h4><div class="uk-pic">${pic("uk-" + u.id + "-1", u.emo)}</div><p>${esc(u.says)}</p></div>
+        <div class="uk-panel p2"><h4>2 · It means…</h4><div class="uk-pic">${pic("uk-" + u.id + "-2", "💭")}</div><p>${esc(u.means)}</p></div>
+        <div class="uk-panel p3"><h4>3 · Try it!</h4><div class="uk-pic">${pic("uk-" + u.id + "-3", "💡")}</div><p>${esc(u.try)}</p></div></div>
+      <p class="note" style="margin:0">👨‍👩‍👧 Ask a grown-up: when did they last hear this one?</p></div>
+    <div class="uk-nav"><button class="chip" type="button" id="ukPrev">◀ Back</button><div class="uk-dots">${U.map((_, j) => `<i class="${j === i ? "on" : ""}"></i>`).join("")}</div><button class="chip primary" type="button" id="ukNext">Next ▶</button></div>`;
+}
+// 10. ऋतु चक्र + मेरो नेपाली जन्मदिन
+function toBS(y, m, d) {   // Gregorian → Bikram Sambat {y, m (0 = वैशाख), d}, from the BS_CAL table
+  const C = window.BS_CAL; let days = Math.round((Date.UTC(y, m - 1, d) - Date.UTC(C.start[0], C.start[1] - 1, C.start[2])) / 864e5);
+  if (days < 0) return null;
+  for (let k = 0; k < C.len.length; k++) { const L = 29 + +C.len[k]; if (days < L) return { y: C.y0 + Math.floor(k / 12), m: k % 12, d: days + 1 }; days -= L; }
+  return null;
+}
+const rituOf = bm => window.RITU.find(r => r.months.includes(window.BS_MONTHS[bm].ne));
+function renderRitu() {
+  const R = window.RITU, now = new Date(), bsNow = toBS(now.getFullYear(), now.getMonth() + 1, now.getDate()), cur = bsNow ? R.indexOf(rituOf(bsNow.m)) : 0;
+  const sel = S.rituSel ?? cur, r = R[sel], I = window.IMG || {};
+  const seg = (j) => { const a0 = (j * 60 - 90 - 30) * Math.PI / 180, a1 = a0 + Math.PI / 3, P1 = [50 + 48 * Math.cos(a0), 50 + 48 * Math.sin(a0)], P2 = [50 + 48 * Math.cos(a1), 50 + 48 * Math.sin(a1)],
+      q1 = [50 + 17 * Math.cos(a1), 50 + 17 * Math.sin(a1)], q0 = [50 + 17 * Math.cos(a0), 50 + 17 * Math.sin(a0)], am = a0 + Math.PI / 6, f = v => v.toFixed(2);
+    const x = R[j], ex = 50 + 37 * Math.cos(am), ey = 50 + 37 * Math.sin(am), tx = 50 + 25 * Math.cos(am), ty = 50 + 25 * Math.sin(am);
+    return `<g class="${j === sel ? "sel" : ""}" data-ritu="${j}" role="button" aria-label="${esc(x.en)}"><path data-ritu="${j}" fill="${x.color}" d="M${f(q0[0])} ${f(q0[1])}L${f(P1[0])} ${f(P1[1])}A48 48 0 0 1 ${f(P2[0])} ${f(P2[1])}L${f(q1[0])} ${f(q1[1])}A17 17 0 0 0 ${f(q0[0])} ${f(q0[1])}Z"/>
+      ${I["ritu-" + x.id] ? `<image href="${I["ritu-" + x.id]}" x="${f(ex - 7)}" y="${f(ey - 7)}" width="14" height="14"/>` : `<text x="${f(ex)}" y="${f(ey + 3)}" text-anchor="middle" font-size="9">${x.emo}</text>`}
+      <text x="${f(tx)}" y="${f(ty + 2)}" text-anchor="middle" font-size="5.6" fill="#1f2a44" lang="ne">${esc(x.ne)}</text></g>`; };
+  const B = S.bday;
+  $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🌸 ${neSpan(window.RITU_TITLE.ne)} · Seasons</h2></div>${featHdr("hdr-ritu")}
+    <div class="ritu-wrap"><p class="note" style="margin:0">Nepal has <b>six</b> seasons, two months each. Tap a season!</p>
+      <svg class="ritu-wheel" viewBox="0 0 100 100">${R.map((_, j) => seg(j)).join("")}<circle cx="50" cy="50" r="15.5" fill="#fff"/>
+        <text x="50" y="48" text-anchor="middle" font-size="5" fill="#5d6b86">${sel === cur ? "अहिले" : "now:"}</text><text x="50" y="56" text-anchor="middle" font-size="${sel === cur ? 7 : 5.5}" fill="#1f2a44" lang="ne">${esc(R[cur].ne)}</text></svg>
+      <div class="ritu-card" style="--rc:${r.color}"><p class="big">${I["ritu-" + r.id] ? `<img src="${I["ritu-" + r.id]}" alt="" style="width:64px;height:64px;vertical-align:middle" draggable="false">` : r.emo} ${neSpan(r.ne)} <span style="font-size:18px">ऋतु</span></p><span class="rom">${esc(r.rom)} ritu · ${esc(r.en)}${sel === cur ? " · <b>now!</b>" : ""}</span>
+        <div class="ritu-months">${r.months.map(m => `<button class="chip" type="button" data-say="${esc(K(m))}">📅 <span lang="ne">${esc(m)}</span> · ${esc(window.BS_MONTHS.find(x => x.ne === m).rom)}</button>`).join("")}</div>
+        <p style="margin:0;font-weight:700">${esc(r.line)}</p>${sayBtn(K(window.rituLine(r)))}</div>
+      <div class="bday-box"><h3 style="margin:0;font-family:var(--display)">🎂 ${neSpan(window.BDAY.title)} · My Nepali birthday</h3>
+        <label for="bdayIn" style="font-weight:700">When is your birthday?</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center"><input type="date" id="bdayIn" min="1943-04-14" max="2034-04-12" value="${esc(P.bday || "")}"><button class="go" type="button" id="bdayGo">🎉 Show me!</button></div>
+        ${B ? `<p class="bday-out" lang="ne">${toDeva(B.d)} ${esc(window.BS_MONTHS[B.m].ne)} ${toDeva(B.y)}</p><span class="rom">${B.d} ${esc(window.BS_MONTHS[B.m].rom)} ${B.y} BS</span>
+          <p class="ask" style="margin:0">${neSpan(window.BDAY.ne)}</p>
+          <p style="margin:0;font-weight:700">You were born in ${rituOf(B.m).emo} <span lang="ne">${esc(rituOf(B.m).ne)}</span> (${esc(rituOf(B.m).en.toLowerCase())}). ${esc(window.BS_FEST[B.m])}</p>
+          <p class="note" style="margin:0">Your Nepali birthday moves a little each year, so ask Hajuraama to check the पात्रो (calendar)!</p>` : ""}</div></div>`;
+}
 // 6. Postcard for Hajuraama (picture to share)
 function postcardCanvas(w) {
   const c = document.createElement("canvas"); c.width = 720; c.height = 540; const x = c.getContext("2d");
@@ -2963,7 +3085,7 @@ function renderBagh() {
 /* ---------- Events ---------- */
 const GATED = new Set(["openPass", "managePass", "restorePass", "openPrivacy", "openTerms", "openHelp", "openPride", "sendPostcard", "openVoices", "shareApp", "saveCode", "loadCode", "offlineAudio", "openMisses", "tReset", "shareNow", "copyShare", "shareCert"]);
 /* Which taps need the Family Pass (app only): any lesson outside Chapter 1, and every activity in the Play drawer and beyond */
-const PAID_IDS = new Set(["openRhymes", "openCount", "openMemory", "openTrace", "openBlend", "openName", "openMadal", "openTika", "openJar", "openBagh", "openRoom", "openCar", "openColoring", "wotdChal", "openPhrases", "openStory", "openTeam"]);
+const PAID_IDS = new Set(["openRhymes", "openCount", "openMemory", "openTrace", "openBlend", "openName", "openMadal", "openTika", "openJar", "openBagh", "openRoom", "openCar", "openColoring", "wotdChal", "openPhrases", "openStory", "openTeam", "openHunt", "openUkhan", "openRitu"]);
 function needsPass(el) {
   const d = el.dataset || {};
   if (d.lesson || d.playnext || d.wotdLesson) return !freeLesson(d.lesson || d.playnext || d.wotdLesson);
@@ -3004,7 +3126,7 @@ document.addEventListener("click", e => {
   if (e.target.id === "stickBack") { S.stickers = false; render(); return; }
   if (e.target.id === "grownBack") { S.grown = null; render(); return; }
   if (e.target.id === "playersBack") { S.players = false; S.playerEdit = null; render(); return; }
-  let t = e.target.closest("[data-opench]") || e.target.closest("button, [data-say]"); if (!t) return;   // a folded chapter opens wherever you tap it
+  let t = e.target.closest("[data-opench]") || e.target.closest("button, [data-say], [data-ritu]"); if (!t) return;   // a folded chapter opens wherever you tap it
   // Nepali text inside a button belongs to that button (lesson stones, answer options, tiles, cards).
   if (t.matches("span[data-say]") && t.closest("button")) t = t.closest("button");
   // Any tappable Nepali text (outside answer buttons) just plays its sound.
@@ -3084,7 +3206,7 @@ document.addEventListener("click", e => {
     return; }
   if (t.id === "blendNext") { S.blendI = (S.blendI || 0) + 1; S.blendTap = []; if (S.blendI % 6 === 0) { confetti(); P.xp += 5; save(); toast(S.blendI % window.BLEND_WORDS.length === 0 ? "🎉 You joined every word! Starting again." : "🎉 Six words joined! Here come six more."); } render(); return; }
   if (t.id === "printName") { S.screen = "nameprint"; render(); window.scrollTo(0, 0); return; }
-  if (["openName", "openMadal", "openTika", "openJar", "openBagh"].includes(t.id)) { P.worlds = P.worlds || {}; if (!P.worlds[t.id]) { P.worlds[t.id] = today(); save(); } }
+  if (["openName", "openMadal", "openTika", "openJar", "openBagh", "openHunt", "openUkhan", "openRitu"].includes(t.id)) { P.worlds = P.worlds || {}; if (!P.worlds[t.id]) { P.worlds[t.id] = today(); save(); } }
   if (t.id === "openName") { S.screen = "nametrace"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "saveDevaName") { const v = ($("#customDeva").value || "").trim(); if (v) { me().deva = v; savePlayers(); beep("good"); renderNameTrace(); } return; }
   if (t.id === "nameDone") { if (P.nameDay !== today()) { P.nameDay = today(); P.xp += 5; save(); } beep("done"); confetti(); S.screen = "map"; render(); return; }
@@ -3099,6 +3221,20 @@ document.addEventListener("click", e => {
   if (t.id === "putTika" || t.id === "putJamara") { const tk = S.tika; tk[t.id === "putTika" ? "tikaOn" : "jamaraOn"] = true; say(t.id === "putTika" ? K("टीका") : K("जमरा")); beep("good");
     if (tk.tikaOn && tk.jamaraOn) { tk.step = 3; setTimeout(() => playSeq([K("आशीर्वाद"), K(window.TIKA_BLESSING.ne)]), 800); } renderTika(); return; }
   if (t.id === "tikaThanks") { say(K("धन्यवाद")); if (P.tikaDay !== today()) { P.tikaDay = today(); P.xp += 10; save(); } beep("done"); confetti(); setTimeout(() => { S.screen = "map"; render(); }, 900); return; }
+  if (t.matches(".hunt-idea, .hunt-letter, .ritu-months .chip")) { say(t.dataset.say, t); return; }
+  if (t.id === "openHunt") { S.huntI = null; S.huntWin = false; S.screen = "hunt"; render(); window.scrollTo(0, 0); const h = window.HUNT[dayNum() % window.HUNT.length]; setTimeout(() => S.screen === "hunt" && say(K(window.huntLine(h.l))), 400); return; }
+  if (t.dataset.huntpick != null) { S.huntI = +t.dataset.huntpick; S.huntWin = false; beep("tap"); renderHunt(); say(K(window.huntLine(window.HUNT[S.huntI].l))); return; }
+  if (t.id === "huntFound") { const H = window.HUNT, h = H[((S.huntI ?? dayNum()) % H.length + H.length) % H.length]; P.hunt = P.hunt || {}; P.hunt[h.l] = today();
+    if (P.huntDay !== today()) { P.huntDay = today(); P.xp += 5; toast("🏅 Letter stamp! +५ ⭐"); } save(); S.huntWin = true; beep("done"); confetti(); renderHunt(); say(K(window.PHRASES.wellDone)); return; }
+  if (t.id === "openUkhan") { S.ukI = S.ukI || 0; S.screen = "ukhan"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "ukNext" || t.id === "ukPrev") { S.ukI = (S.ukI || 0) + (t.id === "ukNext" ? 1 : -1); beep("tap"); renderUkhan(); window.scrollTo(0, 0);
+    if (S.ukI % window.UKHAN.length === 0 && t.id === "ukNext" && P.ukDay !== today()) { P.ukDay = today(); P.xp += 5; save(); confetti(); toast("🎉 You read every saying! +५ ⭐"); } return; }
+  if (t.id === "openRitu") { S.rituSel = null; S.bday = null; S.screen = "ritu"; render(); window.scrollTo(0, 0); return; }
+  if (t.dataset.ritu != null) { S.rituSel = +t.dataset.ritu; beep("tap"); renderRitu(); say(K(window.rituLine(window.RITU[S.rituSel]))); return; }
+  if (t.id === "bdayGo") { const v = ($("#bdayIn").value || ""), m = v.match(/^(\d{4})-(\d\d)-(\d\d)$/), b = m && toBS(+m[1], +m[2], +m[3]);
+    if (!b) { toast("Pick a date between 1943 and 2034 📅"); return; }
+    P.bday = v; save(); S.bday = b; S.rituSel = window.RITU.indexOf(rituOf(b.m)); beep("done"); confetti(); renderRitu();
+    playSeq([K(window.BDAY.ne), K(window.BS_MONTHS[b.m].ne), K(window.rituLine(rituOf(b.m)))]); return; }
   if (t.id === "openJar") { S.screen = "jar"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "jarNext") { S.jarIdx = (S.jarIdx || 0) + 1; beep("tap"); renderJar(); return; }
   if (t.id === "sendPostcard") { sendPostcard(t); return; }

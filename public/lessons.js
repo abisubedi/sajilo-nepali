@@ -1009,3 +1009,60 @@ window.CAR_EXTRA = [
   { ne: "आज के पकाउनुभयो?", rom: "aaja ke pakaaunubhayo?", en: "What did you cook today", img: "w-what-did-you-cook", pic: "🍳", big: true },
   { ne: "म थाली राख्न मद्दत गर्छु", rom: "ma thaali raakhna maddat garchhu", en: "I will help put out the plates", img: "w-help-plates", pic: "🍽️", big: true },
   { ne: "हजुरबा, मलाई एउटा कथा सुनाउनुहोस्", rom: "hajurbaa, malaai euta kathaa sunaaunuhos", en: "Grandpa, please tell me a story", img: "w-tell-me-a-story", pic: "📖", big: true }];
+
+/* ===== 1.2: Nepal at home ===== */
+/* घरभित्रको खोजी: one letter a day; the examples are app words with pictures and voices */
+window.HUNT_TITLE = { ne: "घरभित्रको खोजी", rom: "gharbhitrako khoji", en: "Treasure hunt at home" };
+window.HUNT_FOUND = { ne: "मैले भेट्टाएँ!", rom: "maile bhettaaen!", en: "I found it!" };
+window.HUNT = [
+  { l: "क", rom: "ka", words: ["कलम", "किताब", "कुर्सी", "कचौरा"] },
+  { l: "च", rom: "cha", words: ["चम्चा", "चप्पल", "चस्मा", "चिनी"] },
+  { l: "ग", rom: "ga", words: ["गिलास", "गाजर", "गुडिया", "गाडी"] },
+  { l: "प", rom: "pa", words: ["पानी", "प्याज", "पापड"] },
+  { l: "द", rom: "da", words: ["दूध", "दही", "दाल"] },
+  { l: "म", rom: "ma", words: ["मोजा", "मकै", "मोमो"] },
+  { l: "ब", rom: "ba", words: ["बत्ती", "बेलुन", "बेसार"] },
+  { l: "ज", rom: "ja", words: ["जुत्ता", "ज्याकेट"] },
+  { l: "झ", rom: "jha", words: ["झोला", "झ्याल"] },
+  { l: "ट", rom: "ta", words: ["टोपी", "टाउको"] },
+  { l: "स", rom: "sa", words: ["स्याउ", "सुन्तला", "सिट्ठी"] },
+  { l: "आ", rom: "aa", words: ["आलु", "आँप", "आँखा"] },
+];
+window.huntLine = l => `आज '${l}' को दिन! घरभित्र '${l}' बाट आउने कुनै कुरा खोज्नुहोस्!`;
+
+/* उखान-टुक्का: sayings, each a 3-panel comic (picture, what it says, what it means). Pictures: uk-<id>-1 (literal), uk-<id>-2 (meaning). */
+window.UKHAN_TITLE = { ne: "उखान-टुक्का", rom: "ukhaan-tukkaa", en: "Sayings & idioms" };
+window.UKHAN = [
+  { id: "nach", ne: "नाच्न जान्दैन, आँगन टेढो।", rom: "naachna jaandaina, aangan tedho.", emo: "💃↔️🏡",
+    says: "Can't dance, so he blames the crooked courtyard!", means: "Making excuses instead of practising.", try: "Missed a goal? Don't blame the ball. Practise a little more!" },
+  { id: "kaag", ne: "कागलाई बेल पाक्यो, हर्ष न बिस्मत।", rom: "kaagalaai bel paakyo, harsha na bismat.", emo: "🐦‍⬛🍈",
+    says: "The wood-apple is ripe, but the crow feels neither happy nor sad. Its beak can't crack the hard shell!", means: "Something good means nothing to someone who can't use it.", try: "A shelf of books is like a ripe bel to someone who won't read them." },
+  { id: "kuwa", ne: "कुवाको भ्यागुतो", rom: "kuwaako bhyaaguto", emo: "🐸🕳️", tukka: true,
+    says: "A frog living in a small well thinks the well is the whole world.", means: "Someone who has seen only a little and thinks it's everything.", try: "Read, explore and travel: there's a big ocean out there!" },
+  { id: "taali", ne: "एक हातले ताली बज्दैन।", rom: "ek haatle taali bajdaina.", emo: "✋👏",
+    says: "One hand on its own can't clap.", means: "It takes two: a quarrel needs two people, and so does teamwork.", try: "Building a block tower with your brother? Two hands clap louder!" },
+  { id: "haatti", ne: "हात्ती आयो, हात्ती आयो, फुस्सा!", rom: "haatti aayo, haatti aayo, phussaa!", emo: "🐘💨",
+    says: "“The elephant is coming, the elephant is coming!” … and then just a tiny puff.", means: "A big fuss, but a very small result.", try: "A huge birthday box with one small sweet inside: हात्ती आयो फुस्सा!" },
+  { id: "bhainsi", ne: "आफ्नो आङको भैँसी नदेख्ने, अर्काको आङको जुम्रा देख्ने।", rom: "aaphno aangko bhainsi nadekhne, arkaako aangko jumraa dekhne.", emo: "🐃🔍",
+    says: "He can't see the buffalo on his own back, but spots a tiny louse on someone else!", means: "Noticing other people's small mistakes and missing your own big ones.", try: "Before you say “you made a mistake”, check your own work too." },
+];
+
+/* ऋतु चक्र: Nepal's six seasons, two months each. Pictures: ritu-<id>. */
+window.RITU_TITLE = { ne: "नेपालका छ ऋतु", rom: "nepaalkaa chha ritu", en: "Nepal's six seasons" };
+window.RITU = [
+  { id: "basanta", ne: "वसन्त", rom: "basanta", en: "Spring", months: ["चैत", "वैशाख"], emo: "🌸", color: "#f48fb1", line: "Rhododendrons (लालीगुराँस) bloom and the Nepali New Year arrives." },
+  { id: "grishma", ne: "ग्रीष्म", rom: "grishma", en: "Summer", months: ["जेठ", "असार"], emo: "🥭", color: "#ffb74d", line: "Hot sunny days, juicy mangoes, and rice planting in the fields." },
+  { id: "barsha", ne: "वर्षा", rom: "barshaa", en: "Monsoon", months: ["साउन", "भदौ"], emo: "🌧️", color: "#4fc3f7", line: "Big rains, green hills and singing frogs." },
+  { id: "sharad", ne: "शरद", rom: "sharad", en: "Autumn", months: ["असोज", "कात्तिक"], emo: "🪁", color: "#81c784", line: "Clear blue skies, kites, Dashain and Tihar." },
+  { id: "hemanta", ne: "हेमन्त", rom: "hemanta", en: "Early winter", months: ["मंसिर", "पुस"], emo: "🌾", color: "#ffd54f", line: "Golden rice harvest and misty, cold mornings." },
+  { id: "shishir", ne: "शिशिर", rom: "shishir", en: "Winter", months: ["माघ", "फागुन"], emo: "❄️", color: "#90a4ae", line: "Snow on the Himalayas, Maghe Sankranti and warm चिया." },
+];
+window.rituLine = r => `${r.ne} ऋतु। ${r.months[0]} र ${r.months[1]}।`;
+window.BDAY = { ne: "स्याबास! यो तिम्रो नेपाली जन्मदिन हो।", rom: "syaabaas! yo timro nepaali janmadin ho.", en: "Well done! This is your Nepali birthday.", title: "मेरो नेपाली जन्मदिन" };
+/* what happens around each BS month (shown with the birthday) */
+window.BS_FEST = ["Nepali New Year (नयाँ वर्ष) month!", "Mango (आँप) season is starting.", "Rice-planting time: असार १५ is दही चिउरा day!", "Green monsoon month, with green bangles and मेहन्दी.",
+  "Teej (तीज) and Krishna's birthday usually fall around now.", "Dashain (दशैँ) is usually in this month or the next.", "Tihar (तिहार) lights and marigold garlands!", "Golden rice harvest in the villages.",
+  "Coldest days begin: time for warm चिया!", "Maghe Sankranti (माघे संक्रान्ति): til laddoo and sweet potatoes!", "Holi (होली) colours usually come in this month.", "Ghode Jatra (घोडेजात्रा) horse parade in Kathmandu."];
+/* Bikram Sambat calendar, BS 2000–2090 (AD 1943–2034). Each digit is a month's length minus 29, twelve per year,
+   from Baishakh. Checked against two independent published tables; 1 Baishakh 2000 = 14 April 1943. */
+window.BS_CAL = { y0: 2000, start: [1943, 4, 14], len: "132321110102223222101011223321101011232321110012132321110102223222101011223321101011232321110012222322011002223222101011223321101011232321110012222322011011223222101011223321101011232321110012222322011011223222101011232321101011232321110102222322101011223222101011232321110011232321110102222322101011223222101011232321110012132321110102223222101011223231101011232321110012132321110102223222101011223321101011232321110012132322011002223222101011223321101011232321110012222322011011223222101011223321101011232321110012222322011011223222101011232321101011232321110012222322101011223222101011232321110011232321110102222322101011223222101011232321110011232321110102223222101011223231101011232321110012132321110102223222101011223321101011232321110012132322010102223222101011223321101011232321110012222322011002223222101011223321101011232321110012222322011011223222101011232321101011232321110012222322101011223222101011232321110011232321110102222322101011223222101011232321110011232321110102223222101011223222101011223221110111232312110111132321110111223222110111123312110111132321110111132321110111" };
