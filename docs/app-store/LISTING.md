@@ -16,22 +16,23 @@ learn,devanagari,alphabet,nepal,language,speak,words,phrases,stories,rhymes,fami
 (Words already in the app name or subtitle, like nepali, easy, kids and beginners, are searched anyway, so they are left out here.)
 
 ## Description (max 4000)
-Sajilo Nepali (सजिलो नेपाली, "easy Nepali") helps children learn to understand, speak and read Nepali, one happy step at a time,
-with Pandu the red panda as their guide.
+Sajilo Nepali (सजिलो नेपाली, "easy Nepali") is the easy way to understand, speak and read everyday Nepali, for kids and
+beginners of any age, with Pandu the red panda as your guide.
 
-Made for Nepali families everywhere, especially children growing up outside Nepal who want to talk with their grandparents.
+Made for Nepali families everywhere: children growing up outside Nepal who want to talk with their grandparents, parents
+brushing up their own Nepali, partners joining a Nepali family, and anyone starting from नमस्ते.
 
 WHAT'S INSIDE
 • Up to 11 chapters of picture lessons: home and family, animals, food, feelings, festivals, school, real conversations, the geography of Nepal, kitchen and spices, and a toys-and-play chapter just for little learners
-• Every word spoken aloud in a warm Nepali voice. Tap any word to hear it again
-• Two levels: Little learners (listen and tap) and Big learners (read and type)
+• Every word, sentence and story spoken aloud in a clear, warm Nepali voice. Tap anything to hear it again
+• Two levels: Little learners (listen and tap, ages 4–7) and Big learners (read and type, ages 8 to adult)
 • The Nepali alphabet: vowels, consonants and बाराखरी, with a chalk slate to trace every letter
 • Nepali folk tales and bedtime stories with "read to me", plus classic rhymes to sing together
 • Games that make words stick: match the pairs, let's count, join the letters, Bagh-chal and more
 • Printable tracing sheets and coloring pages
 • Stars, stickers and a daily mission to say something in Nepali at home
 • Festival greetings through the year, from Dashain and Tihar to Chhath and Lhosar
-• Every child on the device gets their own progress
+• Everyone on the device gets their own progress, so kids and grown-ups can learn side by side
 
 SAFE FOR CHILDREN
 • No ads, ever. No accounts, no tracking, and nothing is collected: progress stays on your device

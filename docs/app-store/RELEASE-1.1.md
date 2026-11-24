@@ -76,7 +76,7 @@ You can do Parts A and B while 1.0 is still waiting for review: uploading a buil
 
 8. In App Store Connect, open the app, and next to **iOS App** in the left column click **+** (or **Add Version**). Type **1.1**.
 9. Paste the **What's New** text from above. Then open **App Information** and change the **Subtitle** to
-   `Easy Nepali: Kids & Beginners`, and on the version page replace **Keywords** with the new list in `LISTING.md`.
+   `Easy Nepali: Kids & Beginners`, and on the version page replace **Keywords** and **Description** with the new versions in `LISTING.md`.
 10. Scroll to **Build**, click **+**, and pick **1.1 (2)**.
 11. In **App Review Information → Notes**, keep the Kids Category answers (no analytics, no ads, no data shared, all data
     on the device) so the reviewer doesn't have to ask again.
