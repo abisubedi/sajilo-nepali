@@ -1958,7 +1958,7 @@ function cardList(l) {
   if (l.sentences) return l.sentences.map((s, i) => { const sp = sentencePic(l, s, i); return { ne: s.ne.join(" "), rom: s.rom.join(" "), en: s.en, pic: sp.pic, art: sp.art, key: K(s.ne.join(" ")) }; });
   return l.items.map(it => l.letters
     ? { letter: it.ne, rom: it.rom, ne: it.word, wordRom: it.wordRom, en: it.en, pic: it.pic, key: window.letterKey(it) }
-    : { ne: it.ne, rom: it.rom, en: it.en, pic: it.pic, ctx: it.ctx, ex: it.ex, tip: it.tip, key: K(it.ne) });
+    : { ne: it.ne, rom: it.rom, en: it.en, pic: it.pic, img: it.img, ctx: it.ctx, ex: it.ex, tip: it.tip, key: K(it.ne) });
 }
 function openCards(id) { S.lesson = window.LESSONS.find(l => l.id === id); S.cards = cardList(S.lesson); S.cardIdx = 0; S.sheet = null; S.screen = "cards"; render(); window.scrollTo(0, 0); }
 function renderCards() {

@@ -1686,4 +1686,617 @@ window.LESSONS.push({
   }
  ]
 });
-window.CHAPTERS.push({"id": "first-steps", "ne": "पहिलो पाइला", "rom": "pahilo paaila", "en": "First Steps · Beginner Course", "color": "#e67e22", "sticker": {"pic": "🧭", "img": "img/st-first-steps.webp", "name": "Nepal Ambassador", "say": {"ne": "वाह! तपाईं नेपालको साथी हुनुभयो!", "rom": "waah! tapaain nepaalko saathi hunubhayo!", "en": "Wow! You've become a friend of Nepal!"}}, "lessons": ["first-greetings"]});
+window.CHAPTERS.push({"id": "first-steps", "ne": "पहिलो पाइला", "rom": "pahilo paaila", "en": "First Steps · Beginner Course", "color": "#e67e22", "sticker": {"pic": "🧭", "img": "img/st-first-steps.webp", "name": "Nepal Ambassador", "say": {"ne": "वाह! तपाईं नेपालको साथी हुनुभयो!", "rom": "waah! tapaain nepaalko saathi hunubhayo!", "en": "Wow! You've become a friend of Nepal!"}}, "lessons": ["first-greetings", "first-food"]});
+window.LESSONS.push({
+ "id": "first-food",
+ "title": "Tea Stall & Restaurant",
+ "ne": "चिया र खाना",
+ "rom": "chiyaa ra khaanaa",
+ "icon": "☕",
+ "color": "#e67e22",
+ "bigOnly": true,
+ "items": [
+  {
+   "ne": "चिया",
+   "rom": "chiyaa",
+   "en": "Tea",
+   "pic": "☕",
+   "alt": [
+    "tea",
+    "chai"
+   ],
+   "tip": "The heart of everyday social life in Nepal, usually spiced with cardamom, ginger or cloves.",
+   "img": "pandu-tea"
+  },
+  {
+   "ne": "दूध चिया",
+   "rom": "dudh chiyaa",
+   "en": "Milk tea",
+   "pic": "🥛",
+   "alt": [
+    "milk tea",
+    "tea with milk"
+   ],
+   "tip": "Classic sweet Nepali tea, simmered with milk, black tea leaves and spices."
+  },
+  {
+   "ne": "कालो चिया",
+   "rom": "kaalo chiyaa",
+   "en": "Black tea",
+   "pic": "🫖",
+   "alt": [
+    "black tea",
+    "plain tea"
+   ],
+   "tip": "Tea without milk: light, and great on a trek."
+  },
+  {
+   "ne": "कागती चिया",
+   "rom": "kaagati chiyaa",
+   "en": "Lemon tea",
+   "pic": "🍋",
+   "alt": [
+    "lemon tea"
+   ],
+   "tip": "Refreshing black tea with fresh local lemon."
+  },
+  {
+   "ne": "अदुवा चिया",
+   "rom": "aduwaa chiyaa",
+   "en": "Ginger tea",
+   "pic": "🫚",
+   "alt": [
+    "ginger tea"
+   ],
+   "tip": "A favourite on cold mornings and for coughs, and at high altitude."
+  },
+  {
+   "ne": "चिनी बिना",
+   "rom": "chini binaa",
+   "en": "Without sugar",
+   "pic": "🚫",
+   "alt": [
+    "without sugar",
+    "no sugar",
+    "sugar free"
+   ],
+   "tip": "Important! Tea in Nepal comes very sweet unless you say this."
+  },
+  {
+   "ne": "थोरै चिनी",
+   "rom": "thorai chini",
+   "en": "A little sugar",
+   "pic": "🤏",
+   "alt": [
+    "little sugar",
+    "less sugar",
+    "a little sugar"
+   ],
+   "tip": "For just a hint of sweetness."
+  },
+  {
+   "ne": "पानी",
+   "rom": "paani",
+   "en": "Water",
+   "pic": "💧",
+   "alt": [
+    "water"
+   ],
+   "tip": "The everyday word for water. When travelling, ask for bottled or boiled."
+  },
+  {
+   "ne": "उमालेको पानी",
+   "rom": "umaaleko paani",
+   "en": "Boiled water",
+   "pic": "🫕",
+   "alt": [
+    "boiled water",
+    "safe water"
+   ],
+   "tip": "Safe drinking water, easy to find at teahouses along trekking trails.",
+   "img": "w-to-boil"
+  },
+  {
+   "ne": "तातो पानी",
+   "rom": "taato paani",
+   "en": "Hot water",
+   "pic": "♨️",
+   "alt": [
+    "hot water",
+    "warm water"
+   ],
+   "tip": "Many Nepalis drink hot water all year round, for warmth and digestion."
+  },
+  {
+   "ne": "चिसो पानी",
+   "rom": "chiso paani",
+   "en": "Cold water",
+   "pic": "🧊",
+   "alt": [
+    "cold water",
+    "chilled water"
+   ],
+   "tip": "Cold or chilled bottled water."
+  },
+  {
+   "ne": "दूध",
+   "rom": "dudh",
+   "en": "Milk",
+   "pic": "🥛",
+   "alt": [
+    "milk"
+   ],
+   "tip": "Fresh cow or buffalo milk."
+  },
+  {
+   "ne": "खाना",
+   "rom": "khaanaa",
+   "en": "Food / Meal",
+   "pic": "🍚",
+   "alt": [
+    "food",
+    "meal",
+    "rice"
+   ],
+   "tip": "It means food in general, but often the main daily meal of rice.",
+   "img": "w-plate-platter"
+  },
+  {
+   "ne": "दाल-भात",
+   "rom": "daal-bhaat",
+   "en": "Lentils and rice",
+   "pic": "🍛",
+   "alt": [
+    "dal bhat",
+    "lentils and rice",
+    "dal bhat tarkari"
+   ],
+   "tip": "The national meal, eaten twice a day, usually with free refills (thapnu)."
+  },
+  {
+   "ne": "तरकारी",
+   "rom": "tarkaari",
+   "en": "Vegetable curry",
+   "pic": "🥘",
+   "alt": [
+    "curry",
+    "vegetable curry",
+    "vegetables"
+   ],
+   "tip": "A spiced seasonal vegetable dish served with rice or roti."
+  },
+  {
+   "ne": "अचार",
+   "rom": "achaar",
+   "en": "Pickle / Chutney",
+   "pic": "🥣",
+   "alt": [
+    "pickle",
+    "chutney",
+    "relish"
+   ],
+   "tip": "A tangy, spicy side made from tomato, sesame (silam), radish or fermented greens (gundruk).",
+   "img": "w-pickle"
+  },
+  {
+   "ne": "मोमो",
+   "rom": "momo",
+   "en": "Steamed dumplings",
+   "pic": "🥟",
+   "alt": [
+    "momo",
+    "dumplings",
+    "steamed dumplings"
+   ],
+   "tip": "Nepal's best-loved snack, served with a rich tomato-sesame sauce (jhol achaar).",
+   "img": "w-momo"
+  },
+  {
+   "ne": "भेज मोमो",
+   "rom": "bhej momo",
+   "en": "Vegetarian dumplings",
+   "pic": "🥬",
+   "alt": [
+    "veg momo",
+    "vegetable momo",
+    "vegetarian momo"
+   ],
+   "tip": "Filled with cabbage, paneer, potato and fresh coriander."
+  },
+  {
+   "ne": "कुखुराको मोमो",
+   "rom": "kukhuraako momo",
+   "en": "Chicken dumplings",
+   "pic": "🍗",
+   "alt": [
+    "chicken momo",
+    "chicken dumplings"
+   ],
+   "tip": "Easy to find in restaurants across the cities."
+  },
+  {
+   "ne": "चाउमिन",
+   "rom": "chaaumin",
+   "en": "Fried noodles",
+   "pic": "🍜",
+   "alt": [
+    "chowmein",
+    "chow mein",
+    "fried noodles",
+    "noodles"
+   ],
+   "tip": "A favourite afternoon street snack, tossed in a hot wok with vegetables and spices."
+  },
+  {
+   "ne": "थुक्पा",
+   "rom": "thukpaa",
+   "en": "Noodle soup",
+   "pic": "🍲",
+   "alt": [
+    "thukpa",
+    "noodle soup"
+   ],
+   "tip": "A warming Himalayan soup with noodles, broth and greens."
+  },
+  {
+   "ne": "रोटी",
+   "rom": "roti",
+   "en": "Flatbread",
+   "pic": "🫓",
+   "alt": [
+    "flatbread",
+    "chapati",
+    "roti"
+   ],
+   "tip": "Whole-wheat bread cooked on a flat iron griddle (taawaa)."
+  },
+  {
+   "ne": "सेलरोटी",
+   "rom": "selroti",
+   "en": "Sel roti (sweet rice ring)",
+   "pic": "🍩",
+   "alt": [
+    "sel roti",
+    "selroti",
+    "rice donut",
+    "rice ring"
+   ],
+   "tip": "A sweet, ring-shaped rice bread fried golden, made for festivals.",
+   "img": "w-sel-roti"
+  },
+  {
+   "ne": "दही",
+   "rom": "dahi",
+   "en": "Yogurt",
+   "pic": "🥣",
+   "alt": [
+    "yogurt",
+    "curd"
+   ],
+   "tip": "Often eaten with beaten rice (chiura), or at the end of dal bhat."
+  },
+  {
+   "ne": "म शाकाहारी हुँ",
+   "rom": "ma shaakaahaari hun",
+   "en": "I am vegetarian",
+   "pic": "🌱",
+   "alt": [
+    "i am vegetarian",
+    "vegetarian",
+    "im vegetarian"
+   ],
+   "tip": "Vegetarian food is easy to find and well respected in Nepal."
+  },
+  {
+   "ne": "मासु नभएको",
+   "rom": "maasu nabhaeko",
+   "en": "Without meat",
+   "pic": "🥗",
+   "alt": [
+    "without meat",
+    "no meat",
+    "meat free"
+   ],
+   "tip": "Makes clear: no meat, bones or meat stock."
+  },
+  {
+   "ne": "पिरो",
+   "rom": "piro",
+   "en": "Spicy (chilli hot)",
+   "pic": "🌶️",
+   "alt": [
+    "spicy",
+    "hot",
+    "chilli",
+    "chili"
+   ],
+   "tip": "'Piro' means chilli heat, not fragrant spices.",
+   "img": "w-spicy"
+  },
+  {
+   "ne": "पिरो छैन?",
+   "rom": "piro chhaina?",
+   "en": "Isn't it spicy?",
+   "pic": "👌",
+   "alt": [
+    "not spicy",
+    "is it spicy",
+    "isnt it spicy",
+    "no spice"
+   ],
+   "tip": "Ask whether a dish is mild, or say it to ask for no green chillies."
+  },
+  {
+   "ne": "थोरै पिरो",
+   "rom": "thorai piro",
+   "en": "A little spicy / Mild",
+   "pic": "🤏",
+   "alt": [
+    "little spicy",
+    "mild",
+    "less spicy",
+    "a little spicy"
+   ],
+   "tip": "Asks the cook to go easy on the green chillies and chilli powder."
+  },
+  {
+   "ne": "धेरै पिरो",
+   "rom": "dherai piro",
+   "en": "Very spicy",
+   "pic": "🔥",
+   "alt": [
+    "very spicy",
+    "too spicy"
+   ],
+   "tip": "Nepalis love fiery chillies like Dalle Khursani: take care when you hear this!",
+   "img": "w-it-s-spicy"
+  },
+  {
+   "ne": "नुन",
+   "rom": "nun",
+   "en": "Salt",
+   "pic": "🧂",
+   "alt": [
+    "salt"
+   ],
+   "tip": "Everyday salt."
+  },
+  {
+   "ne": "गुलियो",
+   "rom": "guliyo",
+   "en": "Sweet",
+   "pic": "🍬",
+   "alt": [
+    "sweet",
+    "sugary"
+   ],
+   "tip": "For sweets, desserts, fruit and sugary tea."
+  },
+  {
+   "ne": "अमिलो",
+   "rom": "amilo",
+   "en": "Sour",
+   "pic": "🍋",
+   "alt": [
+    "sour",
+    "tart",
+    "tangy"
+   ],
+   "tip": "For lemon, tamarind, green mango or sour pickles."
+  },
+  {
+   "ne": "तीतो",
+   "rom": "tito",
+   "en": "Bitter",
+   "pic": "🥒",
+   "alt": [
+    "bitter"
+   ],
+   "tip": "For bitter gourd (tite karela) or black coffee."
+  },
+  {
+   "ne": "एक प्लेट",
+   "rom": "ek plate",
+   "en": "One plate",
+   "pic": "🍽️",
+   "alt": [
+    "one plate",
+    "a plate",
+    "1 plate"
+   ],
+   "tip": "The usual portion for momo, chowmein or fried rice."
+  },
+  {
+   "ne": "दुई कप",
+   "rom": "dui cup",
+   "en": "Two cups",
+   "pic": "☕",
+   "alt": [
+    "two cups",
+    "2 cups"
+   ],
+   "tip": "'Dui cup dudh chiyaa dinuhos': two cups of milk tea, please."
+  },
+  {
+   "ne": "चम्चा",
+   "rom": "chamchaa",
+   "en": "Spoon",
+   "pic": "🥄",
+   "alt": [
+    "spoon"
+   ],
+   "tip": "Many local places eat with the hand; just ask if you'd like a spoon."
+  },
+  {
+   "ne": "काँटा",
+   "rom": "kaantaa",
+   "en": "Fork",
+   "pic": "🍴",
+   "alt": [
+    "fork"
+   ],
+   "tip": "Handy for noodles or momo."
+  },
+  {
+   "ne": "कागज / टिस्यु",
+   "rom": "kaagat / tissue",
+   "en": "Paper napkin / Tissue",
+   "pic": "🧻",
+   "alt": [
+    "tissue",
+    "napkin",
+    "paper napkin",
+    "tissue paper"
+   ],
+   "tip": "Ask for a tissue to dry your hands or wipe your spoon."
+  },
+  {
+   "ne": "गिलास",
+   "rom": "gilaas",
+   "en": "Glass / Tumbler",
+   "pic": "🥛",
+   "alt": [
+    "glass",
+    "tumbler",
+    "cup"
+   ],
+   "tip": "The steel or glass tumbler for water and tea in local eateries.",
+   "img": "w-glass"
+  },
+  {
+   "ne": "अलिकति थप्नुहोस्",
+   "rom": "alikati thapnuhos",
+   "en": "Please add a little more",
+   "pic": "🍛",
+   "alt": [
+    "refill please",
+    "add more",
+    "a little more please",
+    "please add a little more"
+   ],
+   "tip": "The magic dal bhat phrase: refills are usually free and gladly given.",
+   "img": "w-a-little-more"
+  },
+  {
+   "ne": "पिउने पानी दिनुहोस्",
+   "rom": "piune paani dinuhos",
+   "en": "Please give drinking water",
+   "pic": "🚰",
+   "alt": [
+    "drinking water please",
+    "water please",
+    "please give water",
+    "please give drinking water"
+   ],
+   "tip": "A polite request for drinking water at the start of a meal.",
+   "img": "w-give-me-water"
+  },
+  {
+   "ne": "खाना धेरै मिठो छ!",
+   "rom": "khaanaa dherai mitho chha!",
+   "en": "The food is very delicious!",
+   "pic": "😋",
+   "alt": [
+    "food is delicious",
+    "very delicious",
+    "the food is delicious",
+    "food is very tasty",
+    "food is good"
+   ],
+   "tip": "Say it with a smile and any cook or host will beam with joy.",
+   "img": "w-it-is-yummy"
+  },
+  {
+   "ne": "मलाई भोक लाग्यो",
+   "rom": "malaai bhok laagyo",
+   "en": "I am hungry",
+   "pic": "🤤",
+   "alt": [
+    "i am hungry",
+    "im hungry",
+    "hungry"
+   ],
+   "tip": "Literally 'hunger has come to me': the everyday way to say it."
+  },
+  {
+   "ne": "मलाई तिर्खा लाग्यो",
+   "rom": "malaai tirkhaa laagyo",
+   "en": "I am thirsty",
+   "pic": "🥤",
+   "alt": [
+    "i am thirsty",
+    "im thirsty",
+    "thirsty"
+   ],
+   "tip": "Literally 'thirst has come to me'. Perfect on a hot walking day.",
+   "img": "w-thirsty"
+  },
+  {
+   "ne": "भयो, मलाई पुग्यो",
+   "rom": "bhayo, malaai pugyo",
+   "en": "That's enough for me",
+   "pic": "✋",
+   "alt": [
+    "enough",
+    "thats enough",
+    "i have enough",
+    "plenty",
+    "thats enough for me"
+   ],
+   "tip": "Nepali hosts are very generous! Say 'pugyo' with your hand over your plate, or more rice will keep coming.",
+   "img": "w-that-s-enough"
+  },
+  {
+   "ne": "म अघाएँ",
+   "rom": "ma aghaaen",
+   "en": "I am full",
+   "pic": "😌",
+   "alt": [
+    "i am full",
+    "im full",
+    "full"
+   ],
+   "tip": "Your tummy is happily full after a good meal."
+  },
+  {
+   "ne": "बिल दिनुहोस्",
+   "rom": "bill dinuhos",
+   "en": "The bill, please",
+   "pic": "🧾",
+   "alt": [
+    "bill please",
+    "check please",
+    "please give the bill",
+    "the bill please"
+   ],
+   "tip": "The polite way to ask for the bill anywhere."
+  },
+  {
+   "ne": "जम्मा कति भयो?",
+   "rom": "jammaa kati bhayo?",
+   "en": "How much is the total?",
+   "pic": "💰",
+   "alt": [
+    "how much in total",
+    "what is the total",
+    "how much is the total",
+    "how much"
+   ],
+   "tip": "Handy at small tea stalls and street stalls that don't write bills."
+  },
+  {
+   "ne": "कार्ड चल्छ कि चल्दैन?",
+   "rom": "card chalchha ki chaldaina?",
+   "en": "Do you take cards?",
+   "pic": "💳",
+   "alt": [
+    "do you take cards",
+    "do you take card",
+    "card or cash",
+    "is card accepted"
+   ],
+   "tip": "Many small tea stalls and bakeries take only cash or QR, so check first!"
+  }
+ ],
+ "iconImg": "w-milk-tea"
+});
