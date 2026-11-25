@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Sajilo Nepali</title>
+<meta name="apple-itunes-app" content="app-id=6834950092">
+<script>/* New web visitors see the landing page first; the app, returning learners and ?home links skip or force it. */
+(function () { try { var nat = window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform(), force = /[?&#]home\b/.test(location.search + location.hash);
+  if (!nat && (force || !(localStorage.getItem("sajilo-nepali-v1") || localStorage.getItem("sn-welcomed")))) document.documentElement.classList.add("landing"); } catch (e) {} })();</script>
 <meta name="description" content="Easy Nepali for kids and beginners: learn everyday spoken Nepali with fun games, real audio pronunciation and letter tracing, with Pandu the red panda.">
 <link rel="canonical" href="https://sajilonepali.app/">
 <meta property="og:title" content="Sajilo Nepali · Easy Nepali for Kids &amp; Beginners">
@@ -360,7 +364,7 @@ body:not(.lv-big) .jump-pill[data-jump] { padding: 4px 8px; } body:not(.lv-big) 
 .tps-row .tps-solid, .tps-row .tps-ghost { font-size: 46px; line-height: 66px; width: 15%; text-align: center; }
 .tps-blank { flex: 1; }
 /* Family Pass (app only) */
-html.locked .chapter.paid .stone .disc::after, html.locked .play-tile::after { content: "🔒"; position: absolute; right: -4px; top: -6px; font-size: 16px; line-height: 1; filter: drop-shadow(0 1px 1px rgba(0,0,0,.25)); }
+html.locked .chapter.paid .stone .disc::after, html.locked .play-tile:not([data-story="1"])::after { content: "🔒"; position: absolute; right: -4px; top: -6px; font-size: 16px; line-height: 1; filter: drop-shadow(0 1px 1px rgba(0,0,0,.25)); }
 html.locked .chapter.paid .stone .disc, html.locked .play-tile { position: relative; }
 html.locked .chapter.paid .chapter-banner::after { content: "🔒 Family Pass"; position: absolute; right: 12px; bottom: 4px; font: 800 11px var(--display); color: #8a5a00; }
 html.locked .chapter.paid .chapter-banner { position: relative; }
@@ -986,9 +990,185 @@ span[data-say]:hover { background: rgba(47,111,214,.10); }
 .bday-box input[type=date] { font: 700 17px var(--body, sans-serif); padding: 10px 12px; border-radius: 12px; border: 2px solid #e8a5b8; background: #fff; color: var(--ink); min-height: 48px; }
 .bday-out { margin: 0; font: 800 38px/1.15 var(--display); color: #b03a62; }
 @media (prefers-reduced-motion: reduce) { .ritu-wheel path { transition: none; } }
+/* ---------- Web landing page (sajilonepali.app for new visitors; never inside the iPhone app) ----------
+   Full-screen slides that move sideways: swipe on phones, wheel or arrow keys on computers, or the pager at the bottom. */
+#landing { display: none; }
+html.landing #landing { display: flex; flex-direction: column; position: fixed; inset: 0; z-index: 9000; background: #fffaf0; color: #1f2a44; font-family: var(--body, "Nunito", system-ui, sans-serif); }
+html.landing body { overflow: hidden; } html.native #landing { display: none !important; }
+#landing * { box-sizing: border-box; min-width: 0; }
+.lp-nav { flex: none; z-index: 3; background: rgba(255, 250, 240, .94); backdrop-filter: blur(8px); border-bottom: 1px solid #f0e2c4; padding-top: env(safe-area-inset-top); }
+.lp-nav .lp-in-nav { max-width: 1180px; margin: 0 auto; padding: 0 max(4vw, 16px); display: flex; align-items: center; gap: 18px; min-height: 64px; }
+.lp-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; color: #1f2a44; font: 800 21px var(--display); margin-right: auto; background: none; border: 0; padding: 0; cursor: pointer; }
+.lp-brand img { width: 44px; height: 44px; } .lp-brand b { color: #e8742a; }
+.lp-nav nav { display: flex; gap: 6px; } .lp-nav nav button { background: none; border: 0; padding: 8px 10px; border-radius: 10px; color: #1f2a44; font: 700 15px var(--body, sans-serif); cursor: pointer; }
+.lp-nav nav button.on { background: #1f2a44; color: #fff; }
+.lp-get { background: #1f2a44; color: #fff; text-decoration: none; font: 800 15px var(--display); padding: 10px 18px; border-radius: 12px; white-space: nowrap; box-shadow: 0 4px 0 #0d1424; transition: transform .1s, box-shadow .1s; }
+.lp-get:active { transform: translateY(3px); box-shadow: 0 1px 0 #0d1424; }
+@media (max-width: 820px) { .lp-nav nav { display: none; } }
+/* the sliding track */
+.lp-track { flex: 1; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; overscroll-behavior-x: contain; }
+.lp-track::-webkit-scrollbar { display: none; }
+.lp-slide { flex: 0 0 100%; height: 100%; scroll-snap-align: start; scroll-snap-stop: always; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; position: relative; }
+.lp-inner { max-width: 1180px; min-height: 100%; margin: 0 auto; padding: clamp(24px, 5vh, 56px) max(4vw, 18px) calc(110px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; justify-content: center; }
+.lp-slide.s-hero { background: linear-gradient(#fffaf0 0 50%, #fdf0d6); }
+.lp-slide.s-hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 18%; background: url(img/hdr-ritu.webp) 50% 70% / cover no-repeat; opacity: .55; pointer-events: none; -webkit-mask-image: linear-gradient(transparent, #000 45%); mask-image: linear-gradient(transparent, #000 45%); }
+.lp-hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+@media (max-width: 860px) { .lp-hero-grid { grid-template-columns: 1fr; } }
+.lp-eyebrow { margin: 0 0 10px; color: #b9541a; font: 800 14px var(--display); letter-spacing: .06em; }
+.lp-hero h1, .s-hero h1 { margin: 0; font: 800 clamp(40px, 6.2vw, 68px)/1.02 var(--display); text-wrap: balance; } .s-hero h1 span { color: #e8742a; }
+/* who's learning: a chunky switch with a sliding thumb */
+.lp-who { margin: 22px 0 16px; }
+.lp-who-label { display: block; margin: 0 0 8px; font: 800 13px var(--display); letter-spacing: .06em; color: #5d6b86; }
+.lp-seg { position: relative; display: grid; grid-template-columns: 1fr 1fr; width: min(460px, 100%); padding: 5px; background: #fff; border: 3px solid #1f2a44; border-radius: 20px; box-shadow: 0 6px 0 #1f2a44; }
+.lp-seg::before { content: ""; position: absolute; top: 5px; bottom: 5px; left: 5px; width: calc(50% - 5px); border-radius: 14px; background: #e8742a; box-shadow: inset 0 -5px 0 #b9541a, 0 2px 6px rgba(185, 84, 26, .35); transition: transform .38s cubic-bezier(.3, 1.45, .5, 1); }
+.lp-seg[data-lv="big"]::before { transform: translateX(100%); background: #2f6fd6; box-shadow: inset 0 -5px 0 #1d4f9e, 0 2px 6px rgba(29, 79, 158, .35); }
+.lp-seg button { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 64px; padding: 6px 8px 10px; border: 0; background: none; color: #1f2a44; cursor: pointer; border-radius: 14px; transition: color .2s, transform .12s; -webkit-tap-highlight-color: transparent; }
+.lp-seg button .ic { font-size: 28px; line-height: 1; transition: transform .3s; } .lp-seg button span { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+.lp-seg button b { font: 800 17px/1.1 var(--display); } .lp-seg button small { font: 700 12px/1.2 var(--body, sans-serif); opacity: .8; }
+.lp-seg button.on { color: #fff; } .lp-seg button.on .ic { transform: scale(1.18) rotate(-6deg); }
+.lp-seg button:active { transform: scale(.94); }
+@media (max-width: 400px) { .lp-seg button { flex-direction: column; gap: 2px; } .lp-seg button span { align-items: center; text-align: center; } .lp-seg button .ic { font-size: 24px; } }
+.lp-sub { margin: 0; font-size: 18px; line-height: 1.55; max-width: 36em; }
+.lp-ctas { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 22px 0 8px; }
+.as-badge { display: inline-flex; align-items: center; gap: 8px; background: #000; color: #fff; text-decoration: none; border-radius: 14px; padding: 8px 16px 8px 12px; min-height: 56px; border: 1px solid #555; box-shadow: 0 5px 0 #444; transition: transform .1s, box-shadow .1s; }
+.as-badge:active { transform: translateY(4px); box-shadow: 0 1px 0 #444; }
+.as-badge svg { width: 28px; height: 28px; } .as-badge span { display: flex; flex-direction: column; line-height: 1.05; }
+.as-badge small { font: 600 11px system-ui, -apple-system, sans-serif; } .as-badge b { font: 600 22px system-ui, -apple-system, sans-serif; letter-spacing: -.01em; }
+.lp-try { min-height: 56px; padding: 0 22px; border-radius: 14px; border: 0; background: #e8742a; color: #fff; font: 800 18px var(--display); cursor: pointer; box-shadow: 0 5px 0 #b9541a; transition: transform .1s, box-shadow .1s; }
+.lp-try:active { transform: translateY(4px); box-shadow: 0 1px 0 #b9541a; }
+.lp-note { margin: 6px 0 0; color: #5d6b86; font-weight: 700; font-size: 14px; }
+/* the demo phone: Listen, Check, Say */
+.lp-phone { width: min(350px, 100%); margin: 0 auto; background: #1f2a44; border-radius: 42px; padding: 12px; box-shadow: 0 24px 50px rgba(31, 42, 68, .28); }
+.lp-screen { color: #1f2a44; background: #e8f4ff; border-radius: 32px; padding: 16px 16px 18px; min-height: 500px; display: flex; flex-direction: column; gap: 12px; text-align: center; }
+.lp-steps { display: flex; justify-content: center; gap: 6px; } .lp-steps i { flex: 1; height: 6px; border-radius: 9px; background: #c9d6ea; transition: background .3s; } .lp-steps i.on { background: #e8742a; }
+.lp-step-name { margin: 0; font: 800 13px var(--display); color: #2f6fd6; letter-spacing: .04em; }
+.lp-screen img.lp-pandu { width: 120px; height: 120px; margin: 0 auto; }
+.lp-word { margin: 0; font: 800 46px/1.1 var(--display); } .lp-rom { color: #1d4f9e; font-weight: 800; }
+.lp-play { margin: 0 auto; width: 76px; height: 76px; border-radius: 50%; border: 0; background: #2f6fd6; color: #fff; font-size: 30px; cursor: pointer; box-shadow: 0 6px 0 #1d4f9e; transition: transform .1s, box-shadow .1s; }
+.lp-play:active { transform: translateY(5px); box-shadow: 0 1px 0 #1d4f9e; }
+.lp-opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.lp-opts button { background: #fff; border: 3px solid #d8e2f2; border-radius: 16px; padding: 8px 4px; font: 800 14px var(--display); color: #1f2a44; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; min-height: 64px; justify-content: center; box-shadow: 0 4px 0 #d8e2f2; transition: transform .1s, box-shadow .1s; }
+.lp-opts button:active { transform: translateY(3px); box-shadow: 0 1px 0 #d8e2f2; }
+.lp-opts img { width: 70px; height: 70px; object-fit: contain; }
+.lp-opts button.right { border-color: #2fa75a; background: #e9f8ee; box-shadow: 0 4px 0 #2fa75a; } .lp-opts button.wrong { border-color: #e2453c; animation: lpShake .3s; }
+@keyframes lpShake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+.lp-next { margin-top: auto; min-height: 52px; border: 0; border-radius: 14px; background: #2fa75a; color: #fff; font: 800 17px var(--display); cursor: pointer; box-shadow: 0 5px 0 #1f7a40; transition: transform .1s, box-shadow .1s; }
+.lp-next:active { transform: translateY(4px); box-shadow: 0 1px 0 #1f7a40; }
+.lp-next[disabled] { background: #b9c4d6; box-shadow: none; cursor: default; }
+.lp-loop { text-align: center; margin: 12px 0 0; font: 800 14px var(--display); color: #5d6b86; }
+/* the other slides */
+.lp-slide h2 { margin: 0 0 8px; font: 800 clamp(32px, 4.6vw, 52px)/1.05 var(--display); text-wrap: balance; }
+.lp-lead { margin: 0 0 26px; font-size: 18px; color: #3d4a66; max-width: 40em; }
+.lp-how { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } @media (max-width: 760px) { .lp-how { grid-template-columns: 1fr; } }
+.lp-how div { background: #fff; border-radius: 22px; padding: 20px; border: 3px solid #1f2a44; box-shadow: 0 6px 0 #1f2a44; }
+.lp-how img { width: 84px; height: 84px; display: block; margin-bottom: 4px; }
+.lp-how b { display: block; font: 800 22px var(--display); margin: 6px 0 4px; } .lp-how p { margin: 0; color: #3d4a66; line-height: 1.5; }
+.lp-how .n { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #e8742a; color: #fff; font: 800 17px var(--display); float: right; }
+.s-in { background: #1f2a44; color: #fff; } .s-in .lp-lead { color: #cfd8ea; }
+.lp-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; } @media (max-width: 860px) { .lp-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.lp-tiles div { background: #fffaf0; color: #1f2a44; border-radius: 20px; padding: 14px; text-align: center; box-shadow: 0 6px 0 #0d1424; }
+.lp-tiles img { width: 100%; max-width: 140px; aspect-ratio: 1; object-fit: contain; } .lp-tiles b { display: block; font: 800 17px var(--display); margin-top: 6px; }
+.lp-tiles small { display: block; color: #5d6b86; font-weight: 700; } .lp-tiles .free { display: inline-block; margin-top: 6px; background: #2fa75a; color: #fff; border-radius: 99px; padding: 1px 10px; font: 800 12px var(--display); }
+.s-safe ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } @media (max-width: 760px) { .s-safe ul { grid-template-columns: 1fr; } }
+.s-safe li { background: #fff; border-radius: 20px; padding: 18px 20px; border: 3px solid #f0e2c4; box-shadow: 0 6px 0 #f0e2c4; font-weight: 700; line-height: 1.45; } .s-safe li b { display: block; font: 800 19px var(--display); }
+.s-safe .lp-family { display: flex; gap: 18px; align-items: center; margin-bottom: 22px; } .s-safe .lp-family img { width: 110px; height: 110px; flex: none; }
+@media (max-width: 600px) { .s-safe .lp-family { flex-direction: column; align-items: flex-start; gap: 8px; } .s-safe .lp-family img { width: 84px; height: 84px; } }
+.s-end { background: #e8742a; color: #fff; } .s-end .lp-inner { align-items: center; text-align: center; } .s-end h2 { color: #fff; text-shadow: 0 2px 20px rgba(0, 0, 0, .45); } .s-end p { font-size: 19px; margin: 0 0 18px; }
+.s-end .lp-end-pandu { width: 150px; height: 150px; margin: 0 auto 10px; }
+.s-end .lp-ctas { justify-content: center; } .s-end .lp-try { background: #fff; color: #b9541a; box-shadow: 0 5px 0 #f3c9a7; }
+.lp-foot { margin-top: 28px; color: #fff4e6; font-weight: 700; font-size: 14px; } .lp-foot a { color: #fff; }
+/* the pager: which slide, and the way forward */
+.lp-pager { position: absolute; left: 50%; bottom: calc(16px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 4; display: flex; align-items: center; gap: 10px; background: rgba(31, 42, 68, .94); color: #fff; padding: 8px 8px 8px 16px; border-radius: 99px; box-shadow: 0 8px 24px rgba(0, 0, 0, .25); }
+.lp-pager b { font: 800 14px var(--display); min-width: 7.5em; white-space: nowrap; }
+.lp-bars { display: flex; gap: 5px; } .lp-bars button { width: 18px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+.lp-bars button::before { content: ""; width: 18px; height: 5px; border-radius: 9px; background: rgba(255, 255, 255, .35); transition: width .3s, background .3s; }
+.lp-bars button.on { width: 34px; } .lp-bars button.on::before { width: 34px; background: #f6b71c; }
+.lp-arrow { width: 40px; height: 40px; border-radius: 50%; border: 0; background: #e8742a; color: #fff; font: 800 22px/1 var(--display); cursor: pointer; box-shadow: 0 3px 0 #b9541a; transition: transform .1s, opacity .2s; }
+.lp-arrow:active { transform: translateY(2px); } .lp-arrow[disabled] { opacity: .35; cursor: default; }
+.lp-arrow.back { background: rgba(255, 255, 255, .15); box-shadow: none; }
+@media (max-width: 420px) { .lp-pager b { display: none; } .lp-pager { padding-left: 8px; } }
+.lp-swipe { display: none; } @media (hover: none) { .lp-swipe { display: inline; } }
+@media (max-width: 860px) { .lp-inner { justify-content: flex-start; padding-top: 18px; } .lp-who { margin: 14px 0 12px; } .lp-sub { font-size: 16px; }
+  .lp-ctas { display: grid; grid-template-columns: 1fr 1fr; margin: 16px 0 6px; } .lp-ctas .as-badge { justify-content: center; } .lp-try { padding: 0 12px; font-size: 16px; }
+  .lp-pager { bottom: calc(10px + env(safe-area-inset-bottom)); } }
+@media (max-width: 860px) and (max-height: 760px) { .s-hero h1 { font-size: 34px; } .lp-sub { font-size: 15px; } }
+/* slides 2-5: a realistic photo behind a strong tint, so the cards stay easy to read */
+.lp-slide.s-how { background: linear-gradient(rgba(20, 14, 10, .42), rgba(20, 14, 10, .62)), url(img/lp-how.webp) 50% 50% / cover, #3a2a1c; }
+.lp-slide.s-in { background: linear-gradient(rgba(25, 32, 54, .74), rgba(25, 32, 54, .88)), url(img/lp-inside.webp) 50% 50% / cover, #1f2a44; }
+.lp-slide.s-safe { background: linear-gradient(rgba(20, 14, 10, .4), rgba(20, 14, 10, .6)), url(img/lp-who.webp) 50% 60% / cover, #3a2a1c; }
+.lp-slide.s-end { background: linear-gradient(rgba(20, 14, 10, .3), rgba(20, 14, 10, .45) 45%, rgba(20, 14, 10, .78)), url(img/lp-end.webp) 50% 40% / cover, #b9541a; }
+.s-how, .s-safe { color: #fff; } .s-how h2, .s-safe h2 { color: #fff; text-shadow: 0 2px 18px rgba(0, 0, 0, .45); }
+.s-how .lp-eyebrow, .s-safe .lp-eyebrow { color: #f6b71c; } .s-how .lp-lead, .s-safe .lp-lead { color: #f3e9dc !important; text-shadow: 0 1px 10px rgba(0, 0, 0, .4); }
+.s-how .lp-how div, .s-safe li { color: #1f2a44; } .s-how .lp-how div { box-shadow: 0 6px 0 rgba(0, 0, 0, .5); border-color: #fff; } .s-safe li { border-color: #fff; box-shadow: 0 6px 0 rgba(0, 0, 0, .45); }
+.s-safe .lp-family img { background: #fffaf0; border-radius: 50%; }
+/* first slide: a realistic Nepali photo behind the words, darkened where the text sits */
+.lp-nav { background: rgba(20, 14, 10, .88); border-bottom-color: rgba(255, 255, 255, .08); } .lp-brand { color: #fff; } .lp-brand b { color: #f6b71c; }
+.lp-nav nav button { color: #f3e9dc; } .lp-nav nav button.on { background: #fff; color: #1f2a44; }
+.lp-get { background: #fff8ec; color: #1f2a44; box-shadow: 0 4px 0 #c9b38f; } .lp-get:active { box-shadow: 0 1px 0 #c9b38f; }
+.lp-slide.s-hero { background: #140e0a url(img/lp-hero.webp) 62% 50% / cover no-repeat; color: #fff; }
+.lp-slide.s-hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(20, 14, 10, .93) 0%, rgba(20, 14, 10, .74) 42%, rgba(20, 14, 10, .18) 100%); }
+.lp-slide.s-hero::after { display: none; }
+.s-hero .lp-eyebrow { color: #f6b71c; } .s-hero h1 { color: #fff; text-shadow: 0 2px 18px rgba(0, 0, 0, .35); } .s-hero h1 span { color: #f6b71c; }
+.s-hero .lp-who-label { color: #e9dccb; } .s-hero .lp-sub { color: #f3e9dc; } .s-hero .lp-note { color: #d9cbb8; } .s-hero .lp-loop { color: #e9dccb; }
+.s-hero .lp-seg { border-color: #fff; box-shadow: 0 6px 0 rgba(0, 0, 0, .45); } .s-hero .as-badge { border-color: #8a8a8a; box-shadow: 0 5px 0 #000; }
+.s-hero .lp-phone { box-shadow: 0 30px 70px rgba(0, 0, 0, .55); }
+@media (max-width: 860px) { .lp-slide.s-hero { background-position: 70% 50%; } .lp-slide.s-hero::before { background: linear-gradient(180deg, rgba(20, 14, 10, .9) 0%, rgba(20, 14, 10, .74) 55%, rgba(20, 14, 10, .9) 100%); } }
+@media (prefers-reduced-motion: reduce) { .lp-track { scroll-behavior: auto; } .lp-seg::before, .lp-opts button.wrong { transition: none; animation: none; } }
+/* web: the parts beyond Chapter 1 live in the app */
+html.locked:not(.native) .chapter.paid .chapter-banner::after { content: "🔒 In the app"; }
+.web-app-cta { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center; margin: 18px 0 0; text-align: center; font-weight: 700; color: #3d4a66; }
+.web-pass .as-badge { margin: 6px auto; }
 </style>
 </head>
 <body>
+<div id="landing">
+  <header class="lp-nav"><div class="lp-in-nav"><button type="button" class="lp-brand" data-lpslide="0"><img src="img/pandu-wave.webp" alt=""><span>Sajilo <b>Nepali</b></span></button>
+    <nav aria-label="Page"><button type="button" data-lpslide="1">How it works</button><button type="button" data-lpslide="2">What's inside</button><button type="button" data-lpslide="3">Who it's for</button></nav>
+    <a class="lp-get" href="https://apps.apple.com/us/app/sajilo-nepali/id6834950092" target="_blank" rel="noopener">Get the app</a></div></header>
+  <div class="lp-track" id="lpTrack">
+    <section class="lp-slide s-hero" data-name="Start"><div class="lp-inner"><div class="lp-hero-grid">
+      <div class="lp-copy">
+        <p class="lp-eyebrow">NEPALI FOR KIDS &amp; BEGINNERS</p>
+        <h1>Learn Nepali <span>the easy way.</span></h1>
+        <div class="lp-who"><span class="lp-who-label">WHO'S LEARNING?</span>
+        <div class="lp-seg" data-lv="little" role="radiogroup" aria-label="Who is learning">
+          <button type="button" class="on" role="radio" aria-checked="true" data-lplevel="little"><span class="ic">🧒</span><span><b>Little learner</b><small>ages 4–7 · listen &amp; tap</small></span></button>
+          <button type="button" role="radio" aria-checked="false" data-lplevel="big"><span class="ic">🧑‍🎓</span><span><b>Big learner</b><small>ages 8+ · read &amp; type</small></span></button>
+        </div></div>
+        <p class="lp-sub" id="lpSub">Picture lessons, folk tales, rhymes and games, all spoken in a warm Nepali voice. Listen, tap the right picture, then say it out loud.</p>
+        <div class="lp-ctas"><a class="as-badge" href="https://apps.apple.com/us/app/sajilo-nepali/id6834950092" target="_blank" rel="noopener" aria-label="Download Sajilo Nepali on the App Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.6zM14.1 5.6c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg><span><small>Download on the</small><b>App Store</b></span></a><button type="button" class="lp-try" data-lpstart>Try Chapter 1 free →</button></div>
+        <p class="lp-note">Chapter 1 is free here in your browser and in the app. No sign-up, no ads. <span class="lp-swipe">Swipe for more →</span></p>
+      </div>
+      <div class="lp-demo"><div class="lp-phone"><div class="lp-screen" id="lpDemo"></div></div><p class="lp-loop">A complete lesson loop: Listen · Check · Say</p></div>
+    </div></div></section>
+    <section class="lp-slide s-how" data-name="How it works"><div class="lp-inner"><p class="lp-eyebrow">HOW IT WORKS</p><h2>Three small steps, every word</h2>
+      <p class="lp-lead">Each lesson is a few minutes long and works the same way, so even little ones know what to do.</p>
+      <div class="lp-how"><div><span class="n">1</span><img src="img/pandu-listen.webp" alt=""><b>🎧 Listen</b><p>Hear every word, sentence and story in a clear, warm Nepali voice. Tap anything to hear it again.</p></div>
+        <div><span class="n">2</span><img src="img/pandu-think.webp" alt=""><b>👆 Check</b><p>Little learners tap the right picture. Big learners read Devanagari and type the meaning.</p></div>
+        <div><span class="n">3</span><img src="img/pandu-namaste.webp" alt=""><b>🗣️ Say it</b><p>Say it out loud, then use it at dinner tonight. A daily mission brings Nepali into your home.</p></div></div></div></section>
+    <section class="lp-slide s-in" data-name="What's inside"><div class="lp-inner"><p class="lp-eyebrow" style="color:#f6b71c">THE COURSE</p><h2>What's inside</h2>
+      <p class="lp-lead">Up to 11 chapters, folk tales, rhymes, games and the Nepali alphabet. Chapter 1 and the Moon bedtime story are free; the app unlocks everything with a 7-day free trial.</p>
+      <div class="lp-tiles">
+        <div><img src="img/li-greet.webp" alt=""><b>Picture lessons</b><small>Home, family, food, festivals…</small><span class="free">Chapter 1 free</span></div>
+        <div><img src="img/story-2.webp" alt=""><b>Bedtime stories</b><small>Read to me, word by word</small><span class="free">Moon story free</span></div>
+        <div><img src="img/scene-rhyme-tara.webp" alt=""><b>Classic rhymes</b><small>ताराबाजी लै लै and more</small></div>
+        <div><img src="img/li-cons1.webp" alt=""><b>The alphabet</b><small>Trace every letter</small></div>
+        <div><img src="img/tile-hunt.webp" alt=""><b>Treasure hunt</b><small>A letter a day, at home</small></div>
+        <div><img src="img/tile-ukhan.webp" alt=""><b>Sayings</b><small>Nepali proverbs as comics</small></div>
+        <div><img src="img/tile-ritu.webp" alt=""><b>Six seasons</b><small>And your Nepali birthday</small></div>
+        <div><img src="img/li-family-bagh.webp" alt=""><b>Games</b><small>Bagh-chal, matching, counting</small></div>
+      </div></div></section>
+    <section class="lp-slide s-safe" data-name="Who it's for"><div class="lp-inner"><p class="lp-eyebrow">WHO IT'S FOR</p>
+      <div class="lp-family"><img src="img/pandu-cheer.webp" alt=""><div><h2>For kids, families and beginners</h2><p class="lp-lead" style="margin:0">Children growing up away from Nepal, parents brushing up, partners joining a Nepali family, travellers and curious beginners of any age: everyone starts from नमस्ते.</p></div></div>
+      <ul><li><b>🧒 Little learners, ages 4–7</b>Listen and tap the pictures. No reading needed, and Pandu cheers every try.</li><li><b>🧑‍🎓 Big learners and beginners, 8 to adult</b>Read Devanagari, type meanings and build real sentences for everyday conversations.</li>
+        <li><b>👨‍👩‍👧 Learn side by side</b>Everyone on the device gets their own progress, so kids and grown-ups can learn together.</li><li><b>🚫 Safe and private</b>No ads and no tracking, it works offline, and buying sits behind a grown-ups' check.</li></ul></div></section>
+    <section class="lp-slide s-end" data-name="Get the app"><div class="lp-inner"><img class="lp-end-pandu" src="img/pandu-wave.webp" alt=""><h2>Start with नमस्ते today</h2><p>Chapter 1 is free. Get the app for iPhone and iPad to unlock everything.</p>
+      <div class="lp-ctas"><a class="as-badge" href="https://apps.apple.com/us/app/sajilo-nepali/id6834950092" target="_blank" rel="noopener" aria-label="Download Sajilo Nepali on the App Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.6zM14.1 5.6c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg><span><small>Download on the</small><b>App Store</b></span></a><button type="button" class="lp-try" data-lpstart>Try Chapter 1 free →</button></div>
+      <p class="lp-foot"><a href="privacy">Privacy</a> · <a href="support">Help</a> · Sajilo Nepali, easy Nepali for kids &amp; beginners</p></div></section>
+  </div>
+  <div class="lp-pager" aria-label="Slides"><b id="lpName">Start</b><div class="lp-bars" id="lpBars"></div>
+    <button type="button" class="lp-arrow back" data-lpstep="-1" aria-label="Previous">‹</button><button type="button" class="lp-arrow" data-lpstep="1" aria-label="Next">›</button></div>
+</div>
 <div class="flags" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 <main class="app" id="app"></main>
 
@@ -1001,17 +1181,18 @@ span[data-say]:hover { background: rgba(47,111,214,.10); }
 /* Running inside the iPhone/iPad app (Capacitor) rather than in a browser: everything is bundled, so the web-only extras are hidden */
 const NATIVE = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
 if (NATIVE) document.documentElement.classList.add("native");
-/* ---------- Sajilo Family Pass (App Store app only; the website stays free) ----------
+/* ---------- Sajilo Family Pass (in the App Store app; on the website Chapter 1 is free and the rest points to the app) ----------
    Chapter 1 is free. Everything else needs the pass: a 7-day free trial, then monthly or yearly (prices come from Apple).
    Purchases go straight to Apple's StoreKit (plugin @capgo/native-purchases); no other company is involved.
    The result is remembered on the device so the pass keeps working offline (with 3 days of grace past the renewal date). */
 const PASS_IDS = { yearly: "app.sajilonepali.pass.yearly", monthly: "app.sajilonepali.pass.monthly" };
 const FREE_CHAPTERS = ["home"];
 let PASS = (() => { try { return JSON.parse(localStorage.getItem("sn-pass") || "null"); } catch (e) { return null; } })();
-const hasPass = () => !NATIVE || !!(PASS && Date.now() < PASS.until + 3 * 864e5);
+const hasPass = () => NATIVE && !!(PASS && Date.now() < PASS.until + 3 * 864e5);
+const APP_STORE = "https://apps.apple.com/us/app/sajilo-nepali/id6834950092";
 const IAP = () => NATIVE && window.Capacitor.Plugins && window.Capacitor.Plugins.NativePurchases;
 const freeLesson = id => window.CHAPTERS.some(c => FREE_CHAPTERS.includes(c.id) && c.lessons.includes(id));
-const syncLock = () => document.documentElement.classList.toggle("locked", NATIVE && !hasPass());
+const syncLock = () => document.documentElement.classList.toggle("locked", !hasPass());
 async function refreshPass() {
   const N = IAP(); if (!N) return;
   try {
@@ -1735,6 +1916,7 @@ function renderMap() {
         <button class="chip" type="button" id="openPhrases">🗣️ Everyday phrases</button>
       </div>
     </section>
+    ${NATIVE ? "" : `<div class="web-app-cta"><a class="as-badge" href="https://apps.apple.com/us/app/sajilo-nepali/id6834950092" target="_blank" rel="noopener" aria-label="Download Sajilo Nepali on the App Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.6zM14.1 5.6c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg><span><small>Download on the</small><b>App Store</b></span></a><a href="?home" style="color:#1d4f9e">About Sajilo Nepali</a></div>`}
     <div class="nav-space"></div>
     <nav class="bottom-nav" aria-label="Main">
       <button type="button" class="nav-btn${S.play || S.stickers ? "" : " active"}" id="navLearn"><span class="nav-icon">🗺️</span><span class="nav-label"><span lang="ne">सिकौँ</span> · Learn</span></button>
@@ -2020,6 +2202,16 @@ async function loadPassProducts() {
   if (S.screen === "pass") render();
 }
 function renderPass() {
+  if (!NATIVE) {   // the website: the full course is in the iPhone and iPad app
+    $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">📱 Get the full app</h2></div>
+      <section class="pass web-pass">${pandu("cheer", "pass-pandu")}<p class="pass-h">This part is in the Sajilo Nepali app</p>
+        <p style="margin:0;font-weight:700">Chapter 1 and the Moon story are free here in your browser. Download the app for iPhone and iPad to unlock all of Sajilo Nepali with the Family Pass, starting with a 7-day free trial.</p>
+        <ul class="pass-list"><li>📚 Every chapter and every lesson</li><li>🌙 Bedtime stories, folk tales and rhymes</li><li>🎪 Every game, the treasure hunt, sayings and seasons</li><li>🖨️ Printable tracing sheets and coloring pages</li><li>👨‍👩‍👧 Every child on the device, no ads, ever</li></ul>
+        <a class="as-badge" href="https://apps.apple.com/us/app/sajilo-nepali/id6834950092" target="_blank" rel="noopener" aria-label="Download Sajilo Nepali on the App Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.6zM14.1 5.6c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
+        <p class="note">On a computer? Open sajilonepali.app on your iPhone or iPad, or search “Sajilo Nepali” in the App Store.</p>
+      </section>`;
+    return;
+  }
   if (!passProducts) loadPassProducts();
   const plan = (key, best) => { const pr = passProducts && passProducts[PASS_IDS[key]], per = key === "yearly" ? "year" : "month";
     if (!pr) return "";
@@ -2031,7 +2223,7 @@ function renderPass() {
     <section class="pass">
       ${pandu("cheer", "pass-pandu")}
       ${hasPass() ? `<p class="pass-h">You have the Family Pass. Thank you! 💛</p>` : `<p class="pass-h">Unlock all of Sajilo Nepali</p>`}
-      <ul class="pass-list"><li>📚 Every chapter and every lesson (Chapter 1 is free)</li><li>🌙 Bedtime stories, fables and rhymes</li>
+      <ul class="pass-list"><li>📚 Every chapter and every lesson (Chapter 1 is free)</li><li>🌙 Bedtime stories, fables and rhymes (the Moon story is free)</li>
         <li>🎪 Every game: counting, matching, tracing, Bagh-chal and more</li><li>🖨️ Printable tracing sheets and coloring pages</li><li>👨‍👩‍👧 Every child on this device, no ads, ever</li></ul>
       ${hasPass() ? "" : passProducts == null ? `<p class="note">Loading prices from the App Store…</p>` : ready ? `<div class="pass-plans">${plan("yearly", true)}${plan("monthly")}</div>`
         : `<p class="note">The App Store can't be reached right now. Please check the internet connection.</p><button class="chip" type="button" id="passRetry">↻ Try again</button>`}
@@ -3089,7 +3281,11 @@ const PAID_IDS = new Set(["openRhymes", "openCount", "openMemory", "openTrace", 
 function needsPass(el) {
   const d = el.dataset || {};
   if (d.lesson || d.playnext || d.wotdLesson) return !freeLesson(d.lesson || d.playnext || d.wotdLesson);
-  return PAID_IDS.has(el.id) || !!d.story || !!d.scene;
+  if (d.story) {   // the Moon story (पाण्डु र जून) is free, like Chapter 1
+    const st = d.story === "tonight" ? stories()[tonightStory()] : allStories()[+d.story - 1];
+    return st !== window.STORY;
+  }
+  return PAID_IDS.has(el.id) || !!d.scene;
 }
 function askForPass() { let b = document.getElementById("openPass"); if (!b) { b = document.createElement("button"); b.id = "openPass"; b.type = "button"; b.hidden = true; document.body.appendChild(b); } b.click(); }
 let gateUntil = 0;
@@ -3117,7 +3313,7 @@ document.addEventListener("click", e => {
   if (e.target.id === "gateBack" || (e.target.closest && e.target.closest("#gateNo"))) { closeGate(); return; }
   if (e.target.closest && e.target.closest("#gateOk")) { checkGate(); return; }
   { const g = e.target.closest && e.target.closest("button"); if (g && GATED.has(g.id) && Date.now() > gateUntil) { e.stopImmediatePropagation(); openGate(g.id); return; } }
-  if (NATIVE && !hasPass()) { const lk = e.target.closest && e.target.closest("button, [data-lesson]"); if (lk && needsPass(lk)) { e.stopImmediatePropagation(); beep("tap"); askForPass(); return; } }
+  if (!hasPass()) { const lk = e.target.closest && e.target.closest("button, [data-lesson]"); if (lk && needsPass(lk)) { e.stopImmediatePropagation(); beep("tap"); askForPass(); return; } }
   if (e.target.id === "playBack") { S.play = false; render(); return; }
   if (S.play && e.target.closest && e.target.closest(".play-tile")) S.play = false;   // picking a tile closes the drawer
   // Read to me: any tap during a story (a word, 🔁, ◀) cancels the page turn that was about to happen
@@ -3459,6 +3655,71 @@ document.addEventListener("click", e => {
 });
 
 render();
+</script>
+<script>
+/* Web landing page: sideways slides, the learner switch, the Listen · Check · Say demo, and Try Chapter 1 free */
+{
+  const root = document.getElementById("landing"), demo = document.getElementById("lpDemo"), track = document.getElementById("lpTrack");
+  const slides = [...track.children], bars = document.getElementById("lpBars"), nameEl = document.getElementById("lpName");
+  let lv = "little", step = 0, picked = null, cur = 0, wheelLock = 0;
+  const OPTS = [["Hello", "w-hello"], ["Thank you", "w-thank-you"], ["Good night", "w-good-night"]];
+  const SUBS = { little: "Picture lessons, folk tales, rhymes and games, all spoken in a warm Nepali voice. Listen, tap the right picture, then say it out loud.",
+    big: "Read Devanagari, type what it means and build real sentences, from नमस्ते to chatting with Hajurbaa on the phone. Every word is spoken in a warm Nepali voice." };
+  const hear = t => { try { say(K(t)); } catch (e) {} };
+  const img = k => (window.IMG || {})[k] || ("img/" + k + ".webp");
+  bars.innerHTML = slides.map((sl, i) => `<button type="button" data-lpslide="${i}" aria-label="${sl.dataset.name}"></button>`).join("");
+  function mark() {
+    nameEl.textContent = slides[cur].dataset.name;
+    bars.querySelectorAll("button").forEach((b, i) => b.classList.toggle("on", i === cur));
+    root.querySelectorAll(".lp-nav nav [data-lpslide]").forEach(b => b.classList.toggle("on", +b.dataset.lpslide === cur));
+    root.querySelector('[data-lpstep="-1"]').disabled = cur === 0; root.querySelector('[data-lpstep="1"]').disabled = cur === slides.length - 1;
+  }
+  const go = i => { cur = Math.max(0, Math.min(slides.length - 1, i)); track.scrollTo({ left: cur * track.clientWidth }); mark(); };
+  track.addEventListener("scroll", () => { const i = Math.round(track.scrollLeft / track.clientWidth); if (i !== cur) { cur = i; mark(); } }, { passive: true });
+  // a computer's mouse wheel moves sideways once a slide has been read to the bottom
+  track.addEventListener("wheel", e => {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+    const sl = slides[cur], down = e.deltaY > 0;
+    if (down ? sl.scrollTop + sl.clientHeight < sl.scrollHeight - 2 : sl.scrollTop > 0) return;
+    e.preventDefault(); if (Date.now() < wheelLock) return; wheelLock = Date.now() + 750; go(cur + (down ? 1 : -1));
+  }, { passive: false });
+  document.addEventListener("keydown", e => { if (!document.documentElement.classList.contains("landing")) return;
+    if (e.key === "ArrowRight") { e.preventDefault(); go(cur + 1); } else if (e.key === "ArrowLeft") { e.preventDefault(); go(cur - 1); } });
+  addEventListener("resize", () => track.scrollTo({ left: cur * track.clientWidth, behavior: "auto" }));
+  function draw() {
+    const dots = `<div class="lp-steps">${[0, 1, 2].map(i => `<i class="${i <= step ? "on" : ""}"></i>`).join("")}</div>`;
+    if (step === 0) demo.innerHTML = dots + `<p class="lp-step-name">🎧 LISTEN</p><img class="lp-pandu" src="${img("pandu-listen")}" alt="">
+      <p class="lp-word" lang="ne">नमस्ते</p><span class="lp-rom">namaste</span><button type="button" class="lp-play" data-lphear aria-label="Hear it">▶</button>
+      <button type="button" class="lp-next" data-lpgo="1">Next</button>`;
+    else if (step === 1) demo.innerHTML = dots + `<p class="lp-step-name">👆 CHECK</p><p style="margin:0;font:800 20px var(--display)">What does <span lang="ne">नमस्ते</span> mean?</p>
+      <div class="lp-opts">${OPTS.map(([en, pic], i) => `<button type="button" data-lpopt="${i}" class="${picked === i ? (i === 0 ? "right" : "wrong") : ""}">${lv === "little" ? `<img src="${img(pic)}" alt="">` : ""}<span>${en}</span></button>`).join("")}</div>
+      <p style="margin:0;font-weight:800;min-height:24px;color:${picked === 0 ? "#1f7a40" : "#b03a2e"}">${picked === 0 ? "✓ Yes! नमस्ते means hello." : picked != null ? "Not quite: try again!" : ""}</p>
+      <button type="button" class="lp-next" data-lpgo="2" ${picked === 0 ? "" : "disabled"}>Continue</button>`;
+    else demo.innerHTML = dots + `<p class="lp-step-name">🗣️ SAY IT</p><img class="lp-pandu" src="${img(picked === "said" ? "pandu-cheer" : "pandu-namaste")}" alt="">
+      <p class="lp-word" lang="ne">नमस्ते 🙏</p><p style="margin:0;font-weight:700">${picked === "said" ? "स्याबास! Well done. That's your first Nepali word." : "Put your hands together and say it out loud to someone at home!"}</p>
+      ${picked === "said" ? `<button type="button" class="lp-next" data-lpstart>Keep going: Chapter 1 is free →</button>` : `<button type="button" class="lp-next" data-lpsaid>🙌 I said it!</button>`}`;
+  }
+  function start() {
+    document.documentElement.classList.remove("landing");
+    try { localStorage.setItem("sn-welcomed", "1"); } catch (e) {}
+    if (/[?&#]home\b/.test(location.search + location.hash)) history.replaceState(null, "", location.pathname);
+    S.screen = "map"; render(); window.scrollTo(0, 0);
+  }
+  root.addEventListener("click", e => {
+    const t = e.target.closest("button, a"); if (!t) return;
+    if (t.matches("[data-lpstart]")) { start(); return; }
+    if (t.dataset.lpslide != null) { go(+t.dataset.lpslide); return; }
+    if (t.dataset.lpstep) { go(cur + +t.dataset.lpstep); return; }
+    if (t.dataset.lplevel) { lv = t.dataset.lplevel; const seg = t.closest(".lp-seg"); seg.dataset.lv = lv;
+      seg.querySelectorAll("button").forEach(b => { const on = b === t; b.classList.toggle("on", on); b.setAttribute("aria-checked", on); });
+      document.getElementById("lpSub").textContent = SUBS[lv]; try { beep("tap"); } catch (er) {} draw(); return; }
+    if (t.matches("[data-lphear]")) { hear("नमस्ते"); return; }
+    if (t.dataset.lpgo) { step = +t.dataset.lpgo; picked = null; draw(); if (step === 1) hear("नमस्ते"); return; }
+    if (t.dataset.lpopt != null) { picked = +t.dataset.lpopt; if (picked === 0) hear("नमस्ते"); draw(); return; }
+    if (t.matches("[data-lpsaid]")) { picked = "said"; hear(window.PHRASES.wellDone); draw(); return; }
+  });
+  draw(); mark();
+}
 </script>
 </body>
 </html>
