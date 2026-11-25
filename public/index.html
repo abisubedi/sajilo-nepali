@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Sajilo Nepali</title>
-<script>/* test.sajilonepali.app (and the workers.dev address) is a private test copy: everything unlocked, no landing page,
+<script>/* testpage.sajilonepali.app (and the workers.dev address) is a private test copy: everything unlocked, no landing page,
    no App Store prompts, hidden from search engines, and its own progress (a different address keeps its own storage). */
-(function () { var h = location.hostname; window.SN_TEST = /^test\./.test(h) || /\.workers\.dev$/.test(h);
+(function () { var h = location.hostname; window.SN_TEST = /^testpage\./.test(h) || /\.workers\.dev$/.test(h);
   if (window.SN_TEST) { document.write('<meta name="robots" content="noindex, nofollow">'); document.documentElement.classList.add("test-site"); }
   else document.write('<meta name="apple-itunes-app" content="app-id=6834950092">'); })();</script>
 <script>/* New web visitors see the landing page first; the app, returning learners and ?home links skip or force it. */
@@ -1195,6 +1195,9 @@ const FREE_CHAPTERS = ["home"];
 let PASS = (() => { try { return JSON.parse(localStorage.getItem("sn-pass") || "null"); } catch (e) { return null; } })();
 const hasPass = () => NATIVE ? !!(PASS && Date.now() < PASS.until + 3 * 864e5) : !!window.SN_TEST;   // the test site is fully unlocked
 const APP_STORE = "https://apps.apple.com/us/app/sajilo-nepali/id6834950092";
+/* this site's own address: the test copy never points to the real site in shares, prints or links */
+const SITE = window.SN_TEST ? location.host : "sajilonepali.app", SITE_URL = "https://" + SITE;
+if (window.SN_TEST) document.querySelectorAll('link[rel="canonical"], meta[property^="og:"], meta[name^="twitter:"]').forEach(e => e.remove());
 const IAP = () => NATIVE && window.Capacitor.Plugins && window.Capacitor.Plugins.NativePurchases;
 const freeLesson = id => window.CHAPTERS.some(c => FREE_CHAPTERS.includes(c.id) && c.lessons.includes(id));
 const syncLock = () => document.documentElement.classList.toggle("locked", !hasPass());
@@ -1782,7 +1785,7 @@ function loadSaveCode(code) {
 function grownHTML() {
   const g = S.grown;
   let body = "";
-  if (g === "save") body = `<p class="note" style="text-align:left;margin:0">This code holds every player's stars, streak and stickers. Copy it, then on the other phone or tablet open sajilonepali.app and tap <b>📥 Load save code</b>.</p>
+  if (g === "save") body = `<p class="note" style="text-align:left;margin:0">This code holds every player's stars, streak and stickers. Copy it, then on the other phone or tablet open ${SITE} and tap <b>📥 Load save code</b>.</p>
     <textarea id="codeBox" readonly rows="5">${esc(makeSaveCode())}</textarea>
     <div class="share-btns"><button class="chip primary" type="button" id="copyCode">📋 Copy code</button></div><p class="note" id="codeMsg" role="status"></p>`;
   if (g === "load") body = `<p class="note" style="text-align:left;margin:0">Paste a save code from another device. This replaces the players and progress on <b>this</b> device.</p>
@@ -1989,7 +1992,7 @@ function renderPrint() {
     <p class="note no-print">Print, cut along the dashed lines, and tape the cards around the house.</p>
     <div class="print-grid">${cs.map(c => `<div class="pcard">${c.letter ? `<span class="pc-letter" lang="ne">${esc(c.letter)}</span>` : ""}<span class="pc-pic">${artFor(c) ? `<img class="wpic" src="${artFor(c)}" alt="">` : esc(c.pic === "💬" ? "" : c.pic)}</span>
       <span class="pc-ne" lang="ne">${esc(c.ne || "")}</span><span class="pc-rom">${esc(c.letter ? (c.wordRom || c.rom) : c.rom)}</span><span class="pc-en">${esc(c.en)}</span></div>`).join("")}</div>
-    <p class="print-foot">sajilonepali.app · Sajilo Nepali सजिलो नेपाली</p>`;
+    <p class="print-foot">${SITE} · Sajilo Nepali सजिलो नेपाली</p>`;
 }
 function moveCard(d) { const i = S.cardIdx + d; if (i < 0 || i >= S.cards.length) return; S.cardIdx = i; beep("tap"); renderCards(); }
 document.addEventListener("keydown", e => { if (S.screen !== "cards") return; if (e.key === "ArrowRight") moveCard(1); if (e.key === "ArrowLeft") moveCard(-1); });
@@ -2196,7 +2199,7 @@ function renderTracePrint() {
     <p class="note no-print">${big ? "Copy each letter on the lines: the red line is the शिरोरेघा (headline)." : "Trace the grey letters with a crayon, then colour the picture."}</p>
     ${big ? `<div class="tps-rows">${list.map(x => `<div class="tps-row"><span class="tps-solid" lang="ne">${esc(x.ch)}</span>${`<span class="tps-ghost" lang="ne">${esc(x.ch)}</span>`.repeat(3)}<span class="tps-blank"></span></div>`).join("")}</div>`
       : `<div class="tps-grid">${list.map(x => `<div class="tps-cell"><div class="tps-top">${x.it.n ? `<span class="tp-dots">${"<i></i>".repeat(x.it.n)}</span>` : picHTML(x.it, 34)}<span lang="ne">${esc(x.word || "")}</span></div><div class="tps-letters"><span class="tps-solid" lang="ne">${esc(x.ch)}</span><span class="tps-ghost" lang="ne">${esc(x.ch)}</span><span class="tps-ghost" lang="ne">${esc(x.ch)}</span></div></div>`).join("")}</div>`}
-    <p class="print-foot">sajilonepali.app · Sajilo Nepali सजिलो नेपाली</p>`;
+    <p class="print-foot">${SITE} · Sajilo Nepali सजिलो नेपाली</p>`;
 }
 /* Family Pass screen (reached only through the grown-ups' check) */
 let passProducts = null, passMsg = "";
@@ -2213,7 +2216,7 @@ function renderPass() {
         <p style="margin:0;font-weight:700">Chapter 1 and the Moon story are free here in your browser. Download the app for iPhone and iPad to unlock all of Sajilo Nepali with the Family Pass, starting with a 7-day free trial.</p>
         <ul class="pass-list"><li>📚 Every chapter and every lesson</li><li>🌙 Bedtime stories, folk tales and rhymes</li><li>🎪 Every game, the treasure hunt, sayings and seasons</li><li>🖨️ Printable tracing sheets and coloring pages</li><li>👨‍👩‍👧 Every child on the device, no ads, ever</li></ul>
         <a class="as-badge" href="https://apps.apple.com/us/app/sajilo-nepali/id6834950092" target="_blank" rel="noopener" aria-label="Download Sajilo Nepali on the App Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.6zM14.1 5.6c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
-        <p class="note">On a computer? Open sajilonepali.app on your iPhone or iPad, or search “Sajilo Nepali” in the App Store.</p>
+        <p class="note">On a computer? Open ${SITE} on your iPhone or iPad, or search “Sajilo Nepali” in the App Store.</p>
       </section>`;
     return;
   }
@@ -2237,7 +2240,7 @@ function renderPass() {
       <p class="pass-fine">The free trial lasts 7 days and is for new subscribers. Payment is charged to your Apple ID when the trial ends.
         The subscription renews automatically unless it is turned off at least 24 hours before the end of the current period, and the account is
         charged for renewal within 24 hours before the period ends. Manage or cancel any time in your Apple ID's Subscriptions settings.</p>
-      <p class="pass-links"><a href="https://sajilonepali.app/privacy" target="_blank" rel="noopener">Privacy policy</a> · <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Terms of use</a></p>
+      <p class="pass-links"><a href="${SITE_URL}/privacy" target="_blank" rel="noopener">Privacy policy</a> · <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Terms of use</a></p>
     </section>`;
 }
 async function buyPass(key) {
@@ -2292,7 +2295,7 @@ function renderColoring() {
       <img class="color-img" src="${C[pg.art]}" alt="">
       <p class="color-line" lang="ne">${esc(pg.ne)}</p><p class="color-en">${esc(pg.en)}</p>
       <p class="color-name">My name: ________________________ <span lang="ne">मेरो नाम</span></p>
-      <p class="print-foot">sajilonepali.app · Sajilo Nepali सजिलो नेपाली</p>
+      <p class="print-foot">${SITE} · Sajilo Nepali सजिलो नेपाली</p>
     </section>`;
 }
 /* After a daytime story: one question (+5 points, once a day per story). Big learners get the reading question;
@@ -2495,7 +2498,7 @@ function renderCert() {
       ${(() => { const n = knownWordCount(); return n ? `<p class="cert-count">🌟 I know <b lang="ne">${toDeva(n)}</b> (${n}) words in Nepali!</p>` : ""; })()}
       <h3 style="margin:6px 0 0">Words I know</h3>
       <div class="cert-words">${words.map(w => `<span><span lang="ne">${esc(w.ne)}</span> <small>${esc(w.en)}</small></span>`).join("")}</div>
-      <p class="cert-foot">${esc(date)} · Sajilo Nepali · sajilonepali.app</p>
+      <p class="cert-foot">${esc(date)} · Sajilo Nepali · ${SITE}</p>
     </section>
     <p class="note no-print">Print it for the fridge, or take a screenshot and send it to Hajuraama and Hajurba!</p>`;
 }
@@ -2954,7 +2957,7 @@ function confetti() {
 }
 function shareText() {
   const n = liveStreak();
-  return `I got 3 stars in “${S.lesson.title}” on Sajilo Nepali! 🌟${n > 1 ? ` 🪔 ${n} days in a row!` : ""} Learn with me: https://sajilonepali.app`;
+  return `I got 3 stars in “${S.lesson.title}” on Sajilo Nepali! 🌟${n > 1 ? ` 🪔 ${n} days in a row!` : ""} Learn with me: ${SITE_URL}`;
 }
 
 /* Share: the phone's share sheet when it works; otherwise copy the text and say so (some computers have no
@@ -3042,7 +3045,7 @@ function renderNamePrint() {
     <p class="note">Trace the dotted letters with a pencil. Start with the line on top (शिरोरेखा), then each letter from top to bottom.</p>
     ${row(true)}${row(false)}${row(false)}${row(false)}
     <svg class="np-row" viewBox="0 0 1000 220" aria-hidden="true"><line x1="0" y1="62" x2="1000" y2="62" stroke="#c9d3e6" stroke-width="2"/><line x1="0" y1="190" x2="1000" y2="190" stroke="#c9d3e6" stroke-width="2"/></svg>
-    <p class="print-foot">sajilonepali.app · Sajilo Nepali सजिलो नेपाली</p>`;
+    <p class="print-foot">${SITE} · Sajilo Nepali सजिलो नेपाली</p>`;
 }
 function renderNameTrace() {
   const deva = myDevaName();
@@ -3245,7 +3248,7 @@ function postcardCanvas(w) {
   x.fillStyle = "#1f2a44"; let fs = 84; do { x.font = `800 ${fs}px 'Baloo 2', 'Noto Sans Devanagari', sans-serif`; fs -= 4; } while (x.measureText(w.ne).width > 640 && fs > 30); x.fillText(w.ne, 360, 250);
   x.fillStyle = "#1d4f9e"; x.font = "800 32px 'Nunito', sans-serif"; x.fillText(w.rom || "", 360, 310);
   x.fillStyle = "#5d6b86"; x.font = "700 30px 'Nunito', sans-serif"; x.fillText(`“${w.en}”`, 360, 362, 640);
-  x.fillStyle = "#8a4b00"; x.font = "800 22px 'Nunito', sans-serif"; x.fillText("Learned on Sajilo Nepali · sajilonepali.app", 360, 470);
+  x.fillStyle = "#8a4b00"; x.font = "800 22px 'Nunito', sans-serif"; x.fillText(`Learned on Sajilo Nepali · ${SITE}`, 360, 470);
   return c;
 }
 async function sendPostcard(btn) {
@@ -3253,7 +3256,7 @@ async function sendPostcard(btn) {
     : (L.sentences || []).map(s => ({ ne: s.ne.join(" "), rom: s.rom.join(" "), en: s.en }));
   try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch (e) {}
   const w = pool.length ? pool[Math.floor(Math.random() * pool.length)] : { ne: "नमस्ते", rom: "namaste", en: "hello" };
-  const text = `${me().name} learned “${w.ne}” (${w.rom || ""}) = ${w.en} on Sajilo Nepali! https://sajilonepali.app`;
+  const text = `${me().name} learned “${w.ne}” (${w.rom || ""}) = ${w.en} on Sajilo Nepali! ${SITE_URL}`;
   try { const blob = await new Promise(r => postcardCanvas(w).toBlob(r, "image/png")); const file = blob && new File([blob], "sajilo-nepali-postcard.png", { type: "image/png" });
     if (file && navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ title: "A postcard from Sajilo Nepali", text, files: [file] }); return; } } catch (e) { if (e && e.name === "AbortError") return; }
   shareOrCopy(btn, { title: "Sajilo Nepali", text }, text);
@@ -3392,7 +3395,7 @@ document.addEventListener("click", e => {
   if (t.id === "passRestore") { const N = IAP(); if (!N) return; passMsg = "Checking with the App Store…"; render();
     N.restorePurchases().catch(() => {}).then(refreshPass).then(() => { passMsg = hasPass() ? "✓ Your Family Pass is restored." : "No Family Pass was found for this Apple ID."; if (hasPass()) { beep("good"); } render(); }); return; }
   if (t.id === "openPrivacy" || t.id === "openTerms" || t.id === "openHelp") {   // opens in Safari (or a new tab on the web)
-    window.open({ openPrivacy: "https://sajilonepali.app/privacy", openTerms: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/", openHelp: "https://sajilonepali.app/support" }[t.id], "_blank", "noopener"); return; }
+    window.open({ openPrivacy: SITE_URL + "/privacy", openTerms: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/", openHelp: SITE_URL + "/support" }[t.id], "_blank", "noopener"); return; }
   if (t.id === "restorePass") { const N = IAP(); if (!N) return; toast("Checking with the App Store…");
     N.restorePurchases().catch(() => {}).then(refreshPass).then(() => { toast(hasPass() ? "✓ Your Family Pass is restored." : "No Family Pass was found for this Apple ID."); if (hasPass()) beep("good"); }); return; }
   if (t.id === "managePass") { const N = IAP(); if (N) N.manageSubscriptions().catch(() => {}); return; }
@@ -3479,7 +3482,7 @@ document.addEventListener("click", e => {
     return;
   }
   if (t.dataset.cert) { S.certId = t.dataset.cert; S.stickers = false; S.screen = "cert"; render(); window.scrollTo(0, 0); return; }
-  if (t.id === "shareCert") { const st = stickerState().find(x => x.id === S.certId); shareOrCopy(t, { title: "Sajilo Nepali", text: `${me().name} earned the ${st ? st.name : ""} sticker on Sajilo Nepali! 🌟 https://sajilonepali.app` }, `${me().name} earned the ${st ? st.name : ""} sticker on Sajilo Nepali! 🌟 https://sajilonepali.app`); return; }
+  if (t.id === "shareCert") { const st = stickerState().find(x => x.id === S.certId); shareOrCopy(t, { title: "Sajilo Nepali", text: `${me().name} earned the ${st ? st.name : ""} sticker on Sajilo Nepali! 🌟 ${SITE_URL}` }, `${me().name} earned the ${st ? st.name : ""} sticker on Sajilo Nepali! 🌟 ${SITE_URL}`); return; }
   if (t.dataset.pandusay) {
     // secret: tap Pandu 5 times quickly for the old-days cassette trick
     clearTimeout(window._pt); window._ptN = (window._ptN || 0) + 1; window._pt = setTimeout(() => { window._ptN = 0; }, 900);
@@ -3547,7 +3550,7 @@ document.addEventListener("click", e => {
   if (t.id === "cardsPlay") { startLesson(S.lesson.id); return; }
   if (t.dataset.flashsay) { if (t.dataset.swiped) { delete t.dataset.swiped; return; } say(t.dataset.flashsay, t); return; }
   if (t.id === "shareApp") {
-    const url = "https://sajilonepali.app/", text = "Check out Sajilo Nepali: easy Nepali for kids and beginners, with Pandu the red panda!";
+    const url = SITE_URL + "/", text = "Check out Sajilo Nepali: easy Nepali for kids and beginners, with Pandu the red panda!";
     shareOrCopy(t, { title: "Sajilo Nepali · Easy Nepali for Kids & Beginners", text, url }, text + " " + url);
     return;
   }

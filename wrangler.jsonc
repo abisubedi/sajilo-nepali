@@ -16,6 +16,6 @@
   "routes": [
     { "pattern": "sajilonepali.app", "custom_domain": true },
     { "pattern": "www.sajilonepali.app", "custom_domain": true },
-    { "pattern": "test.sajilonepali.app", "custom_domain": true }   // private test copy: everything unlocked (see SN_TEST in index.html)
+    { "pattern": "testpage.sajilonepali.app", "custom_domain": true }   // private test copy: everything unlocked (see SN_TEST in index.html)
   ]
 }
