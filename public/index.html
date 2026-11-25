@@ -4,9 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Sajilo Nepali</title>
-<meta name="apple-itunes-app" content="app-id=6834950092">
+<script>/* test.sajilonepali.app (and the workers.dev address) is a private test copy: everything unlocked, no landing page,
+   no App Store prompts, hidden from search engines, and its own progress (a different address keeps its own storage). */
+(function () { var h = location.hostname; window.SN_TEST = /^test\./.test(h) || /\.workers\.dev$/.test(h);
+  if (window.SN_TEST) { document.write('<meta name="robots" content="noindex, nofollow">'); document.documentElement.classList.add("test-site"); }
+  else document.write('<meta name="apple-itunes-app" content="app-id=6834950092">'); })();</script>
 <script>/* New web visitors see the landing page first; the app, returning learners and ?home links skip or force it. */
-(function () { try { var nat = window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform(), force = /[?&#]home\b/.test(location.search + location.hash);
+(function () { if (window.SN_TEST) return; try { var nat = window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform(), force = /[?&#]home\b/.test(location.search + location.hash);
   if (!nat && (force || !(localStorage.getItem("sajilo-nepali-v1") || localStorage.getItem("sn-welcomed")))) document.documentElement.classList.add("landing"); } catch (e) {} })();</script>
 <meta name="description" content="Easy Nepali for kids and beginners: learn everyday spoken Nepali with fun games, real audio pronunciation and letter tracing, with Pandu the red panda.">
 <link rel="canonical" href="https://sajilonepali.app/">
@@ -1116,6 +1120,7 @@ html.landing body { overflow: hidden; } html.native #landing { display: none !im
 @media (prefers-reduced-motion: reduce) { .lp-track { scroll-behavior: auto; } .lp-seg::before, .lp-opts button.wrong { transition: none; animation: none; } }
 /* web: the parts beyond Chapter 1 live in the app */
 html.locked:not(.native) .chapter.paid .chapter-banner::after { content: "🔒 In the app"; }
+html.test-site body::after { content: "TEST VERSION"; position: fixed; top: calc(6px + env(safe-area-inset-top)); right: 6px; z-index: 9999; pointer-events: none; background: #7b3fe4; color: #fff; font: 800 11px var(--display); letter-spacing: .04em; padding: 3px 9px; border-radius: 99px; box-shadow: 0 2px 6px rgba(0, 0, 0, .25); }
 .web-app-cta { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center; margin: 18px 0 0; text-align: center; font-weight: 700; color: #3d4a66; }
 .web-pass .as-badge { margin: 6px auto; }
 </style>
@@ -1188,7 +1193,7 @@ if (NATIVE) document.documentElement.classList.add("native");
 const PASS_IDS = { yearly: "app.sajilonepali.pass.yearly", monthly: "app.sajilonepali.pass.monthly" };
 const FREE_CHAPTERS = ["home"];
 let PASS = (() => { try { return JSON.parse(localStorage.getItem("sn-pass") || "null"); } catch (e) { return null; } })();
-const hasPass = () => NATIVE && !!(PASS && Date.now() < PASS.until + 3 * 864e5);
+const hasPass = () => NATIVE ? !!(PASS && Date.now() < PASS.until + 3 * 864e5) : !!window.SN_TEST;   // the test site is fully unlocked
 const APP_STORE = "https://apps.apple.com/us/app/sajilo-nepali/id6834950092";
 const IAP = () => NATIVE && window.Capacitor.Plugins && window.Capacitor.Plugins.NativePurchases;
 const freeLesson = id => window.CHAPTERS.some(c => FREE_CHAPTERS.includes(c.id) && c.lessons.includes(id));
@@ -1916,7 +1921,7 @@ function renderMap() {
         <button class="chip" type="button" id="openPhrases">🗣️ Everyday phrases</button>
       </div>
     </section>
-    ${NATIVE ? "" : `<div class="web-app-cta"><a class="as-badge" href="https://apps.apple.com/us/app/sajilo-nepali/id6834950092" target="_blank" rel="noopener" aria-label="Download Sajilo Nepali on the App Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.6zM14.1 5.6c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg><span><small>Download on the</small><b>App Store</b></span></a><a href="?home" style="color:#1d4f9e">About Sajilo Nepali</a></div>`}
+    ${NATIVE || window.SN_TEST ? "" : `<div class="web-app-cta"><a class="as-badge" href="https://apps.apple.com/us/app/sajilo-nepali/id6834950092" target="_blank" rel="noopener" aria-label="Download Sajilo Nepali on the App Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.6zM14.1 5.6c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg><span><small>Download on the</small><b>App Store</b></span></a><a href="?home" style="color:#1d4f9e">About Sajilo Nepali</a></div>`}
     <div class="nav-space"></div>
     <nav class="bottom-nav" aria-label="Main">
       <button type="button" class="nav-btn${S.play || S.stickers ? "" : " active"}" id="navLearn"><span class="nav-icon">🗺️</span><span class="nav-label"><span lang="ne">सिकौँ</span> · Learn</span></button>
