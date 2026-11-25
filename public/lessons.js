@@ -1066,3 +1066,624 @@ window.BS_FEST = ["Nepali New Year (नयाँ वर्ष) month!", "Mango (
 /* Bikram Sambat calendar, BS 2000–2090 (AD 1943–2034). Each digit is a month's length minus 29, twelve per year,
    from Baishakh. Checked against two independent published tables; 1 Baishakh 2000 = 14 April 1943. */
 window.BS_CAL = { y0: 2000, start: [1943, 4, 14], len: "132321110102223222101011223321101011232321110012132321110102223222101011223321101011232321110012222322011002223222101011223321101011232321110012222322011011223222101011223321101011232321110012222322011011223222101011232321101011232321110102222322101011223222101011232321110011232321110102222322101011223222101011232321110012132321110102223222101011223231101011232321110012132321110102223222101011223321101011232321110012132322011002223222101011223321101011232321110012222322011011223222101011223321101011232321110012222322011011223222101011232321101011232321110012222322101011223222101011232321110011232321110102222322101011223222101011232321110011232321110102223222101011223231101011232321110012132321110102223222101011223321101011232321110012132322010102223222101011223321101011232321110012222322011002223222101011223321101011232321110012222322011011223222101011232321101011232321110012222322101011223222101011232321110011232321110102222322101011223222101011232321110011232321110102223222101011223222101011223221110111232312110111132321110111223222110111123312110111132321110111132321110111" };
+
+/* ===== Chapter 12 · पहिलो पाइला · First Steps: a beginner course for travellers, partners and new learners (big learners and grown-ups).
+   Each lesson is a pool of about 50 phrases: the game asks 12 at a time, the flashcards show them all, and `tip` is a cultural note on the card. ===== */
+window.LESSONS.push({
+ "id": "first-greetings",
+ "title": "First Encounters & Etiquette",
+ "ne": "नमस्ते र शिष्टाचार",
+ "rom": "namaste ra shishtaachaar",
+ "icon": "🙏",
+ "color": "#e67e22",
+ "bigOnly": true,
+ "items": [
+  {
+   "ne": "नमस्ते",
+   "rom": "namaste",
+   "en": "Hello / Greetings",
+   "pic": "🙏",
+   "alt": [
+    "hello",
+    "greetings",
+    "hi"
+   ],
+   "tip": "Spoken with palms pressed together at chest level. Suitable for almost every everyday situation."
+  },
+  {
+   "ne": "नमस्कार",
+   "rom": "namaskaar",
+   "en": "Respectful hello",
+   "pic": "🙏",
+   "alt": [
+    "formal hello",
+    "greetings",
+    "respectful hello"
+   ],
+   "tip": "A step more formal than namaste. Use it with elders, teachers, monks or in formal meetings."
+  },
+  {
+   "ne": "हजुर",
+   "rom": "hajur",
+   "en": "Yes? / Pardon? (polite)",
+   "pic": "✨",
+   "alt": [
+    "yes",
+    "pardon",
+    "sir",
+    "maam",
+    "excuse me"
+   ],
+   "tip": "The most polite little word in Nepali. Say it when someone calls your name, to ask 'pardon?', or as a respectful 'yes'."
+  },
+  {
+   "ne": "धन्यवाद",
+   "rom": "dhanyabaad",
+   "en": "Thank you",
+   "pic": "💐",
+   "alt": [
+    "thanks",
+    "thank you"
+   ],
+   "tip": "Kept for real gratitude rather than every small exchange; a smile does the rest."
+  },
+  {
+   "ne": "धेरै धन्यवाद",
+   "rom": "dherai dhanyabaad",
+   "en": "Thank you very much",
+   "pic": "💖",
+   "alt": [
+    "thank you so much",
+    "thanks a lot",
+    "many thanks"
+   ],
+   "tip": "'Dherai' means many or much. Perfect for thanking hosts and guides."
+  },
+  {
+   "ne": "माफ गर्नुहोस्",
+   "rom": "maaf garnuhos",
+   "en": "Excuse me / Sorry",
+   "pic": "🙇",
+   "alt": [
+    "excuse me",
+    "sorry",
+    "pardon me",
+    "forgive me"
+   ],
+   "tip": "To apologise, or to squeeze politely through a busy bazaar or bus."
+  },
+  {
+   "ne": "हुन्छ",
+   "rom": "hunchha",
+   "en": "Okay / Sure",
+   "pic": "👍",
+   "alt": [
+    "okay",
+    "sure",
+    "alright",
+    "fine",
+    "ok"
+   ],
+   "tip": "The everyday 'okay': it will do, sounds good."
+  },
+  {
+   "ne": "हुँदैन",
+   "rom": "hundaina",
+   "en": "Not okay / Not allowed",
+   "pic": "🙅",
+   "alt": [
+    "no",
+    "not okay",
+    "not allowed",
+    "cannot"
+   ],
+   "tip": "A polite but firm no, or that something isn't allowed."
+  },
+  {
+   "ne": "हो",
+   "rom": "ho",
+   "en": "Yes (it is)",
+   "pic": "✅",
+   "alt": [
+    "yes",
+    "it is",
+    "correct"
+   ],
+   "tip": "Confirms who or what something is. 'Is this your bag?' 'Ho.'"
+  },
+  {
+   "ne": "होइन",
+   "rom": "hoina",
+   "en": "No (it is not)",
+   "pic": "❌",
+   "alt": [
+    "no",
+    "it is not",
+    "incorrect"
+   ],
+   "tip": "The opposite of 'ho'. 'Are you a doctor?' 'Hoina.'"
+  },
+  {
+   "ne": "छ",
+   "rom": "chha",
+   "en": "There is / I have it",
+   "pic": "📦",
+   "alt": [
+    "there is",
+    "exists",
+    "have it",
+    "yes",
+    "i have it"
+   ],
+   "tip": "For having or there being something. 'Is there tea?' 'Chha.'"
+  },
+  {
+   "ne": "छैन",
+   "rom": "chhaina",
+   "en": "There isn't / I don't have",
+   "pic": "📭",
+   "alt": [
+    "there is not",
+    "do not have",
+    "none",
+    "no",
+    "i dont have"
+   ],
+   "tip": "The opposite of 'chha': none, sold out, not here."
+  },
+  {
+   "ne": "फेरि",
+   "rom": "pheri",
+   "en": "Again / Once more",
+   "pic": "🔄",
+   "alt": [
+    "again",
+    "once more"
+   ],
+   "tip": "A learner's friend: add 'bhannuhos' to ask someone to repeat."
+  },
+  {
+   "ne": "बिस्तारै",
+   "rom": "bistaarai",
+   "en": "Slowly / Gently",
+   "pic": "🐢",
+   "alt": [
+    "slowly",
+    "gently",
+    "softly"
+   ],
+   "tip": "Ask people to speak slower, or tell a driver to take it easy."
+  },
+  {
+   "ne": "राम्रो",
+   "rom": "raamro",
+   "en": "Good / Nice / Beautiful",
+   "pic": "🌟",
+   "alt": [
+    "good",
+    "nice",
+    "fine",
+    "beautiful"
+   ],
+   "tip": "The all-purpose compliment: for the weather, food, people and views."
+  },
+  {
+   "ne": "तपाईंलाई कस्तो छ?",
+   "rom": "tapaainlaai kasto chha?",
+   "en": "How are you?",
+   "pic": "😊",
+   "alt": [
+    "how are you",
+    "how are you doing"
+   ],
+   "tip": "A polite, respectful way to ask how someone is."
+  },
+  {
+   "ne": "मलाई सञ्चै छ",
+   "rom": "malaai sanchai chha",
+   "en": "I am fine",
+   "pic": "☀️",
+   "alt": [
+    "i am fine",
+    "i am good",
+    "fine",
+    "doing well",
+    "im fine"
+   ],
+   "tip": "The cheerful reply. Add 'ani tapaainlaai?' (and you?)."
+  },
+  {
+   "ne": "तपाईंको नाम के हो?",
+   "rom": "tapaainko naam ke ho?",
+   "en": "What is your name?",
+   "pic": "🏷️",
+   "alt": [
+    "what is your name",
+    "whats your name"
+   ],
+   "tip": "'Tapaainko' is the polite 'your'."
+  },
+  {
+   "ne": "मेरो नाम पाण्डु हो",
+   "rom": "mero naam paandu ho",
+   "en": "My name is Pandu",
+   "pic": "📛",
+   "alt": [
+    "my name is pandu",
+    "i am pandu",
+    "im pandu"
+   ],
+   "tip": "Put your own name in place of Pandu. Word order: my, name, Pandu, is."
+  },
+  {
+   "ne": "तपाईंलाई भेटेर खुसी लाग्यो",
+   "rom": "tapaainlaai bhetera khusi laagyo",
+   "en": "Nice to meet you",
+   "pic": "🤝",
+   "alt": [
+    "nice to meet you",
+    "pleased to meet you",
+    "glad to meet you"
+   ],
+   "tip": "A warm, courteous line after introductions."
+  },
+  {
+   "ne": "तपाईं कहाँबाट आउनुभयो?",
+   "rom": "tapaain kahaanbaata aaunubhayo?",
+   "en": "Where are you from?",
+   "pic": "🌍",
+   "alt": [
+    "where are you from",
+    "where did you come from"
+   ],
+   "tip": "One of the first questions curious people will ask a visitor."
+  },
+  {
+   "ne": "म अमेरिकाबाट आएको हुँ",
+   "rom": "ma amerikaabaata aaeko hun",
+   "en": "I am from America",
+   "pic": "✈️",
+   "alt": [
+    "i am from america",
+    "i came from america",
+    "im from america"
+   ],
+   "tip": "Swap in your own country. Women often say 'aaeki hun'."
+  },
+  {
+   "ne": "तपाईं कहाँ बस्नुहुन्छ?",
+   "rom": "tapaain kahaan basnuhunchha?",
+   "en": "Where do you live?",
+   "pic": "🏡",
+   "alt": [
+    "where do you live",
+    "where are you staying",
+    "where do you stay"
+   ],
+   "tip": "Also asks where you are staying: your hotel or neighbourhood."
+  },
+  {
+   "ne": "म काठमाडौँमा बस्छु",
+   "rom": "ma kaathmaadaunmaa baschhu",
+   "en": "I live in Kathmandu",
+   "pic": "📍",
+   "alt": [
+    "i live in kathmandu",
+    "i stay in kathmandu"
+   ],
+   "tip": "Swap in your own place: 'Ma Thamelmaa baschhu' (I'm staying in Thamel)."
+  },
+  {
+   "ne": "यो के हो?",
+   "rom": "yo ke ho?",
+   "en": "What is this?",
+   "pic": "❓",
+   "alt": [
+    "what is this",
+    "whats this"
+   ],
+   "tip": "Point at a fruit, a craft or a temple carving to learn its name."
+  },
+  {
+   "ne": "त्यो के हो?",
+   "rom": "tyo ke ho?",
+   "en": "What is that?",
+   "pic": "👉",
+   "alt": [
+    "what is that",
+    "whats that"
+   ],
+   "tip": "For things further away."
+  },
+  {
+   "ne": "यो मेरो हो",
+   "rom": "yo mero ho",
+   "en": "This is mine",
+   "pic": "🎒",
+   "alt": [
+    "this is mine",
+    "this belongs to me"
+   ],
+   "tip": "Handy for bags and belongings."
+  },
+  {
+   "ne": "त्यो तपाईंको हो?",
+   "rom": "tyo tapaainko ho?",
+   "en": "Is that yours?",
+   "pic": "💼",
+   "alt": [
+    "is that yours",
+    "does that belong to you"
+   ],
+   "tip": "A polite check when someone leaves something behind."
+  },
+  {
+   "ne": "साथी",
+   "rom": "saathi",
+   "en": "Friend",
+   "pic": "🧑‍🤝‍🧑",
+   "alt": [
+    "friend",
+    "buddy",
+    "companion"
+   ],
+   "tip": "'Mero saathi' means my friend."
+  },
+  {
+   "ne": "परिवार",
+   "rom": "pariwaar",
+   "en": "Family",
+   "pic": "👨‍👩‍👧‍👦",
+   "alt": [
+    "family",
+    "household"
+   ],
+   "tip": "Family is at the heart of Nepali life; people will often ask about yours."
+  },
+  {
+   "ne": "मैले बुझेँ",
+   "rom": "maile bujhen",
+   "en": "I understood",
+   "pic": "💡",
+   "alt": [
+    "i understand",
+    "i understood",
+    "got it"
+   ],
+   "tip": "Shows you followed the directions, the price or the explanation."
+  },
+  {
+   "ne": "मैले बुझिनँ",
+   "rom": "maile bujhina",
+   "en": "I didn't understand",
+   "pic": "🤔",
+   "alt": [
+    "i do not understand",
+    "i did not understand",
+    "i dont understand",
+    "i didnt understand"
+   ],
+   "tip": "Never be shy to say it: people are glad to explain another way."
+  },
+  {
+   "ne": "फेरि भन्नुहोस्",
+   "rom": "pheri bhannuhos",
+   "en": "Please say it again",
+   "pic": "🔁",
+   "alt": [
+    "please repeat",
+    "say again",
+    "repeat please",
+    "say it again"
+   ],
+   "tip": "Asks someone to repeat, politely."
+  },
+  {
+   "ne": "बिस्तारै बोल्नुहोस्",
+   "rom": "bistaarai bolnuhos",
+   "en": "Please speak slowly",
+   "pic": "🗣️",
+   "alt": [
+    "speak slowly please",
+    "please speak slowly",
+    "speak slowly"
+   ],
+   "tip": "A polite way to slow a fast talker down."
+  },
+  {
+   "ne": "तपाईंलाई थाहा छ?",
+   "rom": "tapaainlaai thaahaa chha?",
+   "en": "Do you know?",
+   "pic": "🧐",
+   "alt": [
+    "do you know"
+   ],
+   "tip": "A good opener when you're looking for a bus, a restaurant or a place."
+  },
+  {
+   "ne": "मलाई थाहा छैन",
+   "rom": "malaai thaahaa chhaina",
+   "en": "I don't know",
+   "pic": "🤷",
+   "alt": [
+    "i do not know",
+    "i dont know",
+    "no idea"
+   ],
+   "tip": "A humble, honest answer."
+  },
+  {
+   "ne": "म अलिअलि नेपाली बोल्छु",
+   "rom": "ma aliali nepaali bolchhu",
+   "en": "I speak a little Nepali",
+   "pic": "🤏",
+   "alt": [
+    "i speak a little nepali",
+    "i speak some nepali"
+   ],
+   "tip": "Say this and watch faces light up: people love to help you practise."
+  },
+  {
+   "ne": "म नेपाली सिक्दै छु",
+   "rom": "ma nepaali sikdai chhu",
+   "en": "I am learning Nepali",
+   "pic": "📖",
+   "alt": [
+    "i am learning nepali",
+    "learning nepali",
+    "im learning nepali"
+   ],
+   "tip": "Shows you're eager to learn."
+  },
+  {
+   "ne": "तपाईं अंग्रेजी बोल्नुहुन्छ?",
+   "rom": "tapaain angreji bolnuhunchha?",
+   "en": "Do you speak English?",
+   "pic": "💬",
+   "alt": [
+    "do you speak english",
+    "can you speak english"
+   ],
+   "tip": "A polite question before switching languages."
+  },
+  {
+   "ne": "यसलाई नेपालीमा के भन्छन्?",
+   "rom": "yaslaai nepaalimaa ke bhanchhan?",
+   "en": "What is this called in Nepali?",
+   "pic": "🗨️",
+   "alt": [
+    "what is this called in nepali",
+    "how do you say this in nepali"
+   ],
+   "tip": "The best vocabulary question there is: point at anything and ask."
+  },
+  {
+   "ne": "बस्नुहोस्",
+   "rom": "basnuhos",
+   "en": "Please sit down",
+   "pic": "🪑",
+   "alt": [
+    "please sit",
+    "sit down",
+    "have a seat",
+    "please sit down"
+   ],
+   "tip": "You'll hear this as a welcome guest in any home or shop."
+  },
+  {
+   "ne": "खानुहोस्",
+   "rom": "khaanuhos",
+   "en": "Please eat",
+   "pic": "🍽️",
+   "alt": [
+    "please eat",
+    "have some food",
+    "eat please",
+    "have some"
+   ],
+   "tip": "The welcome when snacks, chiya or dal bhat arrive."
+  },
+  {
+   "ne": "लिनुहोस्",
+   "rom": "linuhos",
+   "en": "Please take this",
+   "pic": "🤲",
+   "alt": [
+    "please take",
+    "take this please",
+    "here you go",
+    "please take this"
+   ],
+   "tip": "Give and take things with your right hand, or support your right elbow with your left hand."
+  },
+  {
+   "ne": "दिनुहोस्",
+   "rom": "dinuhos",
+   "en": "Please give me",
+   "pic": "✋",
+   "alt": [
+    "please give",
+    "give me please",
+    "please give me"
+   ],
+   "tip": "A key request word: 'paani dinuhos' (water, please), 'bill dinuhos' (the bill, please)."
+  },
+  {
+   "ne": "पर्खनुहोस्",
+   "rom": "parkhanuhos",
+   "en": "Please wait",
+   "pic": "⏳",
+   "alt": [
+    "please wait",
+    "wait a moment",
+    "hold on",
+    "wait please"
+   ],
+   "tip": "A respectful 'one moment, please'."
+  },
+  {
+   "ne": "एकैछिन है",
+   "rom": "ekaichhin hai",
+   "en": "Just a second, okay?",
+   "pic": "⏱️",
+   "alt": [
+    "just a second",
+    "just a moment",
+    "one second",
+    "one moment"
+   ],
+   "tip": "A warm, everyday way to say 'one moment'."
+  },
+  {
+   "ne": "समस्या छैन",
+   "rom": "samasyaa chhaina",
+   "en": "No problem",
+   "pic": "👌",
+   "alt": [
+    "no problem",
+    "no worries",
+    "not a problem"
+   ],
+   "tip": "Reassures someone that everything is fine."
+  },
+  {
+   "ne": "चिन्ता नगर्नुहोस्",
+   "rom": "chintaa nagarnuhos",
+   "en": "Don't worry",
+   "pic": "🌈",
+   "alt": [
+    "dont worry",
+    "do not worry",
+    "no stress"
+   ],
+   "tip": "Kind reassurance you'll hear from guides and hosts."
+  },
+  {
+   "ne": "तपाईं धेरै दयालु हुनुहुन्छ",
+   "rom": "tapaain dherai dayaalu hunuhunchha",
+   "en": "You are very kind",
+   "pic": "❤️",
+   "alt": [
+    "you are very kind",
+    "you are so kind",
+    "youre very kind"
+   ],
+   "tip": "A heartfelt thank-you for generous hosts."
+  },
+  {
+   "ne": "फेरि भेटौँला",
+   "rom": "pheri bhetaunla",
+   "en": "See you again",
+   "pic": "👋",
+   "alt": [
+    "see you again",
+    "see you later",
+    "until next time",
+    "goodbye",
+    "bye"
+   ],
+   "tip": "The traditional goodbye: not 'farewell' but a promise to meet again."
+  }
+ ]
+});
+window.CHAPTERS.push({"id": "first-steps", "ne": "पहिलो पाइला", "rom": "pahilo paaila", "en": "First Steps · Beginner Course", "color": "#e67e22", "sticker": {"pic": "🧭", "name": "Nepal Ambassador", "say": {"ne": "वाह! तपाईं नेपालको साथी हुनुभयो!", "rom": "waah! tapaain nepaalko saathi hunubhayo!", "en": "Wow! You've become a friend of Nepal!"}}, "lessons": ["first-greetings"]});

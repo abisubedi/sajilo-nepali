@@ -950,6 +950,7 @@ span[data-say]:hover { background: rgba(47,111,214,.10); }
 .meter { width: min(300px, 82vw); height: 12px; background: #d5e1f2; border-radius: 999px; overflow: hidden; }
 .meter i { display: block; height: 100%; width: 0; background: var(--flag-yellow); transition: width .2s; }
 .feat-hdr { display: block; width: 100%; aspect-ratio: 2 / 1; object-fit: cover; border-radius: 18px; margin: 0 0 12px; box-shadow: 0 4px 0 rgba(31,42,68,.12); }
+.card-tip { margin: 10px auto 0; max-width: 34em; background: #fff8e1; border: 2px solid #f3d37a; border-radius: 14px; padding: 10px 14px; font-weight: 700; line-height: 1.45; text-align: left; }
 .play-shelf .new-badge { font: 800 11px var(--body, sans-serif); font-style: normal; background: var(--flag-red, #e2453c); color: #fff; border-radius: 99px; padding: 2px 8px; vertical-align: 2px; margin-left: 4px; }
 /* 1.2 · घरभित्रको खोजी */
 .hunt-card { background: #fff8e1; border: 3px solid #f3d37a; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 10px; align-items: center; text-align: center; box-shadow: 0 5px 0 #f3d37a; }
@@ -1957,7 +1958,7 @@ function cardList(l) {
   if (l.sentences) return l.sentences.map((s, i) => { const sp = sentencePic(l, s, i); return { ne: s.ne.join(" "), rom: s.rom.join(" "), en: s.en, pic: sp.pic, art: sp.art, key: K(s.ne.join(" ")) }; });
   return l.items.map(it => l.letters
     ? { letter: it.ne, rom: it.rom, ne: it.word, wordRom: it.wordRom, en: it.en, pic: it.pic, key: window.letterKey(it) }
-    : { ne: it.ne, rom: it.rom, en: it.en, pic: it.pic, ctx: it.ctx, ex: it.ex, key: K(it.ne) });
+    : { ne: it.ne, rom: it.rom, en: it.en, pic: it.pic, ctx: it.ctx, ex: it.ex, tip: it.tip, key: K(it.ne) });
 }
 function openCards(id) { S.lesson = window.LESSONS.find(l => l.id === id); S.cards = cardList(S.lesson); S.cardIdx = 0; S.sheet = null; S.screen = "cards"; render(); window.scrollTo(0, 0); }
 function renderCards() {
@@ -1972,6 +1973,7 @@ function renderCards() {
       <span class="ne" lang="ne">${esc(c.ne || "")}</span>${c.letter ? (c.wordRom ? `<span class="rom">${esc(c.wordRom)}</span>` : "") : `<span class="rom">${esc(c.rom)}</span>`}
       <span class="en">${esc(c.en)}</span>
     </button>
+    ${c.tip ? `<p class="card-tip">💡 ${esc(c.tip)}</p>` : ""}
     ${c.ex ? `<p class="card-ex">🗣️ ${neSpan(c.ex.ne)} <span class="rom">${esc(c.ex.rom)}</span><small>${esc(c.ex.en)}</small></p>` : ""}
     <div class="card-nav">
       <button class="chip big" type="button" id="cardPrev" ${S.cardIdx ? "" : "disabled"} aria-label="Previous card">◀</button>
