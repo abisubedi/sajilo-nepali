@@ -1,9 +1,19 @@
 # Sajilo Nepali 1.1: release guide
 
+1.1 now includes everything planned for 1.2 (the Nepal at home games), so both updates reach the App Store together.
+
 Version **1.1**, build **2** (already set in the Xcode project).
 Version 1.0 (build 1) was made from commit `c410d67` on Nov 15, 2026. Everything below has been added since then.
 
 ## What's changed since 1.0
+
+**New: Nepal at home (a new shelf in the Play menu)**
+- घरभित्रको खोजी (treasure hunt): a new letter every day (12 letters). Pandu asks the child to find something at home that
+  starts with it, with picture hints; tapping मैले भेट्टाएँ! collects a letter stamp.
+- उखान-टुक्का (sayings): six Nepali sayings as three-panel comics (what it says, what it means, try it), each read aloud.
+- ऋतु र जन्मदिन: a tappable wheel of Nepal's six seasons, and "My Nepali birthday": enter a birthday and Pandu shows the
+  Bikram Sambat date (for example 14 Oct 2016 = २८ असोज २०७३), its season and festivals. Works for 1943–2034.
+- 30 new voice lines and 30 new pictures for these games. Like the other Play games, they are part of the Family Pass.
 
 **A new voice for the whole app**
 - Almost every Nepali word, sentence, story, rhyme, riddle and quiz question (about 960 lines) is re-recorded in a
@@ -34,8 +44,17 @@ Version 1.0 (build 1) was made from commit `c410d67` on Nov 15, 2026. Everything
 ## "What's New" text for the App Store (copy and paste)
 
 ```
-A brand-new voice! Almost every Nepali word, story, rhyme and riddle has been re-recorded in a clear, warm voice, with polite endings spoken properly (utha, basa, hinda).
+Big update! Three new games and a brand-new voice.
 
+NEW: Nepal at home
+• Treasure hunt: a new Nepali letter every day. Find something at home that starts with it and collect letter stamps!
+• Sayings: classic Nepali proverbs as funny three-panel comics, read aloud
+• Six seasons and My Nepali birthday: spin Nepal's six seasons and see your birthday in the Nepali calendar
+
+A NEW VOICE
+Almost every Nepali word, story, rhyme and riddle has been re-recorded in a clear, warm voice, with polite endings spoken properly (utha, basa, hinda).
+
+ALSO NEW
 • New classic rhyme: ताराबाजी लै लै
 • Calmer narration for bedtime stories and folk tales
 • Chapter tiles now show your progress, and Play next follows the chapter you tap
@@ -70,9 +89,9 @@ A brand-new voice! Almost every Nepali word, story, rhyme and riddle has been re
 7. In App Store Connect, open **TestFlight**; build 1.1 (2) appears there. Add yourself as an internal tester and install
    it with the TestFlight app on your iPhone or iPad. Check a few lessons, a bedtime story and the ताराबाजी rhyme.
 
-You can do Parts A and B while 1.0 is still waiting for review: uploading a build does not touch the 1.0 review.
+Since 1.0 is already on the App Store, you can go straight from Part A (and B, if you like) to Part C.
 
-### Part C: send 1.1 to Apple (only after 1.0 is approved)
+### Part C: send 1.1 to Apple (1.0 is live, so you can do this now)
 
 8. In App Store Connect, open the app, and next to **iOS App** in the left column click **+** (or **Add Version**). Type **1.1**.
 9. Paste the **What's New** text from above. Then open **App Information** and change the **Subtitle** to

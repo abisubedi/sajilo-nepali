@@ -29,6 +29,7 @@ WHAT'S INSIDE
 • The Nepali alphabet: vowels, consonants and बाराखरी, with a chalk slate to trace every letter
 • Nepali folk tales and bedtime stories with "read to me", plus classic rhymes to sing together
 • Games that make words stick: match the pairs, let's count, join the letters, Bagh-chal and more
+• Nepal at home: a daily letter treasure hunt around your house, classic Nepali sayings as funny comics, Nepal's six seasons, and your birthday in the Nepali calendar
 • Printable tracing sheets and coloring pages
 • Stars, stickers and a daily mission to say something in Nepali at home
 • Festival greetings through the year, from Dashain and Tihar to Chhath and Lhosar
