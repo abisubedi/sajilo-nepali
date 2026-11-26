@@ -1565,5 +1565,7 @@ window.AUDIO = {
  "बिल दिनुहोस्": "audio/9654bbfcb1.mp3?v=a9e7a9b6",
  "जम्मा कति भयो": "audio/c59cdbd68b.mp3?v=7f3b84fa",
  "कार्ड चल्छ कि चल्दैन": "audio/87ef1e0ab9.mp3?v=9d9c6b9f",
- "चिया र खाना": "audio/03ed1ac4c3.mp3?v=dfc69801"
+ "चिया र खाना": "audio/03ed1ac4c3.mp3?v=dfc69801",
+ "चिया खानुहोस्": "audio/3b400ab26a.mp3?v=eaefa9c8",
+ "शुभ साँझ": "audio/865730b951.mp3?v=40c20ccf"
 };
