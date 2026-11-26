@@ -1686,7 +1686,7 @@ window.LESSONS.push({
   }
  ]
 });
-window.CHAPTERS.push({"id": "first-steps", "ne": "पहिलो पाइला", "rom": "pahilo paaila", "en": "First Steps · Beginner Course", "color": "#e67e22", "sticker": {"pic": "🧭", "img": "img/st-first-steps.webp", "name": "Nepal Ambassador", "say": {"ne": "वाह! तपाईं नेपालको साथी हुनुभयो!", "rom": "waah! tapaain nepaalko saathi hunubhayo!", "en": "Wow! You've become a friend of Nepal!"}}, "lessons": ["first-greetings", "first-food"]});
+window.CHAPTERS.push({"id": "first-steps", "ne": "पहिलो पाइला", "rom": "pahilo paaila", "en": "First Steps · Beginner Course", "color": "#e67e22", "sticker": {"pic": "🧭", "img": "img/st-first-steps.webp", "name": "Nepal Ambassador", "say": {"ne": "वाह! तपाईं नेपालको साथी हुनुभयो!", "rom": "waah! tapaain nepaalko saathi hunubhayo!", "en": "Wow! You've become a friend of Nepal!"}}, "lessons": ["first-greetings", "first-food", "first-market"]});
 window.LESSONS.push({
  "id": "first-food",
  "title": "Tea Stall & Restaurant",
@@ -2299,4 +2299,612 @@ window.LESSONS.push({
   }
  ],
  "iconImg": "w-milk-tea"
+});
+window.LESSONS.push({
+ "id": "first-market",
+ "title": "Market & Shopping",
+ "ne": "बजार र किनमेल",
+ "rom": "bajaar ra kinmel",
+ "icon": "🛍️",
+ "color": "#e67e22",
+ "bigOnly": true,
+ "items": [
+  {
+   "ne": "बजार",
+   "rom": "bajaar",
+   "en": "Market / Bazaar",
+   "pic": "🏪",
+   "alt": [
+    "market",
+    "bazaar",
+    "marketplace"
+   ],
+   "tip": "Street markets, shopping streets and open-air neighbourhood bazaars like Asan.",
+   "img": "w-open-weekly-market"
+  },
+  {
+   "ne": "पसल",
+   "rom": "pasal",
+   "en": "Shop / Store",
+   "pic": "🏬",
+   "alt": [
+    "shop",
+    "store"
+   ],
+   "tip": "'Kiraanaa pasal' is a grocery shop, 'kapadaa pasal' a clothes shop.",
+   "img": "w-store-shop"
+  },
+  {
+   "ne": "दाइ / दिदी (पसले)",
+   "rom": "daai / didi (pasale)",
+   "en": "Shopkeeper (Brother / Sister)",
+   "pic": "👋",
+   "alt": [
+    "shopkeeper",
+    "brother",
+    "sister",
+    "daai",
+    "didi"
+   ],
+   "tip": "Call a male shopkeeper 'daai' (older brother) and a female one 'didi' (older sister). It's friendly and respectful."
+  },
+  {
+   "ne": "यसको कति पर्छ?",
+   "rom": "yasko kati parchha?",
+   "en": "How much does this cost?",
+   "pic": "🏷️",
+   "alt": [
+    "how much does this cost",
+    "how much is this",
+    "how much"
+   ],
+   "tip": "The number one shopping phrase: point at anything and ask."
+  },
+  {
+   "ne": "त्यसको कति पर्छ?",
+   "rom": "tyasko kati parchha?",
+   "en": "How much does that cost?",
+   "pic": "👉",
+   "alt": [
+    "how much is that",
+    "how much does that cost"
+   ],
+   "tip": "For things hanging up high or behind the counter."
+  },
+  {
+   "ne": "मलाई यो चाहिन्छ",
+   "rom": "malaai yo chaahinchha",
+   "en": "I want / need this",
+   "pic": "🎯",
+   "alt": [
+    "i want this",
+    "i need this",
+    "want this"
+   ],
+   "tip": "'Chaahinchha' is the key word for wanting or needing something."
+  },
+  {
+   "ne": "चाहिँदैन, धन्यवाद",
+   "rom": "chaahindaina, dhanyabaad",
+   "en": "I don't need it, thank you",
+   "pic": "🙅",
+   "alt": [
+    "i do not want it",
+    "dont need it",
+    "no thank you",
+    "not needed"
+   ],
+   "tip": "A polite but firm way to say no to street sellers."
+  },
+  {
+   "ne": "त्यो देखाइदिनुहोस्",
+   "rom": "tyo dekhaaidinuhos",
+   "en": "Please show me that one",
+   "pic": "👀",
+   "alt": [
+    "show me that",
+    "please show that",
+    "show that one"
+   ],
+   "tip": "Ask the shopkeeper to take down a shawl, a craft or a singing bowl for a closer look."
+  },
+  {
+   "ne": "यो छ कि छैन?",
+   "rom": "yo chha ki chhaina?",
+   "en": "Do you have this in stock?",
+   "pic": "📦",
+   "alt": [
+    "do you have this",
+    "is this available",
+    "in stock"
+   ],
+   "tip": "Handy when showing a picture on your phone."
+  },
+  {
+   "ne": "सकियो",
+   "rom": "sakiyo",
+   "en": "Finished / Sold out",
+   "pic": "📭",
+   "alt": [
+    "sold out",
+    "finished",
+    "all gone"
+   ],
+   "tip": "What the shopkeeper says when something has run out."
+  },
+  {
+   "ne": "रुपैयाँ",
+   "rom": "rupaiyaan",
+   "en": "Rupees (Rs. / NPR)",
+   "pic": "💵",
+   "alt": [
+    "rupees",
+    "rupiya",
+    "npr"
+   ],
+   "tip": "Nepal's money. Prices are said in rupees: 'pachaas rupaiyaan' is 50 rupees.",
+   "img": "w-coins"
+  },
+  {
+   "ne": "एक (१)",
+   "rom": "ek",
+   "en": "One (1)",
+   "pic": "1️⃣",
+   "alt": [
+    "one",
+    "1"
+   ],
+   "tip": "Nepali has its own digits: १ is 1. You'll see them on price tags and bus numbers."
+  },
+  {
+   "ne": "दुई (२)",
+   "rom": "dui",
+   "en": "Two (2)",
+   "pic": "2️⃣",
+   "alt": [
+    "two",
+    "2"
+   ],
+   "tip": "'Dui wataa' means two pieces."
+  },
+  {
+   "ne": "पाँच (५)",
+   "rom": "paanch",
+   "en": "Five (5)",
+   "pic": "5️⃣",
+   "alt": [
+    "five",
+    "5"
+   ],
+   "tip": "Five, written ५."
+  },
+  {
+   "ne": "दस (१०)",
+   "rom": "das",
+   "en": "Ten (10)",
+   "pic": "🔟",
+   "alt": [
+    "ten",
+    "10"
+   ],
+   "tip": "A Rs. 10 note is handy for small snacks and temple offerings."
+  },
+  {
+   "ne": "बीस (२०)",
+   "rom": "bis",
+   "en": "Twenty (20)",
+   "pic": "💶",
+   "alt": [
+    "twenty",
+    "20"
+   ],
+   "tip": "Twenty, written २०."
+  },
+  {
+   "ne": "पचास (५०)",
+   "rom": "pachaas",
+   "en": "Fifty (50)",
+   "pic": "💷",
+   "alt": [
+    "fifty",
+    "50"
+   ],
+   "tip": "Around the price of a cup of chiya in many places."
+  },
+  {
+   "ne": "एक सय (१००)",
+   "rom": "ek saya",
+   "en": "One hundred (100)",
+   "pic": "💯",
+   "alt": [
+    "one hundred",
+    "hundred",
+    "100"
+   ],
+   "tip": "'Saya' means hundred: 'dui saya' is 200."
+  },
+  {
+   "ne": "पाँच सय (५००)",
+   "rom": "paanch saya",
+   "en": "Five hundred (500)",
+   "pic": "💸",
+   "alt": [
+    "five hundred",
+    "500"
+   ],
+   "tip": "Five hundred, written ५००."
+  },
+  {
+   "ne": "एक हजार (१०००)",
+   "rom": "ek hajaar",
+   "en": "One thousand (1000)",
+   "pic": "🏦",
+   "alt": [
+    "one thousand",
+    "thousand",
+    "1000"
+   ],
+   "tip": "The biggest note in Nepal. Small shops may not have change for it."
+  },
+  {
+   "ne": "आधा",
+   "rom": "aadhaa",
+   "en": "Half (0.5)",
+   "pic": "🌓",
+   "alt": [
+    "half",
+    "0.5"
+   ],
+   "tip": "'Aadhaa kilo' means half a kilo (500 grams)."
+  },
+  {
+   "ne": "किलो",
+   "rom": "kilo",
+   "en": "Kilogram (kg)",
+   "pic": "⚖️",
+   "alt": [
+    "kilo",
+    "kilogram",
+    "kg"
+   ],
+   "tip": "Fruit, vegetables and rice are sold by the kilo.",
+   "img": "w-scales"
+  },
+  {
+   "ne": "धेरै महङ्गो भयो!",
+   "rom": "dherai mahango bhayo!",
+   "en": "That is too expensive!",
+   "pic": "😲",
+   "alt": [
+    "too expensive",
+    "very expensive",
+    "expensive"
+   ],
+   "tip": "Say it with a friendly smile: the classic start to light-hearted bargaining."
+  },
+  {
+   "ne": "अलि सस्तो गर्नुहोस्",
+   "rom": "ali sasto garnuhos",
+   "en": "Please make it a bit cheaper",
+   "pic": "📉",
+   "alt": [
+    "make it cheaper",
+    "cheaper please",
+    "discount please"
+   ],
+   "tip": "A polite way to ask for a discount without offending anyone."
+  },
+  {
+   "ne": "मिलाएर दिनुहोस् न",
+   "rom": "milaaera dinuhos na",
+   "en": "Please give me a fair price",
+   "pic": "🤝",
+   "alt": [
+    "give a fair price",
+    "work out a price",
+    "give discount"
+   ],
+   "tip": "The natural Nepali way to bargain: 'work it out fairly for both of us'."
+  },
+  {
+   "ne": "अन्तिम कति हो?",
+   "rom": "antim kati ho?",
+   "en": "What is your final price?",
+   "pic": "🏷️",
+   "alt": [
+    "final price",
+    "last price",
+    "best price"
+   ],
+   "tip": "Ask this when you're ready to buy."
+  },
+  {
+   "ne": "यो धेरै ठूलो भयो",
+   "rom": "yo dherai thulo bhayo",
+   "en": "This is too big",
+   "pic": "🐘",
+   "alt": [
+    "too big",
+    "very big",
+    "too large"
+   ],
+   "tip": "For clothes, jackets or backpacks you're trying on.",
+   "img": "w-big"
+  },
+  {
+   "ne": "यो धेरै सानो भयो",
+   "rom": "yo dherai saano bhayo",
+   "en": "This is too small",
+   "pic": "🐭",
+   "alt": [
+    "too small",
+    "very small"
+   ],
+   "tip": "When shoes or clothes are too tight.",
+   "img": "w-small"
+  },
+  {
+   "ne": "अर्को साइज छ?",
+   "rom": "arko size chha?",
+   "en": "Do you have another size?",
+   "pic": "📏",
+   "alt": [
+    "another size",
+    "different size",
+    "other size"
+   ],
+   "tip": "'Arko' means another or a different one."
+  },
+  {
+   "ne": "अर्को रङ्ग छ?",
+   "rom": "arko rang chha?",
+   "en": "Do you have another color?",
+   "pic": "🎨",
+   "alt": [
+    "another color",
+    "different color",
+    "another colour"
+   ],
+   "tip": "For pashminas, shirts and bags in different colours."
+  },
+  {
+   "ne": "यो असली हो?",
+   "rom": "yo asali ho?",
+   "en": "Is this genuine?",
+   "pic": "💎",
+   "alt": [
+    "is it real",
+    "is it genuine",
+    "authentic",
+    "is this genuine"
+   ],
+   "tip": "Useful for pashmina, yak wool, thangka paintings or silver jewellery."
+  },
+  {
+   "ne": "लगाएर हेर्न मिल्छ?",
+   "rom": "lagaaera herna milchha?",
+   "en": "May I try this on?",
+   "pic": "👕",
+   "alt": [
+    "can i try it on",
+    "may i try this on",
+    "try on"
+   ],
+   "tip": "Asks if you may slip on a jacket or use the fitting corner."
+  },
+  {
+   "ne": "मलाई यो मन पर्यो",
+   "rom": "malaai yo man paryo",
+   "en": "I like this one",
+   "pic": "😍",
+   "alt": [
+    "i like this",
+    "i love this",
+    "i like this one"
+   ],
+   "tip": "Say it before you decide to buy.",
+   "img": "w-i-like-it"
+  },
+  {
+   "ne": "मलाई मन परेन",
+   "rom": "malaai man parena",
+   "en": "I don't like it",
+   "pic": "😕",
+   "alt": [
+    "i do not like it",
+    "dont like it",
+    "i dont like it"
+   ],
+   "tip": "A gentle way to say it's not quite what you want."
+  },
+  {
+   "ne": "केरा",
+   "rom": "keraa",
+   "en": "Banana",
+   "pic": "🍌",
+   "alt": [
+    "banana",
+    "bananas"
+   ],
+   "tip": "Sold by the dozen ('darjan') or half-dozen at roadside carts."
+  },
+  {
+   "ne": "स्याउ",
+   "rom": "syaau",
+   "en": "Apple",
+   "pic": "🍎",
+   "alt": [
+    "apple",
+    "apples"
+   ],
+   "tip": "Apples from Mustang (Marpha) are famous for being crisp and sweet."
+  },
+  {
+   "ne": "सुन्तला",
+   "rom": "suntalaa",
+   "en": "Orange / Tangerine",
+   "pic": "🍊",
+   "alt": [
+    "orange",
+    "tangerine"
+   ],
+   "tip": "A winter favourite: sweet and easy to peel.",
+   "img": "w-orange"
+  },
+  {
+   "ne": "आलु",
+   "rom": "aalu",
+   "en": "Potato",
+   "pic": "🥔",
+   "alt": [
+    "potato",
+    "potatoes"
+   ],
+   "tip": "The backbone of many Nepali curries, bought by the kilo."
+  },
+  {
+   "ne": "गोलभेँडा",
+   "rom": "golbhendaa",
+   "en": "Tomato",
+   "pic": "🍅",
+   "alt": [
+    "tomato",
+    "tomatoes"
+   ],
+   "tip": "Goes into almost every curry and the tangy momo achaar."
+  },
+  {
+   "ne": "प्याज",
+   "rom": "pyaaj",
+   "en": "Onion",
+   "pic": "🧅",
+   "alt": [
+    "onion",
+    "onions"
+   ],
+   "tip": "Sold by the kilo at every vegetable stall."
+  },
+  {
+   "ne": "पानी र बिस्कुट",
+   "rom": "paani ra biscuit",
+   "en": "Water and biscuits",
+   "pic": "🍪",
+   "alt": [
+    "water and biscuits",
+    "biscuit and water"
+   ],
+   "tip": "The everyday trail snack from tiny roadside shops and teahouses."
+  },
+  {
+   "ne": "कोसेली",
+   "rom": "koseli",
+   "en": "Souvenir / Gift from travels",
+   "pic": "🎁",
+   "alt": [
+    "souvenir",
+    "gift",
+    "present"
+   ],
+   "tip": "A special Nepali idea: a gift you bring back from a trip for family and friends."
+  },
+  {
+   "ne": "खुद्रा पैसा छ?",
+   "rom": "khudraa paisaa chha?",
+   "en": "Do you have loose change?",
+   "pic": "🪙",
+   "alt": [
+    "do you have change",
+    "loose change",
+    "small change"
+   ],
+   "tip": "Shopkeepers often ask this if you pay with a big note."
+  },
+  {
+   "ne": "मसँग खुद्रा छैन",
+   "rom": "masanga khudraa chhaina",
+   "en": "I don't have change",
+   "pic": "🤷",
+   "alt": [
+    "i dont have change",
+    "no change",
+    "no small bills"
+   ],
+   "tip": "When you only have big notes."
+  },
+  {
+   "ne": "QR कोड छ?",
+   "rom": "QR code chha?",
+   "en": "Do you have a QR code?",
+   "pic": "📱",
+   "alt": [
+    "qr code",
+    "do you have qr",
+    "can i pay by qr",
+    "do you have a qr code"
+   ],
+   "tip": "Paying by QR (Fonepay, eSewa) is everywhere in Nepal, even at street carts."
+  },
+  {
+   "ne": "नगद मात्र",
+   "rom": "nagad maatra",
+   "en": "Cash only",
+   "pic": "💵",
+   "alt": [
+    "cash only",
+    "only cash"
+   ],
+   "tip": "You'll see this at remote teahouses and small vegetable stalls."
+  },
+  {
+   "ne": "झोला चाहिन्छ?",
+   "rom": "jhyolaa chaahinchha?",
+   "en": "Do you need a bag?",
+   "pic": "🛍️",
+   "alt": [
+    "do you need a bag",
+    "shopping bag",
+    "need a bag"
+   ],
+   "tip": "The shopkeeper asking if you need a carry bag."
+  },
+  {
+   "ne": "मसँग झोला छ",
+   "rom": "masanga jhyolaa chha",
+   "en": "I have my own bag",
+   "pic": "🎒",
+   "alt": [
+    "i have a bag",
+    "i have my own bag",
+    "brought a bag"
+   ],
+   "tip": "The eco-friendly reply when you carry your own bag.",
+   "img": "w-bag"
+  },
+  {
+   "ne": "बिल पाउन सक्छु?",
+   "rom": "bill paauna sakchhu?",
+   "en": "May I have a receipt?",
+   "pic": "🧾",
+   "alt": [
+    "can i have a receipt",
+    "can i get a bill",
+    "receipt please",
+    "may i have a receipt"
+   ],
+   "tip": "A polite way to ask for a written bill or receipt."
+  },
+  {
+   "ne": "म यो किन्छु / लिन्छु",
+   "rom": "ma yo kinchhu / linchhu",
+   "en": "I will buy / take this one",
+   "pic": "🎉",
+   "alt": [
+    "i will buy this",
+    "i will take this",
+    "buying this"
+   ],
+   "tip": "Seals the deal: you've decided to buy it."
+  }
+ ],
+ "iconImg": "w-store-shop"
 });
