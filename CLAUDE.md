@@ -17,7 +17,8 @@
 - **No connection to the App Store, ever, and no link to the real site.** On the test site there must be no App Store links, badges, banners or "Get the app" pages, and shares, prints, certificates and help links must use the test site's own address (`SITE` / `SITE_URL` in `public/index.html`), never sajilonepali.app. Check this whenever you add a new link, share text or App Store button.
 - Don't mention or link the test address anywhere public (the real site, the App Store listing, social posts).
 
-## Chapters not in the App Store app yet
+## Chapters and features not in the App Store app yet
 
 - The public website must not show a chapter that the App Store app doesn't have yet. Such chapters are listed in `NOT_IN_APP_YET` in `public/index.html` (today: `first-steps`). The real website drops them; the test site (`window.SN_TEST`), the iPhone/iPad app build and private previews (`window.SN_PREVIEW`) keep them, so the family can try new chapters early.
 - When you add a new chapter, add its id to `NOT_IN_APP_YET`. When the app update containing it is live on the App Store, remove the id (the owner will say when).
+- The same goes for every new app feature (anything that isn't in the current App Store version, today 1.1): gate it with `featureOn("name")` and list the name in `FEATURES_NOT_IN_APP_YET` in `public/index.html` (today: `first-card-spotlight`, `map-arrows`). It then shows on the test site, in the app build and in previews, but not on sajilonepali.app until the owner says the app update is live. Website-only changes (the landing page, App Store links) are not app features and go to the real site as usual.
