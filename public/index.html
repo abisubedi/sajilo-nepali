@@ -1135,6 +1135,27 @@ html.landing body { overflow: hidden; } html.native #landing { display: none !im
 @media (max-width: 860px) { .lp-copy { display: contents; } .lp-copy .lp-eyebrow { order: 1; margin: 0; } .lp-copy h1 { order: 2; } .lp-copy .lp-sub { order: 3; } .lp-playground { order: 4; }
   .lp-copy .lp-ctas { order: 5; margin: 0; } .lp-copy .lp-note { order: 6; margin: -6px 0 0; } .lp-copy .lp-trust { order: 7; margin: 0; } .lp-long { display: none; } }
 @media (prefers-reduced-motion: reduce) { .lp-card, .lp-pandu-hi.sway img, .lp-card.ring .spk::after { animation: none; } }
+/* first visit: a gentle spotlight on the one card to tap first */
+.stone.first-spot { z-index: 1; border-color: #f6b71c; box-shadow: 0 4px 0 #d89f18, 0 0 0 0 rgba(246, 183, 28, .55); animation: spotGlow 2.2s ease-in-out infinite; margin-top: 30px; }
+.stone.first-spot::after { animation: spotPlay 2.2s ease-in-out infinite; }
+.spot-hint { position: absolute; top: -30px; left: 22px; white-space: nowrap; background: #f6b71c; color: #1f2a44; font: 800 14px/1 var(--display); padding: 6px 12px 5px; border-radius: 999px; box-shadow: 0 3px 0 #d89f18; animation: spotBob 1.4s ease-in-out infinite; pointer-events: none; }
+.stone.first-spot:nth-child(even) .spot-hint { left: auto; right: 22px; }
+.trail:has(.stone.first-spot) .stone:not(.spot) { opacity: .72; }
+@keyframes spotGlow { 0%, 100% { box-shadow: 0 4px 0 #d89f18, 0 0 0 0 rgba(246, 183, 28, .5); } 50% { box-shadow: 0 4px 0 #d89f18, 0 0 0 12px rgba(246, 183, 28, 0); } }
+@keyframes spotPlay { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.14); } }
+@keyframes spotBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+/* the map's Top / Back / Next arrows */
+.map-nav { position: fixed; z-index: 5; right: max(10px, calc(50% - 360px + 10px)); bottom: calc(86px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 8px; }
+.map-nav button { width: 56px; height: 56px; border-radius: 50%; border: 3px solid #1f2a44; background: #fffdf8; background-image: var(--paper); color: #1f2a44; box-shadow: 0 4px 0 #1f2a44; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; cursor: pointer; padding: 0; transition: transform .1s, box-shadow .1s, opacity .25s; -webkit-tap-highlight-color: transparent; }
+.map-nav button span { font-size: 18px; line-height: 1; } .map-nav button small { font: 800 10.5px/1.1 var(--display); letter-spacing: .02em; }
+.map-nav button[data-mapnav="up"] { background-color: #f6b71c; } .map-nav button[data-mapnav="next"] { background-color: #2f6fd6; color: #fff; }
+.map-nav button:active { transform: translateY(3px); box-shadow: 0 1px 0 #1f2a44; }
+.map-nav button.hop span { animation: navHop .35s ease-out; }
+@keyframes navHop { 40% { transform: scale(1.35); } }
+body:not(.scrolled-down) .map-nav button[data-mapnav="up"] { opacity: 0; pointer-events: none; transform: scale(.6); }
+html.modal-open .map-nav { display: none; }
+@media (max-width: 400px) { .map-nav button { width: 50px; height: 50px; } }
+@media (prefers-reduced-motion: reduce) { .stone.first-spot, .stone.first-spot::after, .spot-hint, .map-nav button.hop span { animation: none; } }
 /* web: the parts beyond Chapter 1 live in the app */
 html.locked:not(.native) .chapter.paid .chapter-banner::after { content: "🔒 In the app"; }
 html.test-site body::after { content: "TEST VERSION"; position: fixed; top: calc(6px + env(safe-area-inset-top)); right: 6px; z-index: 9999; pointer-events: none; background: #7b3fe4; color: #fff; font: 800 11px var(--display); letter-spacing: .04em; padding: 3px 9px; border-radius: 99px; box-shadow: 0 2px 6px rgba(0, 0, 0, .25); }
@@ -1369,6 +1390,9 @@ function beep(kind) {
     else if (kind === "bad") bowl(t, 294, .06);
     else if (kind === "night") { bowl(t, 392, .045); bowl(t + 1.6, 294, .03); }
     else if (kind === "flute") [[523.25, .3], [587.33, .3], [659.25, .3], [783.99, .45], [880, .45], [783.99, .9]].reduce((d, [f, l]) => (bansuri(t + d, f, l + .25), d + l), 0);
+    else if (kind === "navUp") { tone(392, t, .42, .11, "sine", 1175); bowl(t + .32, 1175, .035); }   // a little slide whistle up to the top
+    else if (kind === "navNext") { wood(t); tone(587, t + .06, .2, .1, "triangle"); tone(880, t + .16, .3, .1, "triangle"); }   // hop forward: two notes going up
+    else if (kind === "navBack") { wood(t); tone(880, t + .06, .2, .1, "triangle"); tone(587, t + .16, .3, .1, "triangle"); }   // hop back: two notes going down
     else if (kind === "done") { [[0, 1], [.18, 0], [.27, 0], [.36, 1], [.54, 0], [.72, 1]].forEach(([d, low]) => madal(t + d, low)); bowl(t + .9, 784, .1); bowl(t + 1.02, 1175, .06); }
   } catch (e) {}
 }
@@ -1553,7 +1577,7 @@ function render() {
   if (S.screen !== "room") { window.onpointermove = null; window.onpointerup = null; }
   document.body.classList.toggle("hide-rom", !romOn()); document.body.classList.toggle("lv-big", P.level === "big");
   if (S.screen !== "done") document.querySelectorAll(".confetti").forEach(c => c.remove());
-  if (S.screen === "map") { renderMap(); watchChapters(); updateMiniBar(); }
+  if (S.screen === "map") { renderMap(); watchChapters(); updateMiniBar(); updateMapNav(); }
   else if (S.screen === "lesson") renderQuestion();
   else if (S.screen === "cards") renderCards();
   else if (S.screen === "print") renderPrint();
@@ -1874,6 +1898,24 @@ function watchChapters() {
 }
 function updateMiniBar() { const big = document.querySelector(".jump-big"); document.body.classList.toggle("show-mini", !!big && big.getBoundingClientRect().bottom < 0); }   // small chapter bar slides in once the big one has scrolled away (no layout shift)
 window.addEventListener("scroll", updateMiniBar, { passive: true });
+/* The floating Top / Back / Next arrows on the map: Top scrolls up, Back and Next hop one chapter, each with its own little sound */
+function mapNav(dir, btn) {
+  const smooth = matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+  btn.classList.remove("hop"); void btn.offsetWidth; btn.classList.add("hop");
+  if (dir === "up") { beep("navUp"); window.scrollTo({ top: 0, behavior: smooth }); return; }
+  const secs = [...document.querySelectorAll("section.chapter")]; if (!secs.length) return;
+  const line = innerHeight * .3; let cur = -1;
+  secs.forEach((el, i) => { if (el.getBoundingClientRect().top <= line) cur = i; });
+  const to = dir === "next" ? cur + 1 : cur - 1;
+  if (to < 0 && dir === "back") { beep("navUp"); window.scrollTo({ top: 0, behavior: smooth }); return; }   // before the first chapter: Back goes to the top
+  if (to < 0 || to >= secs.length) { beep("bad"); return; }   // already at the last chapter
+  const id = secs[to].id.replace(/^ch-/, "");
+  beep(dir === "next" ? "navNext" : "navBack");
+  if (P.level !== "big" && S.openCh !== id) { S.openCh = id; render(); }   // little learners: open that chapter
+  const el = document.getElementById("ch-" + id); if (el) el.scrollIntoView({ behavior: smooth, block: "start" });
+}
+function updateMapNav() { document.body.classList.toggle("scrolled-down", scrollY > 320); }
+window.addEventListener("scroll", updateMapNav, { passive: true });
 function renderMap() {
   dailyDrop();
   const ordered = orderedLessons();
@@ -1883,7 +1925,8 @@ function renderMap() {
   const stone = l => {
     const st = P.stars[starKey(l.id)] || 0, isNext = l.id === nextId;
     const starHTML = [1, 2, 3].map(n => `<span class="${n <= st ? "" : "off"}">★</span>`).join("");
-    return `<button class="stone${isNext ? " next" : ""}${st ? " earned" : ""}" type="button" data-lesson="${l.id}" aria-label="${esc(l.title)}${isNext ? " (start here)" : ""}">
+    const spot = isNext && !anyStars;   // brand-new learner: gently spotlight the one card to tap first
+    return `<button class="stone${isNext ? " next" : ""}${spot ? " first-spot" : ""}${st ? " earned" : ""}" type="button" data-lesson="${l.id}" aria-label="${esc(l.title)}${isNext ? " (start here)" : ""}">${spot ? `<span class="spot-hint" aria-hidden="true">👇 Tap here first!</span>` : ""}
       <span class="disc" style="--c:${l.color}">${iconHTML(l)}</span>
       <span class="label">${isNext ? `<em class="next-tag">${anyStars ? "Next up!" : "Start here"}</em>` : ""}<strong>${esc(l.title)}</strong>${neSpan(l.ne)}${l.rom ? ` <span class="rom">${esc(l.rom)}</span>` : ""}<div class="stars">${starHTML}</div></span>
     </button>`;
@@ -1961,6 +2004,11 @@ function renderMap() {
     </section>
     ${NATIVE || window.SN_TEST ? "" : `<div class="web-app-cta"><a class="as-badge" href="https://apps.apple.com/us/app/sajilo-nepali/id6834950092" target="_blank" rel="noopener" aria-label="Download Sajilo Nepali on the App Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.6zM14.1 5.6c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg><span><small>Download on the</small><b>App Store</b></span></a><a href="?home" style="color:#1d4f9e">About Sajilo Nepali</a></div>`}
     <div class="nav-space"></div>
+    <div class="map-nav" role="group" aria-label="Move around the page">
+      <button type="button" data-mapnav="up" aria-label="Back to the top"><span aria-hidden="true">▲</span><small>Top</small></button>
+      <button type="button" data-mapnav="back" aria-label="Previous chapter"><span aria-hidden="true">◀</span><small>Back</small></button>
+      <button type="button" data-mapnav="next" aria-label="Next chapter"><span aria-hidden="true">▶</span><small>Next</small></button>
+    </div>
     <nav class="bottom-nav" aria-label="Main">
       <button type="button" class="nav-btn${S.play || S.stickers ? "" : " active"}" id="navLearn"><span class="nav-icon">🗺️</span><span class="nav-label"><span lang="ne">सिकौँ</span> · Learn</span></button>
       <button type="button" class="nav-btn${S.play ? " active" : ""}" id="navPlay"><span class="nav-icon">🎪</span><span class="nav-label"><span lang="ne">खेलौँ</span> · Play</span></button>
@@ -3647,6 +3695,7 @@ document.addEventListener("click", e => {
     savePlayers(); render(); return;
   }
   if (t.id === "toTop") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
+  if (t.dataset.mapnav) { mapNav(t.dataset.mapnav, t); return; }
   if (t.dataset.opench) { S.openCh = t.dataset.opench; const ch = window.CHAPTERS.find(c => c.id === S.openCh); if (ch && AUDIO[K(ch.ne)]) say(K(ch.ne)); render(); const el = document.getElementById("ch-" + S.openCh); if (el) el.scrollIntoView({ block: "start" }); return; }
   if (t.dataset.jump) { S.focusCh = t.dataset.jump; render(); document.querySelectorAll(".jump-pill[data-jump]").forEach(p => p.classList.toggle("here", p.dataset.jump === S.focusCh)); }
   if (t.dataset.jump && P.level !== "big") { S.openCh = t.dataset.jump; render(); }
