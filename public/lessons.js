@@ -1686,7 +1686,7 @@ window.LESSONS.push({
   }
  ]
 });
-window.CHAPTERS.push({"id": "first-steps", "ne": "पहिलो पाइला", "rom": "pahilo paaila", "en": "First Steps · Beginner Course", "color": "#e67e22", "sticker": {"pic": "🧭", "img": "img/st-first-steps.webp", "name": "Nepal Ambassador", "say": {"ne": "वाह! तपाईं नेपालको साथी हुनुभयो!", "rom": "waah! tapaain nepaalko saathi hunubhayo!", "en": "Wow! You've become a friend of Nepal!"}}, "lessons": ["first-greetings", "first-food", "first-market"]});
+window.CHAPTERS.push({"id": "first-steps", "ne": "पहिलो पाइला", "rom": "pahilo paaila", "en": "First Steps · Beginner Course", "color": "#e67e22", "sticker": {"pic": "🧭", "img": "img/st-first-steps.webp", "name": "Nepal Ambassador", "say": {"ne": "वाह! तपाईं नेपालको साथी हुनुभयो!", "rom": "waah! tapaain nepaalko saathi hunubhayo!", "en": "Wow! You've become a friend of Nepal!"}}, "lessons": ["first-greetings", "first-food", "first-market", "first-transport"]});
 window.LESSONS.push({
  "id": "first-food",
  "title": "Tea Stall & Restaurant",
@@ -2907,4 +2907,641 @@ window.LESSONS.push({
   }
  ],
  "iconImg": "w-store-shop"
+});
+window.LESSONS.push({
+ "id": "first-transport",
+ "title": "Taxis & Getting Around",
+ "ne": "बाटो, गाडी र ट्याक्सी",
+ "rom": "baato, gaadi ra taxi",
+ "icon": "🚕",
+ "color": "#e67e22",
+ "bigOnly": true,
+ "items": [
+  {
+   "ne": "ट्याक्सी",
+   "rom": "taxi",
+   "en": "Taxi",
+   "pic": "🚕",
+   "alt": [
+    "taxi",
+    "cab"
+   ],
+   "tip": "Small taxis wait at most crossroads in Kathmandu and Pokhara."
+  },
+  {
+   "ne": "थमेल जान्छ?",
+   "rom": "thamel jaanchha?",
+   "en": "Are you going to Thamel?",
+   "pic": "📍",
+   "alt": [
+    "are you going to thamel",
+    "going to thamel",
+    "do you go to thamel"
+   ],
+   "tip": "The key travel question: swap in any place, like 'Airport jaanchha?' or 'Patan jaanchha?'."
+  },
+  {
+   "ne": "मिटरमा जानुहुन्छ?",
+   "rom": "miterma jaanuhunchha?",
+   "en": "Will you go by the meter?",
+   "pic": "📟",
+   "alt": [
+    "by the meter",
+    "use meter",
+    "will you go on meter",
+    "will you go by the meter"
+   ],
+   "tip": "Ask before you get in. Many drivers agree a fixed price instead."
+  },
+  {
+   "ne": "मिटर खोल्नुहोस् न",
+   "rom": "miter kholnuhos na",
+   "en": "Please turn on the meter",
+   "pic": "🔛",
+   "alt": [
+    "turn on the meter",
+    "use the meter",
+    "start the meter",
+    "please turn on the meter"
+   ],
+   "tip": "Say it politely as you get in, before the car moves."
+  },
+  {
+   "ne": "कति लिनुहुन्छ?",
+   "rom": "kati linuhunchha?",
+   "en": "How much will you charge?",
+   "pic": "💵",
+   "alt": [
+    "how much will you charge",
+    "how much will you take",
+    "how much is the fare"
+   ],
+   "tip": "Ask this when the driver prefers a fixed price."
+  },
+  {
+   "ne": "धेरै भयो, अलि मिलाउनुहोस्",
+   "rom": "dherai bhayo, ali milaaunuhos",
+   "en": "That's too much, please be fair",
+   "pic": "🤝",
+   "alt": [
+    "too much",
+    "thats too much",
+    "please be fair",
+    "lower the price"
+   ],
+   "tip": "A polite, smiling counter when the price sounds high."
+  },
+  {
+   "ne": "हुन्छ, जाऔँ",
+   "rom": "hunchha, jaaun",
+   "en": "Okay, let's go",
+   "pic": "🟢",
+   "alt": [
+    "okay lets go",
+    "alright lets go",
+    "lets go"
+   ],
+   "tip": "You agree on the price or the place. Hop in!"
+  },
+  {
+   "ne": "भित्र बस्नुहोस्",
+   "rom": "bhitra basnuhos",
+   "en": "Please sit inside",
+   "pic": "🚪",
+   "alt": [
+    "sit inside",
+    "please get in",
+    "get inside",
+    "please sit inside"
+   ],
+   "tip": "What the driver says to welcome you in."
+  },
+  {
+   "ne": "मसँग सामान छ",
+   "rom": "masanga saamaan chha",
+   "en": "I have luggage",
+   "pic": "🧳",
+   "alt": [
+    "i have luggage",
+    "i have bags",
+    "baggage"
+   ],
+   "tip": "So the driver opens the boot for your bags."
+  },
+  {
+   "ne": "डिक्की खोल्नुहोस् न",
+   "rom": "dikki kholnuhos na",
+   "en": "Please open the boot",
+   "pic": "🚗",
+   "alt": [
+    "open the trunk",
+    "open trunk",
+    "open the boot",
+    "please open the boot"
+   ],
+   "tip": "'Dikki' is the word everyone uses for a car's boot (trunk)."
+  },
+  {
+   "ne": "दायाँ",
+   "rom": "daayaan",
+   "en": "Right",
+   "pic": "➡️",
+   "alt": [
+    "right",
+    "turn right"
+   ],
+   "tip": "Many drivers also understand the English word 'right'."
+  },
+  {
+   "ne": "बायाँ",
+   "rom": "baayaan",
+   "en": "Left",
+   "pic": "⬅️",
+   "alt": [
+    "left",
+    "turn left"
+   ],
+   "tip": "Many drivers also understand the English word 'left'."
+  },
+  {
+   "ne": "सिधा",
+   "rom": "sidhaa",
+   "en": "Straight ahead",
+   "pic": "⬆️",
+   "alt": [
+    "straight",
+    "straight ahead"
+   ],
+   "tip": "Tell the driver to go straight through the crossing."
+  },
+  {
+   "ne": "यहाँबाट दायाँ मोड्नुहोस्",
+   "rom": "yahaanbaata daayaan modnuhos",
+   "en": "Turn right from here",
+   "pic": "↪️",
+   "alt": [
+    "turn right from here",
+    "turn right here",
+    "take a right"
+   ],
+   "tip": "Use it as you come up to your turning."
+  },
+  {
+   "ne": "यहाँबाट बायाँ मोड्नुहोस्",
+   "rom": "yahaanbaata baayaan modnuhos",
+   "en": "Turn left from here",
+   "pic": "↩️",
+   "alt": [
+    "turn left from here",
+    "turn left here",
+    "take a left"
+   ],
+   "tip": "For turning into a side street or lane."
+  },
+  {
+   "ne": "सिधा जानुहोस्",
+   "rom": "sidhaa jaanuhos",
+   "en": "Keep going straight",
+   "pic": "⏫",
+   "alt": [
+    "go straight",
+    "keep going straight",
+    "continue straight"
+   ],
+   "tip": "Keep going: don't turn yet."
+  },
+  {
+   "ne": "उता",
+   "rom": "utaa",
+   "en": "Over there",
+   "pic": "👉",
+   "alt": [
+    "over there",
+    "that way"
+   ],
+   "tip": "Point to a corner, a shop or a building further away."
+  },
+  {
+   "ne": "यता",
+   "rom": "yataa",
+   "en": "Over here / This way",
+   "pic": "👈",
+   "alt": [
+    "this way",
+    "over here",
+    "here"
+   ],
+   "tip": "Point to this side, near you.",
+   "img": "w-come-here"
+  },
+  {
+   "ne": "अगाडि",
+   "rom": "agaadi",
+   "en": "In front / Ahead",
+   "pic": "🚙",
+   "alt": [
+    "in front",
+    "ahead",
+    "forward"
+   ],
+   "tip": "'Agaadi roknuhos' means stop just ahead."
+  },
+  {
+   "ne": "पछाडि",
+   "rom": "pachhaadi",
+   "en": "Behind / Back",
+   "pic": "🔙",
+   "alt": [
+    "behind",
+    "back",
+    "in the back"
+   ],
+   "tip": "Behind, at the back, or going backwards."
+  },
+  {
+   "ne": "एटीएम कहाँ छ?",
+   "rom": "ATM kahaan chha?",
+   "en": "Where is the ATM?",
+   "pic": "🏧",
+   "alt": [
+    "where is the atm",
+    "where is atm",
+    "atm"
+   ],
+   "tip": "Swap in any place: 'hotel kahaan chha?', 'mandir kahaan chha?' (where is the temple?)."
+  },
+  {
+   "ne": "बाटो",
+   "rom": "baato",
+   "en": "Road / Street / Path",
+   "pic": "🛣️",
+   "alt": [
+    "road",
+    "street",
+    "way",
+    "path"
+   ],
+   "tip": "The everyday word for a road, a street or a hiking trail.",
+   "img": "w-road"
+  },
+  {
+   "ne": "चोक",
+   "rom": "chok",
+   "en": "Crossroads / Square",
+   "pic": "🚸",
+   "alt": [
+    "intersection",
+    "crossroads",
+    "square",
+    "chowk"
+   ],
+   "tip": "A crossing or town square, like Indra Chowk in Kathmandu."
+  },
+  {
+   "ne": "नजिकै छ?",
+   "rom": "najikai chha?",
+   "en": "Is it nearby?",
+   "pic": "🤏",
+   "alt": [
+    "is it near",
+    "is it close",
+    "nearby",
+    "is it nearby"
+   ],
+   "tip": "Find out if you can easily walk there."
+  },
+  {
+   "ne": "धेरै टाढा छ?",
+   "rom": "dherai taadhaa chha?",
+   "en": "Is it very far?",
+   "pic": "🔭",
+   "alt": [
+    "is it far",
+    "very far",
+    "is it far away",
+    "is it very far"
+   ],
+   "tip": "Helps you decide: walk, or take a ride."
+  },
+  {
+   "ne": "पुग्न कति समय लाग्छ?",
+   "rom": "pugna kati samaya laagchha?",
+   "en": "How long does it take to get there?",
+   "pic": "⏱️",
+   "alt": [
+    "how long does it take",
+    "how much time",
+    "travel time",
+    "how long does it take to get there"
+   ],
+   "tip": "City traffic can be slow, so it's worth asking.",
+   "img": "w-clock"
+  },
+  {
+   "ne": "बाटोमा जाम छ?",
+   "rom": "baatomaa jaam chha?",
+   "en": "Is there a traffic jam?",
+   "pic": "🚥",
+   "alt": [
+    "traffic jam",
+    "is there traffic",
+    "heavy traffic",
+    "is there a traffic jam"
+   ],
+   "tip": "Jams are common in the morning and evening rush."
+  },
+  {
+   "ne": "विमानस्थल / एयरपोर्ट",
+   "rom": "bimaansthal / airport",
+   "en": "Airport",
+   "pic": "🛫",
+   "alt": [
+    "airport",
+    "bimaansthal"
+   ],
+   "tip": "Kathmandu's Tribhuvan International Airport handles both international and domestic flights.",
+   "img": "w-airplane"
+  },
+  {
+   "ne": "बस पार्क",
+   "rom": "bus park",
+   "en": "Bus station",
+   "pic": "🚌",
+   "alt": [
+    "bus station",
+    "bus terminal",
+    "bus park"
+   ],
+   "tip": "Long-distance buses leave from big bus parks, like Gongabu in Kathmandu."
+  },
+  {
+   "ne": "होटल / गेस्टहाउस",
+   "rom": "hotel / guesthouse",
+   "en": "Hotel / Guesthouse",
+   "pic": "🏨",
+   "alt": [
+    "hotel",
+    "guesthouse",
+    "lodge"
+   ],
+   "tip": "Careful: in Nepal a small 'hotel' is often just a place to eat!"
+  },
+  {
+   "ne": "माइक्रो / टेम्पो",
+   "rom": "micro / tempo",
+   "en": "Microbus / Tempo",
+   "pic": "🚐",
+   "alt": [
+    "microbus",
+    "tempo",
+    "safa tempo",
+    "micro"
+   ],
+   "tip": "Shared minivans and little three-wheelers. Kathmandu's electric 'Safa tempos' are famous."
+  },
+  {
+   "ne": "बस चढ्नुहोस्",
+   "rom": "bus chadhnuhos",
+   "en": "Please get on the bus",
+   "pic": "🚌",
+   "alt": [
+    "get on the bus",
+    "board the bus",
+    "please get on the bus"
+   ],
+   "tip": "'Chadhnu' means to climb on or board.",
+   "img": "w-bus"
+  },
+  {
+   "ne": "सिट खाली छ?",
+   "rom": "sit khaali chha?",
+   "en": "Is there an empty seat?",
+   "pic": "💺",
+   "alt": [
+    "is there a seat",
+    "empty seat",
+    "seat available",
+    "is there an empty seat"
+   ],
+   "tip": "Buses can be very full: ask before you climb in."
+  },
+  {
+   "ne": "भाडा कति हो?",
+   "rom": "bhaadaa kati ho?",
+   "en": "How much is the fare?",
+   "pic": "🪙",
+   "alt": [
+    "how much is the fare",
+    "bus fare",
+    "ticket price",
+    "fare"
+   ],
+   "tip": "You usually pay the conductor on the bus."
+  },
+  {
+   "ne": "कन्डक्टर / खलासी",
+   "rom": "kandaktar / khalaasi",
+   "en": "Bus conductor / Helper",
+   "pic": "🧑‍🔧",
+   "alt": [
+    "conductor",
+    "khalaasi",
+    "helper",
+    "bus conductor"
+   ],
+   "tip": "The helper at the door who collects fares and calls out the stops."
+  },
+  {
+   "ne": "टिकट काउन्टर कहाँ छ?",
+   "rom": "tikat kaauntar kahaan chha?",
+   "en": "Where is the ticket counter?",
+   "pic": "🎟️",
+   "alt": [
+    "where is ticket counter",
+    "ticket counter",
+    "ticket booth",
+    "where is the ticket counter"
+   ],
+   "tip": "For long-distance and tourist bus tickets, to Pokhara or Chitwan."
+  },
+  {
+   "ne": "गाडी कहिले छुट्छ?",
+   "rom": "gaadi kahile chhutchha?",
+   "en": "When does the bus leave?",
+   "pic": "🕒",
+   "alt": [
+    "when does the bus leave",
+    "departure time",
+    "when does it leave"
+   ],
+   "tip": "'Gaadi' means any vehicle: bus, car or van."
+  },
+  {
+   "ne": "आइपुगेपछि मलाई भनिदिनुहोस्",
+   "rom": "aaipugepachhi malaai bhanidinuhos",
+   "en": "Please tell me when we arrive",
+   "pic": "🔔",
+   "alt": [
+    "tell me when we arrive",
+    "let me know when we get there",
+    "please tell me when we arrive"
+   ],
+   "tip": "Ask the conductor so you don't miss your stop."
+  },
+  {
+   "ne": "म यहाँ ओर्लन्छु",
+   "rom": "ma yahaan orlanchhu",
+   "en": "I will get off here",
+   "pic": "🚶",
+   "alt": [
+    "i will get off here",
+    "getting off here",
+    "i get off here"
+   ],
+   "tip": "Tell the helper your stop has come."
+  },
+  {
+   "ne": "ढोका खोल्नुहोस् न",
+   "rom": "dhokaa kholnuhos na",
+   "en": "Please open the door",
+   "pic": "🚪",
+   "alt": [
+    "open the door",
+    "please open door",
+    "please open the door"
+   ],
+   "tip": "A polite request for a taxi or van door."
+  },
+  {
+   "ne": "यहाँ रोक्नुहोस्!",
+   "rom": "yahaan roknuhos!",
+   "en": "Please stop here!",
+   "pic": "🛑",
+   "alt": [
+    "stop here",
+    "please stop here",
+    "pull over here"
+   ],
+   "tip": "The most useful ride phrase: say it clearly at your stop."
+  },
+  {
+   "ne": "बिस्तारै हाँक्नुहोस् न",
+   "rom": "bistaarai haanknuhos na",
+   "en": "Please drive slowly",
+   "pic": "🐢",
+   "alt": [
+    "drive slowly please",
+    "drive slow",
+    "please drive carefully",
+    "please drive slowly"
+   ],
+   "tip": "For peace of mind on winding mountain roads.",
+   "img": "w-slowly"
+  },
+  {
+   "ne": "अलि छिटो जान मिल्छ?",
+   "rom": "ali chhito jaana milchha?",
+   "en": "Can we go a little faster?",
+   "pic": "⚡",
+   "alt": [
+    "go faster",
+    "faster please",
+    "hurry up",
+    "can we go a little faster"
+   ],
+   "tip": "Ask gently, if you're running late for a flight or bus.",
+   "img": "w-fast"
+  },
+  {
+   "ne": "मलाई रिँगटा लाग्यो / वाकवाकी लाग्यो",
+   "rom": "malaai ringataa laagyo / waakwaaki laagyo",
+   "en": "I feel dizzy / car sick",
+   "pic": "🤢",
+   "alt": [
+    "i feel dizzy",
+    "motion sick",
+    "car sick",
+    "nauseous",
+    "i feel sick"
+   ],
+   "tip": "Common on winding mountain roads. Tell the driver early."
+  },
+  {
+   "ne": "झ्याल खोल्न मिल्छ?",
+   "rom": "jhyaal kholna milchha?",
+   "en": "May I open the window?",
+   "pic": "🪟",
+   "alt": [
+    "can i open the window",
+    "open window",
+    "may i open the window"
+   ],
+   "tip": "Fresh air helps with car sickness.",
+   "img": "w-window"
+  },
+  {
+   "ne": "AC चलाइदिनुहोस् न",
+   "rom": "AC chalaaidinuhos na",
+   "en": "Please turn on the AC",
+   "pic": "❄️",
+   "alt": [
+    "turn on ac",
+    "air conditioning please",
+    "please turn on the ac"
+   ],
+   "tip": "Handy on hot summer drives in the Terai plains."
+  },
+  {
+   "ne": "म नक्सा देखाउँछु",
+   "rom": "ma naksaa dekhaaunchhu",
+   "en": "I will show you on the map",
+   "pic": "📱",
+   "alt": [
+    "i will show the map",
+    "show map",
+    "i will show you on the map"
+   ],
+   "tip": "Show the driver your hotel on a map app on your phone.",
+   "img": "w-map"
+  },
+  {
+   "ne": "हो, यहीँ हो!",
+   "rom": "ho, yahin ho!",
+   "en": "Yes, right here!",
+   "pic": "🎯",
+   "alt": [
+    "yes right here",
+    "this is the place",
+    "exactly here"
+   ],
+   "tip": "You've arrived at exactly the right place."
+  },
+  {
+   "ne": "पैसा लिनुहोस्, धन्यवाद!",
+   "rom": "paisaa linuhos, dhanyabaad!",
+   "en": "Here's the money, thank you!",
+   "pic": "🤲",
+   "alt": [
+    "take the money thank you",
+    "here is payment",
+    "here is the fare",
+    "heres the money thank you"
+   ],
+   "tip": "Hand over the fare with your right hand."
+  },
+  {
+   "ne": "राम्रोसँग जानुहोस्",
+   "rom": "raamrosanga jaanuhos",
+   "en": "Travel safely",
+   "pic": "👋",
+   "alt": [
+    "go safely",
+    "have a safe drive",
+    "take care",
+    "travel safely"
+   ],
+   "tip": "A kind goodbye to your driver as you step out."
+  }
+ ],
+ "iconImg": "w-bus"
 });
