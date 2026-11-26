@@ -1214,9 +1214,9 @@ html.test-site body::after { content: "TEST VERSION"; position: fixed; top: calc
 const NATIVE = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
 if (NATIVE) document.documentElement.classList.add("native");
 /* Chapters that are not in the App Store app yet. The public website hides them, so visitors never see a chapter they can't find after downloading the app.
-   The app itself and private previews (window.SN_PREVIEW) still show them. When the app update with a chapter is out on the App Store, delete its id here. */
+   The app itself, the family test site (window.SN_TEST) and private previews still show them. When the app update with a chapter is out on the App Store, delete its id here. */
 const NOT_IN_APP_YET = ["first-steps"];
-if (!NATIVE && !window.SN_PREVIEW) {
+if (!NATIVE && !window.SN_TEST && !window.SN_PREVIEW) {
   const hide = new Set(window.CHAPTERS.filter(c => NOT_IN_APP_YET.includes(c.id)).flatMap(c => c.lessons));
   window.CHAPTERS = window.CHAPTERS.filter(c => !NOT_IN_APP_YET.includes(c.id));
   window.LESSONS = window.LESSONS.filter(l => !hide.has(l.id));

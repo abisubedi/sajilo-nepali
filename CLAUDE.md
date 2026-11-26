@@ -13,11 +13,11 @@
 ## Test site (testpage.sajilonepali.app)
 
 - It is a private test copy for the owner's family: everything unlocked, no landing page, its own progress, hidden from search engines, with a "TEST VERSION" tag. It is switched on by `window.SN_TEST` in `public/index.html` (hostname `testpage.*` or `*.workers.dev`) and the `testpage.sajilonepali.app` route in `wrangler.jsonc`.
-- **The real site comes first, always.** Every change goes to the real address (sajilonepali.app) first. Never publish anything only to the test site, never give it its own branch, deploy or files, and never put content there ahead of the real site. Today both come from the same files and the same deploy, so the test site simply gets each change together with the real site: keep it that way.
+- **The real site comes first, always.** Every change goes to the real address (sajilonepali.app) first. Never publish anything only to the test site, never give it its own branch, deploy or files, and never put content there ahead of the real site. Today both come from the same files and the same deploy, so the test site simply gets each change together with the real site: keep it that way. The one exception the owner asked for: chapters that aren't in the App Store app yet show on the test site but not on the real site (see below).
 - **No connection to the App Store, ever, and no link to the real site.** On the test site there must be no App Store links, badges, banners or "Get the app" pages, and shares, prints, certificates and help links must use the test site's own address (`SITE` / `SITE_URL` in `public/index.html`), never sajilonepali.app. Check this whenever you add a new link, share text or App Store button.
 - Don't mention or link the test address anywhere public (the real site, the App Store listing, social posts).
 
 ## Chapters not in the App Store app yet
 
-- The public website must not show a chapter that the App Store app doesn't have yet. Such chapters are listed in `NOT_IN_APP_YET` in `public/index.html` (today: `first-steps`). The website (real and test site) drops them; the iPhone/iPad app build and private previews (`window.SN_PREVIEW`) keep them.
+- The public website must not show a chapter that the App Store app doesn't have yet. Such chapters are listed in `NOT_IN_APP_YET` in `public/index.html` (today: `first-steps`). The real website drops them; the test site (`window.SN_TEST`), the iPhone/iPad app build and private previews (`window.SN_PREVIEW`) keep them, so the family can try new chapters early.
 - When you add a new chapter, add its id to `NOT_IN_APP_YET`. When the app update containing it is live on the App Store, remove the id (the owner will say when).
