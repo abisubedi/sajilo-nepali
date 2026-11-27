@@ -65,7 +65,14 @@ Terms of use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
   is on the same screen. The app collects no data and works offline."
 - Contact: your name, phone and email (only Apple sees these).
 
-## Screenshots (in docs/app-store/screenshots)
+## Screenshots for the next update (in docs/app-store/screenshots-1.2)
+Upload with the version that includes First Steps and the welcome page. In App Store Connect, open that version, then Previews and Screenshots:
+- iPhone 6.9" display: the 10 `app-store/iphone-6.9-*.jpg` (1320 × 2868), in number order. App Store Connect uses these for the smaller iPhones too.
+- iPad 13" display: the 10 `app-store/ipad-13-*.jpg` (2064 × 2752), in number order.
+- The first three pictures are what people see in App Store search results.
+- `1080/` has the same pictures 1080 pixels wide for the website or social posts (App Store Connect does not accept that size).
+
+## Screenshots for 1.1 (in docs/app-store/screenshots)
 Upload into whichever iPhone size App Store Connect asks for, 10 pictures in number order (1 to 10):
 - iPhone 6.9" display: `iphone-6.9-*.jpg` (1320 × 2868)
 - iPhone 6.3" display: `iphone-6.3-*.jpg` (1206 × 2622)
