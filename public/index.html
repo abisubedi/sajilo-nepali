@@ -628,6 +628,30 @@ body { background-image: var(--paper); }
 /* Echo: hear the word, then yourself */
 .echo.rec { background: #fde2df; border-color: var(--flag-red); color: #a8271f; animation: pulse 1s infinite; }
 .wotd-top { display: flex; align-items: center; }
+.gp-tip { margin: 0 0 10px; padding: 10px 12px; border-radius: 14px; background: #fff3c4; border: 2px dashed #f3d37a; font-size: 14px; line-height: 1.4; color: #5a4300; } .gp-done { white-space: nowrap; font-weight: 800; color: var(--flag-green); }
+.trace-win { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; } .tw-pandu { width: 54px; height: 54px; }
+.tw-txt b { font-family: var(--display); font-size: 22px; } .tw-pic .wpic { width: 56px; height: 56px; } .tw-pic .em { font-size: 40px; }
+.tw-pic { display: inline-block; animation: twFloat 1.4s cubic-bezier(.3,1.5,.5,1) both; } @keyframes twFloat { 0% { transform: translateY(30px) scale(.4); opacity: 0; } 60% { transform: translateY(-8px) scale(1.15); opacity: 1; } 100% { transform: none; } }
+canvas.wiped { transition: opacity .6s .2s, filter .6s; opacity: .25; filter: blur(2px); }
+@media (prefers-reduced-motion: reduce) { .tw-pic { animation: none; } canvas.wiped { transition: none; } }
+.jp-fest { position: absolute; top: -6px; left: -6px; width: 30px; height: 30px; border-radius: 50%; background: #fff3c4; border: 2px solid #f6b71c; display: grid; place-items: center; font-style: normal; font-size: 16px; line-height: 1; box-shadow: 0 2px 0 #d89f18; animation: festBob 1.8s ease-in-out infinite; }
+@keyframes festBob { 50% { transform: translateY(-3px) rotate(-6deg); } } @media (prefers-reduced-motion: reduce) { .jp-fest { animation: none; } }
+.mf-go { margin: 4px auto 0; } .mf-dots { display: flex; justify-content: center; gap: 6px; min-height: 30px; }
+.mf-dots i { font-style: normal; font: 800 14px/26px var(--display); min-width: 40px; padding: 0 6px; border-radius: 999px; border: 2px solid #c98a4b; background: #fff8e1; color: #5a3518; }
+.mf-dots i.lo { background: #f3e0c4; } .mf-dots i.ok { background: var(--flag-green); border-color: var(--flag-green); color: #fff; } .mf-dots i.bad { background: #ffd9d2; border-color: #d9534f; }
+.wo-hint { margin: 0; padding: 6px 12px; border-radius: 12px; background: #eef4ff; border: 1.5px dashed #8fb3e8; font-size: 14px; font-weight: 700; color: #2b4a7a; text-align: center; }
+.stick-hint { display: block; margin-top: 6px; font-weight: 800; font-size: 13px; color: #8a6400; }
+/* home-tidy */
+.daily-pair { display: grid; gap: 16px; } @media (min-width: 700px) { .daily-pair { grid-template-columns: minmax(0, .8fr) minmax(0, 1.5fr); align-items: stretch; }
+  .daily-pair .drop { height: 100%; flex-direction: column; justify-content: center; text-align: center; gap: 4px; } .daily-pair .wide-only { display: none; } .daily-pair .drop-go { margin: 0; } }
+.greet-daily { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.greet-wotd { flex: 1 1 220px; display: flex; align-items: center; gap: 10px; min-height: 64px; padding: 8px 12px; border-radius: 16px; border: 2px solid #f3d37a; background: #fff8e1; box-shadow: 0 3px 0 #f3d37a; text-align: left; font: inherit; color: inherit; cursor: pointer; }
+.greet-wotd .wpic { width: 48px; height: 48px; flex: none; } .greet-wotd .em { font-size: 34px; flex: none; }
+.greet-wotd small { display: block; font-weight: 800; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: #8a6400; } .greet-wotd b { font-family: var(--display); font-size: 21px; } .greet-wotd em { display: block; font-style: normal; font-weight: 700; color: var(--muted); font-size: 13px; }
+.gw-say { margin-left: auto; display: flex; flex-direction: column; align-items: center; color: var(--flag-blue); font-weight: 800; } .gw-say small { font-size: 11px; color: #8a6400; }
+.greet-wotd.heard { border-color: var(--flag-green); box-shadow: 0 3px 0 var(--flag-green); } .greet-wotd.heard .gw-say { color: var(--flag-green); font-size: 14px; }
+.greet-drop { flex: 0 1 auto; display: flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border-radius: 16px; border: 2px dashed #8fb3e8; background: #eef4ff; font: 800 14px var(--display); color: var(--flag-blue); cursor: pointer; }
+.greet-drop .wpic { width: 46px; height: 46px; }
 .wotd-top .wotd-main { flex: 1; min-width: 0; }
 .wotd-echo { flex: none; width: 46px; height: 46px; margin-right: 12px; border-radius: 50%; border: 2px solid #f3d37a; background: var(--snow); font-size: 20px; display: grid; place-items: center; padding: 0; box-shadow: 0 3px 0 #f3d37a; }
 .wotd-echo .echo-l { display: none; }
@@ -1206,7 +1230,9 @@ html.lp-v2 .lp-card.lit { border-color: #f6b71c; box-shadow: 0 5px 0 #d89f18; ba
 @keyframes navHop { 40% { transform: scale(1.35); } }
 body:not(.scrolled-down) .map-nav button[data-mapnav="up"] { opacity: 0; pointer-events: none; transform: scale(.6); }
 html.modal-open .map-nav { display: none; }
-@media (max-width: 400px) { .map-nav button { width: 50px; height: 50px; } }
+/* keep the arrows off the cards: beside the page on wide screens, small and tucked to the edge on phones and tablets */
+@media (min-width: 900px) { .map-nav { right: max(10px, calc(50% - 380px - 74px)); } }
+@media (max-width: 899px) { .map-nav { right: 4px; gap: 6px; transition: opacity .35s; } body:not(.nav-awake) .map-nav { opacity: 0; pointer-events: none; } .map-nav button { width: 44px; height: 44px; opacity: .92; box-shadow: 0 3px 0 #1f2a44; } .map-nav button span { font-size: 15px; } .map-nav button small { font-size: 9px; } }
 @media (prefers-reduced-motion: reduce) { .stone.first-spot, .stone.first-spot::after, .spot-hint, .map-nav button.hop span { animation: none; } }
 /* web: the parts beyond Chapter 1 live in the app */
 html.locked:not(.native) .chapter.paid .chapter-banner::after { content: "🔒 In the app"; }
@@ -1294,7 +1320,7 @@ if (NATIVE) document.documentElement.classList.add("native");
 const NOT_IN_APP_YET = ["first-steps"];
 /* New features that are not in the App Store app yet: same rule as chapters. They show in the app build, on the test site and in previews, never on the public website.
    When the app update with a feature is out on the App Store, delete its name here. */
-const FEATURES_NOT_IN_APP_YET = ["first-card-spotlight", "map-arrows", "app-landing", "landing-v2"];
+const FEATURES_NOT_IN_APP_YET = ["first-card-spotlight", "map-arrows", "app-landing", "landing-v2", "home-tidy", "sticker-talk", "grandparent-prompt", "trace-finish", "festival-badge", "madal-follow", "word-order-hint"];
 const featureOn = name => NATIVE || !!window.SN_TEST || !!window.SN_PREVIEW || !FEATURES_NOT_IN_APP_YET.includes(name);
 if (!NATIVE && !window.SN_TEST && !window.SN_PREVIEW) {
   const hide = new Set(window.CHAPTERS.filter(c => NOT_IN_APP_YET.includes(c.id)).flatMap(c => c.lessons));
@@ -1439,6 +1465,24 @@ function bansuri(t, f, dur) {
 }
 function madal(t, low) { tone(low ? 150 : 260, t, low ? .28 : .14, low ? .5 : .25, "sine", low ? 75 : 190); }
 function wood(t) { tone(1250, t, .05, .12, "triangle", 900); tone(2600, t, .025, .04); }
+/* trace-finish: a soft "shhh" of a cloth wiping the slate (filtered noise, no file needed) */
+function chalkWipe() {
+  if (!P.sound || P.beeps === false) return;
+  try { actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    const t = actx.currentTime + .01, len = .55, buf = actx.createBuffer(1, actx.sampleRate * len, actx.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.sin(Math.PI * i / d.length);
+    const src = actx.createBufferSource(), f = actx.createBiquadFilter(), g = actx.createGain();
+    src.buffer = buf; f.type = "bandpass"; f.Q.value = .9; f.frequency.setValueAtTime(1800, t); f.frequency.exponentialRampToValueAtTime(5200, t + len);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.32, t + .06); g.gain.exponentialRampToValueAtTime(.0001, t + len);
+    src.connect(f); f.connect(g); g.connect(actx.destination); src.start(t); src.stop(t + len + .05);
+  } catch (e) {}
+}
+/* Pandu's slate cheer: स्याबास! क — कछुवा! with the word's picture floating up */
+function traceWinHTML(x) {
+  const art = artFor({ en: x.en, img: x.it && x.it.img }), pic = art ? `<img class="wpic" src="${art}" alt="">` : `<span class="em">${esc((x.it && x.it.pic) || "⭐")}</span>`;
+  return `<span class="trace-win">${pandu(panduSrc("cheer") ? "cheer" : "wave", "tw-pandu")}<span class="tw-txt">${neSpan("स्याबास!")} ${x.word ? `<b lang="ne">${esc(x.ch)} — ${esc(x.word)}!</b> <span class="rom">${esc(x.wordRom || "")}</span>` : ""}</span><span class="tw-pic">${pic}</span></span>`;
+}
+function traceWinSay(x) { chalkWipe(); setTimeout(() => say(K("स्याबास!")), 350); if (x.word) setTimeout(() => say(K(x.word)), 1350); }
 function beep(kind) {
   if (!P.sound || P.beeps === false) return;
   try {
@@ -1721,6 +1765,21 @@ function wordOfDay() {
   let h = 0; for (const ch of today() + P.level) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
   return list[h % list.length];
 }
+/* home-tidy: little learners get one card (Pandu, Play next, the word of the day and today's sticker folded in);
+   big learners see the sticker drop and the word of the day side by side on wider screens */
+function dailyHTML() {
+  if (!featureOn("home-tidy")) return dropHTML() + wordOfDayHTML();
+  if (P.level !== "big") return "";
+  const d = dropHTML(), w = wordOfDayHTML();
+  return d && w ? `<div class="daily-pair">${d}${w}</div>` : d + w;
+}
+function littleDailyHTML() {
+  if (!featureOn("home-tidy") || P.level === "big") return "";
+  const w = wordOfDay(), heard = w && P.wotdDay === today(), x = !P.dropSeen && P.dropName && picByName(P.dropName);
+  return `<div class="greet-daily">${w ? `<button class="greet-wotd${heard ? " heard" : ""}" type="button" id="wotdPlay" data-say="${esc(K(w.it.ne))}">${artFor(w.it) ? `<img class="wpic" src="${artFor(w.it)}" alt="">` : `<span class="em">${esc(w.it.pic || "💡")}</span>`}
+      <span><small>💡 Word of the day</small><b lang="ne">${esc(w.it.ne)}</b> <span class="rom">${esc(w.it.rom)}</span><em>${esc(w.it.en)}</em></span><span class="gw-say">${heard ? "✓ +5 ⭐" : `${SPEAKER}<small>+5 ⭐</small>`}</span></button>` : ""}
+    ${x ? `<button class="greet-drop" type="button" id="openDrop" data-say="${esc(K(x.it.ne))}"><img class="wpic" src="${window.IMG[x.name]}" alt=""><span>🎁 Today's sticker</span></button>` : ""}</div>`;
+}
 function wordOfDayHTML() {
   const w = wordOfDay(); if (!w) return "";
   const heard = P.wotdDay === today();
@@ -1750,6 +1809,12 @@ function stickerState() {
   const team = PL.team || 0;
   list.push({ id: "team", pic: "🤝", name: "Team Star", ne: "", img: (window.IMG || {})["st-team"] || null, line: { ne: window.PHRASES.wellDone, rom: "syaabaas!", en: "Well done, team!" }, got: team > 0, gold: team >= 5, need: "Finish a 🤝 Team round" });
   return list;
+}
+/* sticker-talk: a locked sticker says how to win it, with a button straight to the lesson that wins it */
+function stickHint(x) {
+  const c = window.CHAPTERS.find(ch => ch.id === x.id), vis = new Set(visibleLessons().map(l => l.id));
+  const next = c && orderedLessons().find(l => c.lessons.includes(l.id) && vis.has(l.id) && !P.stars[starKey(l.id)]);
+  return `<span class="stick-hint">🔓 To win me: ${esc(x.need)}</span>${next ? `<button class="chip primary" type="button" data-stickplay="${next.id}" style="margin-top:6px">▶ Play “${esc(next.title)}”</button>` : ""}`;
 }
 /* Pandu pictures by pose, with the drawn Pandu as a fallback */
 const panduSrc = pose => (window.IMG || {})["pandu-" + pose] || (window.PANDU_IMG || {})[pose];
@@ -1973,7 +2038,10 @@ function mapNav(dir, btn) {
   if (P.level !== "big" && S.openCh !== id) { S.openCh = id; render(); }   // little learners: open that chapter
   const el = document.getElementById("ch-" + id); if (el) el.scrollIntoView({ behavior: smooth, block: "start" });
 }
-function updateMapNav() { document.body.classList.toggle("scrolled-down", scrollY > 320); }
+/* on phones the arrows wake up while the page moves (and for a few seconds at first), then fade so they never sit on words being read */
+let navNap = 0;
+function wakeMapNav(ms = 2200) { document.body.classList.add("nav-awake"); clearTimeout(navNap); navNap = setTimeout(() => document.body.classList.remove("nav-awake"), ms); }
+function updateMapNav() { document.body.classList.toggle("scrolled-down", scrollY > 320); wakeMapNav(); }
 window.addEventListener("scroll", updateMapNav, { passive: true });
 function renderMap() {
   dailyDrop();
@@ -2016,7 +2084,7 @@ function renderMap() {
     const done = ls.every(id => (P.stars[starKey(id)] || 0) > 0), started = ls.filter(id => P.stars[starKey(id)]).length;
     const here = !done && !hereSet && (hereSet = true);
     const art = c.sticker.img && (window.IMG || {})[c.sticker.img.replace(/^img\/|\.webp$/g, "")];
-    return `<button class="jump-pill${done ? " finished" : ""}${here ? " here" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}" style="--c:${c.color}"><i class="jp-ico">${art ? `<img src="${art}" alt="" draggable="false">` : `<span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span>`}${done ? `<em class="jp-done" aria-hidden="true">✓</em>` : ""}</i><b class="jp-name" lang="en">${esc(c.en)}</b><small class="jp-prog${started ? " on" : ""}" aria-label="${started} of ${ls.length} lessons played"><i><b style="width:${Math.round(started / ls.length * 100)}%"></b></i><span lang="ne">${toDeva(started)}/${toDeva(ls.length)}</span></small></button>`;
+    return `<button class="jump-pill${done ? " finished" : ""}${here ? " here" : ""}" type="button" data-jump="${c.id}" title="${esc(c.en)}" style="--c:${c.color}"><i class="jp-ico">${art ? `<img src="${art}" alt="" draggable="false">` : `<span aria-hidden="true" lang="ne">${esc(c.sticker.pic)}</span>`}${done ? `<em class="jp-done" aria-hidden="true">✓</em>` : ""}${c.id === "culture" && festBadge() ? `<em class="jp-fest" title="${esc(festivalToday().en)} is on now!">${festBadge()}</em>` : ""}</i><b class="jp-name" lang="en">${esc(c.en)}</b><small class="jp-prog${started ? " on" : ""}" aria-label="${started} of ${ls.length} lessons played"><i><b style="width:${Math.round(started / ls.length * 100)}%"></b></i><span lang="ne">${toDeva(started)}/${toDeva(ls.length)}</span></small></button>`;
   }).join("");
   const sheetL = S.sheet && window.LESSONS.find(l => l.id === S.sheet);
   $("#app").innerHTML = `
@@ -2047,12 +2115,13 @@ function renderMap() {
       ${(() => { const fc = S.focusCh && window.CHAPTERS.find(c => c.id === S.focusCh), nx = (fc && orderedLessons().find(l => fc.lessons.includes(l.id) && !P.stars[starKey(l.id)])) || orderedLessons().find(l => !P.stars[starKey(l.id)]); return nx ? `<button class="play-next" type="button" data-playnext="${nx.id}"><span class="disc" style="--c:${nx.color}">${iconHTML(nx)}</span><span><b>▶ Play next</b><span lang="ne">${esc(nx.ne)}</span> · ${esc(nx.title)}</span></button>` : ""; })()}
       ${missionToday() ? `<button class="chip mission-chip" type="button" id="toggleMission">🗣️ ${S.showMission ? "Hide" : "Today's"} mission</button>` : ""}
       ${S.showMission ? missionHTML() : ""}
+      ${littleDailyHTML()}
       ${window.STORY && storyTime() ? `<button class="greet-story" type="button" id="openStory">🌙 Read tonight's bedtime story →</button>` : ""}</div></div>
-    ${dropHTML()}
-    ${wordOfDayHTML()}
+    ${dailyHTML()}
     ${chapters}
     <section class="grownups" aria-label="For grown-ups">
       <h3>👨‍👩‍👧 For grown-ups</h3>
+      ${featureOn("grandparent-prompt") ? `<p class="gp-tip">👵👴 <b>Grandparents visiting?</b> Ask them to record a few cheers in <b>🎙️ Family voices</b> below. ${esc(me().name)} will hear <i>their</i> voice saying स्याबास! in the games, even after they fly home.${Object.keys(FAM).length ? ` <span class="gp-done">✓ ${toDeva(Object.keys(FAM).length)} recorded</span>` : ""}</p>` : ""}
       <div class="settings">
         ${NATIVE ? (hasPass() ? `<button class="chip" type="button" id="managePass">🌟 Family Pass: manage subscription</button>` : `<button class="chip" type="button" id="getPass" onclick="askForPass()">🌟 Get the Family Pass</button>`) + `<button class="chip" type="button" id="restorePass">↻ Restore purchases</button>` : ""}
         <button class="chip" type="button" id="openGuide">ℹ️ About this app</button>
@@ -2181,6 +2250,9 @@ async function echo(btn, key) {
 const echoBtn = (key, cls = "chip") => P.sound && AUDIO[key] ? `<button class="${cls} echo" type="button" data-echo="${esc(key)}" aria-label="Try saying it: record yourself and hear it back">🎤<span class="echo-l"> Try it</span></button>` : "";
 /* ---------- Festivals and Saturdays on Pandu's card ---------- */
 const isoToday = () => { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
+/* festival-badge: while a Nepali festival is on, the "Nepali culture & time" chapter card wears its little badge */
+const FEST_ICON = { "Dashain": "🪁", "Tihar": "🪔", "Chhath": "☀️", "Tamu Lhosar": "🎊", "Sonam Lhosar": "🎊", "Maghe Sankranti": "🍯", "Maha Shivaratri": "🔱", "Holi": "🎨", "Nepali New Year": "🎉", "Buddha Jayanti": "🪷", "Janai Purnima": "🧵", "Teej": "💃", "National Unity Day": "🇳🇵", "Democracy Day": "🇳🇵", "Republic Day": "🇳🇵", "Constitution Day": "🇳🇵" };
+const festBadge = () => { if (!featureOn("festival-badge")) return ""; const f = festivalToday(); return (f && FEST_ICON[f.en]) || ""; };
 const festivalToday = () => { const d = isoToday(); return (window.FESTIVALS || []).find(f => d >= f.from && d <= f.to); };
 /* the next festival within three weeks, for a countdown once the last one is over */
 const festivalNext = () => { const d = isoToday(); const f = (window.FESTIVALS || []).filter(x => x.from > d).sort((a, b) => a.from < b.from ? -1 : 1)[0];
@@ -2812,6 +2884,7 @@ function renderQuestion() {
     S.built = [];
     body = `<p class="ask">Make this sentence in Nepali</p>
       <div class="prompt">${q.art ? `<img class="build-art" src="${q.art}" alt="" draggable="false">` : pandu("think", "side-pandu bob")}<span class="en">“${esc(s.en)}”</span>${sayBtn(K(s.ne.join(" ")))}</div>
+      ${P.level === "big" && featureOn("word-order-hint") ? `<p class="wo-hint">💡 Nepali puts the <b>doing word last</b>: ${neHTML("म पानी पिउँछु", "ma paani piunchhu", K("म पानी पिउँछु"))} = “I water drink”.</p>` : ""}
       <div class="answer" id="answer" aria-label="Your sentence"></div>
       <div class="bank" id="bank">${S.bank.map((t, i) => `<button class="tile" type="button" data-t="${i}"><span class="ne" lang="ne">${esc(t[0])}</span><span class="rom">${esc(t[1])}</span></button>`).join("")}</div>`;
   }
@@ -2961,7 +3034,9 @@ function checkTrace() {
     $("#fb").innerHTML = `<p>${s.cover < .55 ? "Keep going! Cover more of the letter." : "Try to stay on the letter."}</p><button class="go" type="button" id="check">Check</button>`;
     return;
   }
-  grade(true); say(window.letterKey(q.item));
+  grade(true);
+  if (featureOn("trace-finish")) { const it = q.item, x = { ch: it.ne, it, word: it.word, wordRom: it.wordRom, en: it.en }; setFeedback(true, traceWinHTML(x)); traceWinSay(x); return; }
+  say(window.letterKey(q.item));
   setFeedback(true, "");
 }
 function checkOrder() {
@@ -3234,6 +3309,25 @@ function villageSfx(kind) {
 }
 function madalHit(low) { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); madal(actx.currentTime + .01, low); } catch (e) {}
   const s = document.querySelector(`[data-madal="${low ? "low" : "high"}"]`); if (s) { s.classList.add("hit"); setTimeout(() => s.classList.remove("hit"), 110); } }
+/* madal-follow: Pandu drums a short beat (धिं = low, ना = high), the child copies it; beats grow from 3 to 6 */
+function mfDots(n, got, bad) { const d = $("#mfDots"); if (!d) return;
+  d.innerHTML = S.mf.pat.slice(0, n).map((low, i) => `<i class="${low ? "lo" : "hi"}${i < got ? " ok" : ""}${bad && i === got ? " bad" : ""}">${low ? "धिं" : "ना"}</i>`).join(""); }
+function mfRound(again) {
+  stopMadal(); const len = (S.mf && S.mf.len) || 3;
+  if (!again || !S.mf) S.mf = { len, pat: Array.from({ length: len }, (_, i) => i === 0 ? true : Math.random() < .5), got: 0, turn: false };
+  S.mf.got = 0; S.mf.turn = false; const btn = $("#mfStart"); if (btn) btn.disabled = true;
+  $("#madalLine").textContent = `👂 Listen to Pandu: ${S.mf.pat.length} beats…`; mfDots(0, 0);
+  S.madalTimers = S.mf.pat.map((low, i) => setTimeout(() => { madalHit(low); mfDots(i + 1, 0); }, 500 + i * 480));
+  S.madalTimers.push(setTimeout(() => { if (!S.mf) return; S.mf.turn = true; mfDots(S.mf.pat.length, 0); $("#madalLine").textContent = "🥁 Your turn! Tap the same beat on the drum."; }, 600 + S.mf.pat.length * 480));
+}
+function mfTap(low) {
+  const m = S.mf; if (low !== m.pat[m.got]) { m.turn = false; mfDots(m.pat.length, m.got, true); beep("bad"); $("#madalLine").textContent = "Oops! Listen again…"; S.madalTimers.push(setTimeout(() => mfRound(true), 1200)); return; }
+  m.got++; mfDots(m.pat.length, m.got);
+  if (m.got === m.pat.length) { m.turn = false; P.xp += 1; save(); setTimeout(() => { beep("good"); say(K("स्याबास!")); }, 250);
+    m.len = Math.min(6, m.pat.length + 1);
+    $("#madalLine").innerHTML = `🎉 ${neSpan("स्याबास!")} You drummed it! ${m.pat.length < 6 ? "Next one is longer." : "Drum master!"} +1 ⭐`;
+    const btn = $("#mfStart"); if (btn) { btn.disabled = false; btn.textContent = "👂 Next beat"; } S.mf = { len: m.len }; S.mf.pat = []; }
+}
 const stopMadal = () => { (S.madalTimers || []).forEach(clearTimeout); S.madalTimers = []; };
 function renderMadal() {
   $("#app").innerHTML = `<div class="lesson-top"><button class="x" type="button" id="quit" aria-label="Back">✕</button><h2 class="kin-title">🥁 ${neSpan("मादल")} · Madal & village sounds</h2></div>
@@ -3241,6 +3335,7 @@ function renderMadal() {
       <div class="madal-pad"><button type="button" class="madal-side" data-madal="low"><span lang="ne">धिं</span><small>dhin · left, low</small></button>
         <button type="button" class="madal-side" data-madal="high"><span lang="ne">ना</span><small>na · right, high</small></button></div>
       <div class="rhythm-pills">${window.MADAL_RHYTHMS.map((r, i) => `<button class="chip" type="button" data-rhythm="${i}">🎵 <span lang="ne">${esc(r.name.split(" · ")[0])}</span> · ${esc(r.name.split(" · ")[1])}</button>`).join("")}</div>
+      ${featureOn("madal-follow") ? `<button class="chip primary mf-go" type="button" id="mfStart">👂 Follow Pandu's beat</button><div class="mf-dots" id="mfDots" aria-hidden="true"></div>` : ""}
       <p class="note" id="madalLine" style="margin:0">Tap a beat and Pandu drums it. Then you try!</p></div>
     <h3 class="kin-h">🏔️ A morning in a Nepali village</h3>
     <div class="sound-map-grid">${window.GAUN_SOUNDS.map((s, i) => `<button class="sound-spot" type="button" data-gaun="${i}">${(window.IMG || {})[s.art] ? `<img class="wpic" src="${window.IMG[s.art]}" alt="">` : "🔊"}
@@ -3527,10 +3622,11 @@ document.addEventListener("click", e => {
     const sc = traceScore(); if (sc.cover < .55 || sc.stray > .45) { beep("bad"); msg.textContent = sc.cover < .55 ? "Almost! Cover more of the letter." : "Almost! Try to stay on the dotted lines."; return; }
     const T = S.tp, list = tpItems(T.cat), x = list[T.i], ch = window.CHEERS[Math.floor(Math.random() * window.CHEERS.length)];
     P.traced = P.traced || {}; const fresh = P.traced[x.ch] !== today(); P.traced[x.ch] = today(); if (fresh) P.xp += 2; save();
-    beep("good"); say(K(ch[0])); msg.innerHTML = `🎉 ${neSpan(ch[0])} <span class="rom">${esc(ch[1])}</span> ${esc(ch[2])}${fresh ? " +2 ⭐" : ""}`;
+    if (featureOn("trace-finish")) { traceWinSay(x); msg.innerHTML = traceWinHTML(x) + (fresh ? " <b>+2 ⭐</b>" : ""); TR.inkCtx && setTimeout(() => { const cv = TR.inkCtx.canvas; cv.classList.add("wiped"); }, 250); }
+    else { beep("good"); say(K(ch[0])); msg.innerHTML = `🎉 ${neSpan(ch[0])} <span class="rom">${esc(ch[1])}</span> ${esc(ch[2])}${fresh ? " +2 ⭐" : ""}`; }
     t.disabled = true; if (list.every(y => P.traced[y.ch])) { confetti(); beep("done"); }
     const run = S.tpRun = (S.tpRun || 0) + 1;
-    setTimeout(() => { if (S.screen === "tracepad" && S.tpRun === run) { S.tp.i = (T.i + 1) % list.length; render(); tpSay(); } }, 1800);
+    setTimeout(() => { if (S.screen === "tracepad" && S.tpRun === run) { S.tp.i = (T.i + 1) % list.length; render(); tpSay(); } }, featureOn("trace-finish") ? 3000 : 1800);
     return; }
   if (t.id === "openPass") { S.play = false; S.sheet = null; passMsg = ""; S.screen = "pass"; render(); window.scrollTo(0, 0); return; }
   if (t.dataset.buy) { buyPass(t.dataset.buy); return; }
@@ -3557,8 +3653,9 @@ document.addEventListener("click", e => {
   if (t.id === "openName") { S.screen = "nametrace"; render(); window.scrollTo(0, 0); return; }
   if (t.id === "saveDevaName") { const v = ($("#customDeva").value || "").trim(); if (v) { me().deva = v; savePlayers(); beep("good"); renderNameTrace(); } return; }
   if (t.id === "nameDone") { if (P.nameDay !== today()) { P.nameDay = today(); P.xp += 5; save(); } beep("done"); confetti(); S.screen = "map"; render(); return; }
-  if (t.id === "openMadal") { S.screen = "madal"; render(); window.scrollTo(0, 0); return; }
-  if (t.dataset.madal) { madalHit(t.dataset.madal === "low"); return; }
+  if (t.id === "openMadal") { S.mf = null; S.screen = "madal"; render(); window.scrollTo(0, 0); return; }
+  if (t.id === "mfStart") { mfRound(); return; }
+  if (t.dataset.madal) { madalHit(t.dataset.madal === "low"); if (S.mf && S.mf.turn) mfTap(t.dataset.madal === "low"); return; }
   if (t.dataset.rhythm != null) { stopMadal(); const r = window.MADAL_RHYTHMS[+t.dataset.rhythm]; $("#madalLine").textContent = "🎶 " + r.desc; S.madalTimers = r.pattern.map((low, i) => setTimeout(() => S.screen === "madal" && madalHit(!!low), i * r.tempo)); return; }
   if (t.dataset.gaun != null) { const g = window.GAUN_SOUNDS[+t.dataset.gaun]; villageSfx(g.sfx); setTimeout(() => say(K(g.ne), t), 300); $("#madalLine").textContent = g.line; return; }
   if (t.id === "openPride") { S.grown = "pride"; render(); return; }
@@ -3667,6 +3764,7 @@ document.addEventListener("click", e => {
   if (t.id === "navGrown") { S.play = false; S.stickers = false; render(); const g = document.querySelector(".grownups"); if (g) g.scrollIntoView({ behavior: "smooth", block: "start" }); return; }
   if (t.id === "openStickers") { S.stickers = true; beep("tap"); render(); return; }
   if (t.id === "stickClose") { S.stickers = false; render(); return; }
+  if (t.dataset.stickplay) { const l = window.LESSONS.find(x => x.id === t.dataset.stickplay); S.stickers = false; say(K(l.ne)); startLesson(l.id); return; }
   if (t.dataset.sticker) {
     const x = stickerState().find(s => s.id === t.dataset.sticker);
     if (!x) return;
@@ -3677,7 +3775,7 @@ document.addEventListener("click", e => {
     let b = $("#stickSay");
     if (!b) { b = document.createElement("div"); b.id = "stickSay"; t.after(b); }
     b.className = "stick-say" + (x.got ? "" : " locked");
-    b.innerHTML = `<span class="stick-say-pic${x.got ? "" : " locked"}" aria-hidden="true">${stickerPic(x, true)}</span><span>${neSpan(line.ne)} <span class="rom">${esc(line.rom)}</span><small>${esc(line.en)}</small>${x.got && x.id !== "pandu" && x.id !== "team" ? `<button class="chip primary" type="button" data-cert="${x.id}" style="margin-top:6px">📜 Make my certificate</button>` : ""}</span>`;
+    b.innerHTML = `<span class="stick-say-pic${x.got ? "" : " locked"}" aria-hidden="true">${stickerPic(x, true)}</span><span>${neSpan(line.ne)} <span class="rom">${esc(line.rom)}</span><small>${esc(line.en)}</small>${x.got && x.id !== "pandu" && x.id !== "team" ? `<button class="chip primary" type="button" data-cert="${x.id}" style="margin-top:6px">📜 Make my certificate</button>` : ""}${!x.got && featureOn("sticker-talk") ? stickHint(x) : ""}</span>`;
     return;
   }
   if (t.id === "copyShare") {
