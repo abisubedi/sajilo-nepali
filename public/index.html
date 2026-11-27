@@ -1167,6 +1167,25 @@ html.lp-app .lp-nav .lp-in-nav { justify-content: center; } html:not(.lp-app) .l
   .lp-trust li { display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px 5px 8px; border-radius: 999px; }
   .lp-trust span { font-size: 15px; grid-row: auto; } .lp-trust b { font-size: 13px; white-space: nowrap; } .lp-trust small { display: none !important; }
 }
+/* landing v2 (feature "landing-v2"): deeper-pressing word cards with a gold soundwave, a mode chip, the Echo preview and a floating Start pill */
+html:not(.lp-v2) .lp-v2-only { display: none !important; }
+.lp-card .wave { position: absolute; top: 13px; right: 40px; display: none; gap: 2px; align-items: flex-end; height: 14px; }
+.lp-card .wave i { width: 3px; border-radius: 2px; background: #d89f18; animation: lpWave .5s ease-in-out infinite alternate; } .lp-card .wave i:nth-child(1) { height: 6px; } .lp-card .wave i:nth-child(2) { height: 13px; animation-delay: .15s; } .lp-card .wave i:nth-child(3) { height: 8px; animation-delay: .3s; }
+@keyframes lpWave { to { transform: scaleY(.35); } }
+html.lp-v2 .lp-card { box-shadow: 0 5px 0 #1f2a44; } html.lp-v2 .lp-card:active, html.lp-v2 .lp-card.press { transform: translateY(3px); box-shadow: 0 2px 0 #1f2a44; }
+html.lp-v2 .lp-card.lit { border-color: #f6b71c; box-shadow: 0 5px 0 #d89f18; background-color: #fff8e1; } html.lp-v2 .lp-card.playing { transform: translateY(3px); box-shadow: 0 2px 0 #d89f18; } html.lp-v2 .lp-card.playing .wave { display: flex; }
+.lp-mode-chip { margin: 10px 0 0; text-align: center; } .lp-mode-chip span { display: inline-block; background: #fff3c4; border: 1.5px solid #f3d37a; color: #8a6400; font: 800 11.5px/1.3 var(--display); letter-spacing: .05em; padding: 4px 12px; border-radius: 999px; animation: lpChip .35s cubic-bezier(.3,1.5,.5,1); }
+@keyframes lpChip { from { transform: scale(.7); opacity: 0; } }
+.lp-echo { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 12px; min-height: 52px; padding: 8px 14px; border-radius: 16px; border: 3px dashed #2f6fd6; background: #eef4ff; color: #1f2a44; font: 800 15px/1.25 var(--body, sans-serif); text-align: left; cursor: pointer; transition: transform .08s, background .2s; -webkit-tap-highlight-color: transparent; }
+.lp-echo .mic { flex: none; width: 36px; height: 36px; border-radius: 50%; background: #2f6fd6; display: grid; place-items: center; font-size: 18px; } .lp-echo b { font-family: var(--display); font-size: 19px; }
+.lp-echo:active { transform: scale(.97); } .lp-echo.go { border-style: solid; background: #fff8e1; border-color: #f6b71c; } .lp-echo.go .mic { background: #f6b71c; animation: lpAsk 1s ease-in-out infinite; }
+.lp-echo.yay { border-style: solid; border-color: #27ae60; background: #eafaf0; } .lp-echo.yay .mic { background: #27ae60; }
+.lp-echo .lp-count { display: inline-block; margin-left: 6px; vertical-align: -2px; font: 800 26px/1 var(--display); color: #b9541a; }
+.lp-float { position: absolute; left: 50%; bottom: calc(84px + env(safe-area-inset-bottom)); z-index: 5; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; display: flex; align-items: center; gap: 12px; white-space: nowrap; background: #fffdf8; color: #1f2a44; border: 3px solid #1f2a44; border-radius: 999px; padding: 6px 6px 6px 18px; box-shadow: 0 5px 0 #1f2a44, 0 12px 30px rgba(0, 0, 0, .35); font: 800 15px var(--display); transition: opacity .3s, transform .3s; }
+.lp-float button { border: 0; border-radius: 999px; background: #1d4f9e; color: #fff; font: 800 15px var(--display); padding: 10px 16px; cursor: pointer; box-shadow: 0 3px 0 #0f2a57; }
+#landing.past-hero .lp-float { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; } html.lp-app .lp-float { display: none !important; }
+@media (max-width: 520px) { .lp-float span { display: none; } .lp-float { padding: 5px; } }
+@media (prefers-reduced-motion: reduce) { .lp-card .wave i, .lp-mode-chip span, .lp-echo.go .mic { animation: none; } }
 @media (prefers-reduced-motion: reduce) { .lp-card, .lp-pandu-hi.sway img, .lp-card.ring .spk::after, .lp-pandu-hi.enter img, .lp-pandu-hi.enter .lp-bubble, .lp-pandu-hi.talk img, .lp-pandu-hi .lp-ask { animation: none; } }
 /* first visit: a gentle spotlight on the one card to tap first */
 .stone.first-spot { z-index: 1; border-color: #f6b71c; box-shadow: 0 4px 0 #d89f18, 0 0 0 0 rgba(246, 183, 28, .55); animation: spotGlow 2.2s ease-in-out infinite; margin-top: 30px; }
@@ -1223,8 +1242,10 @@ html.test-site body::after { content: "TEST VERSION"; position: fixed; top: calc
           <button type="button" role="radio" aria-checked="false" data-lplevel="little"><span class="ic">🧒</span><span><b>Little learners</b><small>listen &amp; tap · ages 4–7</small></span></button>
           <button type="button" role="radio" aria-checked="false" data-lplevel="big"><span class="ic">🧑‍🎓</span><span><b>Big learners</b><small>read &amp; type · ages 8+</small></span></button>
         </div></div>
+        <p class="lp-mode-chip lp-v2-only" id="lpModeChip" hidden></p>
         <p class="lp-tap-label" id="lpTapLabel">👇 TAP A WORD TO HEAR IT</p>
         <div class="lp-words" id="lpWords"></div>
+        <button type="button" class="lp-echo lp-v2-only" id="lpEcho" data-lpecho><span class="mic" aria-hidden="true">🎙️</span><span class="txt" id="lpEchoTxt"></span></button>
       </div>
     </div></div></section>
     <section class="lp-slide s-how" data-name="How it works"><div class="lp-inner"><p class="lp-eyebrow">HOW IT WORKS</p><h2>From English to the dinner table</h2>
@@ -1254,6 +1275,7 @@ html.test-site body::after { content: "TEST VERSION"; position: fixed; top: calc
   </div>
   <div class="lp-pager" aria-label="Slides"><b id="lpName">Start</b><div class="lp-bars" id="lpBars"></div>
     <button type="button" class="lp-arrow back" data-lpstep="-1" aria-label="Previous">‹</button><button type="button" class="lp-arrow" data-lpstep="1" aria-label="Next">›</button></div>
+  <div class="lp-float lp-v2-only" id="lpFloat"><span>Ready to try with your family?</span><button type="button" data-lpstart>Start Chapter 1 free →</button></div>
 </div>
 <div class="flags" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 <main class="app" id="app"></main>
@@ -1272,7 +1294,7 @@ if (NATIVE) document.documentElement.classList.add("native");
 const NOT_IN_APP_YET = ["first-steps"];
 /* New features that are not in the App Store app yet: same rule as chapters. They show in the app build, on the test site and in previews, never on the public website.
    When the app update with a feature is out on the App Store, delete its name here. */
-const FEATURES_NOT_IN_APP_YET = ["first-card-spotlight", "map-arrows", "app-landing"];
+const FEATURES_NOT_IN_APP_YET = ["first-card-spotlight", "map-arrows", "app-landing", "landing-v2"];
 const featureOn = name => NATIVE || !!window.SN_TEST || !!window.SN_PREVIEW || !FEATURES_NOT_IN_APP_YET.includes(name);
 if (!NATIVE && !window.SN_TEST && !window.SN_PREVIEW) {
   const hide = new Set(window.CHAPTERS.filter(c => NOT_IN_APP_YET.includes(c.id)).flatMap(c => c.lessons));
@@ -3791,6 +3813,16 @@ render();
 {
   const root = document.getElementById("landing"), wordsEl = document.getElementById("lpWords"), track = document.getElementById("lpTrack");
   if (document.documentElement.classList.contains("lp-app") && featureOn("app-landing")) [...track.children].slice(1).forEach(sl => sl.remove());
+  const V2 = featureOn("landing-v2"), APPV = document.documentElement.classList.contains("lp-app");
+  if (V2) { document.documentElement.classList.add("lp-v2");
+    // one clean line each (the hidden alternative is removed, not just hidden)
+    const note = root.querySelector(".lp-note"), off = root.querySelector(".lp-trust li:last-child");
+    note.querySelectorAll(".lp-web-only, .lp-app-only").forEach(e => e.remove());
+    note.insertAdjacentHTML("afterbegin", APPV ? "Chapter 1 is 100% free. No sign-up or credit card required. " : "Chapter 1 is 100% free in your browser or app. No sign-up or credit card required. ");
+    off.querySelectorAll("small").forEach(e => e.remove());
+    off.insertAdjacentHTML("beforeend", APPV ? "<small>Practice anywhere, even on flights and road trips</small>" : "<small>Download once, practice anywhere on flights and road trips</small>");
+    const lead = root.querySelector(".s-in .lp-lead"); if (lead) lead.textContent = "Up to 12 chapters, including First Steps for everyday travel and conversation, plus folk tales, rhymes, games and the Nepali alphabet. Chapter 1 and the Moon bedtime story are free; the app unlocks everything with a 7-day free trial.";
+    const all = root.querySelector(".lp-note .lp-link"); if (all) all.textContent = "📖 See all 700+ words & phrases →"; }
   const slides = [...track.children], bars = document.getElementById("lpBars"), nameEl = document.getElementById("lpName");
   let lv = "", cur = 0, wheelLock = 0;
   // the four cards for each choice: [Nepali, English letters, English, picture or emoji, a short note for beginners]
@@ -3808,11 +3840,11 @@ render();
   const SUBS = { "": document.getElementById("lpSub").textContent,
     little: "Big storybook pictures and one word at a time. Little ones just listen and tap: no reading, no hearts to lose, and Pandu cheers every try.",
     big: "Real phrases for real conversations: polite words for elders (हजुर, तपाईं), Devanagari sentence building and short culture notes, from नमस्ते to chatting with Hajurbaa." };
-  const hear = t => { try { say(K(t)); } catch (e) {} };
+  const hear = (t, el) => { try { say(K(t), el); } catch (e) {} };
   const img = k => (window.IMG || {})[k] || ("img/" + k + ".webp");
   bars.innerHTML = slides.map((sl, i) => `<button type="button" data-lpslide="${i}" aria-label="${sl.dataset.name}"></button>`).join("");
   function mark() {
-    nameEl.textContent = slides[cur].dataset.name;
+    nameEl.textContent = slides[cur].dataset.name; root.classList.toggle("past-hero", V2 && cur > 0);
     bars.querySelectorAll("button").forEach((b, i) => b.classList.toggle("on", i === cur));
     root.querySelectorAll(".lp-nav nav [data-lpslide]").forEach(b => b.classList.toggle("on", +b.dataset.lpslide === cur));
     root.querySelector('[data-lpstep="-1"]').disabled = cur === 0; root.querySelector('[data-lpstep="1"]').disabled = cur === slides.length - 1;
@@ -3829,11 +3861,27 @@ render();
   document.addEventListener("keydown", e => { if (!document.documentElement.classList.contains("landing")) return;
     if (e.key === "ArrowRight") { e.preventDefault(); go(cur + 1); } else if (e.key === "ArrowLeft") { e.preventDefault(); go(cur - 1); } });
   addEventListener("resize", () => track.scrollTo({ left: cur * track.clientWidth, behavior: "auto" }));
+  /* Echo preview: hear the word, then a 3-2-1 countdown, the learner says it out loud, and a chime cheers them on */
+  const ECHO_I = { "": 3, little: 0, big: 0 }; let echoRun = 0;
+  const echoWord = () => SETS[lv][ECHO_I[lv]];
+  function echoReset() { const b = document.getElementById("lpEcho"); if (!b) return; echoRun++; b.className = "lp-echo lp-v2-only";
+    const [ne, rom] = echoWord(); document.getElementById("lpEchoTxt").innerHTML = `Tap to practice saying: <b lang="ne">${ne}</b> (${rom})`; }
+  async function echo() { const b = document.getElementById("lpEcho"), txt = document.getElementById("lpEchoTxt"), run = ++echoRun, [ne, rom] = echoWord();
+    const wait = ms => new Promise(r => setTimeout(r, ms)), live = () => run === echoRun;
+    b.className = "lp-echo lp-v2-only go"; txt.innerHTML = `👂 Listen: <b lang="ne">${ne}</b>`; hear(ne);
+    await wait(1700); if (!live()) return;
+    for (const n of ["3", "2", "1"]) { txt.innerHTML = `Your turn in<span class="lp-count">${n}</span>`; try { beep("tap"); } catch (e) {} await wait(700); if (!live()) return; }
+    txt.innerHTML = `🗣️ Say it out loud: <b lang="ne">${ne}</b>!`; await wait(2200); if (!live()) return;
+    b.className = "lp-echo lp-v2-only yay"; txt.innerHTML = `🎉 शाबास! Great job! <small>(tap to try again)</small>`; try { beep("good"); } catch (e) {}
+    await wait(3500); if (live()) echoReset(); }
   function draw() {
     wordsEl.innerHTML = SETS[lv].map(([ne, rom, en, pic, note], i) => `<button type="button" class="lp-card" data-lpword="${i}" aria-label="Hear ${ne}, ${en}">
-      <span class="spk" aria-hidden="true">🔊</span>${/^[a-z]/.test(pic) ? `<img src="${img(pic)}" alt="">` : `<span class="em">${pic}</span>`}
+      <span class="spk" aria-hidden="true">🔊</span>${V2 ? '<span class="wave" aria-hidden="true"><i></i><i></i><i></i></span>' : ""}${/^[a-z]/.test(pic) ? `<img src="${img(pic)}" alt="">` : `<span class="em">${pic}</span>`}
       <span class="ne" lang="ne">${ne}</span><span class="rom">${rom}</span><span class="en">${en}</span>${note ? `<span class="note">${note}</span>` : ""}</button>`).join("");
     document.getElementById("lpTapLabel").textContent = LABEL[lv];
+    if (V2) { const chip = document.getElementById("lpModeChip"), CHIP = { little: "PICTURE &amp; AUDIO FIRST · PRE-READER FRIENDLY", big: "PHRASES, POLITE FORMS &amp; REAL CONVERSATIONS" };
+      chip.hidden = !CHIP[lv]; chip.innerHTML = CHIP[lv] ? `<span>${CHIP[lv]}</span>` : "";
+      echoReset(); }
   }
   document.getElementById("lpHiImg").src = img(HI[2]);
   /* Pandu talks first: he pops in, "types" his greeting into the bubble and says it out loud.
@@ -3879,7 +3927,8 @@ render();
       seg.querySelectorAll("button").forEach(b => { const on = b === t; b.classList.toggle("on", on); b.setAttribute("aria-checked", on); });
       document.getElementById("lpSub").textContent = SUBS[lv]; try { beep("tap"); } catch (er) {} draw(); return; }
     if (t.matches("[data-lphi]")) { hiSpeak(); return; }
-    if (t.dataset.lpword != null) { hear(SETS[lv][+t.dataset.lpword][0]); t.classList.add("lit"); t.classList.remove("ring"); void t.offsetWidth; t.classList.add("ring"); return; }
+    if (t.matches("[data-lpecho]")) { echo(); return; }
+    if (t.dataset.lpword != null) { hear(SETS[lv][+t.dataset.lpword][0], V2 ? t : null); t.classList.add("lit"); t.classList.remove("ring"); void t.offsetWidth; t.classList.add("ring"); return; }
   });
   draw(); mark();
 }
