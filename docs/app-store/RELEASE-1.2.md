@@ -94,10 +94,11 @@ MORE FUN
 10. Paste the **What's New** text from above.
 11. **Screenshots:** under **App Previews and Screenshots**, remove the old pictures and upload the new ones from
     `docs/app-store/screenshots-1.2/app-store/`, in number order:
-    - **iPhone 6.9" Display:** the 10 `iphone-6.9-*.jpg`
+    - **iPhone with Dynamic Island (medium display):** the 10 `iphone-6.3-*.jpg` (1206 × 2622); the 6.1" set
+      (`iphone-6.1-*.jpg`, 1179 × 2556) also fits that slot. Use `iphone-6.9-*.jpg` only if a 6.9" slot asks for them.
     - **iPad 13" Display:** the 10 `ipad-13-*.jpg`
-12. **Header and Search Results** (same page): upload `docs/app-store/product-page/header-5244x2950.jpg` (or the
-    3840 × 1646 one if that is the size it asks for) as the Header, and `search-results-1920x1280.jpg` as the Search
+12. **Header and Search Results** (same page): upload `docs/app-store/product-page/header-5244x2950.png` (PNG only: JPG is refused; or the
+    3840 × 1646 one if that is the size it asks for) as the Header, and `search-results-1920x1280.png` as the Search
     Results picture, if you haven't already.
 13. **Description:** replace it with the new one in `LISTING.md` (it now says "Up to 12 chapters" and has a NEW line for
     First Steps). Keywords and subtitle stay the same.
@@ -121,5 +122,6 @@ MORE FUN
 - **"No such module" or plugin errors in Xcode:** close Xcode, run `npm install` and `npx cap sync ios` again, reopen.
 - **Upload says the build number was already used:** in Xcode, General tab, change **Build** to 4 and archive again.
 - **Signing errors:** App → Signing & Capabilities → pick your Team again.
-- **A screenshot is rejected for its size:** the iPhone ones must be exactly 1320 × 2868 and the iPad ones 2064 × 2752;
+- **A screenshot is rejected for its size:** each iPhone slot takes only its own sizes (medium display: 1206 × 2622 or
+  1179 × 2556; 6.9": 1320 × 2868) and the iPad 13" slot takes 2064 × 2752;
   use the files in `screenshots-1.2/app-store/` (not the `1080/` copies).

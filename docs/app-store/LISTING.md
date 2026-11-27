@@ -68,7 +68,8 @@ Terms of use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 
 ## Screenshots for the next update (in docs/app-store/screenshots-1.2)
 Upload with the version that includes First Steps and the welcome page. In App Store Connect, open that version, then Previews and Screenshots:
-- iPhone 6.9" display: the 10 `app-store/iphone-6.9-*.jpg` (1320 × 2868), in number order. App Store Connect uses these for the smaller iPhones too.
+- iPhone with Dynamic Island (medium display), the slot App Store Connect shows first: the 10 `app-store/iphone-6.3-*.jpg` (1206 × 2622). If it asks for 6.1" instead, use `iphone-6.1-*.jpg` (1179 × 2556).
+- iPhone 6.9" display, if App Store Connect asks for it too: the 10 `app-store/iphone-6.9-*.jpg` (1320 × 2868).
 - iPad 13" display: the 10 `app-store/ipad-13-*.jpg` (2064 × 2752), in number order.
 - The first three pictures are what people see in App Store search results.
 - `1080/` has the same pictures 1080 pixels wide for the website or social posts (App Store Connect does not accept that size).
