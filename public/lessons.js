@@ -1686,7 +1686,7 @@ window.LESSONS.push({
   }
  ]
 });
-window.CHAPTERS.push({"id": "first-steps", "ne": "पहिलो पाइला", "rom": "pahilo paaila", "en": "First Steps · Beginner Course", "color": "#e67e22", "sticker": {"pic": "🧭", "img": "img/st-first-steps.webp", "name": "Nepal Ambassador", "say": {"ne": "वाह! तपाईं नेपालको साथी हुनुभयो!", "rom": "waah! tapaain nepaalko saathi hunubhayo!", "en": "Wow! You've become a friend of Nepal!"}}, "lessons": ["first-greetings", "first-food", "first-market", "first-transport", "first-safety"]});
+window.CHAPTERS.push({"id": "first-steps", "ne": "पहिलो पाइला", "rom": "pahilo paaila", "en": "First Steps · Beginner Course", "color": "#e67e22", "sticker": {"pic": "🧭", "img": "img/st-first-steps.webp", "name": "Nepal Ambassador", "say": {"ne": "वाह! तपाईं नेपालको साथी हुनुभयो!", "rom": "waah! tapaain nepaalko saathi hunubhayo!", "en": "Wow! You've become a friend of Nepal!"}}, "lessons": ["first-greetings", "first-food", "first-market", "first-transport", "first-safety", "first-grammar"]});
 window.LESSONS.push({
  "id": "first-food",
  "title": "Tea Stall & Restaurant",
@@ -4189,4 +4189,605 @@ window.LESSONS.push({
   }
  ],
  "iconImg": "w-hospital"
+});
+window.LESSONS.push({
+ "id": "first-grammar",
+ "title": "Grammar Hacks & Sentence Builders",
+ "ne": "सजिलो वाक्य संरचना",
+ "rom": "sajilo waakya sanrachanaa",
+ "icon": "🧩",
+ "color": "#e67e22",
+ "bigOnly": true,
+ "items": [
+  {
+   "ne": "के?",
+   "rom": "ke?",
+   "en": "What?",
+   "pic": "❓",
+   "alt": [
+    "what"
+   ],
+   "tip": "The most common question word. It goes just before the verb: 'Tapaainko naam ke ho?' = What is your name?",
+   "img": "w-what-is-it"
+  },
+  {
+   "ne": "कहाँ?",
+   "rom": "kahaan?",
+   "en": "Where?",
+   "pic": "📍",
+   "alt": [
+    "where"
+   ],
+   "tip": "'Hotel kahaan chha?' = Where is the hotel?",
+   "img": "w-where-is-it"
+  },
+  {
+   "ne": "कहिले?",
+   "rom": "kahile?",
+   "en": "When?",
+   "pic": "📆",
+   "alt": [
+    "when"
+   ],
+   "tip": "'Gaadi kahile chhutchha?' = When does the bus leave?",
+   "img": "w-when"
+  },
+  {
+   "ne": "को?",
+   "rom": "ko?",
+   "en": "Who?",
+   "pic": "👤",
+   "alt": [
+    "who"
+   ],
+   "tip": "'Uhaan ko hunuhunchha?' = Who is he / she?",
+   "img": "w-who-is-it"
+  },
+  {
+   "ne": "कसरी?",
+   "rom": "kasari?",
+   "en": "How?",
+   "pic": "⚙️",
+   "alt": [
+    "how",
+    "in what way"
+   ],
+   "tip": "For ways and directions: 'Kasari jaane?' = How do I get there?"
+  },
+  {
+   "ne": "किन?",
+   "rom": "kina?",
+   "en": "Why?",
+   "pic": "🤔",
+   "alt": [
+    "why"
+   ],
+   "tip": "'Kina dhilo bhayo?' = Why was it late?",
+   "img": "w-why"
+  },
+  {
+   "ne": "कति?",
+   "rom": "kati?",
+   "en": "How much? / How many?",
+   "pic": "🔢",
+   "alt": [
+    "how much",
+    "how many"
+   ],
+   "tip": "For prices, amounts, time and distance: 'Kati parchha?' = How much does it cost?",
+   "img": "w-how-many"
+  },
+  {
+   "ne": "कुन?",
+   "rom": "kun?",
+   "en": "Which?",
+   "pic": "🔘",
+   "alt": [
+    "which",
+    "which one"
+   ],
+   "tip": "For choosing: 'Kun baato?' = Which road?"
+  },
+  {
+   "ne": "कसको?",
+   "rom": "kasko?",
+   "en": "Whose?",
+   "pic": "🏷️",
+   "alt": [
+    "whose"
+   ],
+   "tip": "'Yo kasko ho?' = Whose is this?"
+  },
+  {
+   "ne": "कस्तो?",
+   "rom": "kasto?",
+   "en": "What is it like?",
+   "pic": "🎨",
+   "alt": [
+    "what kind",
+    "how is it",
+    "what kind of",
+    "what is it like"
+   ],
+   "tip": "Asks how something is or tastes: 'Kasto chha?' = How is it?",
+   "img": "w-how-is-it"
+  },
+  {
+   "ne": "म",
+   "rom": "ma",
+   "en": "I / Me",
+   "pic": "🙋",
+   "alt": [
+    "i",
+    "me"
+   ],
+   "tip": "Verbs with 'ma' usually end in '-chhu' or '-en': 'ma jaanchhu' = I go."
+  },
+  {
+   "ne": "तपाईं",
+   "rom": "tapaain",
+   "en": "You (polite)",
+   "pic": "🙂",
+   "alt": [
+    "you",
+    "you polite"
+   ],
+   "tip": "Use 'tapaain' with adults, strangers, shopkeepers and elders."
+  },
+  {
+   "ne": "उहाँ",
+   "rom": "uhaan",
+   "en": "He / She (polite)",
+   "pic": "🧑",
+   "alt": [
+    "he",
+    "she",
+    "he or she",
+    "that person"
+   ],
+   "tip": "The respectful word for a man or a woman."
+  },
+  {
+   "ne": "हामी",
+   "rom": "haami",
+   "en": "We / Us",
+   "pic": "👥",
+   "alt": [
+    "we",
+    "us"
+   ],
+   "tip": "'Haami jaanchhaun' = We are going."
+  },
+  {
+   "ne": "यो",
+   "rom": "yo",
+   "en": "This (near)",
+   "pic": "👇",
+   "alt": [
+    "this",
+    "it"
+   ],
+   "tip": "For something close to you."
+  },
+  {
+   "ne": "त्यो",
+   "rom": "tyo",
+   "en": "That (far)",
+   "pic": "👉",
+   "alt": [
+    "that"
+   ],
+   "tip": "For something farther away."
+  },
+  {
+   "ne": "यहाँ",
+   "rom": "yahaan",
+   "en": "Here",
+   "pic": "⬇️",
+   "alt": [
+    "here",
+    "this place"
+   ],
+   "tip": "'Yahaan roknuhos' = Stop here."
+  },
+  {
+   "ne": "त्यहाँ",
+   "rom": "tyahaan",
+   "en": "There",
+   "pic": "🗺️",
+   "alt": [
+    "there",
+    "that place"
+   ],
+   "tip": "'Tyahaan basnuhos' = Please sit over there."
+  },
+  {
+   "ne": "सबै",
+   "rom": "sabai",
+   "en": "All / Everyone / Everything",
+   "pic": "🌐",
+   "alt": [
+    "all",
+    "everyone",
+    "everything"
+   ],
+   "tip": "'Sabai janaa' = everyone; 'sabai kuraa' = everything."
+  },
+  {
+   "ne": "कोही छैन",
+   "rom": "kohi chhaina",
+   "en": "Nobody is here",
+   "pic": "🪑",
+   "alt": [
+    "nobody",
+    "no one",
+    "no one is here",
+    "nobody is here"
+   ],
+   "tip": "Handy when a counter or reception desk is empty."
+  },
+  {
+   "ne": "यो [...] हो",
+   "rom": "yo [...] ho",
+   "en": "This is [...]",
+   "pic": "🏷️",
+   "alt": [
+    "this is",
+    "it is"
+   ],
+   "tip": "Rule 1: use 'ho' to say WHAT something is. 'Yo chiyaa ho' = This is tea."
+  },
+  {
+   "ne": "यो [...] होइन",
+   "rom": "yo [...] hoina",
+   "en": "This is not [...]",
+   "pic": "🙅",
+   "alt": [
+    "this is not",
+    "it is not"
+   ],
+   "tip": "'Yo mero hoina' = This is not mine.",
+   "img": "w-no-it-is-not"
+  },
+  {
+   "ne": "[...] त्यहाँ छ",
+   "rom": "[...] tyahaan chha",
+   "en": "[...] is there",
+   "pic": "📌",
+   "alt": [
+    "is there",
+    "it exists",
+    "is available"
+   ],
+   "tip": "Rule 2: use 'chha' for WHERE something is, or that it exists. 'Paani chha' = There is water."
+  },
+  {
+   "ne": "[...] यहाँ छैन",
+   "rom": "[...] yahaan chhaina",
+   "en": "[...] is not here",
+   "pic": "📭",
+   "alt": [
+    "is not here",
+    "not available",
+    "does not exist"
+   ],
+   "tip": "'Chini chhaina' = There's no sugar."
+  },
+  {
+   "ne": "मसँग [...] छ",
+   "rom": "masanga [...] chha",
+   "en": "I have [...]",
+   "pic": "🎒",
+   "alt": [
+    "i have",
+    "i have got",
+    "i possess"
+   ],
+   "tip": "Literally 'with me, [...] is'. 'Masanga paisaa chha' = I have money.",
+   "img": "w-there-is-i-have-it"
+  },
+  {
+   "ne": "मसँग [...] छैन",
+   "rom": "masanga [...] chhaina",
+   "en": "I don't have [...]",
+   "pic": "🤷",
+   "alt": [
+    "i do not have",
+    "i dont have",
+    "i have no"
+   ],
+   "tip": "'Masanga khudraa chhaina' = I don't have change.",
+   "img": "w-there-isn-t-i-don-t-have"
+  },
+  {
+   "ne": "थियो",
+   "rom": "thiyo",
+   "en": "Was",
+   "pic": "⏳",
+   "alt": [
+    "was",
+    "it was",
+    "existed"
+   ],
+   "tip": "The past of 'chha': 'Khaanaa mitho thiyo' = The food was delicious."
+  },
+  {
+   "ne": "थिएन",
+   "rom": "thiena",
+   "en": "Was not",
+   "pic": "⌛",
+   "alt": [
+    "was not",
+    "it was not",
+    "wasnt"
+   ],
+   "tip": "'Baato raamro thiena' = The road was not good."
+  },
+  {
+   "ne": "हुनसक्छ",
+   "rom": "huna sakchha",
+   "en": "Maybe / It's possible",
+   "pic": "🎲",
+   "alt": [
+    "maybe",
+    "perhaps",
+    "possibly",
+    "it is possible"
+   ],
+   "tip": "Says something might happen."
+  },
+  {
+   "ne": "हुनै सक्दैन!",
+   "rom": "hunai sakdaina!",
+   "en": "Impossible! / No way!",
+   "pic": "❌",
+   "alt": [
+    "impossible",
+    "no way",
+    "cannot happen"
+   ],
+   "tip": "A strong way to say something can't happen."
+  },
+  {
+   "ne": "मलाई [...] चाहिन्छ",
+   "rom": "malaai [...] chaahinchha",
+   "en": "I need / want [...]",
+   "pic": "🙋‍♂️",
+   "alt": [
+    "i need",
+    "i want"
+   ],
+   "tip": "Pattern 1: put any thing in the middle. 'Malaai paani chaahinchha' = I need water.",
+   "img": "w-i-need-it"
+  },
+  {
+   "ne": "मलाई [...] चाहिँदैन",
+   "rom": "malaai [...] chaahindaina",
+   "en": "I don't need / want [...]",
+   "pic": "🙅‍♂️",
+   "alt": [
+    "i do not need",
+    "i dont need",
+    "i do not want",
+    "i dont want"
+   ],
+   "tip": "'Malaai chini chaahindaina' = I don't want sugar.",
+   "img": "w-i-don-t-need-it"
+  },
+  {
+   "ne": "मलाई [...] मन पर्छ",
+   "rom": "malaai [...] man parchha",
+   "en": "I like [...]",
+   "pic": "❤️",
+   "alt": [
+    "i like",
+    "i love"
+   ],
+   "tip": "Pattern 2: 'Malaai Nepal man parchha' = I like Nepal.",
+   "img": "w-i-like-it"
+  },
+  {
+   "ne": "मलाई [...] मन पर्दैन",
+   "rom": "malaai [...] man pardaina",
+   "en": "I don't like [...]",
+   "pic": "💔",
+   "alt": [
+    "i do not like",
+    "i dont like",
+    "dislike"
+   ],
+   "tip": "'Malaai piro man pardaina' = I don't like spicy food.",
+   "img": "w-i-don-t-like-it"
+  },
+  {
+   "ne": "म [...] जान्छु",
+   "rom": "ma [...] jaanchhu",
+   "en": "I go / am going to [...]",
+   "pic": "🚶",
+   "alt": [
+    "i go to",
+    "i am going to",
+    "going to"
+   ],
+   "tip": "Pattern 3: 'Ma Pokharaa jaanchhu' = I'm going to Pokhara."
+  },
+  {
+   "ne": "म [...] खान्छु",
+   "rom": "ma [...] khaanchhu",
+   "en": "I eat / will eat [...]",
+   "pic": "🍽️",
+   "alt": [
+    "i eat",
+    "i will eat",
+    "i am eating"
+   ],
+   "tip": "Pattern 4: 'Ma daal bhaat khaanchhu' = I'll eat dal bhat.",
+   "img": "w-i-am-eating"
+  },
+  {
+   "ne": "म [...] पिउँछु",
+   "rom": "ma [...] piunchhu",
+   "en": "I drink [...]",
+   "pic": "🥛",
+   "alt": [
+    "i drink",
+    "i am drinking",
+    "i will drink"
+   ],
+   "tip": "'Ma kaalo chiyaa piunchhu' = I drink black tea."
+  },
+  {
+   "ne": "मलाई [...] आउँछ",
+   "rom": "malaai [...] aaunchha",
+   "en": "I know [...] / I can [...]",
+   "pic": "🧠",
+   "alt": [
+    "i know how to",
+    "i can speak",
+    "i know"
+   ],
+   "tip": "For skills and languages: 'Malaai Nepaali aaunchha' = I know Nepali.",
+   "img": "w-i-know"
+  },
+  {
+   "ne": "मलाई [...] आउँदैन",
+   "rom": "malaai [...] aaundaina",
+   "en": "I don't know how to [...]",
+   "pic": "🤷‍♂️",
+   "alt": [
+    "i do not know how to",
+    "i cannot",
+    "dont know",
+    "i dont know how to"
+   ],
+   "tip": "'Malaai tyo chalaauna aaundaina' = I don't know how to use that.",
+   "img": "w-i-don-t-know"
+  },
+  {
+   "ne": "म [...] गर्न सक्छु",
+   "rom": "ma [...] garna sakchhu",
+   "en": "I can do [...]",
+   "pic": "💪",
+   "alt": [
+    "i can do",
+    "able to do",
+    "i can"
+   ],
+   "tip": "'Sakchhu' = I can. 'Ma maddat garna sakchhu' = I can help."
+  },
+  {
+   "ne": "र",
+   "rom": "ra",
+   "en": "And",
+   "pic": "➕",
+   "alt": [
+    "and"
+   ],
+   "tip": "'Chiyaa ra biskut' = Tea and biscuits."
+  },
+  {
+   "ne": "तर",
+   "rom": "tara",
+   "en": "But",
+   "pic": "🔀",
+   "alt": [
+    "but",
+    "however"
+   ],
+   "tip": "'Mitho chha tara piro chha' = It's tasty but spicy."
+  },
+  {
+   "ne": "किनभने",
+   "rom": "kinabhane",
+   "en": "Because",
+   "pic": "💡",
+   "alt": [
+    "because"
+   ],
+   "tip": "Gives the reason: 'Ma basen, kinabhane thakaai laagyo' = I sat down because I was tired."
+  },
+  {
+   "ne": "त्यसैले",
+   "rom": "tyasaile",
+   "en": "So / That's why",
+   "pic": "➡️",
+   "alt": [
+    "therefore",
+    "so",
+    "thats why"
+   ],
+   "tip": "Gives the result: 'Paani paryo, tyasaile ma basen' = It rained, so I stayed."
+  },
+  {
+   "ne": "आज",
+   "rom": "aaja",
+   "en": "Today",
+   "pic": "📅",
+   "alt": [
+    "today"
+   ],
+   "tip": "'Aaja mausam kasto chha?' = How is the weather today?",
+   "img": "w-today"
+  },
+  {
+   "ne": "भोलि",
+   "rom": "bholi",
+   "en": "Tomorrow",
+   "pic": "🌅",
+   "alt": [
+    "tomorrow"
+   ],
+   "tip": "'Bholi bhetaunlaa' = See you tomorrow.",
+   "img": "w-tomorrow"
+  },
+  {
+   "ne": "हिजो",
+   "rom": "hijo",
+   "en": "Yesterday",
+   "pic": "🌇",
+   "alt": [
+    "yesterday"
+   ],
+   "tip": "'Hijo paani paryo' = It rained yesterday.",
+   "img": "w-yesterday"
+  },
+  {
+   "ne": "अहिले",
+   "rom": "ahile",
+   "en": "Now",
+   "pic": "⏰",
+   "alt": [
+    "now",
+    "right now",
+    "at present"
+   ],
+   "tip": "'Ahile jaaun' = Let's go now.",
+   "img": "w-right-now"
+  },
+  {
+   "ne": "पछि",
+   "rom": "pachhi",
+   "en": "Later",
+   "pic": "🕰️",
+   "alt": [
+    "later",
+    "afterward",
+    "after"
+   ],
+   "tip": "'Pachhi kuraa garaunlaa' = Let's talk later."
+  },
+  {
+   "ne": "[...] गर्नुहोस्",
+   "rom": "[...] garnuhos",
+   "en": "Please do [...]",
+   "pic": "🪄",
+   "alt": [
+    "please do",
+    "do please",
+    "garnuhos"
+   ],
+   "tip": "The handiest trick: an English word + 'garnuhos' makes a polite request. 'Help garnuhos', 'Check garnuhos'.",
+   "img": "w-please"
+  }
+ ]
 });

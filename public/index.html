@@ -1111,6 +1111,20 @@ html.landing body { overflow: hidden; } html.native #landing { display: none !im
 .lp-pandu-hi img { width: 84px; height: 84px; flex: none; transform-origin: 50% 90%; }
 .lp-pandu-hi.sway img { animation: lpSway .9s ease-in-out; }
 @keyframes lpSway { 20% { transform: rotate(-8deg); } 45% { transform: rotate(7deg); } 70% { transform: rotate(-4deg); } 100% { transform: rotate(0); } }
+.lp-pandu-hi.enter img { animation: lpPop .7s cubic-bezier(.3,1.6,.5,1) both; }
+@keyframes lpPop { 0% { transform: scale(.3) translateY(30px); opacity: 0; } 100% { transform: none; opacity: 1; } }
+.lp-pandu-hi.talk img { animation: lpTalk .42s ease-in-out infinite alternate; }
+@keyframes lpTalk { from { transform: translateY(0) rotate(-2deg); } to { transform: translateY(-4px) rotate(2deg); } }
+.lp-bubble { transition: transform .3s; } .lp-pandu-hi.enter .lp-bubble { animation: lpBubble .45s .45s cubic-bezier(.3,1.5,.5,1) both; transform-origin: 0 50%; }
+@keyframes lpBubble { 0% { transform: scale(.4); opacity: 0; } 100% { transform: none; opacity: 1; } }
+.lp-dots { display: inline-flex; gap: 5px; padding: 8px 2px; } .lp-dots i { width: 9px; height: 9px; border-radius: 50%; background: #1f2a44; opacity: .35; animation: lpDot 1s infinite; }
+.lp-dots i:nth-child(2) { animation-delay: .15s; } .lp-dots i:nth-child(3) { animation-delay: .3s; }
+@keyframes lpDot { 30% { opacity: 1; transform: translateY(-4px); } 60% { opacity: .35; transform: none; } }
+.lp-caret::after { content: "|"; margin-left: 1px; font-weight: 400; animation: lpCaret .6s steps(1) infinite; } @keyframes lpCaret { 50% { opacity: 0; } }
+.lp-bubble small { transition: opacity .4s; } .lp-pandu-hi:not(.typed) .lp-bubble small { opacity: 0; }
+.lp-pandu-hi .lp-ask { position: absolute; left: 50px; top: -6px; background: #f6b71c; border: 2px solid #1f2a44; border-radius: 50%; width: 30px; height: 30px; display: none; align-items: center; justify-content: center; font-size: 15px; animation: lpAsk 1.2s ease-in-out infinite; }
+.lp-pandu-hi { position: relative; } .lp-pandu-hi.ask .lp-ask { display: flex; }
+@keyframes lpAsk { 50% { transform: scale(1.18); box-shadow: 0 0 0 7px rgba(246,183,28,.35); } }
 .lp-bubble { position: relative; flex: 1; background: #fff; border: 3px solid #1f2a44; border-radius: 18px; padding: 8px 12px; box-shadow: 0 3px 0 #1f2a44; }
 .lp-bubble::before { content: ""; position: absolute; left: -11px; top: 50%; margin-top: -8px; border: 8px solid transparent; border-right: 10px solid #1f2a44; border-left: 0; }
 .lp-bubble b { font: 800 24px/1.1 var(--display); } .lp-bubble em { font-style: normal; font-weight: 800; color: #b9541a; } .lp-bubble small { display: block; color: #5d6b86; font-weight: 700; font-size: 13px; }
@@ -1134,7 +1148,7 @@ html.landing body { overflow: hidden; } html.native #landing { display: none !im
   .lp-hero-grid { display: flex; flex-direction: column; gap: 16px; } .lp-trust { grid-template-columns: 1fr 1fr; gap: 8px; } .lp-trust small { font-size: 11.5px; } }
 @media (max-width: 860px) { .lp-copy { display: contents; } .lp-copy .lp-eyebrow { order: 1; margin: 0; } .lp-copy h1 { order: 2; } .lp-copy .lp-sub { order: 3; } .lp-playground { order: 4; }
   .lp-copy .lp-ctas { order: 5; margin: 0; } .lp-copy .lp-note { order: 6; margin: -6px 0 0; } .lp-copy .lp-trust { order: 7; margin: 0; } .lp-long { display: none; } }
-@media (prefers-reduced-motion: reduce) { .lp-card, .lp-pandu-hi.sway img, .lp-card.ring .spk::after { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .lp-card, .lp-pandu-hi.sway img, .lp-card.ring .spk::after, .lp-pandu-hi.enter img, .lp-pandu-hi.enter .lp-bubble, .lp-pandu-hi.talk img, .lp-pandu-hi .lp-ask { animation: none; } }
 /* first visit: a gentle spotlight on the one card to tap first */
 .stone.first-spot { z-index: 1; border-color: #f6b71c; box-shadow: 0 4px 0 #d89f18, 0 0 0 0 rgba(246, 183, 28, .55); animation: spotGlow 2.2s ease-in-out infinite; margin-top: 30px; }
 .stone.first-spot::after { animation: spotPlay 2.2s ease-in-out infinite; }
@@ -1184,7 +1198,7 @@ html.test-site body::after { content: "TEST VERSION"; position: fixed; top: calc
         </ul>
       </div>
       <div class="lp-playground">
-        <button type="button" class="lp-pandu-hi" id="lpHi" data-lphi><img id="lpHiImg" src="img/pandu-wave.webp" alt=""><span class="lp-bubble"><b lang="ne" id="lpHiNe">नमस्ते!</b> <em id="lpHiEn">(Hello!)</em><small>I'm Pandu · tap me to hear it 🔊</small></span></button>
+        <button type="button" class="lp-pandu-hi" id="lpHi" data-lphi><img id="lpHiImg" src="img/pandu-wave.webp" alt=""><span class="lp-ask" aria-hidden="true">🔊</span><span class="lp-bubble"><b lang="ne" id="lpHiNe">नमस्ते!</b> <em id="lpHiEn">(Hello!)</em><small>I'm Pandu · tap me to hear it 🔊</small></span></button>
         <div class="lp-who"><span class="lp-who-label">WHO'S LEARNING?</span>
         <div class="lp-seg" data-lv="" role="radiogroup" aria-label="Who is learning">
           <button type="button" role="radio" aria-checked="false" data-lplevel="little"><span class="ic">🧒</span><span><b>Little learner</b><small>ages 4–7 · listen &amp; tap</small></span></button>
@@ -3801,7 +3815,34 @@ render();
       <span class="ne" lang="ne">${ne}</span><span class="rom">${rom}</span><span class="en">${en}</span>${note ? `<span class="note">${note}</span>` : ""}</button>`).join("");
     document.getElementById("lpTapLabel").textContent = LABEL[lv];
   }
-  document.getElementById("lpHiNe").textContent = HI[0]; document.getElementById("lpHiEn").textContent = "(" + HI[1] + ")"; document.getElementById("lpHiImg").src = img(HI[2]);
+  document.getElementById("lpHiImg").src = img(HI[2]);
+  /* Pandu talks first: he pops in, "types" his greeting into the bubble and says it out loud.
+     Browsers only allow sound after the visitor has touched the page, so if it is blocked he shows a 🔊 and speaks on the first tap. */
+  const hiBtn = document.getElementById("lpHi"), hiNe = document.getElementById("lpHiNe"), hiEn = document.getElementById("lpHiEn");
+  let hiWaiting = false, hiTalkT = 0;
+  const hiTalk = ms => { hiBtn.classList.add("talk"); clearTimeout(hiTalkT); hiTalkT = setTimeout(() => hiBtn.classList.remove("talk"), ms || 1400); };
+  const hiSpeak = () => { hiWaiting = false; hiBtn.classList.remove("ask"); hear(HI[0]); hiTalk(); };
+  function hiIntro() {
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const parts = t => { try { return [...new Intl.Segmenter("ne", { granularity: "grapheme" }).segment(t)].map(x => x.segment); } catch (e) { return Array.from(t); } };
+    const type = (el, t, ms) => new Promise(ok => { if (still) { el.textContent = t; return ok(); }
+      const g = parts(t); let i = 0; el.textContent = ""; el.classList.add("lp-caret");
+      const step = () => { el.textContent = g.slice(0, ++i).join(""); if (i < g.length) setTimeout(step, ms); else { el.classList.remove("lp-caret"); ok(); } }; step(); });
+    hiNe.innerHTML = '<span class="lp-dots" aria-hidden="true"><i></i><i></i><i></i></span>'; hiEn.textContent = "";
+    hiBtn.classList.add("enter"); setTimeout(() => hiBtn.classList.remove("enter"), 1300);
+    setTimeout(async () => {
+      // try to speak straight away; if the browser blocks sound, wait for the visitor's first tap
+      const url = P.sound && AUDIO[K(HI[0])];
+      if (url) { const a = new Audio(url); a.play().then(() => hiTalk(1400)).catch(() => { hiWaiting = true; hiBtn.classList.add("ask"); }); }
+      await type(hiNe, HI[0], 110); await type(hiEn, "(" + HI[1] + ")", 35);
+      hiBtn.classList.add("typed");
+      // a friendly wave now and then while the visitor reads
+      let n = 0; const iv = setInterval(() => { if (++n > 3 || !document.documentElement.classList.contains("landing")) return clearInterval(iv);
+        hiBtn.classList.remove("sway"); void hiBtn.offsetWidth; hiBtn.classList.add("sway"); }, 9000);
+    }, still ? 0 : 900);
+  }
+  root.addEventListener("pointerdown", e => { if (hiWaiting && !e.target.closest("[data-lpword], [data-lphi], [data-lpstart], [data-lplevel]")) hiSpeak(); }, true);
+  if (document.documentElement.classList.contains("landing")) hiIntro(); else { hiNe.textContent = HI[0]; hiEn.textContent = "(" + HI[1] + ")"; hiBtn.classList.add("typed"); }
   function start() {
     document.documentElement.classList.remove("landing");
     try { localStorage.setItem("sn-welcomed", "1"); } catch (e) {}
@@ -3816,7 +3857,7 @@ render();
     if (t.dataset.lplevel) { lv = t.dataset.lplevel; const seg = t.closest(".lp-seg"); seg.dataset.lv = lv;
       seg.querySelectorAll("button").forEach(b => { const on = b === t; b.classList.toggle("on", on); b.setAttribute("aria-checked", on); });
       document.getElementById("lpSub").textContent = SUBS[lv]; try { beep("tap"); } catch (er) {} draw(); return; }
-    if (t.matches("[data-lphi]")) { hear(HI[0]); t.classList.remove("sway"); void t.offsetWidth; t.classList.add("sway"); return; }
+    if (t.matches("[data-lphi]")) { hiSpeak(); return; }
     if (t.dataset.lpword != null) { hear(SETS[lv][+t.dataset.lpword][0]); t.classList.add("lit"); t.classList.remove("ring"); void t.offsetWidth; t.classList.add("ring"); return; }
   });
   draw(); mark();
