@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="fonts/fonts.css"><style>
+*{box-sizing:border-box;margin:0}
+html,body{width:var(--w);height:var(--h);overflow:hidden}
+body{position:relative;font-family:"Baloo 2",sans-serif;background:radial-gradient(ellipse at 40% 45%,#2d4a8a 0%,#1f2a44 58%,#141c33 100%);color:#fff}
+.flags{position:absolute;top:0;left:0;right:0;height:calc(var(--h)*.028);display:flex}.flags i{flex:1}
+.flags i:nth-child(5n+1){background:#2f6fd6}.flags i:nth-child(5n+2){background:#fff}.flags i:nth-child(5n+3){background:#e2453c}.flags i:nth-child(5n+4){background:#2fa75a}.flags i:nth-child(5n+5){background:#f6b71c}
+.stage{position:absolute;left:50%;top:52%;width:1800px;height:820px;transform:translate(-50%,-50%) scale(var(--s));transform-origin:50% 50%}
+.glow{position:absolute;left:40px;top:-40px;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(246,183,28,.32),rgba(246,183,28,0) 65%)}
+.pandu{position:absolute;left:170px;top:90px;width:620px;height:620px;border-radius:50%;background:#fffaf0;border:12px solid #f6b71c;box-shadow:0 24px 60px rgba(0,0,0,.45);display:grid;place-items:center;overflow:hidden}.pandu img{width:96%}
+.txt{position:absolute;left:860px;top:150px;width:560px}
+h1{font-size:132px;line-height:.9;font-weight:800}
+h2{font-size:92px;line-height:1.05;color:#f6b71c;font-weight:700;margin-top:12px}
+p{font:800 42px/1.25 "Nunito",sans-serif;margin-top:26px;color:#e9eefb}
+.ph{position:absolute;width:300px;padding:12px;border-radius:46px;background:#0d111b;box-shadow:0 26px 60px rgba(0,0,0,.5),inset 0 0 0 3px #3a4256}.ph img{display:block;width:100%;border-radius:36px}
+.p1{left:1380px;top:20px;transform:rotate(-6deg)}.p2{left:1540px;top:170px;transform:rotate(5deg)}
+.edge{position:absolute;width:calc(var(--h)*var(--z));height:calc(var(--h)*var(--z));border-radius:50%;background:#fffaf0;border:calc(var(--h)*.004) solid #fff;box-shadow:0 10px 24px rgba(0,0,0,.35);overflow:hidden;opacity:.95}.edge img{width:100%;display:block}
+.st{position:absolute;border-radius:50%;background:#fffaf0;border:6px solid #fff;box-shadow:0 10px 24px rgba(0,0,0,.35);overflow:hidden}.st img{width:100%;display:block}
+</style></head><body><div class="flags"></div>
+<div class="edge" style="left:4%;top:16%;--z:.16"><img src="img/w-momo.webp"></div>
+<div class="edge" style="right:4%;top:14%;--z:.15"><img src="img/w-rhododendron.webp"></div>
+<div class="edge" style="left:6%;bottom:8%;--z:.13"><img src="img/w-kite.webp"></div>
+<div class="edge" style="right:5%;bottom:9%;--z:.14"><img src="img/w-mango.webp"></div>
+<div class="stage"><div class="glow"></div>
+<div class="pandu"><img src="img/pandu-namaste.webp"></div>
+<div class="st" style="left:80px;top:560px;width:170px;height:170px"><img src="img/w-elephant.webp"></div>
+<div class="st" style="left:680px;top:60px;width:150px;height:150px"><img src="img/w-dog.webp"></div>
+<div class="txt"><h1>Sajilo<br>Nepali</h1><h2 lang="ne">सजिलो नेपाली</h2><p>Everyday Nepali for kids and beginners</p></div>
+<div class="ph p1"><img src="raw-phone-03-lesson.png"></div><div class="ph p2"><img src="raw-phone-06-story.png"></div></div>
+<script>const q=new URLSearchParams(location.search),W=+q.get("w"),H=+q.get("h");
+document.documentElement.style.cssText=`--w:${W}px;--h:${H}px;--s:${Math.min(W/1920,H/(+q.get("fit")||900))}`;
+document.querySelector(".flags").innerHTML="<i></i>".repeat(30)</script></body></html>
