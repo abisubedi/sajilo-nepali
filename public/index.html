@@ -9,9 +9,11 @@
 (function () { var h = location.hostname; window.SN_TEST = /^testpage\./.test(h) || /\.workers\.dev$/.test(h);
   if (window.SN_TEST) { document.write('<meta name="robots" content="noindex, nofollow">'); document.documentElement.classList.add("test-site"); }
   else document.write('<meta name="apple-itunes-app" content="app-id=6834950092">'); })();</script>
-<script>/* New web visitors see the landing page first; the app, returning learners and ?home links skip or force it. */
-(function () { if (window.SN_TEST) return; try { var nat = window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform(), force = /[?&#]home\b/.test(location.search + location.hash);
-  if (!nat && (force || !(localStorage.getItem("sajilo-nepali-v1") || localStorage.getItem("sn-welcomed")))) document.documentElement.classList.add("landing"); } catch (e) {} })();</script>
+<script>/* New visitors see the landing page first; returning learners skip it and ?home links force it.
+   The app, the test site and previews get the in-app version ("lp-app"): just the first page, nothing about downloading the app.
+   It is a new app feature ("app-landing" in FEATURES_NOT_IN_APP_YET), so the real website keeps its own full landing page. */
+(function () { try { var nat = window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform(), app = nat || window.SN_TEST || window.SN_PREVIEW, force = /[?&#]home\b/.test(location.search + location.hash);
+  if (force || !(localStorage.getItem("sajilo-nepali-v1") || localStorage.getItem("sn-welcomed"))) { document.documentElement.classList.add("landing"); if (app) document.documentElement.classList.add("lp-app"); } } catch (e) {} })();</script>
 <meta name="description" content="Easy Nepali for kids and beginners: learn everyday spoken Nepali with fun games, real audio pronunciation and letter tracing, with Pandu the red panda.">
 <link rel="canonical" href="https://sajilonepali.app/">
 <meta property="og:title" content="Sajilo Nepali · Easy Nepali for Kids &amp; Beginners">
@@ -999,7 +1001,10 @@ span[data-say]:hover { background: rgba(47,111,214,.10); }
    Full-screen slides that move sideways: swipe on phones, wheel or arrow keys on computers, or the pager at the bottom. */
 #landing { display: none; }
 html.landing #landing { display: flex; flex-direction: column; position: fixed; inset: 0; z-index: 9000; background: #fffaf0; color: #1f2a44; font-family: var(--body, "Nunito", system-ui, sans-serif); }
-html.landing body { overflow: hidden; } html.native #landing { display: none !important; }
+html.landing body { overflow: hidden; } html.native:not(.lp-app) #landing { display: none !important; }
+/* in-app landing page: only the first page, no app download, no menu or slide arrows */
+html.lp-app .lp-nav nav, html.lp-app .lp-get, html.lp-app .lp-pager, html.lp-app #landing .as-badge, html.lp-app .lp-note .lp-link, html.lp-app .lp-web-only { display: none !important; }
+html.lp-app .lp-nav .lp-in-nav { justify-content: center; } html:not(.lp-app) .lp-app-only { display: none; }
 #landing * { box-sizing: border-box; min-width: 0; }
 .lp-nav { flex: none; z-index: 3; background: rgba(255, 250, 240, .94); backdrop-filter: blur(8px); border-bottom: 1px solid #f0e2c4; padding-top: env(safe-area-inset-top); }
 .lp-nav .lp-in-nav { max-width: 1180px; margin: 0 auto; padding: 0 max(4vw, 16px); display: flex; align-items: center; gap: 18px; min-height: 64px; }
@@ -1148,6 +1153,20 @@ html.landing body { overflow: hidden; } html.native #landing { display: none !im
   .lp-hero-grid { display: flex; flex-direction: column; gap: 16px; } .lp-trust { grid-template-columns: 1fr 1fr; gap: 8px; } .lp-trust small { font-size: 11.5px; } }
 @media (max-width: 860px) { .lp-copy { display: contents; } .lp-copy .lp-eyebrow { order: 1; margin: 0; } .lp-copy h1 { order: 2; } .lp-copy .lp-sub { order: 3; } .lp-playground { order: 4; }
   .lp-copy .lp-ctas { order: 5; margin: 0; } .lp-copy .lp-note { order: 6; margin: -6px 0 0; } .lp-copy .lp-trust { order: 7; margin: 0; } .lp-long { display: none; } }
+/* phones: one left-aligned text block, a full-width Start button that stays in view, and a slim strip of trust pills */
+@media (max-width: 860px) {
+  .lp-copy .lp-eyebrow, .lp-copy h1, .lp-copy .lp-sub, .lp-playground, .lp-copy .lp-ctas { text-align: left; align-self: stretch; width: auto; max-width: none; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; }
+  .lp-playground { padding: 12px; }
+  .lp-copy .lp-ctas { position: sticky; bottom: calc(10px + env(safe-area-inset-bottom)); z-index: 5; display: block; margin-top: -4px; }
+  .lp-copy .lp-ctas .as-badge { display: none; }
+  html:not(.lp-app) .lp-copy .lp-ctas { bottom: calc(80px + env(safe-area-inset-bottom)); }
+  .lp-try { display: block; text-align: center; white-space: nowrap; width: 100%; min-height: 54px; border-radius: 999px; font-size: 19px; box-shadow: 0 5px 0 #0f2a57, 0 10px 24px rgba(0, 0, 0, .45); }
+  .lp-try .lp-long { display: inline; }
+  .lp-copy .lp-note { text-align: center; margin: 0; font-size: 13px; }
+  .lp-trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; max-width: none; }
+  .lp-trust li { display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px 5px 8px; border-radius: 999px; }
+  .lp-trust span { font-size: 15px; grid-row: auto; } .lp-trust b { font-size: 13px; white-space: nowrap; } .lp-trust small { display: none !important; }
+}
 @media (prefers-reduced-motion: reduce) { .lp-card, .lp-pandu-hi.sway img, .lp-card.ring .spk::after, .lp-pandu-hi.enter img, .lp-pandu-hi.enter .lp-bubble, .lp-pandu-hi.talk img, .lp-pandu-hi .lp-ask { animation: none; } }
 /* first visit: a gentle spotlight on the one card to tap first */
 .stone.first-spot { z-index: 1; border-color: #f6b71c; box-shadow: 0 4px 0 #d89f18, 0 0 0 0 rgba(246, 183, 28, .55); animation: spotGlow 2.2s ease-in-out infinite; margin-top: 30px; }
@@ -1189,20 +1208,20 @@ html.test-site body::after { content: "TEST VERSION"; position: fixed; top: calc
         <h1>Everyday Nepali, <span>starting from English.</span></h1>
         <p class="lp-sub" id="lpSub">No scary grammar drills. Tap real everyday words, hear them in a warm Nepali voice, and start talking with grandparents and friends from day one.</p>
         <div class="lp-ctas"><button type="button" class="lp-try" data-lpstart>🚀 Start free<span class="lp-long"> · no sign-up</span></button><a class="as-badge" href="https://apps.apple.com/us/app/sajilo-nepali/id6834950092" target="_blank" rel="noopener" aria-label="Download Sajilo Nepali on the App Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.6zM14.1 5.6c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg><span><small>Download on the</small><b>App Store</b></span></a></div>
-        <p class="lp-note">Chapter 1 is free in your browser and in the app. No sign-up. <button type="button" class="lp-link" data-lpslide="2">📖 See all 600+ words &amp; phrases →</button></p>
+        <p class="lp-note"><span class="lp-web-only">Chapter 1 is free in your browser and in the app. No sign-up.</span><span class="lp-app-only">No sign-up and no account: tap Start and play.</span> <button type="button" class="lp-link" data-lpslide="2">📖 See all 600+ words &amp; phrases →</button></p>
         <ul class="lp-trust">
           <li><span>🛡️</span><b>100% ad-free</b><small>No pop-ups, no ads, ever</small></li>
           <li><span>🔒</span><b>No tracking</b><small>No account; progress stays on your device</small></li>
           <li><span>🎙️</span><b>Warm Nepali voice</b><small>Clear, natural pronunciation for every word</small></li>
-          <li><span>📶</span><b>Works offline</b><small>In the app, for flights and road trips</small></li>
+          <li><span>📶</span><b>Works offline</b><small class="lp-web-only">In the app, for flights and road trips</small><small class="lp-app-only">Learn anywhere, even on flights and road trips</small></li>
         </ul>
       </div>
       <div class="lp-playground">
         <button type="button" class="lp-pandu-hi" id="lpHi" data-lphi><img id="lpHiImg" src="img/pandu-wave.webp" alt=""><span class="lp-ask" aria-hidden="true">🔊</span><span class="lp-bubble"><b lang="ne" id="lpHiNe">नमस्ते!</b> <em id="lpHiEn">(Hello!)</em><small>I'm Pandu · tap me to hear it 🔊</small></span></button>
         <div class="lp-who"><span class="lp-who-label">WHO'S LEARNING?</span>
         <div class="lp-seg" data-lv="" role="radiogroup" aria-label="Who is learning">
-          <button type="button" role="radio" aria-checked="false" data-lplevel="little"><span class="ic">🧒</span><span><b>Little learner</b><small>ages 4–7 · listen &amp; tap</small></span></button>
-          <button type="button" role="radio" aria-checked="false" data-lplevel="big"><span class="ic">🧑‍🎓</span><span><b>Beginner</b><small>ages 8 to adult · talk</small></span></button>
+          <button type="button" role="radio" aria-checked="false" data-lplevel="little"><span class="ic">🧒</span><span><b>Little learners</b><small>listen &amp; tap · ages 4–7</small></span></button>
+          <button type="button" role="radio" aria-checked="false" data-lplevel="big"><span class="ic">🧑‍🎓</span><span><b>Big learners</b><small>read &amp; type · ages 8+</small></span></button>
         </div></div>
         <p class="lp-tap-label" id="lpTapLabel">👇 TAP A WORD TO HEAR IT</p>
         <div class="lp-words" id="lpWords"></div>
@@ -1253,7 +1272,7 @@ if (NATIVE) document.documentElement.classList.add("native");
 const NOT_IN_APP_YET = ["first-steps"];
 /* New features that are not in the App Store app yet: same rule as chapters. They show in the app build, on the test site and in previews, never on the public website.
    When the app update with a feature is out on the App Store, delete its name here. */
-const FEATURES_NOT_IN_APP_YET = ["first-card-spotlight", "map-arrows"];
+const FEATURES_NOT_IN_APP_YET = ["first-card-spotlight", "map-arrows", "app-landing"];
 const featureOn = name => NATIVE || !!window.SN_TEST || !!window.SN_PREVIEW || !FEATURES_NOT_IN_APP_YET.includes(name);
 if (!NATIVE && !window.SN_TEST && !window.SN_PREVIEW) {
   const hide = new Set(window.CHAPTERS.filter(c => NOT_IN_APP_YET.includes(c.id)).flatMap(c => c.lessons));
@@ -3771,6 +3790,7 @@ render();
 /* Web landing page: sideways slides, Pandu's greeting, the tap-to-hear word cards with the learner switch, and Start free */
 {
   const root = document.getElementById("landing"), wordsEl = document.getElementById("lpWords"), track = document.getElementById("lpTrack");
+  if (document.documentElement.classList.contains("lp-app") && featureOn("app-landing")) [...track.children].slice(1).forEach(sl => sl.remove());
   const slides = [...track.children], bars = document.getElementById("lpBars"), nameEl = document.getElementById("lpName");
   let lv = "", cur = 0, wheelLock = 0;
   // the four cards for each choice: [Nepali, English letters, English, picture or emoji, a short note for beginners]
@@ -3844,6 +3864,7 @@ render();
   root.addEventListener("pointerdown", e => { if (hiWaiting && !e.target.closest("[data-lpword], [data-lphi], [data-lpstart], [data-lplevel]")) hiSpeak(); }, true);
   if (document.documentElement.classList.contains("landing")) hiIntro(); else { hiNe.textContent = HI[0]; hiEn.textContent = "(" + HI[1] + ")"; hiBtn.classList.add("typed"); }
   function start() {
+    if (lv === "little" || lv === "big") { P.level = lv; try { save(); } catch (e) {} }   // the "Who's learning?" pick opens the matching level in the app
     document.documentElement.classList.remove("landing");
     try { localStorage.setItem("sn-welcomed", "1"); } catch (e) {}
     if (/[?&#]home\b/.test(location.search + location.hash)) history.replaceState(null, "", location.pathname);
