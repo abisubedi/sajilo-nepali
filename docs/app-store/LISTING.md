@@ -1,6 +1,6 @@
 # App Store listing for Sajilo Nepali (draft: edit anything)
 
-Paste these into App Store Connect, under your app, then **iOS App**, then version **1.0**. The character limits are Apple's.
+Paste these into App Store Connect, under your app, then **iOS App**, then the version you are preparing (1.2 next). The character limits are Apple's.
 
 ## Name (max 30)
 Sajilo Nepali
@@ -23,7 +23,8 @@ Made for Nepali families everywhere: children growing up outside Nepal who want 
 brushing up their own Nepali, partners joining a Nepali family, and anyone starting from नमस्ते.
 
 WHAT'S INSIDE
-• Up to 11 chapters of picture lessons: home and family, animals, food, feelings, festivals, school, real conversations, the geography of Nepal, kitchen and spices, and a toys-and-play chapter just for little learners
+• Up to 12 chapters of picture lessons: home and family, animals, food, feelings, festivals, school, real conversations, the geography of Nepal, kitchen and spices, and a toys-and-play chapter just for little learners
+• NEW: First Steps, a beginner course of 300 real phrases for greetings, tea stalls and restaurants, markets and money, taxis and buses, staying safe, and simple sentence patterns
 • Every word, sentence and story spoken aloud in a clear, warm Nepali voice. Tap anything to hear it again
 • Two levels: Little learners (listen and tap, ages 4–7) and Big learners (read and type, ages 8 to adult)
 • The Nepali alphabet: vowels, consonants and बाराखरी, with a chalk slate to trace every letter
