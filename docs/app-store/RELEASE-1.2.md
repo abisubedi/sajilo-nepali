@@ -111,6 +111,8 @@ MORE FUN
 17. Tell Claude "1.2 is live". Claude will then switch everything on for sajilonepali.app in one go: the First Steps
     chapter (`NOT_IN_APP_YET`) and all the features waiting in `FEATURES_NOT_IN_APP_YET` (the welcome page changes, map
     arrows, home screen, stickers, tracing, madal, festival badge and word-order tip). The website then matches the app.
+    The test site (testpage) stays exactly as it is: unlocked, its own progress, no App Store links. Only the two lists
+    are emptied, so the next new chapters and features can be tried there first again, the same way as for 1.2.
 18. Optional: update the **Promotional text** (it can change any time without a review) to mention First Steps, for example:
     `नमस्ते! NEW: First Steps, 300 real phrases for travel and family. Plus picture lessons, folk tales and games in a warm Nepali voice. Start free with Chapter 1.`
 
