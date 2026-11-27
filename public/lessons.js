@@ -1686,7 +1686,7 @@ window.LESSONS.push({
   }
  ]
 });
-window.CHAPTERS.push({"id": "first-steps", "ne": "पहिलो पाइला", "rom": "pahilo paaila", "en": "First Steps · Beginner Course", "color": "#e67e22", "sticker": {"pic": "🧭", "img": "img/st-first-steps.webp", "name": "Nepal Ambassador", "say": {"ne": "वाह! तपाईं नेपालको साथी हुनुभयो!", "rom": "waah! tapaain nepaalko saathi hunubhayo!", "en": "Wow! You've become a friend of Nepal!"}}, "lessons": ["first-greetings", "first-food", "first-market", "first-transport"]});
+window.CHAPTERS.push({"id": "first-steps", "ne": "पहिलो पाइला", "rom": "pahilo paaila", "en": "First Steps · Beginner Course", "color": "#e67e22", "sticker": {"pic": "🧭", "img": "img/st-first-steps.webp", "name": "Nepal Ambassador", "say": {"ne": "वाह! तपाईं नेपालको साथी हुनुभयो!", "rom": "waah! tapaain nepaalko saathi hunubhayo!", "en": "Wow! You've become a friend of Nepal!"}}, "lessons": ["first-greetings", "first-food", "first-market", "first-transport", "first-safety"]});
 window.LESSONS.push({
  "id": "first-food",
  "title": "Tea Stall & Restaurant",
@@ -3544,4 +3544,649 @@ window.LESSONS.push({
   }
  ],
  "iconImg": "w-bus"
+});
+window.LESSONS.push({
+ "id": "first-safety",
+ "title": "Help, Health & Safety",
+ "ne": "मद्दत, स्वास्थ्य र सुरक्षा",
+ "rom": "maddat, swaasthya ra surakshaa",
+ "icon": "🆘",
+ "color": "#e67e22",
+ "bigOnly": true,
+ "items": [
+  {
+   "ne": "गुहार! / मद्दत गर्नुहोस्!",
+   "rom": "guhaar! / maddat garnuhos!",
+   "en": "Help! / Please help!",
+   "pic": "🚨",
+   "alt": [
+    "help",
+    "help me",
+    "please help",
+    "guhaar",
+    "maddat"
+   ],
+   "tip": "'Guhaar!' is the shout for real danger; 'maddat garnuhos' is a calm, polite request for help."
+  },
+  {
+   "ne": "शौचालय / चर्पी कहाँ छ?",
+   "rom": "shauchaalaya / charpi kahaan chha?",
+   "en": "Where is the toilet?",
+   "pic": "🚻",
+   "alt": [
+    "where is the restroom",
+    "where is the toilet",
+    "bathroom",
+    "toilet"
+   ],
+   "tip": "'Shauchaalaya' is formal; 'charpi' or simply 'toilet' is understood everywhere."
+  },
+  {
+   "ne": "ट्वाइलेट पेपर छ?",
+   "rom": "twaailet pepar chha?",
+   "en": "Do you have toilet paper?",
+   "pic": "🧻",
+   "alt": [
+    "do you have toilet paper",
+    "toilet paper",
+    "tissue paper"
+   ],
+   "tip": "Many toilets use a water spray or jug instead, so carry your own or ask."
+  },
+  {
+   "ne": "हात धुने साबुन र पानी",
+   "rom": "haat dhune saabun ra paani",
+   "en": "Hand soap and water",
+   "pic": "🧼",
+   "alt": [
+    "soap and water",
+    "hand soap",
+    "soap"
+   ],
+   "tip": "Ask for it at trail stops to wash your hands before eating.",
+   "img": "w-wash-hands"
+  },
+  {
+   "ne": "यहाँ आपतकालीन अवस्था छ",
+   "rom": "yahaan aapatkaalin awasthaa chha",
+   "en": "There is an emergency here",
+   "pic": "⚠️",
+   "alt": [
+    "emergency",
+    "this is an emergency",
+    "there is an emergency here"
+   ],
+   "tip": "Use it to alert hotel staff, a guide or officials straight away."
+  },
+  {
+   "ne": "रोक्नुहोस्! रोक्नुहोस्!",
+   "rom": "roknuhos! roknuhos!",
+   "en": "Stop! Stop!",
+   "pic": "🛑",
+   "alt": [
+    "stop stop",
+    "please stop",
+    "stop right now"
+   ],
+   "tip": "Shout it if someone falls or a bag drops and the bus or car must stop now."
+  },
+  {
+   "ne": "होसियार! / बिस्तारै!",
+   "rom": "hosiyaar! / bistaarai!",
+   "en": "Be careful! / Watch out!",
+   "pic": "👀",
+   "alt": [
+    "be careful",
+    "watch out",
+    "look out",
+    "careful"
+   ],
+   "tip": "You'll hear it on trails when mule trains pass or rocks are slippery."
+  },
+  {
+   "ne": "म हराएँ, बाटो बिर्सिएँ",
+   "rom": "ma haraaen, baato birsien",
+   "en": "I'm lost, I forgot the way",
+   "pic": "🧭",
+   "alt": [
+    "i am lost",
+    "lost the way",
+    "i got lost",
+    "im lost"
+   ],
+   "tip": "Say it to a shopkeeper or local if you get separated from your group."
+  },
+  {
+   "ne": "फोन गर्न मिल्छ?",
+   "rom": "phon garna milchha?",
+   "en": "May I use your phone?",
+   "pic": "📞",
+   "alt": [
+    "can i use your phone",
+    "make a call",
+    "can i call",
+    "may i use your phone"
+   ],
+   "tip": "A lifeline if your battery dies or there's no signal."
+  },
+  {
+   "ne": "इन्टरनेट / Wi-Fi चल्छ?",
+   "rom": "intarnet / Wi-Fi chalchha?",
+   "en": "Is the Wi-Fi working?",
+   "pic": "📶",
+   "alt": [
+    "is wifi working",
+    "is internet working",
+    "do you have wifi",
+    "is the wifi working"
+   ],
+   "tip": "Handy for reaching family or your trekking agency from mountain lodges."
+  },
+  {
+   "ne": "मलाई सन्चो छैन",
+   "rom": "malaai sancho chhaina",
+   "en": "I'm not feeling well",
+   "pic": "🤒",
+   "alt": [
+    "i am not feeling well",
+    "i am sick",
+    "not feeling good",
+    "unwell",
+    "im not feeling well"
+   ],
+   "tip": "The everyday way to say you feel unwell."
+  },
+  {
+   "ne": "म बिरामी परेँ",
+   "rom": "ma biraami paren",
+   "en": "I have fallen ill",
+   "pic": "🛌",
+   "alt": [
+    "i fell ill",
+    "i am ill",
+    "i have fallen ill"
+   ],
+   "tip": "Tells your host or guide you can't join in today."
+  },
+  {
+   "ne": "मलाई ज्वरो आएको छ",
+   "rom": "malaai jwaro aaeko chha",
+   "en": "I have a fever",
+   "pic": "🌡️",
+   "alt": [
+    "i have a fever",
+    "fever",
+    "got fever"
+   ],
+   "tip": "Tell the pharmacist or doctor about your temperature."
+  },
+  {
+   "ne": "मेरो टाउको दुख्यो",
+   "rom": "mero taauko dukhyo",
+   "en": "I have a headache",
+   "pic": "🤕",
+   "alt": [
+    "headache",
+    "my head hurts",
+    "i have a headache"
+   ],
+   "tip": "Often from too much sun, too little water, or going up high too fast."
+  },
+  {
+   "ne": "मेरो पेट दुख्यो",
+   "rom": "mero pet dukhyo",
+   "en": "My stomach hurts",
+   "pic": "😣",
+   "alt": [
+    "stomach ache",
+    "my stomach hurts",
+    "stomach pain"
+   ],
+   "tip": "For an upset stomach or indigestion."
+  },
+  {
+   "ne": "मलाई पखाला लागेको छ",
+   "rom": "malaai pakhaalaa laageko chha",
+   "en": "I have diarrhoea",
+   "pic": "💧",
+   "alt": [
+    "diarrhea",
+    "diarrhoea",
+    "i have diarrhea",
+    "loose motion"
+   ],
+   "tip": "The pharmacist will usually suggest Jeevan Jal (rehydration salts)."
+  },
+  {
+   "ne": "मलाई बान्ता भयो",
+   "rom": "malaai baantaa bhayo",
+   "en": "I vomited",
+   "pic": "🤮",
+   "alt": [
+    "i vomited",
+    "vomiting",
+    "threw up",
+    "i threw up"
+   ],
+   "tip": "Tell a doctor or your companions."
+  },
+  {
+   "ne": "रुघा र खोकी लागेको छ",
+   "rom": "rughaa ra khoki laageko chha",
+   "en": "I have a cold and a cough",
+   "pic": "🤧",
+   "alt": [
+    "cold and cough",
+    "i have a cold",
+    "cough and cold",
+    "i have a cold and a cough"
+   ],
+   "tip": "Common in Kathmandu's dry winter air and on windy trails."
+  },
+  {
+   "ne": "मलाई चोट लाग्यो",
+   "rom": "malaai chot laagyo",
+   "en": "I got hurt",
+   "pic": "🩹",
+   "alt": [
+    "i got hurt",
+    "i am injured",
+    "got injured"
+   ],
+   "tip": "For cuts, falls, scrapes or sprains.",
+   "img": "w-it-hurts"
+  },
+  {
+   "ne": "रगत आयो",
+   "rom": "ragat aayo",
+   "en": "It's bleeding",
+   "pic": "🩸",
+   "alt": [
+    "bleeding",
+    "blood is coming",
+    "there is blood",
+    "its bleeding"
+   ],
+   "tip": "Lets others know a wound needs cleaning and a dressing."
+  },
+  {
+   "ne": "औषधी पसल कहाँ छ?",
+   "rom": "aushadhi pasal kahaan chha?",
+   "en": "Where is the pharmacy?",
+   "pic": "💊",
+   "alt": [
+    "where is the pharmacy",
+    "chemist",
+    "drugstore",
+    "pharmacy"
+   ],
+   "tip": "Pharmacies sell common medicines over the counter and can help with small cuts."
+  },
+  {
+   "ne": "टाउको दुखेको औषधी दिनुहोस्",
+   "rom": "taauko dukheko aushadhi dinuhos",
+   "en": "Medicine for a headache, please",
+   "pic": "🧴",
+   "alt": [
+    "headache medicine please",
+    "medicine for headache",
+    "medicine for a headache please"
+   ],
+   "tip": "Pattern: [what hurts] + 'ko aushadhi dinuhos'."
+  },
+  {
+   "ne": "जीवन जल छ?",
+   "rom": "jiwan jal chha?",
+   "en": "Do you have Jeevan Jal (ORS)?",
+   "pic": "🥛",
+   "alt": [
+    "jeevan jal",
+    "rehydration salts",
+    "ors",
+    "do you have jeevan jal"
+   ],
+   "tip": "Nepal's well-known rehydration salts, sold almost everywhere."
+  },
+  {
+   "ne": "ब्यान्डेज र मलम",
+   "rom": "byaandej ra malam",
+   "en": "Bandage and ointment",
+   "pic": "🩹",
+   "alt": [
+    "bandage and ointment",
+    "bandaid",
+    "ointment",
+    "bandage"
+   ],
+   "tip": "First aid for scrapes, blisters and sprains."
+  },
+  {
+   "ne": "सिटामोल / प्यारा सिटामोल",
+   "rom": "sitaamol / pyaaraasitaamol",
+   "en": "Paracetamol",
+   "pic": "💊",
+   "alt": [
+    "cetamol",
+    "paracetamol",
+    "tylenol"
+   ],
+   "tip": "Often just called 'Cetamol': the most common tablet for fever and pain."
+  },
+  {
+   "ne": "पानी शुद्ध पार्ने चक्की",
+   "rom": "paani shuddha paarne chakki",
+   "en": "Water purification tablets",
+   "pic": "🧪",
+   "alt": [
+    "water purification tablets",
+    "water tablets",
+    "purification pills"
+   ],
+   "tip": "For making stream or tap water safe while trekking."
+  },
+  {
+   "ne": "यो औषधी कसरी खाने?",
+   "rom": "yo aushadhi kasari khaane?",
+   "en": "How do I take this medicine?",
+   "pic": "📋",
+   "alt": [
+    "how to take this medicine",
+    "how should i take this",
+    "how do i take this medicine"
+   ],
+   "tip": "Ask if it's before a meal (khaanaa aghi) or after (khaanaa pachhi).",
+   "img": "w-medicine"
+  },
+  {
+   "ne": "खाना खाएपछि खानुहोस्",
+   "rom": "khaanaa khaaepachhi khaanuhos",
+   "en": "Take it after a meal",
+   "pic": "🍽️",
+   "alt": [
+    "after food",
+    "after meals",
+    "take after eating",
+    "take it after a meal"
+   ],
+   "tip": "A common instruction from the pharmacist."
+  },
+  {
+   "ne": "दिनमा कति पटक खाने?",
+   "rom": "dinmaa kati patak khaane?",
+   "en": "How many times a day?",
+   "pic": "🔢",
+   "alt": [
+    "how many times a day",
+    "daily dosage",
+    "frequency"
+   ],
+   "tip": "'Dinko dui patak' means twice a day."
+  },
+  {
+   "ne": "मलाई एलर्जी छ",
+   "rom": "malaai elarji chha",
+   "en": "I have an allergy",
+   "pic": "⚠️",
+   "alt": [
+    "i have an allergy",
+    "i have allergies",
+    "allergic"
+   ],
+   "tip": "Tell doctors and cooks, for example about medicines or nuts."
+  },
+  {
+   "ne": "मलाई लेक लाग्यो (उच्चताको समस्या)",
+   "rom": "malaai lek laagyo",
+   "en": "I have altitude sickness",
+   "pic": "🏔️",
+   "alt": [
+    "altitude sickness",
+    "i have altitude sickness",
+    "ams",
+    "lek laagyo"
+   ],
+   "tip": "'Lek laagnu' is Nepali for altitude sickness. Tell your guide straight away!"
+  },
+  {
+   "ne": "सास फेर्न गाह्रो भयो",
+   "rom": "saas pherna gaahro bhayo",
+   "en": "It's hard to breathe",
+   "pic": "🫁",
+   "alt": [
+    "hard to breathe",
+    "difficulty breathing",
+    "shortness of breath",
+    "its hard to breathe"
+   ],
+   "tip": "A serious warning sign up high: stop, rest, and tell your guide."
+  },
+  {
+   "ne": "हामी तल ओर्लनुपर्छ",
+   "rom": "haami tala orlanuparchha",
+   "en": "We must go down",
+   "pic": "📉",
+   "alt": [
+    "we must descend",
+    "go down",
+    "descend",
+    "we must go down"
+   ],
+   "tip": "The golden rule in the mountains: if it gets worse, go down."
+  },
+  {
+   "ne": "अक्सिजन सिलिन्डर छ?",
+   "rom": "aksijan silindar chha?",
+   "en": "Do you have oxygen?",
+   "pic": "🫧",
+   "alt": [
+    "oxygen cylinder",
+    "do you have oxygen",
+    "emergency oxygen"
+   ],
+   "tip": "Some high mountain lodges keep oxygen for emergencies."
+  },
+  {
+   "ne": "मलाई आराम गर्नुपर्छ",
+   "rom": "malaai aaraam garnuparchha",
+   "en": "I need to rest",
+   "pic": "🧘",
+   "alt": [
+    "i need to rest",
+    "need rest",
+    "let me rest"
+   ],
+   "tip": "Take a break before going on up the trail.",
+   "img": "w-resting-place"
+  },
+  {
+   "ne": "मेरो खुट्टा मर्कियो",
+   "rom": "mero khuttaa markiyo",
+   "en": "I twisted my ankle",
+   "pic": "🦶",
+   "alt": [
+    "sprained ankle",
+    "sprained foot",
+    "twisted my ankle",
+    "i twisted my ankle"
+   ],
+   "tip": "Easy to do on uneven stone steps and rocky paths."
+  },
+  {
+   "ne": "म हिँड्न सक्दिनँ",
+   "rom": "ma hindna sakdina",
+   "en": "I can't walk",
+   "pic": "🚷",
+   "alt": [
+    "i cannot walk",
+    "cant walk",
+    "unable to walk",
+    "i cant walk"
+   ],
+   "tip": "Tells your guide or porters that you need help to move."
+  },
+  {
+   "ne": "प्रशस्त पानी पिउनुहोस्",
+   "rom": "prashasta paani piunuhos",
+   "en": "Drink plenty of water",
+   "pic": "💧",
+   "alt": [
+    "drink lots of water",
+    "drink plenty of water",
+    "hydrate"
+   ],
+   "tip": "Guides remind trekkers to keep drinking, especially at altitude.",
+   "img": "w-water"
+  },
+  {
+   "ne": "हेलिकप्टर उद्धार बोलाउनुपर्छ",
+   "rom": "helikaptar uddhaar bolaaunuparchha",
+   "en": "We need a helicopter rescue",
+   "pic": "🚁",
+   "alt": [
+    "call helicopter rescue",
+    "helicopter evacuation",
+    "heli rescue",
+    "we need a helicopter rescue"
+   ],
+   "tip": "For life-threatening emergencies in the mountains."
+  },
+  {
+   "ne": "मसँग यात्रा बीमा छ",
+   "rom": "masanga yaatraa bimaa chha",
+   "en": "I have travel insurance",
+   "pic": "📑",
+   "alt": [
+    "i have insurance",
+    "travel insurance",
+    "medical insurance",
+    "i have travel insurance"
+   ],
+   "tip": "Keep your policy number and emergency phone number handy."
+  },
+  {
+   "ne": "अस्पताल / क्लिनिक कहाँ छ?",
+   "rom": "aspataal / klinik kahaan chha?",
+   "en": "Where is the hospital?",
+   "pic": "🏥",
+   "alt": [
+    "where is the hospital",
+    "where is clinic",
+    "hospital"
+   ],
+   "tip": "Towns have health posts; Kathmandu and Pokhara have larger clinics and hospitals.",
+   "img": "w-hospital"
+  },
+  {
+   "ne": "म डाक्टरलाई भेट्न चाहन्छु",
+   "rom": "ma daaktarlaai bhetna chaahanchhu",
+   "en": "I want to see a doctor",
+   "pic": "🧑‍⚕️",
+   "alt": [
+    "i want to see a doctor",
+    "see a doctor",
+    "need a doctor"
+   ],
+   "tip": "Say it at the clinic's front desk.",
+   "img": "w-doctor"
+  },
+  {
+   "ne": "प्रहरी चौकी कहाँ छ?",
+   "rom": "prahari chauki kahaan chha?",
+   "en": "Where is the police station?",
+   "pic": "👮",
+   "alt": [
+    "where is police station",
+    "police post",
+    "where is the police station"
+   ],
+   "tip": "For reporting a lost passport or stolen things."
+  },
+  {
+   "ne": "प्रहरीलाई बोलाउनुहोस्!",
+   "rom": "praharilaai bolaaunuhos!",
+   "en": "Please call the police!",
+   "pic": "🚔",
+   "alt": [
+    "call the police",
+    "call police please",
+    "police please",
+    "please call the police"
+   ],
+   "tip": "Nepal Police emergency number: 100."
+  },
+  {
+   "ne": "पर्यटक प्रहरी",
+   "rom": "paryatak prahari",
+   "en": "Tourist Police",
+   "pic": "🛡️",
+   "alt": [
+    "tourist police",
+    "traveler police"
+   ],
+   "tip": "A police unit that helps visitors. Tourist Police hotline: 1144."
+  },
+  {
+   "ne": "मेरो राहदानी (पासपोर्ट) हरायो",
+   "rom": "mero raahadaani (passport) haraayo",
+   "en": "I lost my passport",
+   "pic": "📕",
+   "alt": [
+    "passport lost",
+    "i lost my passport",
+    "lost passport"
+   ],
+   "tip": "You'll need a police report to get emergency papers from your embassy."
+  },
+  {
+   "ne": "मेरो झोला हरायो / चोरी भयो",
+   "rom": "mero jhyolaa haraayo / chori bhayo",
+   "en": "My bag is lost / stolen",
+   "pic": "🎒",
+   "alt": [
+    "my bag was stolen",
+    "lost my bag",
+    "bag missing",
+    "my bag is lost"
+   ],
+   "tip": "Say where you last saw it, like a taxi or a hotel lobby."
+  },
+  {
+   "ne": "दूतावास (एम्बेसी)",
+   "rom": "dutaawaas (embassy)",
+   "en": "Embassy",
+   "pic": "🏛️",
+   "alt": [
+    "embassy",
+    "consulate",
+    "dutaawaas"
+   ],
+   "tip": "Most embassies are in Kathmandu. Keep your embassy's phone number saved."
+  },
+  {
+   "ne": "चिन्ता नगर्नुहोस्, तपाईं सुरक्षित हुनुहुन्छ",
+   "rom": "chintaa nagarnuhos, tapaain surakshit hunuhunchha",
+   "en": "Don't worry, you are safe",
+   "pic": "🤝",
+   "alt": [
+    "you are safe",
+    "do not worry you are safe",
+    "dont worry you are safe"
+   ],
+   "tip": "Kind, reassuring words from a helper."
+  },
+  {
+   "ne": "मद्दतको लागि धेरै-धेरै धन्यवाद!",
+   "rom": "maddatko laagi dherai-dherai dhanyabaad!",
+   "en": "Thank you so much for your help!",
+   "pic": "🙏",
+   "alt": [
+    "thank you for your help",
+    "thanks for help",
+    "thank you so much for your help"
+   ],
+   "tip": "A heartfelt thank-you to everyone who helped you.",
+   "img": "w-thank-you-very-much"
+  }
+ ],
+ "iconImg": "w-hospital"
 });
